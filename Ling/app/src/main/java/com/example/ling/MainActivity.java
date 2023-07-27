@@ -16,7 +16,7 @@ import com.example.ling.databinding.ActivityDateBinding;
 import com.example.ling.databinding.ActivityMainBinding;
 import com.example.ling.home.ChatFragment;
 import com.example.ling.home.HomeFragment;
-
+//jj
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     ActionBar actionBar;
