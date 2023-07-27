@@ -44,8 +44,8 @@ public class ChatFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentChatBinding.inflate(inflater, container, false);
-        Button_send = binding.ButtonSend;
-        EditText_chat = binding.EditTextChat;
+        Button_send = binding.btnChat;
+        EditText_chat = binding.edtChat;
 
 
 

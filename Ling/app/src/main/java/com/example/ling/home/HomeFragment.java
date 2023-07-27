@@ -26,10 +26,6 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
-        binding.imgvPhoto.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), PhotoActivity.class);
-            startActivity(intent);
-        });
 
         return binding.getRoot();
 

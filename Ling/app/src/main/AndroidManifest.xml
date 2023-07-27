@@ -34,7 +34,9 @@
             android:name=".home.RowChatActivity"
             android:exported="false" />
 
-
+        <activity
+            android:name=".home.PhotoActivity"
+            android:exported="false" />
    <activity
             android:name=".date.FestivalActivity"
             android:exported="false" />
