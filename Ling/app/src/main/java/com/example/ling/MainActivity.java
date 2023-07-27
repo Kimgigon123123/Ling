@@ -18,6 +18,7 @@ import com.example.ling.databinding.ActivityMainBinding;
 import com.example.ling.date.DateFragment;
 import com.example.ling.home.ChatFragment;
 import com.example.ling.home.HomeFragment;
+import com.example.ling.store.StoreCoFragment;
 import com.example.ling.store.StorePurchaseActivity;
 import com.example.ling.store.StorePurchaseFragment;
 
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
             }else if(item.getItemId() == R.id.tab_store){
 
-                fragment = new StorePurchaseFragment();
+                fragment = new StoreCoFragment();
 
             }else if(item.getItemId() == R.id.tab_board){
                 fragment = new BoardFragment();

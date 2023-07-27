@@ -19,8 +19,8 @@
         <ImageView
 
             android:layout_marginLeft="15dp"
-            android:id="@+id/imgv_menu"
-            android:src="@drawable/ic_menu"
+            android:id="@+id/imgv_before"
+            android:src="@drawable/ic_before"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -35,26 +35,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <ImageView
-            android:id="@+id/imgv_basket"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="180dp"
-            android:src="@drawable/ic_dibs" />
-
-        <ImageView
-            android:id="@+id/imgv_zzim"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:src="@drawable/ic_dibs" />
-
-        <ImageView
-            android:id="@+id/imgv_myinfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:src="@drawable/ic_dibs" />
 
 
 
