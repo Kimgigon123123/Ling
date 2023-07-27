@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:divider="ffffff"
+        android:divider="#ffffff"
         android:dividerHeight="0dp"
         />
     <LinearLayout
@@ -29,7 +29,9 @@
             android:layout_weight="1"
             android:hint="너에게 보내는 말"
             android:inputType="textMultiLine"
-            
+            android:padding="10dp"
+            android:maxLines="3"
+            android:background="@drawable/edt_chat_bg"
             />
 
     </LinearLayout>
