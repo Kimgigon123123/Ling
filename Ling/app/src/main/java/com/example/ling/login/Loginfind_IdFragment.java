@@ -1,4 +1,4 @@
-package com.example.ling.join;
+package com.example.ling.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,19 +10,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ling.R;
-import com.example.ling.databinding.FragmentJoinStep1Binding;
-import com.example.ling.login.LoginActivity;
+import com.example.ling.databinding.FragmentLoginfindIdBinding;
 
-public class JoinStep1Fragment extends Fragment {
 
-    FragmentJoinStep1Binding binding;
+public class Loginfind_IdFragment extends Fragment {
+
+    FragmentLoginfindIdBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentJoinStep1Binding.inflate(inflater, container, false);
+        binding = FragmentLoginfindIdBinding.inflate(inflater, container, false);
         binding.btnNext.setOnClickListener(v->{
-            ((JoinActivity) getActivity()).changeTab(1);
+            ((LoginActivity) getActivity()).find_changeTab(3);
         });
 
         binding.btnTextLogin.setOnClickListener(v->{
@@ -30,7 +30,6 @@ public class JoinStep1Fragment extends Fragment {
             startActivity(intent);
 
         });
-
         return binding.getRoot();
     }
 }
