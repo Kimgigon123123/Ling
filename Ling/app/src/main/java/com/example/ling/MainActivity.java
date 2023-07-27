@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.example.ling.databinding.ActivityMainBinding;
+import com.example.ling.home.ChatFragment;
 import com.example.ling.home.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 actionBar.setTitle(Html.fromHtml("<font color='#ffffff'>여행지</font>"));
 
             }else if(item.getItemId() == R.id.tab_chat){
-//                fragment = new ChatFragment();
+                fragment = new ChatFragment();
                 actionBar.setTitle(Html.fromHtml("<font color='#ffffff'>채팅</font>"));
 //                actionBar.setTitle(Html.fromHtml("<font color='#ffffff'>둘러보기 </font>"));
 //                getWindow().setStatusBarColor(Color.parseColor("#000000"));
