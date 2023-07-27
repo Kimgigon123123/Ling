@@ -141,7 +141,7 @@
 
     <LinearLayout
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
@@ -195,7 +195,7 @@
 
     <LinearLayout
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
@@ -238,7 +238,7 @@
                 android:id="@+id/recv_buylist"
                 android:layout_margin="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"/>
+                android:layout_height="140dp"/>
 
         </LinearLayout>
 
@@ -249,7 +249,7 @@
 
     <LinearLayout
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
