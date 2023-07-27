@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="dibs">
+        <item>전체</item>
+        <item>여행</item>
+        <item>맛집</item>
+        <item>축제</item>
+    </string-array>
+    
+    <string-array name="sido">
+        <item>전체</item>
+        <item>서울특별시</item>
+        <item>부산광역시</item>
+        <item>대구광역시</item>
+        <item>인천광역시</item>
+        <item>광주광역시</item>
+        <item>대전광역시</item>
+        <item>울산광역시</item>
+        <item>세종특별자치시</item>
+        <item>경기도</item>
+        <item>강원특별자치도</item>
+        <item>충남/충북</item>
+        <item>전남/전북</item>
+        <item>경남/경북</item>
+        <item>제주특별자치도</item>
+    </string-array>
+
+    <string-array name="seoul_sigungu">
+
+    </string-array>
+    <string-array name="busan_sigungu">
+
+    </string-array>
+    <string-array name="daegu_sigungu">
+
+    </string-array>
+    <string-array name="incheon_sigungu">
+
+    </string-array>
+    <string-array name="gwangju_sigungu">
+
+    </string-array>
+    <string-array name="daejeon_sigungu">
+
+    </string-array>
+    <string-array name="sejong_sigungu">
+
+    </string-array>
+    <string-array name="gyeonggi_sigungu">
+
+    </string-array>
+    <string-array name="gangwon_sigungu">
+
+    </string-array>
+    <string-array name="chungcheong_sigungu">
+
+    </string-array>
+    <string-array name="jeolla_sigungu">
+
+    </string-array>
+    <string-array name="gyeongsang_sigungu">
+
+    </string-array>
+    <string-array name="jeju_sigungu">
+
+    </string-array>
+
+    
+</resources>

@@ -33,6 +33,23 @@
             <activity
             android:name=".home.RowChatActivity"
             android:exported="false" />
+
+
+   <activity
+            android:name=".date.FestivalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".date.RestaurantActivity"
+            android:exported="false" />
+        <activity
+            android:name=".date.TourActivity"
+            android:exported="false" />
+        <activity
+            android:name=".date.DibsActivity"
+            android:exported="false" />
+
+
+
         <activity
             android:name=".store.StoreMyinfoActivity"
             android:exported="false" />
@@ -46,8 +63,6 @@
             android:name=".store.StorePaymentActivity"
             android:exported="false" />
 
-        <activity
-            android:name=".date.DibsActivity"/>
         <activity
             android:name=".date.DateActivity"
             android:exported="false" />
