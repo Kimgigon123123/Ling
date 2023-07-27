@@ -1,5 +1,6 @@
 package com.example.ling.store;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -27,6 +28,12 @@ public class StorePurchaseFragment extends Fragment {
         super.onCreate(savedInstanceState);
         binding = FragmentStorePurchaseBinding.inflate(inflater,container,false);
 
+
+
+        binding.imgvMyinfo.setOnClickListener(v->{
+            Intent intent = new Intent(getContext(), StoreMyinfoActivity.class);
+            getContext().startActivity(intent);
+        });
 
 
         binding.btnBuy.setOnClickListener(v -> {

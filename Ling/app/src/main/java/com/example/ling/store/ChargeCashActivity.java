@@ -22,6 +22,11 @@ public class ChargeCashActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         String charge = "charge";
 
+
+        binding.imgvBefore.setOnClickListener(v -> {
+            finish();
+        });
+
         binding.btnInputBank.setOnClickListener(v -> {
 
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -21,6 +22,13 @@ public class StorePurchaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding= ActivityStorePurchaseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+
+
+        binding.imgvBefore.setOnClickListener(v -> {
+            finish();
+        });
 
 
         binding.btnBuy.setOnClickListener(v -> {
