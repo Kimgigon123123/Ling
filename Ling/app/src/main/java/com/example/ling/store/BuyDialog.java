@@ -24,13 +24,14 @@ public class BuyDialog extends BottomSheetDialog {
         super(context);
         setContentView(R.layout.dialog_buy);
         btn_buy=findViewById(R.id.btn_buy);
-
+        String payment="payment";
         btn_buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
                 Intent intent = new Intent(context,StorePaymentActivity.class);
+                intent.putExtra("payment",payment);
                 context.startActivity(intent);
 
 
