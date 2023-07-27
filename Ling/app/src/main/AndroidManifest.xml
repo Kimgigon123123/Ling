@@ -34,7 +34,9 @@
             android:name=".home.RowChatActivity"
             android:exported="false" />
 
-
+        <activity
+            android:name=".home.PhotoActivity"
+            android:exported="false" />
    <activity
             android:name=".date.FestivalActivity"
             android:exported="false" />
@@ -63,9 +65,6 @@
             android:name=".store.StorePaymentActivity"
             android:exported="false" />
 
-        <activity
-            android:name=".date.DateActivity"
-            android:exported="false" />
         <activity
             android:name=".store.StorePurchaseActivity"
             android:exported="false" />

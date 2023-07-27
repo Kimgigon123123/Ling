@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.R;
 import com.example.ling.databinding.ItemRecvFestivalBinding;
-import com.example.ling.databinding.ItemRecvRestaurantBinding;
 
 public class FestivalItemAdapter extends RecyclerView.Adapter<FestivalItemAdapter.ViewHolder> {
 

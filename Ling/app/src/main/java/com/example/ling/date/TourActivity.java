@@ -1,11 +1,9 @@
 package com.example.ling.date;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-
-import com.example.ling.R;
 import com.example.ling.databinding.ActivityTourBinding;
 
 public class TourActivity extends AppCompatActivity {

@@ -1,10 +1,9 @@
 package com.example.ling.date;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-import com.example.ling.R;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.ling.databinding.ActivityRestaurantBinding;
 
 public class RestaurantActivity extends AppCompatActivity {
