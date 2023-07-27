@@ -34,9 +34,7 @@
             android:name=".home.RowChatActivity"
             android:exported="false" />
 
-        <activity
-            android:name=".home.PhotoActivity"
-            android:exported="false" />
+
    <activity
             android:name=".date.FestivalActivity"
             android:exported="false" />
@@ -66,16 +64,19 @@
             android:exported="false" />
 
         <activity
+            android:name=".date.DateActivity"
+            android:exported="false" />
+        <activity
             android:name=".store.StorePurchaseActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
             android:exported="false" />
         <activity
-            android:name=".join.JoinActivity"
+            android:name=".MainActivity"
             android:exported="false" />
             <activity
-            android:name=".MainActivity"
+            android:name=".join.JoinActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
