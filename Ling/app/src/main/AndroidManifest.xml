@@ -34,7 +34,11 @@
             android:exported="false" />
         <activity
 <<<<<<< HEAD
+<<<<<<< HEAD
             android:name=".date.DibsActivity"
+=======
+            android:name=".store.StorePaymentActivity"
+>>>>>>> parent of 27950d7 (Merge remote-tracking branch 'origin/hyemin')
 =======
             android:name=".store.StorePaymentActivity"
 >>>>>>> parent of 27950d7 (Merge remote-tracking branch 'origin/hyemin')
@@ -64,6 +68,9 @@
             android:exported="true" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
+<<<<<<< HEAD
+>>>>>>> parent of 27950d7 (Merge remote-tracking branch 'origin/hyemin')
+=======
 >>>>>>> parent of 27950d7 (Merge remote-tracking branch 'origin/hyemin')
 
             <category android:name="android.intent.category.LAUNCHER" />
