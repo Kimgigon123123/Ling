@@ -16,7 +16,6 @@
             android:name=".login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
             android:name=".store.StoreMyinfoActivity"
             android:exported="false" />
         <activity
@@ -31,20 +30,20 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-        
-            <activity
-            android:name=".store.StorePurchaseActivity"
-            android:exported="false"/>
-
-            <activity
+        <activity
             android:name=".join.JoinActivity"
-             android:exported="true"/>
-             
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.StorePurchaseActivity"
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
     </application>
 
