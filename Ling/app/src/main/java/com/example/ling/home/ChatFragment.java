@@ -17,11 +17,14 @@ import android.widget.EditText;
 
 import com.example.ling.R;
 import com.example.ling.databinding.FragmentChatBinding;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.ktx.Firebase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +50,15 @@ public class ChatFragment extends Fragment {
         Button_send = binding.ButtonSend;
         EditText_chat = binding.EditTextChat;
 
+      //  ;
 
-
+//        //"AIzaSyCE6l0ZW1nxE8PHP47s-j2LNBywIZQaj5s",
+//        FirebaseOptions.Builder builder = new FirebaseOptions.Builder()
+//                .setApplicationId("1:844327800480:android:f2daa30f57028b549c83c5")
+//                .setApiKey("AIzaSyCE6l0ZW1nxE8PHP47s-j2LNBywIZQaj5s")
+//                .setDatabaseUrl("https://your-app.firebaseio.com")
+//                .setStorageBucket("your-app.appspot.com");
+//        FirebaseApp.initializeApp(getContext(), builder.build());
 
         Button_send.setOnClickListener(new View.OnClickListener() {
             @Override
