@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             if(item.getItemId() == R.id.tab_travel){
-//                fragment = new TravelFragment();
+                fragment = new DateFragment();
 
             }else if(item.getItemId() == R.id.tab_chat){
                 fragment = new ChatFragment();
