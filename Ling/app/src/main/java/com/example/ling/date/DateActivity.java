@@ -33,15 +33,18 @@ public class DateActivity extends AppCompatActivity {
         });
 
         binding.tvTmore.setOnClickListener(v -> {
-
+            Intent intent = new Intent(DateActivity.this, TourActivity.class);
+            startActivity(intent);
         });
 
         binding.tvRmore.setOnClickListener(v -> {
-
+            Intent intent = new Intent(DateActivity.this, RestaurantActivity.class);
+            startActivity(intent);
         });
 
         binding.tvFmore.setOnClickListener(v -> {
-
+            Intent intent = new Intent(DateActivity.this, FestivalActivity.class);
+            startActivity(intent);
         });
     }
 

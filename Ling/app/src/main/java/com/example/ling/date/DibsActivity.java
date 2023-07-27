@@ -1,10 +1,15 @@
 package com.example.ling.date;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 
 import com.example.ling.R;
 import com.example.ling.databinding.ActivityDibsBinding;
@@ -25,5 +30,29 @@ public class DibsActivity extends AppCompatActivity {
         binding.imgvBefore.setOnClickListener(v -> {
             finish();
         });
+
     }
+
 }
+
+// 드롭다운 메뉴
+/*
+*  bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                count = (count + 1) % 3;
+
+                switch(count){
+                    case 0:
+                        base.setBackgroundColor(Color.RED);
+                        break;
+                    case 1:
+                        base.setBackgroundColor(Color.BLUE);
+                        break;
+                    case 2:
+                        base.setBackgroundColor(Color.GREEN);
+                        break;
+                }
+            }
+        });
+* */
