@@ -8,36 +8,36 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.R;
-import com.example.ling.databinding.ItemRecvRestaurantBinding;
+import com.example.ling.databinding.ItemRecvRestactBinding;
 
-public class RestaurantItemAdapter extends RecyclerView.Adapter<RestaurantItemAdapter.ViewHolder> {
+public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.ViewHolder> {
 
-    ItemRecvRestaurantBinding binding;
+    ItemRecvRestactBinding binding;
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        binding = ItemRecvRestaurantBinding.inflate(inflater, parent, false);
+        binding = ItemRecvRestactBinding.inflate(inflater, parent, false);
         return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
         h.binding.imgvRestaurant.setImageResource(R.drawable.ic_launcher_background);
-        h.binding.tvRestaurant.setText("맛집");
+        h.binding.tvRname.setText("이름");
+        h.binding.tvRaddr.setText("주소");
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 20;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        ItemRecvRestactBinding binding;
 
-        ItemRecvRestaurantBinding binding;
-
-        public ViewHolder(@NonNull ItemRecvRestaurantBinding binding) {
+        public ViewHolder(@NonNull ItemRecvRestactBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
