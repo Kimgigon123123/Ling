@@ -29,7 +29,7 @@
         <activity
             android:name=".login.LoginActivity"
             android:exported="false" />
-        
+
         <activity
             android:name=".home.RowChatActivity"
             android:exported="false" />
@@ -37,9 +37,7 @@
             android:name=".home.TimeCapsuleActivity"
             android:exported="false" />
 
-            <activity
-            android:name=".home.RowChatActivity"
-            android:exported="false" />
+
         <activity
             android:name=".store.StoreMyinfoActivity"
             android:exported="false" />
@@ -55,8 +53,7 @@
         <activity
             android:name=".store.StorePaymentActivity"
             android:exported="false" />
-        <activity
-            android:name=".date.DibsActivity"/>
+
         <activity
             android:name=".date.DateActivity"
             android:exported="false" />
@@ -66,30 +63,19 @@
         <activity
             android:name=".SplashActivity"
             android:exported="false" />
+
         <activity
-
-        android:name=".join.JoinActivity"
-        android:exported="false"/>
-        <activity
-            android:name=".date.DateActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            android:name=".join.JoinActivity"
-
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            android:exported="false" />
-            <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="true" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+        <activity
+            android:name=".join.JoinActivity"
+            android:exported="true">
+
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+
         </activity>
     </application>
 
