@@ -34,5 +34,13 @@
             android:background="@drawable/edt_chat_bg"
             />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전송"
+            android:backgroundTint="#91BFBB"
+            android:layout_marginLeft="8dp"
+            android:onClick="clickSend"
+            />
     </LinearLayout>
 </LinearLayout>
