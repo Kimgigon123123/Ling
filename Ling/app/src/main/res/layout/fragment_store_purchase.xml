@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".store.StorePurchaseActivity"
+    android:background="#fff"
     android:orientation="vertical">
 
     <LinearLayout
@@ -111,7 +112,7 @@
 
 
             </LinearLayout>
-            
+
 
 
             <LinearLayout

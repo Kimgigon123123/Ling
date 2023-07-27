@@ -19,6 +19,7 @@ import com.example.ling.date.DateFragment;
 import com.example.ling.home.ChatFragment;
 import com.example.ling.home.HomeFragment;
 import com.example.ling.store.StorePurchaseActivity;
+import com.example.ling.store.StorePurchaseFragment;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -58,8 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
             }else if(item.getItemId() == R.id.tab_store){
 
-                Intent intent = new Intent(MainActivity.this, StorePurchaseActivity.class);
-                startActivity(intent);
+                fragment = new StorePurchaseFragment();
 
             }else if(item.getItemId() == R.id.tab_board){
                 fragment = new BoardFragment();
