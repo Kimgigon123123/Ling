@@ -2,6 +2,7 @@ package com.example.ling.join;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ling.MainActivity;
 import com.example.ling.R;
@@ -61,8 +63,26 @@ public class JoinActivity extends AppCompatActivity {
 
     }
 
-    public void changeTab(int idx){
+    int idx = 0;
 
+    @Override
+    public void onBackPressed() {
+        if (idx == 4){
+
+            Toast.makeText(this,"이제는 짝궁과 즐거운 시간을 보낼 차례!", Toast.LENGTH_SHORT).show();
+        } else if(idx != 0){
+        idx --;
+        changeTab(idx);
+
+        } else{
+            super.onBackPressed();
+        }
+    }
+
+    public void changeTab(int idx){
+        this.idx = idx;
         binding.pager.setCurrentItem(idx, true);
     }
+
+
 }
