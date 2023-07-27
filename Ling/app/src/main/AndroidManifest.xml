@@ -17,13 +17,29 @@
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
+            android:name=".store.StoreMyinfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.InsertBankInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.ChargeCashActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.StorePaymentActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-        <activity
+        
+            <activity
+            android:name=".store.StorePurchaseActivity"
+            android:exported="false"/>
+
+            <activity
             android:name=".join.JoinActivity"
-            android:exported="true">
+             android:exported="true"/>
+             
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
