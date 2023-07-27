@@ -22,6 +22,10 @@ public class StoreMyinfoActivity extends AppCompatActivity {
         binding.recvZzim.setAdapter(new ZZimAdapter(this));
         binding.recvZzim.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
 
+        binding.recvBuylist.setAdapter(new BuylistAdapter(this));
+        binding.recvBuylist.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+
+
         binding.imgvBefore.setOnClickListener(v -> {
             finish();
         });
