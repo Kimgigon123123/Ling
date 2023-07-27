@@ -33,7 +33,11 @@
             android:name=".store.ChargeCashActivity"
             android:exported="false" />
         <activity
+<<<<<<< HEAD
             android:name=".date.DibsActivity"
+=======
+            android:name=".store.StorePaymentActivity"
+>>>>>>> parent of 27950d7 (Merge remote-tracking branch 'origin/hyemin')
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -45,6 +49,7 @@
             android:name=".SplashActivity"
             android:exported="false" />
         <activity
+<<<<<<< HEAD
         android:name=".join.JoinActivity"
         android:exported="false"/>
         <activity
@@ -54,6 +59,12 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+=======
+            android:name=".join.JoinActivity"
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+>>>>>>> parent of 27950d7 (Merge remote-tracking branch 'origin/hyemin')
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
