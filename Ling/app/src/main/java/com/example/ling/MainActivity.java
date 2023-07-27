@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.shapes.Shape;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
@@ -20,6 +21,8 @@ import com.example.ling.home.ChatFragment;
 import com.example.ling.home.HomeFragment;
 import com.example.ling.store.StorePurchaseActivity;
 import com.example.ling.store.StorePurchaseFragment;
+
+import nl.dionsegijn.konfetti.KonfettiView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -67,5 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         });
+
+
     }
 }
