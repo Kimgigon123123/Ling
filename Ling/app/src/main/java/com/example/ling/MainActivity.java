@@ -21,11 +21,13 @@ import com.example.ling.home.HomeFragment;
 import com.example.ling.store.StorePurchaseActivity;
 
 public class MainActivity extends AppCompatActivity {
+
     ActivityMainBinding binding;
-    Fragment fragment;
+    Fragment fragment = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         FragmentManager manager = getSupportFragmentManager();
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.navigation.setItemIconTintList(null);
         binding.navigation.setOnItemSelectedListener(item -> {
+
 
             if(item.getItemId() == R.id.tab_travel){
                 fragment = new DateFragment();
