@@ -9,19 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ling.R;
-import com.example.ling.databinding.FragmentJoinProfileBinding;
+import com.example.ling.databinding.FragmentInsertMateBinding;
 
 
-public class JoinProfileFragment extends Fragment {
+public class InsertMateFragment extends Fragment {
 
-    FragmentJoinProfileBinding binding;
+    FragmentInsertMateBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentJoinProfileBinding.inflate(inflater, container, false);
+        binding = FragmentInsertMateBinding.inflate(inflater, container, false);
         binding.btnNext.setOnClickListener(v->{
-            ((JoinActivity) getActivity()).changeTab(2);
+            ((JoinActivity) getActivity()).changeTab(4);
         });
         return binding.getRoot();
     }

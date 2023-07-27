@@ -3,10 +3,13 @@ package com.example.ling.join;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.ling.MainActivity;
@@ -51,9 +54,15 @@ public class JoinActivity extends AppCompatActivity {
         }
     }).attach();
 
-//    public void changeTab(int idx){
-//        FragmentManager manager = getSupportFragmentManager();
-//        manager.beginTransaction().replace(R.id.container, new JoinStep1Fragment()).commit();
-//    }
+        binding.pager.setUserInputEnabled(false);
+
+
+
+
+    }
+
+    public void changeTab(int idx){
+
+        binding.pager.setCurrentItem(idx, true);
     }
 }
