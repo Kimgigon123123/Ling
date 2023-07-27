@@ -21,7 +21,7 @@ public class DateActivity extends AppCompatActivity {
 
         binding.recvTour.setAdapter(new TourItemAdapter());
         binding.recvRestaurant.setAdapter(new RestaurantItemAdapter());
-        binding.recvFestival.setAdapter(new RestaurantItemAdapter());
+        binding.recvFestival.setAdapter(new FestivalItemAdapter());
         binding.recvTour.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.recvRestaurant.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         binding.recvFestival.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
