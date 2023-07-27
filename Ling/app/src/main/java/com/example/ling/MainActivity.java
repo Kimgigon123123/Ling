@@ -1,18 +1,26 @@
 package com.example.ling;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.example.ling.databinding.ActivityDateBinding;
 import com.example.ling.databinding.ActivityMainBinding;
 import com.example.ling.home.ChatFragment;
 import com.example.ling.home.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
-
+    ActivityMainBinding binding;
+    ActionBar actionBar;
+    Fragment fragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
