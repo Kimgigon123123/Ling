@@ -12,6 +12,7 @@ import android.text.Html;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.example.ling.board.BoardFragment;
 import com.example.ling.databinding.ActivityDateBinding;
 import com.example.ling.databinding.ActivityMainBinding;
 import com.example.ling.home.ChatFragment;
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 //                actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#000000")));
 //                binding.container.setBackgroundColor(Color.parseColor("#000000"));
             }else if(item.getItemId() == R.id.tab_board){
-//                fragment = new BoardFragment();
+                fragment = new BoardFragment();
                 actionBar.setTitle(Html.fromHtml("<font color='#ffffff'>게시판 </font>"));
             }
             manager.beginTransaction().replace(R.id.container, fragment).commit();
