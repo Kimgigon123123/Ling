@@ -21,9 +21,6 @@
             android:name=".home.RowChatActivity"
             android:exported="false" />
         <activity
-            android:name=".home.TimeCapsuleActivity"
-            android:exported="false" />
-        <activity
             android:name=".store.StoreMyinfoActivity"
             android:exported="false" />
         <activity
@@ -34,8 +31,10 @@
             android:exported="false" />
         <activity
             android:name=".store.StorePaymentActivity"
-            android:name=".date.DibsActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".date.DibsActivity"/>
         <activity
             android:name=".MainActivity"
             android:exported="false" />
@@ -47,9 +46,8 @@
             android:exported="false" />
         <activity
             android:name=".join.JoinActivity"
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:exported="false" />
+            <activity
             android:name=".date.DateActivity"
             android:exported="true">
             <intent-filter>
