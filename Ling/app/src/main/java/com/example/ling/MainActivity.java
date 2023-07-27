@@ -6,18 +6,21 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.shapes.Shape;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
 import com.example.ling.board.BoardFragment;
-import com.example.ling.databinding.ActivityDateBinding;
+
 import com.example.ling.databinding.ActivityMainBinding;
 import com.example.ling.date.DateFragment;
 import com.example.ling.home.ChatFragment;
 import com.example.ling.home.HomeFragment;
 import com.example.ling.store.StorePurchaseActivity;
+
+import nl.dionsegijn.konfetti.KonfettiView;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -62,11 +65,13 @@ public class MainActivity extends AppCompatActivity {
 
             }else if(item.getItemId() == R.id.tab_board){
                 fragment = new BoardFragment();
-                actionBar.setTitle(Html.fromHtml("<font color='#ffffff'>게시판 </font>"));
+
             }
             manager.beginTransaction().replace(R.id.container, fragment).commit();
 
             return true;
         });
+
+
     }
 }
