@@ -1,10 +1,10 @@
 package com.example.ling;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,10 +12,13 @@ import android.text.Html;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.example.ling.board.BoardFragment;
+
 import com.example.ling.databinding.ActivityMainBinding;
-import com.example.ling.home.Chat1Fragment;
+import com.example.ling.date.DateFragment;
 import com.example.ling.home.ChatFragment;
 import com.example.ling.home.HomeFragment;
+import com.example.ling.store.StorePurchaseActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
 
-
         binding.navigation.setItemIconTintList(null);
         binding.navigation.setOnItemSelectedListener(item -> {
 
@@ -54,11 +56,17 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new ChatFragment();
 
             }else if(item.getItemId() == R.id.tab_home){
+
                 fragment = new HomeFragment();
+
             }else if(item.getItemId() == R.id.tab_store){
-//                fragment = new StoreFragment();
+
+                Intent intent = new Intent(MainActivity.this, StorePurchaseActivity.class);
+                startActivity(intent);
+
             }else if(item.getItemId() == R.id.tab_board){
-//                fragment = new BoardFragment();
+                fragment = new BoardFragment();
+
             }
             manager.beginTransaction().replace(R.id.container, fragment).commit();
 
