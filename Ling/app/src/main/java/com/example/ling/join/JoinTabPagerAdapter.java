@@ -7,7 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class JoinTabPagerAdapter extends FragmentStateAdapter {
 
-    Fragment[] fragments = new Fragment[] { new JoinProfileFragment() };
+    Fragment[] fragments = new Fragment[] {new JoinStep1Fragment(), new JoinProfileFragment(), new JoinMiddleFragment(), new InsertMateFragment(), new JoinCompleteFragment() };
 
     public JoinTabPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);

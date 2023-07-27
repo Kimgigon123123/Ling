@@ -9,19 +9,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ling.R;
-import com.example.ling.databinding.FragmentJoinProfileBinding;
+import com.example.ling.databinding.FragmentJoinMiddleBinding;
 
 
-public class JoinProfileFragment extends Fragment {
+public class JoinMiddleFragment extends Fragment {
 
-    FragmentJoinProfileBinding binding;
+    FragmentJoinMiddleBinding binding;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentJoinProfileBinding.inflate(inflater, container, false);
+        binding = FragmentJoinMiddleBinding.inflate(inflater, container, false);
         binding.btnNext.setOnClickListener(v->{
-            ((JoinActivity) getActivity()).changeTab(2);
+            ((JoinActivity) getActivity()).changeTab(3);
         });
         return binding.getRoot();
     }
