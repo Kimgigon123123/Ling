@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".join.JoinProfileFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="30dp">
+
+    <ImageView
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/logo_ling"/>
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login or sign Uo for free."/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:src="@drawable/profile_img"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_weight="4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:helperTextEnabled="true"
+            android:layout_margin="10dp"
+            android:textColorHint="#878787"
+            android:hint="이름"
+            app:helperTextTextColor="#8A8A8A">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:id="@+id/radio_men"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="남자" />
+
+        <RadioButton
+            android:layout_gravity="center"
+            android:id="@+id/radio_women"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="여자" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:helperTextEnabled="true"
+            android:layout_margin="10dp"
+            android:textColorHint="#878787"
+            android:hint="생년월일"
+            app:helperTextTextColor="#8A8A8A">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </RadioGroup>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:helperTextEnabled="true"
+        android:layout_margin="10dp"
+        android:textColorHint="#878787"
+        android:hint="전화번호"
+        app:helperTextTextColor="#8A8A8A">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:inputType="phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:helperTextEnabled="true"
+        android:layout_margin="10dp"
+        android:textColorHint="#878787"
+        android:hint="이메일"
+        app:helperTextTextColor="#8A8A8A">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="다음"/>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center"
+            android:background="#878787"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="2px"/>
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="or use"/>
+
+        <View
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center"
+            android:background="#878787"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="2px"/>
+
+    </LinearLayout>
+
+</LinearLayout>

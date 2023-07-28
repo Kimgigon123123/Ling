@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".board.BoardMainFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginVertical="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="공지사항"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:layout_weight="2"
+                            android:id="@+id/tv_notice_more"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="+ 더보기" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginVertical="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="자유 게시판"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/tv_free_more"
+                            android:layout_weight="2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="+ 더보기" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginVertical="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="고민 상담소"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/tv_worry_more"
+                            android:layout_weight="2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="+ 더보기" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginVertical="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="짝궁 놀이터"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/tv_play_more"
+                            android:layout_weight="2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="+ 더보기" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+            </ScrollView>
+        </FrameLayout>
+    </LinearLayout>
+
+</FrameLayout>

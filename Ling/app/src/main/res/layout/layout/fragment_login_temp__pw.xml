@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.LoginTemp_PwFragment"
+    android:orientation="vertical"
+    android:padding="30dp">
+
+    <ImageView
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/logo_ling"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="등록된 이메일로 임시 비밀번호를 \n 전송했습니다."
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:layout_margin="10dp"/>
+
+    <Button
+        android:id="@+id/btn_return_login"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="로그인 화면으로 넘어가기"/>
+
+
+
+</LinearLayout>

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ling.R;
 import com.example.ling.databinding.ItemRecvDibsBinding;
 import com.example.ling.databinding.ItemRecvStoreCoBinding;
-import com.example.ling.date.DibsAdapter;
+
 
 public class StoreCoAdater extends RecyclerView.Adapter<StoreCoAdater.ViewHolder> {
 
