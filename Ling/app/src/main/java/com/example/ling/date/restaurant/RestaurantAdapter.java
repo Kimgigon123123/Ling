@@ -3,6 +3,7 @@ package com.example.ling.date.restaurant;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -31,8 +32,17 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
         h.binding.imgvRestaurant.setImageResource(R.drawable.ic_launcher_background);
+        h.binding.imgvFav2.setVisibility(View.INVISIBLE);
         h.binding.tvRname.setText("이름");
         h.binding.tvRaddr.setText("주소");
+        h.binding.imgvFav.setOnClickListener(view -> {
+            h.binding.imgvFav2.setVisibility(View.VISIBLE);
+            h.binding.imgvFav.setVisibility(View.INVISIBLE);
+        });
+        h.binding.imgvFav2.setOnClickListener(v -> {
+            h.binding.imgvFav2.setVisibility(View.INVISIBLE);
+            h.binding.imgvFav.setVisibility(View.VISIBLE);
+        });
         h.binding.lnRestaurant.setOnClickListener(v -> {
             Intent intent = new Intent(context, RestDetailActivity.class);
             context.startActivity(intent);
