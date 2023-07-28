@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 실제로 권한 요청 -->
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 카메라의 경우 안드로이드 하드웨어이기때문에 아래 속성을 추가해줘야한다. required가 false인 경우 미사용도 가능 -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Ling"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Ling"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".date.dibs.DibsDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".date.festival.FestDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".date.restaurant.RestDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".date.tour.TourDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".join.JoinActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.RowChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.PhotoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".date.festival.FestivalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".date.restaurant.RestaurantActivity"
+            android:exported="false" />
+        <activity
+            android:name=".date.tour.TourActivity"
+            android:exported="false" />
+        <activity
+            android:name=".date.dibs.DibsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.StoreMyinfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.InsertBankInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.ChargeCashActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.StorePaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.StorePurchaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
