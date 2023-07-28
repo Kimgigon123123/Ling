@@ -26,9 +26,6 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".date.dibs.DibsDetailActivity"
-            android:exported="false" />
-        <activity
             android:name=".date.festival.FestDetailActivity"
             android:exported="false" />
         <activity
@@ -38,7 +35,7 @@
             android:name=".date.tour.TourDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".join.JoinActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".home.RowChatActivity"
@@ -56,7 +53,7 @@
             android:name=".date.tour.TourActivity"
             android:exported="false" />
         <activity
-            android:name=".date.dibs.DibsActivity"
+            android:name=".date.DibsActivity"
             android:exported="false" />
         <activity
             android:name=".store.StoreMyinfoActivity"
@@ -80,7 +77,7 @@
             android:name=".SplashActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".join.JoinActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,7 +1,5 @@
 package com.example.ling.date.festival;
 
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -9,16 +7,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.R;
-import com.example.ling.databinding.ActivityFestDetailBinding;
 import com.example.ling.databinding.ItemRecvFestactBinding;
 
 public class FestivalAdapter extends RecyclerView.Adapter<FestivalAdapter.ViewHolder> {
     ItemRecvFestactBinding binding;
-    Context context;
-
-    public FestivalAdapter(Context context) {
-        this.context = context;
-    }
 
     @NonNull
     @Override
@@ -33,10 +25,6 @@ public class FestivalAdapter extends RecyclerView.Adapter<FestivalAdapter.ViewHo
         h.binding.imgvFestival.setImageResource(R.drawable.ic_launcher_background);
         h.binding.tvFname.setText("이름");
         h.binding.tvFaddr.setText("주소");
-        h.binding.lnFestival.setOnClickListener(v -> {
-            Intent intent = new Intent(context, FestDetailActivity.class);
-            context.startActivity(intent);
-        });
     }
 
     @Override

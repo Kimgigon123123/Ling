@@ -1,7 +1,5 @@
 package com.example.ling.date.tour;
 
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -14,11 +12,6 @@ import com.example.ling.databinding.ItemRecvTourBinding;
 public class TourItemAdapter extends RecyclerView.Adapter<TourItemAdapter.ViewHolder> {
 
     ItemRecvTourBinding binding;
-    Context context;
-
-    public TourItemAdapter(Context context) {
-        this.context = context;
-    }
 
     @NonNull
     @Override
@@ -32,10 +25,6 @@ public class TourItemAdapter extends RecyclerView.Adapter<TourItemAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
         h.binding.imgvTour.setImageResource(R.drawable.ic_launcher_background);
         h.binding.tvTour.setText("지역");
-       h.binding.cvTour.setOnClickListener(v -> {
-           Intent intent = new Intent(context, TourActivity.class);
-           context.startActivity(intent);
-       });
     }
 
     @Override

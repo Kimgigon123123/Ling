@@ -3,6 +3,7 @@ package com.example.ling.date;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -11,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ling.databinding.FragmentDateBinding;
-import com.example.ling.date.dibs.DibsActivity;
 import com.example.ling.date.festival.FestivalActivity;
 import com.example.ling.date.festival.FestivalItemAdapter;
 import com.example.ling.date.restaurant.RestaurantActivity;
@@ -28,9 +28,9 @@ public class DateFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentDateBinding.inflate(inflater, container, false);
 
-        binding.recvTour.setAdapter(new TourItemAdapter(getContext()));
-        binding.recvRestaurant.setAdapter(new RestaurantItemAdapter(getContext()));
-        binding.recvFestival.setAdapter(new FestivalItemAdapter(getContext()));
+        binding.recvTour.setAdapter(new TourItemAdapter());
+        binding.recvRestaurant.setAdapter(new RestaurantItemAdapter());
+        binding.recvFestival.setAdapter(new FestivalItemAdapter());
         binding.recvTour.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         binding.recvRestaurant.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         binding.recvFestival.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));

@@ -1,7 +1,5 @@
 package com.example.ling.date.restaurant;
 
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -14,11 +12,6 @@ import com.example.ling.databinding.ItemRecvRestactBinding;
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.ViewHolder> {
 
     ItemRecvRestactBinding binding;
-    Context context;
-
-    public RestaurantAdapter(Context context) {
-        this.context = context;
-    }
 
     @NonNull
     @Override
@@ -33,10 +26,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
         h.binding.imgvRestaurant.setImageResource(R.drawable.ic_launcher_background);
         h.binding.tvRname.setText("이름");
         h.binding.tvRaddr.setText("주소");
-        h.binding.lnRestaurant.setOnClickListener(v -> {
-            Intent intent = new Intent(context, RestDetailActivity.class);
-            context.startActivity(intent);
-        });
     }
 
     @Override
