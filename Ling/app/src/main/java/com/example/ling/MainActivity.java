@@ -4,11 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -16,9 +14,8 @@ import com.example.ling.board.BoardFragment;
 
 import com.example.ling.databinding.ActivityMainBinding;
 import com.example.ling.date.DateFragment;
-import com.example.ling.home.ChatFragment;
+import com.example.ling.chat.ChatFragment;
 import com.example.ling.home.HomeFragment;
-import com.example.ling.store.StorePurchaseActivity;
 import com.example.ling.store.StorePurchaseFragment;
 
 public class MainActivity extends AppCompatActivity {
