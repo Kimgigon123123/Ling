@@ -41,16 +41,28 @@
             android:name=".home.PhotoActivity"
             android:exported="false" />
         <activity
-            android:name=".date.FestivalActivity"
+            android:name=".date.festival.FestivalActivity"
             android:exported="false" />
         <activity
-            android:name=".date.RestaurantActivity"
+            android:name=".date.festival.FestDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".date.TourActivity"
+            android:name=".date.restaurant.RestaurantActivity"
             android:exported="false" />
         <activity
-            android:name=".date.DibsActivity"
+            android:name=".date.restaurant.RestDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".date.tour.TourActivity"
+            android:exported="false" />
+        <activity
+            android:name=".date.tour.TourDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".date.dibs.DibsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".date.dibs.DibsDetailActivity"
             android:exported="false" />
         <activity
             android:name=".store.myinfo.StoreMyinfoActivity"
@@ -65,7 +77,7 @@
             android:name=".store.StorePaymentActivity"
             android:exported="false" />
         <activity
-            android:name=".date.DateActivity"
+            android:name=".date.DateFragment"
             android:exported="false" />
         <activity
             android:name=".store.StorePurchaseActivity"

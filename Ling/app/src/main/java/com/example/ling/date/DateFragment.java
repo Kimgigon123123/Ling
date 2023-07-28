@@ -10,8 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ling.R;
 import com.example.ling.databinding.FragmentDateBinding;
+import com.example.ling.date.dibs.DibsActivity;
+import com.example.ling.date.festival.FestivalActivity;
+import com.example.ling.date.festival.FestivalItemAdapter;
+import com.example.ling.date.restaurant.RestaurantActivity;
+import com.example.ling.date.restaurant.RestaurantItemAdapter;
+import com.example.ling.date.tour.TourActivity;
+import com.example.ling.date.tour.TourItemAdapter;
 
 public class DateFragment extends Fragment {
 
@@ -22,12 +28,13 @@ public class DateFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentDateBinding.inflate(inflater, container, false);
 
-        binding.recvTour.setAdapter(new TourItemAdapter());
-        binding.recvRestaurant.setAdapter(new RestaurantItemAdapter());
-        binding.recvFestival.setAdapter(new FestivalItemAdapter());
+        binding.recvTour.setAdapter(new TourItemAdapter(getContext()));
+        binding.recvRestaurant.setAdapter(new RestaurantItemAdapter(getContext()));
+        binding.recvFestival.setAdapter(new FestivalItemAdapter(getContext()));
         binding.recvTour.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         binding.recvRestaurant.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         binding.recvFestival.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
 
         binding.imgvDibs.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), DibsActivity.class);
