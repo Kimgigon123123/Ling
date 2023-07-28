@@ -30,10 +30,6 @@ public class CompleteDialog extends Dialog {
             TextView tv = findViewById(R.id.tv);
             tv.setText("충전완료~~~~!!!");
         }
-        else if(str.equals("intoMyinfo")){
-            TextView tv = findViewById(R.id.tv);
-            tv.setText("충전완료~~~~!!!");
-        }
 
 
 
@@ -48,11 +44,6 @@ public class CompleteDialog extends Dialog {
             }
             else if(str.equals("charge")){
                 Intent intent = new Intent(context, StorePaymentActivity.class);
-                context.startActivity(intent);
-                dismiss();
-            }
-            else if(str.equals("intoMyinfo")){
-                Intent intent = new Intent(context, StoreMyinfoActivity.class);
                 context.startActivity(intent);
                 dismiss();
             }

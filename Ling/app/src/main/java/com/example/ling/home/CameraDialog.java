@@ -19,6 +19,7 @@ public class CameraDialog extends Dialog {
     }
 
     public CameraDialog(@NonNull Context context) {
-        super(context, R.style.theme_dialog);
+       //'' super(context, R.style.theme_dialog);
+        super(context, com.google.android.material.R.style.Base_Theme_Material3_Light_Dialog);
     }
 }

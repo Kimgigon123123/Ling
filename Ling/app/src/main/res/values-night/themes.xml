@@ -4,9 +4,4 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
-
-    <style name="MyActionBar" parent="Widget.MaterialComponents.Toolbar">
-        <item name="tint">#FFFFFF</item>
-        <item name="iconTint">#4193EF</item>
-    </style>
 </resources>

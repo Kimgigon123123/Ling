@@ -69,17 +69,34 @@ public class PhotoActivity extends AppCompatActivity {
         binding.btnCamera.setOnClickListener(v -> {
             cameraDialog = new CameraDialog(this);
             cameraDialog.show();
-            cameraDialog.findViewById(R.id.ln_camera).setOnClickListener(v2->{//imgv_photos               showGallery();
+            if(cameraDialog.equals(R.id.imgv_camera)){
                 showCamera();
-            });
-            cameraDialog.findViewById(R.id.ln_photos).setOnClickListener(v2->{//imgv_photos               showGallery();
+            } else if (cameraDialog.equals(R.id.imgv_photos)) {
                 showGallery();
-            });
+            }
         });
 
 
     }
 
+    public void showDialog(){
+        String[] dialog_item = {"갤러리", "카메라"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("사진 업로드 방식");
+        builder.setSingleChoiceItems(dialog_item, -1, (dialog, i) -> {
+            if(dialog_item[i].equals("갤러리")){
+                //갤러리 로직
+                showGallery();
+            }else if(dialog_item[i].equals("카메라")){
+                //카메라 로직
+                showCamera();
+            }
+            dialog.dismiss();
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
 
     @Override
     protected void onStart() {
@@ -92,6 +109,8 @@ public class PhotoActivity extends AppCompatActivity {
                 File file = new File(getRealPath(camera_uri));
 
                 if(file!=null){
+                    Toast.makeText(PhotoActivity.this, "수업끝", Toast.LENGTH_SHORT).show();
+
                     RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), file);
                     MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "test.jpg", fileBody);
                     RetInterface api = new RetClient().getRet().create(RetInterface.class);
@@ -168,7 +187,7 @@ public class PhotoActivity extends AppCompatActivity {
     public String getRealPath(Uri contentUri){
         String res = null;
         String[] proj = {MediaStore.Images.Media.DATA};//
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Cursor cursor = getContentResolver().query(contentUri, proj, null, null);
 
             if(cursor.moveToFirst()){

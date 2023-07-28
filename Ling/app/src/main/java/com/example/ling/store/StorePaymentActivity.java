@@ -24,10 +24,10 @@ public class StorePaymentActivity extends AppCompatActivity {
 
 
 
-        binding.imgvBefore.setOnClickListener(v -> {
+        binding.btnBack.setOnClickListener(v -> {
 
-          finish();
-
+            Intent intent = new Intent (StorePaymentActivity.this,StorePurchaseActivity.class);
+            startActivity(intent);
 
         });
 

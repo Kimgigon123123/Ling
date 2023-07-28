@@ -39,6 +39,7 @@
         android:entries="@array/dibs"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
         android:background="#E4E4E4"
         android:id="@+id/spinner"
         android:layout_width="70dp"

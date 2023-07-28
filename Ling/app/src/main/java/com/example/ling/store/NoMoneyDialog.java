@@ -8,7 +8,6 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 
-import com.example.ling.MainActivity;
 import com.example.ling.R;
 
 public class NoMoneyDialog extends Dialog {
@@ -34,11 +33,8 @@ public class NoMoneyDialog extends Dialog {
             @Override
             public void onClick(View v) {
 
-
-                dismiss();
-//                Intent intent = new Intent( context,StorePurchaseActivity.class);
-//                context.startActivity(intent);
-
+                Intent intent = new Intent( context,StorePurchaseActivity.class);
+                context.startActivity(intent);
 
             }
         });
