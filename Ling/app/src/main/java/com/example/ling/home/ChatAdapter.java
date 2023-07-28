@@ -15,6 +15,7 @@ import com.example.ling.R;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder>{
+
     private List<ChatData> mDataset;
     private String myNickName;
 
@@ -61,5 +62,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder>{
     public void addChat(ChatData chat) {
         mDataset.add(chat);
         notifyItemInserted(mDataset.size()-1); //갱신
+
     }
 }

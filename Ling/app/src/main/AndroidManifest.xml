@@ -19,42 +19,40 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="Ling"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ling"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".date.festival.FestDetailActivity"
+            android:name=".login.LoginActivity"
             android:exported="false" />
-        <activity
-            android:name=".date.restaurant.RestDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".date.tour.TourDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-        <activity
+
+            <activity
             android:name=".home.RowChatActivity"
             android:exported="false" />
+
+
         <activity
             android:name=".home.PhotoActivity"
             android:exported="false" />
-        <activity
-            android:name=".date.festival.FestivalActivity"
+
+   <activity
+            android:name=".date.FestivalActivity"
             android:exported="false" />
         <activity
-            android:name=".date.restaurant.RestaurantActivity"
+            android:name=".date.RestaurantActivity"
             android:exported="false" />
         <activity
-            android:name=".date.tour.TourActivity"
+            android:name=".date.TourActivity"
             android:exported="false" />
         <activity
             android:name=".date.DibsActivity"
             android:exported="false" />
+
+
+
         <activity
             android:name=".store.StoreMyinfoActivity"
             android:exported="false" />
@@ -67,23 +65,27 @@
         <activity
             android:name=".store.StorePaymentActivity"
             android:exported="false" />
+
         <activity
-            android:name=".store.StorePurchaseActivity"
+            android:name=".date.DateActivity"
             android:exported="false" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".store.StorePurchaseActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
             android:exported="false" />
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+            <activity
             android:name=".join.JoinActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
     </application>
 
