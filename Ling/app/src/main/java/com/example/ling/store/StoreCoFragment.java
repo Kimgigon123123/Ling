@@ -1,6 +1,5 @@
 package com.example.ling.store;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,10 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.ling.R;
 import com.example.ling.databinding.FragmentStoreCoBinding;
-import com.example.ling.store.basket.BasketActivity;
-import com.example.ling.store.myinfo.StoreMyinfoActivity;
-import com.example.ling.store.myinfo.ZZimActivity;
+import com.example.ling.date.DibsAdapter;
 
 
 public class StoreCoFragment extends Fragment {
@@ -33,16 +31,6 @@ public class StoreCoFragment extends Fragment {
 
         binding.imgvMyinfo.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), StoreMyinfoActivity.class);
-            getActivity().startActivity(intent);
-        });
-
-        binding.imgvZzim.setOnClickListener(v->{
-            Intent intent = new Intent(getActivity(), ZZimActivity.class);
-            getActivity().startActivity(intent);
-        });
-
-        binding.imgvBasket.setOnClickListener(v->{
-            Intent intent = new Intent(getActivity(), BasketActivity.class);
             getActivity().startActivity(intent);
         });
 

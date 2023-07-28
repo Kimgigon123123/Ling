@@ -26,21 +26,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".store.basket.BasketActivity"
-            android:exported="false" />
-        <activity
-            android:name=".store.myinfo.ZZimActivity"
-            android:exported="false" />
-        <activity
             android:name=".login.LoginActivity"
             android:exported="false" />
-        <activity
+
+            <activity
             android:name=".home.RowChatActivity"
             android:exported="false" />
+
+
         <activity
             android:name=".home.PhotoActivity"
             android:exported="false" />
-        <activity
+
+   <activity
             android:name=".date.FestivalActivity"
             android:exported="false" />
         <activity
@@ -52,8 +50,11 @@
         <activity
             android:name=".date.DibsActivity"
             android:exported="false" />
+
+
+
         <activity
-            android:name=".store.myinfo.StoreMyinfoActivity"
+            android:name=".store.StoreMyinfoActivity"
             android:exported="false" />
         <activity
             android:name=".store.InsertBankInfoActivity"
@@ -64,6 +65,7 @@
         <activity
             android:name=".store.StorePaymentActivity"
             android:exported="false" />
+
         <activity
             android:name=".date.DateActivity"
             android:exported="false" />
@@ -76,14 +78,14 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-        <activity
+            <activity
             android:name=".join.JoinActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
     </application>
 

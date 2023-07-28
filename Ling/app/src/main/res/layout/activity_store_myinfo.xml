@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".store.myinfo.StoreMyinfoActivity"
+    tools:context=".store.StoreMyinfoActivity"
     android:orientation="vertical">
 
     <LinearLayout
@@ -157,7 +157,7 @@
             android:layout_height="wrap_content"/>
 
         <ImageView
-            android:id="@+id/imgv_intoZZim"
+
             android:layout_marginLeft="5dp"
             android:layout_gravity="center"
             android:src="@drawable/baseline_add_24"
@@ -211,7 +211,7 @@
             android:layout_height="wrap_content"/>
 
         <ImageView
-            android:id="@+id/imgv_intoBylist"
+
             android:layout_marginLeft="5dp"
             android:layout_gravity="center"
             android:src="@drawable/baseline_add_24"
@@ -265,7 +265,7 @@
             android:layout_height="wrap_content"/>
 
         <ImageView
-            android:id="@+id/imgv_return"
+
             android:layout_marginLeft="5dp"
             android:layout_gravity="center"
             android:src="@drawable/baseline_add_24"
