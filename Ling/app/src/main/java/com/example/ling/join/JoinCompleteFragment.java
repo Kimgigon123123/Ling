@@ -46,10 +46,12 @@ public class JoinCompleteFragment extends Fragment {
         binding.btnGoHome.setOnClickListener(v->{
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
+
         });
 
 
 
         return binding.getRoot();
+
     }
 }
