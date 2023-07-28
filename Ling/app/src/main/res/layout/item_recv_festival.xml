@@ -7,6 +7,7 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cv_festival"
         android:layout_marginBottom="20dp"
         android:layout_width="120dp"
         android:layout_height="150dp"
