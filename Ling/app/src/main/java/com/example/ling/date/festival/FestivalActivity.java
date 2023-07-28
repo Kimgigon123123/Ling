@@ -17,7 +17,7 @@ public class FestivalActivity extends AppCompatActivity {
         binding = ActivityFestivalBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.recvFestact.setAdapter(new FestivalAdapter());
+        binding.recvFestact.setAdapter(new FestivalAdapter(this));
         binding.recvFestact.setLayoutManager(new GridLayoutManager(this, 2));
 
         binding.imgvBefore.setOnClickListener(v -> {

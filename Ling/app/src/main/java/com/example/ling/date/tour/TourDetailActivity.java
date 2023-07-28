@@ -18,7 +18,6 @@ public class TourDetailActivity extends AppCompatActivity {
         binding = ActivityTourDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.vpTour.setCurrentItem(R.drawable.ic_launcher_background);
         binding.tvInfo.setText("[INFO]");
         binding.tvDetailinfo.setText("상세정보가 나온다");
 

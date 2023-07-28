@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".date.festival.FestDetailActivity">
+    android:orientation="vertical"
+    tools:context=".date.dibs.DibsDetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
     </LinearLayout>
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vp_festival"
+        android:id="@+id/vp_dibs"
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="450dp"/>
@@ -44,5 +44,6 @@
         android:text="이름, 상세 주소, 전화번호 기타 등등 작성 예정"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
 
 </LinearLayout>

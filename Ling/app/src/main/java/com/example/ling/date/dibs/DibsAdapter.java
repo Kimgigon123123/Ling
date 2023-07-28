@@ -1,4 +1,4 @@
-package com.example.ling.date.festival;
+package com.example.ling.date.dibs;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,14 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.R;
-import com.example.ling.databinding.ItemRecvFestivalBinding;
+import com.example.ling.databinding.ItemRecvDibsBinding;
 
-public class FestivalItemAdapter extends RecyclerView.Adapter<FestivalItemAdapter.ViewHolder> {
+public class DibsAdapter extends RecyclerView.Adapter<DibsAdapter.ViewHolder> {
 
-    ItemRecvFestivalBinding binding;
+    ItemRecvDibsBinding binding;
     Context context;
 
-    public FestivalItemAdapter(Context context) {
+    public DibsAdapter(Context context) {
         this.context = context;
     }
 
@@ -24,31 +24,31 @@ public class FestivalItemAdapter extends RecyclerView.Adapter<FestivalItemAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        binding = ItemRecvFestivalBinding.inflate(inflater, parent, false);
+        binding = ItemRecvDibsBinding.inflate(inflater, parent, false);
         return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        h.binding.imgvFestival.setImageResource(R.drawable.ic_launcher_background);
-        h.binding.tvFestival.setText("축제");
-        h.binding.cvFestival.setOnClickListener(v -> {
-            Intent intent = new Intent(context, FestivalActivity.class);
+        h.binding.imgvDibs.setImageResource(R.drawable.ic_launcher_background);
+        h.binding.tvName.setText("이름");
+        h.binding.tvAddr.setText("주소");
+        h.binding.lnDibs.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DibsDetailActivity.class);
             context.startActivity(intent);
         });
-
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 20;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        ItemRecvFestivalBinding binding;
+        ItemRecvDibsBinding binding;
 
-        public ViewHolder(@NonNull ItemRecvFestivalBinding binding) {
+        public ViewHolder(@NonNull ItemRecvDibsBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

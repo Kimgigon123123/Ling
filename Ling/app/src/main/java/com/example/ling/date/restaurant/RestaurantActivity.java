@@ -18,7 +18,7 @@ public class RestaurantActivity extends AppCompatActivity {
         binding = ActivityRestaurantBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.recvRestact.setAdapter(new RestaurantAdapter());
+        binding.recvRestact.setAdapter(new RestaurantAdapter(this));
         binding.recvRestact.setLayoutManager(new GridLayoutManager(this, 2));
 
         binding.imgvBefore.setOnClickListener(v -> {
