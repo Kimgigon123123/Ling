@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="dibs">
+        <item>전체</item>
+        <item>여행</item>
+        <item>맛집</item>
+        <item>축제</item>
+    </string-array>
+
+    <string-array name="sido">
+        <item>시/도 선택</item>
+    </string-array>
+
+    <string-array name="sigungu">
+        <item>시/군/구 선택</item>
+    </string-array>
+</resources>
