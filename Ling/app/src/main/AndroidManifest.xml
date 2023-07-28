@@ -30,6 +30,13 @@
             android:exported="false" />
         <activity
             android:name=".store.myinfo.ZZimActivity"
+             android:exported="false" />
+
+            <activity
+            android:name=".calendar.CalendarFuncActivity"
+            android:exported="false" />
+        <activity
+            android:name=".calendar.CalendarAddActivity"
             android:exported="false" />
         <activity
             android:name=".login.LoginActivity"
@@ -37,6 +44,11 @@
         <activity
             android:name=".home.RowChatActivity"
             android:exported="false" />
+
+            <activity
+            android:name=".chat.RowChatActivity"
+            android:exported="false" />
+
         <activity
             android:name=".home.PhotoActivity"
             android:exported="false" />
@@ -88,6 +100,10 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+        <activity
+            android:name=".calendar.CalendarActivity"
+            android:exported="false" />
+
         <activity
             android:name=".join.JoinActivity"
             android:exported="true">
