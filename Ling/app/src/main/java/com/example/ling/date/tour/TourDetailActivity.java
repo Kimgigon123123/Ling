@@ -1,22 +1,22 @@
-package com.example.ling.store.basket;
+package com.example.ling.date.tour;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 
 import com.example.ling.R;
-import com.example.ling.databinding.ActivityFestDetailBinding;
+import com.example.ling.databinding.ActivityTourDetailBinding;
 
-public class BasketActivity extends AppCompatActivity {
+public class TourDetailActivity extends AppCompatActivity {
 
-    ActivityFestDetailBinding binding;
+    ActivityTourDetailBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityFestDetailBinding.inflate(getLayoutInflater());
+        binding = ActivityTourDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
 
         binding.tvInfo.setText("[INFO]");
         binding.tvDetailinfo.setText("상세정보가 나온다");

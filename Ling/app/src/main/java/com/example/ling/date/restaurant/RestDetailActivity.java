@@ -1,22 +1,21 @@
-package com.example.ling.store.basket;
+package com.example.ling.date.restaurant;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
 import com.example.ling.R;
-import com.example.ling.databinding.ActivityFestDetailBinding;
+import com.example.ling.databinding.ActivityRestDetailBinding;
 
-public class BasketActivity extends AppCompatActivity {
+public class RestDetailActivity extends AppCompatActivity {
 
-    ActivityFestDetailBinding binding;
+    ActivityRestDetailBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityFestDetailBinding.inflate(getLayoutInflater());
+        binding = ActivityRestDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
 
         binding.tvInfo.setText("[INFO]");
         binding.tvDetailinfo.setText("상세정보가 나온다");
