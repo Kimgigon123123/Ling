@@ -1,4 +1,4 @@
-package com.example.ling.store.basket;
+package com.example.ling.store;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.ling.R;
 
-public class BasketActivity extends AppCompatActivity {
+public class StoreMyinfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_basket);
+        setContentView(R.layout.activity_store_myinfo);
     }
 }

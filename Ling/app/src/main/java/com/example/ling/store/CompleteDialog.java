@@ -1,5 +1,6 @@
 package com.example.ling.store;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.ling.R;
-import com.example.ling.store.myinfo.StoreMyinfoActivity;
 
 public class CompleteDialog extends Dialog {
 
@@ -27,10 +27,6 @@ public class CompleteDialog extends Dialog {
             tv.setText("등록완료~~~~!!!");
         }
         else if(str.equals("charge")){
-            TextView tv = findViewById(R.id.tv);
-            tv.setText("충전완료~~~~!!!");
-        }
-        else if(str.equals("isMyinfo")){
             TextView tv = findViewById(R.id.tv);
             tv.setText("충전완료~~~~!!!");
         }

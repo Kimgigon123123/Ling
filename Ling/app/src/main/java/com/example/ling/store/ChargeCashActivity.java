@@ -31,24 +31,8 @@ public class ChargeCashActivity extends AppCompatActivity {
         });
 
         binding.btnCharge.setOnClickListener(v -> {
-
-
-                Dialog dialog = new CompleteDialog(this,"charge");
-                dialog.show();
-
-
-//            if(intoPayment.equals("intoPayment")){
-
-//            }
-//            else if(intoMyinfo.equals("intoMyinfo")){
-////                Intent intent2 = new Intent(ChargeCashActivity.this,StoreMyinfoActivity.class);
-////                startActivity(intent2);
-//                Dialog dialog = new CompleteDialog(this,"intoMyinfo");
-//                dialog.show();
-//
-//            }
-
-
+            Dialog dialog = new CompleteDialog(this,charge);
+            dialog.show();
         });
 
     }
