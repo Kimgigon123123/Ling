@@ -11,7 +11,6 @@ public class DibsDetailActivity extends AppCompatActivity {
 
     ActivityDibsDetailBinding binding;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
