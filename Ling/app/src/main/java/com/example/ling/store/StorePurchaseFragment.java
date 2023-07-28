@@ -13,6 +13,8 @@ import com.example.ling.R;
 import com.example.ling.databinding.ActivityStorePurchaseBinding;
 import com.example.ling.databinding.FragmentStoreCoBinding;
 import com.example.ling.databinding.FragmentStorePurchaseBinding;
+import com.example.ling.databinding.FragmentStorePurchaseBinding;
+import com.example.ling.store.myinfo.StoreMyinfoActivity;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 
