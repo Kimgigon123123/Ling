@@ -28,24 +28,11 @@
         <activity
             android:name=".store.basket.BasketActivity"
             android:exported="false" />
-           <activity
-            android:name=".date.dibs.DibsDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".date.festival.FestDetailActivity"
-            android:exported="false" />
         <activity
             android:name=".store.myinfo.ZZimActivity"
             android:exported="false" />
         <activity
             android:name=".login.LoginActivity"
-             android:exported="false" />
-
-             <activity
-            android:name=".date.tour.TourDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".join.JoinActivity"
             android:exported="false" />
         <activity
             android:name=".home.RowChatActivity"
@@ -63,7 +50,7 @@
             android:name=".date.TourActivity"
             android:exported="false" />
         <activity
-            android:name=".date.dibs.DibsActivity"
+            android:name=".date.DibsActivity"
             android:exported="false" />
         <activity
             android:name=".store.myinfo.StoreMyinfoActivity"
@@ -90,7 +77,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".join.JoinActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
