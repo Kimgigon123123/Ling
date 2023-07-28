@@ -3,6 +3,7 @@ package com.example.ling.store;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
