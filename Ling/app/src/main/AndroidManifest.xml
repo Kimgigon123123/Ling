@@ -41,7 +41,7 @@
             android:name=".home.PhotoActivity"
             android:exported="false" />
         <activity
-            android:name=".join.JoinActivity"
+            android:name=".calendar.CalendarActivity"
             android:exported="false" />
         <activity
             android:name=".date.FestivalActivity"
@@ -77,7 +77,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".calendar.CalendarActivity"
+            android:name=".join.JoinActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
