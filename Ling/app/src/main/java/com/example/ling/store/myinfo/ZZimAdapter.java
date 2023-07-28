@@ -1,14 +1,12 @@
-package com.example.ling.store;
+package com.example.ling.store.myinfo;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ling.databinding.ItemRecvStoreCoBinding;
 import com.example.ling.databinding.ItemRecvStoreMyinfoZzimBinding;
 
 public class ZZimAdapter extends RecyclerView.Adapter<ZZimAdapter.ViewHolder> {
