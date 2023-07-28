@@ -38,6 +38,15 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
+            android:name=".store.basket.BasketActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.myinfo.ZZimActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".home.RowChatActivity"
             android:exported="false" />
         <activity
@@ -45,6 +54,9 @@
             android:exported="false" />
         <activity
             android:name=".date.festival.FestivalActivity"
+            android:exported="false"/>
+            <activity
+            android:name=".date.FestivalActivity"
             android:exported="false" />
         <activity
             android:name=".date.restaurant.RestaurantActivity"
@@ -56,7 +68,7 @@
             android:name=".date.DibsActivity"
             android:exported="false" />
         <activity
-            android:name=".store.StoreMyinfoActivity"
+            android:name=".store.myinfo.StoreMyinfoActivity"
             android:exported="false" />
         <activity
             android:name=".store.InsertBankInfoActivity"
@@ -68,6 +80,9 @@
             android:name=".store.StorePaymentActivity"
             android:exported="false" />
         <activity
+            android:name=".date.DateActivity"
+            android:exported="false" />
+        <activity
             android:name=".store.StorePurchaseActivity"
             android:exported="false" />
         <activity
@@ -75,6 +90,9 @@
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".join.JoinActivity"
