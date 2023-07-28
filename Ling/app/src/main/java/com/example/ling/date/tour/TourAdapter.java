@@ -25,23 +25,27 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        ItemRecvTouractBinding binding=null;
+        ItemRecvTouractBinding binding = null;
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         binding = ItemRecvTouractBinding.inflate(inflater, parent, false);
-        return new ViewHolder(inflater.inflate(R.layout.item_recv_touract , parent, false));
+        return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        h.imgvFav.setOnClickListener(new View.OnClickListener() {
+        h.binding.imgvTour.setImageResource(R.drawable.ic_launcher_background);
+        //h.binding.imgvFav2.setVisibility(View.INVISIBLE);
+        h.binding.tvTname.setText("이름");
+        h.binding.tvTaddr.setText("주소");
+        h.binding.imgvFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if((boolean) h.imgvFav.getTag()){
-                    h.imgvFav.setTag(false);
-                    h.imgvFav.setImageResource(R.drawable.fav);
-                }else{
-                    h.imgvFav.setTag(true);
-                    h.imgvFav.setImageResource(R.drawable.fav2);
+                if ((boolean) h.binding.imgvFav.getTag()) {
+                    h.binding.imgvFav.setTag(false);
+                    h.binding.imgvFav.setImageResource(R.drawable.fav);
+                } else {
+                    h.binding.imgvFav.setTag(true);
+                    h.binding.imgvFav.setImageResource(R.drawable.fav2);
                 }
             }
         });
@@ -61,10 +65,10 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.ViewHolder> {
 //                }
 //            }
 //        });
-//        h.binding.lnTour.setOnClickListener(v -> {
-//            Intent intent = new Intent(context, TourDetailActivity.class);
-//            context.startActivity(intent);
-//        });
+        h.binding.lnTour.setOnClickListener(v -> {
+            Intent intent = new Intent(context, TourDetailActivity.class);
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -83,14 +87,12 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-      //  ItemRecvTouractBinding binding;
-        ImageView imgvFav;
-        public ViewHolder(@NonNull View binding) {
-            super(binding);
-            imgvFav = binding.findViewById(R.id.imgv_fav);
-            imgvFav.setTag(false);
-        //   this.binding = binding;
-       //    this.binding.imgvFav.setTag(false);
+        ItemRecvTouractBinding binding;
+
+        public ViewHolder(@NonNull ItemRecvTouractBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+            this.binding.imgvFav.setTag(false);
         }
     }
 }
