@@ -1,4 +1,4 @@
-package com.example.ling.store;
+package com.example.ling.date.festival;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.ling.R;
 
-public class StoreMyinfoActivity extends AppCompatActivity {
+public class FestDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_myinfo);
+        setContentView(R.layout.activity_fest_detail);
     }
 }

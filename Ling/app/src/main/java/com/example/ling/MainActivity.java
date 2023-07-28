@@ -6,33 +6,23 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.shapes.Shape;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.view.WindowManager;
-
-import com.example.ling.board.BoardFragment;
 
 import com.example.ling.databinding.ActivityMainBinding;
 import com.example.ling.date.DateFragment;
 import com.example.ling.home.ChatFragment;
 import com.example.ling.home.HomeFragment;
-import com.example.ling.store.StoreCoFragment;
 import com.example.ling.store.StorePurchaseActivity;
-import com.example.ling.store.StorePurchaseFragment;
-
-import nl.dionsegijn.konfetti.KonfettiView;
 
 public class MainActivity extends AppCompatActivity {
-
     ActivityMainBinding binding;
-    Fragment fragment = null;
+    Fragment fragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         FragmentManager manager = getSupportFragmentManager();
@@ -48,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         binding.navigation.setItemIconTintList(null);
         binding.navigation.setOnItemSelectedListener(item -> {
 
-
             if(item.getItemId() == R.id.tab_travel){
                 fragment = new DateFragment();
 
@@ -61,17 +50,17 @@ public class MainActivity extends AppCompatActivity {
 
             }else if(item.getItemId() == R.id.tab_store){
 
-                fragment = new StoreCoFragment();
+                Intent intent = new Intent(MainActivity.this, StorePurchaseActivity.class);
+                startActivity(intent);
 
             }else if(item.getItemId() == R.id.tab_board){
-                fragment = new BoardFragment();
+
+                fragment = new HomeFragment();
 
             }
             manager.beginTransaction().replace(R.id.container, fragment).commit();
 
             return true;
         });
-
-
     }
 }

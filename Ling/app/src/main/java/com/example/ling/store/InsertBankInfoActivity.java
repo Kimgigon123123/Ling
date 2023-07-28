@@ -20,10 +20,6 @@ public class InsertBankInfoActivity extends AppCompatActivity {
         binding=ActivityInsertBankInfoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.imgvBefore.setOnClickListener(v -> {
-            finish();
-        });
-
         binding.btnRegi.setOnClickListener(v -> {
 
             CompleteDialog dialog = new CompleteDialog(this,regi);

@@ -32,7 +32,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
-                android:theme="@style/MyActionBar"
                 app:layout_collapseMode="pin"
                 app:title="New Post" />
 
@@ -82,12 +81,10 @@
                 app:iconTint="#000000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btn_camera"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearance="@style/CustomShapeAppearance" />
-<!--            style="@style/Widget.App.Button.OutlinedButton.IconOnly"-->
+                app:layout_constraintTop_toTopOf="parent"/>
+
             <Button
                 android:id="@+id/btn_camera"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
@@ -96,8 +93,7 @@
                 app:iconTint="#000000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearance="@style/CustomShapeAppearance" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
