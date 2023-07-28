@@ -55,6 +55,11 @@
         <activity
             android:name=".date.festival.FestivalActivity"
             android:exported="false" />
+
+
+            <activity
+            android:name=".calendar.CalendarActivity"
+            android:exported="false" />
         <activity
             android:name=".date.festival.FestDetailActivity"
             android:exported="false" />
@@ -100,10 +105,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-        <activity
-            android:name=".calendar.CalendarActivity"
-            android:exported="false" />
-
         <activity
             android:name=".join.JoinActivity"
             android:exported="true">
