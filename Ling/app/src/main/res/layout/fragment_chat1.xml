@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home.Chat1Fragment"
+    android:orientation="vertical"
+    >
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:divider="#ffffff"
+        android:dividerHeight="0dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        >
+        <EditText
+            android:id="@+id/edt_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="너에게 보내는 말"
+            android:inputType="textMultiLine"
+            android:padding="10dp"
+            android:maxLines="3"
+            android:background="@drawable/edt_chat_bg"
+            />
+
+        <Button
+            android:id="@+id/btn_chat1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전송"
+            android:backgroundTint="#91BFBB"
+            android:layout_marginLeft="8dp"
+            android:onClick="clickSend"
+            />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.LoginFindFragment"
+    android:orientation="vertical"
+    android:padding="30dp">
+
+    <ImageView
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/logo_ling"/>
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login or sign Up for free."/>
+
+    <Button
+        android:id="@+id/btn_find_id"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="아이디 찾기"/>
+
+    <Button
+        android:id="@+id/btn_find_pw"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="비밀번호 찾기"/>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center"
+            android:background="#878787"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="2px"/>
+
+        <TextView
+            android:id="@+id/btn_text_login"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="or Login"/>
+
+        <View
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center"
+            android:background="#878787"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="2px"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

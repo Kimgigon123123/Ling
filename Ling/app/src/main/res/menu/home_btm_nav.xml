@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/tab_travel"
+        app:showAsAction="always"
+        android:title="여행지"
+        android:enabled="true"
+        android:icon="@drawable/travel"
+
+
+        />
+    <item
+        android:id="@+id/tab_chat"
+        app:showAsAction="always"
+        android:title="채팅"
+        android:enabled="true"
+        android:icon="@drawable/chat"
+        />
+    <item
+        android:id="@+id/tab_home"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/ling_home"
+        android:title=""
+
+        />
+    <item
+        android:id="@+id/tab_board"
+        app:showAsAction="always"
+        android:title="게시판"
+        android:enabled="true"
+        android:icon="@drawable/board"
+
+        />
+
+    <item
+        android:id="@+id/tab_store"
+        app:showAsAction="always"
+        android:title="스토어"
+        android:enabled="true"
+        android:icon="@drawable/shop"
+
+        />
+</menu>
+
+<!--    app:showAsAction="always"-->
+<!--    android:title="Ling"-->
+<!--    android:enabled="true"-->
+<!--    android:checked="true"-->
