@@ -52,20 +52,20 @@ public class BoardFragment extends Fragment {
 
         if (i == 0){
             getChildFragmentManager().beginTransaction().replace(R.id.container , new BoardMainFragment() ).commit();
-
+            binding.navigationDrawer.setAppbarTitleTV("게시판");
         }else if(i == 1){
             getChildFragmentManager().beginTransaction().replace(R.id.container , new Board_NoticeFragment()   ).commit();
-
+            binding.navigationDrawer.setAppbarTitleTV("공지사항");
 
         }else if(i == 2){
             getChildFragmentManager().beginTransaction().replace(R.id.container , new Board_freeFragment()   ).commit();
-
+            binding.navigationDrawer.setAppbarTitleTV("자유 게시판");
         }else if(i == 3){
             getChildFragmentManager().beginTransaction().replace(R.id.container , new Board_WorryFragment()   ).commit();
-
+            binding.navigationDrawer.setAppbarTitleTV("고민 상담소");
         }else if(i == 4){
             getChildFragmentManager().beginTransaction().replace(R.id.container , new Board_PlayFragment()   ).commit();
-
+            binding.navigationDrawer.setAppbarTitleTV("짝궁 놀이터");
         }
     }
 }
