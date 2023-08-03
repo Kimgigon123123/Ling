@@ -2,14 +2,12 @@ package com.example.ling.store;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.ling.R;
 import com.example.ling.databinding.ActivityStorePaymentBinding;
-import com.example.ling.databinding.ActivityStorePurchaseBinding;
+import com.example.ling.store.myinfo.AddressActivity;
 
 public class StorePaymentActivity extends AppCompatActivity {
 
@@ -44,6 +42,11 @@ public class StorePaymentActivity extends AppCompatActivity {
             dialog.show();
 
 
+        });
+
+        binding.imgvIntoAdrress.setOnClickListener(v->{
+            Intent intent = new Intent(StorePaymentActivity.this, AddressActivity.class);
+            startActivity(intent);
         });
     }
 }
