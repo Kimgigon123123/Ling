@@ -33,6 +33,8 @@
             android:exported="false" />
         <activity
             android:name=".store.myinfo.DeliveryActivity"
+            <activity
+            android:name=".home.LocTrackingActivity"
             android:exported="false" />
         <activity
             android:name=".store.basket.BasketActivity"
