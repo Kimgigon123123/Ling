@@ -1,6 +1,7 @@
-package com.example.ling.store;
+package com.example.ling.store.myinfo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -9,34 +10,38 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.databinding.ItemRecvStoreMyinfoBuylistBinding;
 import com.example.ling.databinding.ItemRecvStoreMyinfoZzimBinding;
+import com.example.ling.store.StorePurchaseActivity;
 
-public class BuylistAdapter extends RecyclerView.Adapter<BuylistAdapter.ViewHolder> {
-
+public class BuylistMoreAdapter extends RecyclerView.Adapter<BuylistMoreAdapter.ViewHolder>{
 
     ItemRecvStoreMyinfoBuylistBinding binding;
-
     Context context;
 
-    public BuylistAdapter(Context context) {
+    public BuylistMoreAdapter(Context context) {
         this.context = context;
     }
 
     @NonNull
     @Override
-    public BuylistAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        binding = ItemRecvStoreMyinfoBuylistBinding.inflate(inflater,parent,false);
+        binding= ItemRecvStoreMyinfoBuylistBinding.inflate(inflater,parent,false);
         return new ViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BuylistAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder h, int i) {
+
+        h.binding.imgvItem.setOnClickListener(v -> {
+            Intent intent = new Intent(context, StorePurchaseActivity.class);
+            context.startActivity(intent);
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 25;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -51,7 +56,5 @@ public class BuylistAdapter extends RecyclerView.Adapter<BuylistAdapter.ViewHold
     }
 
 
+
 }
-
-
-

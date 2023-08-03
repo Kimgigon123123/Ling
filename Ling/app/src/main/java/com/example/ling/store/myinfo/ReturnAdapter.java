@@ -1,6 +1,7 @@
 package com.example.ling.store.myinfo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ling.databinding.ItemRecvStoreMyinfoBuylistBinding;
 import com.example.ling.databinding.ItemRecvStoreMyinfoReturnBinding;
 import com.example.ling.databinding.ItemRecvStoreMyinfoZzimBinding;
+import com.example.ling.store.StorePurchaseActivity;
 
 public class ReturnAdapter extends RecyclerView.Adapter<ReturnAdapter.ViewHolder>{
 
@@ -29,13 +31,18 @@ public class ReturnAdapter extends RecyclerView.Adapter<ReturnAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder h, int i) {
+
+        h.binding.imgvItem.setOnClickListener(v -> {
+            Intent intent = new Intent(context, StorePurchaseActivity.class);
+            context.startActivity(intent);
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return 25;
+        return 3;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
