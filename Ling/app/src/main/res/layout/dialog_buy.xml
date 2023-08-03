@@ -7,6 +7,7 @@
 
 
     <ImageView
+        android:id="@+id/imgv_close"
         android:layout_gravity="center"
         android:src="@drawable/bottom_close"
         android:layout_width="30dp"
@@ -190,7 +191,7 @@
 
 
         <Button
-
+            android:id="@+id/btn_basket"
             app:strokeWidth="1dp"
             app:backgroundTint="@color/basket"
             android:layout_marginLeft="10dp"

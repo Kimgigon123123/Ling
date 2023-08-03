@@ -11,7 +11,10 @@ import androidx.annotation.NonNull;
 import com.example.ling.R;
 import com.example.ling.store.myinfo.StoreMyinfoActivity;
 
+
+
 public class CompleteDialog extends Dialog {
+
 
 
     public CompleteDialog(@NonNull Context context,String str) {
@@ -47,8 +50,8 @@ public class CompleteDialog extends Dialog {
                 dismiss();
             }
             else if(str.equals("charge")){
-                Intent intent = new Intent(context, StorePaymentActivity.class);
-                context.startActivity(intent);
+//                Intent intent = new Intent(context, StorePaymentActivity.class);
+//                context.startActivity(intent);
                 dismiss();
             }
             else if(str.equals("intoMyinfo")){

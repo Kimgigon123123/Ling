@@ -1,6 +1,7 @@
-package com.example.ling.store;
+package com.example.ling.store.myinfo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -9,39 +10,38 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.databinding.ItemRecvStoreMyinfoReturnBinding;
 import com.example.ling.databinding.ItemRecvStoreMyinfoZzimBinding;
+import com.example.ling.store.StorePurchaseActivity;
 
-import java.util.ArrayList;
-
-public class ReturnAdapter extends RecyclerView.Adapter<ReturnAdapter.ViewHolder>{
+public class ReturnMoreAdapter extends RecyclerView.Adapter<ReturnMoreAdapter.ViewHolder>{
 
     ItemRecvStoreMyinfoReturnBinding binding;
-
     Context context;
 
-
-    public ReturnAdapter(Context context) {
+    public ReturnMoreAdapter(Context context) {
         this.context = context;
     }
-
-
-
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        binding = ItemRecvStoreMyinfoReturnBinding.inflate(inflater,parent,false);
+        binding= ItemRecvStoreMyinfoReturnBinding.inflate(inflater,parent,false);
         return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
 
+        h.binding.imgvItem.setOnClickListener(v -> {
+            Intent intent = new Intent(context, StorePurchaseActivity.class);
+            context.startActivity(intent);
+        });
+
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 25;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -56,5 +56,5 @@ public class ReturnAdapter extends RecyclerView.Adapter<ReturnAdapter.ViewHolder
     }
 
 
-}
 
+}

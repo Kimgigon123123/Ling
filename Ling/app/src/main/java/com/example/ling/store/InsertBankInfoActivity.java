@@ -26,8 +26,9 @@ public class InsertBankInfoActivity extends AppCompatActivity {
 
         binding.btnRegi.setOnClickListener(v -> {
 
-            CompleteDialog dialog = new CompleteDialog(this,regi);
-            dialog.show();
+            finish();
+//            CompleteDialog dialog = new CompleteDialog(this,regi);
+//            dialog.show();
 
         });
 

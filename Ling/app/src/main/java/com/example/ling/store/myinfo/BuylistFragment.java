@@ -25,7 +25,7 @@ public class BuylistFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentBuylistBinding.inflate(inflater,container,false);
-        binding.recvBuylist.setAdapter(new BuylistAdapter(getContext()));
+        binding.recvBuylist.setAdapter(new BuylistMoreAdapter(getContext()));
         binding.recvBuylist.setLayoutManager(new GridLayoutManager(getContext(),3));
         return binding.getRoot();
     }

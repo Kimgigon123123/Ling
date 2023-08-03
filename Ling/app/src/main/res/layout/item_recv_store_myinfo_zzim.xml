@@ -5,6 +5,7 @@
     android:layout_margin="3dp">
 
     <ImageView
+        android:id="@+id/imgv_item"
         android:background="@color/white"
         android:src="@drawable/ic_launcher_background"
         android:layout_width="wrap_content"
