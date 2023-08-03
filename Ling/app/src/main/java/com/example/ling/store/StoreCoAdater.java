@@ -16,6 +16,7 @@ import com.example.ling.databinding.ItemRecvStoreCoBinding;
 import com.example.ling.store.storeCO.StoreCOVO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class StoreCoAdater extends RecyclerView.Adapter<StoreCoAdater.ViewHolder> {
@@ -51,6 +52,11 @@ public class StoreCoAdater extends RecyclerView.Adapter<StoreCoAdater.ViewHolder
 
         h.binding.intoItem.setOnClickListener(v -> {
             Intent intent = new Intent(context,StorePurchaseActivity.class);
+            intent.putExtra("name",list.get(i).getItem_name());
+            intent.putExtra("content",list.get(i).getItem_content());
+            intent.putExtra("price",list.get(i).getItem_price());
+
+
             context.startActivity(intent);
         });
 
