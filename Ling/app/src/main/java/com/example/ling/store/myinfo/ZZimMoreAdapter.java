@@ -36,6 +36,8 @@ public class ZZimMoreAdapter extends RecyclerView.Adapter<ZZimMoreAdapter.ViewHo
             context.startActivity(intent);
         });
 
+
+
     }
 
     @Override

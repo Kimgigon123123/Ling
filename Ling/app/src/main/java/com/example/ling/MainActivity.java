@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.shapes.Shape;
 import android.os.Build;
@@ -72,6 +73,13 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
+        //store 반품처리
+        Intent intent = getIntent();
+        String str = intent.getStringExtra("return");
+        if(str !=null && str.equals("return")){
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,new StoreCoFragment()).commit();
+        }
+
 
     }
 
@@ -101,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
             System.runFinalization();
             System.exit(0);
         }
+
+
     }
 
 //    @Override
