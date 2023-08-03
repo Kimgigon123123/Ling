@@ -22,7 +22,7 @@ public class BuyDialog extends BottomSheetDialog {
     Button btn_buy,btn_basket;
     ImageView imgv_close;
 
-    public BuyDialog(@NonNull Context context) {
+    public BuyDialog(@NonNull Context context,String name, int price) {
         super(context);
         setContentView(R.layout.dialog_buy);
         btn_buy=findViewById(R.id.btn_buy);
@@ -54,4 +54,6 @@ public class BuyDialog extends BottomSheetDialog {
 
 
     }
+
+
 }
