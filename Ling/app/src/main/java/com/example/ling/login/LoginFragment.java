@@ -9,10 +9,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.ling.MainActivity;
 import com.example.ling.R;
+import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentLoginBinding;
 import com.example.ling.join.JoinActivity;
+import com.google.gson.Gson;
 
 
 public class LoginFragment extends Fragment {
@@ -25,7 +30,25 @@ public class LoginFragment extends Fragment {
         binding = FragmentLoginBinding.inflate(inflater, container, false);
 
         binding.btnLogin.setOnClickListener(v->{
-            ((LoginActivity) getActivity()).find_changeTab(6);
+            if(binding.edtId.getText().toString().length()<1
+                    || binding.edtPw.getText().toString().length()<1){
+                Toast.makeText(this, "아이디또는 비번입력", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            CommonConn conn = new CommonConn(this, "amlogin");
+            conn.addParamMap("id", binding.edtId.getText().toString());
+            conn.addParamMap("password", binding.edtPw.getText().toString());
+            conn.onExcute((isResult, data) -> {
+                if(isResult){
+                    CommonVar.loginInfo = new Gson().fromJson(data, Ling_MemberVO.class);
+                    if(CommonVar.loginInfo==null){
+                        Toast.makeText(this, "아이디 비번 확인", Toast.LENGTH_SHORT).show();
+                    }else{
+                        ((LoginActivity) getActivity()).find_changeTab(6);
+                    }
+                }
+            });
+
         });
 
         binding.btnTextFind.setOnClickListener(v->{

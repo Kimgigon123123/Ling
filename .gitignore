@@ -89,3 +89,6 @@ atlassian-ide-plugin.xml
 .vscode/
 
 cached-antora-playbook.yml
+/.metadata/
+
+/.metadata/
