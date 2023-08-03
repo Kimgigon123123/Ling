@@ -5,6 +5,9 @@ public class StoreCOVO {
 	 	private String category_code, item_name,  item_img, item_content ;
 		private int item_code,item_price;
 
+
+
+
 	public String getCategory_code() {
 		return category_code;
 	}

@@ -82,4 +82,7 @@ dependencies {
     implementation "androidx.drawerlayout:drawerlayout:1.2.0"
 
     implementation 'com.github.shrikanth7698:Custom-Navigation-Drawer:v0.0.1'
+
+    // 네이버 지도 API
+    implementation 'com.naver.maps:map-sdk:3.17.0'
 }

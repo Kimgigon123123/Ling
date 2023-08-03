@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,14 +21,22 @@ public class BuyDialog extends BottomSheetDialog {
 
 
     Button btn_buy,btn_basket;
+    TextView tv_name,tv_price,tv_total_price,tv_cnt;
     ImageView imgv_close;
 
-    public BuyDialog(@NonNull Context context) {
+    public BuyDialog(@NonNull Context context,String name, int price) {
         super(context);
         setContentView(R.layout.dialog_buy);
         btn_buy=findViewById(R.id.btn_buy);
         btn_basket=findViewById(R.id.btn_basket);
         imgv_close=findViewById(R.id.imgv_close);
+        tv_name=findViewById(R.id.tv_name);
+        tv_name.setText(name);
+        tv_price=findViewById(R.id.tv_price);
+        tv_price.setText(price+"");
+        tv_cnt=findViewById(R.id.tv_cnt);
+        tv_total_price=findViewById(R.id.tv_total_price);
+//        tv_total_price.setText(Integer.parseInt(tv_price.getText().toString())*Integer.parseInt(tv_cnt.getText().toString()));
         String payment="payment";
 
         btn_basket.setOnClickListener(v->{
@@ -54,4 +63,6 @@ public class BuyDialog extends BottomSheetDialog {
 
 
     }
+
+
 }
