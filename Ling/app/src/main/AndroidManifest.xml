@@ -26,13 +26,21 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".store.myinfo.AddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.myinfo.ReturnActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.myinfo.DeliveryActivity"
+            android:exported="false" />
+        <activity
             android:name=".store.basket.BasketActivity"
             android:exported="false" />
         <activity
             android:name=".store.myinfo.ZZimActivity"
-             android:exported="false" />
-
-            <activity
+            android:exported="false" />
+        <activity
             android:name=".calendar.CalendarFuncActivity"
             android:exported="false" />
         <activity
@@ -44,20 +52,16 @@
         <activity
             android:name=".home.RowChatActivity"
             android:exported="false" />
-
-            <activity
+        <activity
             android:name=".chat.RowChatActivity"
             android:exported="false" />
-
         <activity
             android:name=".home.PhotoActivity"
             android:exported="false" />
         <activity
             android:name=".date.festival.FestivalActivity"
             android:exported="false" />
-
-
-            <activity
+        <activity
             android:name=".calendar.CalendarActivity"
             android:exported="false" />
         <activity

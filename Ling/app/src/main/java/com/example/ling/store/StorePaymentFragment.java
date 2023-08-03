@@ -9,9 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ling.R;
 import com.example.ling.databinding.FragmentStorePaymentBinding;
-import com.example.ling.databinding.FragmentStorePurchaseBinding;
 
 
 public class StorePaymentFragment extends Fragment {
@@ -38,6 +36,9 @@ public class StorePaymentFragment extends Fragment {
 
 
         });
+
+
+
 
         return binding.getRoot();
     }
