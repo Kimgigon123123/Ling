@@ -35,3 +35,4 @@ render.experimental.xml
 
 #Spring ignore
 
+/.metadata/
