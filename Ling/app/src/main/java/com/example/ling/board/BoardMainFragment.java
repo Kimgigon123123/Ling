@@ -21,12 +21,17 @@ public class BoardMainFragment extends Fragment {
         binding = FragmentBoardMainBinding.inflate(getLayoutInflater() , container , false);
         BoardFragment fragment = (BoardFragment) getParentFragment();
         binding.tvNoticeMore.setOnClickListener(v->{
-            fragment.changeFragment(0);
+            fragment.changeFragment(1);
         });
         binding.tvFreeMore.setOnClickListener(v->{
             fragment.changeFragment(2);
         });
-
+        binding.tvWorryMore.setOnClickListener(v->{
+            fragment.changeFragment(3);
+        });
+        binding.tvPlayMore.setOnClickListener(v->{
+            fragment.changeFragment(4);
+        });
 
         return binding.getRoot();
     }
