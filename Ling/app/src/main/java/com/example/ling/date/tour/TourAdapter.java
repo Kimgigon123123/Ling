@@ -24,7 +24,6 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         ItemRecvTouractBinding binding = null;
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         binding = ItemRecvTouractBinding.inflate(inflater, parent, false);
