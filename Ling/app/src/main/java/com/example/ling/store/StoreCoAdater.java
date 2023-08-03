@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ling.R;
 import com.example.ling.databinding.ItemRecvDibsBinding;
 import com.example.ling.databinding.ItemRecvStoreCoBinding;
+import com.example.ling.store.storeCO.StoreCOVO;
+
+import java.util.ArrayList;
 
 
 public class StoreCoAdater extends RecyclerView.Adapter<StoreCoAdater.ViewHolder> {
@@ -20,7 +23,14 @@ public class StoreCoAdater extends RecyclerView.Adapter<StoreCoAdater.ViewHolder
     ItemRecvStoreCoBinding binding;
     Context context;
 
+    ArrayList<StoreCOVO> list;
+
     public StoreCoAdater(Context context) {
+        this.context = context;
+    }
+
+    public StoreCoAdater(ArrayList<StoreCOVO> list,Context context) {
+        this.list = list;
         this.context = context;
     }
 
@@ -36,8 +46,8 @@ public class StoreCoAdater extends RecyclerView.Adapter<StoreCoAdater.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
 
         h.binding.imgvItem.setImageResource(R.drawable.ic_launcher_background);
-        h.binding.tvName.setText("이름");
-        h.binding.tvPrice.setText("주소");
+        h.binding.tvName.setText(list.get(i).getItem_name());
+        h.binding.tvPrice.setText(list.get(i).getItem_price()+"원");
 
         h.binding.intoItem.setOnClickListener(v -> {
             Intent intent = new Intent(context,StorePurchaseActivity.class);
@@ -48,7 +58,7 @@ public class StoreCoAdater extends RecyclerView.Adapter<StoreCoAdater.ViewHolder
 
     @Override
     public int getItemCount() {
-        return 20;
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
