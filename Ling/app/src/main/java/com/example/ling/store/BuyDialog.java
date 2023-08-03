@@ -19,10 +19,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class BuyDialog extends BottomSheetDialog {
 
-
+    int cnt=1;
     Button btn_buy,btn_basket;
     TextView tv_name,tv_price,tv_total_price,tv_cnt;
-    ImageView imgv_close;
+    ImageView imgv_close,imgv_up,imgv_down;
 
     public BuyDialog(@NonNull Context context,String name, int price) {
         super(context);
@@ -35,9 +35,35 @@ public class BuyDialog extends BottomSheetDialog {
         tv_price=findViewById(R.id.tv_price);
         tv_price.setText(price+"");
         tv_cnt=findViewById(R.id.tv_cnt);
+        imgv_up=findViewById(R.id.imgv_up);
+        imgv_down=findViewById(R.id.imgv_down);
         tv_total_price=findViewById(R.id.tv_total_price);
-//        tv_total_price.setText(Integer.parseInt(tv_price.getText().toString())*Integer.parseInt(tv_cnt.getText().toString()));
+        tv_total_price.setText(Integer.parseInt(tv_price.getText().toString())*Integer.parseInt(tv_cnt.getText().toString())+"");
         String payment="payment";
+
+        imgv_up.setOnClickListener(v -> {
+            cnt++;
+            tv_cnt.setText(cnt+"");
+            tv_total_price.setText(Integer.parseInt(tv_price.getText().toString())*cnt+"");
+
+        });
+
+        imgv_down.setOnClickListener(v -> {
+
+            if(cnt<=1){
+
+                cnt++;
+            }else{
+                cnt--;
+                tv_cnt.setText(cnt+"");
+                tv_total_price.setText(Integer.parseInt(tv_price.getText().toString())*cnt+"");
+            }
+
+
+
+
+        });
+
 
         btn_basket.setOnClickListener(v->{
             Toast.makeText(context, "장바구니에 추가 되었습니다.", Toast.LENGTH_SHORT).show();
