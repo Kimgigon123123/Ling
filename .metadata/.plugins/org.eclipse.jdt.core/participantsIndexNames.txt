@@ -1,5 +1,0 @@
-INDEX VERSION 1.131
-D:\Ling\Ling\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\748034724.index
-\aasdf\src\main\java
-D:\Ling\Ling\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1648543850.index
-\aasdf\src\main\java
