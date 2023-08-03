@@ -9,6 +9,8 @@ import android.widget.LinearLayout;
 
 import com.example.ling.R;
 import com.example.ling.databinding.ActivityStoreMyinfoBinding;
+import com.example.ling.store.myinfo.BuylistAdapter;
+import com.example.ling.store.myinfo.ReturnAdapter;
 
 public class StoreMyinfoActivity extends AppCompatActivity {
 

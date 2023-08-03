@@ -3,13 +3,14 @@ package com.example.ling.store.myinfo;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.ling.databinding.ActivityStoreMyinfoBinding;
-import com.example.ling.store.BuylistAdapter;
 import com.example.ling.store.ChargeCashActivity;
-import com.example.ling.store.ReturnAdapter;
+import com.example.ling.store.ChargeVO;
+import com.example.ling.store.CompleteDialog;
 
 public class StoreMyinfoActivity extends AppCompatActivity {
 
@@ -37,6 +38,12 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
         binding.recvReturn.setAdapter(new ReturnAdapter(this));
         binding.recvReturn.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+
+        if(ChargeVO.isCharge){
+            Dialog dialog = new CompleteDialog(this,"charge");
+                dialog.show();
+                ChargeVO.isCharge=false;
+        }
 
 
         binding.imgvBefore.setOnClickListener(v -> {

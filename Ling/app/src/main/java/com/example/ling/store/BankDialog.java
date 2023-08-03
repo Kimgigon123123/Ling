@@ -27,6 +27,7 @@ public class BankDialog extends BottomSheetDialog {
 
             Intent intent = new Intent(context,InsertBankInfoActivity.class);
             context.startActivity(intent);
+            dismiss();
 
         });
 

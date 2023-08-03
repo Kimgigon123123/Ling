@@ -23,6 +23,13 @@ public class StorePaymentActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
+        if(ChargeVO.isCharge){
+            Dialog dialog = new CompleteDialog(this,"charge");
+            dialog.show();
+            ChargeVO.isCharge=false;
+        }
+
+
 
         binding.imgvBefore.setOnClickListener(v -> {
 

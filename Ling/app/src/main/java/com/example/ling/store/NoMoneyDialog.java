@@ -27,6 +27,7 @@ public class NoMoneyDialog extends Dialog {
             public void onClick(View v) {
                 Intent intent = new Intent(context,ChargeCashActivity.class);
                 context.startActivity(intent);
+                dismiss();
             }
         });
 
@@ -36,8 +37,7 @@ public class NoMoneyDialog extends Dialog {
 
 
                 dismiss();
-//                Intent intent = new Intent( context,StorePurchaseActivity.class);
-//                context.startActivity(intent);
+
 
 
             }
