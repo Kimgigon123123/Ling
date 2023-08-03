@@ -41,7 +41,7 @@ public class StorePurchaseFragment extends Fragment {
         binding.btnBuy.setOnClickListener(v -> {
 
 
-            BottomSheetDialog bottomSheetDialog = new BuyDialog(this.getContext());
+            BottomSheetDialog bottomSheetDialog = new BuyDialog(this.getContext(),"이름",1000);
             bottomSheetDialog.show();
 
 
