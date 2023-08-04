@@ -74,4 +74,14 @@ public class StoreMyinfoController {
 		return	gson.toJson(list);
 	}
 	
+	
+	//찜목록 삭제
+	@RequestMapping(value="/store_delete_zzim",produces="text/html;charset=utf-8")
+	public String delete_zzim(String item_code) {
+		
+		int result = sql.delete("store_myinfo.deletezzim",item_code);
+		
+		Gson gson = new Gson();
+		return	gson.toJson(result);
+	}
 }

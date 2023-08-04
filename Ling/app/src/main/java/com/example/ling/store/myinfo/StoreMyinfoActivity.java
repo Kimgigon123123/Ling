@@ -16,6 +16,7 @@ import com.example.ling.store.ChargeVO;
 import com.example.ling.store.CompleteDialog;
 import com.example.ling.store.StoreCoAdater;
 import com.example.ling.store.storeCO.StoreCOVO;
+import com.example.ling.store.storeCO.StorePurchaseListVO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -39,6 +40,7 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
         select();
         zzimlist();
+        buylist();
 
 
 
@@ -100,13 +102,12 @@ public class StoreMyinfoActivity extends AppCompatActivity {
         CommonConn conn = new CommonConn(this, "store_list_zzim");
         conn.onExcute((isResult, data) -> {
 
-            ArrayList<StoreZzimListVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreZzimListVO>>() {
+            ArrayList<StoreZzimListVO> zzimlist = new Gson().fromJson(data, new TypeToken<ArrayList<StoreZzimListVO>>() {
             }.getType());
-            binding.recvZzim.setAdapter(new ZZimAdapter(list,this));
+            binding.recvZzim.setAdapter(new ZZimAdapter(zzimlist,this));
             binding.recvZzim.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
 
-            binding.recvBuylist.setAdapter(new BuylistAdapter(this));
-            binding.recvBuylist.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+
 
             binding.recvReturn.setAdapter(new ReturnAdapter(this));
             binding.recvReturn.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
@@ -114,7 +115,16 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
         });
     }
-    // Activity LifeCycle
+
+    public void buylist() {
+        CommonConn conn = new CommonConn(this, "store_list_zzim");
+        conn.onExcute((isResult, data) -> {
+            ArrayList<StorePurchaseListVO> buylistlist = new Gson().fromJson(data, new TypeToken<ArrayList<StorePurchaseListVO>>() {
+            }.getType());
+            binding.recvBuylist.setAdapter(new BuylistAdapter(buylistlist, this));
+            binding.recvBuylist.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        });
+    }
 
     @Override
     protected void onRestart() {

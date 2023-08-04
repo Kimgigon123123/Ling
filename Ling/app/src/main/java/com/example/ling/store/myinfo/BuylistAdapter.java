@@ -12,13 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ling.databinding.ItemRecvStoreMyinfoBuylistBinding;
 import com.example.ling.databinding.ItemRecvStoreMyinfoZzimBinding;
 import com.example.ling.store.StorePurchaseActivity;
+import com.example.ling.store.storeCO.StorePurchaseListVO;
+
+import java.util.ArrayList;
 
 public class BuylistAdapter extends RecyclerView.Adapter<BuylistAdapter.ViewHolder>{
 
     ItemRecvStoreMyinfoBuylistBinding binding;
     Context context;
+    ArrayList<StorePurchaseListVO> buylistlist;
 
-    public BuylistAdapter(Context context) {
+    public BuylistAdapter(ArrayList<StorePurchaseListVO> buylistlist,Context context) {
+        this.buylistlist=buylistlist;
         this.context = context;
     }
 
@@ -52,7 +57,7 @@ public class BuylistAdapter extends RecyclerView.Adapter<BuylistAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return 3;
+        return buylistlist.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

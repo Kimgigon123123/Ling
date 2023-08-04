@@ -13,7 +13,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.example.ling.R;
+import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ActivityStorePurchaseBinding;
+import com.example.ling.store.storeCO.StorePurchaseListVO;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 
@@ -24,7 +26,7 @@ public class BuyDialog extends BottomSheetDialog {
     TextView tv_name,tv_price,tv_total_price,tv_cnt;
     ImageView imgv_close,imgv_up,imgv_down;
 
-    public BuyDialog(@NonNull Context context,String name, int price) {
+    public BuyDialog(@NonNull Context context,String name, int price,String item_code) {
         super(context);
         setContentView(R.layout.dialog_buy);
         btn_buy=findViewById(R.id.btn_buy);
@@ -81,8 +83,11 @@ public class BuyDialog extends BottomSheetDialog {
 
                 Intent intent = new Intent(context,StorePaymentActivity.class);
                 intent.putExtra("price",Integer.parseInt(tv_total_price.getText().toString()) );
+                intent.putExtra("item_code",item_code);
+                intent.putExtra("cnt",cnt);
                 context.startActivity(intent);
                 dismiss();
+
 
 
             }

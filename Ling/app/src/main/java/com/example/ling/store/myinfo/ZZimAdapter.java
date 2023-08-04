@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ItemRecvStoreMyinfoZzimBinding;
 import com.example.ling.store.StorePurchaseActivity;
 
@@ -50,6 +51,16 @@ public class ZZimAdapter extends RecyclerView.Adapter<ZZimAdapter.ViewHolder> {
         });
 
         h.binding.imgvCancle.setOnClickListener(v->{
+            CommonConn conn = new CommonConn(context , "store_delete_zzim");
+            conn.addParamMap("item_code" , list.get(i).getItem_code());
+
+            conn.onExcute((isResult, data) -> {
+                list.remove(i);
+                notifyDataSetChanged();
+            });
+
+
+
             Toast.makeText(context, "찜목록에서 삭제 되었습니다.", Toast.LENGTH_SHORT).show();
         });
 

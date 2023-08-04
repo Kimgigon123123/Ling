@@ -27,7 +27,7 @@ public class DeliveryActivity extends AppCompatActivity {
         });
 
         binding.btnBuy.setOnClickListener(v->{
-            BottomSheetDialog bottomSheetDialog = new BuyDialog(this,"이름",1000);
+            BottomSheetDialog bottomSheetDialog = new BuyDialog(this,"이름",1000,"1");
             bottomSheetDialog.show();
         });
 
