@@ -7,11 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+@Repository
 public class MemberDAO {
-	/*
-	 * @Autowired @Qualifier("test") SqlSession sql; public Ling_MemberVO
-	 * login(HashMap<String, String> params ) {
-	 * 
-	 * Ling_MemberVO vo = sql.selectOne("member.login", params); return vo; }
-	 */
+
+	@Autowired
+	@Qualifier("test")
+	SqlSession sql;
+
+	public MemberVO login(HashMap<String, String> params) {
+
+		MemberVO vo = sql.selectOne("member.login", params);
+		return vo;
+	}
+
 }
