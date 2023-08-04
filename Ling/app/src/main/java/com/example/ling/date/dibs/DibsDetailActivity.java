@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.ling.R;
 import com.example.ling.databinding.ActivityDibsDetailBinding;
 import com.example.ling.date.InfoFragment;
-import com.example.ling.date.MapFragment;
+import com.example.ling.date.NMapFragment;
 
 
 public class DibsDetailActivity extends AppCompatActivity {
@@ -31,7 +31,7 @@ public class DibsDetailActivity extends AppCompatActivity {
         });
 
         binding.btnMap.setOnClickListener(v -> {
-            getSupportFragmentManager().beginTransaction().replace(R.id.ln_dibsdetail, new MapFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.ln_dibsdetail, new NMapFragment()).commit();
         });
 
 //        if(binding.btnInfo.isChecked()) {

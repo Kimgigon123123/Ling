@@ -3,13 +3,11 @@ package com.example.ling.date.tour;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
 
 import com.example.ling.R;
 import com.example.ling.databinding.ActivityTourDetailBinding;
 import com.example.ling.date.InfoFragment;
-import com.example.ling.date.MapFragment;
+import com.example.ling.date.NMapFragment;
 
 public class TourDetailActivity extends AppCompatActivity {
 
@@ -32,7 +30,7 @@ public class TourDetailActivity extends AppCompatActivity {
         });
 
         binding.btnMap.setOnClickListener(v -> {
-            getSupportFragmentManager().beginTransaction().replace(R.id.ln_tourdetail, new MapFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.ln_tourdetail, new NMapFragment()).commit();
         });
     }
 }
