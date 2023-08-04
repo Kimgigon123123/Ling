@@ -80,8 +80,9 @@ public class BuyDialog extends BottomSheetDialog {
 
 
                 Intent intent = new Intent(context,StorePaymentActivity.class);
-                intent.putExtra("payment",payment);
+                intent.putExtra("price",Integer.parseInt(tv_total_price.getText().toString()) );
                 context.startActivity(intent);
+                dismiss();
 
 
             }

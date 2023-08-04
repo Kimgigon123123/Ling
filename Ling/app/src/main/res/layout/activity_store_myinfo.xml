@@ -78,11 +78,12 @@
 
 
             <TextView
+                android:id="@+id/tv_name"
                 android:layout_marginTop="10dp"
                 android:textSize="18dp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:text="김기곤"
+                android:text="이름"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -100,12 +101,12 @@
                     android:text="보유금액: "/>
 
                 <TextView
-
+                    android:id="@+id/tv_money"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1000"/>
+                    android:text="100"/>
 
 
                 <TextView

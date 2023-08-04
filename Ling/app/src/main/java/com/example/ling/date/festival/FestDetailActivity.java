@@ -7,7 +7,7 @@ import android.os.Bundle;
 import com.example.ling.R;
 import com.example.ling.databinding.ActivityFestDetailBinding;
 import com.example.ling.date.InfoFragment;
-import com.example.ling.date.MapFragment;
+import com.example.ling.date.NMapFragment;
 
 public class FestDetailActivity extends AppCompatActivity {
 
@@ -30,7 +30,7 @@ public class FestDetailActivity extends AppCompatActivity {
         });
 
         binding.btnMap.setOnClickListener(v -> {
-            getSupportFragmentManager().beginTransaction().replace(R.id.ln_festdetail, new MapFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.ln_festdetail, new NMapFragment()).commit();
         });
     }
 }

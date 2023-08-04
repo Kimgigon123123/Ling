@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.ling.MainActivity;
 import com.example.ling.R;
+import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ActivityStorePurchaseBinding;
 import com.example.ling.store.storeCO.StoreCOVO;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -32,6 +33,7 @@ public class StorePurchaseActivity extends AppCompatActivity {
         String name = intent.getStringExtra("name");
         String content = intent.getStringExtra("content");
         int price = intent.getIntExtra("price",0);
+        String item_code = intent.getStringExtra("item_code");
 
             binding.tvContent.setText(content);
             binding.tvName.setText(name);
@@ -60,8 +62,27 @@ public class StorePurchaseActivity extends AppCompatActivity {
         });
 
         binding.btnZzim.setOnClickListener(v->{
-            Toast.makeText(this, "찜목록에 추가 되었습니다.", Toast.LENGTH_SHORT).show();
+
+                CommonConn conn = new CommonConn(this , "store_insert_zzim");
+                conn.addParamMap("item_code" , item_code);
+                conn.onExcute((isResult, data) -> {
+
+                });
+                Toast.makeText(this, "찜목록에 추가 되었습니다.", Toast.LENGTH_SHORT).show();
+
+
         });
+
+
+    }
+
+    protected void onRestart() {
+        super.onRestart();
+        if(ChargeVO.isBuy){
+            Dialog dialog = new CompleteDialog(this,"BuyComplete");
+            dialog.show();
+            ChargeVO.isBuy=false;
+        }
 
 
     }

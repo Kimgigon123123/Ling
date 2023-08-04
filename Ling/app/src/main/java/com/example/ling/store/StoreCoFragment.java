@@ -60,10 +60,10 @@ public class StoreCoFragment extends Fragment {
     public void select() {
         CommonConn conn = new CommonConn(getContext(), "store_co");
         conn.onExcute((isResult, data) -> {
-            Log.d("결과값", "select: " + data);
+
             ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
             }.getType());
-            Log.d("리스트 사이즈", "select: " + list.size());
+
 
             binding.recvStoreCo.setAdapter(new StoreCoAdater(list, getContext()));
             binding.recvStoreCo.setLayoutManager(new GridLayoutManager(getContext(),3));
