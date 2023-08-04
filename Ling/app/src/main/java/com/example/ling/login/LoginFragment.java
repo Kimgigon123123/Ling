@@ -32,17 +32,17 @@ public class LoginFragment extends Fragment {
         binding.btnLogin.setOnClickListener(v->{
             if(binding.edtId.getText().toString().length()<1
                     || binding.edtPw.getText().toString().length()<1){
-                Toast.makeText(this, "아이디또는 비번입력", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "아이디또는 비번입력", Toast.LENGTH_SHORT).show();
                 return;
             }
-            CommonConn conn = new CommonConn(this, "amlogin");
+            CommonConn conn = new CommonConn(this, "login");
             conn.addParamMap("id", binding.edtId.getText().toString());
             conn.addParamMap("password", binding.edtPw.getText().toString());
             conn.onExcute((isResult, data) -> {
                 if(isResult){
                     CommonVar.loginInfo = new Gson().fromJson(data, Ling_MemberVO.class);
                     if(CommonVar.loginInfo==null){
-                        Toast.makeText(this, "아이디 비번 확인", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "아이디 비번 확인", Toast.LENGTH_SHORT).show();
                     }else{
                         ((LoginActivity) getActivity()).find_changeTab(6);
                     }
