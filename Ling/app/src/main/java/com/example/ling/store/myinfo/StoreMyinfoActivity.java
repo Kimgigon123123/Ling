@@ -117,7 +117,7 @@ public class StoreMyinfoActivity extends AppCompatActivity {
     }
 
     public void buylist() {
-        CommonConn conn = new CommonConn(this, "store_list_zzim");
+        CommonConn conn = new CommonConn(this, "store_list_purchase");
         conn.onExcute((isResult, data) -> {
             ArrayList<StorePurchaseListVO> buylistlist = new Gson().fromJson(data, new TypeToken<ArrayList<StorePurchaseListVO>>() {
             }.getType());
