@@ -51,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void find_changeTab(int idx){
-
         binding.pager.setCurrentItem(idx, true);
     }
 }

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ling.R;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentLoginTempIdBinding;
 
 
@@ -17,10 +18,15 @@ public class LoginTemp_IdFragment extends Fragment {
 
     FragmentLoginTempIdBinding binding;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentLoginTempIdBinding.inflate(inflater, container, false);
+
+        binding.findUserId.setText("사용자 아이디:"+ CommonVar.loginInfo.getId());
+
         binding.btnReturnLogin.setOnClickListener(v->{
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);
