@@ -35,3 +35,5 @@ render.experimental.xml
 
 #Spring ignore
 
+/.metadata/
+Ling/app/src/main/java/com/example/ling/common/RetClient.java

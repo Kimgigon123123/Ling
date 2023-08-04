@@ -34,7 +34,8 @@
         app:helperTextTextColor="#8A8A8A">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:inputType="textPassword"
+            android:id="@+id/user_name"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -45,11 +46,12 @@
         app:helperTextEnabled="true"
         android:layout_margin="10dp"
         android:textColorHint="#878787"
-        android:hint="등록된 전화번호"
+        android:hint="등록된 전화번호 (010-xxxx-xxxx)"
         app:helperTextTextColor="#8A8A8A">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:inputType="textPassword"
+            android:id="@+id/user_phone"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>

@@ -7,6 +7,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 실제로 권한 요청 -->
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 카메라의 경우 안드로이드 하드웨어이기때문에 아래 속성을 추가해줘야한다. required가 false인 경우 미사용도 가능 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- naver map 위치 권한 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- naver map 위치 권한 -->
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -53,7 +56,7 @@
             android:name=".calendar.CalendarAddActivity"
             android:exported="false" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".home.RowChatActivity"
@@ -116,7 +119,7 @@
             android:name=".join.JoinActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
