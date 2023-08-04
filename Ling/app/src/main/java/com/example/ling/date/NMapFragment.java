@@ -26,6 +26,7 @@ import com.naver.maps.map.util.FusedLocationSource;
 public class NMapFragment extends Fragment implements OnMapReadyCallback {
 
     FragmentNMapBinding binding;
+
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private FusedLocationSource locationSource;
     private NaverMap naverMap;
@@ -41,6 +42,8 @@ public class NMapFragment extends Fragment implements OnMapReadyCallback {
             fm.beginTransaction().add(R.id.map, mapFragment).commit();
         }
         mapFragment.getMapAsync(this);
+        locationSource =
+                new FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE);
         return binding.getRoot();
     }
 
@@ -63,8 +66,9 @@ public class NMapFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(@NonNull NaverMap naverMap) {
         this.naverMap = naverMap;
         naverMap.setLocationSource(locationSource);
+        naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
         Marker marker = new Marker();
-        marker.setPosition(new LatLng(37.5670135, 126.9783740));
+        marker.setPosition(new LatLng(35.1536166783742, 126.88800421658897));
         marker.setIcon(OverlayImage.fromResource(com.naver.maps.map.R.drawable.navermap_default_marker_icon_red));
         marker.setMap(naverMap);
     }
