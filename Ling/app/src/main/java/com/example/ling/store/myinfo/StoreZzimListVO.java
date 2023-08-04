@@ -1,4 +1,4 @@
-package storemyinfo;
+package com.example.ling.store.myinfo;
 
 public class StoreZzimListVO {
 	String item_code, category_code, id , item_name, item_img, item_content;

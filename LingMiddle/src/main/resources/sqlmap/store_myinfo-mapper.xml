@@ -28,8 +28,10 @@ VALUES (#{item_code}, 'Co', 'kgg')
 </insert>
 
 <select id="zzimlist" resultType="storemyinfo.StoreZzimListVO">
-select * from store_zzim_product
-where id='kgg'
+select  z.*,i.*
+from store_zzim_product z, store_item i
+where z.item_code=i.item_code
+and id='kgg'
 </select>
 
 
