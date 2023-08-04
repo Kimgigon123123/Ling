@@ -5,12 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.shapes.Shape;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.ling.board.BoardFragment;
@@ -20,10 +15,6 @@ import com.example.ling.date.DateFragment;
 import com.example.ling.chat.ChatFragment;
 import com.example.ling.home.HomeFragment;
 import com.example.ling.store.StoreCoFragment;
-import com.example.ling.store.StorePurchaseActivity;
-import com.example.ling.store.StorePurchaseFragment;
-
-import nl.dionsegijn.konfetti.KonfettiView;
 
 public class MainActivity extends AppCompatActivity {
 
