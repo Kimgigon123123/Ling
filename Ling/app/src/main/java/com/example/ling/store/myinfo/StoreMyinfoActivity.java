@@ -38,6 +38,7 @@ public class StoreMyinfoActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         select();
+        zzimlist();
 
 
 

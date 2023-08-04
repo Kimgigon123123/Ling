@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,10 +37,22 @@ public class ZZimAdapter extends RecyclerView.Adapter<ZZimAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
+
         h.binding.imgvItem.setOnClickListener(v -> {
-            Intent intent = new Intent(context, StorePurchaseActivity.class);
+            Intent intent = new Intent(context,StorePurchaseActivity.class);
+            intent.putExtra("name",list.get(i).getItem_name());
+            intent.putExtra("content",list.get(i).getItem_content());
+            intent.putExtra("price",list.get(i).getItem_price());
+            intent.putExtra("item_code",list.get(i).getItem_code());
+
+
             context.startActivity(intent);
         });
+
+        h.binding.imgvCancle.setOnClickListener(v->{
+            Toast.makeText(context, "찜목록에서 삭제 되었습니다.", Toast.LENGTH_SHORT).show();
+        });
+
     }
 
     @Override
