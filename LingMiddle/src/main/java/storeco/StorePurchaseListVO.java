@@ -3,19 +3,13 @@ package storeco;
 public class StorePurchaseListVO {
 
 	
-	int order_num,item_code,delivery_code,purchase_cnt,item_price;
-	String id,item_name,item_img,item_content;
+	int order_num,delivery_code,purchase_cnt,item_price;
+	String id,item_name,item_img,item_content,item_code;
 	public int getOrder_num() {
 		return order_num;
 	}
 	public void setOrder_num(int order_num) {
 		this.order_num = order_num;
-	}
-	public int getItem_code() {
-		return item_code;
-	}
-	public void setItem_code(int item_code) {
-		this.item_code = item_code;
 	}
 	public int getDelivery_code() {
 		return delivery_code;
@@ -58,6 +52,12 @@ public class StorePurchaseListVO {
 	}
 	public void setItem_content(String item_content) {
 		this.item_content = item_content;
+	}
+	public String getItem_code() {
+		return item_code;
+	}
+	public void setItem_code(String item_code) {
+		this.item_code = item_code;
 	}
 	
 	

@@ -20,10 +20,10 @@ public class BuylistAdapter extends RecyclerView.Adapter<BuylistAdapter.ViewHold
 
     ItemRecvStoreMyinfoBuylistBinding binding;
     Context context;
-    ArrayList<StorePurchaseListVO> buylistlist;
+    ArrayList<StorePurchaseListVO> list;
 
-    public BuylistAdapter(ArrayList<StorePurchaseListVO> buylistlist,Context context) {
-        this.buylistlist=buylistlist;
+    public BuylistAdapter(ArrayList<StorePurchaseListVO> list,Context context) {
+        this.list=list;
         this.context = context;
     }
 
@@ -37,11 +37,19 @@ public class BuylistAdapter extends RecyclerView.Adapter<BuylistAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        h.binding.imgvItem.setOnClickListener(v -> {
-            Intent intent = new Intent(context, StorePurchaseActivity.class);
-            context.startActivity(intent);
 
+        h.binding.imgvItem.setOnClickListener(v -> {
+            Intent intent = new Intent(context,StorePurchaseActivity.class);
+            intent.putExtra("name",list.get(i).getItem_name());
+            intent.putExtra("content",list.get(i).getItem_content());
+            intent.putExtra("price",list.get(i).getItem_price());
+            intent.putExtra("item_code",list.get(i).getItem_code());
+
+
+            context.startActivity(intent);
         });
+
+
 
         h.binding.tvDeliveryCheck.setOnClickListener(v -> {
             Intent intent = new Intent(context, DeliveryActivity.class);
@@ -57,7 +65,7 @@ public class BuylistAdapter extends RecyclerView.Adapter<BuylistAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return buylistlist.size();
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
