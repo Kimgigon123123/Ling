@@ -19,5 +19,11 @@ public class MemberDAO {
 		MemberVO vo = sql.selectOne("member.login", params);
 		return vo;
 	}
+	
+	public MemberVO findid(HashMap<String, String> params) {
+
+		MemberVO vo = sql.selectOne("member.findid", params);
+		return vo;
+	}
 
 }
