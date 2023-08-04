@@ -21,5 +21,16 @@ set money= money-#{totalPrice}
 where id='kgg'
 </update>
 
+<insert id="insert_zzim">
+INSERT INTO store_zzim_product (ITEM_CODE, CATEGORY_CODE, ID) 
+VALUES (#{item_code}, 'Co', 'kgg')
+
+</insert>
+
+<select id="zzimlist" resultType="storemyinfo.StoreZzimListVO">
+select * from store_zzim_product
+where id='kgg'
+</select>
+
 
 </mapper>

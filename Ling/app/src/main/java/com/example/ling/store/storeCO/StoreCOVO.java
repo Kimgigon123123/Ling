@@ -2,8 +2,8 @@ package com.example.ling.store.storeCO;
 
 public class StoreCOVO {
 
-	 	private String category_code, item_name,  item_img, item_content ;
-		private int item_code,item_price;
+	 	private String item_code,category_code, item_name,  item_img, item_content ;
+		private int item_price;
 
 
 
@@ -40,11 +40,11 @@ public class StoreCOVO {
 		this.item_content = item_content;
 	}
 
-	public int getItem_code() {
+	public String getItem_code() {
 		return item_code;
 	}
 
-	public void setItem_code(int item_code) {
+	public void setItem_code(String item_code) {
 		this.item_code = item_code;
 	}
 
