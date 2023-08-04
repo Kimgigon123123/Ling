@@ -15,15 +15,15 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class BankDialog extends BottomSheetDialog {
 
-    LinearLayout into_bank;
+    LinearLayout into_bank1;
 
     public BankDialog(@NonNull Context context) {
         super(context);
         setContentView(R.layout.dialog_bank);
 
-        into_bank = findViewById(R.id.into_bank);
+        into_bank1 = findViewById(R.id.into_bank1);
 
-        into_bank.setOnClickListener(v -> {
+        into_bank1.setOnClickListener(v -> {
 
             Intent intent = new Intent(context,InsertBankInfoActivity.class);
             context.startActivity(intent);

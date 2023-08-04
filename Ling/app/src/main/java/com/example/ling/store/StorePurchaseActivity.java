@@ -65,4 +65,15 @@ public class StorePurchaseActivity extends AppCompatActivity {
 
 
     }
+
+    protected void onRestart() {
+        super.onRestart();
+        if(ChargeVO.isBuy){
+            Dialog dialog = new CompleteDialog(this,"BuyComplete");
+            dialog.show();
+            ChargeVO.isBuy=false;
+        }
+
+
+    }
 }

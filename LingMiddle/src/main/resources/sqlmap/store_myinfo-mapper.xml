@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store_myinfo">
+
+<select id="myinfo" resultType="storemyinfo.StoreMyinfoVO">
+select s.money,m.name 
+from store_myinfo s, ling_member m
+where s.id = m.id
+and m.id='kgg'
+</select>
+
+<update id="charge">
+update store_myinfo
+set money= money+#{edtMoney}
+where id='kgg'
+</update>
+
+<update id="buy">
+update store_myinfo
+set money= money-#{totalPrice}
+where id='kgg'
+</update>
+
+
+</mapper>
