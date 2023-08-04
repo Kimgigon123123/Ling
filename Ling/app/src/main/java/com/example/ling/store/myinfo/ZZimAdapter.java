@@ -11,13 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ling.databinding.ItemRecvStoreMyinfoZzimBinding;
 import com.example.ling.store.StorePurchaseActivity;
 
+import java.util.ArrayList;
+
 public class ZZimAdapter extends RecyclerView.Adapter<ZZimAdapter.ViewHolder> {
 
     ItemRecvStoreMyinfoZzimBinding binding;
 
+    ArrayList<StoreMyinfoVO> list;
+
     Context context;
 
-    public ZZimAdapter(Context context) {
+    public ZZimAdapter(ArrayList<StoreMyinfoVO> list,Context context) {
+        this.list = list;
         this.context = context;
     }
 
@@ -39,7 +44,7 @@ public class ZZimAdapter extends RecyclerView.Adapter<ZZimAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 3;
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

@@ -55,6 +55,7 @@ public class StoreCoAdater extends RecyclerView.Adapter<StoreCoAdater.ViewHolder
             intent.putExtra("name",list.get(i).getItem_name());
             intent.putExtra("content",list.get(i).getItem_content());
             intent.putExtra("price",list.get(i).getItem_price());
+            intent.putExtra("item_code",list.get(i).getItem_code());
 
 
             context.startActivity(intent);

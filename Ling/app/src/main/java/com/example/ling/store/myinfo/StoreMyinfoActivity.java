@@ -44,14 +44,7 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
 //
 
-        binding.recvZzim.setAdapter(new ZZimAdapter(this));
-        binding.recvZzim.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
 
-        binding.recvBuylist.setAdapter(new BuylistAdapter(this));
-        binding.recvBuylist.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
-
-        binding.recvReturn.setAdapter(new ReturnAdapter(this));
-        binding.recvReturn.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
 
 
 
@@ -95,6 +88,28 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
             binding.tvMoney.setText(list.get(0).getMoney()+"");
             binding.tvName.setText(list.get(0).getName());
+
+
+
+
+        });
+    }
+
+    public void zzimlist() {
+        CommonConn conn = new CommonConn(this, "store_list_zzim");
+        conn.onExcute((isResult, data) -> {
+
+            ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMyinfoVO>>() {
+            }.getType());
+            binding.recvZzim.setAdapter(new ZZimAdapter(list,this));
+            binding.recvZzim.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+
+            binding.recvBuylist.setAdapter(new BuylistAdapter(this));
+            binding.recvBuylist.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+
+            binding.recvReturn.setAdapter(new ReturnAdapter(this));
+            binding.recvReturn.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+
 
         });
     }

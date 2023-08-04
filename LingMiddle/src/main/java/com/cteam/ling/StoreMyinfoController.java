@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
-
-
+import storeco.StoreCOVO;
 import storemyinfo.StoreMyinfoVO;
+import storemyinfo.StoreZzimListVO;
 
 @RestController
 public class StoreMyinfoController {
@@ -54,5 +54,24 @@ public class StoreMyinfoController {
 		
 	}
 	
+	//찜목록 추가
+	@RequestMapping(value="/store_insert_zzim",produces="text/html;charset=utf-8")
+	public String insert_zzim(String item_code) {
+		
+		int result = sql.insert("store_myinfo.insert_zzim",item_code);
+		
+		Gson gson = new Gson();
+		return	gson.toJson(result);
+	}
+	
+	//찜목록 보기
+	@RequestMapping(value="/store_list_zzim",produces="text/html;charset=utf-8")
+	public String list_zzim() {
+		
+		List<StoreZzimListVO> list = sql.selectList("store_myinfo.zzimlist");
+		
+		Gson gson = new Gson();
+		return	gson.toJson(list);
+	}
 	
 }
