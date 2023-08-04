@@ -99,7 +99,7 @@ public class StoreMyinfoActivity extends AppCompatActivity {
         CommonConn conn = new CommonConn(this, "store_list_zzim");
         conn.onExcute((isResult, data) -> {
 
-            ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMyinfoVO>>() {
+            ArrayList<StoreZzimListVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreZzimListVO>>() {
             }.getType());
             binding.recvZzim.setAdapter(new ZZimAdapter(list,this));
             binding.recvZzim.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));

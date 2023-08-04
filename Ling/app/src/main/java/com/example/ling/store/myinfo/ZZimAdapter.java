@@ -17,11 +17,11 @@ public class ZZimAdapter extends RecyclerView.Adapter<ZZimAdapter.ViewHolder> {
 
     ItemRecvStoreMyinfoZzimBinding binding;
 
-    ArrayList<StoreMyinfoVO> list;
+    ArrayList<StoreZzimListVO> list;
 
     Context context;
 
-    public ZZimAdapter(ArrayList<StoreMyinfoVO> list,Context context) {
+    public ZZimAdapter(ArrayList<StoreZzimListVO> list,Context context) {
         this.list = list;
         this.context = context;
     }
