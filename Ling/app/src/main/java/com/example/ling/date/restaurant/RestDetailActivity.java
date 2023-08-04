@@ -7,7 +7,7 @@ import android.os.Bundle;
 import com.example.ling.R;
 import com.example.ling.databinding.ActivityRestDetailBinding;
 import com.example.ling.date.InfoFragment;
-import com.example.ling.date.MapFragment;
+import com.example.ling.date.NMapFragment;
 
 public class RestDetailActivity extends AppCompatActivity {
 
@@ -30,7 +30,7 @@ public class RestDetailActivity extends AppCompatActivity {
         });
 
         binding.btnMap.setOnClickListener(v -> {
-            getSupportFragmentManager().beginTransaction().replace(R.id.ln_restdetail, new MapFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.ln_restdetail, new NMapFragment()).commit();
         });
     }
 }
