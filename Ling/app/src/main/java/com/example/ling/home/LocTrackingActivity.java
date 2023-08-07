@@ -16,6 +16,8 @@ import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
+import com.naver.maps.map.overlay.Marker;
+import com.naver.maps.map.overlay.OverlayImage;
 import com.naver.maps.map.util.FusedLocationSource;
 
 public class LocTrackingActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -66,9 +68,5 @@ public class LocTrackingActivity extends AppCompatActivity implements OnMapReady
         this.naverMap = naverMap;
         naverMap.setLocationSource(locationSource);
         naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
-        naverMap.addOnLocationChangeListener(location ->
-                Toast.makeText(this,
-                        location.getLatitude() + ", " + location.getLongitude(),
-                        Toast.LENGTH_SHORT).show());
     }
 }
