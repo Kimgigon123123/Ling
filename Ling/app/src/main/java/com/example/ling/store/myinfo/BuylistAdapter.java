@@ -53,11 +53,13 @@ public class BuylistAdapter extends RecyclerView.Adapter<BuylistAdapter.ViewHold
 
         h.binding.tvDeliveryCheck.setOnClickListener(v -> {
             Intent intent = new Intent(context, DeliveryActivity.class);
+            intent.putExtra("order_num",list.get(i).getOrder_num());
             context.startActivity(intent);
         });
 
         h.binding.tvReturn.setOnClickListener(v -> {
             Intent intent = new Intent(context, ReturnActivity.class);
+            intent.putExtra("order_num",list.get(i).getOrder_num());
             context.startActivity(intent);
         });
 

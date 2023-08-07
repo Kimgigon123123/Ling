@@ -4,7 +4,7 @@ public class StorePurchaseListVO {
 
 	
 	int order_num,delivery_code,purchase_cnt,item_price;
-	String id,item_name,item_img,item_content,item_code;
+	String id,item_name,item_img,item_content,item_code,category_code;
 	public int getOrder_num() {
 		return order_num;
 	}
@@ -58,6 +58,12 @@ public class StorePurchaseListVO {
 	}
 	public void setItem_code(String item_code) {
 		this.item_code = item_code;
+	}
+	public String getCategory_code() {
+		return category_code;
+	}
+	public void setCategory_code(String category_code) {
+		this.category_code = category_code;
 	}
 	
 	

@@ -41,6 +41,7 @@ public class StoreMyinfoActivity extends AppCompatActivity {
         select();
         zzimlist();
         buylist();
+        returnlist();
 
 
 
@@ -109,8 +110,8 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
 
 
-            binding.recvReturn.setAdapter(new ReturnAdapter(this));
-            binding.recvReturn.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+//            binding.recvReturn.setAdapter(new ReturnAdapter(this));
+//            binding.recvReturn.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
 
 
         });
@@ -126,6 +127,17 @@ public class StoreMyinfoActivity extends AppCompatActivity {
         });
     }
 
+
+    public void returnlist() {
+        CommonConn conn = new CommonConn(this, "store_list_return");
+        conn.onExcute((isResult, data) -> {
+            ArrayList<StoreReturnListVO> returnlist = new Gson().fromJson(data, new TypeToken<ArrayList<StoreReturnListVO>>() {
+            }.getType());
+            binding.recvReturn.setAdapter(new ReturnAdapter(returnlist, this));
+            binding.recvReturn.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        });
+    }
+
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -135,6 +147,9 @@ public class StoreMyinfoActivity extends AppCompatActivity {
             ChargeVO.isCharge=false;
         }
         select();
+        zzimlist();
+        buylist();
+        returnlist();
 
     }
 }
