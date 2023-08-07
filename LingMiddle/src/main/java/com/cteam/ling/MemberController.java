@@ -81,10 +81,12 @@ public class MemberController {
 	
 	//아이디 중복확인 처리 요청
 		@ResponseBody @RequestMapping("/useridCheck")
-		public boolean useridCheck(String userid) {
+		public String useridCheck(String id) {
 			//화면에서 입력한 아이디가 DB에 있는지 여부를 확인
 			//DB에 없는 아이디이면 사용가능, 있는 아이디이면 사용불가능
-			return dao.info(userid)==null ? true : false;
+			//dao.info(userid)==null ? true : false
+			MemberVO vo = dao.info(id);
+			return new Gson().toJson(vo);
 		}
 		
 		
@@ -92,9 +94,12 @@ public class MemberController {
 		//회원가입 처리 요청
 		@ResponseBody 
 		@RequestMapping(value="/register", produces="text/html; charset=utf-8")
-		public String join(MemberVO vo) {
-			
-			return new Gson().toJson(vo);
+		public String join(String dto) {
+			MemberVO vo = new Gson().fromJson(dto, MemberVO.class);
+			//dao.join(vo);
+			//HashMap.put("id",vo.getId());
+			//return new Gson().toJson(dao.login())
+			return new Gson().toJson(dao.join(vo));
 			
 		}
 }

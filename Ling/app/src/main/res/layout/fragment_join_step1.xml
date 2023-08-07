@@ -28,6 +28,7 @@
         android:layout_margin="10dp">
 
         <Button
+            android:id="@+id/check_id"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:textSize="8dp"
@@ -47,6 +48,7 @@
             app:helperTextTextColor="#8A8A8A">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/join_id"
                 android:inputType="text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -64,6 +66,7 @@
         app:helperTextTextColor="#8A8A8A">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/join_pw"
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -79,6 +82,7 @@
         app:helperTextTextColor="#8A8A8A">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/check_pw"
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

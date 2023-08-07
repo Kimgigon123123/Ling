@@ -40,11 +40,12 @@ public class MemberDAO {
 		return sql.update("member.resetPassword", vo);
 	}
 	
-	public MemberVO info(String userid) {
+	public MemberVO info(String id) {
 		
-		return sql.selectOne("member.info", userid);
+		return sql.selectOne("member.info", id);
 	}
-	
+	// sql.insert , update ,delete => 작업 성공 여부를 int로 받는다. "1"=> Ling_MemberVO
+	// sql.selectOne , List  => resultTpye 해당하는타입으로 결과를 받는다. 
 	public int join(MemberVO vo) {
 		return sql.insert("member.join", vo);
 	}
