@@ -2,11 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 
-<select id="login" resultType="login.MemberVO">
+<select id="login" resultType="member.MemberVO">
 select * from Ling_member where id=#{id} and pw=#{pw}
 </select>	
 
-<select id="findid" resultType="login.MemberVO">
+<select id="findid" resultType="member.MemberVO">
 select id from Ling_member where name = #{name} and phone =#{phone}
+</select>
+
+<!--아이디와 이메일에 해당하는 회원명 조회  -->
+<select id="useridEmail" resultType="String">
+select name from Ling_member where id = #{id} and email =#{email}
+</select>
+
+<!--비번 변경저장  -->
+<update id="resetPassword">
+update Ling_member set pw = #{pw} where id = #{id}
+</update>
+
+<!--회원가입:회원정보신규저장  -->
+<insert id="join">
+insert into Ling_member (name, phone, id, pw, email, gender, birth)
+values (#{name}, #{phone}, #{id}, #{pw}, #{email}, #{gender},#{birth})
+</insert>
+
+<!--해당 아이디의 회원정보 조회  -->
+<select id="info" resultType="member.MemberVO">
+select * from member where id = #{id}
 </select>
 </mapper>
