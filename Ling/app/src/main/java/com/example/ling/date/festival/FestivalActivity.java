@@ -5,7 +5,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 
+import com.example.ling.R;
 import com.example.ling.databinding.ActivityFestivalBinding;
 
 public class FestivalActivity extends AppCompatActivity {
@@ -24,5 +28,8 @@ public class FestivalActivity extends AppCompatActivity {
         binding.imgvBefore.setOnClickListener(v -> {
             finish();
         });
+
+
     }
+
 }
