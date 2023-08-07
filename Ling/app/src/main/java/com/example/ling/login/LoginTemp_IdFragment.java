@@ -19,13 +19,14 @@ public class LoginTemp_IdFragment extends Fragment {
     FragmentLoginTempIdBinding binding;
 
 
-
+   CommonVar commonVar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentLoginTempIdBinding.inflate(inflater, container, false);
+        commonVar = new CommonVar();
 
-        binding.findUserId.setText("사용자 아이디:"+ CommonVar.loginInfo.getId());
+        binding.findUserId.setText("사용자 아이디:"+ commonVar.loginInfo.getId());
 
         binding.btnReturnLogin.setOnClickListener(v->{
             Intent intent = new Intent(getActivity(), LoginActivity.class);

@@ -31,7 +31,6 @@ public class FestivalItemAdapter extends RecyclerView.Adapter<FestivalItemAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
         h.binding.imgvFestival.setImageResource(R.drawable.ic_launcher_background);
-        h.binding.tvFestival.setText("축제");
         h.binding.cvFestival.setOnClickListener(v -> {
             Intent intent = new Intent(context, FestivalActivity.class);
             context.startActivity(intent);
