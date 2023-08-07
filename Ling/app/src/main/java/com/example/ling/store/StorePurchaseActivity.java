@@ -41,12 +41,6 @@ public class StorePurchaseActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
         binding.imgvBefore.setOnClickListener(v -> {
             finish();
         });
