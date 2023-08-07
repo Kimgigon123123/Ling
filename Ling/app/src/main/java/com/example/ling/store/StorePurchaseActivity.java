@@ -41,12 +41,6 @@ public class StorePurchaseActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
         binding.imgvBefore.setOnClickListener(v -> {
             finish();
         });
@@ -55,7 +49,7 @@ public class StorePurchaseActivity extends AppCompatActivity {
         binding.btnBuy.setOnClickListener(v -> {
 
 
-            BottomSheetDialog bottomSheetDialog = new BuyDialog(this,name,price);
+            BottomSheetDialog bottomSheetDialog = new BuyDialog(this,name,price,item_code);
             bottomSheetDialog.show();
 
 

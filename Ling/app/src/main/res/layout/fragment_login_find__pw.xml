@@ -34,7 +34,8 @@
         app:helperTextTextColor="#8A8A8A">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:inputType="textPassword"
+            android:id="@+id/user_id"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -49,7 +50,8 @@
         app:helperTextTextColor="#8A8A8A">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:inputType="textPassword"
+            android:id="@+id/user_email"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>

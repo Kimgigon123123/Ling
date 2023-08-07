@@ -32,6 +32,8 @@ public class BuylistMoreAdapter extends RecyclerView.Adapter<BuylistMoreAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
 
+
+
         h.binding.imgvItem.setOnClickListener(v -> {
             Intent intent = new Intent(context, StorePurchaseActivity.class);
             context.startActivity(intent);
