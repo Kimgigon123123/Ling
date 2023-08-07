@@ -1,6 +1,7 @@
 package com.example.ling.date;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
+import android.widget.Toast;
 
 import com.example.ling.databinding.FragmentDateBinding;
 import com.example.ling.date.dibs.DibsActivity;
@@ -35,11 +39,9 @@ public class DateFragment extends Fragment {
         binding.recvRestaurant.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         binding.recvFestival.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-
         binding.imgvDibs.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), DibsActivity.class);
             startActivity(intent);
-
         });
 
         binding.tvTmore.setOnClickListener(v -> {
