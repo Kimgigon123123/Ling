@@ -3,17 +3,22 @@ package com.example.ling.store;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.R;
+import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ItemRecvDibsBinding;
 import com.example.ling.databinding.ItemRecvStoreCoBinding;
 import com.example.ling.store.storeCO.StoreCOVO;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +61,16 @@ public class StoreCoAdater extends RecyclerView.Adapter<StoreCoAdater.ViewHolder
             intent.putExtra("content",list.get(i).getItem_content());
             intent.putExtra("price",list.get(i).getItem_price());
             intent.putExtra("item_code",list.get(i).getItem_code());
+
+                    CommonConn conn = new CommonConn(context,"store_popular_up");
+                    conn.addParamMap("item_code" ,list.get(i).getItem_code());
+
+                    conn.onExcute((isResult, data) -> {
+
+
+                    });
+
+
 
 
             context.startActivity(intent);

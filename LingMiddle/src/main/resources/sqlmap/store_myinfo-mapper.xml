@@ -39,5 +39,13 @@ delete from store_zzim_product
 where item_code=#{item_code}
 </delete>
 
+<update id="bank">
+update store_myinfo set bank = #{bank} where id='kgg'
+</update>
+
+<select id="select_bank" resultType="storemyinfo.StoreMyinfoVO">
+select nvl(bank,'') as bank from store_myinfo where id = 'kgg'
+</select>
+
 
 </mapper>
