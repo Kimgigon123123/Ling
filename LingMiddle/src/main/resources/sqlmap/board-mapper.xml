@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+<select id="noticeselect" resultType="board.BoardVO">
+select id, title, to_char(writedate, 'YY-MM-dd') writedate, readcnt from LING_BOARD where board_cd = 'NOTICE'
+</select>
+	
+<select id="freeselect" resultType="board.BoardVO">
+select id, title, writer, to_char(writedate, 'YY-MM-dd') writedate, readcnt from LING_BOARD where board_cd = 'FREE'
+</select>	
+
+<select id="worryselect" resultType="board.BoardVO">
+select id, title, writer, to_char(writedate, 'YY-MM-dd') writedate, readcnt from LING_BOARD where board_cd = 'WORRY'
+</select>	
+
+<select id="playselect" resultType="board.BoardVO">
+select id, title, to_char(writedate, 'YY-MM-dd') writedate, readcnt from LING_BOARD where board_cd = 'PLAY'
+</select>
+</mapper>
