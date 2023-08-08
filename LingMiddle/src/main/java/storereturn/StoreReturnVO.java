@@ -10,7 +10,19 @@ public class StoreReturnVO {
 public void setTotal_price(int total_price) {
 	this.total_price = total_price;
 }
-String item_code,item_name,delivery_state;
+String item_code,item_name,delivery_state,item_img,id;
+public String getItem_img() {
+	return item_img;
+}
+public String getId() {
+	return id;
+}
+public void setId(String id) {
+	this.id = id;
+}
+public void setItem_img(String item_img) {
+	this.item_img = item_img;
+}
 public int getOrder_num() {
 	return order_num;
 }

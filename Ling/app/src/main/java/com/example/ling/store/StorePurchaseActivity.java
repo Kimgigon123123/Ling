@@ -15,6 +15,7 @@ import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ActivityStorePurchaseBinding;
 import com.example.ling.store.storeCO.StoreCOVO;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -34,10 +35,15 @@ public class StorePurchaseActivity extends AppCompatActivity {
         String content = intent.getStringExtra("content");
         int price = intent.getIntExtra("price",0);
         String item_code = intent.getStringExtra("item_code");
+        String imageUrl=intent.getStringExtra("item_img");
 
             binding.tvContent.setText(content);
             binding.tvName.setText(name);
             binding.tvPrice.setText(price+"");
+
+        Picasso.get()
+                .load(imageUrl)
+                .into(binding.imgv);
 
 
 

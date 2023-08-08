@@ -19,6 +19,7 @@ import com.example.ling.databinding.ItemRecvStoreCoBinding;
 import com.example.ling.store.storeCO.StoreCOVO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,12 +56,18 @@ public class StoreCoAdater extends RecyclerView.Adapter<StoreCoAdater.ViewHolder
         h.binding.tvName.setText(list.get(i).getItem_name());
         h.binding.tvPrice.setText(list.get(i).getItem_price()+"원");
 
+        String imageUrl=list.get(i).getItem_img();
+                                 Picasso.get()
+                                .load(imageUrl)
+                                .into(binding.imgvItem);
+
         h.binding.intoItem.setOnClickListener(v -> {
             Intent intent = new Intent(context,StorePurchaseActivity.class);
             intent.putExtra("name",list.get(i).getItem_name());
             intent.putExtra("content",list.get(i).getItem_content());
             intent.putExtra("price",list.get(i).getItem_price());
             intent.putExtra("item_code",list.get(i).getItem_code());
+            intent.putExtra("item_img",list.get(i).getItem_img());
 
                     CommonConn conn = new CommonConn(context,"store_popular_up");
                     conn.addParamMap("item_code" ,list.get(i).getItem_code());
