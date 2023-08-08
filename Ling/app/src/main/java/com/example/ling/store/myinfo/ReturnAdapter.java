@@ -13,12 +13,17 @@ import com.example.ling.databinding.ItemRecvStoreMyinfoReturnBinding;
 import com.example.ling.databinding.ItemRecvStoreMyinfoZzimBinding;
 import com.example.ling.store.StorePurchaseActivity;
 
+import java.util.List;
+
 public class ReturnAdapter extends RecyclerView.Adapter<ReturnAdapter.ViewHolder>{
 
     ItemRecvStoreMyinfoReturnBinding binding;
+    List<StoreReturnListVO> list;
     Context context;
 
-    public ReturnAdapter(Context context) {
+
+    public ReturnAdapter(List<StoreReturnListVO> list, Context context) {
+        this.list = list;
         this.context = context;
     }
 
@@ -35,6 +40,10 @@ public class ReturnAdapter extends RecyclerView.Adapter<ReturnAdapter.ViewHolder
 
         h.binding.imgvItem.setOnClickListener(v -> {
             Intent intent = new Intent(context, StorePurchaseActivity.class);
+            intent.putExtra("name",list.get(i).getItem_name());
+            intent.putExtra("content",list.get(i).getItem_content());
+            intent.putExtra("price",list.get(i).getItem_price());
+            intent.putExtra("item_code",list.get(i).getItem_code());
             context.startActivity(intent);
         });
 
@@ -42,7 +51,7 @@ public class ReturnAdapter extends RecyclerView.Adapter<ReturnAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return 3;
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

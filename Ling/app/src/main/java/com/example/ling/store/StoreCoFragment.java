@@ -55,13 +55,14 @@ public class StoreCoFragment extends Fragment {
 
                 String str = items[position];
                 if(str.equals("최신")){
-                    Toast.makeText(getContext(), "최신순 쿼리 작성하면됨", Toast.LENGTH_SHORT).show();
+                    select();
                 }else if(str.equals("이름")){
-                    Toast.makeText(getContext(), "이름순 쿼리 작성하면됨", Toast.LENGTH_SHORT).show();
+                    by_name();
+
                 }else if(str.equals("인기")){
-                    Toast.makeText(getContext(), "인기순 쿼리 작성하면됨", Toast.LENGTH_SHORT).show();
+                    by_popular();
                 }else if(str.equals("가격")){
-                    Toast.makeText(getContext(), "가격순 쿼리 작성하면됨", Toast.LENGTH_SHORT).show();
+                    by_price();
                 }
             }
 
@@ -71,7 +72,7 @@ public class StoreCoFragment extends Fragment {
             }
         });
 
-//                select();
+
 
 
 
@@ -102,19 +103,67 @@ public class StoreCoFragment extends Fragment {
 
 
 
-//    public void select() {
-//        CommonConn conn = new CommonConn(getContext(), "store_co");
-//        conn.onExcute((isResult, data) -> {
-//
-//            ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
-//            }.getType());
-//
-//
-//            binding.recvStoreCo.setAdapter(new StoreCoAdater(list, getContext()));
-//            binding.recvStoreCo.setLayoutManager(new GridLayoutManager(getContext(),3));
-//
-//        });
-//
-//    }
+    public void select() {
+        CommonConn conn = new CommonConn(getContext(), "store_by_recent");
+        conn.onExcute((isResult, data) -> {
+
+            ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
+            }.getType());
+
+
+            binding.recvStoreCo.setAdapter(new StoreCoAdater(list, getContext()));
+            binding.recvStoreCo.setLayoutManager(new GridLayoutManager(getContext(),3));
+
+        });
+
+    }
+
+
+    public void by_name() {
+        CommonConn conn = new CommonConn(getContext(), "store_by_name");
+        conn.onExcute((isResult, data) -> {
+
+            ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
+            }.getType());
+
+
+            binding.recvStoreCo.setAdapter(new StoreCoAdater(list, getContext()));
+            binding.recvStoreCo.setLayoutManager(new GridLayoutManager(getContext(),3));
+
+        });
+
+    }
+
+
+    public void by_popular() {
+        CommonConn conn = new CommonConn(getContext(), "store_by_popular");
+        conn.onExcute((isResult, data) -> {
+
+            ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
+            }.getType());
+
+
+            binding.recvStoreCo.setAdapter(new StoreCoAdater(list, getContext()));
+            binding.recvStoreCo.setLayoutManager(new GridLayoutManager(getContext(),3));
+
+        });
+
+    }
+
+
+    public void by_price() {
+        CommonConn conn = new CommonConn(getContext(), "store_by_price");
+        conn.onExcute((isResult, data) -> {
+
+            ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
+            }.getType());
+
+
+            binding.recvStoreCo.setAdapter(new StoreCoAdater(list, getContext()));
+            binding.recvStoreCo.setLayoutManager(new GridLayoutManager(getContext(),3));
+
+        });
+
+    }
 
 }

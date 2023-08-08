@@ -28,8 +28,8 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 //        binding.recvBuylist.setAdapter(new BuylistAdapter(this));
 //        binding.recvBuylist.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
 
-        binding.recvReturn.setAdapter(new ReturnAdapter(this));
-        binding.recvReturn.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+//        binding.recvReturn.setAdapter(new ReturnAdapter(this));
+//        binding.recvReturn.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
 
 
         binding.imgvBefore.setOnClickListener(v -> {
