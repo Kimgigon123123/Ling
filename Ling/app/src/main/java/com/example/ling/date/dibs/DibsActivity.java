@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.example.ling.databinding.ActivityDibsBinding;
 
@@ -24,28 +27,17 @@ public class DibsActivity extends AppCompatActivity {
             finish();
         });
 
+//        binding.spnDibs.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
     }
 
 }
-
-// 드롭다운 메뉴
-/*
-*  bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                count = (count + 1) % 3;
-
-                switch(count){
-                    case 0:
-                        base.setBackgroundColor(Color.RED);
-                        break;
-                    case 1:
-                        base.setBackgroundColor(Color.BLUE);
-                        break;
-                    case 2:
-                        base.setBackgroundColor(Color.GREEN);
-                        break;
-                }
-            }
-        });
-* */

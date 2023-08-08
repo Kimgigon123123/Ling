@@ -64,7 +64,7 @@
         <ImageView
             android:layout_marginRight="5dp"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/kakaobank"
             android:layout_width="50dp"
             android:layout_height="50dp"/>
 
@@ -83,9 +83,10 @@
             android:layout_height="wrap_content">
 
             <ImageView
+
                 android:layout_marginRight="5dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/nh"
                 android:layout_width="50dp"
                 android:layout_height="50dp"/>
 
@@ -106,7 +107,7 @@
             <ImageView
                 android:layout_marginRight="5dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/gwangju"
                 android:layout_width="50dp"
                 android:layout_height="50dp"/>
 

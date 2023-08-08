@@ -31,7 +31,6 @@ public class RestaurantItemAdapter extends RecyclerView.Adapter<RestaurantItemAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
         h.binding.imgvRestaurant.setImageResource(R.drawable.ic_launcher_background);
-        h.binding.tvRestaurant.setText("맛집");
         h.binding.cvRestaurant.setOnClickListener(v -> {
             Intent intent = new Intent(context, RestaurantActivity.class);
             context.startActivity(intent);

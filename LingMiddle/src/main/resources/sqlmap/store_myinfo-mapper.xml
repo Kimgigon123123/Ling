@@ -28,8 +28,23 @@ VALUES (#{item_code}, 'Co', 'kgg')
 </insert>
 
 <select id="zzimlist" resultType="storemyinfo.StoreZzimListVO">
-select * from store_zzim_product
-where id='kgg'
+select  z.*,i.*
+from store_zzim_product z, store_item i
+where z.item_code=i.item_code
+and id='kgg'
+</select>
+
+<delete id="deletezzim">
+delete from store_zzim_product
+where item_code=#{item_code}
+</delete>
+
+<update id="bank">
+update store_myinfo set bank = #{bank} where id='kgg'
+</update>
+
+<select id="select_bank" resultType="storemyinfo.StoreMyinfoVO">
+select nvl(bank,'') as bank from store_myinfo where id = 'kgg'
 </select>
 
 

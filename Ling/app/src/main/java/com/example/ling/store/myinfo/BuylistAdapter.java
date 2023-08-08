@@ -12,13 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ling.databinding.ItemRecvStoreMyinfoBuylistBinding;
 import com.example.ling.databinding.ItemRecvStoreMyinfoZzimBinding;
 import com.example.ling.store.StorePurchaseActivity;
+import com.example.ling.store.storeCO.StorePurchaseListVO;
+
+import java.util.ArrayList;
 
 public class BuylistAdapter extends RecyclerView.Adapter<BuylistAdapter.ViewHolder>{
 
     ItemRecvStoreMyinfoBuylistBinding binding;
     Context context;
+    ArrayList<StorePurchaseListVO> list;
 
-    public BuylistAdapter(Context context) {
+    public BuylistAdapter(ArrayList<StorePurchaseListVO> list,Context context) {
+        this.list=list;
         this.context = context;
     }
 
@@ -32,19 +37,29 @@ public class BuylistAdapter extends RecyclerView.Adapter<BuylistAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        h.binding.imgvItem.setOnClickListener(v -> {
-            Intent intent = new Intent(context, StorePurchaseActivity.class);
-            context.startActivity(intent);
 
+        h.binding.imgvItem.setOnClickListener(v -> {
+            Intent intent = new Intent(context,StorePurchaseActivity.class);
+            intent.putExtra("name",list.get(i).getItem_name());
+            intent.putExtra("content",list.get(i).getItem_content());
+            intent.putExtra("price",list.get(i).getItem_price());
+            intent.putExtra("item_code",list.get(i).getItem_code());
+
+
+            context.startActivity(intent);
         });
+
+
 
         h.binding.tvDeliveryCheck.setOnClickListener(v -> {
             Intent intent = new Intent(context, DeliveryActivity.class);
+            intent.putExtra("order_num",list.get(i).getOrder_num());
             context.startActivity(intent);
         });
 
         h.binding.tvReturn.setOnClickListener(v -> {
             Intent intent = new Intent(context, ReturnActivity.class);
+            intent.putExtra("order_num",list.get(i).getOrder_num());
             context.startActivity(intent);
         });
 
@@ -52,7 +67,7 @@ public class BuylistAdapter extends RecyclerView.Adapter<BuylistAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return 3;
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

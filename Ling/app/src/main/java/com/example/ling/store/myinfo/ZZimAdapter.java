@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ItemRecvStoreMyinfoZzimBinding;
 import com.example.ling.store.StorePurchaseActivity;
 
@@ -17,11 +19,11 @@ public class ZZimAdapter extends RecyclerView.Adapter<ZZimAdapter.ViewHolder> {
 
     ItemRecvStoreMyinfoZzimBinding binding;
 
-    ArrayList<StoreMyinfoVO> list;
+    ArrayList<StoreZzimListVO> list;
 
     Context context;
 
-    public ZZimAdapter(ArrayList<StoreMyinfoVO> list,Context context) {
+    public ZZimAdapter(ArrayList<StoreZzimListVO> list,Context context) {
         this.list = list;
         this.context = context;
     }
@@ -36,10 +38,32 @@ public class ZZimAdapter extends RecyclerView.Adapter<ZZimAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
+
         h.binding.imgvItem.setOnClickListener(v -> {
-            Intent intent = new Intent(context, StorePurchaseActivity.class);
+            Intent intent = new Intent(context,StorePurchaseActivity.class);
+            intent.putExtra("name",list.get(i).getItem_name());
+            intent.putExtra("content",list.get(i).getItem_content());
+            intent.putExtra("price",list.get(i).getItem_price());
+            intent.putExtra("item_code",list.get(i).getItem_code());
+
+
             context.startActivity(intent);
         });
+
+        h.binding.imgvCancle.setOnClickListener(v->{
+            CommonConn conn = new CommonConn(context , "store_delete_zzim");
+            conn.addParamMap("item_code" , list.get(i).getItem_code());
+
+            conn.onExcute((isResult, data) -> {
+                list.remove(i);
+                notifyDataSetChanged();
+            });
+
+
+
+            Toast.makeText(context, "찜목록에서 삭제 되었습니다.", Toast.LENGTH_SHORT).show();
+        });
+
     }
 
     @Override

@@ -3,7 +3,16 @@ package storeco;
 public class StoreCOVO {
 
  	private String item_code,category_code, item_name,  item_img, item_content ;
-	private int item_price;
+	private int item_price,popular;
+
+	
+public int getPopular() {
+		return popular;
+	}
+
+	public void setPopular(int popular) {
+		this.popular = popular;
+	}
 
 public String getCategory_code() {
 	return category_code;

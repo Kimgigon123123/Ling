@@ -129,6 +129,17 @@ public class StorePaymentActivity extends AppCompatActivity {
         conn.onExcute((isResult, data) -> {
 
 
+            Intent intent = getIntent();
+            String item_code = intent.getStringExtra("item_code");
+            int cnt = intent.getIntExtra("cnt",0);
+
+            CommonConn conn2 = new CommonConn(this , "insert_purchase");
+            conn2.addParamMap("item_code" , item_code);
+            conn2.addParamMap("purchase_cnt" , cnt);
+            conn2.onExcute((isResult2, data2) -> {
+
+            });
+
         });
     }
 

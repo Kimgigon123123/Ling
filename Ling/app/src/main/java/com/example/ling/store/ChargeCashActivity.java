@@ -38,6 +38,13 @@ public class ChargeCashActivity extends AppCompatActivity {
 
         select();
 
+        CommonConn conn = new CommonConn(this , "store_select_bank");
+
+        conn.onExcute((isResult, data) -> {
+
+            ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data,new TypeToken<ArrayList<StoreMyinfoVO>>(){}.getType());
+            binding.tvBankInfo.setText(list.get(0).getBank());
+        });
 
 
 
@@ -59,9 +66,9 @@ public class ChargeCashActivity extends AppCompatActivity {
 
 
             try {
-                CommonConn conn = new CommonConn(this,"store_charge");
-                conn.addParamMap("edtMoney",Integer.parseInt(binding.edtMoney.getText().toString()));//"0" -> 0 : ""->
-                conn.onExcute((isResult, data) -> {
+                CommonConn conn2 = new CommonConn(this,"store_charge");
+                conn2.addParamMap("edtMoney",Integer.parseInt(binding.edtMoney.getText().toString()));//"0" -> 0 : ""->
+                conn2.onExcute((isResult, data) -> {
 
 
                 });
@@ -89,6 +96,18 @@ public class ChargeCashActivity extends AppCompatActivity {
             binding.tvMoney.setText(list.get(0).getMoney()+"");
 
 
+        });
+    }
+
+    protected void onRestart() {
+        super.onRestart();
+
+        CommonConn conn = new CommonConn(this , "store_select_bank");
+
+        conn.onExcute((isResult, data) -> {
+
+            ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data,new TypeToken<ArrayList<StoreMyinfoVO>>(){}.getType());
+            binding.tvBankInfo.setText(list.get(0).getBank());
         });
     }
 
