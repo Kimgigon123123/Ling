@@ -16,6 +16,7 @@ import com.example.ling.store.StorePurchaseActivity;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -38,6 +39,12 @@ public class DeliveryActivity extends AppCompatActivity {
 
         conn.onExcute((isResult, data) -> {
             ArrayList<StoreReturnVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreReturnVO>>() {}.getType());
+
+            String imageUrl =list.get(0).getItem_img();
+            Picasso.get()
+                    .load(imageUrl)
+                    .into(binding.imgvItem);
+
             binding.tvName.setText(list.get(0).getItem_name()+"");
             binding.tvCnt.setText(list.get(0).getPurchase_cnt()+"개");
             binding.tvDeliveryState.setText(list.get(0).getDelivery_state());
@@ -56,7 +63,7 @@ public class DeliveryActivity extends AppCompatActivity {
 
             conn.onExcute((isResult, data) -> {
                 ArrayList<StoreReturnVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreReturnVO>>() {}.getType());
-                BottomSheetDialog bottomSheetDialog = new BuyDialog(this,list.get(0).getItem_name(),list.get(0).getItem_price(),list.get(0).getItem_code());
+                BottomSheetDialog bottomSheetDialog = new BuyDialog(this,list.get(0).getItem_name(),list.get(0).getItem_price(),list.get(0).getItem_code(),"Co");
                 bottomSheetDialog.show();
             });
 

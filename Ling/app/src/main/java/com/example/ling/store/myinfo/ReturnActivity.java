@@ -11,6 +11,7 @@ import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ActivityReturnBinding;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -40,6 +41,12 @@ public class ReturnActivity extends AppCompatActivity {
             binding.tvTotalPrice.setText(list.get(0).getTotal_price()+"원");
             binding.tvTotalReturnPrice.setText(list.get(0).getTotal_price()+3000+"원");
             return_money.set(list.get(0).getTotal_price() + 3000);
+
+
+            String imageUrl =list.get(0).getItem_img();
+            Picasso.get()
+                    .load(imageUrl)
+                    .into(binding.imgvItem);
         });
 
 
