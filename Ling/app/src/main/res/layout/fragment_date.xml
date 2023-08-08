@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="@drawable/shape"
     android:orientation="vertical"
     tools:context=".date.DateFragment">
 
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
-        android:background="@drawable/shape"
+
         android:gravity="center_vertical"
         android:orientation="horizontal">
 

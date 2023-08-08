@@ -3,7 +3,11 @@
 <mapper namespace="date">
 
 <select id="sido" resultType="date.DateInfoVO">
-	select distinct date_sido from date_info
+	select distinct date_sido from date_info order by (case when date_sido like '%시' then 1 end)
 </select>
 	
+<select id="sigungu" resultType="date.DateInfoVO">
+	select distinct date_sigungu from date_info where date_sido like '%'||#{date_sido}||'%'
+</select> 
+
 </mapper>
