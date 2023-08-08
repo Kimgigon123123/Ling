@@ -22,15 +22,13 @@ public class DateController {
 	@RequestMapping(value = "/date_sido", produces = "text/html;charset=utf-8")
 	public String sido() {
 		List<DateInfoVO> sido = sql.selectList("date.sido");
-		Gson gson = new Gson();
-		return gson.toJson(sido);
+		return new Gson().toJson(sido);
 	}
 	
 	@RequestMapping(value="/date_sigungu", produces = "text/html;charset=utf-8")
 	public String sigungu(String sido) {
 		List<DateInfoVO> sigungu = sql.selectList("date.sigungu", sido);
-		Gson gson = new Gson();
-		return gson.toJson(sigungu);
+		return new Gson().toJson(sigungu);
 	}
 
 }

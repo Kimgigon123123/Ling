@@ -128,6 +128,7 @@ public class FestivalActivity extends AppCompatActivity {
 //        CommonConn conn = new CommonConn(this, "date_sido");
 //        conn.onExcute((isResult, data) -> {
 //            ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>(){}.getType());
+//            Log.d("test", "onCreate: "+list);
 //            ArrayAdapter<DateInfoVO> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, list);
 //            binding.spnSido.setAdapter(adapter);
 //
