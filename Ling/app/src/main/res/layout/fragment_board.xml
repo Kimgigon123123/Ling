@@ -8,7 +8,7 @@
     <com.example.ling.board.KghNav
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:appbarColor="#B7D6F5"
+        app:appbarColor="#F0D3D8"
         app:HamMenuIconTintColor="#fff"
         app:appbarTitleTextColor="#fff"
         android:outlineAmbientShadowColor="#F0D3D8"
