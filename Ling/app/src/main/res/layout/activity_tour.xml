@@ -45,7 +45,7 @@
             android:layout_height="wrap_content">
 
             <Spinner
-                android:id="@+id/sido_spinner"
+                android:id="@+id/spn_sido"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content">
 
             <Spinner
-                android:id="@+id/sigungu_spinner"
+                android:id="@+id/spn_sigungu"
                 android:layout_width="120dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"

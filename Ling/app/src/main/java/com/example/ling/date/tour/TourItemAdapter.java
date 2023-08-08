@@ -14,10 +14,12 @@ import com.example.ling.databinding.ItemRecvTourBinding;
 public class TourItemAdapter extends RecyclerView.Adapter<TourItemAdapter.ViewHolder> {
 
     ItemRecvTourBinding binding;
+    int[] tourImg;
     Context context;
 
-    public TourItemAdapter(Context context) {
+    public TourItemAdapter(Context context, int[] tourImg) {
         this.context = context;
+        this.tourImg = tourImg;
     }
 
     @NonNull
@@ -30,7 +32,7 @@ public class TourItemAdapter extends RecyclerView.Adapter<TourItemAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        h.binding.imgvTour.setImageResource(R.drawable.ic_launcher_background);
+        h.binding.imgvTour.setImageResource(tourImg[i]);
         h.binding.cvTour.setOnClickListener(v -> {
             Intent intent = new Intent(context, TourActivity.class);
             context.startActivity(intent);
