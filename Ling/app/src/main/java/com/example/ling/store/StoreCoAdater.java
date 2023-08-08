@@ -55,6 +55,7 @@ public class StoreCoAdater extends RecyclerView.Adapter<StoreCoAdater.ViewHolder
         h.binding.tvName.setText(list.get(i).getItem_name());
         h.binding.tvPrice.setText(list.get(i).getItem_price()+"원");
 
+
         h.binding.intoItem.setOnClickListener(v -> {
             Intent intent = new Intent(context,StorePurchaseActivity.class);
             intent.putExtra("name",list.get(i).getItem_name());

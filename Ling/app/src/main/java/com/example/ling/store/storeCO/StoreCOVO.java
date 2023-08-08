@@ -30,9 +30,6 @@ public void setItem_name(String item_name) {
 	this.item_name = item_name;
 }
 
-public String getItem_img() {
-	return item_img;
-}
 
 public void setItem_img(String item_img) {
 	this.item_img = item_img;
