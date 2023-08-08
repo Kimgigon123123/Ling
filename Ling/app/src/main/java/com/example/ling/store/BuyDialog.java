@@ -3,6 +3,7 @@ package com.example.ling.store;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,7 +27,7 @@ public class BuyDialog extends BottomSheetDialog {
     TextView tv_name,tv_price,tv_total_price,tv_cnt;
     ImageView imgv_close,imgv_up,imgv_down;
 
-    public BuyDialog(@NonNull Context context,String name, int price,String item_code) {
+    public BuyDialog(@NonNull Context context,String name, int price,String item_code,String category_code) {
         super(context);
         setContentView(R.layout.dialog_buy);
         btn_buy=findViewById(R.id.btn_buy);
@@ -68,6 +69,15 @@ public class BuyDialog extends BottomSheetDialog {
 
 
         btn_basket.setOnClickListener(v->{
+            CommonConn conn = new CommonConn(context,"store_insert_basket");
+            conn.addParamMap("item_code",item_code);
+            conn.addParamMap("category_code",category_code);
+            conn.addParamMap("selection",cnt);
+
+                    conn.onExcute((isResult, data) -> {
+
+                    });
+
             Toast.makeText(context, "장바구니에 추가 되었습니다.", Toast.LENGTH_SHORT).show();
         });
 

@@ -68,6 +68,7 @@ public class StoreCoAdater extends RecyclerView.Adapter<StoreCoAdater.ViewHolder
             intent.putExtra("price",list.get(i).getItem_price());
             intent.putExtra("item_code",list.get(i).getItem_code());
             intent.putExtra("item_img",list.get(i).getItem_img());
+            intent.putExtra("category_code",list.get(i).getCategory_code());
 
                     CommonConn conn = new CommonConn(context,"store_popular_up");
                     conn.addParamMap("item_code" ,list.get(i).getItem_code());

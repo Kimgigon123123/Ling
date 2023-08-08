@@ -28,5 +28,35 @@ public class StoreBasketController {
 		
 		return gson.toJson(list);
 	}
+	
+	//장바구니 추가
+	@RequestMapping(value="/store_insert_basket",produces="text/html;charset=utf-8")
+	public String insert_basket(StoreBasketVO vo) {
+		int result = sql.insert("store_basket.insert_basket",vo);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(result);
+	}
+	
+	//장바구니 갯수 추가
+	@RequestMapping(value="/store_up_selection",produces="text/html;charset=utf-8")
+	public String up_selection(StoreBasketVO vo) {
+		int result = sql.update("store_basket.up_selection",vo);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(result);
+	}
+	
+	//장바구니 갯수 감소
+	@RequestMapping(value="/store_down_selection",produces="text/html;charset=utf-8")
+	public String down_selection(StoreBasketVO vo) {
+		int result = sql.update("store_basket.down_selection",vo);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(result);
+	}
 
 }

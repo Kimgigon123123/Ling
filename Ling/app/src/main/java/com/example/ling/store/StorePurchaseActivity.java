@@ -36,6 +36,7 @@ public class StorePurchaseActivity extends AppCompatActivity {
         int price = intent.getIntExtra("price",0);
         String item_code = intent.getStringExtra("item_code");
         String imageUrl=intent.getStringExtra("item_img");
+        String category_code = intent.getStringExtra("category_code");
 
             binding.tvContent.setText(content);
             binding.tvName.setText(name);
@@ -55,7 +56,7 @@ public class StorePurchaseActivity extends AppCompatActivity {
         binding.btnBuy.setOnClickListener(v -> {
 
 
-            BottomSheetDialog bottomSheetDialog = new BuyDialog(this,name,price,item_code);
+            BottomSheetDialog bottomSheetDialog = new BuyDialog(this,name,price,item_code,category_code);
             bottomSheetDialog.show();
 
 

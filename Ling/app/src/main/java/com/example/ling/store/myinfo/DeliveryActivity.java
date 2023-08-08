@@ -63,7 +63,7 @@ public class DeliveryActivity extends AppCompatActivity {
 
             conn.onExcute((isResult, data) -> {
                 ArrayList<StoreReturnVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreReturnVO>>() {}.getType());
-                BottomSheetDialog bottomSheetDialog = new BuyDialog(this,list.get(0).getItem_name(),list.get(0).getItem_price(),list.get(0).getItem_code());
+                BottomSheetDialog bottomSheetDialog = new BuyDialog(this,list.get(0).getItem_name(),list.get(0).getItem_price(),list.get(0).getItem_code(),"Co");
                 bottomSheetDialog.show();
             });
 
