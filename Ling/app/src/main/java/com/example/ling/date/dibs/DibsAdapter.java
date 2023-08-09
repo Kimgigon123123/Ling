@@ -11,14 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.R;
 import com.example.ling.databinding.ItemRecvDibsBinding;
+import com.example.ling.date.DateDibsVO;
 import com.example.ling.date.tour.TourDetailActivity;
+
+import java.util.ArrayList;
 
 public class DibsAdapter extends RecyclerView.Adapter<DibsAdapter.ViewHolder> {
 
     Context context;
+    ArrayList<DateDibsVO> list;
 
-    public DibsAdapter(Context context) {
+    public DibsAdapter(Context context, ArrayList<DateDibsVO> list) {
         this.context = context;
+        this.list = list;
     }
 
     @NonNull
@@ -33,8 +38,8 @@ public class DibsAdapter extends RecyclerView.Adapter<DibsAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
         h.binding.imgvDibs.setImageResource(R.drawable.ic_launcher_background);
-        h.binding.tvName.setText("이름");
-        h.binding.tvAddr.setText("주소");
+        h.binding.tvName.setText(list.get(i).getDate_name());
+        h.binding.tvAddr.setText(list.get(i).getDate_address());
         h.binding.imgvFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +70,7 @@ public class DibsAdapter extends RecyclerView.Adapter<DibsAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 20;
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
