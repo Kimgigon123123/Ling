@@ -49,8 +49,21 @@ public class BoardController {
 	// 공지사항상세정보화면 요청
 	@RequestMapping(value="/board.content", produces = "text/html;charset=utf-8")
 	public String content(String id) {
-		
-		
+		dao.board_read(id);
 		return new Gson().toJson(dao.notice_content(id));
 	}
+	
+	// 자유, 고민 게시판 상세정보화면 요청
+	@RequestMapping(value="/board.usercontent", produces = "text/html;charset=utf-8")
+	public String usercontent(String id) {
+//		dao.board_read(id);
+		return new Gson().toJson(dao.user_content(id));
+	}
+	
+//	//조회수 증가처리
+//	@RequestMapping(value="/board.read", produces = "text/html;charset=utf-8")
+//	public String notice_read(String id) {
+//		
+//		return new Gson().toJson(dao.notice_read(id));
+//	}
 }
