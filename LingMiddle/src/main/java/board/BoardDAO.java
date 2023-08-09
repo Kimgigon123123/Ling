@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 
+
+
 @Repository
 public class BoardDAO {
 	@Autowired @Qualifier("test") SqlSession sql;
@@ -28,4 +30,7 @@ public class BoardDAO {
 		return sql.selectList("board.playselect");
 	}	
 
+	public BoardVO notice_content(String id){
+		return sql.selectOne("board.content", id);
+	}
 }
