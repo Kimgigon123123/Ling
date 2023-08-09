@@ -27,4 +27,13 @@ where id='kgg'
 and basket_code = #{basket_code}
 </update>
 
+<select id ="basket_totalprice" resultType="storebasket.StoreBasketVO">
+select sum(i.item_price*selection) as total_price
+from store_basket b,store_item i where b.item_code = i.item_code and id='kgg'
+</select>
+
+<delete id="delete_basket">
+delete store_basket where id='kgg' and basket_code=#{basket_code}
+</delete>
+
 </mapper>
