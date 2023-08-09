@@ -8,8 +8,8 @@
 </select>
 
 <!-- 시군구 -->
-<select id="sigungu" resultType="date.DateInfoVO">
-	select distinct date_sigungu from date_info where date_sido like '%'||#{date_sido}||'%'
+<select id="sigungu" resultType="String">
+	select distinct date_sigungu from date_info where date_sido = #{date_sido} order by date_sigungu
 </select> 
 
 <!-- 관심목록_전체 -->
@@ -38,6 +38,21 @@
 	select d.*, i.date_name, i.date_address
 	from date_dibs d, date_info i
 	where d.date_id = i.date_id and d.date_category_code = 'FE'
+</select>
+
+<!-- 여행목록_전체 -->
+<select id="tour" resultType="date.DateInfoVO">
+	select * from date_info where date_category_code = 'TO'
+</select>
+
+<!-- 맛집목록_전체 -->
+<select id="restaurant" resultType="date.DateInfoVO">
+	select * from date_info where date_category_code = 'RE'
+</select>
+
+<!-- 축제목록_전체 -->
+<select id="festival" resultType="date.DateInfoVO">
+	select * from date_info where date_category_code = 'FE'
 </select>
 
 </mapper>

@@ -45,10 +45,10 @@ public class DibsAdapter extends RecyclerView.Adapter<DibsAdapter.ViewHolder> {
             public void onClick(View v) {
                 if ((boolean) h.binding.imgvFav.getTag()) {
                     h.binding.imgvFav.setTag(false);
-                    h.binding.imgvFav.setImageResource(R.drawable.fav);
+                    h.binding.imgvFav.setImageResource(R.drawable.ic_fav);
                 } else {
                     h.binding.imgvFav.setTag(true);
-                    h.binding.imgvFav.setImageResource(R.drawable.fav2);
+                    h.binding.imgvFav.setImageResource(R.drawable.ic_fav2);
                 }
             }
         });
