@@ -3,6 +3,7 @@ package com.example.ling.store.basket;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.example.ling.databinding.ActivityBasketBinding;
 import com.example.ling.databinding.ActivityChargeCashBinding;
 import com.example.ling.store.ChargeVO;
 import com.example.ling.store.CompleteDialog;
+import com.example.ling.store.StorePaymentActivity;
 import com.example.ling.store.StorePurchaseActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -61,7 +63,7 @@ public class BasketActivity extends AppCompatActivity {
 
         binding.btnBuy.setOnClickListener(v -> {
             finish();
-                Intent intent = new Intent(this, StorePurchaseActivity.class);
+                Intent intent = new Intent(this, StorePaymentActivity.class);
                 startActivity(intent);
 
         });
@@ -90,10 +92,13 @@ public class BasketActivity extends AppCompatActivity {
                     else{
                         if(list.get(0)==null){
                             binding.tvTotalPrice.setText("0원");
+
                         }else{
                                 binding.tvTotalPrice.setText(list.get(0).getTotal_price()+"원");
 
+
                         }
+
 
                     }
 
