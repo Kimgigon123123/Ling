@@ -114,7 +114,7 @@
         <activity
             android:name=".SplashActivity"
             android:exported="false" />
-        <activity
+
            <activity
             android:name=".MainActivity"
             android:exported="false"
@@ -128,11 +128,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false">
 
-        </activity>
+
+
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
