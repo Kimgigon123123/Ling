@@ -63,8 +63,23 @@ public class BasketActivity extends AppCompatActivity {
 
         binding.btnBuy.setOnClickListener(v -> {
             finish();
+
+
+            CommonConn conn2 = new CommonConn(this, "store_basket_totalprice");
+            conn2.onExcute((isResult, data) -> {
+
+                ArrayList<StoreBasketVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreBasketVO>>() {
+                }.getType());
+
                 Intent intent = new Intent(this, StorePaymentActivity.class);
+                intent.putExtra("basket_total_price",list.get(0).getTotal_price());
                 startActivity(intent);
+
+
+
+            });
+
+
 
         });
 

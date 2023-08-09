@@ -29,47 +29,59 @@ public class StorePaymentActivity extends AppCompatActivity {
 
         binding= ActivityStorePaymentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        Intent intent3 = getIntent();
+        int basket_total_price = intent3.getIntExtra("basket_total_price",0);
+
+        if(basket_total_price != 0){
+            binding.tvPrice.setText(basket_total_price+"원");
+            binding.tvTotalPrice.setText(basket_total_price+3000+"원");
+        }
+
+        else {
+
+            Intent intent2 = getIntent();
+            int price = intent2.getIntExtra("price", 0);
+            binding.tvPrice.setText(price + "원");
+
+            totalPrice = price + 3000;
+            binding.tvTotalPrice.setText(totalPrice + "원");
+
+        }
+
         select();
 
 
-
-        if(ChargeVO.isCharge){
-            Dialog dialog = new CompleteDialog(this,"charge");
+        if (ChargeVO.isCharge) {
+            Dialog dialog = new CompleteDialog(this, "charge");
             dialog.show();
-            ChargeVO.isCharge=false;
+            ChargeVO.isCharge = false;
         }
 
 
-        Intent intent2 = getIntent();
-        int price = intent2.getIntExtra("price",0);
-        binding.tvPrice.setText(price+"원");
-
-        totalPrice = price+3000;
-        binding.tvTotalPrice.setText(totalPrice+"원");
-
         binding.imgvBefore.setOnClickListener(v -> {
 
-          finish();
+            finish();
 
 
         });
 
-        binding.btnBuy.setOnClickListener(v->{
+        binding.btnBuy.setOnClickListener(v -> {
 
 
-            CommonConn conn = new CommonConn(this,"store_myinfo");
+            CommonConn conn = new CommonConn(this, "store_myinfo");
             conn.onExcute((isResult, data) -> {
 
-                ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMyinfoVO>>() {}.getType());
+                ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMyinfoVO>>() {
+                }.getType());
 
-                if(totalPrice > list.get(0).getMoney()){
+                if (totalPrice > list.get(0).getMoney()) {
                     NoMoneyDialog dialog = new NoMoneyDialog(this);
                     dialog.show();
-                }else {
+                } else {
                     buy();
-                    ChargeVO.isBuy=true;
+                    ChargeVO.isBuy = true;
                     finish();
-
 
 
                 }
@@ -78,10 +90,9 @@ public class StorePaymentActivity extends AppCompatActivity {
             });
 
 
-
         });
 
-        binding.imgvIntoAdrress.setOnClickListener(v->{
+        binding.imgvIntoAdrress.setOnClickListener(v -> {
             Intent intent = new Intent(StorePaymentActivity.this, AddressActivity.class);
             startActivity(intent);
         });
