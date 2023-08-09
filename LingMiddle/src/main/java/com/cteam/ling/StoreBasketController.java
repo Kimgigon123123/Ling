@@ -58,5 +58,25 @@ public class StoreBasketController {
 		
 		return gson.toJson(result);
 	}
-
+	
+	//장바구니 금액 총합 보여주기
+	@RequestMapping(value="/store_basket_totalprice",produces="text/html;charset=utf-8")
+	public String basket_totalprice(StoreBasketVO vo) {
+		List<StoreBasketVO> list = sql.selectList("store_basket.basket_totalprice",vo);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(list);
+	}
+	
+	//장바구니 삭제
+	@RequestMapping(value="/store_delete_basket",produces="text/html;charset=utf-8")
+	public String delete_basket(StoreBasketVO vo) {
+		int result = sql.delete("store_basket.delete_basket",vo);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(result);
+	}
+	
 }

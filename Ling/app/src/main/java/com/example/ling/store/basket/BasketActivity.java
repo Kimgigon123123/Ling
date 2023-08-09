@@ -43,10 +43,14 @@ public class BasketActivity extends AppCompatActivity {
             }.getType());
 
 
-            binding.recvBasket.setAdapter(new BasketAdapter(list,this ));
+            binding.recvBasket.setAdapter(new BasketAdapter(list,this  ));
             binding.recvBasket.setLayoutManager(new LinearLayoutManager(this));
 
         });
+
+        basket_total_price();
+
+
 
 
 
@@ -71,5 +75,20 @@ public class BasketActivity extends AppCompatActivity {
         binding.tvTotalPrice.setText(StaticBasket.tv_total_price+"원");
 
 
+    }
+
+    public void basket_total_price(){
+        CommonConn conn2 = new CommonConn(this, "store_basket_totalprice");
+        conn2.onExcute((isResult, data) -> {
+
+            ArrayList<StoreBasketVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreBasketVO>>() {
+            }.getType());
+
+
+                binding.tvTotalPrice.setText(list.get(0).getTotal_price()+"원");
+
+
+
+        });
     }
 }
