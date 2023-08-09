@@ -82,4 +82,10 @@ public class DateController {
 		List<DateInfoVO> festivalList = sql.selectList("date.festival");
 		return new Gson().toJson(festivalList);
 	}
+	
+	// 관심 목록 추가
+	@RequestMapping(value="/date_insertdibs", produces = "text/html;charset=utf-8")
+	public void insert_dibs(DateDibsVO vo) {
+		int result = sql.insert("date.insert_dibs", vo);
+	}
 }

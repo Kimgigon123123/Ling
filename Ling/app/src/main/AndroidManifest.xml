@@ -115,9 +115,13 @@
             android:name=".SplashActivity"
             android:exported="false" />
         <activity
+           <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|adjustPan" />
+        <activity
             android:name=".join.JoinActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize|adjustPan" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
