@@ -2,7 +2,16 @@ package com.example.ling.store.storeCO;
 
 public class StoreCOVO {
 
- 	private String item_code,category_code, item_name,  item_img, item_content ;
+ 	private String item_code;
+	private String category_code;
+	private String item_name;
+
+	public String getItem_img() {
+		return item_img;
+	}
+
+	private String item_img;
+	private String item_content ;
 	private int item_price,popular;
 
 	

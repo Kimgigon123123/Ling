@@ -19,11 +19,13 @@ import java.util.ArrayList;
 
 public class BoardMainFragment extends Fragment {
     FragmentBoardMainBinding binding;
+
+    BoardFragment fragment ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentBoardMainBinding.inflate(getLayoutInflater() , container , false);
-        BoardFragment fragment = (BoardFragment) getParentFragment();
+        fragment = (BoardFragment) getParentFragment();
         binding.tvNoticeMore.setOnClickListener(v->{
             fragment.changeFragment(1);
         });
@@ -48,7 +50,7 @@ public class BoardMainFragment extends Fragment {
         conn.onExcute((isResult, data) -> {
             ArrayList<BoardVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<BoardVO>>(){}.getType());
 
-            BoardMain_NoticeAdapter adapter = new BoardMain_NoticeAdapter(list);
+            BoardMain_NoticeAdapter adapter = new BoardMain_NoticeAdapter(list , fragment);
             binding.recvNotice.setAdapter(adapter);
             binding.recvNotice.setLayoutManager(new LinearLayoutManager(getContext()));
         });

@@ -3,12 +3,15 @@ package com.cteam.ling;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
 import board.BoardDAO;
+
 
 @RestController
 public class BoardController {
@@ -42,4 +45,12 @@ public class BoardController {
 				
 		return new Gson().toJson(dao.playselect());		
 	}		
+	
+	// 공지사항상세정보화면 요청
+	@RequestMapping(value="/board.content", produces = "text/html;charset=utf-8")
+	public String content(String id) {
+		
+		
+		return new Gson().toJson(dao.notice_content(id));
+	}
 }
