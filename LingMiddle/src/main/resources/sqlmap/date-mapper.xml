@@ -2,16 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="date">
 
+<!-- 시도 -->
 <select id="sido" resultType="date.DateInfoVO">
 	select distinct date_sido from date_info order by (case when date_sido like '%시' then 1 end)
 </select>
-	
+
+<!-- 시군구 -->
 <select id="sigungu" resultType="date.DateInfoVO">
 	select distinct date_sigungu from date_info where date_sido like '%'||#{date_sido}||'%'
 </select> 
 
+<!-- 관심목록_전체 -->
 <select id="alldibs" resultType="date.DateDibsVO">
-	select * from date_dibs
+	select d.*, i.date_name, i.date_address
+	from date_dibs d, date_info i
+	where d.date_id = i.date_id
+</select>
+
+<!-- 관심목록_여행 -->
+<select id="tourdibs" resultType="date.DateDibsVO">
+	select d.*, i.date_name, i.date_address
+	from date_dibs d, date_info i
+	where d.date_id = i.date_id and d.date_category_code = 'TO'
+</select>
+
+<!-- 관심목록_맛집 -->
+<select id="restaurantdibs" resultType="date.DateDibsVO">
+	select d.*, i.date_name, i.date_address
+	from date_dibs d, date_info i
+	where d.date_id = i.date_id and d.date_category_code = 'RE'
+</select>
+
+<!-- 관심목록_축제 -->
+<select id="festivaldibs" resultType="date.DateDibsVO">
+	select d.*, i.date_name, i.date_address
+	from date_dibs d, date_info i
+	where d.date_id = i.date_id and d.date_category_code = 'FE'
 </select>
 
 </mapper>

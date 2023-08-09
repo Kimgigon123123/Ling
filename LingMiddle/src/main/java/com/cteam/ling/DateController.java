@@ -40,5 +40,25 @@ public class DateController {
 		List<DateDibsVO> alldibs = sql.selectList("date.alldibs");
 		return new Gson().toJson(alldibs);
 	}
-
+	
+	// 관심목록_여행
+	@RequestMapping(value="/date_tourdibs", produces = "text/html;charset=utf-8")
+	public String tourDibs() {
+		List<DateDibsVO> tourdibs = sql.selectList("date.tourdibs");
+		return new Gson().toJson(tourdibs);
+	}
+	
+	// 관심목록_맛집
+	@RequestMapping(value="/date_restaurantdibs", produces = "text/html;charset=utf-8")
+	public String RestaurantDibs() {
+		List<DateDibsVO> restaurantdibs = sql.selectList("date.restaurantdibs");
+		return new Gson().toJson(restaurantdibs);
+	}
+	
+	// 관심목록_축제
+	@RequestMapping(value="/date_festivaldibs", produces = "text/html;charset=utf-8")
+	public String FestivalDibs() {
+		List<DateDibsVO> festivaldibs = sql.selectList("date.festivaldibs");
+		return new Gson().toJson(festivaldibs);
+	}
 }
