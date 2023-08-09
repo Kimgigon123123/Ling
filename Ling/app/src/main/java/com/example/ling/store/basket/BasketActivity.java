@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
@@ -78,15 +79,23 @@ public class BasketActivity extends AppCompatActivity {
     }
 
     public void basket_total_price(){
-        CommonConn conn2 = new CommonConn(this, "store_basket_totalprice");
-        conn2.onExcute((isResult, data) -> {
+        CommonConn conn = new CommonConn(this, "store_basket_totalprice");
+        conn.onExcute((isResult, data) -> {
 
             ArrayList<StoreBasketVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreBasketVO>>() {
             }.getType());
+                    if(list==null){
 
+                    }
+                    else{
+                        if(list.get(0)==null){
+                            binding.tvTotalPrice.setText("0원");
+                        }else{
+                                binding.tvTotalPrice.setText(list.get(0).getTotal_price()+"원");
 
-                binding.tvTotalPrice.setText(list.get(0).getTotal_price()+"원");
+                        }
 
+                    }
 
 
         });
