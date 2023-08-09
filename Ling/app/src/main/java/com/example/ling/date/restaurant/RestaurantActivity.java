@@ -9,9 +9,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.example.ling.R;
+import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ActivityRestaurantBinding;
+import com.example.ling.date.DateInfoVO;
 import com.example.ling.date.tour.TourActivity;
 import com.example.ling.date.tour.TourAdapter;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RestaurantActivity extends AppCompatActivity {
 
@@ -23,8 +30,8 @@ public class RestaurantActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityRestaurantBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        binding.recvRestact.setAdapter(new RestaurantAdapter(this));
-        binding.recvRestact.setLayoutManager(new GridLayoutManager(this, 2));
+//        binding.recvRestact.setAdapter(new RestaurantAdapter(this));
+//        binding.recvRestact.setLayoutManager(new GridLayoutManager(this, 2));
 
         sdAdapter = ArrayAdapter.createFromResource(this, R.array.sido, android.R.layout.simple_spinner_dropdown_item);
         sdAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -35,74 +42,20 @@ public class RestaurantActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
                 if (binding.spnSido.getSelectedItem().equals("시/도 선택")) {
                     binding.spnSigungu.setAdapter(null);
-                } else if (binding.spnSido.getSelectedItem().equals("서울특별시")) {
-                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.seoul_sigungu, android.R.layout.simple_spinner_dropdown_item);
-                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spnSigungu.setAdapter(sggAdapter);
-                } else if (binding.spnSido.getSelectedItem().equals("부산광역시")) {
-                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.busan_sigungu, android.R.layout.simple_spinner_dropdown_item);
-                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spnSigungu.setAdapter(sggAdapter);
-                } else if (binding.spnSido.getSelectedItem().equals("대구광역시")) {
-                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.daegu_sigungu, android.R.layout.simple_spinner_dropdown_item);
-                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spnSigungu.setAdapter(sggAdapter);
-                } else if (binding.spnSido.getSelectedItem().equals("인천광역시")) {
-                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.incheon_sigungu, android.R.layout.simple_spinner_dropdown_item);
-                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spnSigungu.setAdapter(sggAdapter);
-                } else if (binding.spnSido.getSelectedItem().equals("광주광역시")) {
-                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.gwangju_sigungu, android.R.layout.simple_spinner_dropdown_item);
-                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spnSigungu.setAdapter(sggAdapter);
-                } else if (binding.spnSido.getSelectedItem().equals("대전광역시")) {
-                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.daejeon_sigungu, android.R.layout.simple_spinner_dropdown_item);
-                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spnSigungu.setAdapter(sggAdapter);
-                } else if (binding.spnSido.getSelectedItem().equals("울산광역시")) {
-                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.ulsan_sigungu, android.R.layout.simple_spinner_dropdown_item);
-                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spnSigungu.setAdapter(sggAdapter);
-                } else if (binding.spnSido.getSelectedItem().equals("세종특별자치시")) {
-                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.sejong_sigungu, android.R.layout.simple_spinner_dropdown_item);
-                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spnSigungu.setAdapter(sggAdapter);
-                } else if (binding.spnSido.getSelectedItem().equals("경기도")) {
-                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.gyeongi_sigungu, android.R.layout.simple_spinner_dropdown_item);
-                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spnSigungu.setAdapter(sggAdapter);
-                } else if (binding.spnSido.getSelectedItem().equals("강원도")) {
-                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.gangwon_sigungu, android.R.layout.simple_spinner_dropdown_item);
-                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spnSigungu.setAdapter(sggAdapter);
-                } else if (binding.spnSido.getSelectedItem().equals("충청북도")) {
-                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.chungbuk_sigungu, android.R.layout.simple_spinner_dropdown_item);
-                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spnSigungu.setAdapter(sggAdapter);
-                } else if (binding.spnSido.getSelectedItem().equals("충청남도")) {
-                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.chungnam_sigungu, android.R.layout.simple_spinner_dropdown_item);
-                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spnSigungu.setAdapter(sggAdapter);
-                } else if (binding.spnSido.getSelectedItem().equals("전라북도")) {
-                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.jeonbuk_sigungu, android.R.layout.simple_spinner_dropdown_item);
-                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spnSigungu.setAdapter(sggAdapter);
-                } else if (binding.spnSido.getSelectedItem().equals("전라남도")) {
-                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.jeonnam_sigungu, android.R.layout.simple_spinner_dropdown_item);
-                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spnSigungu.setAdapter(sggAdapter);
-                } else if (binding.spnSido.getSelectedItem().equals("경상북도")) {
-                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.gyeongbuk_sigungu, android.R.layout.simple_spinner_dropdown_item);
-                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spnSigungu.setAdapter(sggAdapter);
-                } else if (binding.spnSido.getSelectedItem().equals("경상남도")) {
-                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.gyeongnam_sigungu, android.R.layout.simple_spinner_dropdown_item);
+                    restaurantList();
+                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.empty, android.R.layout.simple_spinner_dropdown_item);
                     sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     binding.spnSigungu.setAdapter(sggAdapter);
                 } else {
-                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.jeju_sigungu, android.R.layout.simple_spinner_dropdown_item);
-                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spnSigungu.setAdapter(sggAdapter);
+                    //디비연동.
+                    CommonConn conn = new CommonConn(RestaurantActivity.this, "date_sigungu");
+                    conn.addParamMap("sido", binding.spnSido.getSelectedItem().toString());
+                    conn.onExcute((isResult, data) -> {
+                        List<String> tempList = new Gson().fromJson(data , new TypeToken<List<String>>(){}.getType());
+                        sggAdapter = new ArrayAdapter(RestaurantActivity.this , android.R.layout.simple_spinner_dropdown_item , tempList);
+                        sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        binding.spnSigungu.setAdapter(sggAdapter);
+                    });
                 }
             }
 
@@ -112,9 +65,17 @@ public class RestaurantActivity extends AppCompatActivity {
             }
         });
 
-
         binding.imgvBefore.setOnClickListener(v -> {
             finish();
+        });
+    }
+
+    public void restaurantList() {
+        CommonConn conn = new CommonConn(this, "date_restaurant");
+        conn.onExcute((isResult, data) -> {
+            ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>(){}.getType());
+            binding.recvRestact.setAdapter(new RestaurantAdapter(this, list));
+            binding.recvRestact.setLayoutManager(new GridLayoutManager(this, 2));
         });
     }
 }
