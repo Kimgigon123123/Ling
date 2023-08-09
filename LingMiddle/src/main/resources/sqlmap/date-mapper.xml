@@ -55,4 +55,9 @@
 	select * from date_info where date_category_code = 'FE'
 </select>
 
+<!-- 관심 목록 추가 -->
+<insert id="insert_dibs">
+	insert into date_dibs values (seq_dibs.nextval, 'skawk', #{date_id}, #{date_category_code})
+</insert>
+
 </mapper>
