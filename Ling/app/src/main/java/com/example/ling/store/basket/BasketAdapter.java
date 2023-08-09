@@ -1,6 +1,7 @@
 package com.example.ling.store.basket;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,13 +26,12 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
     ItemRecvBasketBinding binding;
 
     List<StoreBasketVO> list;
-    Context context;
 
+    BasketActivity activity;
 
-
-    public BasketAdapter(List<StoreBasketVO> list, Context context) {
+    public BasketAdapter(List<StoreBasketVO> list, BasketActivity activity) {
         this.list = list;
-        this.context = context;
+        this.activity = activity;
     }
 
     @NonNull
@@ -52,25 +52,27 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
         String imageUrl = list.get(i).getItem_img();
         Picasso.get()
                 .load(imageUrl)
-                .into(binding.imgvImg);
+                .into(h.binding.imgvImg);
 
 
 
         h.binding.imgvUp.setOnClickListener(v->{
-            CommonConn conn = new CommonConn(context,"store_up_selection");
+            CommonConn conn = new CommonConn(activity,"store_up_selection");
             conn.addParamMap("basket_code",list.get(i).basket_code);
             conn.onExcute(((isResult, data) -> {
 
-                CommonConn conn2 = new CommonConn(context, "store_list_basket");
+                CommonConn conn2 = new CommonConn(activity, "store_list_basket");
                 conn2.onExcute((isResult2, data2) -> {
 
                     ArrayList<StoreBasketVO> list = new Gson().fromJson(data2, new TypeToken<ArrayList<StoreBasketVO>>() {
                     }.getType());
 
 
-                    Toast.makeText(context, list.get(i).getSelection()+"개", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, list.get(i).getSelection()+"개", Toast.LENGTH_SHORT).show();
                     h.binding.tvCnt.setText(list.get(i).getSelection()+"개");
                     h.binding.tvPrice.setText(list.get(i).getItem_price()*list.get(i).getSelection()+"원");
+
+                    activity.basket_total_price();
 
 
                 });
@@ -93,11 +95,11 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
 
             }else{
 
-                CommonConn conn = new CommonConn(context,"store_down_selection");
+                CommonConn conn = new CommonConn(activity,"store_down_selection");
                 conn.addParamMap("basket_code",list.get(i).basket_code);
                 conn.onExcute(((isResult, data) -> {
 
-                    CommonConn conn2 = new CommonConn(context, "store_list_basket");
+                    CommonConn conn2 = new CommonConn(activity, "store_list_basket");
                     conn2.onExcute((isResult2, data2) -> {
 
                         ArrayList<StoreBasketVO> list = new Gson().fromJson(data2, new TypeToken<ArrayList<StoreBasketVO>>() {
@@ -105,7 +107,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
 
                         if(list.get(i).getSelection()<1){
 
-                            CommonConn conn3 = new CommonConn(context,"store_up_selection");
+                            CommonConn conn3 = new CommonConn(activity,"store_up_selection");
                             conn3.addParamMap("basket_code",list.get(i).basket_code);
                             conn3.onExcute(((isResult3, data3) -> {
 
@@ -113,9 +115,10 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
 
                         }else{
 
-                            Toast.makeText(context, list.get(i).getSelection()+"개", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity, list.get(i).getSelection()+"개", Toast.LENGTH_SHORT).show();
                             h.binding.tvCnt.setText(list.get(i).getSelection()+"개");
                             h.binding.tvPrice.setText(list.get(i).getItem_price()*list.get(i).getSelection()+"원");
+                            activity.basket_total_price();
 
 
                         }
@@ -129,6 +132,25 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
                 }));
 
             }
+        });
+
+        h.binding.imgvClose.setOnClickListener(v->{
+
+            CommonConn conn = new CommonConn(activity,"store_delete_basket");
+            conn.addParamMap("basket_code",list.get(i).getBasket_code());
+
+            conn.onExcute((isResult, data) -> {
+
+                list.remove(i);
+                notifyDataSetChanged();
+
+                activity.basket_total_price();
+
+
+
+
+            });
+
 
 
         });
@@ -137,7 +159,10 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return list.size();
+
+            return list.size();
+
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

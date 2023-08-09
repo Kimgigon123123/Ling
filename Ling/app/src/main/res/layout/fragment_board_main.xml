@@ -47,7 +47,7 @@
                 android:layout_margin="10dp"
                 app:boxStrokeColor="@color/black"
                 app:hintEnabled="false"
-                app:startIconDrawable="@drawable/search"
+                app:startIconDrawable="@drawable/live_chart"
                 app:hintTextColor="@color/black">
 
 
@@ -55,7 +55,7 @@
                     android:id="@+id/board_hot"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="검색"
+                    android:hint="실시간 조회수 TOP10"
                     android:inputType="text" />
 
 
