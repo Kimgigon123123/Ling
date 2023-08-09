@@ -140,10 +140,18 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
             conn.addParamMap("basket_code",list.get(i).getBasket_code());
 
             conn.onExcute((isResult, data) -> {
+
                 list.remove(i);
                 notifyDataSetChanged();
 
+                activity.basket_total_price();
+
+
+
+
             });
+
+
 
         });
 
@@ -151,11 +159,9 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        if(list.isEmpty()){
-           return  0;
-        }else{
+
             return list.size();
-        }
+
 
     }
 
