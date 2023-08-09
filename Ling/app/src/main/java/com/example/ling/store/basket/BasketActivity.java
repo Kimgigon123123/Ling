@@ -71,9 +71,17 @@ public class BasketActivity extends AppCompatActivity {
                 ArrayList<StoreBasketVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreBasketVO>>() {
                 }.getType());
 
-                Intent intent = new Intent(this, StorePaymentActivity.class);
-                intent.putExtra("basket_total_price",list.get(0).getTotal_price());
-                startActivity(intent);
+                    if(list.get(0)==null){
+                        Toast.makeText(this, "장바구니에 물건이 없습니다", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Intent intent = new Intent(this, StorePaymentActivity.class);
+                        intent.putExtra("basket_total_price",list.get(0).getTotal_price());
+                        startActivity(intent);
+                    }
+
+
+
+
 
 
 

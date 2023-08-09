@@ -36,4 +36,16 @@ from store_basket b,store_item i where b.item_code = i.item_code and id='kgg'
 delete store_basket where id='kgg' and basket_code=#{basket_code}
 </delete>
 
+<insert id = "insert_basket_buylist">
+INSERT INTO store_purchase_product (order_num, item_code, category_code, delivery_code, id, purchase_cnt)
+SELECT seq_order_num.nextval, b.item_code, i.category_code, 1, b.id, b.selection as purchase_cnt
+FROM store_basket b, store_item i
+WHERE i.item_code = b.item_code
+and id='kgg'
+</insert>
+
+<delete id="delete_basket_buylist">
+delete store_basket where id='kgg'
+</delete>
+
 </mapper>
