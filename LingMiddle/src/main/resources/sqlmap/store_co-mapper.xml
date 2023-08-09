@@ -27,6 +27,7 @@ select * from store_item order by popular desc
 <insert id="insert_purchase">
 insert into store_purchase_product
 values (SEQ_order_num.NEXTVAL,#{item_code},'Co',1,'kgg',#{purchase_cnt})
+order by order_num desc
 </insert>
 
 <select id="list_purchase" resultType="storeco.StorePurchaseListVO">

@@ -103,6 +103,9 @@ public class StoreCoFragment extends Fragment {
 
 
 
+
+
+
     public void select() {
         CommonConn conn = new CommonConn(getContext(), "store_by_recent");
         conn.onExcute((isResult, data) -> {
