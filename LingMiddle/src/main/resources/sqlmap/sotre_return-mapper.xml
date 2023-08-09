@@ -8,7 +8,7 @@ case  when delivery_code=1 then '배송중'
      when delivery_code=3 then '배송취소'
      end as delivery_state
 ,
-id,item_price,(purchase_cnt*item_price) as total_price,purchase_cnt,item_name
+id,item_price,(purchase_cnt*item_price) as total_price,purchase_cnt,item_name,item_img
 from store_purchase_product p , store_item i
 where p.item_code = i.item_code
 and order_num=#{order_num}
