@@ -56,9 +56,11 @@ public class StoreMyinfoController {
 	
 	//찜목록 추가
 	@RequestMapping(value="/store_insert_zzim",produces="text/html;charset=utf-8")
-	public String insert_zzim(String item_code) {
+	public String insert_zzim(StoreZzimListVO vo) {
 		
-		int result = sql.insert("store_myinfo.insert_zzim",item_code);
+		
+		
+		int result = sql.insert("store_myinfo.insert_zzim",vo);
 		
 		Gson gson = new Gson();
 		return	gson.toJson(result);

@@ -47,5 +47,9 @@ update store_myinfo set bank = #{bank} where id='kgg'
 select nvl(bank,'') as bank from store_myinfo where id = 'kgg'
 </select>
 
+<select id="isZzim" resultType="storemyinfo.StoreZzimListVO">
+select item_code from store_zzim_product where item_code = #{item_code} and id='kgg' 
+</select>
+
 
 </mapper>
