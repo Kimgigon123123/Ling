@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityChargeCashBinding;
 import com.example.ling.databinding.ActivityStorePaymentBinding;
 import com.example.ling.store.myinfo.StoreMyinfoVO;
@@ -39,6 +40,7 @@ public class ChargeCashActivity extends AppCompatActivity {
         select();
 
         CommonConn conn = new CommonConn(this , "store_select_bank");
+        conn.addParamMap("id",CommonVar.loginInfo.getId());
 
         conn.onExcute((isResult, data) -> {
 
@@ -67,6 +69,7 @@ public class ChargeCashActivity extends AppCompatActivity {
 
             try {
                 CommonConn conn2 = new CommonConn(this,"store_charge");
+                conn2.addParamMap("id",CommonVar.loginInfo.getId());
                 conn2.addParamMap("edtMoney",Integer.parseInt(binding.edtMoney.getText().toString()));//"0" -> 0 : ""->
                 conn2.onExcute((isResult, data) -> {
 
@@ -88,6 +91,7 @@ public class ChargeCashActivity extends AppCompatActivity {
 
     public void select(){
         CommonConn conn = new CommonConn(this,"store_myinfo");
+        conn.addParamMap("id",CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
 
             ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMyinfoVO>>() {}.getType());
@@ -103,7 +107,7 @@ public class ChargeCashActivity extends AppCompatActivity {
         super.onRestart();
 
         CommonConn conn = new CommonConn(this , "store_select_bank");
-
+        conn.addParamMap("id",CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
 
             ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data,new TypeToken<ArrayList<StoreMyinfoVO>>(){}.getType());

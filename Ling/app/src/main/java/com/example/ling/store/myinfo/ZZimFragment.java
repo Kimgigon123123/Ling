@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentZZimBinding;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -35,12 +36,13 @@ public class ZZimFragment extends Fragment {
 
     public void select(){
         CommonConn conn = new CommonConn(getContext(), "store_list_zzim");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
 
             ArrayList<StoreZzimListVO> zzimlist = new Gson().fromJson(data, new TypeToken<ArrayList<StoreZzimListVO>>() {
             }.getType());
             binding.recvZzim.setAdapter(new ZZimAdapter(zzimlist,getContext()));
-            binding.recvZzim.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
+            binding.recvZzim.setLayoutManager(new GridLayoutManager(getContext(),3));
         });
     }
 

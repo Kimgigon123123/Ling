@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.ling.MainActivity;
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityStorePurchaseBinding;
 import com.example.ling.store.storeCO.StoreCOVO;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -66,6 +67,7 @@ public class StorePurchaseActivity extends AppCompatActivity {
 
                 CommonConn conn = new CommonConn(this , "store_insert_zzim");
                 conn.addParamMap("item_code" , item_code);
+                conn.addParamMap("id", CommonVar.loginInfo.getId());
                 conn.onExcute((isResult, data) -> {
 
                 });

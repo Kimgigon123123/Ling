@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityInsertBankInfoBinding;
 
 public class InsertBankInfoActivity extends AppCompatActivity {
@@ -45,6 +46,7 @@ public class InsertBankInfoActivity extends AppCompatActivity {
         binding.btnRegi.setOnClickListener(v -> {
             CommonConn conn = new CommonConn(this , "store_update_bank_info");
             conn.addParamMap("bank" , bankname+": "+binding.edtBankNum.getText().toString());
+            conn.addParamMap("id", CommonVar.loginInfo.getId());
 
             conn.onExcute((isResult, data) -> {
 

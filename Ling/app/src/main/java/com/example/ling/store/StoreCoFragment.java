@@ -49,6 +49,8 @@ public class StoreCoFragment extends Fragment {
                 android.R.layout.simple_spinner_dropdown_item
         );
         binding.spinner.setAdapter(adapter);
+
+
         binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityBasketBinding;
 import com.example.ling.databinding.ActivityChargeCashBinding;
 import com.example.ling.store.ChargeVO;
@@ -40,6 +41,7 @@ public class BasketActivity extends AppCompatActivity {
 
 
         CommonConn conn = new CommonConn(this, "store_list_basket");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
 
             ArrayList<StoreBasketVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreBasketVO>>() {
@@ -66,6 +68,7 @@ public class BasketActivity extends AppCompatActivity {
 
 
             CommonConn conn2 = new CommonConn(this, "store_basket_totalprice");
+            conn2.addParamMap("id",CommonVar.loginInfo.getId());
             conn2.onExcute((isResult, data) -> {
 
                 ArrayList<StoreBasketVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreBasketVO>>() {
@@ -105,6 +108,7 @@ public class BasketActivity extends AppCompatActivity {
 
     public void basket_total_price(){
         CommonConn conn = new CommonConn(this, "store_basket_totalprice");
+        conn.addParamMap("id",CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
 
             ArrayList<StoreBasketVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreBasketVO>>() {

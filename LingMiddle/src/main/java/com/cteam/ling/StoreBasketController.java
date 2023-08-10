@@ -22,8 +22,8 @@ public class StoreBasketController {
 	SqlSession sql;
 	
 	@RequestMapping(value="/store_list_basket",produces="text/html;charset=utf-8")
-	public String list_basket() {
-		List<StoreBasketVO> list = sql.selectList("store_basket.list_basket");
+	public String list_basket(StoreBasketVO vo) {
+		List<StoreBasketVO> list = sql.selectList("store_basket.list_basket",vo);
 		
 		Gson gson = new Gson();
 		
