@@ -3,12 +3,14 @@ package com.example.ling.home;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.ling.calendar.CalendarActivity;
 import com.example.ling.databinding.FragmentHomeBinding;
 
@@ -28,6 +30,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
+        Glide.with(this).load("http://192.168.0.38/hanul/img//andimg.jpg").into(binding.imgvManProfile);
         binding.imgvPhoto.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), PhotoActivity.class);
             startActivity(intent);
@@ -38,10 +41,12 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
-        binding.imgvLocTracking.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), LocTrackingActivity.class);
-            startActivity(intent);
+        binding.imgvManProfile.setOnClickListener(v -> {
+//            showDialog();
         });
+
+
+
 
         Date date = new Date();
 
@@ -71,6 +76,27 @@ public class HomeFragment extends Fragment {
 
         return binding.getRoot();
 
+
+    }
+
+    public void showDialog(){
+        String[] dialog_item = {"갤러리", "카메라", "기본이미지"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("사진 업로드 방식");
+        builder.setSingleChoiceItems(dialog_item, -1, (dialog, i) -> {
+            if(dialog_item[i].equals("갤러리")){
+                //갤러리 로직
+//                showGallery();
+            }else if(dialog_item[i].equals("카메라")){
+                //카메라 로직
+//                showCamera();
+            }else if(dialog_item[i].equals("기본이미지")){
+
+            }
+            dialog.dismiss();
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
 
     }
 }
