@@ -1,17 +1,13 @@
 package com.example.ling.store;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.opengl.EGLExt;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,15 +15,10 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.ling.R;
-import com.example.ling.chat.ChatFragment;
 import com.example.ling.common.CommonConn;
-import com.example.ling.databinding.FragmentStoreCoBinding;
-import com.example.ling.date.DateFragment;
-import com.example.ling.home.HomeFragment;
+import com.example.ling.databinding.FragmentStoreDrBinding;
 import com.example.ling.store.basket.BasketActivity;
 import com.example.ling.store.myinfo.StoreMyinfoActivity;
 import com.example.ling.store.myinfo.ZZimActivity;
@@ -38,16 +29,14 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 
 
-public class StoreCoFragment extends Fragment {
+public class StoreGiFragment extends Fragment {
+
     String[] items = {"최신","이름","인기","가격"};
 
-
-    FragmentStoreCoBinding binding;
-
-    @Override
+    FragmentStoreDrBinding binding;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentStoreCoBinding.inflate(inflater, container, false);
+        binding = FragmentStoreDrBinding.inflate(inflater, container, false);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,items);
         adapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item
@@ -126,8 +115,6 @@ public class StoreCoFragment extends Fragment {
 
 
         });
-
-
 
         binding.tvRing.setOnClickListener(v->{
 
