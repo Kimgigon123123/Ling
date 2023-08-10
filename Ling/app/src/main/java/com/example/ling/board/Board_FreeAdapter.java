@@ -1,6 +1,7 @@
 package com.example.ling.board;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -36,6 +37,12 @@ public class Board_FreeAdapter extends RecyclerView.Adapter<Board_FreeAdapter.Vi
         h.binding.boardWriter.setText(list.get(i).getWriter());
         h.binding.boardDate.setText(list.get(i).getWritedate());
         h.binding.boardCnt.setText(list.get(i).getReadcnt()+"");
+
+        h.binding.lnUser.setOnClickListener(v->{
+            Intent intent = new Intent(context, Notice_contextActivity.class);
+            intent.putExtra("board_no", list.get(i).getId());
+            context.startActivity(intent);
+        });
     }
 
     @Override

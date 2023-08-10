@@ -33,4 +33,12 @@ public class BoardDAO {
 	public BoardVO notice_content(String id){
 		return sql.selectOne("board.content", id);
 	}
+	
+	public BoardVO user_content(String id){
+		return sql.selectOne("board.content", id);
+	}
+	
+	public int board_read(String id) {
+		return sql.update("board.read", id);
+	}
 }

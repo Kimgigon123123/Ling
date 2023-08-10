@@ -60,7 +60,7 @@ public class BoardMainFragment extends Fragment {
         conn.onExcute((isResult, data) -> {
             ArrayList<BoardVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<BoardVO>>(){}.getType());
 
-            BoardMain_FreeAdapter adapter = new BoardMain_FreeAdapter(list);
+            BoardMain_FreeAdapter adapter = new BoardMain_FreeAdapter(list, fragment);
             binding.recvFree.setAdapter(adapter);
             binding.recvFree.setLayoutManager(new LinearLayoutManager(getContext()));
         });
@@ -70,7 +70,7 @@ public class BoardMainFragment extends Fragment {
         conn.onExcute((isResult, data) -> {
             ArrayList<BoardVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<BoardVO>>(){}.getType());
 
-            BoardMain_WorryAdapter adapter = new BoardMain_WorryAdapter(list);
+            BoardMain_WorryAdapter adapter = new BoardMain_WorryAdapter(list, fragment);
             binding.recvWorry.setAdapter(adapter);
             binding.recvWorry.setLayoutManager(new LinearLayoutManager(getContext()));
         });
@@ -80,7 +80,7 @@ public class BoardMainFragment extends Fragment {
         conn.onExcute((isResult, data) -> {
             ArrayList<BoardVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<BoardVO>>(){}.getType());
 
-            BoardMain_PlayAdapter adapter = new BoardMain_PlayAdapter(list);
+            BoardMain_PlayAdapter adapter = new BoardMain_PlayAdapter(list, fragment);
             binding.recvPlay.setAdapter(adapter);
             binding.recvPlay.setLayoutManager(new LinearLayoutManager(getContext()));
         });

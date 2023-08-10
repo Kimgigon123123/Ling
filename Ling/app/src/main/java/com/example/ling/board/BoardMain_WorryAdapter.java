@@ -1,6 +1,7 @@
 package com.example.ling.board;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -14,10 +15,13 @@ import java.util.ArrayList;
 
 public class BoardMain_WorryAdapter extends RecyclerView.Adapter<BoardMain_WorryAdapter.ViewHolder> {
     ArrayList<BoardVO> list;
+    BoardFragment fragment;
 
-    public BoardMain_WorryAdapter(ArrayList<BoardVO> list) {
+    public BoardMain_WorryAdapter(ArrayList<BoardVO> list, BoardFragment fragment) {
         this.list = list;
+        this.fragment = fragment;
     }
+
 
     Context context;
     @NonNull
@@ -35,6 +39,13 @@ public class BoardMain_WorryAdapter extends RecyclerView.Adapter<BoardMain_Worry
         h.binding.boardWriter.setText(list.get(i).getWriter());
         h.binding.boardDate.setText(list.get(i).getWritedate());
         h.binding.boardCnt.setText(list.get(i).getReadcnt()+"");
+
+        h.binding.lnUser.setOnClickListener(v->{
+            fragment.changeFragment(3);
+            Intent intent = new Intent(context, Notice_contextActivity.class);
+            intent.putExtra("board_no", list.get(i).getId());
+            context.startActivity(intent);
+        });
     }
 
     @Override
