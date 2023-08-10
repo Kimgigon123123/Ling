@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.FragmentStoreDrBinding;
+import com.example.ling.databinding.FragmentStoreGiBinding;
 import com.example.ling.store.basket.BasketActivity;
 import com.example.ling.store.myinfo.StoreMyinfoActivity;
 import com.example.ling.store.myinfo.ZZimActivity;
@@ -33,10 +34,10 @@ public class StoreGiFragment extends Fragment {
 
     String[] items = {"최신","이름","인기","가격"};
 
-    FragmentStoreDrBinding binding;
+    FragmentStoreGiBinding binding;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentStoreDrBinding.inflate(inflater, container, false);
+        binding = FragmentStoreGiBinding.inflate(inflater, container, false);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,items);
         adapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item
@@ -85,6 +86,10 @@ public class StoreGiFragment extends Fragment {
             binding.fl.startAnimation(slideOut);
             binding.fl.setVisibility(View.GONE);
 
+
+        });
+
+        binding.fl.setOnClickListener(v->{
 
         });
 
@@ -151,8 +156,8 @@ public class StoreGiFragment extends Fragment {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-            StoreCoFragment storeCoFragment= new StoreCoFragment(); // StoreDrFragment로 교체할 프래그먼트 인스턴스 생성
-            transaction.replace(R.id.container, storeCoFragment);
+            StoreEtcFragment storeEtcFragment= new StoreEtcFragment(); // StoreDrFragment로 교체할 프래그먼트 인스턴스 생성
+            transaction.replace(R.id.container, storeEtcFragment);
 
             transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
             transaction.commit();

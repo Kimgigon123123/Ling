@@ -99,6 +99,10 @@ public class StoreCoFragment extends Fragment {
 
         });
 
+        binding.fl.setOnClickListener(v->{
+
+        });
+
         binding.tvAll.setOnClickListener(v -> {
 
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -164,8 +168,8 @@ public class StoreCoFragment extends Fragment {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-            StoreCoFragment storeCoFragment= new StoreCoFragment(); // StoreDrFragment로 교체할 프래그먼트 인스턴스 생성
-            transaction.replace(R.id.container, storeCoFragment);
+            StoreEtcFragment storeEtcFragment= new StoreEtcFragment(); // StoreDrFragment로 교체할 프래그먼트 인스턴스 생성
+            transaction.replace(R.id.container, storeEtcFragment);
 
             transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
             transaction.commit();

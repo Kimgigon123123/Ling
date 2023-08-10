@@ -19,7 +19,7 @@ import android.widget.ArrayAdapter;
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.FragmentStoreDrBinding;
-import com.example.ling.databinding.FragmentStoreRiBinding;
+import com.example.ling.databinding.FragmentStoreEtcBinding;
 import com.example.ling.store.basket.BasketActivity;
 import com.example.ling.store.myinfo.StoreMyinfoActivity;
 import com.example.ling.store.myinfo.ZZimActivity;
@@ -30,16 +30,14 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 
 
-public class StoreRiFragment extends Fragment {
-
-
+public class StoreEtcFragment extends Fragment {
 
     String[] items = {"최신","이름","인기","가격"};
 
-    FragmentStoreRiBinding binding;
+    FragmentStoreEtcBinding binding;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentStoreRiBinding.inflate(inflater, container, false);
+        binding = FragmentStoreEtcBinding.inflate(inflater, container, false);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,items);
         adapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item
@@ -149,6 +147,7 @@ public class StoreRiFragment extends Fragment {
 
             transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
             transaction.commit();
+
 
         });
 
