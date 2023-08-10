@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.R;
+import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ItemRecvDibsBinding;
 import com.example.ling.date.DateDibsVO;
 import com.example.ling.date.tour.TourDetailActivity;
@@ -40,15 +41,17 @@ public class DibsAdapter extends RecyclerView.Adapter<DibsAdapter.ViewHolder> {
         h.binding.imgvDibs.setImageResource(R.drawable.ic_launcher_background);
         h.binding.tvName.setText(list.get(i).getDate_name());
         h.binding.tvAddr.setText(list.get(i).getDate_address());
-        h.binding.imgvFav.setOnClickListener(new View.OnClickListener() {
+        h.binding.imgvFav2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ((boolean) h.binding.imgvFav.getTag()) {
-                    h.binding.imgvFav.setTag(false);
-                    h.binding.imgvFav.setImageResource(R.drawable.ic_fav);
-                } else {
-                    h.binding.imgvFav.setTag(true);
-                    h.binding.imgvFav.setImageResource(R.drawable.ic_fav2);
+                if ((boolean) h.binding.imgvFav2.getTag()) {
+                    CommonConn conn = new CommonConn(context, "date_deletedibs");
+                    conn.addParamMap("dibs_id", list.get(i).getDibs_id());
+                    conn.addParamMap("id", list.get(i).getId());
+                    conn.onExcute((isResult, data) -> {
+                        list.remove(i);
+                        notifyDataSetChanged();
+                    });
                 }
             }
         });
@@ -80,7 +83,7 @@ public class DibsAdapter extends RecyclerView.Adapter<DibsAdapter.ViewHolder> {
         public ViewHolder(@NonNull ItemRecvDibsBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
-            this.binding.imgvFav.setTag(false);
+            this.binding.imgvFav2.setTag(true);
         }
     }
 }

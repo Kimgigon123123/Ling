@@ -60,4 +60,10 @@
 	insert into date_dibs values (seq_dibs.nextval, 'skawk', #{date_id}, #{date_category_code})
 </insert>
 
+<!-- 관심 목록 제거 -->
+<delete id="delete_dibs">
+	delete from date_dibs where dibs_id = #{dibs_id} and id = 'skawk'
+</delete>
+
+
 </mapper>

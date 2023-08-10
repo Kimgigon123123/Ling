@@ -88,4 +88,11 @@ public class DateController {
 	public void insert_dibs(DateDibsVO vo) {
 		int result = sql.insert("date.insert_dibs", vo);
 	}
+	
+	// 관심 목록 제거
+	@RequestMapping(value="/date_deletedibs", produces = "text/html;charset=utf-8")
+	public void delete_dibs(DateDibsVO vo) {
+		int result = sql.delete("date.delete_dibs", vo);
+	}
+	
 }
