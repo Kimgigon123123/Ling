@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ItemRecvBasketBinding;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -59,9 +60,11 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
         h.binding.imgvUp.setOnClickListener(v->{
             CommonConn conn = new CommonConn(activity,"store_up_selection");
             conn.addParamMap("basket_code",list.get(i).basket_code);
+            conn.addParamMap("id", CommonVar.loginInfo.getId());
             conn.onExcute(((isResult, data) -> {
 
                 CommonConn conn2 = new CommonConn(activity, "store_list_basket");
+                conn2.addParamMap("id",CommonVar.loginInfo.getId());
                 conn2.onExcute((isResult2, data2) -> {
 
                     ArrayList<StoreBasketVO> list = new Gson().fromJson(data2, new TypeToken<ArrayList<StoreBasketVO>>() {
@@ -96,10 +99,12 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
             }else{
 
                 CommonConn conn = new CommonConn(activity,"store_down_selection");
+                conn.addParamMap("id",CommonVar.loginInfo.getId());
                 conn.addParamMap("basket_code",list.get(i).basket_code);
                 conn.onExcute(((isResult, data) -> {
 
                     CommonConn conn2 = new CommonConn(activity, "store_list_basket");
+                    conn2.addParamMap("id",CommonVar.loginInfo.getId());
                     conn2.onExcute((isResult2, data2) -> {
 
                         ArrayList<StoreBasketVO> list = new Gson().fromJson(data2, new TypeToken<ArrayList<StoreBasketVO>>() {
@@ -108,6 +113,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
                         if(list.get(i).getSelection()<1){
 
                             CommonConn conn3 = new CommonConn(activity,"store_up_selection");
+                            conn3.addParamMap("id",CommonVar.loginInfo.getId());
                             conn3.addParamMap("basket_code",list.get(i).basket_code);
                             conn3.onExcute(((isResult3, data3) -> {
 
@@ -138,6 +144,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
 
             CommonConn conn = new CommonConn(activity,"store_delete_basket");
             conn.addParamMap("basket_code",list.get(i).getBasket_code());
+            conn.addParamMap("id",CommonVar.loginInfo.getId());
 
             conn.onExcute((isResult, data) -> {
 

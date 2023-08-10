@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.ling.Static;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityStoreMyinfoBinding;
 import com.example.ling.store.ChargeCashActivity;
 import com.example.ling.store.ChargeVO;
@@ -85,6 +87,8 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
     public void select(){
         CommonConn conn = new CommonConn(this,"store_myinfo");
+            conn.addParamMap("id",CommonVar.loginInfo.getId());
+
         conn.onExcute((isResult, data) -> {
 
             ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMyinfoVO>>() {}.getType());
@@ -99,8 +103,13 @@ public class StoreMyinfoActivity extends AppCompatActivity {
         });
     }
 
+
+
+
     public void zzimlist() {
         CommonConn conn = new CommonConn(this, "store_list_zzim");
+        conn.addParamMap("id",CommonVar.loginInfo.getId());
+
         conn.onExcute((isResult, data) -> {
 
             ArrayList<StoreZzimListVO> zzimlist = new Gson().fromJson(data, new TypeToken<ArrayList<StoreZzimListVO>>() {
@@ -119,6 +128,8 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
     public void buylist() {
         CommonConn conn = new CommonConn(this, "list_purchase");
+        conn.addParamMap("id",CommonVar.loginInfo.getId());
+
         conn.onExcute((isResult, data) -> {
             ArrayList<StorePurchaseListVO> buylistlist = new Gson().fromJson(data, new TypeToken<ArrayList<StorePurchaseListVO>>() {
             }.getType());
@@ -130,6 +141,8 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
     public void returnlist() {
         CommonConn conn = new CommonConn(this, "store_list_return");
+        conn.addParamMap("id",CommonVar.loginInfo.getId());
+
         conn.onExcute((isResult, data) -> {
             ArrayList<StoreReturnListVO> returnlist = new Gson().fromJson(data, new TypeToken<ArrayList<StoreReturnListVO>>() {
             }.getType());

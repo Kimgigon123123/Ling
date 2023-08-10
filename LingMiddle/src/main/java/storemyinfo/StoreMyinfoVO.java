@@ -3,10 +3,16 @@ package storemyinfo;
 
 public class StoreMyinfoVO {
 	String id, adrress, bank,name;
-	int money;
+	int money,totalPrice;
 	
 	
 	
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 	public String getId() {
 		return id;
 	}

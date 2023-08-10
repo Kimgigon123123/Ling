@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.ling.MainActivity;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityStorePaymentBinding;
 import com.example.ling.store.myinfo.AddressActivity;
 import com.example.ling.store.myinfo.StoreMyinfoVO;
@@ -44,6 +45,8 @@ public class StorePaymentActivity extends AppCompatActivity {
                 Toast.makeText(this, "장바구니에서 구매 버튼 누름", Toast.LENGTH_SHORT).show();
 
                 CommonConn conn = new CommonConn(this, "store_myinfo");
+                conn.addParamMap("id",CommonVar.loginInfo.getId());
+
                 conn.onExcute((isResult, data) -> {
 
                     ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMyinfoVO>>() {
@@ -84,6 +87,8 @@ public class StorePaymentActivity extends AppCompatActivity {
 
 
                 CommonConn conn = new CommonConn(this, "store_myinfo");
+                conn.addParamMap("id",CommonVar.loginInfo.getId());
+
                 conn.onExcute((isResult, data) -> {
 
                     ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMyinfoVO>>() {
@@ -144,7 +149,7 @@ public class StorePaymentActivity extends AppCompatActivity {
 
 
         CommonConn conn = new CommonConn(this, "store_myinfo");
-
+        conn.addParamMap("id",CommonVar.loginInfo.getId());
 
         conn.onExcute((isResult, data) -> {
             ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMyinfoVO>>() {
@@ -158,7 +163,7 @@ public class StorePaymentActivity extends AppCompatActivity {
 
     public void select(){
         CommonConn conn = new CommonConn(this, "store_myinfo");
-
+        conn.addParamMap("id",CommonVar.loginInfo.getId());
 
         conn.onExcute((isResult, data) -> {
             ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMyinfoVO>>() {}.getType());
@@ -172,6 +177,7 @@ public class StorePaymentActivity extends AppCompatActivity {
     public void buy(){
         CommonConn conn = new CommonConn(this, "store_buy");
         conn.addParamMap("totalPrice",totalPrice);
+        conn.addParamMap("id",CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
 
 
@@ -180,6 +186,7 @@ public class StorePaymentActivity extends AppCompatActivity {
             int cnt = intent.getIntExtra("cnt",0);
 
             CommonConn conn2 = new CommonConn(this , "insert_purchase");
+            conn2.addParamMap("id",CommonVar.loginInfo.getId());
             conn2.addParamMap("item_code" , item_code);
             conn2.addParamMap("purchase_cnt" , cnt);
             conn2.onExcute((isResult2, data2) -> {
@@ -191,13 +198,16 @@ public class StorePaymentActivity extends AppCompatActivity {
     public void basket_buy(){
         CommonConn conn = new CommonConn(this, "store_buy");
         conn.addParamMap("totalPrice",totalPrice);
+        conn.addParamMap("id",CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
 
             CommonConn conn2 = new CommonConn(this , "insert_basket_buylist");
+            conn2.addParamMap("id",CommonVar.loginInfo.getId());
             conn2.onExcute((isResult2,data2)->{
 
 
                 CommonConn conn3 = new CommonConn(this , "delete_basket_buylist");
+                conn3.addParamMap("id",CommonVar.loginInfo.getId());
                 conn3.onExcute((isResult3,data3)->{
 
 
