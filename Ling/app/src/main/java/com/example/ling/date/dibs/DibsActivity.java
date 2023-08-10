@@ -59,6 +59,7 @@ public class DibsActivity extends AppCompatActivity {
         CommonConn conn = new CommonConn(this, "date_alldibs");
         conn.onExcute((isResult, data) -> {
             ArrayList<DateDibsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateDibsVO>>(){}.getType());
+            Log.d("abc", "selectAll: " + list.size());
             binding.recvDibs.setAdapter(new DibsAdapter(this, list));
             binding.recvDibs.setLayoutManager(new GridLayoutManager(this, 2));
         });

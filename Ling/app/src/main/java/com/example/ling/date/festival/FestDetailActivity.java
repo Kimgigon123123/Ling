@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import com.example.ling.R;
 import com.example.ling.databinding.ActivityFestDetailBinding;
-import com.example.ling.date.InfoFragment;
 import com.example.ling.date.NMapFragment;
 
 public class FestDetailActivity extends AppCompatActivity {
@@ -23,10 +22,22 @@ public class FestDetailActivity extends AppCompatActivity {
             finish();
         });
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.ln_festdetail, new InfoFragment()).commit();
+
+        FestInfoFragment festInfoFragment = new FestInfoFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("img", getIntent().getIntExtra("img", -1));
+        bundle.putString("name", getIntent().getStringExtra("name"));
+        bundle.putString("address", getIntent().getStringExtra("address"));
+        bundle.putString("intro", getIntent().getStringExtra("intro"));
+        bundle.putString("open", getIntent().getStringExtra("open"));
+        bundle.putString("end", getIntent().getStringExtra("end"));
+        festInfoFragment.setArguments(bundle);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.ln_festdetail, festInfoFragment).commit();
 
         binding.btnInfo.setOnClickListener(v -> {
-            getSupportFragmentManager().beginTransaction().replace(R.id.ln_festdetail, new InfoFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.ln_festdetail, festInfoFragment).commit();
+
         });
 
         binding.btnMap.setOnClickListener(v -> {

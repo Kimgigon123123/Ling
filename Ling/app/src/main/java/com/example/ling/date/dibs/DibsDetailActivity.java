@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ling.R;
 import com.example.ling.databinding.ActivityDibsDetailBinding;
-import com.example.ling.date.InfoFragment;
 import com.example.ling.date.NMapFragment;
+import com.example.ling.date.festival.FestInfoFragment;
 
 
 public class DibsDetailActivity extends AppCompatActivity {
@@ -24,10 +24,10 @@ public class DibsDetailActivity extends AppCompatActivity {
             finish();
         });
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.ln_dibsdetail, new InfoFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.ln_dibsdetail, new DibsInfoFragment()).commit();
 
         binding.btnInfo.setOnClickListener(v -> {
-            getSupportFragmentManager().beginTransaction().replace(R.id.ln_dibsdetail, new InfoFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.ln_dibsdetail, new DibsInfoFragment()).commit();
         });
 
         binding.btnMap.setOnClickListener(v -> {

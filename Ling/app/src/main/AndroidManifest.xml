@@ -114,13 +114,12 @@
         <activity
             android:name=".SplashActivity"
             android:exported="false" />
-
            <activity
-            android:name=".MainActivity"
+            android:name=".join.JoinActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize|adjustPan" />
         <activity
-            android:name=".join.JoinActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

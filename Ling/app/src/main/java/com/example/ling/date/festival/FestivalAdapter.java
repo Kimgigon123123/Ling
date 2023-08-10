@@ -10,11 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.R;
-import com.example.ling.databinding.ActivityFestDetailBinding;
+import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ItemRecvFestactBinding;
-import com.example.ling.databinding.ItemRecvTouractBinding;
 import com.example.ling.date.DateInfoVO;
-import com.example.ling.date.tour.TourDetailActivity;
 
 import java.util.ArrayList;
 
@@ -52,11 +50,22 @@ public class FestivalAdapter extends RecyclerView.Adapter<FestivalAdapter.ViewHo
                 }else{
                     h.binding.imgvFav.setTag(true);
                     h.binding.imgvFav.setImageResource(R.drawable.ic_fav2);
+                    CommonConn conn = new CommonConn(context, "date_insertdibs");
+                    conn.addParamMap("date_id", list.get(i).getDate_id());
+                    conn.addParamMap("date_category_code", list.get(i).getDate_category_code());
+                    conn.onExcute((isResult, data) -> {
+                    });
                 }
             }
         });
         h.binding.lnFestival.setOnClickListener(v -> {
             Intent intent = new Intent(context, FestDetailActivity.class);
+            intent.putExtra("img", R.drawable.ic_launcher_background);
+            intent.putExtra("name", list.get(i).getDate_name());
+            intent.putExtra("address", list.get(i).getDate_address());
+            intent.putExtra("intro", list.get(i).getDate_intro());
+            intent.putExtra("open", list.get(i).getOpen());
+            intent.putExtra("end", list.get(i).getEnd());
             context.startActivity(intent);
         });
     }
