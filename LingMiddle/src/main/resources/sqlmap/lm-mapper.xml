@@ -30,4 +30,8 @@ values (#{id}, #{pw}, #{name}, #{gender}, #{birth}, #{phone},#{email})
 <select id="info" resultType="member.MemberVO">
 select * from Ling_member where id = #{id}
 </select>
+
+<insert id="matching">
+insert into couple (mid, fid) values (#{mid} , #{fid})
+</insert>
 </mapper>

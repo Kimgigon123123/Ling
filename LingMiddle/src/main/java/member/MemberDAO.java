@@ -1,6 +1,7 @@
 package member;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,10 @@ public class MemberDAO {
 	public int join(MemberVO vo) {
 		return sql.insert("member.join", vo);
 	}
+	
+	public int matching(HashMap<String, Object> map) {
+		return sql.insert("member.matching", map);
+	}
 
+	
 }
