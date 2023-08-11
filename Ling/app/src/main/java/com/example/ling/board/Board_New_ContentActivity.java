@@ -30,7 +30,7 @@ public class Board_New_ContentActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Intent intent = getIntent();
         String menu = intent.getStringExtra("menu");
-        
+
     }
 
 }
