@@ -31,11 +31,7 @@ public class RestaurantActivity extends AppCompatActivity {
         binding = ActivityRestaurantBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 //        binding.recvRestact.setAdapter(new RestaurantAdapter(this));
-//        binding.recvRestact.setLayoutManager(new GridLayoutManager(this, 2));
-
-        sdAdapter = ArrayAdapter.createFromResource(this, R.array.sido, android.R.layout.simple_spinner_dropdown_item);
-        sdAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        binding.spnSido.setAdapter(sdAdapter);
+//        binding.recvRestact.setLayoutManager(new GridLayoutManager(this, 2))
 
         binding.spnSido.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -51,8 +47,8 @@ public class RestaurantActivity extends AppCompatActivity {
                     CommonConn conn = new CommonConn(RestaurantActivity.this, "date_sigungu");
                     conn.addParamMap("sido", binding.spnSido.getSelectedItem().toString());
                     conn.onExcute((isResult, data) -> {
-                        List<String> tempList = new Gson().fromJson(data , new TypeToken<List<String>>(){}.getType());
-                        sggAdapter = new ArrayAdapter(RestaurantActivity.this , android.R.layout.simple_spinner_dropdown_item , tempList);
+                        List<String> sigungu = new Gson().fromJson(data , new TypeToken<List<String>>(){}.getType());
+                        sggAdapter = new ArrayAdapter(RestaurantActivity.this , android.R.layout.simple_spinner_dropdown_item , sigungu);
                         sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         binding.spnSigungu.setAdapter(sggAdapter);
                     });

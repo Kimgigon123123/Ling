@@ -3,7 +3,7 @@
 <mapper namespace="date">
 
 <!-- 시도 -->
-<select id="sido" resultType="date.DateInfoVO">
+<select id="sido" resultType="String">
 	select distinct date_sido from date_info order by (case when date_sido like '%시' then 1 end)
 </select>
 
@@ -65,10 +65,22 @@
 	delete from date_dibs where dibs_id = #{dibs_id} and id = #{id}
 </delete>
 
-<!-- 여행목록_지역별 -->
-<select id="tourloc" resultType="date.DateInfoVO">
-	select * from date_info where date_sido = #{date_sido} and date_sigungu = #{date_sigungu} and date_category_code = 'TO'
+<!-- 여행 검색 -->
+<select id="searchtour" resultType="date.DateInfoVO">
+	select * from date_info where (date_name like null or date_address like null or 
+	date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'TO'
+</select> 
+
+<!-- 맛집 검색 -->
+<select id="searchrest" resultType="date.DateInfoVO">
+	select * from date_info where (date_name like null or date_address like null or 
+	date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'RE'
 </select>
 
+<!-- 축제 검색 -->
+<select id="searchfest" resultType="date.DateInfoVO">
+	select * from date_info where (date_name like null or date_address like null or 
+	date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'FE'
+</select>
 
 </mapper>
