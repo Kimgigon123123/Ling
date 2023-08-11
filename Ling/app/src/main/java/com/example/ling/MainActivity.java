@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 //        navigationTabBar.postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
@@ -83,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
 //            return true;
 //        });
 =======
+=======
+>>>>>>> parent of 6625ac9 (Merge remote-tracking branch 'origin/kym')
 =======
 >>>>>>> parent of 6625ac9 (Merge remote-tracking branch 'origin/kym')
             }
