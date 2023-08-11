@@ -23,4 +23,9 @@ public class ScheDAO {
 		return result;
 		
 	}
+	
+	public int delete(ScheAddVO vo) {
+		int result = sql.delete("sche.delete", vo);
+		return result;
+	}
 }

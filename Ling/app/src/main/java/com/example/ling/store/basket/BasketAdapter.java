@@ -170,6 +170,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
             return list.size();
 
 
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
