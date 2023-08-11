@@ -59,7 +59,7 @@ public class StoreCoAdater extends RecyclerView.Adapter<StoreCoAdater.ViewHolder
         String imageUrl=list.get(i).getItem_img();
                                  Picasso.get()
                                 .load(imageUrl)
-                                .into(binding.imgvItem);
+                                .into(h.binding.imgvItem);
 
         h.binding.intoItem.setOnClickListener(v -> {
             Intent intent = new Intent(context,StorePurchaseActivity.class);

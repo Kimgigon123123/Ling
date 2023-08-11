@@ -197,7 +197,7 @@ public class StoreRiFragment extends Fragment {
 
 
     public void select() {
-        CommonConn conn = new CommonConn(getContext(), "store_by_recent");
+        CommonConn conn = new CommonConn(getContext(), "store_ri_byrecent");
         conn.onExcute((isResult, data) -> {
 
             ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
@@ -213,7 +213,7 @@ public class StoreRiFragment extends Fragment {
 
 
     public void by_name() {
-        CommonConn conn = new CommonConn(getContext(), "store_by_name");
+        CommonConn conn = new CommonConn(getContext(), "store_ri_byname");
         conn.onExcute((isResult, data) -> {
 
             ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
@@ -229,7 +229,7 @@ public class StoreRiFragment extends Fragment {
 
 
     public void by_popular() {
-        CommonConn conn = new CommonConn(getContext(), "store_by_popular");
+        CommonConn conn = new CommonConn(getContext(), "store_ri_bypopular");
         conn.onExcute((isResult, data) -> {
 
             ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
@@ -245,7 +245,7 @@ public class StoreRiFragment extends Fragment {
 
 
     public void by_price() {
-        CommonConn conn = new CommonConn(getContext(), "store_by_price");
+        CommonConn conn = new CommonConn(getContext(), "store_ri_byprice");
         conn.onExcute((isResult, data) -> {
 
             ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {

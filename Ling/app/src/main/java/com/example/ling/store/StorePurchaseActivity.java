@@ -67,6 +67,7 @@ public class StorePurchaseActivity extends AppCompatActivity {
 
                 CommonConn conn = new CommonConn(this , "store_insert_zzim");
                 conn.addParamMap("item_code" , item_code);
+                conn.addParamMap("category_code",category_code);
                 conn.addParamMap("id", CommonVar.loginInfo.getId());
                 conn.onExcute((isResult, data) -> {
 

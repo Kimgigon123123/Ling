@@ -38,7 +38,7 @@
                 android:id="@+id/tv_date"
                 android:textColor="#fff"
 
-                android:text="선물"
+                android:text="상품권"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"/>
             <ImageView
@@ -175,7 +175,7 @@
         <TextView
             android:textSize="20dp"
             android:id="@+id/tv_gift"
-            android:text="선물"
+            android:text="상품권"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
