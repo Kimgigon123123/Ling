@@ -9,58 +9,36 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ling.R;
+import com.example.ling.databinding.FragmentDibsInfoBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DibsInfoFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class DibsInfoFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public DibsInfoFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DibsInfoFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DibsInfoFragment newInstance(String param1, String param2) {
-        DibsInfoFragment fragment = new DibsInfoFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    FragmentDibsInfoBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dibs_info, container, false);
+        binding = FragmentDibsInfoBinding.inflate(inflater, container, false);
+
+        Bundle bundle = getArguments();
+        if(bundle != null) {
+            if(bundle.getString("code").equals("TO")) {
+                binding.tvName.setText(bundle.getString("name"));
+                binding.tvTime.setVisibility(View.GONE);
+                binding.tvAddress.setText(bundle.getString("address"));
+                binding.tvIntro.setText(bundle.getString("intro"));
+            } else if (bundle.getString("code").equals("RE")) {
+                binding.tvName.setText(bundle.getString("name"));
+                binding.tvTime.setText("09:00" + " ~ " + "21:00");
+                binding.tvAddress.setText(bundle.getString("address"));
+            } else {
+                binding.tvName.setText(bundle.getString("name"));
+                binding.tvTime.setText(bundle.get("open") + " ~ " + bundle.getString("end"));
+                binding.tvAddress.setText(bundle.getString("address"));
+                binding.tvIntro.setText(bundle.getString("intro"));
+            }
+        }
+
+        return binding.getRoot();
     }
 }

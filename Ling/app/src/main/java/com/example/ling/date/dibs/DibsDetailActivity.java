@@ -24,14 +24,31 @@ public class DibsDetailActivity extends AppCompatActivity {
             finish();
         });
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.ln_dibsdetail, new DibsInfoFragment()).commit();
+        DibsInfoFragment dibsInfoFragment = new DibsInfoFragment();
+        NMapFragment nMapFragment = new NMapFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("img", getIntent().getIntExtra("img", -1));
+        bundle.putString("name", getIntent().getStringExtra("name"));
+        bundle.putString("address", getIntent().getStringExtra("address"));
+        bundle.putString("intro", getIntent().getStringExtra("intro"));
+        bundle.putString("open", getIntent().getStringExtra("open"));
+        bundle.putString("end", getIntent().getStringExtra("end"));
+        bundle.putString("code", getIntent().getStringExtra("code"));
+        dibsInfoFragment.setArguments(bundle);
+
+        bundle.putString("lan", getIntent().getStringExtra("lan"));
+        bundle.putString("lng", getIntent().getStringExtra("lng"));
+        nMapFragment.setArguments(bundle);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.ln_dibsdetail, dibsInfoFragment).commit();
 
         binding.btnInfo.setOnClickListener(v -> {
-            getSupportFragmentManager().beginTransaction().replace(R.id.ln_dibsdetail, new DibsInfoFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.ln_dibsdetail, dibsInfoFragment).commit();
         });
 
         binding.btnMap.setOnClickListener(v -> {
-            getSupportFragmentManager().beginTransaction().replace(R.id.ln_dibsdetail, new NMapFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.ln_dibsdetail, nMapFragment).commit();
         });
 
 //        if(binding.btnInfo.isChecked()) {

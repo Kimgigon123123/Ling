@@ -68,7 +68,10 @@ public class NMapFragment extends Fragment implements OnMapReadyCallback {
         naverMap.setLocationSource(locationSource);
         naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
         Marker marker = new Marker();
-        marker.setPosition(new LatLng(35.1536166783742, 126.88800421658897));
+        Bundle bundle = getArguments();
+        if(bundle != null) {
+            marker.setPosition(new LatLng(Double.parseDouble(bundle.get("lan").toString()), (Double.parseDouble(bundle.get("lng").toString()))));
+        }
         marker.setIcon(OverlayImage.fromResource(com.naver.maps.map.R.drawable.navermap_default_marker_icon_red));
         marker.setMap(naverMap);
     }

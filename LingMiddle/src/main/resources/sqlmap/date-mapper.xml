@@ -14,28 +14,28 @@
 
 <!-- 관심목록_전체 -->
 <select id="alldibs" resultType="date.DateDibsVO">
-	select d.*, i.date_name, i.date_address
+	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng
 	from date_dibs d, date_info i
 	where d.date_id = i.date_id and d.id = #{id}
 </select>
 
 <!-- 관심목록_여행 -->
 <select id="tourdibs" resultType="date.DateDibsVO">
-	select d.*, i.date_name, i.date_address
+	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng
 	from date_dibs d, date_info i
 	where d.date_id = i.date_id and d.date_category_code = 'TO' and d.id = #{id}
 </select>
 
 <!-- 관심목록_맛집 -->
 <select id="restaurantdibs" resultType="date.DateDibsVO">
-	select d.*, i.date_name, i.date_address
+	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng
 	from date_dibs d, date_info i
 	where d.date_id = i.date_id and d.date_category_code = 'RE' and d.id = #{id}
 </select>
 
 <!-- 관심목록_축제 -->
 <select id="festivaldibs" resultType="date.DateDibsVO">
-	select d.*, i.date_name, i.date_address
+	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng
 	from date_dibs d, date_info i
 	where d.date_id = i.date_id and d.date_category_code = 'FE' and d.id = #{id}
 </select>
@@ -64,6 +64,11 @@
 <delete id="delete_dibs">
 	delete from date_dibs where dibs_id = #{dibs_id} and id = #{id}
 </delete>
+
+<!-- 여행목록_지역별 -->
+<select id="tourloc" resultType="date.DateInfoVO">
+	select * from date_info where date_sido = #{date_sido} and date_sigungu = #{date_sigungu} and date_category_code = 'TO'
+</select>
 
 
 </mapper>

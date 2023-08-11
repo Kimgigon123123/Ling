@@ -53,14 +53,14 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_delete"
-                android:text="삭제"
-                android:textSize="10dp"
-                android:textColor="#746F6F"
-                android:layout_width="35dp"
-                android:layout_height="20dp"
+                android:text="X"
+                android:textSize="12dp"
+                android:textColor="#FF0000"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/shape_btn"
-                android:layout_marginTop="230dp"
+                android:background="@drawable/shape_btn2"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"/>
 
         </RelativeLayout>

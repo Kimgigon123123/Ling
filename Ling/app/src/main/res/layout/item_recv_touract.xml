@@ -52,11 +52,10 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_add"
-                android:text="관심"
+                android:text="♥"
                 android:textSize="10dp"
-                android:textColor="#746F6F"
-                android:layout_width="35dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/shape_btn"
                 android:layout_marginTop="230dp"
