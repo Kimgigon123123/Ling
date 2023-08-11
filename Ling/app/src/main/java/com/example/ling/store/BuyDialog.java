@@ -97,6 +97,7 @@ public class BuyDialog extends BottomSheetDialog {
                 intent.putExtra("price",Integer.parseInt(tv_total_price.getText().toString()) );
                 intent.putExtra("item_code",item_code);
                 intent.putExtra("cnt",cnt);
+                intent.putExtra("category_code",category_code);
                 context.startActivity(intent);
                 dismiss();
 

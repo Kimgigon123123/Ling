@@ -26,7 +26,7 @@ where id=#{id}
 
 <insert id="insert_zzim">
 INSERT INTO store_zzim_product (ITEM_CODE, CATEGORY_CODE, ID) 
-VALUES (#{item_code}, 'Co', #{id})
+VALUES (#{item_code}, #{category_code}, #{id})
 
 </insert>
 
