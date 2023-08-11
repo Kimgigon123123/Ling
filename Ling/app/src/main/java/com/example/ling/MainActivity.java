@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 fragment = boardFragment;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 //        navigationTabBar.postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
@@ -82,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
 //            return true;
 //        });
 =======
+=======
+>>>>>>> parent of 6625ac9 (Merge remote-tracking branch 'origin/kym')
             }
             manager.beginTransaction().replace(R.id.container, fragment).commit();
 
