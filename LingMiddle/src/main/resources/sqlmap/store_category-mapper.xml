@@ -4,7 +4,7 @@
 
 <select id="dr_byrecent" resultType="storeco.StoreCOVO">
 select * from store_item where category_code ='Dr'
-order by item_code desc
+order by to_number(item_code) desc
 </select>
 
 
@@ -25,7 +25,7 @@ order by item_price
 
 <select id="ri_byrecent" resultType="storeco.StoreCOVO">
 select * from store_item where category_code ='Ri'
-order by item_code desc
+order by to_number(item_code) desc
 </select>
 
 <select id="ri_byname" resultType="storeco.StoreCOVO">
@@ -46,7 +46,7 @@ order by item_price
 
 <select id="gi_byrecent" resultType="storeco.StoreCOVO">
 select * from store_item where category_code ='Gi'
-order by item_code desc
+order by to_number(item_code) desc
 </select>
 
 <select id="gi_byname" resultType="storeco.StoreCOVO">
@@ -66,7 +66,7 @@ order by item_price
 
 <select id="etc_byrecent" resultType="storeco.StoreCOVO">
 select * from store_item where category_code ='Etc'
-order by item_code desc
+order by to_number(item_code) desc
 </select>
 
 <select id="etc_byname" resultType="storeco.StoreCOVO">
