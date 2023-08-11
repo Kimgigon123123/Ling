@@ -2,7 +2,13 @@ package com.example.ling.calendar;
 
 public class ScheAddVO {
 	private String id, sche_title, sche_typecode, sche_date;
-	private int d_day, couple_num, sche_notice;
+	private int d_day, couple_num, sche_notice, sche_no;
+	public int getSche_no() {
+		return sche_no;
+	}
+	public void setSche_no(int sche_no) {
+		this.sche_no = sche_no;
+	}
 	public String getId() {
 		return id;
 	}

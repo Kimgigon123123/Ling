@@ -29,7 +29,7 @@ public class ChatFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private List<ChatData> chatList;
-    private String nick = "nick2";
+    private String nick = "nick1";
     private ChatAdapter mAdapter;
 
     FragmentChatBinding binding;
@@ -88,7 +88,7 @@ public class ChatFragment extends Fragment {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 ChatData chat = snapshot.getValue(ChatData.class);
                  mAdapter.addChat(chat);
-                // mAdapter.notifyDataSetChanged();
+                 mAdapter.notifyDataSetChanged();
 
             }
 
