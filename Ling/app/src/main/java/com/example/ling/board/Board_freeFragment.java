@@ -1,5 +1,6 @@
 package com.example.ling.board;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -41,6 +42,12 @@ public class Board_freeFragment extends Fragment {
                 }
                 return false;
             }
+        });
+
+        binding.btnNewcontent.setOnClickListener(v->{
+            Intent intent = new Intent(getActivity(), Board_New_ContentActivity.class);
+            intent.putExtra("menu", "FREE");
+            startActivity(intent);
         });
         return binding.getRoot();
     }

@@ -57,7 +57,6 @@ public class MemberController {
 
 		// 화면에서 입력한 아이디/이메일이 일치하는 회원에게 임시 비번을 발급한다.
 		String name = dao.useridEmail(vo);
-
 		if (name == null) {
 
 		} else {

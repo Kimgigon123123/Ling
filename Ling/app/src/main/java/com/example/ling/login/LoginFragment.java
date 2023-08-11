@@ -77,6 +77,9 @@ public class LoginFragment extends Fragment {
 
 
 
+                            //((LoginActivity) getActivity()).find_changeTab(6);
+                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            startActivity(intent);
                         }
                     }
                 });

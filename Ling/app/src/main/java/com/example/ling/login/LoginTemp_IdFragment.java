@@ -25,8 +25,9 @@ public class LoginTemp_IdFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentLoginTempIdBinding.inflate(inflater, container, false);
         commonVar = new CommonVar();
-
-        binding.findUserId.setText("사용자 아이디:"+ commonVar.loginInfo.getId());
+        if(commonVar.loginInfo != null){
+         binding.findUserId.setText("사용자 아이디:"+ commonVar.loginInfo.getId());
+        }
 
         binding.btnReturnLogin.setOnClickListener(v->{
             Intent intent = new Intent(getActivity(), LoginActivity.class);

@@ -12,7 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ling.MainActivity;
+import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
+import com.example.ling.databinding.FragmentInsertMateBinding;
 import com.example.ling.databinding.FragmentJoinCompleteBinding;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.HashMap;
+
 import nl.dionsegijn.konfetti.models.Shape;
 import nl.dionsegijn.konfetti.models.Size;
 
@@ -21,7 +29,7 @@ import nl.dionsegijn.konfetti.models.Size;
 public class JoinCompleteFragment extends Fragment {
 
     FragmentJoinCompleteBinding binding;
-
+    CommonVar commonVar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,8 +49,9 @@ public class JoinCompleteFragment extends Fragment {
 
 
         } , 1000);
-
-
+        commonVar = new CommonVar();
+        binding.tvMid.setText(  ((JoinActivity)getActivity()).idMap.get("mid"));
+        binding.tvFid.setText(    ((JoinActivity)getActivity()).idMap.get("fid"));
         binding.btnGoHome.setOnClickListener(v->{
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);

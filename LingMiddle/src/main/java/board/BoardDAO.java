@@ -46,5 +46,8 @@ public class BoardDAO {
 		return sql.update("board.read", id);
 	}
 	
+	public int board_regist(BoardVO vo) {
+		return sql.insert("board.insert", vo);
+	}
 	
 }

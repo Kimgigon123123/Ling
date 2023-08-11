@@ -47,6 +47,11 @@ update LING_BOARD set readcnt= readcnt+1
 where id = #{id}
 </update>
 
+<!--신규 게시글 저장  -->
+<insert id="insert">
+insert into LING_BOARD(board_cd, title, content, writer)
+values (#{board_cd}, #{title}, #{content}, #{writer})
+</insert>
 
 
 </mapper>

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.ling.MainActivity;
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
@@ -48,11 +49,14 @@ public class InsertMateFragment extends Fragment {
                 conn.addParamMap("dto", new Gson().toJson(map));
                 conn.onExcute((isResult, data) -> {
                     if (isResult) {
+                        ((JoinActivity)getActivity()).idMap.put("mid",map.get("mid").toString());
+                        ((JoinActivity)getActivity()).idMap.put("fid", map.get("fid").toString());
                         HashMap<String, Object> receive = new Gson().fromJson(data,  new TypeToken<HashMap<String,Object>>(){}.getType());
                         if (receive.get("status").toString().equals("F")) {
-                            ((JoinActivity) getActivity()).changeTab(4);
+                            ((JoinActivity) getActivity()).changeTab(4 );
                         } else {
                             Toast.makeText(getActivity(), "아이디를 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
+                            binding.insertId.setText("");
                         }
 
                     }
