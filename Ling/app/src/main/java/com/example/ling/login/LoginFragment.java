@@ -66,7 +66,9 @@ public class LoginFragment extends Fragment {
                             Toast.makeText(getActivity(), "아이디 비번 확인", Toast.LENGTH_SHORT).show();
                         } else {
                             binding.chkLogin.setChecked(true);
-                            ((LoginActivity) getActivity()).find_changeTab(6);
+                            //((LoginActivity) getActivity()).find_changeTab(6);
+                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            startActivity(intent);
                         }
                     }
                 });

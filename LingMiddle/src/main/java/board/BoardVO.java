@@ -2,7 +2,7 @@ package board;
 
 public class BoardVO {
 	private String id, writer, board_cd, title, content, writedate, filename, filephth;
-	private int readcnt, root, step, indent, rid;
+	private int readcnt;
 	public String getId() {
 		return id;
 	}
@@ -57,29 +57,6 @@ public class BoardVO {
 	public void setReadcnt(int readcnt) {
 		this.readcnt = readcnt;
 	}
-	public int getRoot() {
-		return root;
-	}
-	public void setRoot(int root) {
-		this.root = root;
-	}
-	public int getStep() {
-		return step;
-	}
-	public void setStep(int step) {
-		this.step = step;
-	}
-	public int getIndent() {
-		return indent;
-	}
-	public void setIndent(int indent) {
-		this.indent = indent;
-	}
-	public int getRid() {
-		return rid;
-	}
-	public void setRid(int rid) {
-		this.rid = rid;
-	}
+	
 
 }

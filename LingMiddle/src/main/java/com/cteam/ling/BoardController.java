@@ -5,6 +5,8 @@ package com.cteam.ling;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.google.gson.Gson;
 
 
 import board.BoardDAO;
 import board.BoardVO;
+
 
 
 @RestController
@@ -80,5 +84,14 @@ public class BoardController {
 //		return new Gson().toJson(dao.notice_read(id));
 //	}
 	
+	//신규 공지글 등록 처리 요청
+	@RequestMapping(value="/board.insert", produces = "text/html;charset=utf-8")
+	public String register(BoardVO vo) {
+		
+		
+		dao.board_regist(vo);
+		
+		return new Gson().toJson(vo);
+	}
 
 }

@@ -14,17 +14,32 @@ import com.example.ling.MainActivity;
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
+import com.example.ling.databinding.FragmentLoginFindPwBinding;
 import com.example.ling.databinding.FragmentLoginfindIdBinding;
 import com.google.gson.Gson;
 
 
 public class Loginfind_IdFragment extends Fragment {
 
-    FragmentLoginfindIdBinding binding;
 
+    FragmentLoginfindIdBinding binding;
+    FragmentLoginFindPwBinding bindingPw;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if(((LoginActivity) getActivity()).isFindCheck){
+            binding = FragmentLoginfindIdBinding.inflate(inflater, container, false);
+            idUIMethod(inflater , container);
+            return binding.getRoot();   //binding = FragmentLoginfindIdBinding.inflate(inflater, container, false);
+        }else{
+            bindingPw = FragmentLoginFindPwBinding.inflate(inflater, container, false);
+            pwUIMethod(inflater , container);
+            return bindingPw.getRoot();// = FragmentLoginFindPwBinding.inflate(inflater, container, false);
+        }
+
+
+    }
+    public void idUIMethod(LayoutInflater inflater , ViewGroup container){
         binding = FragmentLoginfindIdBinding.inflate(inflater, container, false);
         binding.btnNext.setOnClickListener(v->{
 
@@ -49,12 +64,44 @@ public class Loginfind_IdFragment extends Fragment {
             });
 
         });
-
         binding.btnTextLogin.setOnClickListener(v->{
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);
 
         });
-        return binding.getRoot();
+
     }
+
+    public void pwUIMethod(LayoutInflater inflater , ViewGroup container){
+        bindingPw = FragmentLoginFindPwBinding.inflate(inflater, container,false);
+        bindingPw.btnNext.setOnClickListener(v->{
+            if(bindingPw.userId.getText().toString().length()<1
+                    || bindingPw.userEmail.getText().toString().length()<1){
+                Toast.makeText(getActivity(), "아이디와 이메일을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            CommonConn conn = new CommonConn(getActivity(), "resetPassword");
+            conn.addParamMap("id", bindingPw.userId.getText().toString());
+            conn.addParamMap("email", bindingPw.userEmail.getText().toString());
+            conn.onExcute((isResult, data) -> {
+                if(isResult){
+                    CommonVar.loginInfo = new Gson().fromJson(data, Ling_MemberVO.class);
+                    if(CommonVar.loginInfo==null){
+                        Toast.makeText(getActivity(), "사용자 아이디 또는 이메일 확인", Toast.LENGTH_SHORT).show();
+                    }else{
+
+                        ((LoginActivity) getActivity()).find_changeTab(3);
+                    }
+                }
+            });
+
+        });
+        bindingPw.btnTextLogin.setOnClickListener(v->{
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+
+        });
+    }
+
+
 }

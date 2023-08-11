@@ -21,10 +21,13 @@ import com.example.ling.databinding.FragmentJoinProfileBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import java.util.HashMap;
+
 public class JoinActivity extends AppCompatActivity {
+    int idx = 0;
 
      ActivityJoinBinding binding;
-
+    HashMap<String , String> idMap = new HashMap<>();
     TabLayout tabLayout;
     ViewPager2 viewPager;
     JoinTabPagerAdapter adapter;
@@ -63,7 +66,6 @@ public class JoinActivity extends AppCompatActivity {
 
     }
 
-    int idx = 0;
 
     @Override
     public void onBackPressed() {

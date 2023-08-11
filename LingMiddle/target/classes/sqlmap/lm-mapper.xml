@@ -34,4 +34,6 @@ select * from Ling_member where id = #{id}
 <insert id="matching">
 insert into couple (mid, fid) values (#{mid} , #{fid})
 </insert>
+
+
 </mapper>

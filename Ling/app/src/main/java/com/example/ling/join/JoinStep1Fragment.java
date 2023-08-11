@@ -30,8 +30,8 @@ public class JoinStep1Fragment extends Fragment {
         binding = FragmentJoinStep1Binding.inflate(inflater, container, false);
 
         binding.checkId.setOnClickListener(v->{
-            if(binding.joinId.getText().toString().length()<1){
-                Toast.makeText(getActivity(), "아이디를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            if(binding.joinId.getText().toString().length()<5){
+                Toast.makeText(getActivity(), "아이디를 최소 5글자 이상 입력해주세요.", Toast.LENGTH_SHORT).show();
                 return;
             }
             CommonConn conn = new CommonConn(getActivity(), "useridCheck");
@@ -52,10 +52,10 @@ public class JoinStep1Fragment extends Fragment {
         });
 
         binding.btnNext.setOnClickListener(v->{
-            if(binding.joinId.getText().toString().length()<1
-                    || binding.joinPw.getText().toString().length()<1
-                    || binding.checkPw.getText().toString().length()<1){
-                Toast.makeText(getActivity(), "아이디와 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            if(binding.joinId.getText().toString().length()<5
+                    || binding.joinPw.getText().toString().length()<8
+                    || binding.checkPw.getText().toString().length()<8){
+                Toast.makeText(getActivity(), "아이디와 비밀번호를 확인해주세요.(비밀번호는 최소8자 입니다.)", Toast.LENGTH_SHORT).show();
                 return;
             }
 
