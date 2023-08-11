@@ -31,7 +31,7 @@
             android:name=".board.Notice_contextActivity"
             android:exported="false" />
         <activity
-            android:name=".store.myinfo.AddressActivity"
+            android:name=".store.myinfo.DeliveryAddressActivity"
             android:exported="false" />
         <activity
             android:name=".store.myinfo.ReturnActivity"

@@ -4,15 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.example.ling.MainActivity;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityStorePaymentBinding;
-import com.example.ling.store.myinfo.AddressActivity;
+
 import com.example.ling.store.myinfo.StoreMyinfoVO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -133,8 +133,11 @@ public class StorePaymentActivity extends AppCompatActivity {
 
 
         binding.imgvIntoAdrress.setOnClickListener(v -> {
-            Intent intent = new Intent(StorePaymentActivity.this, AddressActivity.class);
+           String url = "http://192.168.0.36:8080/smart/member/join";
+            Uri webpage = Uri.parse(url);
+            Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
             startActivity(intent);
+            Toast.makeText(this, "주소입력창으로", Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -219,6 +222,8 @@ public class StorePaymentActivity extends AppCompatActivity {
 
         });
     }
+
+
 
 
 }
