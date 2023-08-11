@@ -20,32 +20,19 @@
         />
 
 
-    <devlight.io.library.ntb.NavigationTabBar
-        android:id="@+id/ntb_horizontal"
-        app:ntb_bg_color="#123456"
-        app:ntb_inactive_color="#654321"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:ntb_badged="true"
-        app:ntb_scaled="true"
-        app:ntb_tinted="true"
-        app:ntb_title_mode="all"
-        app:ntb_titled="true"
-        app:ntb_swiped="true"/>
 
-    <!--
-        +<com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:menu="@menu/home_btm_nav"
-        app:labelVisibilityMode="unlabeled"
-        android:background="@android:color/transparent"
-        app:itemBackground="@drawable/gradation"
-        android:fitsSystemWindows="true"
-        app:itemIconSize="40dp"
-        />
-    -->
+
+    +<com.google.android.material.bottomnavigation.BottomNavigationView
+    android:id="@+id/navigation"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:menu="@menu/home_btm_nav"
+    app:labelVisibilityMode="unlabeled"
+    android:background="@android:color/transparent"
+    app:itemBackground="@drawable/gradation"
+    android:fitsSystemWindows="true"
+    app:itemIconSize="40dp"
+    />
 
 
 </LinearLayout>
