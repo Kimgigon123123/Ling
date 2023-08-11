@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        Glide.with(this).load("http://192.168.0.28/Ling/Ling/images/photo/andimg.jpg").into(binding.imgvManProfile);
+        Glide.with(this).load("http://192.168.0.36/Ling/Ling/images/photo/andimg.jpg").into(binding.imgvManProfile);
         binding.imgvPhoto.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), PhotoActivity.class);
             startActivity(intent);

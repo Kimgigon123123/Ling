@@ -11,7 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.example.ling.R;
-import com.example.ling.chat.G;
+
 import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ActivityTourBinding;
 import com.example.ling.date.DateInfoVO;
