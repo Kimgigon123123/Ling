@@ -133,8 +133,8 @@ public class StorePaymentActivity extends AppCompatActivity {
 
 
         binding.imgvIntoAdrress.setOnClickListener(v -> {
-            Intent intent = new Intent(StorePaymentActivity.this, AddressActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(StorePaymentActivity.this, AddressActivity.class);
+//            startActivity(intent);
         });
     }
 
