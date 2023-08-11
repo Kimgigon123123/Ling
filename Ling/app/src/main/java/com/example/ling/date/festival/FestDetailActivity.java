@@ -24,6 +24,8 @@ public class FestDetailActivity extends AppCompatActivity {
 
 
         FestInfoFragment festInfoFragment = new FestInfoFragment();
+        NMapFragment nMapFragment = new NMapFragment();
+
         Bundle bundle = new Bundle();
         bundle.putInt("img", getIntent().getIntExtra("img", -1));
         bundle.putString("name", getIntent().getStringExtra("name"));
@@ -33,6 +35,10 @@ public class FestDetailActivity extends AppCompatActivity {
         bundle.putString("end", getIntent().getStringExtra("end"));
         festInfoFragment.setArguments(bundle);
 
+        bundle.putString("lan", getIntent().getStringExtra("lan"));
+        bundle.putString("lng", getIntent().getStringExtra("lng"));
+        nMapFragment.setArguments(bundle);
+
         getSupportFragmentManager().beginTransaction().replace(R.id.ln_festdetail, festInfoFragment).commit();
 
         binding.btnInfo.setOnClickListener(v -> {
@@ -41,7 +47,7 @@ public class FestDetailActivity extends AppCompatActivity {
         });
 
         binding.btnMap.setOnClickListener(v -> {
-            getSupportFragmentManager().beginTransaction().replace(R.id.ln_festdetail, new NMapFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.ln_festdetail, nMapFragment).commit();
         });
     }
 }

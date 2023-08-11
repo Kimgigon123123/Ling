@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.example.ling.R;
+import com.example.ling.chat.G;
 import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ActivityTourBinding;
 import com.example.ling.date.DateInfoVO;
@@ -53,10 +55,11 @@ public class TourActivity extends AppCompatActivity {
                     CommonConn conn = new CommonConn(TourActivity.this , "date_sigungu");
                     conn.addParamMap("sido" , binding.spnSido.getSelectedItem().toString());
                     conn.onExcute((isResult, data) -> {
-                        List<String> tempList = new Gson().fromJson(data , new TypeToken<List<String>>(){}.getType());
-                        sggAdapter = new ArrayAdapter(TourActivity.this , android.R.layout.simple_spinner_dropdown_item , tempList);
+                        List<String> sigungu = new Gson().fromJson(data , new TypeToken<List<String>>(){}.getType());
+                        sggAdapter = new ArrayAdapter(TourActivity.this , android.R.layout.simple_spinner_dropdown_item , sigungu);
                         sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         binding.spnSigungu.setAdapter(sggAdapter);
+                        //tourListLoc();
                     });
                 }
 //                else if (binding.spnSido.getSelectedItem().equals("서울특별시")) {
@@ -146,6 +149,17 @@ public class TourActivity extends AppCompatActivity {
         conn.onExcute((isResult, data) -> {
             ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>(){}.getType());
             binding.recvTouract.setAdapter(new TourAdapter(this, list));
+            binding.recvTouract.setLayoutManager(new GridLayoutManager(this, 2));
+        });
+    }
+
+    public void tourListLoc() {
+        CommonConn conn = new CommonConn(this, "date_tour_loc");
+        conn.addParamMap("date_sido", binding.spnSido.getSelectedItem().toString());
+        conn.addParamMap("date_sigungu", binding.spnSigungu.getSelectedItem().toString());
+        conn.onExcute((isResult, data) -> {
+            ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>(){}.getType());
+            binding.recvTouract.setAdapter(new TourLocAdapter(this, list));
             binding.recvTouract.setLayoutManager(new GridLayoutManager(this, 2));
         });
     }

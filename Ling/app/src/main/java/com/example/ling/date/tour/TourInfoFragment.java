@@ -24,9 +24,9 @@ public class TourInfoFragment extends Fragment {
         Bundle bundle = getArguments();
         if(bundle !=null){
             binding.tvName.setText(bundle.getString("name"));
-            binding.tvTime.setText("기간 : " + bundle.get("open") + " ~ " + bundle.getString("end"));
-            binding.tvAddress.setText("주소 : " + bundle.getString("address"));
-            binding.tvIntro.setText("행사내용 : " + bundle.getString("intro"));
+            binding.tvTime.setVisibility(View.GONE);
+            binding.tvAddress.setText(bundle.getString("address"));
+            binding.tvIntro.setText(bundle.getString("intro"));
         }
 
         return binding.getRoot();

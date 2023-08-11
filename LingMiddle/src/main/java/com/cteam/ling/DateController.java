@@ -95,4 +95,11 @@ public class DateController {
 		int result = sql.delete("date.delete_dibs", vo);
 	}
 	
+	// 여행목록_지역별
+	@RequestMapping(value="/date_tour_loc", produces = "text/html;charset=utf-8")
+	public String tourList_Loc(DateInfoVO vo) {
+		List<DateInfoVO> tourListLoc = sql.selectList("date.tourloc", vo);
+		return new Gson().toJson(tourListLoc);
+	}
+	
 }
