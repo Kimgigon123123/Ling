@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
@@ -43,11 +44,17 @@ public class CalendarAddActivity extends AppCompatActivity {
         });
 
         binding.tvCalendarSave.setOnClickListener(v -> {
-
-
             Intent intent = new Intent(CalendarAddActivity.this, CalendarActivity.class);
-            insert();
-            startActivity(intent);
+            if(binding.edtCalendarTitle.getText().toString().length()==0) {
+                Toast.makeText(getApplicationContext(), "일정의 제목을 입력해주세요.", Toast.LENGTH_LONG).show();
+            }else if(binding.tvCalendarSche.getText().toString().length()==0){
+                Toast.makeText(getApplicationContext(), "날짜를 선택해주세요.", Toast.LENGTH_LONG).show();
+            }else{
+                insert();
+                startActivity(intent);
+            }
+
+
 
         });
 
@@ -91,6 +98,7 @@ public class CalendarAddActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                String text = spinner.getSelectedItem().toString();
 
             }
 
@@ -100,7 +108,7 @@ public class CalendarAddActivity extends AppCompatActivity {
             }
         });
 
-//        String text = spinner.getSelectedItem().toString();
+
 
 
         binding.imgvCalendarCheck.setOnClickListener(new View.OnClickListener() {
@@ -124,15 +132,20 @@ public class CalendarAddActivity extends AppCompatActivity {
 
     public void insert(){
         CommonConn conn = new CommonConn(this, "sche_insert");
-//        conn.addParamMap("title", binding.edtCalendarTitle.getText().toString());
-        conn.addParamMap("date", binding.tvCalendarSche.getText().toString());
+
+        conn.addParamMap("sche_title", binding.edtCalendarTitle.getText().toString());
+        conn.addParamMap("sche_date", binding.tvCalendarSche.getText().toString());
+
+
         if(binding.pushCheck.isChecked()){
             binding.pushCheck.setChecked((1 != 0));
-            conn.addParamMap("check", binding.pushCheck.getText().toString());
+            conn.addParamMap("sche_notice", binding.pushCheck.getText().toString()+"");
         }
-//        conn.addParamMap("notice", binding.pushCheck.getText().toString());
+
+
         conn.onExcute((isResult, data) ->  {
 
         });
     }
+
 }

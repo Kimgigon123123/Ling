@@ -36,4 +36,14 @@ public class ScheduleController {
 		
 		return gson.toJson(result);
 	}
+	
+	@RequestMapping(value="/sche_delete",produces="text/html;charset=utf-8")
+	public String sche_Delete(ScheAddVO vo) {
+		
+		int result = dao.delete(vo);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(result);
+	}
 }

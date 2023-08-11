@@ -51,6 +51,7 @@ public class CalendarActivity extends AppCompatActivity {
 
 
 
+
         Date date = new Date();
         String time = mFormat.format(date);
         binding.tvCalendarNow.setText(time);
@@ -99,4 +100,7 @@ public class CalendarActivity extends AppCompatActivity {
             binding.recvSchedule.setLayoutManager(new LinearLayoutManager(this));
         });
     }
+
+
+
 }
