@@ -19,6 +19,8 @@ import com.example.ling.store.ChargeVO;
 import com.example.ling.store.CompleteDialog;
 import com.example.ling.store.StoreCoFragment;
 
+import retrofit2.http.HEAD;
+
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
@@ -63,10 +65,6 @@ public class MainActivity extends AppCompatActivity {
             }else if(item.getItemId() == R.id.tab_board){
                 fragment = boardFragment;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 //        navigationTabBar.postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
@@ -84,19 +82,13 @@ public class MainActivity extends AppCompatActivity {
 //
 //            return true;
 //        });
-=======
-=======
->>>>>>> parent of 6625ac9 (Merge remote-tracking branch 'origin/kym')
-=======
->>>>>>> parent of 6625ac9 (Merge remote-tracking branch 'origin/kym')
-=======
->>>>>>> parent of 6625ac9 (Merge remote-tracking branch 'origin/kym')
+
             }
             manager.beginTransaction().replace(R.id.container, fragment).commit();
 
             return true;
         });
->>>>>>> parent of 6625ac9 (Merge remote-tracking branch 'origin/kym')
+
 
         //store 반품처리
         Intent intent = getIntent();
