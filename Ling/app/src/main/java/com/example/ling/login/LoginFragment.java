@@ -69,9 +69,6 @@ public class LoginFragment extends Fragment {
                             Toast.makeText(getActivity(), "아이디 비번 확인", Toast.LENGTH_SHORT).show();
                         } else {
                             binding.chkLogin.setChecked(true);
-                            //((LoginActivity) getActivity()).find_changeTab(6);
-                            Intent intent = new Intent(getActivity(), MainActivity.class);
-                            startActivity(intent);
                             ((LoginActivity) getActivity()).find_changeTab(6);
 
                             //로그인하면 로그인한 id의 회원 정보를 store id 회원 정보로 넘기는 처리 (김기곤)
@@ -80,6 +77,9 @@ public class LoginFragment extends Fragment {
 
 
 
+                            //((LoginActivity) getActivity()).find_changeTab(6);
+                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            startActivity(intent);
                         }
                     }
                 });

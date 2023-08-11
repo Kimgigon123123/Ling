@@ -4,10 +4,8 @@
 <mapper namespace="sche">
 
 <select id="list" resultType="schedule.ScheAddVO">
-	select sche_no, sche_title, sche_date, trunc(to_date(sche_date)-sysdate) "d_day", 
-	rank() over (order by trunc(to_date(sche_date)-sysdate, 0) asc), sche_notice
-	from schedule
-where couple_num = 1
+	select sche_no,sche_title, sche_date, trunc(to_date(sche_date)-sysdate) "d_day", rank() over (order by trunc(to_date(sche_date)-sysdate, 0) asc),sche_notice from schedule
+where couple_num=1
 </select>
 
 
