@@ -45,6 +45,11 @@ public class HomeFragment extends Fragment {
 //            showDialog();
         });
 
+        binding.imgvLocTracking.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), LocTrackingActivity.class);
+            startActivity(intent);
+        });
+
 
 
 

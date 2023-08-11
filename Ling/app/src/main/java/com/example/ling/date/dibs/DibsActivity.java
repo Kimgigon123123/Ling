@@ -10,9 +10,11 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityDibsBinding;
 import com.example.ling.date.DateDibsVO;
 import com.example.ling.date.DateInfoVO;
+import com.google.android.gms.common.internal.service.Common;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -57,8 +59,10 @@ public class DibsActivity extends AppCompatActivity {
 
     public void selectAll() {
         CommonConn conn = new CommonConn(this, "date_alldibs");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
             ArrayList<DateDibsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateDibsVO>>(){}.getType());
+            Log.d("abc", "selectAll: " + list.size());
             binding.recvDibs.setAdapter(new DibsAdapter(this, list));
             binding.recvDibs.setLayoutManager(new GridLayoutManager(this, 2));
         });
@@ -66,6 +70,7 @@ public class DibsActivity extends AppCompatActivity {
 
     public void selectTour() {
         CommonConn conn = new CommonConn(this, "date_tourdibs");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
             ArrayList<DateDibsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateDibsVO>>(){}.getType());
             binding.recvDibs.setAdapter(new DibsAdapter(this, list));
@@ -75,6 +80,7 @@ public class DibsActivity extends AppCompatActivity {
 
     public void selectRestaurant() {
         CommonConn conn = new CommonConn(this, "date_restaurantdibs");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
             ArrayList<DateDibsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateDibsVO>>(){}.getType());
             binding.recvDibs.setAdapter(new DibsAdapter(this, list));
@@ -84,6 +90,7 @@ public class DibsActivity extends AppCompatActivity {
 
     public void selectFestival() {
         CommonConn conn = new CommonConn(this, "date_festivaldibs");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
             ArrayList<DateDibsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateDibsVO>>(){}.getType());
             binding.recvDibs.setAdapter(new DibsAdapter(this, list));

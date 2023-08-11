@@ -23,7 +23,7 @@ public class DateController {
 	// 시도
 	@RequestMapping(value = "/date_sido", produces = "text/html;charset=utf-8")
 	public String sido() {
-		List<DateInfoVO> sido = sql.selectList("date.sido");
+		List<String> sido = sql.selectList("date.sido");
 		return new Gson().toJson(sido);
 	}
 
@@ -36,29 +36,29 @@ public class DateController {
 
 	// 관심목록_전체
 	@RequestMapping(value = "/date_alldibs", produces = "text/html;charset=utf-8")
-	public String allDibs() {
-		List<DateDibsVO> alldibs = sql.selectList("date.alldibs");
+	public String allDibs(String id) {
+		List<DateDibsVO> alldibs = sql.selectList("date.alldibs", id);
 		return new Gson().toJson(alldibs);
 	}
 
 	// 관심목록_여행
 	@RequestMapping(value = "/date_tourdibs", produces = "text/html;charset=utf-8")
-	public String tourDibs() {
-		List<DateDibsVO> tourdibs = sql.selectList("date.tourdibs");
+	public String tourDibs(String id) {
+		List<DateDibsVO> tourdibs = sql.selectList("date.tourdibs", id);
 		return new Gson().toJson(tourdibs);
 	}
 
 	// 관심목록_맛집
 	@RequestMapping(value = "/date_restaurantdibs", produces = "text/html;charset=utf-8")
-	public String restaurantDibs() {
-		List<DateDibsVO> restaurantdibs = sql.selectList("date.restaurantdibs");
+	public String restaurantDibs(String id) {
+		List<DateDibsVO> restaurantdibs = sql.selectList("date.restaurantdibs", id);
 		return new Gson().toJson(restaurantdibs);
 	}
 
 	// 관심목록_축제
 	@RequestMapping(value = "/date_festivaldibs", produces = "text/html;charset=utf-8")
-	public String festivalDibs() {
-		List<DateDibsVO> festivaldibs = sql.selectList("date.festivaldibs");
+	public String festivalDibs(String id) {
+		List<DateDibsVO> festivaldibs = sql.selectList("date.festivaldibs", id);
 		return new Gson().toJson(festivaldibs);
 	}
 
@@ -88,4 +88,32 @@ public class DateController {
 	public void insert_dibs(DateDibsVO vo) {
 		int result = sql.insert("date.insert_dibs", vo);
 	}
+	
+	// 관심 목록 제거
+	@RequestMapping(value="/date_deletedibs", produces = "text/html;charset=utf-8")
+	public void delete_dibs(DateDibsVO vo) {
+		int result = sql.delete("date.delete_dibs", vo);
+	}
+	
+	// 여행 검색
+	@RequestMapping(value="/date_searchtour", produces="text/html;charset=utf-8")
+	public String searchTour(DateInfoVO vo) {
+		List<DateInfoVO> searchTour = sql.selectList("date.searchtour", vo);
+		return new Gson().toJson(searchTour);
+	}
+	
+	// 맛집 검색
+	@RequestMapping(value="/date_searchrest", produces="text/html;charset=utf-8")
+	public String searchRestaurant(DateInfoVO vo) {
+		List<DateInfoVO> searchRest = sql.selectList("date.searchrest", vo);
+		return new Gson().toJson(searchRest);
+	}
+	
+	// 축제 검색
+	@RequestMapping(value="/date_searchfest", produces="text/html;charset=utf-8")
+	public String searchFestival(DateInfoVO vo) {
+		List<DateInfoVO> searchFest = sql.selectList("date.searchfest", vo);
+		return new Gson().toJson(searchFest);
+		}
+	
 }
