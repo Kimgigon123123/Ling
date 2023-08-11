@@ -16,28 +16,28 @@
 <select id="alldibs" resultType="date.DateDibsVO">
 	select d.*, i.date_name, i.date_address
 	from date_dibs d, date_info i
-	where d.date_id = i.date_id
+	where d.date_id = i.date_id and d.id = #{id}
 </select>
 
 <!-- 관심목록_여행 -->
 <select id="tourdibs" resultType="date.DateDibsVO">
 	select d.*, i.date_name, i.date_address
 	from date_dibs d, date_info i
-	where d.date_id = i.date_id and d.date_category_code = 'TO'
+	where d.date_id = i.date_id and d.date_category_code = 'TO' and d.id = #{id}
 </select>
 
 <!-- 관심목록_맛집 -->
 <select id="restaurantdibs" resultType="date.DateDibsVO">
 	select d.*, i.date_name, i.date_address
 	from date_dibs d, date_info i
-	where d.date_id = i.date_id and d.date_category_code = 'RE'
+	where d.date_id = i.date_id and d.date_category_code = 'RE' and d.id = #{id}
 </select>
 
 <!-- 관심목록_축제 -->
 <select id="festivaldibs" resultType="date.DateDibsVO">
 	select d.*, i.date_name, i.date_address
 	from date_dibs d, date_info i
-	where d.date_id = i.date_id and d.date_category_code = 'FE'
+	where d.date_id = i.date_id and d.date_category_code = 'FE' and d.id = #{id}
 </select>
 
 <!-- 여행목록_전체 -->
@@ -57,12 +57,12 @@
 
 <!-- 관심 목록 추가 -->
 <insert id="insert_dibs">
-	insert into date_dibs values (seq_dibs.nextval, 'skawk', #{date_id}, #{date_category_code})
+	insert into date_dibs values (seq_dibs.nextval, #{id}, #{date_id}, #{date_category_code})
 </insert>
 
 <!-- 관심 목록 제거 -->
 <delete id="delete_dibs">
-	delete from date_dibs where dibs_id = #{dibs_id} and id = 'skawk'
+	delete from date_dibs where dibs_id = #{dibs_id} and id = #{id}
 </delete>
 
 

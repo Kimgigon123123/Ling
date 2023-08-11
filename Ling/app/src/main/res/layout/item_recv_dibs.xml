@@ -51,14 +51,17 @@
 
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/imgv_fav2"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_delete"
+                android:text="삭제"
+                android:textSize="10dp"
+                android:textColor="#746F6F"
+                android:layout_width="35dp"
+                android:layout_height="20dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="165dp"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/ic_fav2" />
+                android:background="@drawable/shape_btn"
+                android:layout_marginTop="230dp"
+                android:layout_marginRight="15dp"/>
 
         </RelativeLayout>
 
