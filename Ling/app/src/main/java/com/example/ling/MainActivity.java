@@ -35,13 +35,15 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     Fragment fragment;
     BoardFragment boardFragment = new BoardFragment();
+
+    FragmentManager manager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        FragmentManager manager = getSupportFragmentManager();
+        manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.container, new HomeFragment()).commit();
 
         initUI();
@@ -149,23 +151,23 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        navigationTabBar.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i < navigationTabBar.getModels().size(); i++) {
-                    final NavigationTabBar.Model model = navigationTabBar.getModels().get(i);
-                    navigationTabBar.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            model.showBadge();
-                        }
-                    }, i * 100);
-                }
-            }
-            manager.beginTransaction().replace(R.id.container, fragment).commit();
-
-            return true;
-        });
+//        navigationTabBar.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                for (int i = 0; i < navigationTabBar.getModels().size(); i++) {
+//                    final NavigationTabBar.Model model = navigationTabBar.getModels().get(i);
+//                    navigationTabBar.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            model.showBadge();
+//                        }
+//                    }, i * 100);
+//                }
+//            }
+//            manager.beginTransaction().replace(R.id.container, fragment).commit();
+//
+//            return true;
+//        });
 
         //store 반품처리
         Intent intent = getIntent();
