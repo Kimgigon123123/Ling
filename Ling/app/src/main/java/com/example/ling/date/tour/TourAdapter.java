@@ -11,14 +11,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.R;
+import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ItemRecvTouractBinding;
+import com.example.ling.date.DateInfoVO;
+
+import java.util.ArrayList;
 
 public class TourAdapter extends RecyclerView.Adapter<TourAdapter.ViewHolder> {
 
     Context context;
+    ArrayList<DateInfoVO> list;
 
-    public TourAdapter(Context context) {
+    public TourAdapter(Context context, ArrayList<DateInfoVO> list) {
         this.context = context;
+        this.list = list;
     }
 
     @NonNull
@@ -34,17 +40,23 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
         h.binding.imgvTour.setImageResource(R.drawable.ic_launcher_background);
         //h.binding.imgvFav2.setVisibility(View.INVISIBLE);
-        h.binding.tvTname.setText("이름");
-        h.binding.tvTaddr.setText("주소");
+        h.binding.tvTname.setText(list.get(i).getDate_name());
+        h.binding.tvTaddr.setText(list.get(i).getDate_address());
         h.binding.imgvFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if ((boolean) h.binding.imgvFav.getTag()) {
                     h.binding.imgvFav.setTag(false);
-                    h.binding.imgvFav.setImageResource(R.drawable.fav);
+                    h.binding.imgvFav.setImageResource(R.drawable.ic_fav);
+
                 } else {
                     h.binding.imgvFav.setTag(true);
-                    h.binding.imgvFav.setImageResource(R.drawable.fav2);
+                    h.binding.imgvFav.setImageResource(R.drawable.ic_fav2);
+//                    CommonConn conn = new CommonConn(context, "date_insertdibs");
+//                    conn.addParamMap("date_id", list.get(i).getDate_id());
+//                    conn.addParamMap("date_category_code", list.get(i).getDate_category_code());
+//                    conn.onExcute((isResult, data) -> {
+//                    });
                 }
             }
         });
@@ -82,7 +94,7 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 20;
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

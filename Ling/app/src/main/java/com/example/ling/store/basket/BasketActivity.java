@@ -3,17 +3,21 @@ package com.example.ling.store.basket;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityBasketBinding;
 import com.example.ling.databinding.ActivityChargeCashBinding;
 import com.example.ling.store.ChargeVO;
 import com.example.ling.store.CompleteDialog;
+import com.example.ling.store.StorePaymentActivity;
 import com.example.ling.store.StorePurchaseActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -37,16 +41,21 @@ public class BasketActivity extends AppCompatActivity {
 
 
         CommonConn conn = new CommonConn(this, "store_list_basket");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
 
             ArrayList<StoreBasketVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreBasketVO>>() {
             }.getType());
 
 
-            binding.recvBasket.setAdapter(new BasketAdapter(list,this ));
+            binding.recvBasket.setAdapter(new BasketAdapter(list,this  ));
             binding.recvBasket.setLayoutManager(new LinearLayoutManager(this));
 
         });
+
+        basket_total_price();
+
+
 
 
 
@@ -56,8 +65,32 @@ public class BasketActivity extends AppCompatActivity {
 
         binding.btnBuy.setOnClickListener(v -> {
             finish();
-                Intent intent = new Intent(this, StorePurchaseActivity.class);
-                startActivity(intent);
+
+
+            CommonConn conn2 = new CommonConn(this, "store_basket_totalprice");
+            conn2.addParamMap("id",CommonVar.loginInfo.getId());
+            conn2.onExcute((isResult, data) -> {
+
+                ArrayList<StoreBasketVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreBasketVO>>() {
+                }.getType());
+
+                    if(list.get(0)==null){
+                        Toast.makeText(this, "장바구니에 물건이 없습니다", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Intent intent = new Intent(this, StorePaymentActivity.class);
+                        intent.putExtra("basket_total_price",list.get(0).getTotal_price());
+                        startActivity(intent);
+                    }
+
+
+
+
+
+
+
+            });
+
+
 
         });
 
@@ -71,5 +104,32 @@ public class BasketActivity extends AppCompatActivity {
         binding.tvTotalPrice.setText(StaticBasket.tv_total_price+"원");
 
 
+    }
+
+    public void basket_total_price(){
+        CommonConn conn = new CommonConn(this, "store_basket_totalprice");
+        conn.addParamMap("id",CommonVar.loginInfo.getId());
+        conn.onExcute((isResult, data) -> {
+
+            ArrayList<StoreBasketVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreBasketVO>>() {
+            }.getType());
+                    if(list==null){
+
+                    }
+                    else{
+                        if(list.get(0)==null){
+                            binding.tvTotalPrice.setText("0원");
+
+                        }else{
+                                binding.tvTotalPrice.setText(list.get(0).getTotal_price()+"원");
+
+
+                        }
+
+
+                    }
+
+
+        });
     }
 }

@@ -11,14 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.R;
 import com.example.ling.databinding.ItemRecvRestactBinding;
+import com.example.ling.date.DateInfoVO;
 import com.example.ling.date.tour.TourDetailActivity;
+
+import java.util.ArrayList;
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.ViewHolder> {
 
     Context context;
+    ArrayList<DateInfoVO> list;
 
-    public RestaurantAdapter(Context context) {
+    public RestaurantAdapter(Context context, ArrayList<DateInfoVO> list) {
         this.context = context;
+        this.list = list;
     }
 
     @NonNull
@@ -33,17 +38,17 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
         h.binding.imgvRestaurant.setImageResource(R.drawable.ic_launcher_background);
-        h.binding.tvRname.setText("이름");
-        h.binding.tvRaddr.setText("주소");
+        h.binding.tvRname.setText(list.get(i).getDate_name());
+        h.binding.tvRaddr.setText(list.get(i).getDate_address());
         h.binding.imgvFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if((boolean) h.binding.imgvFav.getTag()){
                     h.binding.imgvFav.setTag(false);
-                    h.binding.imgvFav.setImageResource(R.drawable.fav);
+                    h.binding.imgvFav.setImageResource(R.drawable.ic_fav);
                 }else{
                     h.binding.imgvFav.setTag(true);
-                    h.binding.imgvFav.setImageResource(R.drawable.fav2);
+                    h.binding.imgvFav.setImageResource(R.drawable.ic_fav2);
                 }
             }
         });
@@ -64,7 +69,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return 20;
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

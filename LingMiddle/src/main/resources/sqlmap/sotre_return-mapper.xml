@@ -15,7 +15,7 @@ and order_num=#{order_num}
 </select>
 
 <update id = "store_return_money">
-update store_myinfo set money = money + #{money} where id='kgg'
+update store_myinfo set money = money + #{money} where id=#{id}
 </update>
 
 <delete id = "Store_buylist_delete">
@@ -32,7 +32,8 @@ where order_num = #{order_num}
 <select id="store_list_return" resultType="storereturn.StoreReturnListVO">
 select r.*,i.item_name,i.item_price,i.item_img,i.item_content from store_return_list r, store_item i
 where r.item_code = i.item_code
-and id = 'kgg'
+and id = #{id}
+
 </select>
 
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -14,6 +15,8 @@ import com.example.ling.databinding.ActivityMainBinding;
 import com.example.ling.date.DateFragment;
 import com.example.ling.chat.ChatFragment;
 import com.example.ling.home.HomeFragment;
+import com.example.ling.store.ChargeVO;
+import com.example.ling.store.CompleteDialog;
 import com.example.ling.store.StoreCoFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -69,6 +72,14 @@ public class MainActivity extends AppCompatActivity {
         String str = intent.getStringExtra("return");
         if(str !=null && str.equals("return")){
             getSupportFragmentManager().beginTransaction().replace(R.id.container,new StoreCoFragment()).commit();
+        }
+
+        //basket에서 구매
+        if(ChargeVO.isBuy==true){
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,new StoreCoFragment()).commit();
+            Dialog dialog = new CompleteDialog(this,"BuyComplete");
+            dialog.show();
+            ChargeVO.isBuy=false;
         }
 
 

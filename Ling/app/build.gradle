@@ -51,7 +51,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-
+    implementation 'com.applandeo:material-calendar-view:1.9.0-rc04'
     implementation group: 'com.github.bumptech.glide', name: 'glide', version: '4.11.0'
 
     // Gson API (Json을 바꿀 때 편함)
@@ -91,4 +91,9 @@ dependencies {
 
     //피카소 url주소로 이미지 불러오게 하기
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+//    //네이버 주소찾기
+//    implementation 'com.naver.maps.open:naver-map-android-sdk:4.0.4'
+
+
 }

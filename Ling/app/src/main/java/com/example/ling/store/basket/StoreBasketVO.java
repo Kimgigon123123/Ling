@@ -2,9 +2,17 @@ package com.example.ling.store.basket;
 
 public class StoreBasketVO {
 	
-	int item_code,item_price,basket_code,selection;
+	int item_code,item_price,basket_code,selection,total_price;
 
 	String category_code,item_name,item_img,id;
+
+	public int getTotal_price() {
+		return total_price;
+	}
+
+	public void setTotal_price(int total_price) {
+		this.total_price = total_price;
+	}
 
 	public int getItem_code() {
 		return item_code;
