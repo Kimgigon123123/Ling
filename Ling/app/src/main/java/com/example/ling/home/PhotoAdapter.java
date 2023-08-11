@@ -1,36 +1,64 @@
 package com.example.ling.home;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
+import com.bumptech.glide.Glide;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PhotoAdapter extends BaseAdapter {
 
 
-    @NonNull
+
+    private Context context;
+    private List<String> imagePaths;
+
+    public PhotoAdapter(Context context, List<String> imagePaths) {
+        this.context = context;
+        this.imagePaths = imagePaths;
+    }
+
+
+
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    public int getCount() {
+        return imagePaths.size();
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+    public Object getItem(int position) {
+        return imagePaths.get(position);
     }
 
     @Override
-    public int getItemCount() {
-        return 0;
+    public long getItemId(int position) {
+        return position;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-        public ViewHolder(@NonNull View itemView) {
-
-
-            super(itemView);
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ImageView imageView;
+        if (convertView == null) {
+            imageView = new ImageView(context);
+            imageView.setLayoutParams(new ViewGroup.LayoutParams(200, 200));
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        } else {
+            imageView = (ImageView) convertView;
         }
+
+        Glide.with(context)
+                .load(imagePaths.get(position))
+                .into(imageView);
+
+        return imageView;
     }
 }
