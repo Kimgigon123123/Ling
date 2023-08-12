@@ -1,7 +1,8 @@
 package com.example.ling.photo;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-<<<<<<< Updated upstream:Ling/app/src/main/java/com/example/ling/home/PhotoActivity.java
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -9,7 +10,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-=======
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,37 +18,44 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.Manifest;
->>>>>>> Stashed changes:Ling/app/src/main/java/com/example/ling/photo/PhotoActivity.java
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-<<<<<<< Updated upstream:Ling/app/src/main/java/com/example/ling/home/PhotoActivity.java
 import android.database.Cursor;
 import android.graphics.Color;
-=======
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
->>>>>>> Stashed changes:Ling/app/src/main/java/com/example/ling/photo/PhotoActivity.java
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 
+import com.bumptech.glide.Glide;
 import com.example.ling.calendar.CalendarAdapter;
 import com.example.ling.calendar.ScheAddVO;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.RetClient;
+import com.example.ling.common.RetInterface;
 import com.example.ling.databinding.ActivityPhotoBinding;
+import com.example.ling.home.CameraDialog;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
-<<<<<<< Updated upstream:Ling/app/src/main/java/com/example/ling/home/PhotoActivity.java
 import java.util.HashMap;
-=======
 import java.util.ArrayList;
 import java.util.List;
->>>>>>> Stashed changes:Ling/app/src/main/java/com/example/ling/photo/PhotoActivity.java
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PhotoActivity extends AppCompatActivity {
 
@@ -62,7 +69,7 @@ public class PhotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityPhotoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Glide.with(this).load("http://192.168.0.28/hanul/img//andimg.jpg").into(binding.imgvElbumCamera);
+//        Glide.with(this).load("http://192.168.0.28/hanul/img//andimg.jpg").into(binding.imgvElbumCamera);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
@@ -74,8 +81,6 @@ public class PhotoActivity extends AppCompatActivity {
             showCamera();
         });
 
-<<<<<<< Updated upstream:Ling/app/src/main/java/com/example/ling/home/PhotoActivity.java
-=======
 
 
         // D:\Ling\Ling\image\photo 경로에서 이미지들의 파일명을 가져와서 어댑터에 전달합니다.
@@ -88,7 +93,6 @@ public class PhotoActivity extends AppCompatActivity {
 
 
 
->>>>>>> Stashed changes:Ling/app/src/main/java/com/example/ling/photo/PhotoActivity.java
         binding.imgvFolderAdd.setOnClickListener(view -> {
             AlertDialog.Builder follder = new AlertDialog.Builder(this);
             follder.setTitle("생성할 폴더명");
@@ -109,7 +113,6 @@ public class PhotoActivity extends AppCompatActivity {
 
 
     }
-
 
     @Override
     protected void onStart() {
@@ -140,6 +143,9 @@ public class PhotoActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
     Uri camera_uri = null;
 
 
@@ -193,6 +199,7 @@ public class PhotoActivity extends AppCompatActivity {
 
         }
     }
+
 
 
     public String getRealPath(Uri contentUri){
@@ -284,8 +291,6 @@ public class PhotoActivity extends AppCompatActivity {
 
 
 
-<<<<<<< Updated upstream:Ling/app/src/main/java/com/example/ling/home/PhotoActivity.java
-=======
 //    private List<String> getImagePaths() {
 //        List<String> paths = new ArrayList<>();
 //        File folder = new File("D:\\Ling\\Ling\\image\\photo");
@@ -316,5 +321,4 @@ public class PhotoActivity extends AppCompatActivity {
 
         });
     }
->>>>>>> Stashed changes:Ling/app/src/main/java/com/example/ling/photo/PhotoActivity.java
 }
