@@ -51,6 +51,7 @@ public class BuylistAdapter extends RecyclerView.Adapter<BuylistAdapter.ViewHold
             intent.putExtra("price",list.get(i).getItem_price());
             intent.putExtra("item_code",list.get(i).getItem_code());
             intent.putExtra("item_img",list.get(i).getItem_img());
+            intent.putExtra("category_code",list.get(i).getCategory_code());
 
 
             context.startActivity(intent);
