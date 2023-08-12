@@ -42,7 +42,7 @@ public class ReturnAdapter extends RecyclerView.Adapter<ReturnAdapter.ViewHolder
         String imageUrl =list.get(i).item_img;
         Picasso.get()
                 .load(imageUrl)
-                .into(binding.imgvItem);
+                .into(h.binding.imgvItem);
 
         h.binding.imgvItem.setOnClickListener(v -> {
             Intent intent = new Intent(context, StorePurchaseActivity.class);

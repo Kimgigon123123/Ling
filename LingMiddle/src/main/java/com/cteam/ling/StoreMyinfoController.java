@@ -61,6 +61,7 @@ public class StoreMyinfoController {
 
 		Gson gson = new Gson();
 		return gson.toJson(result);
+		
 	}
 
 	// 찜목록 보기

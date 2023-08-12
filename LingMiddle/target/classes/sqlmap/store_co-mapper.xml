@@ -31,7 +31,7 @@ values (SEQ_order_num.NEXTVAL,#{item_code},#{category_code},1,#{id},#{purchase_c
 </insert>
 
 <select id="list_purchase" resultType="storeco.StorePurchaseListVO">
-select p.order_num,p.item_code,p.delivery_code,p.id,p.purchase_cnt,i.item_name,i.item_price,i.item_img,i.item_content
+select p.order_num,p.item_code,p.delivery_code,p.id,p.purchase_cnt,i.item_name,i.item_price,i.item_img,i.item_content,i.category_code
 from store_purchase_product p , store_item i
 where p.item_code = i.item_code
 and id = #{id}
