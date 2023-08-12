@@ -136,6 +136,11 @@ public class StorePaymentActivity extends AppCompatActivity {
 //            Intent intent = new Intent(StorePaymentActivity.this, AddressActivity.class);
 //            startActivity(intent);
         });
+
+        binding.btnCharge.setOnClickListener(v->{
+            Intent intent = new Intent(StorePaymentActivity.this,ChargeCashActivity.class);
+            startActivity(intent);
+        });
     }
 
     protected void onRestart() {

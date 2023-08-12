@@ -59,7 +59,7 @@ public class ZZimAdapter extends RecyclerView.Adapter<ZZimAdapter.ViewHolder> {
             context.startActivity(intent);
         });
 
-        h.binding.imgvCancle.setOnClickListener(v->{
+        h.binding.imgvCancel.setOnClickListener(v->{
             CommonConn conn = new CommonConn(context , "store_delete_zzim");
             conn.addParamMap("item_code" , list.get(i).getItem_code());
 
