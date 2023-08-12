@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.ling.calendar.CalendarActivity;
 import com.example.ling.databinding.FragmentHomeBinding;
-import com.example.ling.photo.PhotoActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
