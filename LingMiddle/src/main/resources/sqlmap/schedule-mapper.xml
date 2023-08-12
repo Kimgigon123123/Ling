@@ -4,14 +4,21 @@
 <mapper namespace="sche">
 
 <select id="list" resultType="schedule.ScheAddVO">
+<<<<<<< Updated upstream
 	select sche_no,sche_title, sche_date, trunc(to_date(sche_date)-sysdate) "d_day", rank() over (order by trunc(to_date(sche_date)-sysdate, 0) asc),sche_notice from schedule
 where couple_num=1
+=======
+	select s.sche_no, s.sche_title, s.sche_date, trunc(to_date(s.sche_date)-sysdate) "d_day", 
+	rank() over (order by trunc(to_date(s.sche_date)-sysdate, 0) asc), s.sche_notice from schedule s, couple c 
+where s.couple_num = c.couple_num
+and s.couple_num = #{couple_num}
+>>>>>>> Stashed changes
 </select>
 
 
 <insert id="insert">
 	insert into schedule(couple_num, id, sche_title, sche_date, sche_notice, sche_typecode)
-	values(1, 'kgg', #{sche_title}, #{sche_date}, #{sche_notice}, 'travel')
+	values(select c.couple_num, c.couple_id, s.sche_title, s.sche_date, s.sche_notice, )
 </insert>
 
 <delete id="delete">
