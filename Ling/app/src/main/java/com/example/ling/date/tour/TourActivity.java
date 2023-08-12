@@ -2,6 +2,7 @@ package com.example.ling.date.tour;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 

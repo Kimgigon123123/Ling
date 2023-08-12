@@ -41,13 +41,6 @@
                 android:src="@drawable/fav"
                 android:layout_width="50dp"
                 android:layout_height="50dp"/>
-            <ImageView
-                android:id="@+id/imgv_fav2"
-                android:layout_marginTop="180dp"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/fav2"
-                android:layout_width="50dp"
-                android:layout_height="50dp"/>
 
             <TextView
                 android:id="@+id/tv_faddr"
