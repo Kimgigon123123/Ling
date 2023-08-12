@@ -1,10 +1,7 @@
-package com.example.ling.home;
+package com.example.ling.photo;
 
-import static java.security.AccessController.getContext;
-
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
+<<<<<<< Updated upstream:Ling/app/src/main/java/com/example/ling/home/PhotoActivity.java
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -12,42 +9,46 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+=======
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import android.Manifest;
+>>>>>>> Stashed changes:Ling/app/src/main/java/com/example/ling/photo/PhotoActivity.java
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+<<<<<<< Updated upstream:Ling/app/src/main/java/com/example/ling/home/PhotoActivity.java
 import android.database.Cursor;
 import android.graphics.Color;
+=======
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+>>>>>>> Stashed changes:Ling/app/src/main/java/com/example/ling/photo/PhotoActivity.java
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.BaseAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.example.ling.MainActivity;
-import com.example.ling.R;
-import com.example.ling.common.RetClient;
-import com.example.ling.common.RetInterface;
+import com.example.ling.calendar.CalendarAdapter;
+import com.example.ling.calendar.ScheAddVO;
+import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ActivityPhotoBinding;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
+<<<<<<< Updated upstream:Ling/app/src/main/java/com/example/ling/home/PhotoActivity.java
 import java.util.HashMap;
-
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+=======
+import java.util.ArrayList;
+import java.util.List;
+>>>>>>> Stashed changes:Ling/app/src/main/java/com/example/ling/photo/PhotoActivity.java
 
 public class PhotoActivity extends AppCompatActivity {
 
@@ -73,6 +74,21 @@ public class PhotoActivity extends AppCompatActivity {
             showCamera();
         });
 
+<<<<<<< Updated upstream:Ling/app/src/main/java/com/example/ling/home/PhotoActivity.java
+=======
+
+
+        // D:\Ling\Ling\image\photo 경로에서 이미지들의 파일명을 가져와서 어댑터에 전달합니다.
+//        PhotoAdapter adapter = new PhotoAdapter(this, getImagePaths());
+//        binding.gridGallery.setAdapter(adapter);
+
+
+
+
+
+
+
+>>>>>>> Stashed changes:Ling/app/src/main/java/com/example/ling/photo/PhotoActivity.java
         binding.imgvFolderAdd.setOnClickListener(view -> {
             AlertDialog.Builder follder = new AlertDialog.Builder(this);
             follder.setTitle("생성할 폴더명");
@@ -268,4 +284,37 @@ public class PhotoActivity extends AppCompatActivity {
 
 
 
+<<<<<<< Updated upstream:Ling/app/src/main/java/com/example/ling/home/PhotoActivity.java
+=======
+//    private List<String> getImagePaths() {
+//        List<String> paths = new ArrayList<>();
+//        File folder = new File("D:\\Ling\\Ling\\image\\photo");
+//        if (folder.exists() && folder.isDirectory()) {
+//            File[] files = folder.listFiles();
+//            if (files != null) {
+//                for (File file : files) {
+//                    if (file.isFile()) {
+//                        paths.add(file.getAbsolutePath());
+//                    }
+//                }
+//            }
+//        }
+//        return paths;
+//    }
+
+
+    public void select(){
+        CommonConn conn = new CommonConn(this, "photo_list");
+        conn.onExcute((isResult, data) -> {
+            ArrayList<PhotoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<ScheAddVO>>(){}.getType());
+            Log.d("리스트사이즈", "select: " + list.size());
+            //if문으로 list의 사이즈처리 해야함.
+            PhotoAdapter adapter = new PhotoAdapter(this, list);
+
+            binding.gridGallery.setAdapter(adapter);
+            binding.gridGallery.setLayoutManager(new GridLayoutManager(this, 3));
+
+        });
+    }
+>>>>>>> Stashed changes:Ling/app/src/main/java/com/example/ling/photo/PhotoActivity.java
 }
