@@ -13,7 +13,13 @@ import com.example.ling.join.JoinStep1Fragment;
 
 public class LoginTabPagerAdapter extends FragmentStateAdapter {
 
-    Fragment[] fragments = new Fragment[] {new LoginFragment(), new LoginFindFragment(), new Loginfind_IdFragment(), new LoginTemp_IdFragment(), new LoginFind_PwFragment(), new LoginTemp_PwFragment(), new JoinCompleteFragment() };
+    Fragment[] findFragments = new Fragment[] {
+            new LoginFragment(),
+            new LoginFindFragment(),
+            new Loginfind_IdFragment(),
+            new LoginTemp_PwFragment()};
+
+
 
     public LoginTabPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
@@ -21,11 +27,12 @@ public class LoginTabPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return fragments[position];
+            return findFragments[position];
+
     }
 
     @Override
     public int getItemCount() {
-        return fragments.length;
+        return findFragments.length;
     }
 }

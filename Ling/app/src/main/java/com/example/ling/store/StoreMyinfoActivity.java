@@ -9,6 +9,8 @@ import android.widget.LinearLayout;
 
 import com.example.ling.R;
 import com.example.ling.databinding.ActivityStoreMyinfoBinding;
+import com.example.ling.store.myinfo.BuylistAdapter;
+import com.example.ling.store.myinfo.ReturnAdapter;
 
 public class StoreMyinfoActivity extends AppCompatActivity {
 
@@ -23,11 +25,11 @@ public class StoreMyinfoActivity extends AppCompatActivity {
         binding.recvZzim.setAdapter(new ZZimAdapter(this));
         binding.recvZzim.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
 
-        binding.recvBuylist.setAdapter(new BuylistAdapter(this));
-        binding.recvBuylist.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+//        binding.recvBuylist.setAdapter(new BuylistAdapter(this));
+//        binding.recvBuylist.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
 
-        binding.recvReturn.setAdapter(new ReturnAdapter(this));
-        binding.recvReturn.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+//        binding.recvReturn.setAdapter(new ReturnAdapter(this));
+//        binding.recvReturn.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
 
 
         binding.imgvBefore.setOnClickListener(v -> {

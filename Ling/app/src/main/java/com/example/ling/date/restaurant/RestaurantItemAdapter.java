@@ -14,10 +14,12 @@ import com.example.ling.databinding.ItemRecvRestaurantBinding;
 public class RestaurantItemAdapter extends RecyclerView.Adapter<RestaurantItemAdapter.ViewHolder> {
 
     ItemRecvRestaurantBinding binding;
+    int[] restImg;
     Context context;
 
-    public RestaurantItemAdapter(Context context) {
+    public RestaurantItemAdapter(Context context, int[] restImg) {
         this.context = context;
+        this.restImg = restImg;
     }
 
     @NonNull
@@ -30,8 +32,7 @@ public class RestaurantItemAdapter extends RecyclerView.Adapter<RestaurantItemAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        h.binding.imgvRestaurant.setImageResource(R.drawable.ic_launcher_background);
-        h.binding.tvRestaurant.setText("맛집");
+        h.binding.imgvRestaurant.setImageResource(restImg[i]);
         h.binding.cvRestaurant.setOnClickListener(v -> {
             Intent intent = new Intent(context, RestaurantActivity.class);
             context.startActivity(intent);

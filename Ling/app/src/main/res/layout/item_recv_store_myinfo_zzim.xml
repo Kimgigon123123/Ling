@@ -5,10 +5,12 @@
     android:layout_margin="3dp">
 
     <ImageView
+        android:scaleType="centerCrop"
+        android:id="@+id/imgv_item"
         android:background="@color/white"
-        android:src="@drawable/ic_launcher_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:src="@drawable/gwangju"
+        android:layout_width="115dp"
+        android:layout_height="115dp"/>
 
     <ImageView
         android:id="@+id/imgv_cancle"

@@ -38,6 +38,62 @@
 
 
 
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recv_basket"
+        android:layout_weight="9"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:background="@color/gray"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:text="합계: "
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_total_price"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:layout_weight="1"
+                android:text="1000"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+
+            <Button
+                android:id="@+id/btn_buy"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1dp"
+                app:backgroundTint="@color/purchace"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="2"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:text="구매하기"
+                style="@style/Widget.MaterialComponents.Button"
+                />
+
+
+        </LinearLayout>
 
 
 

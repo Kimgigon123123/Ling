@@ -16,6 +16,7 @@
         android:src="@drawable/logo_ling"/>
 
     <TextView
+        android:id="@+id/find_user_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="등록된 아이디: "

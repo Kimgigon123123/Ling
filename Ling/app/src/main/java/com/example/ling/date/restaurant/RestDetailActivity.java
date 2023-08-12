@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import com.example.ling.R;
 import com.example.ling.databinding.ActivityRestDetailBinding;
+import com.example.ling.date.InfoFragment;
+import com.example.ling.date.NMapFragment;
 
 public class RestDetailActivity extends AppCompatActivity {
 
@@ -17,11 +19,18 @@ public class RestDetailActivity extends AppCompatActivity {
         binding = ActivityRestDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.tvInfo.setText("[INFO]");
-        binding.tvDetailinfo.setText("상세정보가 나온다");
-
         binding.imgvBefore.setOnClickListener(v -> {
             finish();
+        });
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.ln_restdetail, new InfoFragment()).commit();
+
+        binding.btnInfo.setOnClickListener(v -> {
+            getSupportFragmentManager().beginTransaction().replace(R.id.ln_restdetail, new InfoFragment()).commit();
+        });
+
+        binding.btnMap.setOnClickListener(v -> {
+            getSupportFragmentManager().beginTransaction().replace(R.id.ln_restdetail, new NMapFragment()).commit();
         });
     }
 }

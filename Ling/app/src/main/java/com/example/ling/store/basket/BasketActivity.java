@@ -1,16 +1,75 @@
 package com.example.ling.store.basket;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.ling.R;
+import com.example.ling.common.CommonConn;
+import com.example.ling.databinding.ActivityBasketBinding;
+import com.example.ling.databinding.ActivityChargeCashBinding;
+import com.example.ling.store.ChargeVO;
+import com.example.ling.store.CompleteDialog;
+import com.example.ling.store.StorePurchaseActivity;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
+
+
 
 public class BasketActivity extends AppCompatActivity {
+
+    ActivityBasketBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_basket);
+        binding= ActivityBasketBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+//        binding.recvBasket.setAdapter(new BasketAdapter(this));
+//        binding.recvBasket.setLayoutManager(new LinearLayoutManager(this));
+
+
+        CommonConn conn = new CommonConn(this, "store_list_basket");
+        conn.onExcute((isResult, data) -> {
+
+            ArrayList<StoreBasketVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreBasketVO>>() {
+            }.getType());
+
+
+            binding.recvBasket.setAdapter(new BasketAdapter(list,this ));
+            binding.recvBasket.setLayoutManager(new LinearLayoutManager(this));
+
+        });
+
+
+
+        binding.imgvBefore.setOnClickListener(v->{
+            finish();
+        });
+
+        binding.btnBuy.setOnClickListener(v -> {
+            finish();
+                Intent intent = new Intent(this, StorePurchaseActivity.class);
+                startActivity(intent);
+
+        });
+
+
+
+    }
+
+    protected void onRestart() {
+        super.onRestart();
+
+        binding.tvTotalPrice.setText(StaticBasket.tv_total_price+"원");
+
+
     }
 }

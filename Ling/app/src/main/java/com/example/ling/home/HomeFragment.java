@@ -38,6 +38,11 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
+        binding.imgvLocTracking.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), LocTrackingActivity.class);
+            startActivity(intent);
+        });
+
         Date date = new Date();
 
         String date1 = mFormat.format(date); //날짜1

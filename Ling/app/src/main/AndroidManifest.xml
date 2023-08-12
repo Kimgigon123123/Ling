@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 실제로 권한 요청 -->
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 카메라의 경우 안드로이드 하드웨어이기때문에 아래 속성을 추가해줘야한다. required가 false인 경우 미사용도 가능 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- naver map 위치 권한 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- naver map 위치 권한 -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -18,21 +20,38 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/linglogo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/linglogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ling"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".board.Board_New_ContentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".board.Notice_contextActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.myinfo.AddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.myinfo.ReturnActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.myinfo.DeliveryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.LocTrackingActivity"
+            android:exported="false" />
+        <activity
             android:name=".store.basket.BasketActivity"
             android:exported="false" />
         <activity
             android:name=".store.myinfo.ZZimActivity"
-             android:exported="false" />
-
-            <activity
+            android:exported="false" />
+        <activity
             android:name=".calendar.CalendarFuncActivity"
             android:exported="false" />
         <activity
@@ -44,20 +63,16 @@
         <activity
             android:name=".home.RowChatActivity"
             android:exported="false" />
-
-            <activity
+        <activity
             android:name=".chat.RowChatActivity"
             android:exported="false" />
-
         <activity
             android:name=".home.PhotoActivity"
             android:exported="false" />
         <activity
             android:name=".date.festival.FestivalActivity"
             android:exported="false" />
-
-
-            <activity
+        <activity
             android:name=".calendar.CalendarActivity"
             android:exported="false" />
         <activity
@@ -103,10 +118,11 @@
             android:name=".SplashActivity"
             android:exported="false" />
         <activity
-            android:name=".join.JoinActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|adjustPan" />
+        <activity
+            android:name=".join.JoinActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -114,6 +130,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="76jk23p3nm" />
     </application>
 
 </manifest>

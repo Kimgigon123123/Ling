@@ -14,10 +14,12 @@ import com.example.ling.databinding.ItemRecvFestivalBinding;
 public class FestivalItemAdapter extends RecyclerView.Adapter<FestivalItemAdapter.ViewHolder> {
 
     ItemRecvFestivalBinding binding;
+    int[] festImg;
     Context context;
 
-    public FestivalItemAdapter(Context context) {
+    public FestivalItemAdapter(Context context, int[] festImg) {
         this.context = context;
+        this.festImg = festImg;
     }
 
     @NonNull
@@ -30,8 +32,7 @@ public class FestivalItemAdapter extends RecyclerView.Adapter<FestivalItemAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        h.binding.imgvFestival.setImageResource(R.drawable.ic_launcher_background);
-        h.binding.tvFestival.setText("축제");
+        h.binding.imgvFestival.setImageResource(festImg[i]);
         h.binding.cvFestival.setOnClickListener(v -> {
             Intent intent = new Intent(context, FestivalActivity.class);
             context.startActivity(intent);

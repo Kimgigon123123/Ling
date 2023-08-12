@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store_myinfo">
+
+<select id="myinfo" resultType="storemyinfo.StoreMyinfoVO">
+select s.money,m.name 
+from store_myinfo s, ling_member m
+where s.id = m.id
+and m.id='kgg'
+</select>
+
+<update id="charge">
+update store_myinfo
+set money= money+#{edtMoney}
+where id='kgg'
+</update>
+
+<update id="buy">
+update store_myinfo
+set money= money-#{totalPrice}
+where id='kgg'
+</update>
+
+<insert id="insert_zzim">
+INSERT INTO store_zzim_product (ITEM_CODE, CATEGORY_CODE, ID) 
+VALUES (#{item_code}, 'Co', 'kgg')
+
+</insert>
+
+<select id="zzimlist" resultType="storemyinfo.StoreZzimListVO">
+select  z.*,i.*
+from store_zzim_product z, store_item i
+where z.item_code=i.item_code
+and id='kgg'
+</select>
+
+<delete id="deletezzim">
+delete from store_zzim_product
+where item_code=#{item_code}
+</delete>
+
+<update id="bank">
+update store_myinfo set bank = #{bank} where id='kgg'
+</update>
+
+<select id="select_bank" resultType="storemyinfo.StoreMyinfoVO">
+select nvl(bank,'') as bank from store_myinfo where id = 'kgg'
+</select>
+
+
+</mapper>

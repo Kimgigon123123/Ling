@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store_return">
+<select id="store_return" resultType="storereturn.StoreReturnVO">
+select order_num,p.item_code,
+case  when delivery_code=1 then '배송중'
+     when delivery_code=2 then '배송완료'
+     when delivery_code=3 then '배송취소'
+     end as delivery_state
+,
+id,item_price,(purchase_cnt*item_price) as total_price,purchase_cnt,item_name,item_img
+from store_purchase_product p , store_item i
+where p.item_code = i.item_code
+and order_num=#{order_num}
+</select>
+
+<update id = "store_return_money">
+update store_myinfo set money = money + #{money} where id='kgg'
+</update>
+
+<delete id = "Store_buylist_delete">
+delete store_purchase_product where order_num=#{order_num}
+</delete>
+
+<insert id ="store_insert_return">
+insert into store_return_list (order_num, item_code, category_code, delivery_code, id, purchase_cnt)
+select order_num, item_code, category_code, 3, id, purchase_cnt
+from store_purchase_product
+where order_num = #{order_num}
+</insert>
+
+<select id="store_list_return" resultType="storereturn.StoreReturnListVO">
+select r.*,i.item_name,i.item_price,i.item_img,i.item_content from store_return_list r, store_item i
+where r.item_code = i.item_code
+and id = 'kgg'
+</select>
+
+
+</mapper>

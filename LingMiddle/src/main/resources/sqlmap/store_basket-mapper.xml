@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store_basket">
+
+<select id ="list_basket" resultType="storebasket.StoreBasketVO">
+select i.item_code,i.category_code,item_name,item_price,item_img,basket_code,id,selection
+from store_basket b , store_item i
+where i.item_code=b.item_code
+and id='kgg'
+order by basket_code desc
+</select>
+
+<insert id= "insert_basket">
+insert into store_basket 
+values (seq_basket.nextval,#{item_code},#{category_code},'kgg',#{selection})
+</insert>
+
+<update id="up_selection">
+update store_basket set selection=selection+1 
+where id='kgg'
+and basket_code = #{basket_code}
+</update>
+
+<update id="down_selection">
+update store_basket set selection=selection-1
+where id='kgg'
+and basket_code = #{basket_code}
+</update>
+
+</mapper>

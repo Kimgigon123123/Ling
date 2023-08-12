@@ -1,6 +1,7 @@
 package com.example.ling.store;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -9,9 +10,15 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.ling.R;
+import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ActivityChargeCashBinding;
 import com.example.ling.databinding.ActivityStorePaymentBinding;
+import com.example.ling.store.myinfo.StoreMyinfoVO;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
 
 public class ChargeCashActivity extends AppCompatActivity {
 
@@ -29,8 +36,15 @@ public class ChargeCashActivity extends AppCompatActivity {
         binding= ActivityChargeCashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        select();
 
+        CommonConn conn = new CommonConn(this , "store_select_bank");
 
+        conn.onExcute((isResult, data) -> {
+
+            ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data,new TypeToken<ArrayList<StoreMyinfoVO>>(){}.getType());
+            binding.tvBankInfo.setText(list.get(0).getBank());
+        });
 
 
 
@@ -42,7 +56,6 @@ public class ChargeCashActivity extends AppCompatActivity {
 
         binding.btnInputBank.setOnClickListener(v -> {
 
-
             BottomSheetDialog bottomSheetDialog = new BankDialog(this);
             bottomSheetDialog.show();
 
@@ -52,23 +65,52 @@ public class ChargeCashActivity extends AppCompatActivity {
         binding.btnCharge.setOnClickListener(v -> {
 
 
-                Dialog dialog = new CompleteDialog(this,"charge");
-                dialog.show();
+            try {
+                CommonConn conn2 = new CommonConn(this,"store_charge");
+                conn2.addParamMap("edtMoney",Integer.parseInt(binding.edtMoney.getText().toString()));//"0" -> 0 : ""->
+                conn2.onExcute((isResult, data) -> {
 
 
-//            if(intoPayment.equals("intoPayment")){
+                });
 
-//            }
-//            else if(intoMyinfo.equals("intoMyinfo")){
-////                Intent intent2 = new Intent(ChargeCashActivity.this,StoreMyinfoActivity.class);
-////                startActivity(intent2);
-//                Dialog dialog = new CompleteDialog(this,"intoMyinfo");
-//                dialog.show();
-//
-//            }
+                ChargeVO.isCharge=true;
+                finish();
 
+
+            }catch (Exception e){
+                Toast.makeText(this, "다시입력", Toast.LENGTH_SHORT).show();
+            }
 
         });
 
     }
+
+
+    public void select(){
+        CommonConn conn = new CommonConn(this,"store_myinfo");
+        conn.onExcute((isResult, data) -> {
+
+            ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMyinfoVO>>() {}.getType());
+
+
+            binding.tvMoney.setText(list.get(0).getMoney()+"");
+
+
+        });
+    }
+
+    protected void onRestart() {
+        super.onRestart();
+
+        CommonConn conn = new CommonConn(this , "store_select_bank");
+
+        conn.onExcute((isResult, data) -> {
+
+            ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data,new TypeToken<ArrayList<StoreMyinfoVO>>(){}.getType());
+            binding.tvBankInfo.setText(list.get(0).getBank());
+        });
+    }
+
+
+
 }

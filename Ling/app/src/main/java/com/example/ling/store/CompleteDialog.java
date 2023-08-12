@@ -11,7 +11,10 @@ import androidx.annotation.NonNull;
 import com.example.ling.R;
 import com.example.ling.store.myinfo.StoreMyinfoActivity;
 
+
+
 public class CompleteDialog extends Dialog {
+
 
 
     public CompleteDialog(@NonNull Context context,String str) {
@@ -20,7 +23,10 @@ public class CompleteDialog extends Dialog {
         super(context);
         setContentView(R.layout.dialog_complete);
 
-
+        if(str.equals("BuyComplete")){
+            TextView tv = findViewById(R.id.tv);
+            tv.setText("구매완료~~~!!!");
+        }
 
         if(str.equals("regi")){
             TextView tv = findViewById(R.id.tv);
@@ -47,13 +53,19 @@ public class CompleteDialog extends Dialog {
                 dismiss();
             }
             else if(str.equals("charge")){
-                Intent intent = new Intent(context, StorePaymentActivity.class);
-                context.startActivity(intent);
+//                Intent intent = new Intent(context, StorePaymentActivity.class);
+//                context.startActivity(intent);
                 dismiss();
             }
             else if(str.equals("intoMyinfo")){
                 Intent intent = new Intent(context, StoreMyinfoActivity.class);
                 context.startActivity(intent);
+                dismiss();
+            }
+
+            else if(str.equals("BuyComplete")){
+//                Intent intent = new Intent(context, StorePaymentActivity.class);
+//                context.startActivity(intent);
                 dismiss();
             }
 

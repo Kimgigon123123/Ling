@@ -43,8 +43,8 @@ public class CommonConn {
         if(context != null && dialog == null){
             dialog = new ProgressDialog(context);
             dialog.setProgress(ProgressDialog.STYLE_SPINNER);
-            dialog.setTitle("Common");
-            dialog.setMessage("로딩중입니다.");
+            dialog.setTitle("LING...");
+            dialog.setMessage("로딩중입니다. 잠시만 기다려 주세요");
             dialog.setCancelable(false);
             dialog.show();
         }
