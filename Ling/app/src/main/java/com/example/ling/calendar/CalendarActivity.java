@@ -90,7 +90,6 @@ public class CalendarActivity extends AppCompatActivity {
 
     public void select(){
         CommonConn conn = new CommonConn(this, "sche_list");
-        conn.addParamMap("couple_num", "1");
         conn.onExcute((isResult, data) -> {
             ArrayList<ScheAddVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<ScheAddVO>>(){}.getType());
             Log.d("리스트사이즈", "select: " + list.size());

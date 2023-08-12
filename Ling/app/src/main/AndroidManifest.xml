@@ -65,7 +65,7 @@
             android:name=".chat.RowChatActivity"
             android:exported="false" />
         <activity
-            android:name=".photo.PhotoActivity"
+            android:name=".home.PhotoActivity"
             android:exported="false" />
         <activity
             android:name=".date.festival.FestivalActivity"
