@@ -97,14 +97,14 @@
 
             <TextView
 
-                android:id="@+id/tv_insert_request"
+                android:id="@+id/tv_insert_detail_add"
                 android:layout_width="330dp"
                 android:layout_height="wrap_content"
-                android:text="요청사항을 입력해주세요."/>
+                android:text="상세주소를 입력해주세요."/>
 
             <ImageView
-                android:id="@+id/imgv_into_request"
-                android:layout_alignRight="@+id/tv_insert_request"
+                android:id="@+id/imgv_into_detail_add"
+                android:layout_alignRight="@+id/tv_insert_detail_add"
                 android:src="@drawable/next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
