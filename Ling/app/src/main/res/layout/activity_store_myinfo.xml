@@ -185,7 +185,7 @@
             android:id="@+id/recv_zzim"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:layout_height="100dp"/>
+            android:layout_height="115dp"/>
 
     </LinearLayout>
 
@@ -239,7 +239,7 @@
                 android:id="@+id/recv_buylist"
                 android:layout_margin="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"/>
+                android:layout_height="115dp"/>
 
         </LinearLayout>
 
@@ -292,7 +292,7 @@
                 android:id="@+id/recv_return"
                 android:layout_margin="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"/>
+                android:layout_height="115dp"/>
 
         </LinearLayout>
 
