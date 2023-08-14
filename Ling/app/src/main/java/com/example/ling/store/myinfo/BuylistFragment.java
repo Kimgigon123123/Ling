@@ -46,7 +46,7 @@ public class BuylistFragment extends Fragment {
             ArrayList<StorePurchaseListVO> buylistlist = new Gson().fromJson(data, new TypeToken<ArrayList<StorePurchaseListVO>>() {
             }.getType());
             binding.recvBuylist.setAdapter(new BuylistAdapter(buylistlist, getContext()));
-            binding.recvBuylist.setLayoutManager(new GridLayoutManager(getContext(),3));
+            binding.recvBuylist.setLayoutManager(new GridLayoutManager(getContext(),4));
         });
     }
 }

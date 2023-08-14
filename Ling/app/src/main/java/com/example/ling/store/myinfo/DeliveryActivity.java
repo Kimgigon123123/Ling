@@ -45,11 +45,25 @@ public class DeliveryActivity extends AppCompatActivity {
                     .load(imageUrl)
                     .into(binding.imgvItem);
 
+            if (list.get(0).getDelivery_state().equals("배송완료")){
+                binding.imgvDeliveryState1.setBackgroundColor(getColor(R.color.gray));
+               binding.tvDeliveryState1.setTextColor(getColor(R.color.black));
+               binding.imgvDeliveryState2.setBackgroundColor(getColor(R.color.green));
+               binding.tvDeliveryState2.setTextColor(getColor(R.color.green));
+            }else if (list.get(0).getDelivery_state().equals("배송취소")){
+                binding.imgvDeliveryState1.setBackgroundColor(getColor(R.color.gray));
+                binding.tvDeliveryState1.setTextColor(getColor(R.color.black));
+                binding.imgvDeliveryState3.setBackgroundColor(getColor(R.color.red));
+                binding.tvDeliveryState3.setTextColor(getColor(R.color.red));
+                binding.tvDeliveryState.setTextColor(getColor(R.color.red));
+            }
+
             binding.tvName.setText(list.get(0).getItem_name()+"");
             binding.tvCnt.setText(list.get(0).getPurchase_cnt()+"개");
             binding.tvDeliveryState.setText(list.get(0).getDelivery_state());
             binding.tvPrice.setText(list.get(0).getItem_price()+"원");
             binding.tvTotalPrice.setText("총 "+list.get(0).getTotal_price()+"원");
+            binding.tvAddress.setText(list.get(0).getAddress());
         });
 
 

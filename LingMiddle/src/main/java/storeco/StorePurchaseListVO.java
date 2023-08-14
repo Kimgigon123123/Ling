@@ -4,7 +4,15 @@ public class StorePurchaseListVO {
 
 	
 	int order_num,delivery_code,purchase_cnt,item_price;
-	String id,item_name,item_img,item_content,item_code,category_code;
+	String id,item_name,item_img,item_content,item_code,category_code,address;
+	
+	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	public int getOrder_num() {
 		return order_num;
 	}

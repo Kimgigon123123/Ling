@@ -243,9 +243,18 @@ public class StorePaymentActivity extends AppCompatActivity {
                 conn2.addParamMap("item_code" , item_code);
                 conn2.addParamMap("purchase_cnt" , cnt);
                 conn2.addParamMap("category_code" ,category_code);
-                conn2.onExcute((isResult2, data2) -> {
+                if(binding.tvInsertDetailAdd.getText().toString().equals("상세주소를 입력해주세요.")){
+                    conn2.addParamMap("address",binding.tvInsertAdrress.getText().toString());
+                    conn2.onExcute((isResult2, data2) -> {
 
-                });
+                    });
+                }else{
+                    conn2.addParamMap("address",binding.tvInsertAdrress.getText().toString()+" "+binding.tvInsertDetailAdd.getText().toString());
+                    conn2.onExcute((isResult2, data2) -> {
+
+                    });
+                }
+
 
             });
 
@@ -258,17 +267,41 @@ public class StorePaymentActivity extends AppCompatActivity {
 
             CommonConn conn2 = new CommonConn(this , "insert_basket_buylist");
             conn2.addParamMap("id",CommonVar.loginInfo.getId());
-            conn2.onExcute((isResult2,data2)->{
+            if(binding.tvInsertDetailAdd.getText().toString().equals("상세주소를 입력해주세요.")){
+                conn2.addParamMap("address",binding.tvInsertAdrress.getText().toString());
+                conn2.onExcute((isResult2, data2) -> {
+
+                    CommonConn conn3 = new CommonConn(this , "delete_basket_buylist");
+                    conn3.addParamMap("id",CommonVar.loginInfo.getId());
+                    conn3.onExcute((isResult3,data3)->{
 
 
-                CommonConn conn3 = new CommonConn(this , "delete_basket_buylist");
-                conn3.addParamMap("id",CommonVar.loginInfo.getId());
-                conn3.onExcute((isResult3,data3)->{
-
+                    });
 
                 });
+            }else{
+                conn2.addParamMap("address",binding.tvInsertAdrress.getText().toString()+" "+binding.tvInsertDetailAdd.getText().toString());
+                conn2.onExcute((isResult2, data2) -> {
 
-            });
+                    CommonConn conn3 = new CommonConn(this , "delete_basket_buylist");
+                    conn3.addParamMap("id",CommonVar.loginInfo.getId());
+                    conn3.onExcute((isResult3,data3)->{
+                    });
+
+                });
+            }
+
+//            conn2.onExcute((isResult2,data2)->{
+
+
+//                CommonConn conn3 = new CommonConn(this , "delete_basket_buylist");
+//                conn3.addParamMap("id",CommonVar.loginInfo.getId());
+//                conn3.onExcute((isResult3,data3)->{
+
+
+//                });
+
+//            });
 
         });
     }

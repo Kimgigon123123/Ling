@@ -26,7 +26,7 @@ select * from store_item order by popular desc
 
 <insert id="insert_purchase">
 insert into store_purchase_product
-values (SEQ_order_num.NEXTVAL,#{item_code},#{category_code},1,#{id},#{purchase_cnt})
+values (SEQ_order_num.NEXTVAL,#{item_code},#{category_code},1,#{id},#{purchase_cnt},#{address})
 
 </insert>
 

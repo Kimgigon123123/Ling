@@ -16,7 +16,13 @@ public int getTotal_price() {
 public void setTotal_price(int total_price) {
 	this.total_price = total_price;
 }
-String item_code,item_name,delivery_state,item_img,id;
+String item_code,item_name,delivery_state,item_img,id,address;
+public String getAddress() {
+	return address;
+}
+public void setAddress(String address) {
+	this.address = address;
+}
 public String getItem_img() {
 	return item_img;
 }

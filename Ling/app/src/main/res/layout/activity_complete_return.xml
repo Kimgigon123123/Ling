@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".store.myinfo.DeliveryActivity"
+    tools:context=".store.myinfo.CompleteReturnActivity"
     android:orientation="vertical">
 
     <LinearLayout
@@ -31,7 +31,7 @@
             android:id="@+id/tv_date"
             android:textColor="#fff"
 
-            android:text="구매정보"
+            android:text="환불정보"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -63,7 +63,7 @@
 
                 <TextView
                     android:id="@+id/imgv_delivery_state1"
-                    android:background="#4CAF50"
+                    android:background="@color/gray"
                     android:text="　"
                     android:layout_width="50dp"
                     android:layout_height="50dp"/>
@@ -74,7 +74,7 @@
 
             <TextView
                 android:id="@+id/tv_delivery_state1"
-                android:textColor="#4CAF50"
+                android:textColor="@color/black"
                 android:layout_gravity="center"
                 android:text="배송중"
                 android:layout_width="wrap_content"
@@ -152,7 +152,7 @@
 
                 <TextView
                     android:id="@+id/imgv_delivery_state3"
-                    android:background="@color/gray"
+                    android:background="@color/red"
                     android:text="　"
                     android:layout_width="50dp"
                     android:layout_height="50dp"/>
@@ -163,7 +163,7 @@
 
             <TextView
                 android:id="@+id/tv_delivery_state3"
-                android:textColor="@color/black"
+                android:textColor="@color/red"
                 android:layout_gravity="center"
                 android:text="배송취소"
                 android:layout_width="wrap_content"
@@ -183,7 +183,7 @@
         android:layout_marginTop="30dp"
         android:layout_gravity="center"
         android:textSize="30dp"
-        android:text="상품 정보"
+        android:text="환불 정보"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -214,8 +214,8 @@
                 android:layout_marginBottom="5dp"
                 android:textStyle="bold"
                 android:textSize="24dp"
-                android:textColor="@color/green"
-                android:text="배송중"
+                android:textColor="@color/red"
+                android:text="배송취소"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -290,76 +290,7 @@
     </LinearLayout>
 
 
-    <!-- 하단 버튼 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_return"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="반품신청"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_margin="12dp"
-            android:backgroundTint="@color/basket"/>
-
-        <Button
-            android:backgroundTint="@color/purchace"
-            android:id="@+id/btn_buy"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="다시구매"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_margin="12dp"/>
-    </LinearLayout>
-
-<!--    <LinearLayout-->
-<!--        android:layout_weight="1"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_gravity="bottom"-->
-<!--        android:background="#2222"-->
-<!--        android:orientation="horizontal">-->
-
-<!--        <Button-->
-<!--            android:id="@+id/btn_return"-->
-<!--            app:strokeColor="@color/black"-->
-<!--            app:strokeWidth="1dp"-->
-<!--            app:backgroundTint="@color/basket"-->
-<!--            android:layout_marginLeft="10dp"-->
-<!--            android:layout_marginRight="10dp"-->
-<!--            android:layout_weight="1.5"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="70dp"-->
-<!--            android:text="반품신청"-->
-<!--            style="@style/Widget.MaterialComponents.Button"-->
-<!--            />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/btn_buy"-->
-<!--            app:strokeColor="@color/black"-->
-<!--            app:strokeWidth="1dp"-->
-<!--            app:backgroundTint="@color/purchace"-->
-<!--            android:layout_marginLeft="10dp"-->
-<!--            android:layout_marginRight="10dp"-->
-<!--            android:layout_weight="2"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="70dp"-->
-<!--            android:text="다시구매"-->
-<!--            style="@style/Widget.MaterialComponents.Button"-->
-<!--            />-->
-
-
-<!--    </LinearLayout>-->
 
 
 
