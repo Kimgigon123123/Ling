@@ -6,25 +6,46 @@
 select i.item_code,i.category_code,item_name,item_price,item_img,basket_code,id,selection
 from store_basket b , store_item i
 where i.item_code=b.item_code
-and id='kgg'
+and id=#{id}
 order by basket_code desc
 </select>
 
 <insert id= "insert_basket">
 insert into store_basket 
-values (seq_basket.nextval,#{item_code},#{category_code},'kgg',#{selection})
+values (seq_basket.nextval,#{item_code},#{category_code},#{id},#{selection})
 </insert>
 
 <update id="up_selection">
 update store_basket set selection=selection+1 
-where id='kgg'
+where id=#{id}
 and basket_code = #{basket_code}
 </update>
 
 <update id="down_selection">
 update store_basket set selection=selection-1
-where id='kgg'
+where id=#{id}
 and basket_code = #{basket_code}
 </update>
+
+<select id ="basket_totalprice" resultType="storebasket.StoreBasketVO">
+select sum(i.item_price*selection) as total_price
+from store_basket b,store_item i where b.item_code = i.item_code and id=#{id}
+</select>
+
+<delete id="delete_basket">
+delete store_basket where id=#{id} and basket_code=#{basket_code}
+</delete>
+
+<insert id = "insert_basket_buylist">
+INSERT INTO store_purchase_product (order_num, item_code, category_code, delivery_code, id, purchase_cnt)
+SELECT seq_order_num.nextval, b.item_code, i.category_code, 1, b.id, b.selection as purchase_cnt
+FROM store_basket b, store_item i
+WHERE i.item_code = b.item_code
+and id=#{id}
+</insert>
+
+<delete id="delete_basket_buylist">
+delete store_basket where id=#{id}
+</delete>
 
 </mapper>

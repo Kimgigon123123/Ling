@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -14,20 +15,26 @@ import com.example.ling.databinding.ActivityMainBinding;
 import com.example.ling.date.DateFragment;
 import com.example.ling.chat.ChatFragment;
 import com.example.ling.home.HomeFragment;
+import com.example.ling.store.ChargeVO;
+import com.example.ling.store.CompleteDialog;
 import com.example.ling.store.StoreCoFragment;
+
+import retrofit2.http.HEAD;
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
     Fragment fragment;
     BoardFragment boardFragment = new BoardFragment();
+
+    FragmentManager manager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        FragmentManager manager = getSupportFragmentManager();
+        manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.container, new HomeFragment()).commit();
         binding.navigation.setSelectedItemId(R.id.tab_home);
         binding.navigation.setBackground(null);
@@ -58,17 +65,44 @@ public class MainActivity extends AppCompatActivity {
             }else if(item.getItemId() == R.id.tab_board){
                 fragment = boardFragment;
 
+//        navigationTabBar.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                for (int i = 0; i < navigationTabBar.getModels().size(); i++) {
+//                    final NavigationTabBar.Model model = navigationTabBar.getModels().get(i);
+//                    navigationTabBar.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            model.showBadge();
+//                        }
+//                    }, i * 100);
+//                }
+//            }
+//            manager.beginTransaction().replace(R.id.container, fragment).commit();
+//
+//            return true;
+//        });
+
             }
             manager.beginTransaction().replace(R.id.container, fragment).commit();
 
             return true;
         });
 
+
         //store 반품처리
         Intent intent = getIntent();
         String str = intent.getStringExtra("return");
         if(str !=null && str.equals("return")){
             getSupportFragmentManager().beginTransaction().replace(R.id.container,new StoreCoFragment()).commit();
+        }
+
+        //basket에서 구매
+        if(ChargeVO.isBuy==true){
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,new StoreCoFragment()).commit();
+            Dialog dialog = new CompleteDialog(this,"BuyComplete");
+            dialog.show();
+            ChargeVO.isBuy=false;
         }
 
 

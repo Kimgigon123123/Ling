@@ -20,21 +20,27 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/linglogo"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/linglogo"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ling"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".store.myinfo.DetailAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.myinfo.AddressSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.myinfo.AddressMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".board.Board_New_ContentActivity"
             android:exported="false" />
         <activity
             android:name=".board.Notice_contextActivity"
-            android:exported="false" />
-        <activity
-            android:name=".store.myinfo.AddressActivity"
             android:exported="false" />
         <activity
             android:name=".store.myinfo.ReturnActivity"

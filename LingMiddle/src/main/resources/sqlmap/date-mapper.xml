@@ -2,12 +2,85 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="date">
 
-<select id="sido" resultType="date.DateInfoVO">
+<!-- 시도 -->
+<select id="sido" resultType="String">
 	select distinct date_sido from date_info order by (case when date_sido like '%시' then 1 end)
 </select>
-	
-<select id="sigungu" resultType="date.DateInfoVO">
-	select distinct date_sigungu from date_info where date_sido like '%'||#{date_sido}||'%'
+
+<!-- 시군구 -->
+<select id="sigungu" resultType="String">
+	select distinct date_sigungu from date_info where date_sido = #{date_sido} order by date_sigungu
 </select> 
+
+<!-- 관심목록_전체 -->
+<select id="alldibs" resultType="date.DateDibsVO">
+	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng
+	from date_dibs d, date_info i
+	where d.date_id = i.date_id and d.id = #{id}
+</select>
+
+<!-- 관심목록_여행 -->
+<select id="tourdibs" resultType="date.DateDibsVO">
+	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng
+	from date_dibs d, date_info i
+	where d.date_id = i.date_id and d.date_category_code = 'TO' and d.id = #{id}
+</select>
+
+<!-- 관심목록_맛집 -->
+<select id="restaurantdibs" resultType="date.DateDibsVO">
+	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng
+	from date_dibs d, date_info i
+	where d.date_id = i.date_id and d.date_category_code = 'RE' and d.id = #{id}
+</select>
+
+<!-- 관심목록_축제 -->
+<select id="festivaldibs" resultType="date.DateDibsVO">
+	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng
+	from date_dibs d, date_info i
+	where d.date_id = i.date_id and d.date_category_code = 'FE' and d.id = #{id}
+</select>
+
+<!-- 여행목록_전체 -->
+<select id="tour" resultType="date.DateInfoVO">
+	select * from date_info where date_category_code = 'TO'
+</select>
+
+<!-- 맛집목록_전체 -->
+<select id="restaurant" resultType="date.DateInfoVO">
+	select * from date_info where date_category_code = 'RE'
+</select>
+
+<!-- 축제목록_전체 -->
+<select id="festival" resultType="date.DateInfoVO">
+	select * from date_info where date_category_code = 'FE'
+</select>
+
+<!-- 관심 목록 추가 -->
+<insert id="insert_dibs">
+	insert into date_dibs values (seq_dibs.nextval, #{id}, #{date_id}, #{date_category_code})
+</insert>
+
+<!-- 관심 목록 제거 -->
+<delete id="delete_dibs">
+	delete from date_dibs where dibs_id = #{dibs_id} and id = #{id}
+</delete>
+
+<!-- 여행 검색 -->
+<select id="searchtour" resultType="date.DateInfoVO">
+	select * from date_info where (date_name like null or date_address like null or 
+	date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'TO'
+</select> 
+
+<!-- 맛집 검색 -->
+<select id="searchrest" resultType="date.DateInfoVO">
+	select * from date_info where (date_name like null or date_address like null or 
+	date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'RE'
+</select>
+
+<!-- 축제 검색 -->
+<select id="searchfest" resultType="date.DateInfoVO">
+	select * from date_info where (date_name like null or date_address like null or 
+	date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'FE'
+</select>
 
 </mapper>

@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.example.ling.MainActivity;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityReturnBinding;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -64,6 +65,7 @@ public class ReturnActivity extends AppCompatActivity {
             Toast.makeText(this, "환불처리되었습니다.", Toast.LENGTH_SHORT).show();
 
             CommonConn conn2 = new CommonConn(this , "store_return_money");
+            conn2.addParamMap("id", CommonVar.loginInfo.getId());
             conn2.addParamMap("money" , return_money);
             conn2.onExcute((isResult, data) -> {
 

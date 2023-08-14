@@ -42,7 +42,7 @@ public class BuylistAdapter extends RecyclerView.Adapter<BuylistAdapter.ViewHold
         String imageUrl =list.get(i).getItem_img();
         Picasso.get()
                 .load(imageUrl)
-                .into(binding.imgvItem);
+                .into(h.binding.imgvItem);
 
         h.binding.imgvItem.setOnClickListener(v -> {
             Intent intent = new Intent(context,StorePurchaseActivity.class);
@@ -51,6 +51,8 @@ public class BuylistAdapter extends RecyclerView.Adapter<BuylistAdapter.ViewHold
             intent.putExtra("price",list.get(i).getItem_price());
             intent.putExtra("item_code",list.get(i).getItem_code());
             intent.putExtra("item_img",list.get(i).getItem_img());
+            intent.putExtra("category_code",list.get(i).getCategory_code());
+            Toast.makeText(context, list.get(i).getItem_code(), Toast.LENGTH_SHORT).show();
 
 
             context.startActivity(intent);

@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.ling.MainActivity;
 import com.example.ling.R;
+import com.example.ling.Static;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentLoginBinding;
@@ -62,10 +63,20 @@ public class LoginFragment extends Fragment {
                 conn.onExcute((isResult, data) -> {
                     if (isResult) {
                         CommonVar.loginInfo = new Gson().fromJson(data, Ling_MemberVO.class);
+
+
                         if (CommonVar.loginInfo == null) {
                             Toast.makeText(getActivity(), "아이디 비번 확인", Toast.LENGTH_SHORT).show();
                         } else {
                             binding.chkLogin.setChecked(true);
+                            ((LoginActivity) getActivity()).find_changeTab(6);
+
+                            //로그인하면 로그인한 id의 회원 정보를 store id 회원 정보로 넘기는 처리 (김기곤)
+
+
+
+
+
                             //((LoginActivity) getActivity()).find_changeTab(6);
                             Intent intent = new Intent(getActivity(), MainActivity.class);
                             startActivity(intent);
