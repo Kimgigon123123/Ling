@@ -2,7 +2,7 @@ package storemyinfo;
 
 public class StoreZzimListVO {
 	String item_code, category_code, id , item_name, item_img, item_content;
-	int item_price;
+	int item_price,zzim_code;
 	public String getItem_code() {
 		return item_code;
 	}
@@ -17,6 +17,12 @@ public class StoreZzimListVO {
 	}
 	public String getId() {
 		return id;
+	}
+	public int getZzim_code() {
+		return zzim_code;
+	}
+	public void setZzim_code(int zzim_code) {
+		this.zzim_code = zzim_code;
 	}
 	public void setId(String id) {
 		this.id = id;

@@ -35,7 +35,7 @@ public class LocTrackingActivity extends AppCompatActivity implements OnMapReady
         setContentView(binding.getRoot());
 
         binding.imgvHome.setOnClickListener(v -> {
-            Intent intent = new Intent(LocTrackingActivity.this, MainActivity.class);
+            Intent intent = new Intent(LocTrackingActivity.this, HomeFragment.class);
             startActivity(intent);
         });
 

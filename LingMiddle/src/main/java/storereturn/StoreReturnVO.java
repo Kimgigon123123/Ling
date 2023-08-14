@@ -1,10 +1,16 @@
 package storereturn;
 
 public class StoreReturnVO {
- int order_num,item_price,purchase_cnt,total_price;
+ int order_num,item_price,purchase_cnt,total_price,return_code;
  
  
- public int getTotal_price() {
+ public int getReturn_code() {
+	return return_code;
+}
+public void setReturn_code(int return_code) {
+	this.return_code = return_code;
+}
+public int getTotal_price() {
 	return total_price;
 }
 public void setTotal_price(int total_price) {

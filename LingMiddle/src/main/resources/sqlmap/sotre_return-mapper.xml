@@ -15,7 +15,7 @@ and order_num=#{order_num}
 </select>
 
 <update id = "store_return_money">
-update store_myinfo set money = money + #{money} where id='kgg'
+update store_myinfo set money = money + #{money} where id=#{id}
 </update>
 
 <delete id = "Store_buylist_delete">
@@ -23,8 +23,8 @@ delete store_purchase_product where order_num=#{order_num}
 </delete>
 
 <insert id ="store_insert_return">
-insert into store_return_list (order_num, item_code, category_code, delivery_code, id, purchase_cnt)
-select order_num, item_code, category_code, 3, id, purchase_cnt
+insert into store_return_list (return_code,order_num, item_code, category_code, delivery_code, id, purchase_cnt)
+select seq_return.nextval,order_num, item_code, category_code, 3, id, purchase_cnt
 from store_purchase_product
 where order_num = #{order_num}
 </insert>
@@ -32,7 +32,9 @@ where order_num = #{order_num}
 <select id="store_list_return" resultType="storereturn.StoreReturnListVO">
 select r.*,i.item_name,i.item_price,i.item_img,i.item_content from store_return_list r, store_item i
 where r.item_code = i.item_code
-and id = 'kgg'
+and id = #{id}
+order by return_code desc
+
 </select>
 
 

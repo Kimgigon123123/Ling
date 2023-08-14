@@ -6,6 +6,8 @@ import android.opengl.EGLExt;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -13,6 +15,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -49,6 +53,8 @@ public class StoreCoFragment extends Fragment {
                 android.R.layout.simple_spinner_dropdown_item
         );
         binding.spinner.setAdapter(adapter);
+
+
         binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -74,6 +80,101 @@ public class StoreCoFragment extends Fragment {
 
 
 
+        binding.imgvMenu.setOnClickListener(v -> {
+            binding.fl.setVisibility(View.VISIBLE);
+//            ll.setBackgroundColor(Color.BLACK);
+            // 왼쪽에서 나타나는 애니메이션 설정
+            Animation slideIn = new TranslateAnimation(-binding.fl.getWidth(), 0, 0, 0);
+            slideIn.setDuration(300); // 애니메이션 지속 시간 (밀리초)
+            binding.fl.startAnimation(slideIn);
+        });
+
+        binding.tvNavClose.setOnClickListener(v -> {
+            // 왼쪽으로 사라지는 애니메이션 설정
+            Animation slideOut = new TranslateAnimation(0, -binding.fl.getWidth(), 0, 0);
+            slideOut.setDuration(300); // 애니메이션 지속 시간 (밀리초)
+            binding.fl.startAnimation(slideOut);
+            binding.fl.setVisibility(View.GONE);
+
+
+        });
+
+        binding.fl.setOnClickListener(v->{
+
+        });
+
+        binding.tvAll.setOnClickListener(v -> {
+
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+            StoreCoFragment storeCoFragment = new StoreCoFragment();
+            transaction.replace(R.id.container, storeCoFragment);
+
+            transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
+            transaction.commit();
+
+
+        });
+
+        binding.tvDr.setOnClickListener(v->{
+
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+            StoreDrFragment storeDrFragment = new StoreDrFragment(); // StoreDrFragment로 교체할 프래그먼트 인스턴스 생성
+            transaction.replace(R.id.container, storeDrFragment);
+
+            transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
+            transaction.commit();
+
+
+        });
+
+
+
+        binding.tvRing.setOnClickListener(v->{
+
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+            StoreRiFragment storeRiFragment= new StoreRiFragment(); // StoreDrFragment로 교체할 프래그먼트 인스턴스 생성
+            transaction.replace(R.id.container, storeRiFragment);
+
+            transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
+            transaction.commit();
+
+
+        });
+
+
+
+        binding.tvGift.setOnClickListener(v->{
+
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+            StoreGiFragment storeGiFragment= new StoreGiFragment(); // StoreDrFragment로 교체할 프래그먼트 인스턴스 생성
+            transaction.replace(R.id.container, storeGiFragment);
+
+            transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
+            transaction.commit();
+
+
+        });
+
+        binding.tvEtc.setOnClickListener(v->{
+
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+            StoreEtcFragment storeEtcFragment= new StoreEtcFragment(); // StoreDrFragment로 교체할 프래그먼트 인스턴스 생성
+            transaction.replace(R.id.container, storeEtcFragment);
+
+            transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
+            transaction.commit();
+        });
+
 
 
         binding.imgvMyinfo.setOnClickListener(v -> {
@@ -98,6 +199,9 @@ public class StoreCoFragment extends Fragment {
 
         return binding.getRoot();
     }
+
+
+
 
 
 

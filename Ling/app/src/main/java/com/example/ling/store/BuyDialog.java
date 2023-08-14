@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityStorePurchaseBinding;
 import com.example.ling.store.storeCO.StorePurchaseListVO;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -70,6 +71,7 @@ public class BuyDialog extends BottomSheetDialog {
 
         btn_basket.setOnClickListener(v->{
             CommonConn conn = new CommonConn(context,"store_insert_basket");
+            conn.addParamMap("id", CommonVar.loginInfo.getId());
             conn.addParamMap("item_code",item_code);
             conn.addParamMap("category_code",category_code);
             conn.addParamMap("selection",cnt);
@@ -95,6 +97,7 @@ public class BuyDialog extends BottomSheetDialog {
                 intent.putExtra("price",Integer.parseInt(tv_total_price.getText().toString()) );
                 intent.putExtra("item_code",item_code);
                 intent.putExtra("cnt",cnt);
+                intent.putExtra("category_code",category_code);
                 context.startActivity(intent);
                 dismiss();
 

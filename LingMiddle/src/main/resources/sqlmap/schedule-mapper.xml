@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sche">
+
+<select id="list" resultType="schedule.ScheAddVO">
+	select sche_no,sche_title, sche_date, trunc(to_date(sche_date)-sysdate) "d_day", rank() over (order by trunc(to_date(sche_date)-sysdate, 0) asc),sche_notice from schedule
+where couple_num=1
+</select>
+
+
+<insert id="insert">
+	insert into schedule(couple_num, id, sche_title, sche_date, sche_notice, sche_typecode)
+	values(1, 'kgg', #{sche_title}, #{sche_date}, #{sche_notice}, 'travel')
+</insert>
+
+<delete id="delete">
+	delete from schedule where sche_no = #{sche_no}
+</delete>
+
+</mapper>

@@ -3,8 +3,8 @@ package date;
 public class DateInfoVO {
 
 	private int date_id;
-	private String date_category_code, date_name, date_intro, date_roadaddr, date_numaddr, date_sido, date_sigungu, tel,
-			lan, lng, open, end;
+	private String date_category_code, date_name, date_intro, date_address, date_sido, date_sigungu, tel, lan, lng,
+			open, end;
 
 	public int getDate_id() {
 		return date_id;
@@ -38,20 +38,12 @@ public class DateInfoVO {
 		this.date_intro = date_intro;
 	}
 
-	public String getDate_roadaddr() {
-		return date_roadaddr;
+	public String getDate_address() {
+		return date_address;
 	}
 
-	public void setDate_roadaddr(String date_roadaddr) {
-		this.date_roadaddr = date_roadaddr;
-	}
-
-	public String getDate_numaddr() {
-		return date_numaddr;
-	}
-
-	public void setDate_numaddr(String date_numaddr) {
-		this.date_numaddr = date_numaddr;
+	public void setDate_address(String date_address) {
+		this.date_address = date_address;
 	}
 
 	public String getDate_sido() {
