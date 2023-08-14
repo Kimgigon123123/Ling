@@ -52,7 +52,7 @@ public class Board_freeFragment extends Fragment {
         return binding.getRoot();
     }
     public void select(){
-        CommonConn conn = new CommonConn(getContext(), "board.freeselect");
+        CommonConn conn = new CommonConn(getContext(), "board.select");
         conn.addParamMap("board_cd" , "FREE");
         conn.addParamMap("keyword", binding.boardSearch.getText().toString());
         conn.onExcute((isResult, data) -> {

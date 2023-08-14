@@ -16,11 +16,12 @@ public class Notice_contextActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityNoticeContextBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        String board_no =  getIntent().getStringExtra("board_no");
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.container, new ContentFragment(board_no)).commit();
 
+        String board_no =  getIntent().getStringExtra("board_no");
+        String board_cd =  getIntent().getStringExtra("board_cd");
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.container, new ContentFragment(board_no, board_cd)).commit();
+        setContentView(binding.getRoot());
 
 
     }

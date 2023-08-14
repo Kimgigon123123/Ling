@@ -46,7 +46,7 @@ public class Board_PlayFragment extends Fragment {
     }
 
     public void select(){
-        CommonConn conn = new CommonConn(getContext(), "board.noticeselect");
+        CommonConn conn = new CommonConn(getContext(), "board.select");
         conn.addParamMap("board_cd" , "PLAY");
         conn.addParamMap("keyword", binding.boardSearch.getText().toString());
         conn.onExcute((isResult, data) -> {
