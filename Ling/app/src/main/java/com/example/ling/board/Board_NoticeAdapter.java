@@ -39,6 +39,7 @@ public class Board_NoticeAdapter extends RecyclerView.Adapter<Board_NoticeAdapte
         h.binding.lnNotice.setOnClickListener(v->{
             Intent intent = new Intent(context, Notice_contextActivity.class);
             intent.putExtra("board_no", list.get(i).getId());
+            intent.putExtra("board_cd", list.get(i).getBoard_cd());
             context.startActivity(intent);
         });
     }

@@ -40,6 +40,7 @@ public class Board_WorryAdapter extends RecyclerView.Adapter<Board_WorryAdapter.
         h.binding.lnUser.setOnClickListener(v->{
             Intent intent = new Intent(context, Notice_contextActivity.class);
             intent.putExtra("board_no", list.get(i).getId());
+            intent.putExtra("board_cd", list.get(i).getBoard_cd());
             context.startActivity(intent);
         });
     }

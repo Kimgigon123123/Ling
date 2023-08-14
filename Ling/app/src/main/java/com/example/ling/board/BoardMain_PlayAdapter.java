@@ -44,6 +44,8 @@ public class BoardMain_PlayAdapter extends RecyclerView.Adapter<BoardMain_PlayAd
             fragment.changeFragment(4);
             Intent intent = new Intent(context, Notice_contextActivity.class);
             intent.putExtra("board_no", list.get(i).getId());
+            intent.putExtra("board_cd", list.get(i).getBoard_cd());
+            //반복되는 구간은 메소드로 처리;
             context.startActivity(intent);
         });
     }

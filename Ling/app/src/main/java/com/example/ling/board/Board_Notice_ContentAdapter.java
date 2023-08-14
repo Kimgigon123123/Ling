@@ -35,7 +35,7 @@ public class Board_Notice_ContentAdapter extends RecyclerView.Adapter<Board_Noti
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        h.binding.noticeRecvNum.setText(boardvo.getId());
+        h.binding.noticeRecvNum.setText(boardvo.getId()+"");
         h.binding.noticeRecvTitle.setText(boardvo.getTitle());
         h.binding.noticeRecvDate.setText(boardvo.getWritedate());
         h.binding.noticeRecvContent.setText(boardvo.getContent());

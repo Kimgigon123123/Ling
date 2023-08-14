@@ -24,41 +24,53 @@ import java.util.List;
 public class ContentFragment extends Fragment {
 
     FragmentContentBinding binding;
-    String board_no ;
+    String board_no;
+    String board_cd;
 
-    public ContentFragment(String board_no) {
+    public ContentFragment(String board_no, String board_cd) {
         this.board_no = board_no;
+        this.board_cd = board_cd;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentContentBinding.inflate(inflater,container,false);
-        NoticeContentselect();
-        UserContentselect();
+        binding = FragmentContentBinding.inflate(inflater, container, false);
+        if (board_cd.equals("NOTICE")||board_cd.equals("PLAY")) {
+            NoticeContentselect();
+        } else {
+            UserContentselect();
+        }
         return binding.getRoot();
     }
-    public void NoticeContentselect(){
+
+    public void NoticeContentselect() {
         CommonConn conn = new CommonConn(getContext(), "board.content");
-        conn.addParamMap("id",board_no );
+        conn.addParamMap("id", board_no);
+        conn.addParamMap("board_cd", board_cd);
         conn.onExcute((isResult, data) -> {
-            BoardVO boardvo = new Gson().fromJson(data, new TypeToken<BoardVO>(){}.getType());
+            BoardVO boardvo = new Gson().fromJson(data, new TypeToken<BoardVO>() {
+            }.getType());
 
             Board_Notice_ContentAdapter adapter = new Board_Notice_ContentAdapter(boardvo);
-            binding.recvNoticeContent.setAdapter(adapter);
-            binding.recvNoticeContent.setLayoutManager(new LinearLayoutManager(getContext()));
+            binding.recvContent.setAdapter(adapter);
+            binding.recvContent.setLayoutManager(new LinearLayoutManager(getContext()));
         });
     }
 
-    public void UserContentselect(){
+
+    //
+    public void UserContentselect() {
         CommonConn conn = new CommonConn(getContext(), "board.usercontent");
-        conn.addParamMap("id",board_no );
+        conn.addParamMap("id", board_no);
+        conn.addParamMap("board_cd", board_cd);
         conn.onExcute((isResult, data) -> {
-            BoardVO boardvo = new Gson().fromJson(data, new TypeToken<BoardVO>(){}.getType());
+            BoardVO boardvo = new Gson().fromJson(data, new TypeToken<BoardVO>() {
+            }.getType());
 
             Board_User_ContentAdapter adapter = new Board_User_ContentAdapter(boardvo);
-            binding.recvNoticeContent.setAdapter(adapter);
-            binding.recvNoticeContent.setLayoutManager(new LinearLayoutManager(getContext()));
+            binding.recvContent.setAdapter(adapter);
+            binding.recvContent.setLayoutManager(new LinearLayoutManager(getContext()));
         });
     }
 }

@@ -53,6 +53,7 @@ public class BoardMain_NoticeAdapter extends RecyclerView.Adapter<BoardMain_Noti
             fragment.changeFragment(1);
             Intent intent = new Intent(context, Notice_contextActivity.class);
             intent.putExtra("board_no", list.get(i).getId());
+            intent.putExtra("board_cd", list.get(i).getBoard_cd());
             context.startActivity(intent);
         });
 

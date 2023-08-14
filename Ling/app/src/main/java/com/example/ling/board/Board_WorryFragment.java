@@ -1,5 +1,6 @@
 package com.example.ling.board;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -42,11 +43,16 @@ public class Board_WorryFragment extends Fragment {
                 return false;
             }
         });
+        binding.btnNewcontent.setOnClickListener(v->{
+            Intent intent = new Intent(getActivity(), Board_New_ContentActivity.class);
+            intent.putExtra("menu", "WORRY");
+            startActivity(intent);
+        });
 
         return binding.getRoot();
     }
     public void select(){
-        CommonConn conn = new CommonConn(getContext(), "board.freeselect");
+        CommonConn conn = new CommonConn(getContext(), "board.select");
         conn.addParamMap("board_cd" , "WORRY");
         conn.addParamMap("keyword", binding.boardSearch.getText().toString());
         conn.onExcute((isResult, data) -> {

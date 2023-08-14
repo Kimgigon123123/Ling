@@ -50,7 +50,7 @@ public class BoardMainFragment extends Fragment {
     }
 
     public void Noticeselect(){
-        CommonConn conn = new CommonConn(getContext(), "board.noticeselect");
+        CommonConn conn = new CommonConn(getContext(), "board.select");
         conn.addParamMap("board_cd" , "NOTICE");
         conn.onExcute((isResult, data) -> {
             ArrayList<BoardVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<BoardVO>>(){}.getType());
@@ -61,7 +61,7 @@ public class BoardMainFragment extends Fragment {
         });
     }
     public void Freeselect(){
-        CommonConn conn = new CommonConn(getContext(), "board.freeselect");
+        CommonConn conn = new CommonConn(getContext(), "board.select");
         conn.addParamMap("board_cd" , "FREE");
         conn.onExcute((isResult, data) -> {
             ArrayList<BoardVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<BoardVO>>(){}.getType());
@@ -72,7 +72,7 @@ public class BoardMainFragment extends Fragment {
         });
     }
     public void Worryselect(){
-        CommonConn conn = new CommonConn(getContext(), "board.freeselect");
+        CommonConn conn = new CommonConn(getContext(), "board.select");
         conn.addParamMap("board_cd" , "WORRY");
         conn.onExcute((isResult, data) -> {
             ArrayList<BoardVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<BoardVO>>(){}.getType());
@@ -83,7 +83,7 @@ public class BoardMainFragment extends Fragment {
         });
     }
     public void Playselect(){
-        CommonConn conn = new CommonConn(getContext(), "board.noticeselect");
+        CommonConn conn = new CommonConn(getContext(), "board.select");
         conn.addParamMap("board_cd" , "PLAY");
         conn.onExcute((isResult, data) -> {
             ArrayList<BoardVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<BoardVO>>(){}.getType());
