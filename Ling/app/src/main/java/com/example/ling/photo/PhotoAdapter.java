@@ -46,6 +46,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
             h.binding.imgvPhoto1.setImageResource(Integer.parseInt(list.get(i).getPho_img()));
             h.binding.tvTest.setText(list.get(i).getId());
+
     }
 
     @Override

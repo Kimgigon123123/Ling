@@ -22,7 +22,7 @@ FROM
 JOIN
     couple c ON lm.id = c.mid OR lm.id = c.fid
 WHERE
-    lm.id = #{id}; 
+    lm.id = #{id}
 	
 </insert>
 

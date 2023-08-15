@@ -2,12 +2,14 @@ package com.cteam.ling;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
@@ -24,7 +26,7 @@ import schedule.ScheDAO;
 public class PhotoController {
 	
 	@Autowired PhotoDAO dao;
-	String ip = "192.168.0.28"; // 여기에 컴퓨터의 IP 주소를 넣으세요
+	public static String folderPath = "D:\\WorkSpace\\Ling\\image\\";
 	
 	@RequestMapping(value="/file.f", produces="text/html;charset=utf-8")
 	public String list(HttpServletRequest req) throws IllegalStateException, IOException { //req(요청에 대한 모든정보), res
@@ -92,9 +94,10 @@ public class PhotoController {
 	}
 	
 	@RequestMapping(value="/folder_list", produces="text/html;charset=utf-8")
-	public String folder_list() {
+	public String folder_list(HttpServletRequest req) {
 			
 
+			
 			List<FolderVO> list = dao.getFolder() ;
 			
 			Gson gson = new Gson();	
@@ -105,8 +108,18 @@ public class PhotoController {
 	
 	
 	@RequestMapping(value="/folder_insert", produces="text/html;charset=utf-8")
-	public String folder_insert(FolderVO vo) {
-			
+	public String folder_insert(String voJson,   HttpServletRequest req) {
+//		HashMap<String, String> params = new HashMap<String, String>();
+//		params.put("folder", folderName);
+		FolderVO vo = new Gson().fromJson(voJson, FolderVO.class);
+		if (!vo.getFolder_name().isEmpty()) {
+            // 특정 경로와 입력된 폴더 이름으로 폴더 경로를 생성
+            folderPath = folderPath + vo.getFolder_name();
+
+            // 폴더 생성 로직을 호출하여 폴더 생성
+            createFolder(folderPath, req);
+        }
+		
 
 			dao.FolderInsert(vo) ;
 			
@@ -114,6 +127,25 @@ public class PhotoController {
 			
 			return gson.toJson(vo);
 		
+	}
+	
+	private String createFolder(String folderPath, HttpServletRequest req) {
+        File folder = new File(folderPath);
+
+        if (!folder.exists()) {
+            boolean created = folder.mkdirs();
+            if (created) {
+                System.out.println("폴더가 생성되었습니다.");
+            } else {
+                System.out.println("폴더 생성에 실패하였습니다.");
+            }
+        }
+        return replaceURL(req);
+    }
+	
+	private String replaceURL(HttpServletRequest req) {
+		String replaceURL = req.getContextPath();
+		return "http://" + req.getLocalAddr() + ":" + req.getLocalPort() + replaceURL + "/images/photo/";
 	}
 	
 	

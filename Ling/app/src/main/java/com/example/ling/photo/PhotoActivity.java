@@ -40,6 +40,7 @@ import com.bumptech.glide.Glide;
 import com.example.ling.calendar.CalendarAdapter;
 import com.example.ling.calendar.ScheAddVO;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.common.RetClient;
 import com.example.ling.common.RetInterface;
 import com.example.ling.databinding.ActivityPhotoBinding;
@@ -107,21 +108,43 @@ public class PhotoActivity extends AppCompatActivity {
 
 
         binding.imgvFolderAdd.setOnClickListener(view -> {
+                insert();
+        });
+
+
+
+    }
+    ArrayList<FolderVO> foder_List;
+    public void insert(){
+
+        CommonConn conn = new CommonConn(this, "folder_insert");
+
+
             AlertDialog.Builder follder = new AlertDialog.Builder(this);
-            follder.setTitle("생성할 폴더명");
             final EditText name = new EditText(this);
+
+            follder.setTitle("생성할 폴더명");
             follder.setView(name);
             follder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) { //확인 버튼을 클릭했을때
-                    String folderName = name.getText().toString().trim();
 
-                    if (!folderName.isEmpty()) {
-                        // 특정 경로와 입력된 폴더 이름으로 폴더 경로를 생성
-                        String folderPath = "D:\\WorkSpace\\Ling\\image\\" + folderName;
 
-                        // 폴더 생성 로직을 호출하여 폴더 생성
-                        createFolder(folderPath);
-                    }
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    FolderVO vo = new FolderVO();
+                    vo.setFolder_name(name.getText().toString().trim());
+//                    vo.setId("kym");//로그인이 안되어있으면 이거 못오게 막아야겠네요.<=
+                    vo.setFolder_name(" CommonVar.loginInfo.getId()");
+                    //확인 버튼을 클릭했을때
+                    conn.addParamMap("voJson", new Gson().toJson(vo) );
+                    conn.onExcute((isResult, data) -> {
+                        foder_List = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
+
+                        FolderAdapter adapter = new FolderAdapter(foder_List);
+                        binding.gridGallery.setAdapter(adapter);
+                        binding.gridGallery.setLayoutManager(new LinearLayoutManager(PhotoActivity.this));
+
+                      //  Log.d("리스트사이즈", "select: " + foder_List.size());
+                        //if문으로 list의 사이즈처리 해야함.
+                    });
                 }
             });
             follder.setNegativeButton("취소",new DialogInterface.OnClickListener() {
@@ -129,7 +152,9 @@ public class PhotoActivity extends AppCompatActivity {
                 }
             });
             follder.show();
-        });
+
+
+
 
 
 
@@ -242,22 +267,7 @@ public class PhotoActivity extends AppCompatActivity {
 
 
 
-        public void insert(){
-        CommonConn conn = new CommonConn(this, "folder_insert");
-        conn.onExcute((isResult, data) -> {
-            ArrayList<FolderVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
-            Log.d("리스트사이즈", "select: " + list.size());
-            //if문으로 list의 사이즈처리 해야함.
 
-            FolderAdapter adapter = new FolderAdapter(list);
-
-
-
-            binding.gridGallery.setAdapter(adapter);
-            binding.gridGallery.setLayoutManager(new LinearLayoutManager(this));
-
-        });
-    }
 
     public void select(){
         CommonConn conn = new CommonConn(this, "folder_list");
@@ -294,17 +304,5 @@ public class PhotoActivity extends AppCompatActivity {
 
 
     // 폴더 생성 로직
-    private void createFolder(String folderPath) {
-        File folder = new File(folderPath);
 
-        if (!folder.exists()) {
-            boolean created = folder.mkdirs();
-            if (created) {
-                System.out.println("폴더가 생성되었습니다.");
-                insert();
-            } else {
-                System.out.println("폴더 생성에 실패하였습니다.");
-            }
-        }
-    }
 }
