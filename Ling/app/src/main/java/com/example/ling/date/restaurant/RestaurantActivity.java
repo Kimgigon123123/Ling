@@ -23,42 +23,59 @@ import java.util.List;
 public class RestaurantActivity extends AppCompatActivity {
 
     ActivityRestaurantBinding binding;
-    ArrayAdapter<CharSequence> sdAdapter, sggAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityRestaurantBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-//        binding.recvRestact.setAdapter(new RestaurantAdapter(this));
-//        binding.recvRestact.setLayoutManager(new GridLayoutManager(this, 2))
 
-        binding.spnSido.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                if (binding.spnSido.getSelectedItem().equals("시/도 선택")) {
-                    binding.spnSigungu.setAdapter(null);
-                    restaurantList();
-                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.empty, android.R.layout.simple_spinner_dropdown_item);
-                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    binding.spnSigungu.setAdapter(sggAdapter);
-                } else {
-                    //디비연동.
-                    CommonConn conn = new CommonConn(RestaurantActivity.this, "date_sigungu");
-                    conn.addParamMap("sido", binding.spnSido.getSelectedItem().toString());
-                    conn.onExcute((isResult, data) -> {
-                        List<String> sigungu = new Gson().fromJson(data , new TypeToken<List<String>>(){}.getType());
-                        sggAdapter = new ArrayAdapter(RestaurantActivity.this , android.R.layout.simple_spinner_dropdown_item , sigungu);
-                        sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        binding.spnSigungu.setAdapter(sggAdapter);
-                    });
-                }
-            }
+        restaurantList();
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+        binding.imgvSearch.setOnClickListener(v -> {
+            CommonConn conn = new CommonConn(RestaurantActivity.this, "date_searchrest");
+            conn.addParamMap("date_name", binding.edtSearch.getText().toString());
+            conn.addParamMap("date_address", binding.edtSearch.getText().toString());
+            conn.onExcute((isResult, data) -> {
+                ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
+                }.getType());
+                binding.recvRestact.setAdapter(new TourAdapter(this, list));
+                binding.recvRestact.setLayoutManager(new GridLayoutManager(this, 2));
+            });
 
-            }
+        });
+
+//        binding.spnSido.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+//                if (binding.spnSido.getSelectedItem().equals("시/도 선택")) {
+//                    binding.spnSigungu.setAdapter(null);
+//                    restaurantList();
+//                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.empty, android.R.layout.simple_spinner_dropdown_item);
+//                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    binding.spnSigungu.setAdapter(sggAdapter);
+//                } else {
+//                    //디비연동.
+//                    CommonConn conn = new CommonConn(RestaurantActivity.this, "date_sigungu");
+//                    conn.addParamMap("sido", binding.spnSido.getSelectedItem().toString());
+//                    conn.onExcute((isResult, data) -> {
+//                        List<String> sigungu = new Gson().fromJson(data , new TypeToken<List<String>>(){}.getType());
+//                        sggAdapter = new ArrayAdapter(RestaurantActivity.this , android.R.layout.simple_spinner_dropdown_item , sigungu);
+//                        sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                        binding.spnSigungu.setAdapter(sggAdapter);
+//                    });
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
+
+        binding.imgvRefresh.setOnClickListener(v -> {
+            binding.edtSearch.setText("");
+            restaurantList();
         });
 
         binding.imgvBefore.setOnClickListener(v -> {

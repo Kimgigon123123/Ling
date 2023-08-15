@@ -24,6 +24,8 @@ public class RestDetailActivity extends AppCompatActivity {
         });
 
         RestInfoFragment restInfoFragment = new RestInfoFragment();
+        NMapFragment nMapFragment = new NMapFragment();
+
         Bundle bundle = new Bundle();
         bundle.putInt("img", getIntent().getIntExtra("img", -1));
         bundle.putString("name", getIntent().getStringExtra("name"));
@@ -33,6 +35,10 @@ public class RestDetailActivity extends AppCompatActivity {
         bundle.putString("end", getIntent().getStringExtra("end"));
         restInfoFragment.setArguments(bundle);
 
+        bundle.putString("lan", getIntent().getStringExtra("lan"));
+        bundle.putString("lng", getIntent().getStringExtra("lng"));
+        nMapFragment.setArguments(bundle);
+
         getSupportFragmentManager().beginTransaction().replace(R.id.ln_restdetail, restInfoFragment).commit();
 
         binding.btnInfo.setOnClickListener(v -> {
@@ -40,7 +46,7 @@ public class RestDetailActivity extends AppCompatActivity {
         });
 
         binding.btnMap.setOnClickListener(v -> {
-            getSupportFragmentManager().beginTransaction().replace(R.id.ln_restdetail, new NMapFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.ln_restdetail, nMapFragment).commit();
         });
     }
 }
