@@ -7,4 +7,23 @@
 	select couple_num, pho_img from photo_category
 </select>
 
+<select id="folder" resultType="photo.FolderVO">
+	select id, couple_num, folder_name from photo_folder
+</select>
+
+<insert id="folder_insert">
+	INSERT INTO photo_folder (id, couple_num, folder_name)
+SELECT
+    lm.id,
+    c.couple_num,
+    #{folder_name}
+FROM
+    ling_member lm
+JOIN
+    couple c ON lm.id = c.mid OR lm.id = c.fid
+WHERE
+    lm.id = #{id}; 
+	
+</insert>
+
 </mapper>

@@ -22,6 +22,8 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -46,6 +48,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +72,7 @@ public class PhotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityPhotoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        select();
 //        Glide.with(this).load("http://192.168.0.28/hanul/img//andimg.jpg").into(binding.imgvElbumCamera);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -90,6 +94,15 @@ public class PhotoActivity extends AppCompatActivity {
 
 
 
+//        String filePath = "D:\\WorkSpace\\Ling\\image\\photo\\all"; // 이미지 파일 경로
+//        String tvText = binding.imgv.getText().toString(); // tv_text 값
+//// 파일 경로에서 파일명 추출
+//        String fileName = filePath.substring(filePath.lastIndexOf("\\") + 1);
+//
+//        if (fileName.equals("image_" + tvText + ".png")) {
+//
+//        }
+
 
 
 
@@ -100,7 +113,15 @@ public class PhotoActivity extends AppCompatActivity {
             follder.setView(name);
             follder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) { //확인 버튼을 클릭했을때
+                    String folderName = name.getText().toString().trim();
 
+                    if (!folderName.isEmpty()) {
+                        // 특정 경로와 입력된 폴더 이름으로 폴더 경로를 생성
+                        String folderPath = "D:\\WorkSpace\\Ling\\image\\" + folderName;
+
+                        // 폴더 생성 로직을 호출하여 폴더 생성
+                        createFolder(folderPath);
+                    }
                 }
             });
             follder.setNegativeButton("취소",new DialogInterface.OnClickListener() {
@@ -221,104 +242,69 @@ public class PhotoActivity extends AppCompatActivity {
 
 
 
-
-
-
-            //    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.actionbar, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    public class PhotoAdapter extends BaseAdapter {
-//
-//        Context context;
-//
-//        public PhotoAdapter(Context context) {
-//            this.context = context;
-//        }
-//
-//        Integer[] exam = {
-//                R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo,
-//                R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo,
-//                R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo,
-//                R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo,
-//                R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo,
-//                R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo
-//        };
-//
-//        @Override
-//        public int getCount() {
-//            return exam.length;
-//        }
-//
-//        @Override
-//        public Object getItem(int position) {
-//            return position;
-//        }
-//
-//        @Override
-//        public long getItemId(int position) {
-//            return position;
-//        }
-//
-//        @Override
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//            ImageView imageView = new ImageView(context);
-//            imageView.setLayoutParams(new ViewGroup.LayoutParams(200, 300));
-//            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-//        imageView.setPadding(5,5,5,5);
-//
-//            imageView.setImageResource(exam[position]);
-//
-//            imageView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    View dialogView = View.inflate(PhotoActivity.this, R.layout.photo_dialog, null);
-//                    AlertDialog.Builder dlg = new AlertDialog.Builder(PhotoActivity.this);
-//                    ImageView ivPic = dialogView.findViewById(R.id.imgv_photoDialog);
-//                    ivPic.setImageResource(exam[position]);
-//                    dlg.setTitle("큰 이미지");
-//                    dlg.setIcon(R.drawable.ic_launcher_foreground);
-//                    dlg.setView(dialogView);
-//                    dlg.setNegativeButton("닫기", null);
-//                    dlg.show();
-//                }
-//            });
-//            return imageView;
-//        }
-
-
-
-
-//    private List<String> getImagePaths() {
-//        List<String> paths = new ArrayList<>();
-//        File folder = new File("D:\\Ling\\Ling\\image\\photo");
-//        if (folder.exists() && folder.isDirectory()) {
-//            File[] files = folder.listFiles();
-//            if (files != null) {
-//                for (File file : files) {
-//                    if (file.isFile()) {
-//                        paths.add(file.getAbsolutePath());
-//                    }
-//                }
-//            }
-//        }
-//        return paths;
-//    }
-
-
-    public void select(){
-        CommonConn conn = new CommonConn(this, "photo_list");
+        public void insert(){
+        CommonConn conn = new CommonConn(this, "folder_insert");
         conn.onExcute((isResult, data) -> {
-            ArrayList<PhotoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<ScheAddVO>>(){}.getType());
+            ArrayList<FolderVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
             Log.d("리스트사이즈", "select: " + list.size());
             //if문으로 list의 사이즈처리 해야함.
-            PhotoAdapter adapter = new PhotoAdapter(this, list);
+
+            FolderAdapter adapter = new FolderAdapter(list);
+
+
 
             binding.gridGallery.setAdapter(adapter);
-            binding.gridGallery.setLayoutManager(new GridLayoutManager(this, 3));
+            binding.gridGallery.setLayoutManager(new LinearLayoutManager(this));
 
         });
+    }
+
+    public void select(){
+        CommonConn conn = new CommonConn(this, "folder_list");
+        conn.onExcute((isResult, data) -> {
+            ArrayList<FolderVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
+            Log.d("리스트사이즈", "select: " + list.size());
+            //if문으로 list의 사이즈처리 해야함.
+            FolderAdapter adapter = new FolderAdapter(list);
+
+
+            binding.gridGallery.setAdapter(adapter);
+            binding.gridGallery.setLayoutManager(new LinearLayoutManager(this));
+
+        });
+    }
+
+
+//        public void select(){
+//        CommonConn conn = new CommonConn(this, "photo_list");
+//        conn.onExcute((isResult, data) -> {
+//            ArrayList<PhotoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<PhotoVO>>(){}.getType());
+//            Log.d("리스트사이즈", "select: " + list.size());
+//            //if문으로 list의 사이즈처리 해야함.
+//            PhotoAdapter adapter = new PhotoAdapter(this, list);
+//
+//
+//            binding.gridGallery.setAdapter(adapter);
+//            binding.gridGallery.setLayoutManager(new GridLayoutManager(this, 3));
+//
+//        });
+//    }
+
+
+
+
+    // 폴더 생성 로직
+    private void createFolder(String folderPath) {
+        File folder = new File(folderPath);
+
+        if (!folder.exists()) {
+            boolean created = folder.mkdirs();
+            if (created) {
+                System.out.println("폴더가 생성되었습니다.");
+                insert();
+            } else {
+                System.out.println("폴더 생성에 실패하였습니다.");
+            }
+        }
     }
 }
