@@ -47,6 +47,10 @@ public class BuylistFragment extends Fragment {
             }.getType());
             binding.recvBuylist.setAdapter(new BuylistAdapter(buylistlist, getContext()));
             binding.recvBuylist.setLayoutManager(new GridLayoutManager(getContext(),4));
+
+            if(buylistlist.size()==0){
+                binding.tvEmpty.setVisibility(View.VISIBLE);
+            }
         });
     }
 }

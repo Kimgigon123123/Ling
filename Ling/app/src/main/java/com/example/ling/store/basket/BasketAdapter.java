@@ -47,8 +47,9 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
         h.binding.tvName.setText(list.get(i).getItem_name());
-        h.binding.tvPrice.setText(list.get(i).getItem_price()*list.get(i).getSelection()+"원");
-        h.binding.tvCnt.setText(list.get(i).getSelection()+"개");
+        h.binding.tvPrice.setText("총: "+list.get(i).getItem_price()*list.get(i).getSelection()+"원");
+        h.binding.tvCnt.setText(list.get(i).getSelection()+"");
+        h.binding.tvPerPrice.setText(list.get(i).getItem_price()+"원");
 
         String imageUrl = list.get(i).getItem_img();
         Picasso.get()
@@ -72,8 +73,8 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
 
 
                     Toast.makeText(activity, list.get(i).getSelection()+"개", Toast.LENGTH_SHORT).show();
-                    h.binding.tvCnt.setText(list.get(i).getSelection()+"개");
-                    h.binding.tvPrice.setText(list.get(i).getItem_price()*list.get(i).getSelection()+"원");
+                    h.binding.tvCnt.setText(list.get(i).getSelection()+"");
+                    h.binding.tvPrice.setText("총: "+list.get(i).getItem_price()*list.get(i).getSelection()+"원");
 
                     activity.basket_total_price();
 
@@ -122,8 +123,8 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
                         }else{
 
                             Toast.makeText(activity, list.get(i).getSelection()+"개", Toast.LENGTH_SHORT).show();
-                            h.binding.tvCnt.setText(list.get(i).getSelection()+"개");
-                            h.binding.tvPrice.setText(list.get(i).getItem_price()*list.get(i).getSelection()+"원");
+                            h.binding.tvCnt.setText(list.get(i).getSelection()+"");
+                            h.binding.tvPrice.setText("총: "+list.get(i).getItem_price()*list.get(i).getSelection()+"원");
                             activity.basket_total_price();
 
 

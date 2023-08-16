@@ -13,6 +13,11 @@ import com.example.ling.R;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityInsertBankInfoBinding;
+import com.example.ling.store.myinfo.StoreMyinfoVO;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
 
 public class InsertBankInfoActivity extends AppCompatActivity {
 
@@ -24,6 +29,19 @@ public class InsertBankInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding=ActivityInsertBankInfoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        CommonConn conn2 = new CommonConn(this,"store_myinfo");
+        conn2.addParamMap("id",CommonVar.loginInfo.getId());
+
+        conn2.onExcute((isResult, data) -> {
+
+            ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMyinfoVO>>() {}.getType());
+
+            binding.tvMyname.setText(list.get(0).getName());
+
+
+        });
+
 
         //계좌 입력창 자동 포커스
         binding.edtBankNum.requestFocus();

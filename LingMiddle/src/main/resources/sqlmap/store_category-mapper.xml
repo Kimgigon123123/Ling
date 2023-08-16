@@ -4,7 +4,7 @@
 
 <select id="dr_byrecent" resultType="storeco.StoreCOVO">
 select * from store_item where category_code ='Dr'
-order by item_code desc
+order by to_number(item_code) desc
 </select>
 
 
