@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.ling.Static;
 import com.example.ling.common.CommonConn;
@@ -117,6 +118,10 @@ public class StoreMyinfoActivity extends AppCompatActivity {
             binding.recvZzim.setAdapter(new ZZimAdapter(zzimlist,this));
             binding.recvZzim.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
 
+            if(zzimlist.size()==0){
+                binding.tvEmpty1.setVisibility(View.VISIBLE);
+            }
+
 
 
 //            binding.recvReturn.setAdapter(new ReturnAdapter(this));
@@ -129,12 +134,18 @@ public class StoreMyinfoActivity extends AppCompatActivity {
     public void buylist() {
         CommonConn conn = new CommonConn(this, "list_purchase");
         conn.addParamMap("id",CommonVar.loginInfo.getId());
+        binding.tvEmpty2.setVisibility(View.INVISIBLE);
 
         conn.onExcute((isResult, data) -> {
             ArrayList<StorePurchaseListVO> buylistlist = new Gson().fromJson(data, new TypeToken<ArrayList<StorePurchaseListVO>>() {
             }.getType());
             binding.recvBuylist.setAdapter(new BuylistAdapter(buylistlist, this));
             binding.recvBuylist.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+            if(buylistlist.size()==0){
+                binding.tvEmpty2.setVisibility(View.VISIBLE);
+            }
+
         });
     }
 
@@ -148,6 +159,10 @@ public class StoreMyinfoActivity extends AppCompatActivity {
             }.getType());
             binding.recvReturn.setAdapter(new ReturnAdapter(returnlist, this));
             binding.recvReturn.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+            if(returnlist.size()==0){
+                binding.tvEmpty3.setVisibility(View.VISIBLE);
+            }
         });
     }
 

@@ -43,6 +43,11 @@ public class ZZimFragment extends Fragment {
             }.getType());
             binding.recvZzim.setAdapter(new ZZimAdapter(zzimlist,getContext()));
             binding.recvZzim.setLayoutManager(new GridLayoutManager(getContext(),4));
+
+            if(zzimlist.size()==0){
+                binding.tvEmpty.setVisibility(View.VISIBLE);
+            }
+
         });
     }
 
