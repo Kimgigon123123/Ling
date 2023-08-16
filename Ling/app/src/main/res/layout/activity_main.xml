@@ -7,25 +7,27 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
+
+    android:background="@drawable/gradation"
     >
 
 
-    <FrameLayout
-        android:id="@+id/container"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/gradation"
         android:fitsSystemWindows="true"
         />
 
 
     <devlight.io.library.ntb.NavigationTabBar
         android:id="@+id/ntb_horizontal"
-        app:ntb_bg_color="#123456"
-        app:ntb_inactive_color="#654321"
+        app:ntb_bg_color="#FFFFFF"
+        app:ntb_inactive_color="#474747"
+        app:ntb_active_color="#FFFFFF"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         app:ntb_badged="true"
         app:ntb_scaled="true"
         app:ntb_tinted="true"
