@@ -67,20 +67,17 @@
 
 <!-- 여행 검색 -->
 <select id="searchtour" resultType="date.DateInfoVO">
-	select * from date_info where (date_name like null or date_address like null or 
-	date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'TO'
+	select * from date_info where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'TO'
 </select> 
 
 <!-- 맛집 검색 -->
 <select id="searchrest" resultType="date.DateInfoVO">
-	select * from date_info where (date_name like null or date_address like null or 
-	date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'RE'
+	select * from date_info where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'RE'
 </select>
 
 <!-- 축제 검색 -->
 <select id="searchfest" resultType="date.DateInfoVO">
-	select * from date_info where (date_name like null or date_address like null or 
-	date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'FE'
+	select * from date_info where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'FE'
 </select>
 
 </mapper>

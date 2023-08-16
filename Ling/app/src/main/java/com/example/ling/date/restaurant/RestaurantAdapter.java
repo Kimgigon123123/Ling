@@ -60,6 +60,8 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
             intent.putExtra("intro", list.get(i).getDate_intro());
             intent.putExtra("open", list.get(i).getOpen());
             intent.putExtra("end", list.get(i).getEnd());
+            intent.putExtra("lan", list.get(i).getLan());
+            intent.putExtra("lng", list.get(i).getLng());
             context.startActivity(intent);
         });
     }
