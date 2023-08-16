@@ -1,6 +1,7 @@
 package com.example.ling.photo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ling.R;
 import com.example.ling.databinding.ItemGridPhotoBinding;
 import com.example.ling.databinding.ItemRecvFolderBinding;
 
@@ -38,6 +40,11 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
                 h.binding.tvFolderTitle.setText(list.get(i).getFolder_name());
+                h.binding.tvFolderCnt.setText("("+list.size()+")");
+                h.binding.lnFolder.setOnClickListener(v -> {
+                    Intent intent = new Intent(context, PhotoListActivity.class);
+                    context.startActivity(intent);
+                });
 //        String directoryPath = "D:\\WorkSpace\\Ling\\image\\photo\\all"; // 이미지 파일이 있는 디렉토리 경로
 //
 //        File directory = new File(directoryPath);

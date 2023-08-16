@@ -2,14 +2,15 @@ package com.cteam.ling;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
@@ -19,14 +20,14 @@ import com.google.gson.Gson;
 import photo.FolderVO;
 import photo.PhotoDAO;
 import photo.PhotoVO;
-import schedule.ScheAddVO;
-import schedule.ScheDAO;
 
 @RestController
 public class PhotoController {
 	
 	@Autowired PhotoDAO dao;
-	public static String folderPath = "D:\\WorkSpace\\Ling\\image\\";
+	@Autowired SqlSession sql;
+	public static String ip = "192.168.0.28";
+	public static String folderPath = "D:\\Ling\\Ling\\image\\photo\\";
 	
 	@RequestMapping(value="/file.f", produces="text/html;charset=utf-8")
 	public String list(HttpServletRequest req) throws IllegalStateException, IOException { //req(요청에 대한 모든정보), res
@@ -61,45 +62,30 @@ public class PhotoController {
 	}
 	
 	@RequestMapping(value="/photo_list", produces="text/html;charset=utf-8")
-	public String photo_list() {
-			
-
-
-			
-
+	public String photo_list(HttpServletRequest req, String voJson) {
+		
+		
+//		FolderVO vo = new Gson().fromJson(voJson, FolderVO.class);
+		
+		
+		
+		//folder_name을 비교해서 그 folder_name을 가진 view 클릭 시 그 폴더 내부의 이미지 조회
+//		imageSelect(voJson, req);
 		List<PhotoVO> list = dao.getList() ;
 
-		String imageExtension = ""; // 이미지 확장자를 저장할 변수 초기화
-		
-		String imageName = "";
-		// 이미지 확장자가 "png" 또는 "jpg"일 때 처리
-		if (imageName.endsWith(".png") || imageName.endsWith(".jpg")) {
-		    imageExtension = imageName.substring(imageName.lastIndexOf(".") + 1);
+		Gson gson = new Gson();	
+				
+		return gson.toJson(list);
+}
+	
 
-		    // 이미지 확장자에 따라 다른 이미지 URL을 생성
-		    if (!imageExtension.isEmpty()) {
-		        String imageUrl = "http://" + ip + ":8080/ling/image/photo/" + imageName;
-
-		        // imageUrl을 이용하여 이미지를 서버로부터 가져오는 코드를 추가하세요
-		        // 예: 이미지를 로드하는 라이브러리나 네트워크 요청 코드를 사용하여 이미지를 가져옴
-		        // 예를 들어, Android의 Picasso, Glide, Volley, Retrofit 등을 활용할 수 있습니다.
-		    }
-		}
-//			ulleung.png
-			
-			Gson gson = new Gson();	
-			
-			return gson.toJson(list);
-		
-	}
+	
 	
 	@RequestMapping(value="/folder_list", produces="text/html;charset=utf-8")
 	public String folder_list(HttpServletRequest req) {
 			
-
-			
 			List<FolderVO> list = dao.getFolder() ;
-			
+
 			Gson gson = new Gson();	
 			
 			return gson.toJson(list);
@@ -143,10 +129,88 @@ public class PhotoController {
         return replaceURL(req);
     }
 	
+	
+	
+	private String imageSelect(String folderPath, HttpServletRequest req) {
+		
+
+        File folder = new File(folderPath);
+        if (folder.exists() && folder.isDirectory()) {
+            File[] files = folder.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isFile() && isImageFile(file.getName())) {
+                    	for (int i = 0; i < files.length; i++) {
+                    	    System.out.println("file: " + files[i]);
+                    	}
+
+                    }
+                }
+            }
+        }
+
+        return replaceURL(req);
+    }
+		
+	
+    private boolean isImageFile(String fileName) {
+        // 이미지 파일 확장자 체크 (여기에 필요한 이미지 확장자를 추가하세요)
+        return fileName.toLowerCase().endsWith(".jpg")
+                || fileName.toLowerCase().endsWith(".jpeg")
+                || fileName.toLowerCase().endsWith(".png")
+                || fileName.toLowerCase().endsWith(".gif");
+    }
+	
+	
+
+	
+	
 	private String replaceURL(HttpServletRequest req) {
 		String replaceURL = req.getContextPath();
 		return "http://" + req.getLocalAddr() + ":" + req.getLocalPort() + replaceURL + "/images/photo/";
 	}
 	
+	
+//	@RequestMapping(value="/latest_image", produces="text/html;charset=utf-8")
+//	public String latest_image(HttpServletRequest req) {
+//	    String imageFolderPath = folderPath; // 이미지 폴더 경로를 지정하세요
+//	    File folder = new File(imageFolderPath);
+//
+//	    if (folder.exists() && folder.isDirectory()) {
+//	        File[] imageFiles = folder.listFiles(new FilenameFilter() {
+//	            @Override
+//	            public boolean accept(File dir, String name) {
+//	                String lowercaseName = name.toLowerCase();
+//	                return lowercaseName.endsWith(".jpg") || lowercaseName.endsWith(".jpeg") ||
+//	                        lowercaseName.endsWith(".png") || lowercaseName.endsWith(".gif");
+//	            }
+//	        });
+//
+//	        if (imageFiles != null && imageFiles.length > 0) {
+//	            Arrays.sort(imageFiles, Comparator.comparingLong(File::lastModified).reversed());
+//	            String latestImagePath = imageFiles[0].getAbsolutePath();
+//	            
+//	            Gson gson = new Gson();
+//	            return gson.toJson(latestImagePath);
+//	        }
+//	    }
+//
+//	    return replaceURL(req);
+//	}
+	
+	
+//	String imageExtension = ""; // 이미지 확장자를 저장할 변수 초기화
+//	
+//	String imageName = "";
+//	// 이미지 확장자가 "png" 또는 "jpg"일 때 처리
+//	if (imageName.endsWith(".png") || imageName.endsWith(".jpg")) {
+//	    imageExtension = imageName.substring(imageName.lastIndexOf(".") + 1);
+//
+//	    // 이미지 확장자에 따라 다른 이미지 URL을 생성
+//	    if (!imageExtension.isEmpty()) {
+//	        String imageUrl = "http://" + ip + ":8080/ling/image/photo/" + imageName;
+//
+//	}
+////		ulleung.png
 	
 }

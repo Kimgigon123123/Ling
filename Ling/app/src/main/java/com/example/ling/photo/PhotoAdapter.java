@@ -1,6 +1,7 @@
 package com.example.ling.photo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,6 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
             h.binding.imgvPhoto1.setImageResource(Integer.parseInt(list.get(i).getPho_img()));
-            h.binding.tvTest.setText(list.get(i).getId());
 
     }
 

@@ -67,6 +67,7 @@ public class PhotoActivity extends AppCompatActivity {
     private CameraDialog cameraDialog;
     private final int REQ_Gallery = 1000;
     ActivityResultLauncher<Intent> launcher;
+    ArrayList<FolderVO> folder_List;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +85,10 @@ public class PhotoActivity extends AppCompatActivity {
 
         binding.imgvElbumCamera.setOnClickListener(v->{//imgv_photos               showGallery();
             showCamera();
+        });
+
+        binding.imgvElbumBack.setOnClickListener(v -> {
+            finish();
         });
 
 
@@ -114,7 +119,7 @@ public class PhotoActivity extends AppCompatActivity {
 
 
     }
-    ArrayList<FolderVO> foder_List;
+
     public void insert(){
 
         CommonConn conn = new CommonConn(this, "folder_insert");
@@ -136,9 +141,9 @@ public class PhotoActivity extends AppCompatActivity {
                     //확인 버튼을 클릭했을때
                     conn.addParamMap("voJson", new Gson().toJson(vo) );
                     conn.onExcute((isResult, data) -> {
-                        foder_List = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
+                        folder_List = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
 
-                        FolderAdapter adapter = new FolderAdapter(foder_List);
+                        FolderAdapter adapter = new FolderAdapter(folder_List);
                         binding.gridGallery.setAdapter(adapter);
                         binding.gridGallery.setLayoutManager(new LinearLayoutManager(PhotoActivity.this));
 
@@ -153,11 +158,23 @@ public class PhotoActivity extends AppCompatActivity {
             });
             follder.show();
 
+    }
+
+    public void select(){
+        CommonConn conn = new CommonConn(this, "folder_list");
+
+        conn.onExcute((isResult, data) -> {
+            ArrayList<FolderVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
+//            Log.d("리스트사이즈", "select: " + list.size());
+            //if문으로 list의 사이즈처리 해야함.
+            FolderAdapter adapter = new FolderAdapter(list);
 
 
 
+            binding.gridGallery.setAdapter(adapter);
+            binding.gridGallery.setLayoutManager(new LinearLayoutManager(this));
 
-
+        });
     }
 
     @Override
@@ -264,45 +281,5 @@ public class PhotoActivity extends AppCompatActivity {
         Log.d("TAG", "getRealPath: 커서" + res);
         return res;
     }
-
-
-
-
-
-    public void select(){
-        CommonConn conn = new CommonConn(this, "folder_list");
-        conn.onExcute((isResult, data) -> {
-            ArrayList<FolderVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
-            Log.d("리스트사이즈", "select: " + list.size());
-            //if문으로 list의 사이즈처리 해야함.
-            FolderAdapter adapter = new FolderAdapter(list);
-
-
-            binding.gridGallery.setAdapter(adapter);
-            binding.gridGallery.setLayoutManager(new LinearLayoutManager(this));
-
-        });
-    }
-
-
-//        public void select(){
-//        CommonConn conn = new CommonConn(this, "photo_list");
-//        conn.onExcute((isResult, data) -> {
-//            ArrayList<PhotoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<PhotoVO>>(){}.getType());
-//            Log.d("리스트사이즈", "select: " + list.size());
-//            //if문으로 list의 사이즈처리 해야함.
-//            PhotoAdapter adapter = new PhotoAdapter(this, list);
-//
-//
-//            binding.gridGallery.setAdapter(adapter);
-//            binding.gridGallery.setLayoutManager(new GridLayoutManager(this, 3));
-//
-//        });
-//    }
-
-
-
-
-    // 폴더 생성 로직
 
 }
