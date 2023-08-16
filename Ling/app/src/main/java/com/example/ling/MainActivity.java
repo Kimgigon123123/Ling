@@ -45,11 +45,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        initItem();
-        initUI();
+
         window = this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        initItem();
+        initUI();
+
 
     }
 
@@ -58,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
     //바텀 네비게이션 아이템 초기화 메소드 2023-08-16 kym
     public void initItem(){
         //                      붙일프래그먼트  ,        아이콘               ,   선택배경색상 ,    글씨  ,       뱃지보여줄꺼면 뱃지 그씨
-        list.add(new MainMenuDTO(new DateFragment() , R.drawable.btm_menu_1 ,"#123456" , "여행지" ,  "여행지 선택"  ));
+        list.add(new MainMenuDTO(new DateFragment() , R.drawable.btm_menu_1 ,"#FF8F1B" , "여행지" ,  "여행지 선택"  ));
         list.add(new MainMenuDTO(new ChatFragment() , R.drawable.btm_menu_2 ,"#567891" , "채팅" ,  null ));
-        list.add(new MainMenuDTO(new HomeFragment() , R.drawable.btm_menu_3 ,"#FF8F1B" , "홈" ,  "홈 선택"  ));
+        list.add(new MainMenuDTO(new HomeFragment() , R.drawable.btm_menu_3 ,"#123456" , "홈" ,  "홈 선택"  ));
         list.add(new MainMenuDTO(new BoardFragment() , R.drawable.btm_menu_4 ,"#5FB59C" , "게시판" ,  null  ));
         list.add(new MainMenuDTO(new StoreCoFragment() , R.drawable.btm_menu_5 ,"#847253" , "스토어" ,  "스토어 선택"  ));
     }
@@ -94,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.ntbHorizontal.setModels(models);
         binding.ntbHorizontal.setViewPager(binding.pager, 2);
-
+        window.setStatusBarColor(Color.parseColor(list.get(2).color));
         binding.ntbHorizontal.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {
