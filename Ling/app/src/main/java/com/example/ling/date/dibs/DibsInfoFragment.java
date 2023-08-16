@@ -38,7 +38,7 @@ public class DibsInfoFragment extends Fragment {
                         .load(imageUrl)
                         .into(binding.imgv);
                 binding.tvName.setText(bundle.getString("name"));
-                binding.tvTime.setText("09:00" + " ~ " + "21:00");
+                binding.tvTime.setText(bundle.getString("open") + " ~ " + bundle.getString("end"));
                 binding.tvAddress.setText(bundle.getString("address"));
             } else {
                 String imageUrl=bundle.getString("img");

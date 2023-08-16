@@ -59,7 +59,7 @@ public class DibsAdapter extends RecyclerView.Adapter<DibsAdapter.ViewHolder> {
         });
         h.binding.lnDibs.setOnClickListener(v -> {
             Intent intent = new Intent(context, DibsDetailActivity.class);
-            if(list.get(i).getDate_category_code().equals("TO") || list.get(i).getDate_category_code().equals("RE")) {
+            if(list.get(i).getDate_category_code().equals("TO")) {
                 intent.putExtra("img", list.get(i).getDate_img());
                 intent.putExtra("name", list.get(i).getDate_name());
                 intent.putExtra("address", list.get(i).getDate_address());
@@ -67,7 +67,7 @@ public class DibsAdapter extends RecyclerView.Adapter<DibsAdapter.ViewHolder> {
                 intent.putExtra("code", list.get(i).getDate_category_code());
                 intent.putExtra("lan", list.get(i).getLan());
                 intent.putExtra("lng", list.get(i).getLng());
-            } else if(list.get(i).getDate_category_code().equals("FE")) {
+            } else if(list.get(i).getDate_category_code().equals("RE") || list.get(i).getDate_category_code().equals("FE")) {
                 intent.putExtra("img", list.get(i).getDate_img());
                 intent.putExtra("name", list.get(i).getDate_name());
                 intent.putExtra("address", list.get(i).getDate_address());
