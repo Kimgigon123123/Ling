@@ -2,6 +2,7 @@ package com.example.ling;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -16,6 +17,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +37,7 @@ import devlight.io.library.ntb.NavigationTabBar;
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
-
+    Window window ;
     ArrayList<MainMenuDTO> list = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         initItem();
         initUI();
+        window = this.getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
     }
 
@@ -88,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.ntbHorizontal.setModels(models);
         binding.ntbHorizontal.setViewPager(binding.pager, 2);
+
         binding.ntbHorizontal.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {
@@ -96,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(final int position) {
+                window.setStatusBarColor(Color.parseColor(list.get(position).color));
                 binding.ntbHorizontal.getModels().get(position).hideBadge();
             }
 
@@ -127,14 +135,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public class MainMenuDTO {
-    public MainMenuDTO(Fragment fragment, int defaultIcon, int selectedIcon, String color, String title, String badgeTitle) {
-        this.fragment = fragment;
-        this.defaultIcon = defaultIcon;
-        this.selectedIcon = selectedIcon;
-        this.color = color;
-        this.title = title;
-        this.badgeTitle = badgeTitle;
-    }
+
     public MainMenuDTO(Fragment fragment, int defaultIcon, String color, String title, String badgeTitle) {
         this.fragment = fragment;
         this.defaultIcon = defaultIcon;
@@ -142,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         this.title = title;
         this.badgeTitle = badgeTitle;
     }
-    Fragment fragment;
+      Fragment fragment;
         int defaultIcon , selectedIcon ;
         String  color , title , badgeTitle;
 
