@@ -7,11 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
+    android:id="@+id/layout_main"
+    android:background="@drawable/main_back_gradient_animation"
 
-    android:background="@drawable/gradation"
-    >
+     >
 
-
+   <!-- android:background="@drawable/gradation"
+-->
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
@@ -21,6 +23,8 @@
         />
 
 
+
+    <!--app:ntb_bg_color="#33000000"-->
     <devlight.io.library.ntb.NavigationTabBar
         android:id="@+id/ntb_horizontal"
         app:ntb_bg_color="#FFFFFF"

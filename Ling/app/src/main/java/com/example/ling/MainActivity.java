@@ -12,6 +12,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,7 +50,14 @@ public class MainActivity extends AppCompatActivity {
         window = this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
+
+
+        AnimationDrawable animDrawable = (AnimationDrawable) binding.layoutMain.getBackground();
+        animDrawable.setEnterFadeDuration(10);
+        animDrawable.setExitFadeDuration(5000);
+        animDrawable.start();
         initItem();
         initUI();
 
@@ -63,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         //                      붙일프래그먼트  ,        아이콘               ,   선택배경색상 ,    글씨  ,       뱃지보여줄꺼면 뱃지 그씨
         list.add(new MainMenuDTO(new DateFragment() , R.drawable.btm_menu_1 ,"#FF8F1B" , "여행지" ,  "여행지 선택"  ));
         list.add(new MainMenuDTO(new ChatFragment() , R.drawable.btm_menu_2 ,"#567891" , "채팅" ,  null ));
-        list.add(new MainMenuDTO(new HomeFragment() , R.drawable.btm_menu_3 ,"#123456" , "홈" ,  "홈 선택"  ));
+        list.add(new MainMenuDTO(new HomeFragment() , R.drawable.btm_menu_3 ,"#1A000000" , "홈" ,  "홈 선택"  ));
         list.add(new MainMenuDTO(new BoardFragment() , R.drawable.btm_menu_4 ,"#5FB59C" , "게시판" ,  null  ));
         list.add(new MainMenuDTO(new StoreCoFragment() , R.drawable.btm_menu_5 ,"#847253" , "스토어" ,  "스토어 선택"  ));
     }
