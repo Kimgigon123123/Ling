@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,11 +24,13 @@ public class LoginFindFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding =  FragmentLoginFindBinding.inflate(inflater, container, false);
         binding.btnFindId.setOnClickListener(v->{
+            ((LoginActivity) getActivity()).isFindCheck = true;
             ((LoginActivity) getActivity()).find_changeTab(2);
         });
 
         binding.btnFindPw.setOnClickListener(v->{
-            ((LoginActivity) getActivity()).find_changeTab(4);
+            ((LoginActivity) getActivity()).isFindCheck = false;
+            ((LoginActivity) getActivity()).find_changeTab(2);
         });
 
         binding.btnTextLogin.setOnClickListener(v->{
@@ -35,6 +38,8 @@ public class LoginFindFragment extends Fragment {
             startActivity(intent);
 
         });
+
+
 
         return binding.getRoot();
     }

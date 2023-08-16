@@ -2,6 +2,7 @@ package com.example.ling.store.myinfo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,8 @@ import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ActivityBasketBinding;
 import com.example.ling.databinding.ActivityDeliveryBinding;
 import com.example.ling.store.BuyDialog;
+import com.example.ling.store.ChargeVO;
+import com.example.ling.store.CompleteDialog;
 import com.example.ling.store.StorePurchaseActivity;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
@@ -45,11 +48,25 @@ public class DeliveryActivity extends AppCompatActivity {
                     .load(imageUrl)
                     .into(binding.imgvItem);
 
+            if (list.get(0).getDelivery_state().equals("배송완료")){
+                binding.imgvDeliveryState1.setBackgroundColor(getColor(R.color.gray));
+               binding.tvDeliveryState1.setTextColor(getColor(R.color.black));
+               binding.imgvDeliveryState2.setBackgroundColor(getColor(R.color.green));
+               binding.tvDeliveryState2.setTextColor(getColor(R.color.green));
+            }else if (list.get(0).getDelivery_state().equals("배송취소")){
+                binding.imgvDeliveryState1.setBackgroundColor(getColor(R.color.gray));
+                binding.tvDeliveryState1.setTextColor(getColor(R.color.black));
+                binding.imgvDeliveryState3.setBackgroundColor(getColor(R.color.red));
+                binding.tvDeliveryState3.setTextColor(getColor(R.color.red));
+                binding.tvDeliveryState.setTextColor(getColor(R.color.red));
+            }
+
             binding.tvName.setText(list.get(0).getItem_name()+"");
             binding.tvCnt.setText(list.get(0).getPurchase_cnt()+"개");
             binding.tvDeliveryState.setText(list.get(0).getDelivery_state());
             binding.tvPrice.setText(list.get(0).getItem_price()+"원");
             binding.tvTotalPrice.setText("총 "+list.get(0).getTotal_price()+"원");
+            binding.tvAddress.setText(list.get(0).getAddress());
         });
 
 
@@ -63,7 +80,7 @@ public class DeliveryActivity extends AppCompatActivity {
 
             conn.onExcute((isResult, data) -> {
                 ArrayList<StoreReturnVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreReturnVO>>() {}.getType());
-                BottomSheetDialog bottomSheetDialog = new BuyDialog(this,list.get(0).getItem_name(),list.get(0).getItem_price(),list.get(0).getItem_code(),"Co");
+                BottomSheetDialog bottomSheetDialog = new BuyDialog(this,list.get(0).getItem_name(),list.get(0).getItem_price(),list.get(0).getItem_code(),list.get(0).getCategory_code());
                 bottomSheetDialog.show();
             });
 
@@ -77,5 +94,14 @@ public class DeliveryActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    protected void onRestart() {
+        super.onRestart();
+        if(ChargeVO.isBuy){
+            Dialog dialog = new CompleteDialog(this,"BuyComplete");
+            dialog.show();
+            ChargeVO.isBuy=false;
+        }
     }
 }

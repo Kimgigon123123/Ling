@@ -8,8 +8,11 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
+import com.example.ling.Static;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityStoreMyinfoBinding;
 import com.example.ling.store.ChargeCashActivity;
 import com.example.ling.store.ChargeVO;
@@ -85,6 +88,8 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
     public void select(){
         CommonConn conn = new CommonConn(this,"store_myinfo");
+            conn.addParamMap("id",CommonVar.loginInfo.getId());
+
         conn.onExcute((isResult, data) -> {
 
             ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMyinfoVO>>() {}.getType());
@@ -99,14 +104,23 @@ public class StoreMyinfoActivity extends AppCompatActivity {
         });
     }
 
+
+
+
     public void zzimlist() {
         CommonConn conn = new CommonConn(this, "store_list_zzim");
+        conn.addParamMap("id",CommonVar.loginInfo.getId());
+
         conn.onExcute((isResult, data) -> {
 
             ArrayList<StoreZzimListVO> zzimlist = new Gson().fromJson(data, new TypeToken<ArrayList<StoreZzimListVO>>() {
             }.getType());
             binding.recvZzim.setAdapter(new ZZimAdapter(zzimlist,this));
             binding.recvZzim.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+
+            if(zzimlist.size()==0){
+                binding.tvEmpty1.setVisibility(View.VISIBLE);
+            }
 
 
 
@@ -119,22 +133,36 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
     public void buylist() {
         CommonConn conn = new CommonConn(this, "list_purchase");
+        conn.addParamMap("id",CommonVar.loginInfo.getId());
+        binding.tvEmpty2.setVisibility(View.INVISIBLE);
+
         conn.onExcute((isResult, data) -> {
             ArrayList<StorePurchaseListVO> buylistlist = new Gson().fromJson(data, new TypeToken<ArrayList<StorePurchaseListVO>>() {
             }.getType());
             binding.recvBuylist.setAdapter(new BuylistAdapter(buylistlist, this));
             binding.recvBuylist.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+            if(buylistlist.size()==0){
+                binding.tvEmpty2.setVisibility(View.VISIBLE);
+            }
+
         });
     }
 
 
     public void returnlist() {
         CommonConn conn = new CommonConn(this, "store_list_return");
+        conn.addParamMap("id",CommonVar.loginInfo.getId());
+
         conn.onExcute((isResult, data) -> {
             ArrayList<StoreReturnListVO> returnlist = new Gson().fromJson(data, new TypeToken<ArrayList<StoreReturnListVO>>() {
             }.getType());
             binding.recvReturn.setAdapter(new ReturnAdapter(returnlist, this));
             binding.recvReturn.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+            if(returnlist.size()==0){
+                binding.tvEmpty3.setVisibility(View.VISIBLE);
+            }
         });
     }
 

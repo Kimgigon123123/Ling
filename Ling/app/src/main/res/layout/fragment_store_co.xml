@@ -134,6 +134,91 @@
 
         </LinearLayout>
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/fl"
+        android:visibility="invisible"
+        android:background="@drawable/shape"
+        android:layout_width="150dp"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:textColor="@android:color/black"
+            android:layout_margin="10dp"
+            android:layout_gravity="end"
+            android:textSize="24sp"
+            android:id="@+id/tv_nav_close"
+            android:text="X"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#C5C4C4"/>
+
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/tv_all"
+            android:text="전체"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#C5C4C4"/>
+
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/tv_dr"
+            android:text="커플옷"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#C5C4C4"/>
+
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/tv_ring"
+            android:text="커플반지"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#C5C4C4"/>
+
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/tv_gift"
+            android:text="상품권"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#C5C4C4"/>
+
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/tv_etc"
+            android:text="기타"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"/>
+
+    </LinearLayout>
+
 
 
 

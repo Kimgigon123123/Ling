@@ -46,6 +46,8 @@ public class ZZimAdapter extends RecyclerView.Adapter<ZZimAdapter.ViewHolder> {
                 .load(imageUrl)
                 .into(h.binding.imgvItem);
 
+                 h.binding.tvName.setText(list.get(i).item_name);
+
         h.binding.imgvItem.setOnClickListener(v -> {
             Intent intent = new Intent(context,StorePurchaseActivity.class);
             intent.putExtra("name",list.get(i).getItem_name());
@@ -53,12 +55,13 @@ public class ZZimAdapter extends RecyclerView.Adapter<ZZimAdapter.ViewHolder> {
             intent.putExtra("price",list.get(i).getItem_price());
             intent.putExtra("item_code",list.get(i).getItem_code());
             intent.putExtra("item_img",list.get(i).getItem_img());
+            intent.putExtra("category_code",list.get(i).getCategory_code());
 
 
             context.startActivity(intent);
         });
 
-        h.binding.imgvCancle.setOnClickListener(v->{
+        h.binding.imgvCancel.setOnClickListener(v->{
             CommonConn conn = new CommonConn(context , "store_delete_zzim");
             conn.addParamMap("item_code" , list.get(i).getItem_code());
 

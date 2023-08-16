@@ -21,6 +21,8 @@ import com.example.ling.databinding.FragmentJoinProfileBinding;
 import com.example.ling.login.Ling_MemberVO;
 import com.google.gson.Gson;
 
+import java.util.Calendar;
+
 
 public class JoinProfileFragment extends Fragment {
 
@@ -36,6 +38,17 @@ public class JoinProfileFragment extends Fragment {
 
         binding.joinBirth.setOnClickListener(v->{
             DatePickerDialog dialog = new DatePickerDialog(getContext());
+            Calendar calendar = Calendar.getInstance();
+            long currentDate = calendar.getTimeInMillis();
+            calendar.add(Calendar.YEAR, -10);
+
+            dialog.getDatePicker().updateDate(
+                    calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH)
+            );
+
+            dialog.getDatePicker().setMaxDate(currentDate);
             dialog.getDatePicker().setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
                 @Override
                 public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -55,32 +68,37 @@ public class JoinProfileFragment extends Fragment {
                 Toast.makeText(getActivity(), "빈칸없이 입력해주세요.", Toast.LENGTH_SHORT).show();
 
             }
-            CommonConn conn = new CommonConn(getActivity(), "register");
-            CommonVar.loginInfo.setName(binding.joinName.getText().toString());
-            if (binding.radioMen.isChecked()){
-                CommonVar.loginInfo.setGender("남");
-            } else if (binding.radioWomen.isChecked()){
-                CommonVar.loginInfo.setGender("여");
-            }
-            CommonVar.loginInfo.setBirth(binding.joinBirth.getText().toString());
-            CommonVar.loginInfo.setPhone(binding.joinPhone.getText().toString());
-            CommonVar.loginInfo.setEmail(binding.joinEmail.getText().toString());
-
-
-
-
-            conn.addParamMap("dto", new Gson().toJson( CommonVar.loginInfo) );
-
-            conn.onExcute((isResult, data) -> {
-                if(isResult){
-                    if(data.equals("1")){
-                        ((JoinActivity) getActivity()).changeTab(2);
-                    }else{
-                        Toast.makeText(getActivity(), "아이디 중복확인 혹인 비밀번호를 확인 해주세요.", Toast.LENGTH_SHORT).show();
-                    }
-
+                CommonConn conn = new CommonConn(getActivity(), "register");
+                CommonVar.loginInfo.setName(binding.joinName.getText().toString());
+                if (binding.radioMen.isChecked()) {
+                    CommonVar.loginInfo.setGender("남");
+                } else if (binding.radioWomen.isChecked()) {
+                    CommonVar.loginInfo.setGender("여");
                 }
-            });
+                CommonVar.loginInfo.setBirth(binding.joinBirth.getText().toString());
+                CommonVar.loginInfo.setPhone(binding.joinPhone.getText().toString());
+                CommonVar.loginInfo.setEmail(binding.joinEmail.getText().toString());
+
+                conn.addParamMap("dto", new Gson().toJson(CommonVar.loginInfo));
+
+                conn.onExcute((isResult, data) -> {
+                    if (isResult) {
+                        if (data.equals("1")) {
+                            ((JoinActivity) getActivity()).changeTab(2);
+                            Toast.makeText(getContext(), "회원가입완료", Toast.LENGTH_SHORT).show();
+
+                            //김기곤 store에 회원가입한 정보 저장
+                            CommonConn storeID = new CommonConn(getContext() , "store_insert_myinfo");
+                            storeID.addParamMap("id" ,CommonVar.loginInfo.getId() );
+                            storeID.onExcute((isResult3, data3) -> {
+                            });
+
+                        } else {
+                            Toast.makeText(getActivity(), "아이디 중복확인 혹인 비밀번호를 확인 해주세요.", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
 
         });
 

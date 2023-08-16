@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,11 +43,15 @@ public class BoardMainFragment extends Fragment {
         Freeselect();
         Worryselect();
         Playselect();
+
+
+
         return binding.getRoot();
     }
 
     public void Noticeselect(){
         CommonConn conn = new CommonConn(getContext(), "board.noticeselect");
+        conn.addParamMap("board_cd" , "NOTICE");
         conn.onExcute((isResult, data) -> {
             ArrayList<BoardVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<BoardVO>>(){}.getType());
 
@@ -57,30 +62,33 @@ public class BoardMainFragment extends Fragment {
     }
     public void Freeselect(){
         CommonConn conn = new CommonConn(getContext(), "board.freeselect");
+        conn.addParamMap("board_cd" , "FREE");
         conn.onExcute((isResult, data) -> {
             ArrayList<BoardVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<BoardVO>>(){}.getType());
 
-            BoardMain_FreeAdapter adapter = new BoardMain_FreeAdapter(list);
+            BoardMain_FreeAdapter adapter = new BoardMain_FreeAdapter(list, fragment);
             binding.recvFree.setAdapter(adapter);
             binding.recvFree.setLayoutManager(new LinearLayoutManager(getContext()));
         });
     }
     public void Worryselect(){
-        CommonConn conn = new CommonConn(getContext(), "board.worryselect");
+        CommonConn conn = new CommonConn(getContext(), "board.freeselect");
+        conn.addParamMap("board_cd" , "WORRY");
         conn.onExcute((isResult, data) -> {
             ArrayList<BoardVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<BoardVO>>(){}.getType());
 
-            BoardMain_WorryAdapter adapter = new BoardMain_WorryAdapter(list);
+            BoardMain_WorryAdapter adapter = new BoardMain_WorryAdapter(list, fragment);
             binding.recvWorry.setAdapter(adapter);
             binding.recvWorry.setLayoutManager(new LinearLayoutManager(getContext()));
         });
     }
     public void Playselect(){
-        CommonConn conn = new CommonConn(getContext(), "board.playselect");
+        CommonConn conn = new CommonConn(getContext(), "board.noticeselect");
+        conn.addParamMap("board_cd" , "PLAY");
         conn.onExcute((isResult, data) -> {
             ArrayList<BoardVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<BoardVO>>(){}.getType());
 
-            BoardMain_PlayAdapter adapter = new BoardMain_PlayAdapter(list);
+            BoardMain_PlayAdapter adapter = new BoardMain_PlayAdapter(list, fragment);
             binding.recvPlay.setAdapter(adapter);
             binding.recvPlay.setLayoutManager(new LinearLayoutManager(getContext()));
         });

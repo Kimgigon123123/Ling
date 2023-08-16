@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentBuylistBinding;
 import com.example.ling.databinding.FragmentZZimBinding;
 import com.example.ling.store.storeCO.StorePurchaseListVO;
@@ -40,11 +41,16 @@ public class BuylistFragment extends Fragment {
 
     public void buylist() {
         CommonConn conn = new CommonConn(getContext(), "list_purchase");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
             ArrayList<StorePurchaseListVO> buylistlist = new Gson().fromJson(data, new TypeToken<ArrayList<StorePurchaseListVO>>() {
             }.getType());
             binding.recvBuylist.setAdapter(new BuylistAdapter(buylistlist, getContext()));
-            binding.recvBuylist.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+            binding.recvBuylist.setLayoutManager(new GridLayoutManager(getContext(),4));
+
+            if(buylistlist.size()==0){
+                binding.tvEmpty.setVisibility(View.VISIBLE);
+            }
         });
     }
 }

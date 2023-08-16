@@ -5,27 +5,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".date.InfoFragment">
+    tools:context=".date.restaurant.RestInfoFragment">
 
     <ImageView
+        android:id="@+id/imgv"
         android:src="@drawable/ic_launcher_background"
         android:scaleType="fitXY"
         android:layout_width="match_parent"
-        android:layout_height="500dp"/>
+        android:layout_height="450dp"/>
 
     <TextView
-        android:id="@+id/tv_info"
+        android:id="@+id/tv_name"
+        android:textSize="23dp"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="[INFO]"
-        android:textSize="25dp" />
-
+        android:layout_margin="7dp" />
     <TextView
-        android:id="@+id/tv_detailinfo"
+        android:id="@+id/tv_time"
+        android:textSize="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="이름, 상세 주소, 전화번호 기타 등등 작성 예정" />
-
+        android:layout_margin="7dp" />
+    <TextView
+        android:id="@+id/tv_address"
+        android:textSize="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp" />
 </LinearLayout>

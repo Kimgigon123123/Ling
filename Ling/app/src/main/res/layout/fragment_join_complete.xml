@@ -48,6 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"/>
             <TextView
+                android:id="@+id/tv_mid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="아랍"
@@ -73,6 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"/>
             <TextView
+                android:id="@+id/tv_fid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="두부"

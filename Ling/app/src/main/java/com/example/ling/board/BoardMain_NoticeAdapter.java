@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ItemRecvBoardNoticeBinding;
 
 import java.net.InetSocketAddress;

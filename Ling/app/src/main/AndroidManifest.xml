@@ -28,10 +28,22 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".board.Notice_contextActivity"
+            android:name=".store.myinfo.CompleteReturnActivity"
             android:exported="false" />
         <activity
-            android:name=".store.myinfo.AddressActivity"
+            android:name=".store.myinfo.DetailAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.myinfo.AddressSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.myinfo.AddressMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".board.Board_New_ContentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".board.Notice_contextActivity"
             android:exported="false" />
         <activity
             android:name=".store.myinfo.ReturnActivity"
@@ -115,13 +127,11 @@
             android:name=".SplashActivity"
             android:exported="false" />
         <activity
-            android:name=".join.JoinActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize|adjustPan" >
-
-        </activity>
-        <activity
             android:name=".MainActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|adjustPan" />
+        <activity
+            android:name=".join.JoinActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -46,8 +46,25 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
+
+        ChatData chat = mDataset.get(position);
+
+
+
         holder.TextView_nickname.setText(mDataset.get(position).getNickname());
         holder.TextView_msg.setText(mDataset.get(position).getMessage());
+
+
+//        if(chat.getNickname().equals(this.myNickName)) {
+            holder.TextView_msg.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+            holder.TextView_nickname.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+//        }
+//        else {
+//            holder.TextView_msg.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+//            holder.TextView_nickname.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+//        }
+
     }
 
     @Override

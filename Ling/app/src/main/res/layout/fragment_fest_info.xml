@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".date.festival.FestInfoFragment">
+
+    <ImageView
+        android:id="@+id/imgv"
+        android:src="@drawable/ic_launcher_background"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"/>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:textSize="23dp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp" />
+    <TextView
+        android:id="@+id/tv_time"
+        android:textSize="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp" />
+    <TextView
+        android:id="@+id/tv_address"
+        android:textSize="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp" />
+    <TextView
+        android:id="@+id/tv_intro"
+        android:textSize="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp" />
+
+
+</LinearLayout>

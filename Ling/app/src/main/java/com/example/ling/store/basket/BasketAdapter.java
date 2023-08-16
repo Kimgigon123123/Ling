@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ItemRecvBasketBinding;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -46,8 +47,9 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
         h.binding.tvName.setText(list.get(i).getItem_name());
-        h.binding.tvPrice.setText(list.get(i).getItem_price()*list.get(i).getSelection()+"원");
-        h.binding.tvCnt.setText(list.get(i).getSelection()+"개");
+        h.binding.tvPrice.setText("총: "+list.get(i).getItem_price()*list.get(i).getSelection()+"원");
+        h.binding.tvCnt.setText(list.get(i).getSelection()+"");
+        h.binding.tvPerPrice.setText(list.get(i).getItem_price()+"원");
 
         String imageUrl = list.get(i).getItem_img();
         Picasso.get()
@@ -59,9 +61,11 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
         h.binding.imgvUp.setOnClickListener(v->{
             CommonConn conn = new CommonConn(activity,"store_up_selection");
             conn.addParamMap("basket_code",list.get(i).basket_code);
+            conn.addParamMap("id", CommonVar.loginInfo.getId());
             conn.onExcute(((isResult, data) -> {
 
                 CommonConn conn2 = new CommonConn(activity, "store_list_basket");
+                conn2.addParamMap("id",CommonVar.loginInfo.getId());
                 conn2.onExcute((isResult2, data2) -> {
 
                     ArrayList<StoreBasketVO> list = new Gson().fromJson(data2, new TypeToken<ArrayList<StoreBasketVO>>() {
@@ -69,8 +73,8 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
 
 
                     Toast.makeText(activity, list.get(i).getSelection()+"개", Toast.LENGTH_SHORT).show();
-                    h.binding.tvCnt.setText(list.get(i).getSelection()+"개");
-                    h.binding.tvPrice.setText(list.get(i).getItem_price()*list.get(i).getSelection()+"원");
+                    h.binding.tvCnt.setText(list.get(i).getSelection()+"");
+                    h.binding.tvPrice.setText("총: "+list.get(i).getItem_price()*list.get(i).getSelection()+"원");
 
                     activity.basket_total_price();
 
@@ -96,10 +100,12 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
             }else{
 
                 CommonConn conn = new CommonConn(activity,"store_down_selection");
+                conn.addParamMap("id",CommonVar.loginInfo.getId());
                 conn.addParamMap("basket_code",list.get(i).basket_code);
                 conn.onExcute(((isResult, data) -> {
 
                     CommonConn conn2 = new CommonConn(activity, "store_list_basket");
+                    conn2.addParamMap("id",CommonVar.loginInfo.getId());
                     conn2.onExcute((isResult2, data2) -> {
 
                         ArrayList<StoreBasketVO> list = new Gson().fromJson(data2, new TypeToken<ArrayList<StoreBasketVO>>() {
@@ -108,6 +114,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
                         if(list.get(i).getSelection()<1){
 
                             CommonConn conn3 = new CommonConn(activity,"store_up_selection");
+                            conn3.addParamMap("id",CommonVar.loginInfo.getId());
                             conn3.addParamMap("basket_code",list.get(i).basket_code);
                             conn3.onExcute(((isResult3, data3) -> {
 
@@ -116,8 +123,8 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
                         }else{
 
                             Toast.makeText(activity, list.get(i).getSelection()+"개", Toast.LENGTH_SHORT).show();
-                            h.binding.tvCnt.setText(list.get(i).getSelection()+"개");
-                            h.binding.tvPrice.setText(list.get(i).getItem_price()*list.get(i).getSelection()+"원");
+                            h.binding.tvCnt.setText(list.get(i).getSelection()+"");
+                            h.binding.tvPrice.setText("총: "+list.get(i).getItem_price()*list.get(i).getSelection()+"원");
                             activity.basket_total_price();
 
 
@@ -138,6 +145,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
 
             CommonConn conn = new CommonConn(activity,"store_delete_basket");
             conn.addParamMap("basket_code",list.get(i).getBasket_code());
+            conn.addParamMap("id",CommonVar.loginInfo.getId());
 
             conn.onExcute((isResult, data) -> {
 
@@ -161,6 +169,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
     public int getItemCount() {
 
             return list.size();
+
 
 
     }

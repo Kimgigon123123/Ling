@@ -2,7 +2,15 @@ package date;
 
 public class DateDibsVO {
 	private int dibs_id, date_id;
-	private String id, date_category_code, date_name, date_address;
+	private String id, date_category_code, date_name, date_address, date_intro, open, end, lan, lng, date_img;
+
+	public String getDate_img() {
+		return date_img;
+	}
+
+	public void setDate_img(String date_img) {
+		this.date_img = date_img;
+	}
 
 	public int getDibs_id() {
 		return dibs_id;
@@ -50,6 +58,46 @@ public class DateDibsVO {
 
 	public void setDate_address(String date_address) {
 		this.date_address = date_address;
+	}
+
+	public String getDate_intro() {
+		return date_intro;
+	}
+
+	public void setDate_intro(String date_intro) {
+		this.date_intro = date_intro;
+	}
+
+	public String getOpen() {
+		return open;
+	}
+
+	public void setOpen(String open) {
+		this.open = open;
+	}
+
+	public String getEnd() {
+		return end;
+	}
+
+	public void setEnd(String end) {
+		this.end = end;
+	}
+
+	public String getLan() {
+		return lan;
+	}
+
+	public void setLan(String lan) {
+		this.lan = lan;
+	}
+
+	public String getLng() {
+		return lng;
+	}
+
+	public void setLng(String lng) {
+		this.lng = lng;
 	}
 
 }

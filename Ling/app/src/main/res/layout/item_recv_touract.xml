@@ -50,14 +50,16 @@
                     android:textSize="12dp" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/imgv_fav"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_add"
+                android:text="♥"
+                android:textSize="10dp"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="165dp"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/ic_fav" />
+                android:background="@drawable/shape_btn"
+                android:layout_marginTop="230dp"
+                android:layout_marginRight="15dp"/>
 
         </RelativeLayout>
 

@@ -3,7 +3,7 @@ package com.cteam.ling;
 import java.util.HashMap;
 import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
+
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +11,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import ling.common.CommonUtility;
 import member.MemberDAO;
@@ -56,7 +57,6 @@ public class MemberController {
 
 		// 화면에서 입력한 아이디/이메일이 일치하는 회원에게 임시 비번을 발급한다.
 		String name = dao.useridEmail(vo);
-
 		if (name == null) {
 
 		} else {
@@ -102,4 +102,41 @@ public class MemberController {
 			return new Gson().toJson(dao.join(vo));
 			
 		}
+		
+	
+		@RequestMapping(value="/member.matching", produces="text/html; charset=utf-8")
+		public String matching(String dto) {
+			HashMap<String, Object> receive = new Gson().fromJson(dto,  new TypeToken<HashMap<String,Object>>(){}.getType());
+			String mid = receive.get("mid").toString();
+			String fid = receive.get("fid").toString();
+			String gender = receive.get("gender").toString();
+			//gender 가 M/상대는 fid 
+			//gender 가 F/상대는 mid
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			MemberVO member = null; //fid 회원정보 조회
+			if( gender.equals("남") ) {
+				//모든 회원중에 fid 인 회원의 성별이 M 이면 동성의 상대는 X
+				member = dao.info(fid); //fid 회원정보 조회
+				
+			}else {
+				member = dao.info(mid); //mid 회원정보 조회
+			}
+			map.put("status", member==null ? "N" : ( member.getGender().equals(gender) ? "T" : "F") );
+			map.put("couple", member);
+			
+			
+			map.put("mid", mid);
+			map.put("fid", fid);
+			
+			if( map.get("status").equals("F") ) {
+				dao.matching(map);
+			}
+			
+			return new Gson().toJson(map);	
+			
+		}
+		
+
+		
+		
 }

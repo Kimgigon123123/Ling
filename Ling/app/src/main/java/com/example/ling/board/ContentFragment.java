@@ -35,6 +35,7 @@ public class ContentFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentContentBinding.inflate(inflater,container,false);
         NoticeContentselect();
+        UserContentselect();
         return binding.getRoot();
     }
     public void NoticeContentselect(){
@@ -44,6 +45,18 @@ public class ContentFragment extends Fragment {
             BoardVO boardvo = new Gson().fromJson(data, new TypeToken<BoardVO>(){}.getType());
 
             Board_Notice_ContentAdapter adapter = new Board_Notice_ContentAdapter(boardvo);
+            binding.recvNoticeContent.setAdapter(adapter);
+            binding.recvNoticeContent.setLayoutManager(new LinearLayoutManager(getContext()));
+        });
+    }
+
+    public void UserContentselect(){
+        CommonConn conn = new CommonConn(getContext(), "board.usercontent");
+        conn.addParamMap("id",board_no );
+        conn.onExcute((isResult, data) -> {
+            BoardVO boardvo = new Gson().fromJson(data, new TypeToken<BoardVO>(){}.getType());
+
+            Board_User_ContentAdapter adapter = new Board_User_ContentAdapter(boardvo);
             binding.recvNoticeContent.setAdapter(adapter);
             binding.recvNoticeContent.setLayoutManager(new LinearLayoutManager(getContext()));
         });

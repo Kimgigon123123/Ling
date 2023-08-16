@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store_category">
+
+<select id="dr_byrecent" resultType="storeco.StoreCOVO">
+select * from store_item where category_code ='Dr'
+order by to_number(item_code) desc
+</select>
+
+
+<select id="dr_byname" resultType="storeco.StoreCOVO">
+select * from store_item where category_code ='Dr'
+order by item_name
+</select>
+
+<select id="dr_bypopular" resultType="storeco.StoreCOVO">
+select * from store_item where category_code ='Dr'
+order by popular desc
+</select>
+
+<select id="dr_byprice" resultType="storeco.StoreCOVO">
+select * from store_item where category_code ='Dr'
+order by item_price
+</select>
+
+<select id="ri_byrecent" resultType="storeco.StoreCOVO">
+select * from store_item where category_code ='Ri'
+order by item_code desc
+</select>
+
+<select id="ri_byname" resultType="storeco.StoreCOVO">
+select * from store_item where category_code ='Ri'
+order by item_name
+</select>
+
+<select id="ri_bypopular" resultType="storeco.StoreCOVO">
+select * from store_item where category_code ='Ri'
+order by popular desc
+</select>
+
+
+<select id="ri_byprice" resultType="storeco.StoreCOVO">
+select * from store_item where category_code ='Ri'
+order by item_price
+</select>
+
+<select id="gi_byrecent" resultType="storeco.StoreCOVO">
+select * from store_item where category_code ='Gi'
+order by item_code desc
+</select>
+
+<select id="gi_byname" resultType="storeco.StoreCOVO">
+select * from store_item where category_code ='Gi'
+order by item_name
+</select>
+
+<select id="gi_bypopular" resultType="storeco.StoreCOVO">
+select * from store_item where category_code ='Gi'
+order by popular desc
+</select>
+
+<select id="gi_byprice" resultType="storeco.StoreCOVO">
+select * from store_item where category_code ='Gi'
+order by item_price
+</select>
+
+<select id="etc_byrecent" resultType="storeco.StoreCOVO">
+select * from store_item where category_code ='Etc'
+order by item_code desc
+</select>
+
+<select id="etc_byname" resultType="storeco.StoreCOVO">
+select * from store_item where category_code ='Etc'
+order by item_name
+</select>
+
+<select id="etc_bypopular" resultType="storeco.StoreCOVO">
+select * from store_item where category_code ='Etc'
+order by popular desc
+</select>
+
+<select id="etc_byprice" resultType="storeco.StoreCOVO">
+select * from store_item where category_code ='Etc'
+order by item_price
+</select>
+
+</mapper>
