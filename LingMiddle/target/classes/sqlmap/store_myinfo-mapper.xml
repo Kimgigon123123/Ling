@@ -79,5 +79,8 @@ update Store_myinfo set detail_add = #{detail_add} where id= #{id}
 select nvl(detail_add,'상세주소를 입력해주세요.') as detail_add from store_myinfo where id = #{id}
 </select>
 
+<insert id="insert_myinfo">
+insert into store_myinfo(id,money) values(#{id},0)
+</insert>
 
 </mapper>

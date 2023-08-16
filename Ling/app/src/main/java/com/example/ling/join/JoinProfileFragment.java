@@ -85,6 +85,14 @@ public class JoinProfileFragment extends Fragment {
                     if (isResult) {
                         if (data.equals("1")) {
                             ((JoinActivity) getActivity()).changeTab(2);
+                            Toast.makeText(getContext(), "회원가입완료", Toast.LENGTH_SHORT).show();
+
+                            //김기곤 store에 회원가입한 정보 저장
+                            CommonConn storeID = new CommonConn(getContext() , "store_insert_myinfo");
+                            storeID.addParamMap("id" ,CommonVar.loginInfo.getId() );
+                            storeID.onExcute((isResult3, data3) -> {
+                            });
+
                         } else {
                             Toast.makeText(getActivity(), "아이디 중복확인 혹인 비밀번호를 확인 해주세요.", Toast.LENGTH_SHORT).show();
                         }

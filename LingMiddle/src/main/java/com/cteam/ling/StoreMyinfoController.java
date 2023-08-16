@@ -161,5 +161,15 @@ public class StoreMyinfoController {
 			Gson gson = new Gson();
 			return gson.toJson(result);
 		}	
+		
+	//회원가입시 store_myinfo에 정보 추가
+		@RequestMapping(value = "/store_insert_myinfo", produces = "text/html;charset=utf-8")
+		public String insert_myinfo(String id) {
+
+			int result = sql.insert("store_myinfo.insert_myinfo", id);
+
+			Gson gson = new Gson();
+			return gson.toJson(result);
+		}	
 
 }
