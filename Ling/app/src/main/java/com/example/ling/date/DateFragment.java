@@ -40,6 +40,43 @@ public class DateFragment extends Fragment {
         binding.recvRestaurant.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         binding.recvFestival.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
+        binding.imgvMenu.setOnClickListener(v -> {
+            binding.navigationDrawer.setVisibility(View.VISIBLE);
+            // 왼쪽에서 나타나는 애니메이션 설정
+            Animation slideIn = new TranslateAnimation(-binding.navigationDrawer.getWidth(), 0, 0, 0);
+            slideIn.setDuration(300); // 애니메이션 지속 시간 (밀리초)
+            binding.navigationDrawer.startAnimation(slideIn);
+        });
+
+        binding.tvTour.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), TourActivity.class);
+            startActivity(intent);
+        });
+
+        binding.tvRestaurant.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), RestaurantActivity.class);
+            startActivity(intent);
+        });
+
+        binding.tvFestival.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), FestivalActivity.class);
+            startActivity(intent);
+        });
+
+        binding.tvDibs.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), DibsActivity.class);
+            startActivity(intent);
+        });
+
+        binding.tvNavClose.setOnClickListener(v -> {
+            // 왼쪽으로 사라지는 애니메이션 설정
+            Animation slideOut = new TranslateAnimation(0, -binding.navigationDrawer.getWidth(), 0, 0);
+            slideOut.setDuration(300); // 애니메이션 지속 시간 (밀리초)
+            binding.navigationDrawer.startAnimation(slideOut);
+            binding.navigationDrawer.setVisibility(View.GONE);
+        });
+
+
         binding.imgvDibs.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), DibsActivity.class);
             startActivity(intent);
