@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.example.ling.R;
 import com.example.ling.databinding.FragmentFestInfoBinding;
 import com.example.ling.databinding.FragmentRestInfoBinding;
+import com.squareup.picasso.Picasso;
 
 public class RestInfoFragment extends Fragment {
 
@@ -23,8 +24,12 @@ public class RestInfoFragment extends Fragment {
 
         Bundle bundle = getArguments();
         if(bundle !=null){
+            String imageUrl=bundle.getString("img");
+            Picasso.get()
+                    .load(imageUrl)
+                    .into(binding.imgv);
             binding.tvName.setText(bundle.getString("name"));
-            binding.tvTime.setText("09:00" + " ~ " + "21:00");
+            binding.tvTime.setText(bundle.getString("open") + " ~ " + bundle.getString("end"));
             binding.tvAddress.setText(bundle.getString("address"));
         }
 
