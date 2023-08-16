@@ -8,7 +8,7 @@ public class RetClient {
 
     //192.168.0.36 김기곤
     //192.168.0.28 정수원
-    //192.168.0.122 김건호
+    //192.168.0.122 김건호, 192.168.0.2
     //192.168.0.31 김혜민
     public Retrofit getRet(){
         Retrofit ret = new Retrofit.Builder()
