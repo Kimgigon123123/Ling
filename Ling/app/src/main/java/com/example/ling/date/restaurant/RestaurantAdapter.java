@@ -16,6 +16,7 @@ import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ItemRecvRestactBinding;
 import com.example.ling.date.DateInfoVO;
 import com.example.ling.date.tour.TourDetailActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -40,7 +41,10 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        h.binding.imgvRestaurant.setImageResource(R.drawable.ic_launcher_background);
+        String imageUrl=list.get(i).getDate_img();
+        Picasso.get()
+                .load(imageUrl)
+                .into(h.binding.imgvRestaurant);
         h.binding.tvRname.setText(list.get(i).getDate_name());
         h.binding.tvRaddr.setText(list.get(i).getDate_address());
         h.binding.btnAdd.setOnClickListener(v -> {
@@ -54,7 +58,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
         });
         h.binding.lnRestaurant.setOnClickListener(v -> {
             Intent intent = new Intent(context, RestDetailActivity.class);
-            intent.putExtra("img", R.drawable.ic_launcher_background);
+            intent.putExtra("img", list.get(i).getDate_img());
             intent.putExtra("name", list.get(i).getDate_name());
             intent.putExtra("address", list.get(i).getDate_address());
             intent.putExtra("intro", list.get(i).getDate_intro());

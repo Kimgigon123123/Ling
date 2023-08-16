@@ -15,6 +15,7 @@ import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ItemRecvFestactBinding;
 import com.example.ling.date.DateInfoVO;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -39,7 +40,10 @@ public class FestivalAdapter extends RecyclerView.Adapter<FestivalAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        h.binding.imgvFestival.setImageResource(R.drawable.ic_launcher_background);
+        String imageUrl=list.get(i).getDate_img();
+        Picasso.get()
+                .load(imageUrl)
+                .into(h.binding.imgvFestival);
         //h.binding.imgvFav2.setVisibility(View.INVISIBLE);
         h.binding.tvFname.setText(list.get(i).getDate_name());
         h.binding.tvFaddr.setText(list.get(i).getDate_address());
@@ -54,7 +58,7 @@ public class FestivalAdapter extends RecyclerView.Adapter<FestivalAdapter.ViewHo
         });
         h.binding.lnFestival.setOnClickListener(v -> {
             Intent intent = new Intent(context, FestDetailActivity.class);
-            intent.putExtra("img", R.drawable.ic_launcher_background);
+            intent.putExtra("img", list.get(i).getDate_img());
             intent.putExtra("name", list.get(i).getDate_name());
             intent.putExtra("address", list.get(i).getDate_address());
             intent.putExtra("intro", list.get(i).getDate_intro());
