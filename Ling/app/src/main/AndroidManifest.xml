@@ -37,10 +37,10 @@
             android:name=".store.myinfo.AddressMainActivity"
             android:exported="false" />
         <activity
-            android:name=".board.Board_New_ContentActivity"
+            android:name=".board.Board_Write_ContentActivity"
             android:exported="false" />
         <activity
-            android:name=".board.Notice_contextActivity"
+            android:name=".board.Board_DetailtActivity"
             android:exported="false" />
         <activity
             android:name=".store.myinfo.ReturnActivity"

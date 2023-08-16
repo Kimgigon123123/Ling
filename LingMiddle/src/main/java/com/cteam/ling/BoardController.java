@@ -73,9 +73,12 @@ public class BoardController {
 	
 	// 자유, 고민 게시판 상세정보화면 요청
 	@RequestMapping(value="/board.usercontent", produces = "text/html;charset=utf-8")
-	public String usercontent(String id) {
+	public String usercontent(String id , String board_cd) {
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("id", id);
+		param.put("board_cd", board_cd);
 		dao.board_read(id);
-		return new Gson().toJson(dao.user_content(id));
+		return new Gson().toJson(dao.user_content(param));
 	}
 	
 //	//조회수 증가처리
@@ -100,6 +103,14 @@ public class BoardController {
 	public String update(BoardVO vo) {
 		
 		 dao.board_update(vo);
+		 return new Gson().toJson(vo);
+	}	
+	
+	//선택한 글 정보 수정처리 요청
+	@RequestMapping(value="/board.delete", produces = "text/html;charset=utf-8")
+	public String delete(BoardVO vo) {
+		
+		 dao.board_delete(vo);
 		 return new Gson().toJson(vo);
 	}	
 

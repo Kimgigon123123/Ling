@@ -13,15 +13,12 @@ import com.example.ling.databinding.ItemRecvBoardUserBinding;
 import java.util.ArrayList;
 
 
-public class BoardMain_WorryAdapter extends RecyclerView.Adapter<BoardMain_WorryAdapter.ViewHolder> {
+public class Board_CommonAdapter extends RecyclerView.Adapter<Board_CommonAdapter.ViewHolder> {
     ArrayList<BoardVO> list;
-    BoardFragment fragment;
 
-    public BoardMain_WorryAdapter(ArrayList<BoardVO> list, BoardFragment fragment) {
+    public Board_CommonAdapter(ArrayList<BoardVO> list) {
         this.list = list;
-        this.fragment = fragment;
     }
-
 
     Context context;
     @NonNull
@@ -41,17 +38,17 @@ public class BoardMain_WorryAdapter extends RecyclerView.Adapter<BoardMain_Worry
         h.binding.boardCnt.setText(list.get(i).getReadcnt()+"");
 
         h.binding.lnUser.setOnClickListener(v->{
-            fragment.changeFragment(3);
-            Intent intent = new Intent(context, Notice_contextActivity.class);
+            Intent intent = new Intent(context, Board_DetailtActivity.class);
             intent.putExtra("board_no", list.get(i).getId());
             intent.putExtra("board_cd", list.get(i).getBoard_cd());
+
             context.startActivity(intent);
         });
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

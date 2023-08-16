@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".board.ContentFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/ln_container">
 
     <FrameLayout
         android:layout_marginLeft="10dp"
@@ -26,6 +27,32 @@
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </FrameLayout>
+    <LinearLayout
+        android:layout_gravity="right"
+        android:id="@+id/ln_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_update"
+            android:text="수정"/>
+        <Button
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_delete"
+            android:text="삭제"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_before"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="10dp"
+        android:drawableLeft="@drawable/go_backspace"
+        android:text="   뒤로가기"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 
 </LinearLayout>
