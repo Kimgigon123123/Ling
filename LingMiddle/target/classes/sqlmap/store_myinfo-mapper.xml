@@ -43,6 +43,16 @@ delete from store_zzim_product
 where item_code=#{item_code}
 </delete>
 
+<delete id="deletebuylist">
+delete from store_purchase_product
+where order_num=#{order_num}
+</delete>
+
+<delete id="deletereturn">
+delete from store_return_list
+where return_code=#{return_code}
+</delete>
+
 <update id="bank">
 update store_myinfo set bank = #{bank} where id=#{id}
 </update>

@@ -60,15 +60,21 @@ public class StoreReturnController {
 	}
 
 	// 환불리스트 보여주기
-
-	// 환불신청하면 반품목록추가
 	@RequestMapping(value = "/store_list_return", produces = "text/html;charset=utf-8")
 	public String store_list_return(StoreReturnListVO vo) {
 		List<StoreReturnListVO> list = sql.selectList("store_return.store_list_return", vo);
 		Gson gson = new Gson();
 		return gson.toJson(list);
 	}
-
+	
+	//환불 디테일 정보 보여주기
+	// 환불리스트 보여주기
+		@RequestMapping(value = "/store_return_detail", produces = "text/html;charset=utf-8")
+		public String store_return_detail(StoreReturnListVO vo) {
+			List<StoreReturnListVO> list = sql.selectList("store_return.store_return_detail", vo);
+			Gson gson = new Gson();
+			return gson.toJson(list);
+		}
 	
 
 }

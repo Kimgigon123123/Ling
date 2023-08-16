@@ -8,7 +8,7 @@ case  when delivery_code=1 then '배송중'
      when delivery_code=3 then '배송취소'
      end as delivery_state
 ,
-id,item_price,(purchase_cnt*item_price) as total_price,purchase_cnt,item_name,item_img,address
+id,item_price,(purchase_cnt*item_price) as total_price,purchase_cnt,item_name,item_img,address,i.category_code
 from store_purchase_product p , store_item i
 where p.item_code = i.item_code
 and order_num=#{order_num}
@@ -23,8 +23,8 @@ delete store_purchase_product where order_num=#{order_num}
 </delete>
 
 <insert id ="store_insert_return">
-insert into store_return_list (return_code,order_num, item_code, category_code, delivery_code, id, purchase_cnt)
-select seq_return.nextval,order_num, item_code, category_code, 3, id, purchase_cnt
+insert into store_return_list (return_code,order_num, item_code, category_code, delivery_code, id, purchase_cnt,address)
+select seq_return.nextval,order_num, item_code, category_code, 3, id, purchase_cnt,address
 from store_purchase_product
 where order_num = #{order_num}
 </insert>
@@ -36,6 +36,13 @@ and id = #{id}
 
 order by return_code desc
 
+</select>
+
+<select id="store_return_detail" resultType="storereturn.StoreReturnListVO">
+select order_num,i.item_code,i.category_code,delivery_code,id,purchase_cnt,return_code,i.item_name,i.item_price,(purchase_cnt*i.item_price) as total_price, address,i.item_img
+from store_return_list r, store_item i
+where i.item_code = r.item_code
+and order_num=#{order_num}
 </select>
 
 
