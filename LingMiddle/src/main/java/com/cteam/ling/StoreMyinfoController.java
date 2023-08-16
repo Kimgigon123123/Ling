@@ -133,13 +133,33 @@ public class StoreMyinfoController {
 		return gson.toJson(result);
 
 	}
-	
+
 	// 결제창에서 상세주소 보여주기
-		@RequestMapping(value = "/store_select_detailadd", produces = "text/html;charset=utf-8")
-		public String select_detailadd(StoreMyinfoVO vo) {
-			List<StoreMyinfoVO> list = sql.selectList("store_myinfo.select_detailadd", vo);
+	@RequestMapping(value = "/store_select_detailadd", produces = "text/html;charset=utf-8")
+	public String select_detailadd(StoreMyinfoVO vo) {
+		List<StoreMyinfoVO> list = sql.selectList("store_myinfo.select_detailadd", vo);
+		Gson gson = new Gson();
+		return gson.toJson(list);
+	}
+
+	// 구매목록 삭제
+	@RequestMapping(value = "/store_delete_buylist", produces = "text/html;charset=utf-8")
+	public String delete_buylist(String order_num) {
+
+		int result = sql.delete("store_myinfo.deletebuylist", order_num);
+
+		Gson gson = new Gson();
+		return gson.toJson(result);
+	}
+	
+	// 반품목록 삭제
+		@RequestMapping(value = "/store_delete_return", produces = "text/html;charset=utf-8")
+		public String delete_return(int return_code) {
+
+			int result = sql.delete("store_myinfo.deletereturn", return_code);
+
 			Gson gson = new Gson();
-			return gson.toJson(list);
-		}
+			return gson.toJson(result);
+		}	
 
 }

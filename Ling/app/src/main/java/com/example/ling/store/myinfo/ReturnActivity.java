@@ -40,9 +40,9 @@ public class ReturnActivity extends AppCompatActivity {
             binding.tvPrice.setText(list.get(0).getItem_price()+"원");
             binding.tvCnt.setText(list.get(0).getPurchase_cnt()+"개");
             binding.tvTotalPrice.setText(list.get(0).getTotal_price()+"원");
-            binding.tvTotalReturnPrice.setText(list.get(0).getTotal_price()+3000+"원");
+            binding.tvTotalReturnPrice.setText(list.get(0).getTotal_price()+"원");
             binding.tvAddress.setText(list.get(0).getAddress());
-            return_money.set(list.get(0).getTotal_price() + 3000);
+            return_money.set(list.get(0).getTotal_price());
 
 
             String imageUrl =list.get(0).getItem_img();

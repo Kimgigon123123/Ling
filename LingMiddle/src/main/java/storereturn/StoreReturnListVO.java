@@ -2,11 +2,26 @@ package storereturn;
 
 public class StoreReturnListVO {
 	
-	int purchase_cnt,  delivery_code,  order_num,return_code;
-	String item_name,item_img,item_content;
+	int purchase_cnt,  delivery_code,  order_num,return_code,total_price;
+	String item_name,item_img,item_content,address;
+	public int getTotal_price() {
+		return total_price;
+	}
+
+	public void setTotal_price(int total_price) {
+		this.total_price = total_price;
+	}
 	int item_price;
 	public int getReturn_code() {
 		return return_code;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public void setReturn_code(int return_code) {

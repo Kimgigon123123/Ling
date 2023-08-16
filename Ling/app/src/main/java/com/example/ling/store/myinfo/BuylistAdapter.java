@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ItemRecvStoreMyinfoBuylistBinding;
 import com.example.ling.databinding.ItemRecvStoreMyinfoZzimBinding;
 import com.example.ling.store.StorePurchaseActivity;
@@ -67,6 +68,21 @@ public class BuylistAdapter extends RecyclerView.Adapter<BuylistAdapter.ViewHold
             intent.putExtra("order_num",list.get(i).getOrder_num());
             context.startActivity(intent);
         });
+
+        h.binding.imgvCancel.setOnClickListener(v->{
+            CommonConn conn = new CommonConn(context , "store_delete_buylist");
+            conn.addParamMap("order_num" , list.get(i).getOrder_num());
+
+            conn.onExcute((isResult, data) -> {
+                list.remove(i);
+                notifyDataSetChanged();
+            });
+
+
+
+            Toast.makeText(context, "구매목록에서 삭제 되었습니다.", Toast.LENGTH_SHORT).show();
+        });
+
 //
 //        h.binding.tvReturn.setOnClickListener(v -> {
 //            Intent intent = new Intent(context, ReturnActivity.class);
