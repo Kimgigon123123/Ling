@@ -41,7 +41,15 @@ public class RestaurantItemAdapter extends RecyclerView.Adapter<RestaurantItemAd
                 .load(imageUrl)
                 .into(h.binding.imgvRestaurant);
         h.binding.cvRestaurant.setOnClickListener(v -> {
-            Intent intent = new Intent(context, RestaurantActivity.class);
+            Intent intent = new Intent(context, RestDetailActivity.class);
+            intent.putExtra("img", list.get(i).getDate_img());
+            intent.putExtra("name", list.get(i).getDate_name());
+            intent.putExtra("address", list.get(i).getDate_address());
+            intent.putExtra("intro", list.get(i).getDate_intro());
+            intent.putExtra("open", list.get(i).getOpen());
+            intent.putExtra("end", list.get(i).getEnd());
+            intent.putExtra("lan", list.get(i).getLan());
+            intent.putExtra("lng", list.get(i).getLng());
             context.startActivity(intent);
         });
     }

@@ -107,7 +107,7 @@ public class DateFragment extends Fragment {
         CommonConn conn = new CommonConn(getContext(), "date_tour5");
         conn.onExcute((isResult, data) -> {
             ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>(){}.getType());
-            binding.recvTour.setAdapter(new TourItemAdapter(getContext(), list));
+            binding.recvTour.setAdapter(new TourItemAdapter(list, getContext()));
             binding.recvTour.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         });
     }
@@ -125,7 +125,7 @@ public class DateFragment extends Fragment {
         CommonConn conn = new CommonConn(getContext(), "date_festival5");
         conn.onExcute((isResult, data) -> {
             ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>(){}.getType());
-            binding.recvFestival.setAdapter(new FestivalItemAdapter(getContext(), list));
+            binding.recvFestival.setAdapter(new FestivalItemAdapter(list, getContext()));
             binding.recvFestival.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         });
     }
