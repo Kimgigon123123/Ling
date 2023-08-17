@@ -3,24 +3,17 @@ package com.example.ling.photo;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ling.R;
 import com.example.ling.common.CommonConn;
-import com.example.ling.databinding.ItemGridPhotoBinding;
 import com.example.ling.databinding.ItemRecvFolderBinding;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder>{
 
