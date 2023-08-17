@@ -105,16 +105,16 @@ public class HomeFragment extends Fragment {
         binding.loveDDay.setText(diffDays);
 
         //김기곤 test chat
-        binding.tvTestChat.setOnClickListener(v -> {
-            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager(); // getActivity() 대신 requireActivity()를 사용합니다.
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-            TestChatFragment testChatFragment = new TestChatFragment(couple_num); // TestChatFragment로 교체할 프래그먼트 인스턴스 생성
-            transaction.replace(R.id.container, testChatFragment); // R.id.container는 프래그먼트가 표시될 레이아웃의 ID입니다.
-
-            transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
-            transaction.commit();
-        });
+//        binding.tvTestChat.setOnClickListener(v -> {
+//            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager(); // getActivity() 대신 requireActivity()를 사용합니다.
+//            FragmentTransaction transaction = fragmentManager.beginTransaction();
+//
+//            TestChatFragment testChatFragment = new TestChatFragment(); // TestChatFragment로 교체할 프래그먼트 인스턴스 생성
+//            transaction.replace(R.id.container, testChatFragment); // R.id.container는 프래그먼트가 표시될 레이아웃의 ID입니다.
+//
+//            transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
+//            transaction.commit();
+//        });
 
 
 
