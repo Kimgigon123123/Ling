@@ -106,17 +106,17 @@ public class PhotoController {
 //		param.put("couple_num", couple_num);
 		FolderVO vo = new Gson().fromJson(voJson, FolderVO.class);
 		
-		folderPath = folderPath + vo.getCouple_num();
-		createFolder(folderPath, req);
-		
+		//folderPath = folderPath + vo.getCouple_num();
+		//createFolder(folderPath, req);
+		String tempPath = folderPath; 
 		if (!vo.getFolder_name().isEmpty()) {
             // 특정 경로와 입력된 폴더 이름으로 폴더 경로를 생성
-            folderPath = folderPath + vo.getCouple_num() + vo.getFolder_name();
+			tempPath = folderPath + vo.getCouple_num() + vo.getFolder_name();
             
             
 //             
             // 폴더 생성 로직을 호출하여 폴더 생성
-            createFolder(folderPath, req);
+            createFolder(tempPath, req);
         }
 		
 

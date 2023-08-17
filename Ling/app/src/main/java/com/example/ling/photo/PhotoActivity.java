@@ -121,7 +121,7 @@ public class PhotoActivity extends AppCompatActivity {
                     FolderVO vo = new FolderVO();
                     vo.setFolder_name(name.getText().toString().trim());
                     vo.setId(CommonVar.loginInfo.getId());
-                    vo.setCouple_num(Integer.parseInt(CommonVar.loginInfo.getCouple_num()));
+                    vo.setCouple_num(CommonVar.loginInfo.getCouple_num());
 
 //                    vo.setFolder_name(vo.getCouple_num()+"");
                     //확인 버튼을 클릭했을때
