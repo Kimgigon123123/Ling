@@ -1,4 +1,4 @@
-package com.example.ling.photo;
+package com.example.ling.home;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -67,7 +67,7 @@ public class PhotoActivity extends AppCompatActivity {
     private CameraDialog cameraDialog;
     private final int REQ_Gallery = 1000;
     ActivityResultLauncher<Intent> launcher;
-    ArrayList<FolderVO> folder_List;
+    ArrayList<com.example.ling.photo.FolderVO> folder_List;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,18 +134,18 @@ public class PhotoActivity extends AppCompatActivity {
 
 
                 public void onClick(DialogInterface dialog, int whichButton) {
-                    FolderVO vo = new FolderVO();
+                    com.example.ling.photo.FolderVO vo = new com.example.ling.photo.FolderVO();
                     vo.setFolder_name(name.getText().toString().trim());
                     vo.setId(CommonVar.loginInfo.getId());
-                    vo.setCouple_num(Integer.parseInt(CommonVar.loginInfo.getCouple_num()));
+                    vo.setCouple_num(CommonVar.loginInfo.getCouple_num());
 
 //                    vo.setFolder_name(vo.getCouple_num()+"");
                     //확인 버튼을 클릭했을때
                     conn.addParamMap("voJson", new Gson().toJson(vo) );
                     conn.onExcute((isResult, data) -> {
-                        folder_List = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
+                        folder_List = new Gson().fromJson(data, new TypeToken<ArrayList<com.example.ling.photo.FolderVO>>(){}.getType());
 
-                        FolderAdapter adapter = new FolderAdapter(folder_List);
+                        com.example.ling.photo.FolderAdapter adapter = new com.example.ling.photo.FolderAdapter(folder_List);
                         binding.gridGallery.setAdapter(adapter);
                         binding.gridGallery.setLayoutManager(new LinearLayoutManager(PhotoActivity.this));
 
@@ -166,10 +166,10 @@ public class PhotoActivity extends AppCompatActivity {
         CommonConn conn = new CommonConn(this, "folder_list");
 
         conn.onExcute((isResult, data) -> {
-            ArrayList<FolderVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
+            ArrayList<com.example.ling.photo.FolderVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<com.example.ling.photo.FolderVO>>(){}.getType());
 //            Log.d("리스트사이즈", "select: " + list.size());
             //if문으로 list의 사이즈처리 해야함.
-            FolderAdapter adapter = new FolderAdapter(list);
+            com.example.ling.photo.FolderAdapter adapter = new com.example.ling.photo.FolderAdapter(list);
 
 
 

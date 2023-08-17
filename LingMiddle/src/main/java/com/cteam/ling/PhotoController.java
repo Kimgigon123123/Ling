@@ -105,6 +105,10 @@ public class PhotoController {
 //		HashMap<String, Object> param = new HashMap<String, Object>();
 //		param.put("couple_num", couple_num);
 		FolderVO vo = new Gson().fromJson(voJson, FolderVO.class);
+		
+		folderPath = folderPath + vo.getCouple_num();
+		createFolder(folderPath, req);
+		
 		if (!vo.getFolder_name().isEmpty()) {
             // 특정 경로와 입력된 폴더 이름으로 폴더 경로를 생성
             folderPath = folderPath + vo.getCouple_num() + vo.getFolder_name();

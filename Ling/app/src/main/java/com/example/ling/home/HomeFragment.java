@@ -181,32 +181,32 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        launcher = getActivity().registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-            @Override
-            public void onActivityResult(ActivityResult result) {
-                //액티비티(카메라 액티비티)가 종료되면 콜백으로 데이터를 받는 부분. (기존에는 onActivityResult메소드가 실행/ 현재는 해당 메소드)
-                Glide.with(HomeFragment.this).load(camera_uri).into(binding.imgvManProfile);
-                File file = new File(getRealPath(camera_uri));
-
-                if(file!=null){
-
-                    RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), file);
-                    MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "test.jpg", fileBody);
-                    RetInterface api = new RetClient().getRet().create(RetInterface.class);
-                    api.clientSendFile("file.f", new HashMap<>(), filePart).enqueue(new Callback<String>() {
-                        @Override
-                        public void onResponse(Call<String> call, Response<String> response) {
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<String> call, Throwable t) {
-                            t.getMessage();
-                        }
-                    });
-                }
-            }
-        });
+//        launcher = getActivity().registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+//            @Override
+//            public void onActivityResult(ActivityResult result) {
+//                //액티비티(카메라 액티비티)가 종료되면 콜백으로 데이터를 받는 부분. (기존에는 onActivityResult메소드가 실행/ 현재는 해당 메소드)
+//                Glide.with(HomeFragment.this).load(camera_uri).into(binding.imgvManProfile);
+//                File file = new File(getRealPath(camera_uri));
+//
+//                if(file!=null){
+//
+//                    RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), file);
+//                    MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "test.jpg", fileBody);
+//                    RetInterface api = new RetClient().getRet().create(RetInterface.class);
+//                    api.clientSendFile("file.f", new HashMap<>(), filePart).enqueue(new Callback<String>() {
+//                        @Override
+//                        public void onResponse(Call<String> call, Response<String> response) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<String> call, Throwable t) {
+//                            t.getMessage();
+//                        }
+//                    });
+//                }
+//            }
+//        });
     }
 
 
