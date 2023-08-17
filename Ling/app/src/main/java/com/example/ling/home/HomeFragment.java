@@ -2,28 +2,22 @@ package com.example.ling.home;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.ling.R;
@@ -33,9 +27,7 @@ import com.example.ling.common.RetInterface;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentHomeBinding;
-import com.example.ling.store.StoreEtcFragment;
-import com.example.ling.store.myinfo.StoreMyinfoVO;
-import com.example.ling.testchat.TestChatFragment;
+import com.example.ling.photo.PhotoActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -55,11 +47,11 @@ import retrofit2.Response;
 
 
 public class HomeFragment extends Fragment {
-    ActivityResultLauncher<Intent> launcher; // <-- onCreate에서 초기화하면 오류발생.
+    //ActivityResultLauncher<Intent> launcher; // <-- onCreate에서 초기화하면 오류발생.
     FragmentHomeBinding binding;
     Uri camera_uri;
 
-    private final int REQ_Gallery = 1000;
+    private final int REQ_Gallery = 1000 , REQ_CAMERA = 1001;
 
     private final int DEFALUT_MANIMG = R.drawable.man;
 
@@ -181,30 +173,14 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
+        Activity activity = getActivity();
+
 //        launcher = getActivity().registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
 //            @Override
 //            public void onActivityResult(ActivityResult result) {
 //                //액티비티(카메라 액티비티)가 종료되면 콜백으로 데이터를 받는 부분. (기존에는 onActivityResult메소드가 실행/ 현재는 해당 메소드)
-//                Glide.with(HomeFragment.this).load(camera_uri).into(binding.imgvManProfile);
-//                File file = new File(getRealPath(camera_uri));
 //
-//                if(file!=null){
-//
-//                    RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), file);
-//                    MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "test.jpg", fileBody);
-//                    RetInterface api = new RetClient().getRet().create(RetInterface.class);
-//                    api.clientSendFile("file.f", new HashMap<>(), filePart).enqueue(new Callback<String>() {
-//                        @Override
-//                        public void onResponse(Call<String> call, Response<String> response) {
-//
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<String> call, Throwable t) {
-//                            t.getMessage();
-//                        }
-//                    });
-//                }
 //            }
 //        });
     }
@@ -217,7 +193,8 @@ public class HomeFragment extends Fragment {
         camera_uri = getActivity().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new ContentValues());
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, camera_uri);
-        launcher.launch(cameraIntent);
+        startActivityForResult(cameraIntent  , REQ_CAMERA);
+     //   launcher.launch(cameraIntent);
     }
 
 
@@ -264,6 +241,27 @@ public class HomeFragment extends Fragment {
             //multipart/form-data <- 파일과 데이터는 담겨지는 영역이 다르기때문에 여러부분(Multi)Body(Part)
 
 
+        }else if(requestCode == REQ_CAMERA && resultCode == RESULT_OK){
+             Glide.with(HomeFragment.this).load(camera_uri).into(binding.imgvManProfile);
+                File file = new File(getRealPath(camera_uri));
+
+                if(file!=null){
+
+                    RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), file);
+                    MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "test.jpg", fileBody);
+                    RetInterface api = new RetClient().getRet().create(RetInterface.class);
+                    api.clientSendFile("file.f", new HashMap<>(), filePart).enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(Call<String> call, Response<String> response) {
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<String> call, Throwable t) {
+                            t.getMessage();
+                        }
+                    });
+                }
         }
     }
 

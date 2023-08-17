@@ -65,14 +65,20 @@ public class MainActivity extends AppCompatActivity {
         animDrawable.setEnterFadeDuration(10);
         animDrawable.setExitFadeDuration(5000);
         animDrawable.start();
+
+
         initItem();
         initUI();
-
-
 
     }
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+    }
 
     //바텀 네비게이션 아이템 초기화 메소드 2023-08-16 kym
     public void initItem(){

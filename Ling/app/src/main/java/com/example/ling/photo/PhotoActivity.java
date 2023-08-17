@@ -1,32 +1,19 @@
-package com.example.ling.home;
+package com.example.ling.photo;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.Manifest;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,22 +24,19 @@ import android.view.WindowManager;
 import android.widget.EditText;
 
 import com.bumptech.glide.Glide;
-import com.example.ling.calendar.CalendarAdapter;
-import com.example.ling.calendar.ScheAddVO;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.common.RetClient;
 import com.example.ling.common.RetInterface;
 import com.example.ling.databinding.ActivityPhotoBinding;
 import com.example.ling.home.CameraDialog;
+import com.example.ling.photo.FolderVO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -67,7 +51,7 @@ public class PhotoActivity extends AppCompatActivity {
     private CameraDialog cameraDialog;
     private final int REQ_Gallery = 1000;
     ActivityResultLauncher<Intent> launcher;
-    ArrayList<com.example.ling.photo.FolderVO> folder_List;
+    ArrayList<FolderVO> folder_List;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,18 +118,18 @@ public class PhotoActivity extends AppCompatActivity {
 
 
                 public void onClick(DialogInterface dialog, int whichButton) {
-                    com.example.ling.photo.FolderVO vo = new com.example.ling.photo.FolderVO();
+                    FolderVO vo = new FolderVO();
                     vo.setFolder_name(name.getText().toString().trim());
                     vo.setId(CommonVar.loginInfo.getId());
-                    vo.setCouple_num(CommonVar.loginInfo.getCouple_num());
+                    vo.setCouple_num(Integer.parseInt(CommonVar.loginInfo.getCouple_num()));
 
 //                    vo.setFolder_name(vo.getCouple_num()+"");
                     //확인 버튼을 클릭했을때
                     conn.addParamMap("voJson", new Gson().toJson(vo) );
                     conn.onExcute((isResult, data) -> {
-                        folder_List = new Gson().fromJson(data, new TypeToken<ArrayList<com.example.ling.photo.FolderVO>>(){}.getType());
+                        folder_List = new Gson(). fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
 
-                        com.example.ling.photo.FolderAdapter adapter = new com.example.ling.photo.FolderAdapter(folder_List);
+                        FolderAdapter adapter = new FolderAdapter(folder_List);
                         binding.gridGallery.setAdapter(adapter);
                         binding.gridGallery.setLayoutManager(new LinearLayoutManager(PhotoActivity.this));
 
@@ -166,10 +150,10 @@ public class PhotoActivity extends AppCompatActivity {
         CommonConn conn = new CommonConn(this, "folder_list");
 
         conn.onExcute((isResult, data) -> {
-            ArrayList<com.example.ling.photo.FolderVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<com.example.ling.photo.FolderVO>>(){}.getType());
+            ArrayList<FolderVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
 //            Log.d("리스트사이즈", "select: " + list.size());
             //if문으로 list의 사이즈처리 해야함.
-            com.example.ling.photo.FolderAdapter adapter = new com.example.ling.photo.FolderAdapter(list);
+            FolderAdapter adapter = new FolderAdapter(list);
 
 
 
