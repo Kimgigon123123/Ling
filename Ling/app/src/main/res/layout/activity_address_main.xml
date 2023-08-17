@@ -30,15 +30,31 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_cancel"
-        android:text="취소"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/btn_ok"
-        android:text="확인"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_marginRight="100dp"
+        android:layout_marginLeft="100dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:id="@+id/btn_cancel"
+            android:text="취소"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:id="@+id/btn_ok"
+            android:text="확인"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+
 
 </LinearLayout>
