@@ -19,6 +19,15 @@
     <color name="ym2">#6DEABE</color>
     <color name="sampleLighter">#4CAF50</color>
 
+    <color name="material_dialog_background">@android:color/white</color>
+
+    <color name="material_dialog_title_text_color">@android:color/primary_text_light</color>
+    <color name="material_dialog_message_text_color">@android:color/secondary_text_light</color>
+
+    <color name="material_dialog_positive_button_text_color">?android:colorAccent</color>
+    <color name="material_dialog_negative_button_text_color">#1E88E5</color>
+
+    <color name="material_dialog_positive_button_color">?android:colorAccent</color>
 
     <color name="colorTransparent">#00ffffff</color>
 

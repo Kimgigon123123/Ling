@@ -27,6 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="7dp"
+                android:textColor="#111"
                 android:textSize="23dp"
                 android:textStyle="bold" />
 
@@ -35,6 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="7dp"
+                android:textColor="#111"
                 android:textSize="16dp" />
 
             <TextView
@@ -42,6 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="7dp"
+                android:textColor="#111"
                 android:textSize="16dp" />
 
             <TextView
@@ -49,6 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="7dp"
+                android:textColor="#111"
                 android:textSize="16dp" />
         </LinearLayout>
     </ScrollView>
