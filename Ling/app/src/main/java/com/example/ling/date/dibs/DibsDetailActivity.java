@@ -32,6 +32,7 @@ public class DibsDetailActivity extends AppCompatActivity {
         bundle.putString("name", getIntent().getStringExtra("name"));
         bundle.putString("address", getIntent().getStringExtra("address"));
         bundle.putString("intro", getIntent().getStringExtra("intro"));
+        bundle.putString("tel", getIntent().getStringExtra("tel"));
         bundle.putString("open", getIntent().getStringExtra("open"));
         bundle.putString("end", getIntent().getStringExtra("end"));
         bundle.putString("code", getIntent().getStringExtra("code"));

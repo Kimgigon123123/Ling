@@ -14,7 +14,7 @@
 
 <!-- 관심목록_전체 -->
 <select id="alldibs" resultType="date.DateDibsVO">
-	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng, i.date_img
+	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng, i.date_img, i.tel
 	from date_dibs d, date_info i
 	where d.date_id = i.date_id and d.id = #{id}
 </select>
@@ -28,7 +28,7 @@
 
 <!-- 관심목록_맛집 --> 
 <select id="restaurantdibs" resultType="date.DateDibsVO">
-	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng, i.date_img
+	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng, i.date_img, i.tel
 	from date_dibs d, date_info i
 	where d.date_id = i.date_id and d.date_category_code = 'RE' and d.id = #{id}
 </select>

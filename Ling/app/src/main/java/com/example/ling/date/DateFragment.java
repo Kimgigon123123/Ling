@@ -43,10 +43,10 @@ public class DateFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentDateBinding.inflate(inflater, container, false);
 
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(R.drawable.sdimg1);
-        list.add(R.drawable.sdimg2);
-        list.add(R.drawable.sdimg3);
+        ArrayList<SliderVO> list = new ArrayList<>();
+        list.add(new SliderVO(R.drawable.sdimg1, "전국 여행"));
+        list.add(new SliderVO(R.drawable.sdimg2, "전국 맛집"));
+        list.add(new SliderVO(R.drawable.sdimg3, "전국 축제"));
         binding.vpSlider.setAdapter(new SliderAdapter(getContext(), binding.vpSlider, list));
 
         binding.vpSlider.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {

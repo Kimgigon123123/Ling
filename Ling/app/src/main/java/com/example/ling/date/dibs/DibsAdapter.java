@@ -72,6 +72,7 @@ public class DibsAdapter extends RecyclerView.Adapter<DibsAdapter.ViewHolder> {
                 intent.putExtra("name", list.get(i).getDate_name());
                 intent.putExtra("address", list.get(i).getDate_address());
                 intent.putExtra("intro", list.get(i).getDate_intro());
+                intent.putExtra("tel", list.get(i).getTel());
                 intent.putExtra("open", list.get(i).getOpen());
                 intent.putExtra("end", list.get(i).getEnd());
                 intent.putExtra("code", list.get(i).getDate_category_code());

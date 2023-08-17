@@ -26,9 +26,9 @@ public class FestInfoFragment extends Fragment {
                     .load(imageUrl)
                     .into(binding.imgv);
             binding.tvName.setText(bundle.getString("name"));
-            binding.tvTime.setText(bundle.get("open") + " ~ " + bundle.getString("end"));
-            binding.tvAddress.setText(bundle.getString("address"));
-            binding.tvIntro.setText(bundle.getString("intro"));
+            binding.tvTime.setText("축제일자 : " + bundle.get("open") + " ~ " + bundle.getString("end"));
+            binding.tvAddress.setText("주소 : " + bundle.getString("address"));
+            binding.tvIntro.setText("소개 : " + bundle.getString("intro"));
         }
 
         return binding.getRoot();
