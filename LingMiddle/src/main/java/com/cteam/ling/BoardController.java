@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
-
+import board.BoardCommentVO;
 import board.BoardDAO;
+import board.BoardReCommentVO;
 import board.BoardVO;
 
 
@@ -115,17 +116,33 @@ public class BoardController {
 	
 	//댓글 목록 조회
 	@RequestMapping(value="/board.commentList", produces = "text/html;charset=utf-8")
-	public String comment_list(int board_id) {
-		List<board.BoardCommentVO> vo = dao.board_comment_list(board_id);
+	public String comment_list(String board_id) {
+		List<BoardCommentVO> vo = dao.board_comment_list(board_id);
 		
 		return new Gson().toJson(vo);
 	}
 	
 	//댓글 등록처리
 	@RequestMapping(value="/board.commentRegister", produces = "text/html;charset=utf-8")
-	public String comment_register( board.BoardCommentVO vo) {
+	public String comment_register(BoardCommentVO vo) {
 		//화면에서 입력한 댓글 정보를 DB에 신규저장
 		dao.board_comment_register(vo);
+		return new Gson().toJson(vo);
+	}
+	
+	//댓글 목록 조회
+	@RequestMapping(value="/board.RecommentList", produces = "text/html;charset=utf-8")
+	public String recomment_list(String comment_id) {
+		List<BoardReCommentVO> vo = dao.board_recomment_list(comment_id);
+		
+		return new Gson().toJson(vo);
+	}
+		
+	//댓글 등록처리
+	@RequestMapping(value="/board.RecommentRegister", produces = "text/html;charset=utf-8")
+	public String recomment_register(BoardReCommentVO vo) {
+		//화면에서 입력한 댓글 정보를 DB에 신규저장
+		dao.board_recomment_register(vo);
 		return new Gson().toJson(vo);
 	}
 	
