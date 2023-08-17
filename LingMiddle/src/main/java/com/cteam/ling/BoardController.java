@@ -67,7 +67,7 @@ public class BoardController {
 	// 공지사항상세정보화면 요청
 	@RequestMapping(value="/board.content", produces = "text/html;charset=utf-8")
 	public String content(String id) {
-		dao.board_read(id);
+		//dao.board_read(id);
 		return new Gson().toJson(dao.notice_content(id));
 	}
 	

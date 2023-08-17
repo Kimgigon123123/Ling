@@ -47,10 +47,10 @@ select id, title, writer, to_char(writedate, 'YY-MM-dd') writedate, readcnt from
 select id, title, to_char(writedate, 'YY-MM-dd') writedate, readcnt from LING_BOARD where board_cd = 'PLAY'
 </select> -->
 
-<select id="content" resultType="board.BoardVO">
+<!-- <select id="content" resultType="board.BoardVO">
 select id, title, to_char(writedate, 'YY-MM-dd') writedate, content, readcnt from LING_BOARD 
 where id = #{id} and (board_cd = 'NOTICE' or board_cd = 'PLAY')
-</select>
+</select> -->
 
 <select id="usercontent" resultType="board.BoardVO">
 select id, writer, title, to_char(writedate, 'YY-MM-dd') writedate, content, readcnt from LING_BOARD 
