@@ -12,19 +12,21 @@ import org.springframework.stereotype.Repository;
 
 
 
+
+
 @Repository
 public class BoardDAO {
 	@Autowired @Qualifier("test") SqlSession sql;
 	
-	public List<Object> noticelist(HashMap<String, String> params){
-		List<Object> vo = sql.selectList("board.noticeselect", params);
+	public List<Object> selectBoard(HashMap<String, String> params){
+		List<Object> vo = sql.selectList("board.select_board", params);
 		return vo;
 	}
 	
-	public List<BoardVO> freeselect(HashMap<String, String> params){
-		List<BoardVO> vo = sql.selectList("board.freeselect", params);
-		return vo;
-	}
+	/*
+	 * public List<BoardVO> freeselect(HashMap<String, String> params){
+	 * List<BoardVO> vo = sql.selectList("board.freeselect", params); return vo; }
+	 */
 	
 //	public List<BoardVO> worryselect(){
 //		return sql.selectList("board.worryselect");
@@ -38,8 +40,8 @@ public class BoardDAO {
 		return sql.selectOne("board.content", id);
 	}
 	
-	public BoardVO user_content(String id){
-		return sql.selectOne("board.content", id);
+	public BoardVO user_content(HashMap<String, String> param){
+		return sql.selectOne("board.usercontent", param);
 	}
 	
 	public int board_read(String id) {
@@ -50,4 +52,13 @@ public class BoardDAO {
 		return sql.insert("board.insert", vo);
 	}
 	
+	public int board_update(BoardVO vo) {
+		
+		return sql.update("board.update", vo);
+	}
+	
+	public int board_delete(BoardVO vo) {
+	
+		return sql.delete("board.delete", vo);
+	}
 }

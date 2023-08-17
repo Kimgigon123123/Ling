@@ -114,6 +114,26 @@ public class DateController {
 	public String searchFestival(DateInfoVO vo) {
 		List<DateInfoVO> searchFest = sql.selectList("date.searchfest", vo);
 		return new Gson().toJson(searchFest);
-		}
+	}
 	
+	// 여행 목록 5개
+	@RequestMapping(value="/date_tour5", produces="text/html;charset=utf-8")
+	public String tour5() {
+		List<DateInfoVO> tour5 = sql.selectList("date.tour5");
+		return new Gson().toJson(tour5);
+	}
+	
+	// 맛집 목록 5개
+	@RequestMapping(value="/date_restaurant5", produces="text/html;charset=utf-8")
+	public String restaurant5() {
+		List<DateInfoVO> restaurant5 = sql.selectList("date.restaurant5");
+		return new Gson().toJson(restaurant5);
+	}
+	
+	// 축제 목록 5개
+	@RequestMapping(value="/date_festival5", produces="text/html;charset=utf-8")
+	public String festival5() {
+		List<DateInfoVO> festival5 = sql.selectList("date.festival5");
+		return new Gson().toJson(festival5);
+	}
 }

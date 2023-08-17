@@ -2,8 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
 
-<select id="noticeselect" resultType="board.BoardVO">
-select row_number() over(order by id desc) no, b.id, b.title, to_char(b.writedate, 'YY-MM-dd') writedate, 
+
+<select id="select_board" resultType="board.BoardVO">
+select row_number() over(order by id desc) no, b.id, b.title, b.writer,
+	   to_char(b.writedate, 'YY-MM-dd') writedate, b.BOARD_CD,b.readcnt 
+from LING_BOARD b
+where board_cd = #{board_cd}
+
+<if test="keyword != null">
+	AND
+	(title like '%'|| #{keyword} ||'%' or content like '%'|| #{keyword} ||'%' or writer like '%'|| #{keyword} ||'%')
+</if>
+  
+</select>
+
+<!-- <select id="noticeselect" resultType="board.BoardVO">
+select row_number() over(order by id desc) no, b.id, b.title, to_char(b.writedate, 'YY-MM-dd') writedate, b.BOARD_CD
 b.readcnt from LING_BOARD b
 
 where board_cd = #{board_cd}
@@ -23,7 +37,7 @@ where board_cd = #{board_cd}
 	AND
 	(title like '%'|| #{keyword} ||'%' or content like '%'|| #{keyword} ||'%' or writer like '%'|| #{keyword} ||'%')
 </if>
-</select>	
+</select> -->	
 
 <!-- <select id="worryselect" resultType="board.BoardVO">
 select id, title, writer, to_char(writedate, 'YY-MM-dd') writedate, readcnt from LING_BOARD where board_cd = 'WORRY'
@@ -33,12 +47,14 @@ select id, title, writer, to_char(writedate, 'YY-MM-dd') writedate, readcnt from
 select id, title, to_char(writedate, 'YY-MM-dd') writedate, readcnt from LING_BOARD where board_cd = 'PLAY'
 </select> -->
 
-<select id="content" resultType="board.BoardVO">
-select id, title, to_char(writedate, 'YY-MM-dd') writedate, content, readcnt from LING_BOARD where id = #{id}
-</select>
+<!-- <select id="content" resultType="board.BoardVO">
+select id, title, to_char(writedate, 'YY-MM-dd') writedate, content, readcnt from LING_BOARD 
+where id = #{id} and (board_cd = 'NOTICE' or board_cd = 'PLAY')
+</select> -->
 
 <select id="usercontent" resultType="board.BoardVO">
-select id, writer, title, to_char(writedate, 'YY-MM-dd') writedate, content, readcnt from LING_BOARD where id = #{id}
+select id, writer, title, to_char(writedate, 'YY-MM-dd') writedate, content, readcnt from LING_BOARD 
+where id = #{id} and board_cd = #{board_cd}
 </select>
 
 <!--선택한 공지글 조회수 증가처리  -->
@@ -53,5 +69,14 @@ insert into LING_BOARD(board_cd, title, content, writer)
 values (#{board_cd}, #{title}, #{content}, #{writer})
 </insert>
 
+<!--글 변경저장 처리 -->
+<update id="update">
+update LING_BOARD set title = #{title}, content = #{content}
+where id = #{id}
+</update>
 
+<!-- 글 삭제  -->
+<delete id="delete">
+delete from LING_BOARD where id =#{id}
+</delete>
 </mapper>

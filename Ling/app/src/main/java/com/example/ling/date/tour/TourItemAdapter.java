@@ -10,16 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.R;
 import com.example.ling.databinding.ItemRecvTourBinding;
+import com.example.ling.date.DateInfoVO;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class TourItemAdapter extends RecyclerView.Adapter<TourItemAdapter.ViewHolder> {
 
     ItemRecvTourBinding binding;
-    int[] tourImg;
+    ArrayList<DateInfoVO> list;
     Context context;
 
-    public TourItemAdapter(Context context, int[] tourImg) {
+    public TourItemAdapter(ArrayList<DateInfoVO> list, Context context) {
+        this.list = list;
         this.context = context;
-        this.tourImg = tourImg;
     }
 
     @NonNull
@@ -32,16 +36,27 @@ public class TourItemAdapter extends RecyclerView.Adapter<TourItemAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        h.binding.imgvTour.setImageResource(tourImg[i]);
+        String imageUrl=list.get(i).getDate_img();
+        Picasso.get()
+                .load(imageUrl)
+                .into(h.binding.imgvTour);
         h.binding.cvTour.setOnClickListener(v -> {
-            Intent intent = new Intent(context, TourActivity.class);
+            Intent intent = new Intent(context, TourDetailActivity.class);
+            intent.putExtra("img", list.get(i).getDate_img());
+            intent.putExtra("name", list.get(i).getDate_name());
+            intent.putExtra("address", list.get(i).getDate_address());
+            intent.putExtra("intro", list.get(i).getDate_intro());
+            intent.putExtra("open", list.get(i).getOpen());
+            intent.putExtra("end", list.get(i).getEnd());
+            intent.putExtra("lan", list.get(i).getLan());
+            intent.putExtra("lng", list.get(i).getLng());
             context.startActivity(intent);
         });
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

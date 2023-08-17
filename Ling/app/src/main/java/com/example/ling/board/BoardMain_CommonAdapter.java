@@ -8,17 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ling.databinding.ItemRecvBoardNoticeBinding;
 import com.example.ling.databinding.ItemRecvBoardUserBinding;
 
 import java.util.ArrayList;
 
 
-public class BoardMain_FreeAdapter extends RecyclerView.Adapter<BoardMain_FreeAdapter.ViewHolder> {
+public class BoardMain_CommonAdapter extends RecyclerView.Adapter<BoardMain_CommonAdapter.ViewHolder> {
     ArrayList<BoardVO> list;
     BoardFragment fragment;
 
-    public BoardMain_FreeAdapter(ArrayList<BoardVO> list, BoardFragment fragment) {
+    public BoardMain_CommonAdapter(ArrayList<BoardVO> list, BoardFragment fragment) {
         this.list = list;
         this.fragment = fragment;
     }
@@ -42,9 +41,18 @@ public class BoardMain_FreeAdapter extends RecyclerView.Adapter<BoardMain_FreeAd
         h.binding.boardCnt.setText(list.get(i).getReadcnt()+"");
 
         h.binding.lnUser.setOnClickListener(v->{
-            fragment.changeFragment(2);
-            Intent intent = new Intent(context, Notice_contextActivity.class);
+            if(list.get(i).getBoard_cd().equals("NOTICE")){
+                fragment.changeFragment(1);
+            } else if (list.get(i).getBoard_cd().equals("FREE")){
+                fragment.changeFragment(2);
+            } else if (list.get(i).getBoard_cd().equals("WORRY")){
+                fragment.changeFragment(3);
+            } else {
+                fragment.changeFragment(4);
+            }
+            Intent intent = new Intent(context, Board_DetailtActivity.class);
             intent.putExtra("board_no", list.get(i).getId());
+            intent.putExtra("board_cd", list.get(i).getBoard_cd());
             context.startActivity(intent);
         });
     }
