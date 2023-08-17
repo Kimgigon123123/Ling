@@ -41,7 +41,15 @@ public class BoardMain_CommonAdapter extends RecyclerView.Adapter<BoardMain_Comm
         h.binding.boardCnt.setText(list.get(i).getReadcnt()+"");
 
         h.binding.lnUser.setOnClickListener(v->{
-            fragment.changeFragment(2);
+            if(list.get(i).getBoard_cd().equals("NOTICE")){
+                fragment.changeFragment(1);
+            } else if (list.get(i).getBoard_cd().equals("FREE")){
+                fragment.changeFragment(2);
+            } else if (list.get(i).getBoard_cd().equals("WORRY")){
+                fragment.changeFragment(3);
+            } else {
+                fragment.changeFragment(4);
+            }
             Intent intent = new Intent(context, Board_DetailtActivity.class);
             intent.putExtra("board_no", list.get(i).getId());
             intent.putExtra("board_cd", list.get(i).getBoard_cd());

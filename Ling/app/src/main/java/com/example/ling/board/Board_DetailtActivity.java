@@ -25,28 +25,28 @@ public class Board_DetailtActivity extends AppCompatActivity {
         binding = ActivityNoticeContextBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         binding.tvBefore.setOnClickListener(v->{
-            finish();
+            onBackPressed();
         });
-        UserContentselect();
 
         binding.btnDelete.setOnClickListener(v->{
 
                 mAnimatedDialog = new MaterialDialog.Builder(this)
-                        .setTitle("Delete?")
-                        .setMessage("Are you sure want to delete this file?")
+                        .setTitle("삭제")
+                        .setMessage("이 글을 정말 삭제하시겠습니까?")
                         .setCancelable(false)
-                        .setPositiveButton("Delete", R.drawable.ic_delete, new MaterialDialog.OnClickListener() {
+                        .setPositiveButton("삭제", R.drawable.ic_delete, new MaterialDialog.OnClickListener() {
                             @Override
                             public void onClick(com.example.ling.board.interfaces.DialogInterface dialogInterface, int i) {
-                                Toast.makeText(getApplicationContext(), "Deleted!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "삭제완료!", Toast.LENGTH_SHORT).show();
                                 dialogInterface.dismiss();
                                 //delete();
+                                finish();
                             }
                         })
-                        .setNegativeButton("Cancel", R.drawable.ic_close, new MaterialDialog.OnClickListener() {
+                        .setNegativeButton("취소", R.drawable.ic_close, new MaterialDialog.OnClickListener() {
                             @Override
                             public void onClick(com.example.ling.board.interfaces.DialogInterface dialogInterface, int which) {
-                                Toast.makeText(getApplicationContext(), "Cancelled!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "취소했습니다.", Toast.LENGTH_SHORT).show();
                                 dialogInterface.dismiss();
                             }
                         })

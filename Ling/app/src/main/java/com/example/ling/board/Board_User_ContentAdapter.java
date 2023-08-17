@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.FragmentContentBinding;
-import com.example.ling.databinding.ItemRecvBoardNoticeContextBinding;
+//import com.example.ling.databinding.ItemRecvBoardNoticeContextBinding;
 import com.example.ling.databinding.ItemRecvBoardUserContextBinding;
 import com.example.ling.login.LoginActivity;
 import com.example.ling.login.PreferenceManager;
