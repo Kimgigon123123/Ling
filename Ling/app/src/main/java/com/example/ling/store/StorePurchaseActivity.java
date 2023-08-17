@@ -15,9 +15,13 @@ import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityStorePurchaseBinding;
 import com.example.ling.store.storeCO.StoreCOVO;
+import com.example.ling.store.storeCO.StorePurchaseListVO;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StorePurchaseActivity extends AppCompatActivity {
@@ -65,15 +69,26 @@ public class StorePurchaseActivity extends AppCompatActivity {
 
         binding.btnZzim.setOnClickListener(v->{
 
-                CommonConn conn = new CommonConn(this , "store_insert_zzim");
-                conn.addParamMap("item_code" , item_code);
-                conn.addParamMap("category_code",category_code);
-                conn.addParamMap("id", CommonVar.loginInfo.getId());
-                conn.onExcute((isResult, data) -> {
+            CommonConn conn = new CommonConn(this, "store_insert_zzim");
+            conn.addParamMap("item_code", item_code);
+            conn.addParamMap("category_code", category_code);
+            conn.addParamMap("id", CommonVar.loginInfo.getId());
+            conn.onExcute((isResult, data) -> {
+                if (!isResult) {
 
-                });
-                Toast.makeText(this, "찜목록에 추가 되었습니다.", Toast.LENGTH_SHORT).show();
+                } else {
 
+                    if (data == null) {
+
+                        // 매핑 연결에 실패한 경우 (무결성 제약 조건 위배)
+                        Toast.makeText(this, "이미 찜목록에 존재합니다.", Toast.LENGTH_SHORT).show();
+                    }else{
+                        // 매핑 연결에 성공한 경우
+                        Toast.makeText(this, "찜목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
 
         });
 

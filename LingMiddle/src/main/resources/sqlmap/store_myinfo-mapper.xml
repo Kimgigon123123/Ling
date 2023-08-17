@@ -25,8 +25,8 @@ where id=#{id}
 </update>
 
 <insert id="insert_zzim">
-INSERT INTO store_zzim_product (ITEM_CODE, CATEGORY_CODE, ID) 
-VALUES (#{item_code}, #{category_code}, #{id})
+INSERT INTO store_zzim_product (zzim_code,ITEM_CODE, CATEGORY_CODE, ID) 
+VALUES (seq_zzim.nextval,#{item_code}, #{category_code}, #{id})
 
 </insert>
 
@@ -35,11 +35,22 @@ select  z.*,i.*
 from store_zzim_product z, store_item i
 where z.item_code=i.item_code
 and id=#{id}
+order by z.zzim_code desc
 </select>
 
 <delete id="deletezzim">
 delete from store_zzim_product
 where item_code=#{item_code}
+</delete>
+
+<delete id="deletebuylist">
+delete from store_purchase_product
+where order_num=#{order_num}
+</delete>
+
+<delete id="deletereturn">
+delete from store_return_list
+where return_code=#{return_code}
 </delete>
 
 <update id="bank">
@@ -52,5 +63,24 @@ FROM store_myinfo
 WHERE id = #{id}
 </select>
 
+<update id="update_address">
+update Store_myinfo set address = #{address} where id=#{id}
+</update>
+
+<select id="select_address" resultType="storemyinfo.StoreMyinfoVO">
+select nvl(address,'주소를 입력해주세요.') as address from store_myinfo where id = #{id}
+</select>
+
+<update id="update_detailadd">
+update Store_myinfo set detail_add = #{detail_add} where id= #{id}
+</update>
+
+<select id="select_detailadd" resultType="storemyinfo.StoreMyinfoVO">
+select nvl(detail_add,'상세주소를 입력해주세요.') as detail_add from store_myinfo where id = #{id}
+</select>
+
+<insert id="insert_myinfo">
+insert into store_myinfo(id,money) values(#{id},0)
+</insert>
 
 </mapper>

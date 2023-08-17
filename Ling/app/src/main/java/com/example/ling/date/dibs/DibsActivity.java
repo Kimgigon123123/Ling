@@ -62,7 +62,6 @@ public class DibsActivity extends AppCompatActivity {
         conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
             ArrayList<DateDibsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateDibsVO>>(){}.getType());
-            Log.d("abc", "selectAll: " + list.size());
             binding.recvDibs.setAdapter(new DibsAdapter(this, list));
             binding.recvDibs.setLayoutManager(new GridLayoutManager(this, 2));
         });

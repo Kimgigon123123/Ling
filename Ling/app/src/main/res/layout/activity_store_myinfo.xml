@@ -175,6 +175,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <TextView
+            android:id="@+id/tv_empty1"
+            android:layout_gravity="center"
+            android:textSize="30dp"
+            android:text="목록이 비었습니다."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"/>
+
     <LinearLayout
         android:background="@color/gray"
         android:layout_width="match_parent"
@@ -185,7 +194,7 @@
             android:id="@+id/recv_zzim"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:layout_height="100dp"/>
+            android:layout_height="115dp"/>
 
     </LinearLayout>
 
@@ -228,6 +237,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <TextView
+            android:id="@+id/tv_empty2"
+            android:layout_gravity="center"
+            android:textSize="30dp"
+            android:text="목록이 비었습니다."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"/>
+
         <LinearLayout
 
             android:background="@color/gray"
@@ -239,7 +257,7 @@
                 android:id="@+id/recv_buylist"
                 android:layout_margin="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"/>
+                android:layout_height="115dp"/>
 
         </LinearLayout>
 
@@ -281,6 +299,14 @@
         android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_empty3"
+            android:layout_gravity="center"
+            android:textSize="30dp"
+            android:text="목록이 비었습니다."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"/>
 
         <LinearLayout
             android:background="@color/gray"
@@ -290,9 +316,10 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recv_return"
-                android:layout_margin="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"/>
+                android:layout_height="115dp"
+                android:layout_margin="10dp" />
+
 
         </LinearLayout>
 

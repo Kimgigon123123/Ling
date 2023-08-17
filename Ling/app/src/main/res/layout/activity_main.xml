@@ -7,32 +7,51 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    >
+    android:id="@+id/layout_main"
+    android:background="@drawable/main_back_gradient_animation"
 
+     >
 
-    <FrameLayout
-        android:id="@+id/container"
+   <!-- android:background="@drawable/gradation"
+-->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/gradation"
         android:fitsSystemWindows="true"
         />
 
 
 
+    <!--app:ntb_bg_color="#33000000"-->
+    <devlight.io.library.ntb.NavigationTabBar
+        android:id="@+id/ntb_horizontal"
+        app:ntb_bg_color="#33000000"
+        app:ntb_inactive_color="#474747"
+        app:ntb_active_color="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:ntb_badged="true"
+        app:ntb_scaled="true"
+        app:ntb_tinted="true"
+        app:ntb_title_mode="all"
+        app:ntb_titled="true"
+        app:ntb_swiped="true"/>
 
-    +<com.google.android.material.bottomnavigation.BottomNavigationView
-    android:id="@+id/navigation"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:menu="@menu/home_btm_nav"
-    app:labelVisibilityMode="unlabeled"
-    android:background="@android:color/transparent"
-    app:itemBackground="@drawable/gradation"
-    android:fitsSystemWindows="true"
-    app:itemIconSize="40dp"
-    />
+    <!--
+        +<com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/home_btm_nav"
+        app:labelVisibilityMode="unlabeled"
+        android:background="@android:color/transparent"
+        app:itemBackground="@drawable/gradation"
+        android:fitsSystemWindows="true"
+        app:itemIconSize="40dp"
+        />
+    -->
 
 
 </LinearLayout>

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ItemRecvDibsBinding;
 import com.example.ling.databinding.ItemRecvStoreCoBinding;
 import com.example.ling.store.storeCO.StoreCOVO;
@@ -55,6 +57,29 @@ public class StoreCoAdater extends RecyclerView.Adapter<StoreCoAdater.ViewHolder
         h.binding.imgvItem.setImageResource(R.drawable.ic_launcher_background);
         h.binding.tvName.setText(list.get(i).getItem_name());
         h.binding.tvPrice.setText(list.get(i).getItem_price()+"원");
+
+        h.binding.btnAdd.setOnClickListener(v->{
+
+            CommonConn conn = new CommonConn(context, "store_insert_zzim");
+            conn.addParamMap("item_code", list.get(i).getItem_code());
+            conn.addParamMap("category_code", list.get(i).getCategory_code());
+            conn.addParamMap("id", CommonVar.loginInfo.getId());
+            conn.onExcute((isResult, data) -> {
+                if (!isResult) {
+
+                } else {
+                    // 매핑 연결에 성공한 경우
+
+                    if(data==null){
+                        Toast.makeText(context, "이미 찜목록에 존재합니다.", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(context, "찜목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
+
+        });
 
         String imageUrl=list.get(i).getItem_img();
                                  Picasso.get()

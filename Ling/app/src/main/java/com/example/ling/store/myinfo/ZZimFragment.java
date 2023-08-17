@@ -42,7 +42,12 @@ public class ZZimFragment extends Fragment {
             ArrayList<StoreZzimListVO> zzimlist = new Gson().fromJson(data, new TypeToken<ArrayList<StoreZzimListVO>>() {
             }.getType());
             binding.recvZzim.setAdapter(new ZZimAdapter(zzimlist,getContext()));
-            binding.recvZzim.setLayoutManager(new GridLayoutManager(getContext(),3));
+            binding.recvZzim.setLayoutManager(new GridLayoutManager(getContext(),4));
+
+            if(zzimlist.size()==0){
+                binding.tvEmpty.setVisibility(View.VISIBLE);
+            }
+
         });
     }
 

@@ -4,7 +4,15 @@ public class DateInfoVO {
 
 	private int date_id;
 	private String date_category_code, date_name, date_intro, date_address, date_sido, date_sigungu, tel, lan, lng,
-			open, end;
+			open, end, date_img;
+
+	public String getDate_img() {
+		return date_img;
+	}
+
+	public void setDate_img(String date_img) {
+		this.date_img = date_img;
+	}
 
 	public int getDate_id() {
 		return date_id;
@@ -101,5 +109,6 @@ public class DateInfoVO {
 	public void setEnd(String end) {
 		this.end = end;
 	}
+
 
 }

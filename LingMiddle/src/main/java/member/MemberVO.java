@@ -1,17 +1,17 @@
 package member;
 
 public class MemberVO {
-    private String name, phone, id, pw, email, gender, birth, profile, admin, couple_num;
+	private String name, phone, id, pw, email, gender, birth, profile, admin,couple_num;
 
     public String getCouple_num() {
-		return couple_num;
-	}
+        return couple_num;
+    }
 
-	public void setCouple_num(String couple_num) {
-		this.couple_num = couple_num;
-	}
+    public void setCouple_num(String couple_num) {
+        this.couple_num = couple_num;
+    }
 
-	public String getName() {
+    public String getName() {
         return name;
     }
 

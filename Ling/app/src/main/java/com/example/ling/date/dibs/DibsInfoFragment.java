@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.ling.R;
 import com.example.ling.databinding.FragmentDibsInfoBinding;
+import com.squareup.picasso.Picasso;
 
 public class DibsInfoFragment extends Fragment {
 
@@ -23,19 +24,34 @@ public class DibsInfoFragment extends Fragment {
         Bundle bundle = getArguments();
         if(bundle != null) {
             if(bundle.getString("code").equals("TO")) {
+                String imageUrl=bundle.getString("img");
+                Picasso.get()
+                        .load(imageUrl)
+                        .into(binding.imgv);
                 binding.tvName.setText(bundle.getString("name"));
+                binding.tvTel.setVisibility(View.GONE);
                 binding.tvTime.setVisibility(View.GONE);
-                binding.tvAddress.setText(bundle.getString("address"));
-                binding.tvIntro.setText(bundle.getString("intro"));
+                binding.tvAddress.setText("주소 : " + bundle.getString("address"));
+                binding.tvIntro.setText("소개 : " + bundle.getString("intro"));
             } else if (bundle.getString("code").equals("RE")) {
+                String imageUrl=bundle.getString("img");
+                Picasso.get()
+                        .load(imageUrl)
+                        .into(binding.imgv);
                 binding.tvName.setText(bundle.getString("name"));
-                binding.tvTime.setText("09:00" + " ~ " + "21:00");
-                binding.tvAddress.setText(bundle.getString("address"));
+                binding.tvTel.setText("전화번호 : " + bundle.getString("tel"));
+                binding.tvTime.setText("영업시간 : " + bundle.getString("open") + " ~ " + bundle.getString("end"));
+                binding.tvAddress.setText("주소 : " + bundle.getString("address"));
             } else {
+                String imageUrl=bundle.getString("img");
+                Picasso.get()
+                        .load(imageUrl)
+                        .into(binding.imgv);
                 binding.tvName.setText(bundle.getString("name"));
-                binding.tvTime.setText(bundle.get("open") + " ~ " + bundle.getString("end"));
-                binding.tvAddress.setText(bundle.getString("address"));
-                binding.tvIntro.setText(bundle.getString("intro"));
+                binding.tvTel.setVisibility(View.GONE);
+                binding.tvTime.setText("축제일자 : " + bundle.get("open") + " ~ " + bundle.getString("end"));
+                binding.tvAddress.setText("주소 : " + bundle.getString("address"));
+                binding.tvIntro.setText("소개 : " + bundle.getString("intro"));
             }
         }
 

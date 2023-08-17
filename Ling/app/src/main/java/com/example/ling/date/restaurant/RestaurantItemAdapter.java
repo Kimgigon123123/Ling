@@ -10,16 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.R;
 import com.example.ling.databinding.ItemRecvRestaurantBinding;
+import com.example.ling.date.DateInfoVO;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class RestaurantItemAdapter extends RecyclerView.Adapter<RestaurantItemAdapter.ViewHolder> {
 
     ItemRecvRestaurantBinding binding;
-    int[] restImg;
+    ArrayList<DateInfoVO> list;
     Context context;
 
-    public RestaurantItemAdapter(Context context, int[] restImg) {
+    public RestaurantItemAdapter(Context context, ArrayList<DateInfoVO> list) {
         this.context = context;
-        this.restImg = restImg;
+        this.list = list;
     }
 
     @NonNull
@@ -32,9 +36,21 @@ public class RestaurantItemAdapter extends RecyclerView.Adapter<RestaurantItemAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        h.binding.imgvRestaurant.setImageResource(restImg[i]);
+        String imageUrl=list.get(i).getDate_img();
+        Picasso.get()
+                .load(imageUrl)
+                .into(h.binding.imgvRestaurant);
         h.binding.cvRestaurant.setOnClickListener(v -> {
-            Intent intent = new Intent(context, RestaurantActivity.class);
+            Intent intent = new Intent(context, RestDetailActivity.class);
+            intent.putExtra("img", list.get(i).getDate_img());
+            intent.putExtra("name", list.get(i).getDate_name());
+            intent.putExtra("address", list.get(i).getDate_address());
+            intent.putExtra("intro", list.get(i).getDate_intro());
+            intent.putExtra("tel", list.get(i).getTel());
+            intent.putExtra("open", list.get(i).getOpen());
+            intent.putExtra("end", list.get(i).getEnd());
+            intent.putExtra("lan", list.get(i).getLan());
+            intent.putExtra("lng", list.get(i).getLng());
             context.startActivity(intent);
         });
     }

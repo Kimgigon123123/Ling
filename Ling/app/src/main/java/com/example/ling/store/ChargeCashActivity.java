@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.ling.R;
@@ -37,6 +38,11 @@ public class ChargeCashActivity extends AppCompatActivity {
         binding= ActivityChargeCashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        //금액 입력창 자동 포커스
+        binding.edtMoney.requestFocus();
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
         select();
 
         CommonConn conn = new CommonConn(this , "store_select_bank");
@@ -46,6 +52,8 @@ public class ChargeCashActivity extends AppCompatActivity {
 
             ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data,new TypeToken<ArrayList<StoreMyinfoVO>>(){}.getType());
             binding.tvBankInfo.setText(list.get(0).getBank());
+
+
         });
 
 
@@ -66,23 +74,35 @@ public class ChargeCashActivity extends AppCompatActivity {
 
         binding.btnCharge.setOnClickListener(v -> {
 
+            CommonConn conn3 = new CommonConn(this , "store_select_bank");
+            conn3.addParamMap("id",CommonVar.loginInfo.getId());
 
-            try {
-                CommonConn conn2 = new CommonConn(this,"store_charge");
-                conn2.addParamMap("id",CommonVar.loginInfo.getId());
-                conn2.addParamMap("edtMoney",Integer.parseInt(binding.edtMoney.getText().toString()));//"0" -> 0 : ""->
-                conn2.onExcute((isResult, data) -> {
+            conn3.onExcute((isResult, data) -> {
+
+                ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data,new TypeToken<ArrayList<StoreMyinfoVO>>(){}.getType());
+                if(list.get(0).getBank().equals(" ")){
+                    Toast.makeText(this, "계좌번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                }else{
+
+                    try {
+                        CommonConn conn2 = new CommonConn(this,"store_charge");
+                        conn2.addParamMap("id",CommonVar.loginInfo.getId());
+                        conn2.addParamMap("edtMoney",Integer.parseInt(binding.edtMoney.getText().toString()));//"0" -> 0 : ""->
+                        conn2.onExcute((isResult2, data2) -> {
 
 
-                });
+                        });
 
-                ChargeVO.isCharge=true;
-                finish();
+                        ChargeVO.isCharge=true;
+                        finish();
 
 
-            }catch (Exception e){
-                Toast.makeText(this, "다시입력", Toast.LENGTH_SHORT).show();
-            }
+                    }catch (Exception e){
+                        Toast.makeText(this, "금액을 입력해주세요", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
 
         });
 

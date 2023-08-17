@@ -39,15 +39,15 @@ public class BuylistMoreAdapter extends RecyclerView.Adapter<BuylistMoreAdapter.
             context.startActivity(intent);
         });
 
-        h.binding.tvDeliveryCheck.setOnClickListener(v -> {
-            Intent intent = new Intent(context, DeliveryActivity.class);
-            context.startActivity(intent);
-        });
-
-        h.binding.tvReturn.setOnClickListener(v -> {
-            Intent intent = new Intent(context, ReturnActivity.class);
-            context.startActivity(intent);
-        });
+//        h.binding.tvDeliveryCheck.setOnClickListener(v -> {
+//            Intent intent = new Intent(context, DeliveryActivity.class);
+//            context.startActivity(intent);
+//        });
+//
+//        h.binding.tvReturn.setOnClickListener(v -> {
+//            Intent intent = new Intent(context, ReturnActivity.class);
+//            context.startActivity(intent);
+//        });
 
     }
 

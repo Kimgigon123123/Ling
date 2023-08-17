@@ -31,10 +31,25 @@
             android:name=".photo.PhotoListActivity"
             android:exported="false" />
         <activity
+            android:name=".store.myinfo.CompleteReturnActivity"
+            android:exported="false" />
+        <activity
             android:name=".board.Board_New_ContentActivity"
             android:exported="false" />
         <activity
-            android:name=".board.Notice_contextActivity"
+            android:name=".store.myinfo.DetailAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.myinfo.AddressSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.myinfo.AddressMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".board.Board_Write_ContentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".board.Board_DetailtActivity"
             android:exported="false" />
         <activity
             android:name=".store.myinfo.ReturnActivity"
@@ -67,7 +82,7 @@
             android:name=".chat.RowChatActivity"
             android:exported="false" />
         <activity
-            android:name=".photo.PhotoActivity"
+            android:name=".home.PhotoActivity"
             android:exported="false" />
         <activity
             android:name=".date.festival.FestivalActivity"

@@ -2,7 +2,23 @@ package com.example.ling.date;
 
 public class DateDibsVO {
 	private int dibs_id, date_id;
-	private String id, date_category_code, date_name, date_address, date_intro, open, end, lan, lng;
+	private String id, date_category_code, date_name, date_address, date_intro, open, end, lan, lng, date_img, tel;
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public String getDate_img() {
+		return date_img;
+	}
+
+	public void setDate_img(String date_img) {
+		this.date_img = date_img;
+	}
 
 	public int getDibs_id() {
 		return dibs_id;

@@ -109,7 +109,7 @@ public class StoreCoFragment extends Fragment {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
             StoreCoFragment storeCoFragment = new StoreCoFragment();
-            transaction.replace(R.id.container, storeCoFragment);
+            transaction.replace(R.id.co, storeCoFragment);
 
             transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
             transaction.commit();
@@ -123,7 +123,7 @@ public class StoreCoFragment extends Fragment {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
             StoreDrFragment storeDrFragment = new StoreDrFragment(); // StoreDrFragment로 교체할 프래그먼트 인스턴스 생성
-            transaction.replace(R.id.container, storeDrFragment);
+            transaction.replace(R.id.co, storeDrFragment);
 
             transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
             transaction.commit();
@@ -139,7 +139,7 @@ public class StoreCoFragment extends Fragment {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
             StoreRiFragment storeRiFragment= new StoreRiFragment(); // StoreDrFragment로 교체할 프래그먼트 인스턴스 생성
-            transaction.replace(R.id.container, storeRiFragment);
+            transaction.replace(R.id.co, storeRiFragment);
 
             transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
             transaction.commit();
@@ -155,7 +155,7 @@ public class StoreCoFragment extends Fragment {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
             StoreGiFragment storeGiFragment= new StoreGiFragment(); // StoreDrFragment로 교체할 프래그먼트 인스턴스 생성
-            transaction.replace(R.id.container, storeGiFragment);
+            transaction.replace(R.id.co, storeGiFragment);
 
             transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
             transaction.commit();
@@ -169,7 +169,7 @@ public class StoreCoFragment extends Fragment {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
             StoreEtcFragment storeEtcFragment= new StoreEtcFragment(); // StoreDrFragment로 교체할 프래그먼트 인스턴스 생성
-            transaction.replace(R.id.container, storeEtcFragment);
+            transaction.replace(R.id.co, storeEtcFragment);
 
             transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
             transaction.commit();

@@ -31,7 +31,7 @@
             android:id="@+id/tv_date"
             android:textColor="#fff"
 
-            android:text="배송조회"
+            android:text="구매정보"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -62,6 +62,7 @@
 
 
                 <TextView
+                    android:id="@+id/imgv_delivery_state1"
                     android:background="#4CAF50"
                     android:text="　"
                     android:layout_width="50dp"
@@ -72,6 +73,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
+                android:id="@+id/tv_delivery_state1"
                 android:textColor="#4CAF50"
                 android:layout_gravity="center"
                 android:text="배송중"
@@ -104,6 +106,7 @@
 
 
                 <TextView
+                    android:id="@+id/imgv_delivery_state2"
                     android:background="@color/gray"
                     android:text="　"
                     android:layout_width="50dp"
@@ -114,6 +117,8 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
+                android:textColor="@color/black"
+                android:id="@+id/tv_delivery_state2"
                 android:layout_gravity="center"
                 android:text="배송완료"
                 android:layout_width="wrap_content"
@@ -146,6 +151,7 @@
 
 
                 <TextView
+                    android:id="@+id/imgv_delivery_state3"
                     android:background="@color/gray"
                     android:text="　"
                     android:layout_width="50dp"
@@ -156,6 +162,8 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
+                android:id="@+id/tv_delivery_state3"
+                android:textColor="@color/black"
                 android:layout_gravity="center"
                 android:text="배송취소"
                 android:layout_width="wrap_content"
@@ -187,10 +195,11 @@
         android:layout_height="0dp">
 
         <ImageView
+            android:scaleType="centerCrop"
             android:id="@+id/imgv_item"
             android:src="@drawable/ic_launcher_background"
-            android:layout_width="150dp"
-            android:layout_height="150dp"/>
+            android:layout_width="200dp"
+            android:layout_height="200dp"/>
 
         <LinearLayout
             android:layout_marginLeft="20dp"
@@ -200,10 +209,11 @@
 
 
             <TextView
+                android:layout_marginTop="10dp"
                 android:id="@+id/tv_delivery_state"
                 android:layout_marginBottom="5dp"
                 android:textStyle="bold"
-                android:textSize="18dp"
+                android:textSize="24dp"
                 android:textColor="@color/green"
                 android:text="배송중"
                 android:layout_width="wrap_content"
@@ -213,11 +223,11 @@
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_marginBottom="5dp"
-                android:textSize="22dp"
+                android:textSize="18dp"
                 android:textColor="@color/black"
                 android:text="상품이름"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"/>
+                android:layout_height="wrap_content"/>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -255,6 +265,15 @@
 
             <TextView
                 android:layout_marginTop="15dp"
+                android:id="@+id/tv_address"
+                android:textSize="16dp"
+                android:text="주소정보"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginTop="15dp"
                 android:textStyle="bold"
                 android:id="@+id/tv_total_price"
                 android:textSize="20dp"
@@ -270,44 +289,77 @@
 
     </LinearLayout>
 
+
+    <!-- 하단 버튼 -->
     <LinearLayout
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="bottom"
-        android:background="#2222"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_return"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp"
-            app:backgroundTint="@color/basket"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1.5"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="반품신청"
-            style="@style/Widget.MaterialComponents.Button"
-            />
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_margin="12dp"
+            android:backgroundTint="@color/basket"/>
 
         <Button
+            android:backgroundTint="@color/purchace"
             android:id="@+id/btn_buy"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp"
-            app:backgroundTint="@color/purchace"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="2"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="다시구매"
-            style="@style/Widget.MaterialComponents.Button"
-            />
-
-
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_margin="12dp"/>
     </LinearLayout>
+
+<!--    <LinearLayout-->
+<!--        android:layout_weight="1"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        android:background="#2222"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_return"-->
+<!--            app:strokeColor="@color/black"-->
+<!--            app:strokeWidth="1dp"-->
+<!--            app:backgroundTint="@color/basket"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_weight="1.5"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="70dp"-->
+<!--            android:text="반품신청"-->
+<!--            style="@style/Widget.MaterialComponents.Button"-->
+<!--            />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_buy"-->
+<!--            app:strokeColor="@color/black"-->
+<!--            app:strokeWidth="1dp"-->
+<!--            app:backgroundTint="@color/purchace"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_weight="2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="70dp"-->
+<!--            android:text="다시구매"-->
+<!--            style="@style/Widget.MaterialComponents.Button"-->
+<!--            />-->
+
+
+<!--    </LinearLayout>-->
 
 
 
