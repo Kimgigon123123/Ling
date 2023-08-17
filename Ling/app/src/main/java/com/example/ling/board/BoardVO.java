@@ -1,6 +1,11 @@
 package com.example.ling.board;
 
-public class BoardVO {
+import java.io.Serializable;
+
+
+//intent == 통신
+//통신에서 객체 전송 시 serializable
+public class BoardVO implements Serializable {
 	private String id, writer, board_cd, title, content, writedate, filename, filephth;
 	private int readcnt, root, step, indent, rid;
 	public String getId() {

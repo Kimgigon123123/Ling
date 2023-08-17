@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main">
+
+<select id="select_couple_info" resultType="main.MainVO">
+select couple_num,mid,fid,
+(select name as 남자이름 from ling_member where 
+id = (select mid from couple co , ling_member m where m.id=#{id} and ((co.fid =m.id) or (co.mid = m.id)))) as mname,
+(select name as 여자이름 from ling_member where 
+id = (select fid from couple co , ling_member m where m.id=#{id} and ((co.fid =m.id) or (co.mid = m.id)))) as fname,
+trunc(sysdate-create_date,0) as day from couple co, ling_member m
+where ((co.fid =m.id) or (co.mid = m.id)) 
+and m.id=#{id}
+</select>
+
+</mapper>

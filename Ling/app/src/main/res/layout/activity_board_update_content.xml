@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".board.Board_Write_ContentActivity"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+
+    <EditText
+        android:id="@+id/edt_newTitle"
+        android:gravity="left"
+        android:hint="제목"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+        <EditText
+            android:id="@+id/edt_newcontent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="내용을 입력해주세요."/>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_update"
+        android:layout_gravity="bottom|right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="저장"/>
+</LinearLayout>
