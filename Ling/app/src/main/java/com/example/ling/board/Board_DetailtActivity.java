@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityNoticeContextBinding;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -19,6 +20,7 @@ import com.google.gson.reflect.TypeToken;
 public class Board_DetailtActivity extends AppCompatActivity {
     ActivityNoticeContextBinding binding;
     MaterialDialog mAnimatedDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,13 +61,6 @@ public class Board_DetailtActivity extends AppCompatActivity {
         });
 
 
-//        String board_no =  getIntent().getStringExtra("board_no");
-//        String board_cd =  getIntent().getStringExtra("board_cd");
-//        FragmentManager manager = getSupportFragmentManager();
-//        manager.beginTransaction().replace(R.id.container, new ContentFragment(board_no, board_cd)).commit();
-//
-
-
     }
 
 
@@ -90,6 +85,14 @@ public class Board_DetailtActivity extends AppCompatActivity {
             Board_User_ContentAdapter adapter = new Board_User_ContentAdapter(boardvo);
             binding.recvContent.setAdapter(adapter);
             binding.recvContent.setLayoutManager(new LinearLayoutManager(this));
+
+            if(CommonVar.loginInfo.getId().equals("admin")||boardvo.getWriter().equals(CommonVar.loginInfo.getId())){
+                binding.lnButton.setVisibility(View.VISIBLE);
+            }else{
+                binding.lnButton.setVisibility(View.INVISIBLE);
+
+            }
+
         });
     }
     public void delete() {
@@ -103,6 +106,10 @@ public class Board_DetailtActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+//        binding.swipeLayout.setOnRefreshListener(()->{
+//
+//            binding.swipeLayout.setRefreshing(false);
+//        });
         UserContentselect();
     }
 }

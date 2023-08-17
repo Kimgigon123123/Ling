@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 
 
+
 @Repository
 public class BoardDAO {
 	@Autowired @Qualifier("test") SqlSession sql;
@@ -60,5 +61,13 @@ public class BoardDAO {
 	public int board_delete(BoardVO vo) {
 	
 		return sql.delete("board.delete", vo);
+	}
+	
+	public List<BoardCommentVO> board_comment_list(int board_id) {
+		return sql.selectList("board.commentList", board_id);
+	}
+	
+	public int board_comment_register(BoardCommentVO vo) {
+		return sql.insert("board.commentRegister", vo);
 	}
 }

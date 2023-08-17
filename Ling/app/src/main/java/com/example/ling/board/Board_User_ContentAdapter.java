@@ -13,9 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentContentBinding;
 //import com.example.ling.databinding.ItemRecvBoardNoticeContextBinding;
 import com.example.ling.databinding.ItemRecvBoardUserContextBinding;
+import com.example.ling.login.Ling_MemberVO;
 import com.example.ling.login.LoginActivity;
 import com.example.ling.login.PreferenceManager;
 
@@ -49,13 +51,13 @@ public class Board_User_ContentAdapter extends RecyclerView.Adapter<Board_User_C
         h.binding.userRecvCnt.setText(boardvo.getReadcnt()+"");
 
 
+
 //        h.binding.tvBefore.setOnClickListener(v->{
 //            // 뒤로가기 처리
 //            ((Activity)context).finish(); //현재 액티비티 종료 실시
 //        });
 
     }
-
 
     @Override
     public int getItemCount() {
