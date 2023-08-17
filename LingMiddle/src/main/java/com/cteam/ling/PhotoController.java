@@ -111,7 +111,7 @@ public class PhotoController {
 		String tempPath = folderPath; 
 		if (!vo.getFolder_name().isEmpty()) {
             // 특정 경로와 입력된 폴더 이름으로 폴더 경로를 생성
-			tempPath = folderPath + vo.getCouple_num() + vo.getFolder_name();
+			tempPath = folderPath + "/" + vo.getCouple_num() + "/" + vo.getFolder_name();
             
             
 //             
@@ -125,7 +125,7 @@ public class PhotoController {
 			Gson gson = new Gson();	
 			
 			
-			return gson.toJson(vo);
+			return gson.toJson(dao.getFolder() );
 		
 	}
 	
