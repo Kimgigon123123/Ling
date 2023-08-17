@@ -5,29 +5,57 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.example.ling.R;
 import com.example.ling.calendar.CalendarActivity;
+import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentHomeBinding;
+import com.example.ling.store.StoreEtcFragment;
+import com.example.ling.store.myinfo.StoreMyinfoVO;
+import com.example.ling.testchat.TestChatFragment;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 
 public class HomeFragment extends Fragment {
 
     FragmentHomeBinding binding;
+    String couple_num;
 
     private SimpleDateFormat mFormat = new SimpleDateFormat("yyyy/M/d");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        CommonConn conn = new CommonConn(getContext(),"select_couple_info");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
+
+        conn.onExcute((isResult, data) -> {
+            ArrayList<MainVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<MainVO>>() {}.getType());
+
+            binding.tvMid.setText(list.get(0).mname);
+            binding.tvFid.setText(list.get(0).fname);
+            binding.tvDay.setText("사귄지 "+list.get(0).day+"일"+"커플번호는 "+list.get(0).couple_num);
+            couple_num=list.get(0).couple_num;
+
+        });
+
+
+
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
         Glide.with(this).load("http://192.168.0.38/hanul/img//andimg.jpg").into(binding.imgvManProfile);
@@ -75,6 +103,18 @@ public class HomeFragment extends Fragment {
         String diffDays = String.valueOf(diffSec / (24*60*60)); //일자수 차이
 
         binding.loveDDay.setText(diffDays);
+
+        //김기곤 test chat
+        binding.tvTestChat.setOnClickListener(v -> {
+            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager(); // getActivity() 대신 requireActivity()를 사용합니다.
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+            TestChatFragment testChatFragment = new TestChatFragment(couple_num); // TestChatFragment로 교체할 프래그먼트 인스턴스 생성
+            transaction.replace(R.id.container, testChatFragment); // R.id.container는 프래그먼트가 표시될 레이아웃의 ID입니다.
+
+            transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
+            transaction.commit();
+        });
 
 
 

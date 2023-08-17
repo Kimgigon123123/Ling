@@ -27,7 +27,7 @@
     <!--app:ntb_bg_color="#33000000"-->
     <devlight.io.library.ntb.NavigationTabBar
         android:id="@+id/ntb_horizontal"
-        app:ntb_bg_color="#FFFFFF"
+        app:ntb_bg_color="#33000000"
         app:ntb_inactive_color="#474747"
         app:ntb_active_color="#FFFFFF"
         android:layout_width="match_parent"

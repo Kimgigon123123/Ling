@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chat">
+
+<select id="select_chat" resultType="chat.ChatVO">
+select c.*,
+(select name as 로그인한아이디이름 from ling_member m, couple co
+where ((co.fid=m.id) or (co.mid=m.id))
+and m.id = #{id}) as myname,
+(select name as 로그인한아이디상대이름 from ling_member m, couple co
+where ((co.fid=m.id) or (co.mid=m.id))
+and m.id != #{id}
+and co.couple_num=#{couple_num})as couple_name
+from chat c, couple co
+where c.couple_num = co.couple_num
+and c.couple_num=#{couple_num}
+order by chat_id
+</select>
+
+<insert id="insert_chat">
+insert into chat values(seq_chat.nextval,#{couple_num},#{id},#{chat_content},to_char(sysdate,'YYYY/MM/DD HH24:MI'),'F')
+
+</insert>
+
+<select id="select_couple_name" resultType="chat.ChatVO">
+select name as couple_name from ling_member m, couple co
+where ((co.fid=m.id) or (co.mid=m.id))
+and m.id != #{id}
+and co.couple_num=#{couple_num}
+</select>
+
+</mapper>
