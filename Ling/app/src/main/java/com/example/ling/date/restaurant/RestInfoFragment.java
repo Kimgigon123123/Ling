@@ -29,8 +29,9 @@ public class RestInfoFragment extends Fragment {
                     .load(imageUrl)
                     .into(binding.imgv);
             binding.tvName.setText(bundle.getString("name"));
-            binding.tvTime.setText(bundle.getString("open") + " ~ " + bundle.getString("end"));
-            binding.tvAddress.setText(bundle.getString("address"));
+            binding.tvTel.setText("전화번호 : " + bundle.getString("tel"));
+            binding.tvTime.setText("영업시간 : " + bundle.getString("open") + " ~ " + bundle.getString("end"));
+            binding.tvAddress.setText("주소 : " + bundle.getString("address"));
         }
 
         return binding.getRoot();

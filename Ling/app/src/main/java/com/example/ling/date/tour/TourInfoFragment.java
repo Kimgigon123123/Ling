@@ -31,8 +31,8 @@ public class TourInfoFragment extends Fragment {
             //binding.imgv.setImageResource(bundle.getString("img"));
             binding.tvName.setText(bundle.getString("name"));
             binding.tvTime.setVisibility(View.GONE);
-            binding.tvAddress.setText(bundle.getString("address"));
-            binding.tvIntro.setText(bundle.getString("intro"));
+            binding.tvAddress.setText("주소 : " + bundle.getString("address"));
+            binding.tvIntro.setText("소개 : " + bundle.getString("intro"));
         }
 
         return binding.getRoot();

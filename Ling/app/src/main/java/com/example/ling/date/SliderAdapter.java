@@ -1,6 +1,7 @@
 package com.example.ling.date;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,17 +14,19 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.bumptech.glide.Glide;
 import com.example.ling.databinding.FragmentDateBinding;
 import com.example.ling.databinding.ItemSliderBinding;
+import com.example.ling.date.festival.FestivalActivity;
+import com.example.ling.date.restaurant.RestaurantActivity;
+import com.example.ling.date.tour.TourActivity;
 
 import java.util.ArrayList;
 
 public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.ViewHolder>{
 
     Context context;
-
     ViewPager2 viewPager2;
-    ArrayList<Integer> list;
+    ArrayList<SliderVO> list;
 
-    public SliderAdapter(Context context, ViewPager2 viewPager2, ArrayList<Integer> list) {
+    public SliderAdapter(Context context, ViewPager2 viewPager2, ArrayList<SliderVO> list) {
         this.context = context;
         this.viewPager2 = viewPager2;
         this.list = list;
@@ -37,7 +40,21 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        h.binding.imgSlider.setImageResource(list.get(i));
+        h.binding.imgSlider.setImageResource(list.get(i).getImgRes());
+        h.binding.sdText.setText(list.get(i).getName());
+        h.binding.btn.setOnClickListener(v -> {
+            if(list.get(i).getName().equals("전국 여행")) {
+                Intent intent = new Intent(context, TourActivity.class);
+                context.startActivity(intent);
+            } else if (list.get(i).getName().equals("전국 맛집")) {
+                Intent intent = new Intent(context, RestaurantActivity.class);
+                context.startActivity(intent);
+            } else {
+                Intent intent = new Intent(context, FestivalActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
         if (i == list.size() - 2) {
             viewPager2.post(runnable);
         }
@@ -70,4 +87,5 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.ViewHolder
             notifyDataSetChanged();
         }
     };
+
 }
