@@ -3,8 +3,6 @@ package com.example.ling.board;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,8 +12,11 @@ import com.example.ling.R;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityNoticeContextBinding;
+import com.example.ling.login.PreferenceManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
 
 public class Board_DetailtActivity extends AppCompatActivity {
     ActivityNoticeContextBinding binding;
@@ -29,6 +30,11 @@ public class Board_DetailtActivity extends AppCompatActivity {
         binding.tvBefore.setOnClickListener(v->{
             onBackPressed();
         });
+        binding.btnRegistComment.setOnClickListener(v->{
+            regist();
+        });
+
+        commentselect();
 
         binding.btnDelete.setOnClickListener(v->{
 
@@ -95,6 +101,18 @@ public class Board_DetailtActivity extends AppCompatActivity {
 
         });
     }
+
+    public void commentselect(){
+        CommonConn conn = new CommonConn(this, "board.commentList");
+        String board_no =  getIntent().getStringExtra("board_no");
+        conn.addParamMap("board_id" ,board_no );
+        conn.onExcute((isResult, data) -> {
+            ArrayList<BoardCommentVO> commentlist = new Gson().fromJson(data, new TypeToken<ArrayList<BoardCommentVO>>(){}.getType());
+            Board_CommentAdapter adapter = new Board_CommentAdapter(commentlist);
+            binding.recvComment.setAdapter(adapter);
+            binding.recvComment.setLayoutManager(new LinearLayoutManager(this));
+        });
+    }
     public void delete() {
         CommonConn conn = new CommonConn(this, "board.delete");
         String board_no =  getIntent().getStringExtra("board_no");
@@ -103,13 +121,26 @@ public class Board_DetailtActivity extends AppCompatActivity {
 
         });
     }
+    public void regist(){
+        CommonConn conn = new CommonConn(this, "board.commentRegister");
+        String board_no =  getIntent().getStringExtra("board_no");
+        conn.addParamMap("board_id" ,board_no );
+        conn.addParamMap("content", binding.edtComment.getText().toString());
+        conn.addParamMap("writer", PreferenceManager.getString(this,"id"));
+        conn.onExcute((isResult, data) -> {
+            commentselect();
+            binding.edtComment.setText("");
+        });
+    }
     @Override
     public void onStart() {
         super.onStart();
+        UserContentselect();
+
 //        binding.swipeLayout.setOnRefreshListener(()->{
 //
 //            binding.swipeLayout.setRefreshing(false);
 //        });
-        UserContentselect();
+
     }
 }

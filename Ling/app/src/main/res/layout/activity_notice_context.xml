@@ -12,8 +12,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content">
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -21,15 +20,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
-
     </FrameLayout>
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <EditText
+        android:id="@+id/edt_comment"
+        android:layout_weight="7"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:hint="댓글을 입력하세요."/>
+    <Button
+        android:id="@+id/btn_regist_comment"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:textSize="10dp"
+        android:text="입력"/>
+    </LinearLayout>
     <FrameLayout
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="300dp">
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_layout"
             android:layout_width="match_parent"

@@ -63,11 +63,19 @@ public class BoardDAO {
 		return sql.delete("board.delete", vo);
 	}
 	
-	public List<BoardCommentVO> board_comment_list(int board_id) {
+	public List<BoardCommentVO> board_comment_list(String board_id) {
 		return sql.selectList("board.commentList", board_id);
 	}
 	
 	public int board_comment_register(BoardCommentVO vo) {
 		return sql.insert("board.commentRegister", vo);
+	}
+	
+	public List<BoardReCommentVO> board_recomment_list(String comment_id) {
+		return sql.selectList("board.RecommentList", comment_id);
+	}
+	
+	public int board_recomment_register(BoardReCommentVO vo) {
+		return sql.insert("board.RecommentRegister", vo);
 	}
 }
