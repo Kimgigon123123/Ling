@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ln_folder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+
+    <ImageView
+        android:id="@+id/imgv_folder"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/wedding"
+        />
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        >
+
+        <TextView
+            android:id="@+id/tv_folder_title"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="결혼"
+            android:textSize="25dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_folder_cnt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10(폴더의 사진 장 수)"
+            android:textSize="25dp"
+            />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgv_folder_delete"
+        android:layout_gravity="center"
+        android:layout_marginRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/delete"
+        />
+
+</LinearLayout>

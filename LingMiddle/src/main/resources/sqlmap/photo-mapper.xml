@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="photo">
+
+	<select id="list" resultType="photo.PhotoVO">
+		select * from photo_category where pho_img like '%/'||(select couple_num
+		from couple where couple_num = #{couple_num}) || '/' ||
+		(select folder_name from photo_folder where folder_name= #{folder_name})
+		||'%'
+	</select>
+
+	<select id="folder" resultType="photo.FolderVO">
+		select id, couple_num, folder_name from photo_folder
+	</select>
+
+	<insert id="folder_insert">
+		INSERT INTO photo_folder (id, couple_num, folder_name)
+		SELECT
+		lm.id,
+		c.couple_num,
+		#{folder_name}
+		FROM
+		ling_member lm
+		JOIN
+		couple c ON lm.id = c.mid OR lm.id = c.fid
+		WHERE
+		lm.id = #{id}
+
+	</insert>
+	
+	<delete id="folder_delete">
+		delete from photo_folder where folder_name = #{folder_name}
+	</delete>
+
+</mapper>

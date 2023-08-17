@@ -28,7 +28,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".photo.PhotoListActivity"
+            android:exported="false" />
+        <activity
             android:name=".store.myinfo.CompleteReturnActivity"
+            android:exported="false" />
+        <activity
+            android:name=".board.Board_New_ContentActivity"
             android:exported="false" />
         <activity
             android:name=".store.myinfo.DetailAddActivity"
