@@ -68,6 +68,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_day"
                     android:layout_toRightOf="@id/love_d_day"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -125,6 +126,7 @@
             android:orientation="vertical"
             >
             <TextView
+                android:id="@+id/tv_mid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
@@ -174,6 +176,7 @@
             android:orientation="vertical"
             >
             <TextView
+                android:id="@+id/tv_fid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"

@@ -66,11 +66,16 @@ public class StoreCoAdater extends RecyclerView.Adapter<StoreCoAdater.ViewHolder
             conn.addParamMap("id", CommonVar.loginInfo.getId());
             conn.onExcute((isResult, data) -> {
                 if (!isResult) {
-                    // 매핑 연결에 실패한 경우 (무결성 제약 조건 위배)
-                        Toast.makeText(context, "이미 찜목록에 존재합니다.", Toast.LENGTH_SHORT).show();
+
                 } else {
                     // 매핑 연결에 성공한 경우
-                    Toast.makeText(context, "찜목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
+
+                    if(data==null){
+                        Toast.makeText(context, "이미 찜목록에 존재합니다.", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(context, "찜목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             });
 
