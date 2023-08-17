@@ -46,6 +46,8 @@ public class ZZimAdapter extends RecyclerView.Adapter<ZZimAdapter.ViewHolder> {
                 .load(imageUrl)
                 .into(h.binding.imgvItem);
 
+                 h.binding.tvName.setText(list.get(i).item_name);
+
         h.binding.imgvItem.setOnClickListener(v -> {
             Intent intent = new Intent(context,StorePurchaseActivity.class);
             intent.putExtra("name",list.get(i).getItem_name());

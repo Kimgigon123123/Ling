@@ -27,7 +27,7 @@ public class FestDetailActivity extends AppCompatActivity {
         NMapFragment nMapFragment = new NMapFragment();
 
         Bundle bundle = new Bundle();
-        bundle.putInt("img", getIntent().getIntExtra("img", -1));
+        bundle.putString("img", getIntent().getStringExtra("img"));
         bundle.putString("name", getIntent().getStringExtra("name"));
         bundle.putString("address", getIntent().getStringExtra("address"));
         bundle.putString("intro", getIntent().getStringExtra("intro"));

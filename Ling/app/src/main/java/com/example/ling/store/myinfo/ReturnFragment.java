@@ -40,7 +40,10 @@ public class ReturnFragment extends Fragment {
             ArrayList<StoreReturnListVO> returnlist = new Gson().fromJson(data, new TypeToken<ArrayList<StoreReturnListVO>>() {
             }.getType());
             binding.recvReturn.setAdapter(new ReturnAdapter(returnlist, getContext()));
-            binding.recvReturn.setLayoutManager(new GridLayoutManager(getContext(),3));
+            binding.recvReturn.setLayoutManager(new GridLayoutManager(getContext(),4));
+            if(returnlist.size()==0){
+                binding.tvEmpty.setVisibility(View.VISIBLE);
+            }
         });
     }
 }

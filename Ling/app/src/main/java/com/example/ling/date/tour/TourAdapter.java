@@ -18,6 +18,7 @@ import com.example.ling.databinding.ItemRecvTouractBinding;
 import com.example.ling.date.DateDibsVO;
 import com.example.ling.date.DateInfoVO;
 import com.google.android.gms.common.internal.service.Common;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -42,7 +43,10 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        h.binding.imgvTour.setImageResource(R.drawable.ic_launcher_background);
+        String imageUrl=list.get(i).getDate_img();
+        Picasso.get()
+                .load(imageUrl)
+                .into(h.binding.imgvTour);
         //h.binding.imgvFav2.setVisibility(View.INVISIBLE);
         h.binding.tvTname.setText(list.get(i).getDate_name());
         h.binding.tvTaddr.setText(list.get(i).getDate_address());
@@ -57,7 +61,7 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.ViewHolder> {
         });
         h.binding.lnTour.setOnClickListener(v -> {
             Intent intent = new Intent(context, TourDetailActivity.class);
-            intent.putExtra("img", R.drawable.ic_launcher_background);
+            intent.putExtra("img", list.get(i).getDate_img());
             intent.putExtra("name", list.get(i).getDate_name());
             intent.putExtra("address", list.get(i).getDate_address());
             intent.putExtra("intro", list.get(i).getDate_intro());

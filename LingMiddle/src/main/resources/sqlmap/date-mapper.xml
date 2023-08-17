@@ -14,28 +14,28 @@
 
 <!-- 관심목록_전체 -->
 <select id="alldibs" resultType="date.DateDibsVO">
-	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng
+	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng, i.date_img
 	from date_dibs d, date_info i
 	where d.date_id = i.date_id and d.id = #{id}
 </select>
 
 <!-- 관심목록_여행 -->
 <select id="tourdibs" resultType="date.DateDibsVO">
-	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng
+	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng, i.date_img
 	from date_dibs d, date_info i
 	where d.date_id = i.date_id and d.date_category_code = 'TO' and d.id = #{id}
 </select>
 
-<!-- 관심목록_맛집 -->
+<!-- 관심목록_맛집 --> 
 <select id="restaurantdibs" resultType="date.DateDibsVO">
-	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng
+	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng, i.date_img
 	from date_dibs d, date_info i
 	where d.date_id = i.date_id and d.date_category_code = 'RE' and d.id = #{id}
 </select>
 
 <!-- 관심목록_축제 -->
 <select id="festivaldibs" resultType="date.DateDibsVO">
-	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng
+	select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng, i.date_img
 	from date_dibs d, date_info i
 	where d.date_id = i.date_id and d.date_category_code = 'FE' and d.id = #{id}
 </select>
@@ -67,20 +67,32 @@
 
 <!-- 여행 검색 -->
 <select id="searchtour" resultType="date.DateInfoVO">
-	select * from date_info where (date_name like null or date_address like null or 
-	date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'TO'
+	select * from date_info where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'TO'
 </select> 
 
 <!-- 맛집 검색 -->
 <select id="searchrest" resultType="date.DateInfoVO">
-	select * from date_info where (date_name like null or date_address like null or 
-	date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'RE'
+	select * from date_info where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'RE'
 </select>
 
 <!-- 축제 검색 -->
 <select id="searchfest" resultType="date.DateInfoVO">
-	select * from date_info where (date_name like null or date_address like null or 
-	date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'FE'
+	select * from date_info where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'FE'
+</select>
+
+<!-- 여행 목록 5개 -->
+<select id="tour5" resultType="date.DateInfoVO">
+	select * from date_info where date_category_code = 'TO' and rownum <![CDATA[<=]]> 5
+</select>
+
+<!-- 맛집 목록 5개 -->
+<select id="restaurant5" resultType="date.DateInfoVO">
+	select * from date_info where date_category_code = 'RE' and rownum <![CDATA[<=]]> 5
+</select>
+
+<!-- 축제 목록 5개 -->
+<select id="festival5" resultType="date.DateInfoVO">
+	select * from date_info where date_category_code = 'FE' and rownum <![CDATA[<=]]> 5
 </select>
 
 </mapper>

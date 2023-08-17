@@ -37,8 +37,8 @@ delete store_basket where id=#{id} and basket_code=#{basket_code}
 </delete>
 
 <insert id = "insert_basket_buylist">
-INSERT INTO store_purchase_product (order_num, item_code, category_code, delivery_code, id, purchase_cnt)
-SELECT seq_order_num.nextval, b.item_code, i.category_code, 1, b.id, b.selection as purchase_cnt
+INSERT INTO store_purchase_product (order_num, item_code, category_code, delivery_code, id, purchase_cnt,address)
+SELECT seq_order_num.nextval, b.item_code, i.category_code, 1, b.id, b.selection as purchase_cnt,#{address}
 FROM store_basket b, store_item i
 WHERE i.item_code = b.item_code
 and id=#{id}

@@ -6,6 +6,7 @@
     <color name="basket">#00BCD4</color>
     <color name="purchace">#E91E63</color>
     <color name="green">#4CAF50</color>
+    <color name="red">#FF0000</color>
 
     <color name="sampleLight">#388E3C</color>
     <color name="defaultColor">#595959</color>
@@ -26,4 +27,11 @@
     <color name="material_dialog_negative_button_text_color">#1E88E5</color>
 
     <color name="material_dialog_positive_button_color">?android:colorAccent</color>
+
+    <color name="colorTransparent">#00ffffff</color>
+
+    <color name="colorGradientStart">#F0D3D8</color>
+    <color name="colorGradientCenter">#DAB3BA</color>
+    <color name="colorGradientEnd">#B7D6F5</color>
+
 </resources>

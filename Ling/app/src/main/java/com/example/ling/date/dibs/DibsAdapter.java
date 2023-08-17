@@ -16,6 +16,7 @@ import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ItemRecvDibsBinding;
 import com.example.ling.date.DateDibsVO;
 import com.example.ling.date.tour.TourDetailActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -40,7 +41,10 @@ public class DibsAdapter extends RecyclerView.Adapter<DibsAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        h.binding.imgvDibs.setImageResource(R.drawable.ic_launcher_background);
+        String imageUrl=list.get(i).getDate_img();
+        Picasso.get()
+                .load(imageUrl)
+                .into(h.binding.imgvDibs);
         h.binding.tvName.setText(list.get(i).getDate_name());
         h.binding.tvAddr.setText(list.get(i).getDate_address());
         h.binding.btnDelete.setOnClickListener(v -> {
@@ -55,16 +59,16 @@ public class DibsAdapter extends RecyclerView.Adapter<DibsAdapter.ViewHolder> {
         });
         h.binding.lnDibs.setOnClickListener(v -> {
             Intent intent = new Intent(context, DibsDetailActivity.class);
-            if(list.get(i).getDate_category_code().equals("TO") || list.get(i).getDate_category_code().equals("RE")) {
-                intent.putExtra("img", R.drawable.ic_launcher_background);
+            if(list.get(i).getDate_category_code().equals("TO")) {
+                intent.putExtra("img", list.get(i).getDate_img());
                 intent.putExtra("name", list.get(i).getDate_name());
                 intent.putExtra("address", list.get(i).getDate_address());
                 intent.putExtra("intro", list.get(i).getDate_intro());
                 intent.putExtra("code", list.get(i).getDate_category_code());
                 intent.putExtra("lan", list.get(i).getLan());
                 intent.putExtra("lng", list.get(i).getLng());
-            } else if(list.get(i).getDate_category_code().equals("FE")) {
-                intent.putExtra("img", R.drawable.ic_launcher_background);
+            } else if(list.get(i).getDate_category_code().equals("RE") || list.get(i).getDate_category_code().equals("FE")) {
+                intent.putExtra("img", list.get(i).getDate_img());
                 intent.putExtra("name", list.get(i).getDate_name());
                 intent.putExtra("address", list.get(i).getDate_address());
                 intent.putExtra("intro", list.get(i).getDate_intro());

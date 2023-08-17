@@ -10,16 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.R;
 import com.example.ling.databinding.ItemRecvFestivalBinding;
+import com.example.ling.date.DateInfoVO;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class FestivalItemAdapter extends RecyclerView.Adapter<FestivalItemAdapter.ViewHolder> {
 
     ItemRecvFestivalBinding binding;
-    int[] festImg;
+    ArrayList<DateInfoVO> list;
     Context context;
 
-    public FestivalItemAdapter(Context context, int[] festImg) {
+    public FestivalItemAdapter(ArrayList<DateInfoVO> list, Context context) {
+        this.list = list;
         this.context = context;
-        this.festImg = festImg;
     }
 
     @NonNull
@@ -32,9 +36,20 @@ public class FestivalItemAdapter extends RecyclerView.Adapter<FestivalItemAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        h.binding.imgvFestival.setImageResource(festImg[i]);
+        String imageUrl=list.get(i).getDate_img();
+        Picasso.get()
+                .load(imageUrl)
+                .into(h.binding.imgvFestival);
         h.binding.cvFestival.setOnClickListener(v -> {
-            Intent intent = new Intent(context, FestivalActivity.class);
+            Intent intent = new Intent(context, FestDetailActivity.class);
+            intent.putExtra("img", list.get(i).getDate_img());
+            intent.putExtra("name", list.get(i).getDate_name());
+            intent.putExtra("address", list.get(i).getDate_address());
+            intent.putExtra("intro", list.get(i).getDate_intro());
+            intent.putExtra("open", list.get(i).getOpen());
+            intent.putExtra("end", list.get(i).getEnd());
+            intent.putExtra("lan", list.get(i).getLan());
+            intent.putExtra("lng", list.get(i).getLng());
             context.startActivity(intent);
         });
 
