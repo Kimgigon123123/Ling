@@ -18,24 +18,28 @@
         android:id="@+id/tv_name"
         android:textSize="23dp"
         android:textStyle="bold"
+        android:textColor="#111"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="7dp" />
     <TextView
         android:id="@+id/tv_time"
         android:textSize="16dp"
+        android:textColor="#111"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="7dp" />
     <TextView
         android:id="@+id/tv_address"
         android:textSize="16dp"
+        android:textColor="#111"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="7dp" />
     <TextView
         android:id="@+id/tv_intro"
         android:textSize="16dp"
+        android:textColor="#111"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="7dp" />
