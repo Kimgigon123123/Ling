@@ -17,6 +17,11 @@
         android:layout_height="100dp"
         android:src="@drawable/linglogo"/>
 
+
+    <com.ramotion.fluidslider.FluidSlider
+        android:id="@+id/fluider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <LinearLayout
         android:layout_marginTop="90dp"
         android:layout_width="match_parent"
@@ -30,7 +35,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-
         >
         <androidx.cardview.widget.CardView
             android:layout_width="100dp"

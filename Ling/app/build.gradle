@@ -99,4 +99,7 @@ dependencies {
     //dialog용
     implementation 'com.airbnb.android:lottie:3.3.0'
 
+
+    implementation 'com.ramotion.fluidslider:fluid-slider:0.3.1'
+
 }
