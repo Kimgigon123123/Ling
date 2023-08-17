@@ -30,7 +30,7 @@
     </FrameLayout>
 
     <Button
-        android:id="@+id/btn_newcontent_insert"
+        android:id="@+id/btn_update"
         android:layout_gravity="bottom|right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
