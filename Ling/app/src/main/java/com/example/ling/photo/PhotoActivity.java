@@ -113,7 +113,7 @@ public class PhotoActivity extends AppCompatActivity {
 
 
         binding.imgvFolderAdd.setOnClickListener(view -> {
-                insert();
+            insert();
         });
 
 
@@ -136,8 +136,10 @@ public class PhotoActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int whichButton) {
                     FolderVO vo = new FolderVO();
                     vo.setFolder_name(name.getText().toString().trim());
-//                    vo.setId("kym");//로그인이 안되어있으면 이거 못오게 막아야겠네요.<=
-                    vo.setFolder_name(" CommonVar.loginInfo.getId()");
+                    vo.setId(CommonVar.loginInfo.getId());
+                    vo.setCouple_num(Integer.parseInt(CommonVar.loginInfo.getCouple_num()));
+
+//                    vo.setFolder_name(vo.getCouple_num()+"");
                     //확인 버튼을 클릭했을때
                     conn.addParamMap("voJson", new Gson().toJson(vo) );
                     conn.onExcute((isResult, data) -> {

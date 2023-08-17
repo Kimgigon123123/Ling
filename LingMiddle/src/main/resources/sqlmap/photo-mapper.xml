@@ -11,7 +11,7 @@
 	</select>
 
 	<select id="folder" resultType="photo.FolderVO">
-		select count(*), id, couple_num, folder_name from photo_folder
+		select id, couple_num, folder_name from photo_folder
 	</select>
 
 	<insert id="folder_insert">
@@ -28,5 +28,9 @@
 		lm.id = #{id}
 
 	</insert>
+	
+	<delete id="folder_delete">
+		delete from photo_folder where folder_name = #{folder_name}
+	</delete>
 
 </mapper>

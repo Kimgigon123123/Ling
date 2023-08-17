@@ -30,7 +30,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
     private ArrayList<PhotoVO> list;
 
     public PhotoAdapter(Context context, ArrayList<PhotoVO> list) {
-
+        this.context = context;
         this.list = list;
     }
 

@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import photo.FolderVO;
 import photo.PhotoDAO;
 import photo.PhotoVO;
+import schedule.ScheAddVO;
 
 @RestController
 public class PhotoController {
@@ -62,16 +63,20 @@ public class PhotoController {
 	}
 	
 	@RequestMapping(value="/photo_list", produces="text/html;charset=utf-8")
-	public String photo_list(HttpServletRequest req, String voJson) {
-		
-		
-//		FolderVO vo = new Gson().fromJson(voJson, FolderVO.class);
+	public String photo_list(int couple_num, String folder_name) {
 		
 		
 		
 		//folder_name을 비교해서 그 folder_name을 가진 view 클릭 시 그 폴더 내부의 이미지 조회
 //		imageSelect(voJson, req);
-		List<PhotoVO> list = dao.getList() ;
+		
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("couple_num", couple_num);
+		param.put("folder_name", folder_name);
+//		File folder = new File(folderPath + vo.getFolder_name());
+		
+		
+		List<PhotoVO> list = dao.getList(param) ;
 
 		Gson gson = new Gson();	
 				
@@ -82,7 +87,7 @@ public class PhotoController {
 	
 	
 	@RequestMapping(value="/folder_list", produces="text/html;charset=utf-8")
-	public String folder_list(HttpServletRequest req) {
+	public String folder_list() {
 			
 			List<FolderVO> list = dao.getFolder() ;
 
@@ -94,14 +99,18 @@ public class PhotoController {
 	
 	
 	@RequestMapping(value="/folder_insert", produces="text/html;charset=utf-8")
-	public String folder_insert(String voJson,   HttpServletRequest req) {
+	public String folder_insert(String voJson, HttpServletRequest req) {
 //		HashMap<String, String> params = new HashMap<String, String>();
 //		params.put("folder", folderName);
+//		HashMap<String, Object> param = new HashMap<String, Object>();
+//		param.put("couple_num", couple_num);
 		FolderVO vo = new Gson().fromJson(voJson, FolderVO.class);
 		if (!vo.getFolder_name().isEmpty()) {
             // 특정 경로와 입력된 폴더 이름으로 폴더 경로를 생성
-            folderPath = folderPath + vo.getFolder_name();
-
+            folderPath = folderPath + vo.getCouple_num() + vo.getFolder_name();
+            
+            
+//             
             // 폴더 생성 로직을 호출하여 폴더 생성
             createFolder(folderPath, req);
         }
@@ -110,6 +119,7 @@ public class PhotoController {
 			dao.FolderInsert(vo) ;
 			
 			Gson gson = new Gson();	
+			
 			
 			return gson.toJson(vo);
 		
@@ -129,28 +139,44 @@ public class PhotoController {
         return replaceURL(req);
     }
 	
-	
-	
-	private String imageSelect(String folderPath, HttpServletRequest req) {
+	@RequestMapping(value="/folder_delete",produces="text/html;charset=utf-8")
+	public String Folder_Delete(FolderVO vo) {
 		
-
-        File folder = new File(folderPath);
-        if (folder.exists() && folder.isDirectory()) {
-            File[] files = folder.listFiles();
-            if (files != null) {
-                for (File file : files) {
-                    if (file.isFile() && isImageFile(file.getName())) {
-                    	for (int i = 0; i < files.length; i++) {
-                    	    System.out.println("file: " + files[i]);
-                    	}
-
-                    }
-                }
-            }
-        }
-
-        return replaceURL(req);
-    }
+		File folder = new File(folderPath);
+		if(folder.exists()) {
+			boolean delete = folder.delete();
+			
+			if(delete) {
+				System.out.println("폴더가 삭제되었습니다.");
+			}else {
+				System.out.println("폴더 삭제에 실패했습니다.");
+			}
+		}
+		
+		int result = dao.FolderDelete(vo);
+		
+		Gson gson = new Gson();
+		
+		return gson.toJson(result);
+	}
+	
+	
+	
+	
+//  if (folder.exists() && folder.isDirectory()) {
+//  File[] files = folder.listFiles();
+//  if (files != null) {
+//      for (File file : files) {
+//          if (file.isFile() && isImageFile(file.getName())) {
+//          	for (int i = 0; i < files.length; i++) {
+//          	    System.out.println("file: " + files[i]);
+//          	}
+//
+//          }
+//      }
+//  }
+//}
+//
 		
 	
     private boolean isImageFile(String fileName) {

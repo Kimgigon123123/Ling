@@ -1,6 +1,7 @@
 package com.example.ling.photo;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,9 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.R;
+import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ItemGridPhotoBinding;
 import com.example.ling.databinding.ItemRecvFolderBinding;
 
@@ -40,7 +43,41 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
                 h.binding.tvFolderTitle.setText(list.get(i).getFolder_name());
-                h.binding.tvFolderCnt.setText("("+list.size()+")");
+//                h.binding.tvFolderCnt.setText("("+list.size()+")");
+                h.binding.imgvFolderDelete.setOnClickListener(v -> {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                    alert.setTitle("앨범삭제");
+                    alert.setMessage("정말로 삭제하시겠습니까?");
+
+                    alert.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            CommonConn conn = new CommonConn(context, "folder_delete");
+                            conn.addParamMap("folder_name", list.get(i).getFolder_name());
+                            conn.addParamMap("couple_num", list.get(i).getCouple_num());
+                            list.remove(i);
+                            notifyDataSetChanged();
+                            conn.onExcute(new CommonConn.JswCallBack() {
+
+
+                                @Override
+                                public void onResult(boolean isResult, String data) {
+
+                                }
+                            });
+                        }
+                    });
+
+                    alert.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+
+                    alert.show();
+                });
                 h.binding.lnFolder.setOnClickListener(v -> {
                     Intent intent = new Intent(context, PhotoListActivity.class);
                     context.startActivity(intent);
@@ -80,6 +117,8 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
             this.binding = binding;
         }
     }
+
+
 
 
 }

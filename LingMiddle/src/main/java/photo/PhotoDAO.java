@@ -1,5 +1,6 @@
 package photo;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -13,8 +14,8 @@ public class PhotoDAO {
 	
 	@Autowired @Qualifier ("test") SqlSession sql;
 	
-	public List<PhotoVO> getList(){
-		List<PhotoVO>  list = sql.selectList("photo.list");
+	public List<PhotoVO> getList(HashMap<String, Object> param){
+		List<PhotoVO>  list = sql.selectList("photo.list" , param);
 		return list;
 	}
 	
@@ -26,5 +27,10 @@ public class PhotoDAO {
 	public void FolderInsert(FolderVO vo) {
 		int result = sql.insert("photo.folder_insert", vo);
 		System.out.println("성공여부 : " + result);
+	}
+	
+	public int FolderDelete(FolderVO vo) {
+		int result = sql.delete("photo.folder_delete", vo);
+		return result;
 	}
 }
