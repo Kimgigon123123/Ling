@@ -17,4 +17,12 @@
     <color name="ym1">#123456</color>
     <color name="ym2">#6DEABE</color>
     <color name="sampleLighter">#4CAF50</color>
+
+
+    <color name="colorTransparent">#00ffffff</color>
+
+    <color name="colorGradientStart">#F0D3D8</color>
+    <color name="colorGradientCenter">#DAB3BA</color>
+    <color name="colorGradientEnd">#B7D6F5</color>
+
 </resources>
