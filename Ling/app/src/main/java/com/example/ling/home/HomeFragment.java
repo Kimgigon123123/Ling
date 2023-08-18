@@ -104,28 +104,28 @@ public class HomeFragment extends Fragment {
 
 
 
-        Date date = new Date();
-
-        String date1 = mFormat.format(date); //날짜1
-        String date2 = "2023/07/23"; //날짜2
-
-        Date format1 = null;
-        try {
-            format1 = new SimpleDateFormat("yyyy/MM/dd").parse(date1);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-        Date format2 = null;
-        try {
-            format2 = new SimpleDateFormat("yyyy/MM/dd").parse(date2);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-
-        long diffSec = (format1.getTime() - format2.getTime()) / 1000; //초 차이
-        String diffDays = String.valueOf(diffSec / (24*60*60)); //일자수 차이
-
-        binding.loveDDay.setText(diffDays);
+//        Date date = new Date();
+//
+//        String date1 = mFormat.format(date); //날짜1
+//        String date2 = "2023/07/23"; //날짜2
+//
+//        Date format1 = null;
+//        try {
+//            format1 = new SimpleDateFormat("yyyy/MM/dd").parse(date1);
+//        } catch (ParseException e) {
+//            throw new RuntimeException(e);
+//        }
+//        Date format2 = null;
+//        try {
+//            format2 = new SimpleDateFormat("yyyy/MM/dd").parse(date2);
+//        } catch (ParseException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        long diffSec = (format1.getTime() - format2.getTime()) / 1000; //초 차이
+//        String diffDays = String.valueOf(diffSec / (24*60*60)); //일자수 차이
+//
+//        binding.loveDDay.setText(diffDays);
 
         //김기곤 test chat
 //        binding.tvTestChat.setOnClickListener(v -> {

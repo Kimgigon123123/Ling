@@ -63,7 +63,7 @@ public class PhotoController {
 	}
 	
 	@RequestMapping(value="/photo_list", produces="text/html;charset=utf-8")
-	public String photo_list(int couple_num, String folder_name) {
+	public String photo_list(String id, String couple_num, String folder_name, String pho_img) {
 		
 		
 		
@@ -71,9 +71,10 @@ public class PhotoController {
 //		imageSelect(voJson, req);
 		
 		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("id", id);
 		param.put("couple_num", couple_num);
 		param.put("folder_name", folder_name);
-//		File folder = new File(folderPath + vo.getFolder_name());
+		param.put("pho_img", pho_img);		
 		
 		
 		List<PhotoVO> list = dao.getList(param) ;
@@ -87,9 +88,13 @@ public class PhotoController {
 	
 	
 	@RequestMapping(value="/folder_list", produces="text/html;charset=utf-8")
-	public String folder_list() {
+	public String folder_list(String id, String couple_num) {
 			
-			List<FolderVO> list = dao.getFolder() ;
+			HashMap<String, Object> param = new HashMap<String, Object>();
+			param.put("id", id);
+			param.put("couple_num", couple_num);
+					 //couple_num
+			List<FolderVO> list = dao.getFolder(param) ;
 
 			Gson gson = new Gson();	
 			
@@ -100,14 +105,14 @@ public class PhotoController {
 	
 	@RequestMapping(value="/folder_insert", produces="text/html;charset=utf-8")
 	public String folder_insert(String voJson, HttpServletRequest req) {
-//		HashMap<String, String> params = new HashMap<String, String>();
-//		params.put("folder", folderName);
-//		HashMap<String, Object> param = new HashMap<String, Object>();
-//		param.put("couple_num", couple_num);
+		
+		
+//		HashMap<String, Object> params = new HashMap<String, Object>();
+
+
 		FolderVO vo = new Gson().fromJson(voJson, FolderVO.class);
 		
-		//folderPath = folderPath + vo.getCouple_num();
-		//createFolder(folderPath, req);
+
 		String tempPath = folderPath; 
 		if (!vo.getFolder_name().isEmpty()) {
             // 특정 경로와 입력된 폴더 이름으로 폴더 경로를 생성
@@ -125,7 +130,7 @@ public class PhotoController {
 			Gson gson = new Gson();	
 			
 			
-			return gson.toJson(dao.getFolder() );
+			return gson.toJson(dao.getFolder());
 		
 	}
 	

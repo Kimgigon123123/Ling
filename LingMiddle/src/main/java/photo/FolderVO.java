@@ -1,8 +1,8 @@
 package photo;
 
 public class FolderVO {
-	private String id,  folder_name;
-	private int couple_num;
+	private String id,  folder_name, couple_num;
+//	private int couple_num;
 	
 	public String getId() {
 		return id;
@@ -16,12 +16,13 @@ public class FolderVO {
 	public void setFolder_name(String folder_name) {
 		this.folder_name = folder_name;
 	}
-	public int getCouple_num() {
+	public String getCouple_num() {
 		return couple_num;
 	}
-	public void setCouple_num(int couple_num) {
+	public void setCouple_num(String couple_num) {
 		this.couple_num = couple_num;
 	}
-	
+
+
 	
 }

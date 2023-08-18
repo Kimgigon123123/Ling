@@ -1,10 +1,12 @@
 package com.example.ling.photo;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -45,8 +47,39 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-            h.binding.imgvPhoto1.setImageResource(Integer.parseInt(list.get(i).getPho_img()));
+            Glide.with(context).load(list.get(i).getPho_img()).into(h.binding.imgvPhoto1);
 
+        h.binding.imgvPhoto1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 클릭 시 실행될 코드
+                Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.dialog_image);
+
+                ImageView dialogImageView = dialog.findViewById(R.id.imgv_dialog_view);
+                Glide.with(context).load(list.get(i).getPho_img()).into(dialogImageView);
+
+
+                ImageView closeImageView = dialog.findViewById(R.id.imgv_dialog_close);
+                closeImageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss(); // 다이얼로그 닫기
+                    }
+                });
+
+                WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+                layoutParams.copyFrom(dialog.getWindow().getAttributes());
+                int width = (int) (context.getResources().getDisplayMetrics().widthPixels * 0.9);
+                int height = (int) (context.getResources().getDisplayMetrics().heightPixels * 0.9); // 높이는 내용에 맞게 조정 가능
+                layoutParams.width = width;
+                layoutParams.height = height;
+                dialog.getWindow().setAttributes(layoutParams);
+
+
+                dialog.show();
+            }
+        });
     }
 
     @Override
@@ -63,5 +96,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
             this.binding = binding;
         }
     }
+
+
 
 }
