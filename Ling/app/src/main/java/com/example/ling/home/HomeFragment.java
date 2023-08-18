@@ -112,8 +112,6 @@ public class HomeFragment extends Fragment {
         });
 
 
-
-
         Date date = new Date();
 
         String date1 = mFormat.format(date); //날짜1
@@ -137,7 +135,6 @@ public class HomeFragment extends Fragment {
 
         binding.loveDDay.setText(diffDays);
 
-        showFluiderSlide();
         //김기곤 test chat
 //        binding.tvTestChat.setOnClickListener(v -> {
 //            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager(); // getActivity() 대신 requireActivity()를 사용합니다.
@@ -160,81 +157,6 @@ public class HomeFragment extends Fragment {
 
 
     Handler handler = new Handler();
-    public void showFluiderSlide(){
-
-        int max = 45 ;
-        int min = 10 ;
-        int total = max - min ;
-
-        FluidSlider slider = binding.fluider;
-
-        slider.setPositionListener(pos -> {
-            slider.setBubbleText(min + ( total * pos) + "");
-            return null;
-        });
-
-
-
-
-
-        new Thread(new Runnable() {
-
-          //  int i = 0;
-            float progressStatus = 0.1f;
-
-            public void run() {
-                while (progressStatus < 1f) {
-                    progressStatus += doWork();
-                    try {
-                        Thread.sleep(10000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                    // Update the progress bar
-                    handler.post(new Runnable() {
-                        public void run() {
-                            slider.setPosition(0.1f);
-                            //bar.setProgress(progressStatus);
-                           // i++;
-                        }
-                    });
-                }
-            }
-            private float doWork() {
-
-                return 0.1f;
-            }
-
-        }).start();
-
-        slider.setStartText("0");
-        slider.setEndText("100");
-
-        slider.setBeginTrackingListener(new Function0<Unit>() {
-            @Override
-            public Unit invoke() {
-                Log.d("D", "setBeginTrackingListener");
-                return Unit.INSTANCE;
-            }
-        });
-
-        slider.setEndTrackingListener(new Function0<Unit>() {
-            @Override
-            public Unit invoke() {
-                Log.d("D", "setEndTrackingListener");
-                return Unit.INSTANCE;
-            }
-        });
-
-// Or Java 8 lambda
-        slider.setPositionListener(pos -> {
-            final String value = String.valueOf( (int)((1 - pos) * 100) );
-            slider.setBubbleText(value);
-            return Unit.INSTANCE;
-        });
-    }
-
 
 
     public void showDialog(){
