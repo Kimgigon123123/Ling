@@ -54,7 +54,7 @@ public class RestaurantActivity extends AppCompatActivity {
                 });
                 return true;
             }
-
+            
             @Override
             public boolean onQueryTextChange(String newText) {
                 handler.removeCallbacks(runnable);
