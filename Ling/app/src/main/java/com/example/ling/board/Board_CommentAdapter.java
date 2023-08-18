@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ling.Board_ReCommentActivity;
 import com.example.ling.databinding.ItemRecvCommentBinding;
 
 import java.util.ArrayList;

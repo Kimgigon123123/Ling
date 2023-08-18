@@ -28,6 +28,7 @@ import com.example.ling.common.RetInterface;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentHomeBinding;
+import com.example.ling.login.PreferenceManager;
 import com.ramotion.fluidslider.FluidSlider;
 import com.example.ling.photo.PhotoActivity;
 import com.google.gson.Gson;
@@ -69,20 +70,23 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if(!CommonVar.loginInfo.getId().equals("admin") ) {
 
-        CommonConn conn = new CommonConn(getContext(),"select_couple_info");
-        conn.addParamMap("id", CommonVar.loginInfo.getId());
 
-        conn.onExcute((isResult, data) -> {
-            ArrayList<MainVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<MainVO>>() {}.getType());
+            CommonConn conn = new CommonConn(getContext(), "select_couple_info");
+            conn.addParamMap("id", CommonVar.loginInfo.getId());
 
-            binding.tvMid.setText(list.get(0).mname);
-            binding.tvFid.setText(list.get(0).fname);
-            binding.tvDay.setText("사귄지 "+list.get(0).day+"일"+"커플번호는 "+list.get(0).couple_num);
-            couple_num=list.get(0).couple_num;
+            conn.onExcute((isResult, data) -> {
+                ArrayList<MainVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<MainVO>>() {
+                }.getType());
 
-        });
+                binding.tvMid.setText(list.get(0).mname);
+                binding.tvFid.setText(list.get(0).fname);
+                binding.tvDay.setText("사귄지 " + list.get(0).day + "일" + "커플번호는 " + list.get(0).couple_num);
+                couple_num = list.get(0).couple_num;
 
+            });
+        }
 
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
