@@ -9,6 +9,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,6 +34,8 @@ import java.util.List;
 public class FestivalActivity extends AppCompatActivity {
 
     ActivityFestivalBinding binding;
+    private Handler handler = new Handler();
+    private Runnable runnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,40 +56,34 @@ public class FestivalActivity extends AppCompatActivity {
                     }.getType());
                     binding.recvFestact.setAdapter(new TourAdapter(FestivalActivity.this, list));
                     binding.recvFestact.setLayoutManager(new GridLayoutManager(FestivalActivity.this, 2));
+                    binding.tvNull.setVisibility(list.size()==0 ? View.VISIBLE : View.INVISIBLE);
                 });
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if(newText.isEmpty()) {
-                    festivalList();
-                } else {
-                    CommonConn conn = new CommonConn(FestivalActivity.this, "date_searchfest");
-                    conn.addParamMap("date_name", newText);
-                    conn.addParamMap("date_address", newText);
-                    conn.onExcute((isResult, data) -> {
-                        ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
-                        }.getType());
-                        binding.recvFestact.setAdapter(new TourAdapter(FestivalActivity.this, list));
-                        binding.recvFestact.setLayoutManager(new GridLayoutManager(FestivalActivity.this, 2));
-                    });
-                }
+                handler.removeCallbacks(runnable);
+                runnable = () -> {
+                    if (newText.isEmpty()) {
+                        festivalList();
+                    } else {
+                        CommonConn conn = new CommonConn(FestivalActivity.this, "date_searchfest");
+                        conn.addParamMap("date_name", newText);
+                        conn.addParamMap("date_address", newText);
+                        conn.onExcute((isResult, data) -> {
+                            ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
+                            }.getType());
+                            binding.recvFestact.setAdapter(new TourAdapter(FestivalActivity.this, list));
+                            binding.recvFestact.setLayoutManager(new GridLayoutManager(FestivalActivity.this, 2));
+                            binding.tvNull.setVisibility(list.size() == 0 ? View.VISIBLE : View.INVISIBLE);
+                        });
+                    }
+                };
+                handler.postDelayed(runnable, 400);
                 return true;
             }
         });
-
-//        binding.imgvSearch.setOnClickListener(v -> {
-//            CommonConn conn = new CommonConn(FestivalActivity.this, "date_searchfest");
-//            conn.addParamMap("date_name", binding.edtSearch.getText().toString());
-//            conn.addParamMap("date_address", binding.edtSearch.getText().toString());
-//            conn.onExcute((isResult, data) -> {
-//                ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
-//                }.getType());
-//                binding.recvFestact.setAdapter(new TourAdapter(this, list));
-//                binding.recvFestact.setLayoutManager(new GridLayoutManager(this, 2));
-//            });
-//        });
 
 //        sdAdapter = ArrayAdapter.createFromResource(this, R.array.sido, android.R.layout.simple_spinner_dropdown_item);
 //        sdAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -118,11 +115,6 @@ public class FestivalActivity extends AppCompatActivity {
 //            public void onNothingSelected(AdapterView<?> parent) {
 //
 //            }
-//        });
-
-//        binding.imgvRefresh.setOnClickListener(v -> {
-//            binding.edtSearch.setText("");
-//            festivalList();
 //        });
 
         binding.imgvBefore.setOnClickListener(v -> {

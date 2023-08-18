@@ -56,8 +56,12 @@ public class TourAdapter extends RecyclerView.Adapter<TourAdapter.ViewHolder> {
             conn.addParamMap("date_id", list.get(i).getDate_id());
             conn.addParamMap("date_category_code", list.get(i).getDate_category_code());
             conn.onExcute((isResult, data) -> {
+                if (data == null) {
+                    Toast.makeText(context, "이미 목록에 존재합니다.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "관심목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                }
             });
-            Toast.makeText(context, "관심목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
         });
         h.binding.lnTour.setOnClickListener(v -> {
             Intent intent = new Intent(context, TourDetailActivity.class);

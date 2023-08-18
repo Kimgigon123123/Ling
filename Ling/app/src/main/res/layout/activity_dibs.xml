@@ -35,6 +35,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
     <Spinner
         android:entries="@array/dibs"
         android:layout_marginLeft="20dp"
@@ -58,5 +59,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <TextView
+        android:visibility="invisible"
+        android:gravity="center"
+        android:id="@+id/tv_null"
+        android:text="등록된 항목이 없습니다."
+        android:textSize="17dp"
+        android:textColor="#111"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
