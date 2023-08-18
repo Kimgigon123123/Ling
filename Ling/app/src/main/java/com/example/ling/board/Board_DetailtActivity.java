@@ -22,6 +22,7 @@ public class Board_DetailtActivity extends AppCompatActivity {
     ActivityNoticeContextBinding binding;
     MaterialDialog mAnimatedDialog;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +32,14 @@ public class Board_DetailtActivity extends AppCompatActivity {
             onBackPressed();
         });
         binding.btnRegistComment.setOnClickListener(v->{
-            regist();
+            if (binding.edtComment.getText().toString().length()>1){
+                regist();
+            }else{
+                Toast.makeText(this, "빈칸입력시 댓글을 등록할 수 없습니다.", Toast.LENGTH_SHORT).show();
+            }
+
         });
+
 
         commentselect();
 
@@ -97,6 +104,14 @@ public class Board_DetailtActivity extends AppCompatActivity {
             }else{
                 binding.lnButton.setVisibility(View.INVISIBLE);
 
+            }
+
+            if(board_cd.equals("FREE") || board_cd.equals("WORRY")){
+                binding.lnInsertComment.setVisibility(View.VISIBLE);
+                binding.recvComment.setVisibility(View.VISIBLE);
+            }else{
+                binding.lnInsertComment.setVisibility(View.INVISIBLE);
+                binding.recvComment.setVisibility(View.INVISIBLE);
             }
 
         });
