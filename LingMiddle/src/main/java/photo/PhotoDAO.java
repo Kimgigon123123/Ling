@@ -19,8 +19,8 @@ public class PhotoDAO {
 		return list;
 	}
 	
-	public List<FolderVO> getFolder(){
-		List<FolderVO> list = sql.selectList("photo.folder");
+	public List<FolderVO> getFolder(HashMap<String, Object> param){
+		List<FolderVO> list = sql.selectList("photo.folder",param);
 		return list;
 	}
 	

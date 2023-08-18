@@ -6,12 +6,13 @@
 	<select id="list" resultType="photo.PhotoVO">
 		select * from photo_category where pho_img like '%/'||(select couple_num
 		from couple where couple_num = #{couple_num}) || '/' ||
-		(select folder_name from photo_folder where folder_name= #{folder_name})
+		(select folder_name from photo_folder where folder_name= 'all')
 		||'%'
 	</select>
 
 	<select id="folder" resultType="photo.FolderVO">
-		select id, couple_num, folder_name from photo_folder
+		select id, couple_num, folder_name from photo_folder where couple_num = #{couple_num} and id = #{id}
+		<!-- where couple_num = #{couple_num} -->
 	</select>
 
 	<insert id="folder_insert">

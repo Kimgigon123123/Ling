@@ -148,8 +148,11 @@ public class PhotoActivity extends AppCompatActivity {
 
     public void select(){
         CommonConn conn = new CommonConn(this, "folder_list");
-//        FolderVO vo = new FolderVO();
-//        vo.setCouple_num(CommonVar.loginInfo.getCouple_num());
+        FolderVO vo = new FolderVO();
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
+        conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+        vo.setId(CommonVar.loginInfo.getId());
+        vo.setCouple_num(CommonVar.loginInfo.getCouple_num());
         conn.onExcute((isResult, data) -> {
             ArrayList<FolderVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
 //            Log.d("리스트사이즈", "select: " + list.size());

@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ling.R;
 import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ItemRecvFolderBinding;
 
@@ -73,6 +74,8 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
                 });
                 h.binding.lnFolder.setOnClickListener(v -> {
                     Intent intent = new Intent(context, PhotoListActivity.class);
+                    intent.putExtra("name" , list.get(i).getFolder_name());
+
                     context.startActivity(intent);
                 });
 //        String directoryPath = "D:\\WorkSpace\\Ling\\image\\photo\\all"; // 이미지 파일이 있는 디렉토리 경로
