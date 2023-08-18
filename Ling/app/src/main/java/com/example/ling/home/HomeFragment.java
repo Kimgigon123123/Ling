@@ -29,7 +29,7 @@ import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentHomeBinding;
 import com.example.ling.login.PreferenceManager;
-import com.ramotion.fluidslider.FluidSlider;
+//import com.ramotion.fluidslider.FluidSlider;
 import com.example.ling.photo.PhotoActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -83,7 +83,7 @@ public class HomeFragment extends Fragment {
                 binding.tvMid.setText(list.get(0).mname);
                 binding.tvFid.setText(list.get(0).fname);
                 binding.tvDay.setText("사귄지 " + list.get(0).day + "일" + "커플번호는 " + list.get(0).couple_num);
-                couple_num = list.get(0).couple_num;
+//                couple_num = list.get(0).couple_num;
 
             });
         }
