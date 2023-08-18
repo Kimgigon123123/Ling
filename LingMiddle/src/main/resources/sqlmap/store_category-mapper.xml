@@ -2,6 +2,108 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="store_category">
 
+
+
+<select id="store_list_dr" resultType="storeco.StoreCOVO">
+	select i.*,
+	case when item_code in (select z.item_code from store_zzim_product z where id=#{id}) then '♥'
+	else '♡'
+	end as zzim_product
+	from store_item i
+	where category_code ='Dr'
+	<choose>
+		<when test="orderby == 'recent'">
+			order by to_number(item_code) desc
+		</when>
+		<when test="orderby == 'name'">
+			order by item_name 
+		</when>
+		<when test="orderby == 'price'">
+			order by item_price 
+		</when>
+		<when test="orderby == 'popular'">
+			order by popular desc
+		</when>
+	</choose>
+
+</select>
+
+
+<select id="store_list_ri" resultType="storeco.StoreCOVO">
+	select i.*,
+	case when item_code in (select z.item_code from store_zzim_product z where id=#{id}) then '♥'
+	else '♡'
+	end as zzim_product
+	from store_item i
+	where category_code ='Ri'
+	<choose>
+		<when test="orderby == 'recent'">
+			order by to_number(item_code) desc
+		</when>
+		<when test="orderby == 'name'">
+			order by item_name 
+		</when>
+		<when test="orderby == 'price'">
+			order by item_price 
+		</when>
+		<when test="orderby == 'popular'">
+			order by popular desc
+		</when>
+	</choose>
+
+</select>
+
+
+<select id="store_list_gi" resultType="storeco.StoreCOVO">
+	select i.*,
+	case when item_code in (select z.item_code from store_zzim_product z where id=#{id}) then '♥'
+	else '♡'
+	end as zzim_product
+	from store_item i
+	where category_code ='Gi'
+	<choose>
+		<when test="orderby == 'recent'">
+			order by to_number(item_code) desc
+		</when>
+		<when test="orderby == 'name'">
+			order by item_name 
+		</when>
+		<when test="orderby == 'price'">
+			order by item_price 
+		</when>
+		<when test="orderby == 'popular'">
+			order by popular desc
+		</when>
+	</choose>
+
+</select>
+
+
+<select id="store_list_etc" resultType="storeco.StoreCOVO">
+	select i.*,
+	case when item_code in (select z.item_code from store_zzim_product z where id=#{id}) then '♥'
+	else '♡'
+	end as zzim_product
+	from store_item i
+	where category_code ='Etc'
+	<choose>
+		<when test="orderby == 'recent'">
+			order by to_number(item_code) desc
+		</when>
+		<when test="orderby == 'name'">
+			order by item_name 
+		</when>
+		<when test="orderby == 'price'">
+			order by item_price 
+		</when>
+		<when test="orderby == 'popular'">
+			order by popular desc
+		</when>
+	</choose>
+
+</select>
+
+
 <select id="dr_byrecent" resultType="storeco.StoreCOVO">
 select * from store_item where category_code ='Dr'
 order by to_number(item_code) desc

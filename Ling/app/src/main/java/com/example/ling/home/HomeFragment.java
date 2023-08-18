@@ -63,7 +63,7 @@ public class HomeFragment extends Fragment {
     private final int DEFALUT_MANIMG = R.drawable.man;
 
 
-    String couple_num;
+//    String couple_num;
 
     private SimpleDateFormat mFormat = new SimpleDateFormat("yyyy/M/d");
 

@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="store_co">
+
+<select id="store_list" resultType="storeco.StoreCOVO">
+	select i.*,
+	case when item_code in (select z.item_code from store_zzim_product z where id=#{id}) then '♥'
+	else '♡'
+	end as zzim_product
+	from store_item i 
+	<choose>
+		<when test="orderby == 'recent'">
+			order by to_number(item_code) desc
+		</when>
+		<when test="orderby == 'name'">
+			order by item_name 
+		</when>
+		<when test="orderby == 'price'">
+			order by item_price 
+		</when>
+		<when test="orderby == 'popular'">
+			order by popular desc
+		</when>
+	</choose>
+
+</select>
+<!-- 
 <select id="by_recent" resultType="storeco.StoreCOVO">
 select * from store_item order by to_number(item_code) desc
 
@@ -14,14 +38,14 @@ select * from store_item order by item_name
 <select id="by_price" resultType="storeco.StoreCOVO">
 select * from store_item order by item_price
 </select>
-
+ -->
 <update id="popular_up">
 update store_item set popular=popular+1 where item_code=#{item_code}
 </update>
 
-<select id="by_popular" resultType="storeco.StoreCOVO">
+<!-- <select id="by_popular" resultType="storeco.StoreCOVO">
 select * from store_item order by popular desc
-</select>
+</select> -->
 
 
 <insert id="insert_purchase">

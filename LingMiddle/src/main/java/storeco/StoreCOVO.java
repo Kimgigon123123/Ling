@@ -2,10 +2,18 @@ package storeco;
 
 public class StoreCOVO {
 
- 	private String item_code,category_code, item_name,  item_img, item_content ;
+ 	private String item_code,category_code, item_name,  item_img, item_content,zzim_product ;
 	private int item_price,popular;
 
 	
+public String getZzim_product() {
+		return zzim_product;
+	}
+
+	public void setZzim_product(String zzim_product) {
+		this.zzim_product = zzim_product;
+	}
+
 public int getPopular() {
 		return popular;
 	}

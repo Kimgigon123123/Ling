@@ -1,5 +1,6 @@
 package com.cteam.ling;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -18,9 +19,12 @@ public class StoreCOController {
 	@Autowired @Qualifier ("test") SqlSession sql;
 	
 	//최신순
-	@RequestMapping(value="/store_by_recent",produces="text/html;charset=utf-8")
-	public String by_recent() {
-		List<StoreCOVO> list = sql.selectList("store_co.by_recent");
+	@RequestMapping(value="/storelist",produces="text/html;charset=utf-8")
+	public String by_recent(String orderby, String id) {
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("orderby", orderby);
+		params.put("id", id);
+		List<StoreCOVO> list = sql.selectList("store_co.store_list" , params);
 		
 		Gson gson = new Gson();
 		
@@ -28,16 +32,16 @@ public class StoreCOController {
 	}
 	
 	//이름순
-	@RequestMapping(value="/store_by_name",produces="text/html;charset=utf-8")
-	public String by_name() {
-		List<StoreCOVO> list = sql.selectList("store_co.by_name");
-		
-		Gson gson = new Gson();
-		
-		return gson.toJson(list);
-	}
-	
-	
+//	@RequestMapping(value="/store_by_name",produces="text/html;charset=utf-8")
+//	public String by_name() {
+//		List<StoreCOVO> list = sql.selectList("store_co.by_name");
+//		
+//		Gson gson = new Gson();
+//		
+//		return gson.toJson(list);
+//	}
+//	
+//	
 	//아이템 누를때마다 인기도 증가
 		@RequestMapping(value="/store_popular_up",produces="text/html;charset=utf-8")
 		public String popular_up(int item_code) {
@@ -48,26 +52,26 @@ public class StoreCOController {
 			return gson.toJson(result);
 		}
 		
-		//인기순
-		@RequestMapping(value="/store_by_popular",produces="text/html;charset=utf-8")
-		public String by_popular() {
-			List<StoreCOVO> list = sql.selectList("store_co.by_popular");
-			
-			Gson gson = new Gson();
-			
-			return gson.toJson(list);
-		}
+//		//인기순
+//		@RequestMapping(value="/store_by_popular",produces="text/html;charset=utf-8")
+//		public String by_popular() {
+//			List<StoreCOVO> list = sql.selectList("store_co.by_popular");
+//			
+//			Gson gson = new Gson();
+//			
+//			return gson.toJson(list);
+//		}
 	
 	
-	// 가격순
-		@RequestMapping(value="/store_by_price",produces="text/html;charset=utf-8")
-		public String by_price() {
-			List<StoreCOVO> list = sql.selectList("store_co.by_price");
-			
-			Gson gson = new Gson();
-			
-			return gson.toJson(list);
-		}
+//	// 가격순
+//		@RequestMapping(value="/store_by_price",produces="text/html;charset=utf-8")
+//		public String by_price() {
+//			List<StoreCOVO> list = sql.selectList("store_co.by_price");
+//			
+//			Gson gson = new Gson();
+//			
+//			return gson.toJson(list);
+//		}
 	
 	//물건 구매했을때 구매목록에 추가
 	
