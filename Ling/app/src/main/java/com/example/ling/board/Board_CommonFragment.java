@@ -74,4 +74,5 @@ public class Board_CommonFragment extends Fragment {
         super.onStart();
         select();
     }
+
 }

@@ -29,7 +29,7 @@ import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentHomeBinding;
 import com.example.ling.login.PreferenceManager;
-import com.ramotion.fluidslider.FluidSlider;
+//import com.ramotion.fluidslider.FluidSlider;
 import com.example.ling.photo.PhotoActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

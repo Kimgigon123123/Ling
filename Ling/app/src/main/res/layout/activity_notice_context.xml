@@ -22,6 +22,7 @@
 
     </FrameLayout>
     <LinearLayout
+        android:id="@+id/ln_insert_comment"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,14 +33,15 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:hint="댓글을 입력하세요."/>
-    <Button
+    <ImageView
         android:id="@+id/btn_regist_comment"
         android:layout_gravity="center"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:textSize="10dp"
-        android:text="입력"/>
+        android:text="입력"
+        android:background="@drawable/btn_send"/>
     </LinearLayout>
     <FrameLayout
         android:layout_marginLeft="10dp"
@@ -64,27 +66,37 @@
         android:id="@+id/ln_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <Button
+        <ImageView
+            android:src="@drawable/change_heart"
             android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:id="@+id/btn_update"
             android:text="수정"/>
-        <Button
+        <ImageView
+            android:src="@drawable/save_heart"
             android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:id="@+id/btn_delete"
             android:text="삭제"/>
     </LinearLayout>
-    <TextView
+    <LinearLayout
         android:id="@+id/tv_before"
         android:layout_gravity="bottom|right"
-        android:layout_margin="10dp"
-        android:drawableLeft="@drawable/go_backspace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <ImageView
+        android:src="@drawable/back_heart"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+    <TextView
+        android:layout_gravity="center"
+        android:layout_marginRight="10dp"
         android:text="   뒤로가기"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-
+    </LinearLayout>
 
 </LinearLayout>
