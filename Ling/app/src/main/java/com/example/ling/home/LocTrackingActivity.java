@@ -72,6 +72,6 @@ public class LocTrackingActivity extends AppCompatActivity implements OnMapReady
     public void onMapReady(@NonNull NaverMap naverMap) {
         this.naverMap = naverMap;
         naverMap.setLocationSource(locationSource);
-        naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
+        naverMap.setLocationTrackingMode(LocationTrackingMode.Face);
     }
 }
