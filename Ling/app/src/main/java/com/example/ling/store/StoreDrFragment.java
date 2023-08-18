@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentStoreCoBinding;
 import com.example.ling.databinding.FragmentStoreDrBinding;
 import com.example.ling.store.basket.BasketActivity;
@@ -35,6 +36,8 @@ public class StoreDrFragment extends Fragment {
     String[] items = {"최신","이름","인기","가격"};
 
     FragmentStoreDrBinding binding;
+
+    String order = "recent";
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentStoreDrBinding.inflate(inflater, container, false);
@@ -48,18 +51,20 @@ public class StoreDrFragment extends Fragment {
         binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                String order = "";
                 String str = items[position];
                 if(str.equals("최신")){
-                    select();
+                    order = "recent";
                 }else if(str.equals("이름")){
-                    by_name();
+                    order = "name";
 
                 }else if(str.equals("인기")){
-                    by_popular();
+                    order = "popular";
                 }else if(str.equals("가격")){
-                    by_price();
+                    order = "price";
                 }
+
+                select(order);
             }
 
             @Override
@@ -195,8 +200,10 @@ public class StoreDrFragment extends Fragment {
 
 
 
-    public void select() {
-        CommonConn conn = new CommonConn(getContext(), "store_dr_byrecent");
+    public void select(String order) {
+        CommonConn conn = new CommonConn(getContext(), "storelist_dr");
+        conn.addParamMap("orderby"  , order);
+        conn.addParamMap("id" , CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
 
             ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
@@ -211,51 +218,57 @@ public class StoreDrFragment extends Fragment {
     }
 
 
-    public void by_name() {
-        CommonConn conn = new CommonConn(getContext(), "store_dr_byname");
-        conn.onExcute((isResult, data) -> {
-
-            ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
-            }.getType());
-
-
-            binding.recvStoreCo.setAdapter(new StoreCoAdater(list, getContext()));
-            binding.recvStoreCo.setLayoutManager(new GridLayoutManager(getContext(),3));
-
-        });
-
-    }
-
-
-    public void by_popular() {
-        CommonConn conn = new CommonConn(getContext(), "store_dr_bypopular");
-        conn.onExcute((isResult, data) -> {
-
-            ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
-            }.getType());
+//    public void by_name() {
+//        CommonConn conn = new CommonConn(getContext(), "store_dr_byname");
+//        conn.onExcute((isResult, data) -> {
+//
+//            ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
+//            }.getType());
+//
+//
+//            binding.recvStoreCo.setAdapter(new StoreCoAdater(list, getContext()));
+//            binding.recvStoreCo.setLayoutManager(new GridLayoutManager(getContext(),3));
+//
+//        });
+//
+//    }
 
 
-            binding.recvStoreCo.setAdapter(new StoreCoAdater(list, getContext()));
-            binding.recvStoreCo.setLayoutManager(new GridLayoutManager(getContext(),3));
+//    public void by_popular() {
+//        CommonConn conn = new CommonConn(getContext(), "store_dr_bypopular");
+//        conn.onExcute((isResult, data) -> {
+//
+//            ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
+//            }.getType());
+//
+//
+//            binding.recvStoreCo.setAdapter(new StoreCoAdater(list, getContext()));
+//            binding.recvStoreCo.setLayoutManager(new GridLayoutManager(getContext(),3));
+//
+//        });
+//
+//    }
 
-        });
 
-    }
+//    public void by_price() {
+//        CommonConn conn = new CommonConn(getContext(), "store_dr_byprice");
+//        conn.onExcute((isResult, data) -> {
+//
+//            ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
+//            }.getType());
+//
+//
+//            binding.recvStoreCo.setAdapter(new StoreCoAdater(list, getContext()));
+//            binding.recvStoreCo.setLayoutManager(new GridLayoutManager(getContext(),3));
+//
+//        });
+//
+//    }
 
-
-    public void by_price() {
-        CommonConn conn = new CommonConn(getContext(), "store_dr_byprice");
-        conn.onExcute((isResult, data) -> {
-
-            ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
-            }.getType());
-
-
-            binding.recvStoreCo.setAdapter(new StoreCoAdater(list, getContext()));
-            binding.recvStoreCo.setLayoutManager(new GridLayoutManager(getContext(),3));
-
-        });
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        select(order);
     }
 
 }

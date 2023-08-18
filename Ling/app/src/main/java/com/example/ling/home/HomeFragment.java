@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment {
     private final int DEFALUT_MANIMG = R.drawable.man;
 
 
-    String couple_num;
+//    String couple_num;
 
     private SimpleDateFormat mFormat = new SimpleDateFormat("yyyy/M/d");
 
@@ -72,8 +72,8 @@ public class HomeFragment extends Fragment {
 
             binding.tvMid.setText(list.get(0).mname);
             binding.tvFid.setText(list.get(0).fname);
-            binding.tvDay.setText("사귄지 "+list.get(0).day+"일"+"커플번호는 "+list.get(0).couple_num);
-            couple_num=list.get(0).couple_num;
+            binding.tvDay.setText("사귄지 "+list.get(0).day+"일");
+//            couple_num=list.get(0).couple_num;
 
         });
 

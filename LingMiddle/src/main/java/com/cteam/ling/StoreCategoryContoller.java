@@ -1,5 +1,6 @@
 package com.cteam.ling;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -19,6 +20,65 @@ public class StoreCategoryContoller {
 	@Autowired
 	@Qualifier("test")
 	SqlSession sql;
+	
+	
+	//커플옷 보여주기 최신순22
+		@RequestMapping(value="/storelist_dr",produces="text/html;charset=utf-8")
+		public String by_recent(String orderby, String id) {
+			HashMap<String, String> params = new HashMap<String, String>();
+			params.put("orderby", orderby);
+			params.put("id", id);
+			List<StoreCOVO> list = sql.selectList("store_category.store_list_dr" , params);
+			
+			Gson gson = new Gson();
+			
+			return gson.toJson(list);
+		}
+		
+		
+		// 커플반지 리스트 보여주기 최신순22
+		@RequestMapping(value = "/storelist_ri", produces = "text/html;charset=utf-8")
+		public String ri_byrecent(String orderby,String id) {
+			HashMap<String,String> params = new HashMap<String,String>();
+			params.put("orderby",orderby);
+			params.put("id",id);
+			List<StoreCOVO> list = sql.selectList("store_category.store_list_ri",params);
+
+			Gson gson = new Gson();
+
+			return gson.toJson(list);
+		}
+		
+		
+		
+		// 상품권 리스트 보여주기 최신순22
+		@RequestMapping(value = "/storelist_gi", produces = "text/html;charset=utf-8")
+		public String gi_byrecent(String orderby,String id) {
+			HashMap<String,String> params = new HashMap<String,String>();
+			params.put("orderby", orderby);
+			params.put("id", id);
+			List<StoreCOVO> list = sql.selectList("store_category.store_list_gi",params);
+
+			Gson gson = new Gson();
+
+			return gson.toJson(list);
+		}
+		
+		
+		// 기타 리스트 보여주기 최신순222
+		@RequestMapping(value = "/storelist_etc", produces = "text/html;charset=utf-8")
+		public String etc_byrecent(String orderby,String id) {
+			HashMap<String,String> params = new HashMap<String,String>();
+			params.put("orderby", orderby);
+			params.put("id",id);
+			List<StoreCOVO> list = sql.selectList("store_category.store_list_etc",params);
+			
+			Gson gson = new Gson();
+			
+			return gson.toJson(list);
+			
+		}
+		
 
 	// 커플옷 리스트 보여주기 최신순
 	@RequestMapping(value = "/store_dr_byrecent", produces = "text/html;charset=utf-8")

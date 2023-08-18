@@ -60,7 +60,7 @@
                     <androidx.appcompat.widget.AppCompatButton
 
                         android:id="@+id/btn_add"
-                        android:text="♥"
+                        android:text="♡"
                         android:textSize="10dp"
                         android:layout_width="25dp"
                         android:layout_height="25dp"

@@ -2,19 +2,18 @@ package com.example.ling.store.storeCO;
 
 public class StoreCOVO {
 
- 	private String item_code;
-	private String category_code;
-	private String item_name;
-
-	public String getItem_img() {
-		return item_img;
-	}
-
-	private String item_img;
-	private String item_content ;
+ 	private String item_code,category_code, item_name,  item_img, item_content,zzim_product ;
 	private int item_price,popular;
 
 	
+public String getZzim_product() {
+		return zzim_product;
+	}
+
+	public void setZzim_product(String zzim_product) {
+		this.zzim_product = zzim_product;
+	}
+
 public int getPopular() {
 		return popular;
 	}
@@ -39,6 +38,9 @@ public void setItem_name(String item_name) {
 	this.item_name = item_name;
 }
 
+public String getItem_img() {
+	return item_img;
+}
 
 public void setItem_img(String item_img) {
 	this.item_img = item_img;
