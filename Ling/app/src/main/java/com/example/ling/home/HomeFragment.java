@@ -133,7 +133,7 @@ public class HomeFragment extends Fragment {
         long diffSec = (format1.getTime() - format2.getTime()) / 1000; //초 차이
         String diffDays = String.valueOf(diffSec / (24*60*60)); //일자수 차이
 
-        binding.loveDDay.setText(diffDays);
+       // binding.loveDDay.setText(diffDays);
 
         //김기곤 test chat
 //        binding.tvTestChat.setOnClickListener(v -> {
