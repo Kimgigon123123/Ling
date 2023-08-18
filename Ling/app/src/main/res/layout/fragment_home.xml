@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".home.HomeFragment">
+    tools:context=".home.HomeFragment"
+    android:id="@+id/container">
 
     <ImageView
         android:background="@drawable/main_back_harf_circle"
@@ -71,6 +72,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_day"
                     android:layout_toRightOf="@id/love_d_day"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -128,6 +130,7 @@
             android:orientation="vertical"
             >
             <TextView
+                android:id="@+id/tv_mid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
@@ -159,14 +162,9 @@
                     android:id="@+id/imgv_loc_tracking"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/couple_place"
+                    android:src="@drawable/ic_location"
                     />
             </androidx.cardview.widget.CardView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="(수정 예정)"
-                />
 
         </LinearLayout>
         <LinearLayout
@@ -177,6 +175,7 @@
             android:orientation="vertical"
             >
             <TextView
+                android:id="@+id/tv_fid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
@@ -200,6 +199,13 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         >
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_test_chat"-->
+<!--            android:text="김기곤이 만든 test chat"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_above="@+id/imgv_photo"/>-->
         <ImageView
             android:id="@+id/imgv_photo"
             android:layout_width="wrap_content"

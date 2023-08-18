@@ -3,7 +3,7 @@ package com.example.ling.chat;
 import java.io.Serializable;
 
 public class ChatData implements Serializable {
-    private String nickname, message;
+    private String nickname, message, id;
 
     public String getNickname() {
         return nickname;

@@ -1,7 +1,15 @@
 package com.example.ling.login;
 
 public class Ling_MemberVO {
-    private String name, phone, id, pw, email, gender, birth, profile, admin;
+    private String name, phone, id, pw, email, gender, birth, profile, admin,couple_num;
+
+    public String getCouple_num() {
+        return couple_num;
+    }
+
+    public void setCouple_num(String couple_num) {
+        this.couple_num = couple_num;
+    }
 
     public String getName() {
         return name;

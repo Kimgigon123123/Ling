@@ -1,19 +1,15 @@
-package com.example.ling.home;
-
-import static java.security.AccessController.getContext;
+package com.example.ling.photo;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -23,24 +19,24 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.BaseAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.ling.MainActivity;
-import com.example.ling.R;
+import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.common.RetClient;
 import com.example.ling.common.RetInterface;
 import com.example.ling.databinding.ActivityPhotoBinding;
+import com.example.ling.home.CameraDialog;
+import com.example.ling.photo.FolderVO;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -55,13 +51,15 @@ public class PhotoActivity extends AppCompatActivity {
     private CameraDialog cameraDialog;
     private final int REQ_Gallery = 1000;
     ActivityResultLauncher<Intent> launcher;
+    ArrayList<FolderVO> folder_List;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityPhotoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Glide.with(this).load("http://192.168.0.28/hanul/img//andimg.jpg").into(binding.imgvElbumCamera);
+        select();
+//        Glide.with(this).load("http://192.168.0.28/hanul/img//andimg.jpg").into(binding.imgvElbumCamera);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
@@ -73,14 +71,71 @@ public class PhotoActivity extends AppCompatActivity {
             showCamera();
         });
 
+        binding.imgvElbumBack.setOnClickListener(v -> {
+            finish();
+        });
+
+
+
+        // D:\Ling\Ling\image\photo 경로에서 이미지들의 파일명을 가져와서 어댑터에 전달합니다.
+//        PhotoAdapter adapter = new PhotoAdapter(this, getImagePaths());
+//        binding.gridGallery.setAdapter(adapter);
+
+
+
+
+//        String filePath = "D:\\WorkSpace\\Ling\\image\\photo\\all"; // 이미지 파일 경로
+//        String tvText = binding.imgv.getText().toString(); // tv_text 값
+//// 파일 경로에서 파일명 추출
+//        String fileName = filePath.substring(filePath.lastIndexOf("\\") + 1);
+//
+//        if (fileName.equals("image_" + tvText + ".png")) {
+//
+//        }
+
+
+
+
         binding.imgvFolderAdd.setOnClickListener(view -> {
+            insert();
+        });
+
+
+
+    }
+
+    public void insert(){
+
+        CommonConn conn = new CommonConn(this, "folder_insert");
+
+
             AlertDialog.Builder follder = new AlertDialog.Builder(this);
-            follder.setTitle("생성할 폴더명");
             final EditText name = new EditText(this);
+
+            follder.setTitle("생성할 폴더명");
             follder.setView(name);
             follder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) { //확인 버튼을 클릭했을때
 
+
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    FolderVO vo = new FolderVO();
+                    vo.setFolder_name(name.getText().toString().trim());
+                    vo.setId(CommonVar.loginInfo.getId());
+                    vo.setCouple_num(CommonVar.loginInfo.getCouple_num());
+
+//                    vo.setFolder_name(vo.getCouple_num()+"");
+                    //확인 버튼을 클릭했을때
+                    conn.addParamMap("voJson", new Gson().toJson(vo) );
+                    conn.onExcute((isResult, data) -> {
+                        folder_List = new Gson(). fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
+
+                        FolderAdapter adapter = new FolderAdapter(folder_List);
+                        binding.gridGallery.setAdapter(adapter);
+                        binding.gridGallery.setLayoutManager(new LinearLayoutManager(PhotoActivity.this));
+
+                      //  Log.d("리스트사이즈", "select: " + foder_List.size());
+                        //if문으로 list의 사이즈처리 해야함.
+                    });
                 }
             });
             follder.setNegativeButton("취소",new DialogInterface.OnClickListener() {
@@ -88,12 +143,26 @@ public class PhotoActivity extends AppCompatActivity {
                 }
             });
             follder.show();
-        });
-
-
 
     }
 
+    public void select(){
+        CommonConn conn = new CommonConn(this, "folder_list");
+//        FolderVO vo = new FolderVO();
+//        vo.setCouple_num(CommonVar.loginInfo.getCouple_num());
+        conn.onExcute((isResult, data) -> {
+            ArrayList<FolderVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
+//            Log.d("리스트사이즈", "select: " + list.size());
+            //if문으로 list의 사이즈처리 해야함.
+            FolderAdapter adapter = new FolderAdapter(list);
+
+
+
+            binding.gridGallery.setAdapter(adapter);
+            binding.gridGallery.setLayoutManager(new LinearLayoutManager(this));
+
+        });
+    }
 
     @Override
     protected void onStart() {
@@ -124,6 +193,9 @@ public class PhotoActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
     Uri camera_uri = null;
 
 
@@ -179,6 +251,7 @@ public class PhotoActivity extends AppCompatActivity {
     }
 
 
+
     public String getRealPath(Uri contentUri){
         String res = null;
         String[] proj = {MediaStore.Images.Media.DATA};//
@@ -195,77 +268,5 @@ public class PhotoActivity extends AppCompatActivity {
         Log.d("TAG", "getRealPath: 커서" + res);
         return res;
     }
-
-
-
-
-
-
-            //    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.actionbar, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    public class PhotoAdapter extends BaseAdapter {
-//
-//        Context context;
-//
-//        public PhotoAdapter(Context context) {
-//            this.context = context;
-//        }
-//
-//        Integer[] exam = {
-//                R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo,
-//                R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo,
-//                R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo,
-//                R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo,
-//                R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo,
-//                R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo, R.drawable.photo
-//        };
-//
-//        @Override
-//        public int getCount() {
-//            return exam.length;
-//        }
-//
-//        @Override
-//        public Object getItem(int position) {
-//            return position;
-//        }
-//
-//        @Override
-//        public long getItemId(int position) {
-//            return position;
-//        }
-//
-//        @Override
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//            ImageView imageView = new ImageView(context);
-//            imageView.setLayoutParams(new ViewGroup.LayoutParams(200, 300));
-//            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-//        imageView.setPadding(5,5,5,5);
-//
-//            imageView.setImageResource(exam[position]);
-//
-//            imageView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    View dialogView = View.inflate(PhotoActivity.this, R.layout.photo_dialog, null);
-//                    AlertDialog.Builder dlg = new AlertDialog.Builder(PhotoActivity.this);
-//                    ImageView ivPic = dialogView.findViewById(R.id.imgv_photoDialog);
-//                    ivPic.setImageResource(exam[position]);
-//                    dlg.setTitle("큰 이미지");
-//                    dlg.setIcon(R.drawable.ic_launcher_foreground);
-//                    dlg.setView(dialogView);
-//                    dlg.setNegativeButton("닫기", null);
-//                    dlg.show();
-//                }
-//            });
-//            return imageView;
-//        }
-
-
-
 
 }

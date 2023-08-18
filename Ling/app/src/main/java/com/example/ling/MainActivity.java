@@ -25,11 +25,17 @@ import android.widget.Toast;
 
 import com.example.ling.board.BoardFragment;
 
+import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityMainBinding;
 import com.example.ling.date.DateFragment;
 import com.example.ling.chat.ChatFragment;
 import com.example.ling.home.HomeFragment;
+import com.example.ling.home.MainVO;
 import com.example.ling.store.StoreCoFragment;
+import com.example.ling.testchat.TestChatFragment;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
@@ -40,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     Window window ;
     ArrayList<MainMenuDTO> list = new ArrayList<>();
+    String couple_num;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,19 +65,26 @@ public class MainActivity extends AppCompatActivity {
         animDrawable.setEnterFadeDuration(10);
         animDrawable.setExitFadeDuration(5000);
         animDrawable.start();
+
+
         initItem();
         initUI();
-
 
     }
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+    }
 
     //바텀 네비게이션 아이템 초기화 메소드 2023-08-16 kym
     public void initItem(){
         //                      붙일프래그먼트  ,        아이콘               ,   선택배경색상 ,    글씨  ,       뱃지보여줄꺼면 뱃지 그씨
         list.add(new MainMenuDTO(new DateFragment() , R.drawable.btm_menu_1 ,"#FF8F1B" , "여행지" ,  "여행지 선택"  ));
-        list.add(new MainMenuDTO(new ChatFragment() , R.drawable.btm_menu_2 ,"#567891" , "채팅" ,  null ));
+        list.add(new MainMenuDTO(new TestChatFragment() , R.drawable.btm_menu_2 ,"#567891" , "채팅" ,  null ));
         list.add(new MainMenuDTO(new HomeFragment() , R.drawable.btm_menu_3 ,"#1A000000" , "홈" ,  "홈 선택"  ));
         list.add(new MainMenuDTO(new BoardFragment() , R.drawable.btm_menu_4 ,"#5FB59C" , "게시판" ,  null  ));
         list.add(new MainMenuDTO(new StoreCoFragment() , R.drawable.btm_menu_5 ,"#847253" , "스토어" ,  "스토어 선택"  ));

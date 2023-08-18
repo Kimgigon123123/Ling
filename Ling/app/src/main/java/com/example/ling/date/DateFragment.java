@@ -6,7 +6,9 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,12 +35,28 @@ import java.util.ArrayList;
 
 public class DateFragment extends Fragment {
 
-    FragmentDateBinding binding;
+    private FragmentDateBinding binding;
+    private Handler handler = new Handler();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentDateBinding.inflate(inflater, container, false);
+
+        ArrayList<SliderVO> list = new ArrayList<>();
+        list.add(new SliderVO(R.drawable.sdimg1, "전국 여행"));
+        list.add(new SliderVO(R.drawable.sdimg2, "전국 맛집"));
+        list.add(new SliderVO(R.drawable.sdimg3, "전국 축제"));
+        binding.vpSlider.setAdapter(new SliderAdapter(getContext(), binding.vpSlider, list));
+
+        binding.vpSlider.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                handler.removeCallbacks(runnable);
+                handler.postDelayed(runnable, 2000);
+            }
+        });
 
         binding.imgvMenu.setOnClickListener(v -> {
             binding.navigationDrawer.setVisibility(View.VISIBLE);
@@ -101,6 +119,29 @@ public class DateFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        binding = null;
+    }
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            binding.vpSlider.setCurrentItem(binding.vpSlider.getCurrentItem() + 1);
+        }
+    };
+    @Override
+    public void onPause() {
+        super.onPause();
+        handler.removeCallbacks(runnable);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        handler.postDelayed(runnable, 2000);
     }
 
     public void tour5() {
