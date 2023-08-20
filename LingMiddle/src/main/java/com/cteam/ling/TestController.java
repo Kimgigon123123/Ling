@@ -16,13 +16,13 @@ import storeco.StoreCOVO;
 public class TestController {
 	@Autowired @Qualifier ("test") SqlSession sql;
 	
-	@RequestMapping(value="/test",produces="text/html;charset=utf-8")
-	public String test() {
-		List<StoreCOVO> list = sql.selectList("test.test");
-		
-		Gson gson = new Gson();
-		
-		return gson.toJson(list);
-	}
+//	@RequestMapping(value="/test",produces="text/html;charset=utf-8")
+//	public String test() {
+//		List<StoreCOVO> list = sql.selectList("test.test");
+//		
+//		Gson gson = new Gson();
+//		
+//		return gson.toJson(list);
+//	}
 	
 }
