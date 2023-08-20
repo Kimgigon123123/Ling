@@ -25,6 +25,8 @@ public class CalendarAddActivity extends AppCompatActivity {
 
     Calendar myCalendar = Calendar.getInstance();
 
+    ArrayList<Spinner> list = new ArrayList<>();
+
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(android.widget.DatePicker view, int year, int month, int dayOfMonth) {
@@ -61,10 +63,6 @@ public class CalendarAddActivity extends AppCompatActivity {
 
 
 
-
-
-        ArrayList<Spinner> list = new ArrayList<>();
-
         Spinner spinner_default = new Spinner();
         spinner_default.setName("유형선택");
         spinner_default.setSpinnerImg(R.drawable.spinner_default);
@@ -93,24 +91,6 @@ public class CalendarAddActivity extends AppCompatActivity {
         spinner = binding.spinner;
         adapter = new SpinnerAdapter(CalendarAddActivity.this, list);
         spinner.setAdapter(adapter);
-
-
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                    Spinner selectSpinner = list.get(i);
-                    String SpinnerName = selectSpinner.getName();
-                Toast.makeText(CalendarAddActivity.this, "Selected" + selectSpinner, Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
 
 
 
@@ -149,6 +129,31 @@ public class CalendarAddActivity extends AppCompatActivity {
             conn.addParamMap("sche_notice", 1);
         }
 
+
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                Spinner selectSpinner = list.get(i);
+                String SpinnerName = selectSpinner.getName();
+                if(SpinnerName.equals("결혼기념일")){
+                    conn.addParamMap("sche_typecode", "wedding");
+                }if(SpinnerName.equals("생일")){
+                    conn.addParamMap("sche_typecode", "birth");
+                }if(SpinnerName.equals("출산예정일")){
+                    conn.addParamMap("sche_typecode", "childbirth");
+                }if(SpinnerName.equals("커플여행")){
+                    conn.addParamMap("sche_typecode", "travel");
+                }else{
+                    conn.addParamMap("sche_typecode", "default");
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
         conn.onExcute((isResult, data) ->  {
 

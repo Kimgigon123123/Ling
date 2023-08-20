@@ -2,9 +2,11 @@ package com.example.ling.calendar;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +27,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
 
 
     ArrayList<ScheAddVO> list;
+    static DdayDialog loadingDialog;
 
     public CalendarAdapter(ArrayList<ScheAddVO> list,Context context) {
         this.list = list;
@@ -75,7 +78,22 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
         h.binding.tvDday.setText("D-"+list.get(i).getD_day());
 
         if (list.get(i).getD_day() <= 3 && list.get(i).getSche_notice() == 0) {
-            Toast.makeText(context, "d-day가 3일밖에 남지 않은 일정이 있어요!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "d-day가 3일밖에 남지 않은 일정이 있어요!", Toast.LENGTH_SHORT).show();
+
+
+            DisplayMetrics dm = context.getResources().getDisplayMetrics(); //디바이스 화면크기를 구하기위해
+            int width = dm.widthPixels; //디바이스 화면 너비
+            int height = dm.heightPixels; //디바이스 화면 높이
+
+            //로딩이미지 gif 형식
+            loadingDialog = new DdayDialog(context);
+            WindowManager.LayoutParams wm = loadingDialog.getWindow().getAttributes();  //다이얼로그의 높이 너비 설정하기위해
+            wm.copyFrom(loadingDialog.getWindow().getAttributes());  //여기서 설정한값을 그대로 다이얼로그에 넣겠다는의미
+            wm.width = (int)(width *0.9);  //화면 너비의 절반
+            wm.height = (int)(height *0.4);
+
+            loadingDialog.show();
+
         }
 
 
