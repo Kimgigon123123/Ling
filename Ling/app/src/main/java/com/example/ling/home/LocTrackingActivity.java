@@ -74,9 +74,9 @@ public class LocTrackingActivity extends AppCompatActivity implements OnMapReady
         this.naverMap = naverMap;
         naverMap.setLocationSource(locationSource);
         naverMap.setLocationTrackingMode(LocationTrackingMode.Face);
-        
+
         // 상대방의 위치를 표시할 마커 생성
-        LatLng targetLocation = new LatLng(37.123456, 127.123456); // 상대방의 위도와 경도로 설정
+        LatLng targetLocation = new LatLng(35.15345070401861, 126.88800442419425 ); // 상대방의 위도와 경도로 설정
         Marker marker = new Marker();
         marker.setPosition(targetLocation);
         marker.setMap(naverMap);
