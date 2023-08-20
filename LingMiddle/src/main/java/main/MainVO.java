@@ -3,9 +3,20 @@ package main;
 public class MainVO {
 
 	String couple_num,mid,fid,day,id,mname,fname;
+	int profile_img;
+	
+	
 
 	
 	
+	public int getProfile_img() {
+		return profile_img;
+	}
+
+	public void setProfile_img(int profile_img) {
+		this.profile_img = profile_img;
+	}
+
 	public String getMname() {
 		return mname;
 	}

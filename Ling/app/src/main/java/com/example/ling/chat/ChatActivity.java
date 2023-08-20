@@ -1,78 +1,87 @@
 package com.example.ling.chat;
 
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
+import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.ling.databinding.FragmentChatBinding;
+import com.example.ling.common.CommonVar;
+import com.example.ling.databinding.ActivityChatBinding;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
+public class ChatActivity extends AppCompatActivity {
 
-public class ChatFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private List<ChatVO> chatList;
-    private String nick = "nick1";
+    private String nick;
+
     private ChatAdapter mAdapter;
 
-    FragmentChatBinding binding;
+    ActivityChatBinding binding;
     private EditText EditText_chat;
     private Button Button_send;
     private DatabaseReference myRef;
 
+    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm", Locale.KOREA);
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        binding = FragmentChatBinding.inflate(inflater, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = ActivityChatBinding.inflate(getLayoutInflater());
+
+
+
         Button_send = binding.btnChat;
         EditText_chat = binding.edtChat;
 
+        nick = CommonVar.loginInfo.getName();
 
-
-
+        Date date = new Date(System.currentTimeMillis());
+//        mRecyclerView.scrollToPosition(chatList.size()-1);
         Button_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String msg = EditText_chat.getText().toString(); //msg
-
+                ChatVO chat = new ChatVO();
                 if(msg != null) {
-                    ChatVO chat = new ChatVO();
+
+                    chat.setId(CommonVar.loginInfo.getId());
                     chat.setNickname(nick);
                     chat.setMessage(msg);
+                    chat.setTime(mFormat.format(date));
                     myRef.push().setValue(chat);
                     chat.setMessage("");
                 }
+
 
             }
         });
 
 
-
         mRecyclerView = binding.myRecyclerView;
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getContext());
+        mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         chatList = new ArrayList<>();
-        mAdapter = new ChatAdapter(chatList, getContext(), nick);
+        mAdapter = new ChatAdapter(chatList, this, nick);
 
         mRecyclerView.setAdapter(mAdapter);
 
@@ -81,15 +90,15 @@ public class ChatFragment extends Fragment {
         myRef = database.getReference();
 
 
-        //caution!!!
-
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                ChatVO chat = snapshot.getValue(ChatVO.class);
-                 mAdapter.addChat(chat);
-                 mAdapter.notifyDataSetChanged();
 
+                ChatVO chat = snapshot.getValue(ChatVO.class);
+
+                mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
+                mAdapter.addChat(chat);
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -114,14 +123,10 @@ public class ChatFragment extends Fragment {
         });
 
 
-
-        //1. recyclerView - 반복
-        //2. 디비 내용을 넣는다
-        //3. 상대방폰에 채팅 내용이 보임 - get
-
-        //1-1. recyclerview - chat data
-        //1. message, nickname - Data Transfer Obj
-        return binding.getRoot();
+        setContentView(binding.getRoot());
     }
+
+
+
 
 }

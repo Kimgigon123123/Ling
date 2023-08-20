@@ -28,9 +28,11 @@ import com.example.ling.common.RetInterface;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentHomeBinding;
+import com.example.ling.login.Ling_MemberVO;
 import com.example.ling.login.PreferenceManager;
 //import com.ramotion.fluidslider.FluidSlider;
 import com.example.ling.photo.PhotoActivity;
+import com.example.ling.photo.PhotoVO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -61,6 +63,7 @@ public class HomeFragment extends Fragment {
     private final int REQ_Gallery = 1000 , REQ_CAMERA = 1001;
 
     private final int DEFALUT_MANIMG = R.drawable.man;
+    private final int DEFALUT_WOMANIMG = R.drawable.woman;
 
 
 //    String couple_num;
@@ -91,7 +94,7 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        Glide.with(this).load("http://192.168.0.28/hanul/img//andimg.jpg").into(binding.imgvManProfile);
+//        Glide.with(this).load("http://192.168.0.28/hanul/img//andimg.jpg").into(binding.imgvManProfile);
         binding.imgvPhoto.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), PhotoActivity.class);
             startActivity(intent);
@@ -102,9 +105,36 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
-        binding.imgvManProfile.setOnClickListener(v -> {
-            showDialog();
+
+
+        CommonConn conn = new CommonConn(getContext(), "select_couple_img");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
+        conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+        conn.addParamMap("gender", CommonVar.loginInfo.getGender());
+
+
+        conn.onExcute((isResult, data) -> {
+
+
+            if (CommonVar.loginInfo.getGender().equals("남")){
+                binding.imgvManProfile.setOnClickListener(v -> {
+                    showDialog();
+                });
+            }else{
+                binding.imgvWomanProfile.setOnClickListener(v -> {
+                    showDialog();
+                });
+            }
+
+
+
+
+
         });
+
+
+
+
 
         binding.imgvLocTracking.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), LocTrackingActivity.class);
@@ -173,8 +203,32 @@ public class HomeFragment extends Fragment {
                 //카메라 로직
                 showCamera();
             }else if(dialog_item[i].equals("기본이미지")){
+
+                CommonConn conn = new CommonConn(getContext(), "select_couple_img");
+                conn.addParamMap("id", CommonVar.loginInfo.getId());
+                conn.addParamMap("couple_mum", CommonVar.loginInfo.getCouple_num());
+                conn.addParamMap("gender", CommonVar.loginInfo.getGender());
+
+                conn.onExcute(new CommonConn.JswCallBack() {
+                    @Override
+                    public void onResult(boolean isResult, String data) {
+                        if(CommonVar.loginInfo.getGender().equals("남")){
+                            binding.imgvManProfile.setImageResource(DEFALUT_MANIMG);
+                        }else{
+                            binding.imgvWomanProfile.setImageResource(DEFALUT_WOMANIMG);
+                        }
+                    }
+                });
+
+
+
+
+
+
+
+
                 //카메라 로직
-                binding.imgvManProfile.setImageResource(DEFALUT_MANIMG);
+
             }
 
             dialog.dismiss();
@@ -281,6 +335,24 @@ public class HomeFragment extends Fragment {
 
     //오라클 커서
     public String getRealPath(Uri contentUri){
+
+        PhotoVO vo = new PhotoVO();
+        CommonConn conn = new CommonConn(getContext(), "storage");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
+        conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+        conn.addParamMap("folder_name", "all");
+        conn.addParamMap("pho_img", contentUri.toString());
+
+
+
+
+        conn.onExcute(new CommonConn.JswCallBack() {
+            @Override
+            public void onResult(boolean isResult, String data) {
+
+            }
+        });
+
         String res = null;
         String[] proj = {MediaStore.Images.Media.DATA};//
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {

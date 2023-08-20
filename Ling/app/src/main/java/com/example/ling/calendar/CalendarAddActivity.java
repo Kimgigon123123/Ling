@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityCalendarAddBinding;
 
 import java.text.SimpleDateFormat;
@@ -97,8 +98,10 @@ public class CalendarAddActivity extends AppCompatActivity {
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String text = spinner.getSelectedItem().toString();
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                    Spinner selectSpinner = list.get(i);
+                    String SpinnerName = selectSpinner.getName();
+                Toast.makeText(CalendarAddActivity.this, "Selected" + selectSpinner, Toast.LENGTH_SHORT).show();
 
             }
 
@@ -133,13 +136,17 @@ public class CalendarAddActivity extends AppCompatActivity {
     public void insert(){
         CommonConn conn = new CommonConn(this, "sche_insert");
 
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
+        conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
         conn.addParamMap("sche_title", binding.edtCalendarTitle.getText().toString());
         conn.addParamMap("sche_date", binding.tvCalendarSche.getText().toString());
 
 
         if(binding.pushCheck.isChecked()){
             binding.pushCheck.setChecked((1 != 0));
-            conn.addParamMap("sche_notice", binding.pushCheck.getText().toString()+"");
+            conn.addParamMap("sche_notice", 0);
+        }else{
+            conn.addParamMap("sche_notice", 1);
         }
 
 
