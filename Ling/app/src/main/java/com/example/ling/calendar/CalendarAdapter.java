@@ -96,6 +96,8 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
 
             loadingDialog.show();
 
+            //최초에 접속시 한 번만 다이얼로그 표현
+            list.get(i).setSche_notice(1);
         }
 
 

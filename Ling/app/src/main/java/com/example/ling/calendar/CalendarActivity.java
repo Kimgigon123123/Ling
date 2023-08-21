@@ -58,8 +58,11 @@ public class CalendarActivity extends AppCompatActivity {
         binding.tvCalendarNow.setText(time);
 
 
+
+
         SimpleDateFormat anniversary = new SimpleDateFormat("yyyy-MM-dd");
         try {
+            //createDay 조회해서 변경해야 함
             date = anniversary.parse("2023-07-23");
         } catch (ParseException e) {
             throw new RuntimeException(e);
