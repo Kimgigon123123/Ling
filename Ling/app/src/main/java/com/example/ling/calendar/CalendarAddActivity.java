@@ -138,11 +138,11 @@ public class CalendarAddActivity extends AppCompatActivity {
                 String SpinnerName = selectSpinner.getName();
                 if(SpinnerName.equals("결혼기념일")){
                     conn.addParamMap("sche_typecode", "wedding");
-                }if(SpinnerName.equals("생일")){
+                }else if(SpinnerName.equals("생일")){
                     conn.addParamMap("sche_typecode", "birth");
-                }if(SpinnerName.equals("출산예정일")){
+                }else if(SpinnerName.equals("출산예정일")){
                     conn.addParamMap("sche_typecode", "childbirth");
-                }if(SpinnerName.equals("커플여행")){
+                }else if(SpinnerName.equals("커플여행")){
                     conn.addParamMap("sche_typecode", "travel");
                 }else{
                     conn.addParamMap("sche_typecode", "default");
@@ -150,10 +150,13 @@ public class CalendarAddActivity extends AppCompatActivity {
 
             }
 
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+
 
         conn.onExcute((isResult, data) ->  {
 

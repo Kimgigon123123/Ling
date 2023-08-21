@@ -28,8 +28,8 @@ public class PhotoController {
 	@Autowired PhotoDAO dao;
 	@Autowired SqlSession sql;
 	public static String ip = "192.168.0.28";
-//	public static String folderPath = "D:\\Ling\\Ling\\image\\photo\\";
-	public static String folderPath = "D:\\WorkSpace\\Ling\\image\\photo\\";
+	public static String folderPath = "D:\\Ling\\Ling\\image\\photo\\";
+//	public static String folderPath = "D:\\WorkSpace\\Ling\\image\\photo\\";
 	
 	@RequestMapping(value="/file.f", produces="text/html;charset=utf-8")
 	public String list(HttpServletRequest req) throws IllegalStateException, IOException { //req(요청에 대한 모든정보), res
