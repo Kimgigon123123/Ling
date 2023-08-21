@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityRestaurantBinding;
 import com.example.ling.date.DateInfoVO;
 import com.example.ling.date.tour.TourActivity;
@@ -86,6 +87,7 @@ public class RestaurantActivity extends AppCompatActivity {
 
     public void restaurantList() {
         CommonConn conn = new CommonConn(this, "date_restaurant");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
             ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>(){}.getType());
             binding.recvRestact.setAdapter(new RestaurantAdapter(this, list));

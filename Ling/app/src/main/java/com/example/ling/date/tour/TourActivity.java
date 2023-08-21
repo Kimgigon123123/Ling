@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityTourBinding;
 import com.example.ling.date.DateInfoVO;
 import com.example.ling.date.festival.FestivalActivity;
@@ -87,6 +88,7 @@ public class TourActivity extends AppCompatActivity {
 
     public void tourList() {
         CommonConn conn = new CommonConn(this, "date_tour");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
             ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
             }.getType());
