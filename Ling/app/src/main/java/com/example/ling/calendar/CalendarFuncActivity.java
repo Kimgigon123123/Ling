@@ -109,12 +109,12 @@ public class CalendarFuncActivity extends AppCompatActivity {
                 }
 
                 // 이벤트 날짜에 원하는 Drawable 적용
-                Drawable eventDrawable = DrawableUtils.getCircleDrawableWithText(this);
+                Drawable eventDrawable = DrawableUtils.schedule(this);
 
                 // 이벤트 추가
                 Calendar calendar = Calendar.getInstance();
                 events.add(new EventDay(eventDate, eventDrawable));
-                events.add(new EventDay(calendar, DrawableUtils.getCircleDrawableWithText(this, "today")));
+                events.add(new EventDay(calendar, DrawableUtils.getToday(this)));
 
             }
 

@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -46,7 +48,7 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityChatBinding.inflate(getLayoutInflater());
 
-
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         Button_send = binding.btnChat;
         EditText_chat = binding.edtChat;
@@ -66,8 +68,13 @@ public class ChatActivity extends AppCompatActivity {
                     chat.setNickname(nick);
                     chat.setMessage(msg);
                     chat.setTime(mFormat.format(date));
+
+
+
+                    mAdapter.notifyDataSetChanged();
+                    binding.edtChat.setText("");
                     myRef.push().setValue(chat);
-                    chat.setMessage("");
+
                 }
 
 
@@ -96,10 +103,23 @@ public class ChatActivity extends AppCompatActivity {
 
                 ChatVO chat = snapshot.getValue(ChatVO.class);
 
-                mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
+
                 mAdapter.addChat(chat);
                 mAdapter.notifyDataSetChanged();
+
+                int newPosition = mAdapter.getItemCount() - 1;
+
+                // 일정 딜레이 후 스크롤 실행
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mRecyclerView.scrollToPosition(newPosition);
+                    }
+                }, 100);
+
             }
+
+
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
