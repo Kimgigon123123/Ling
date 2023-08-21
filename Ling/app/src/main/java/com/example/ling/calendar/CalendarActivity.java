@@ -98,8 +98,10 @@ public class CalendarActivity extends AppCompatActivity {
             //if문으로 list의 사이즈처리 해야함.
             CalendarAdapter adapter = new CalendarAdapter(list,this);
 
+
             binding.recvSchedule.setAdapter(adapter);
             binding.recvSchedule.setLayoutManager(new LinearLayoutManager(this));
+
         });
     }
 

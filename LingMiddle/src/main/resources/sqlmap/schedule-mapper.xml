@@ -16,7 +16,7 @@ and s.couple_num = #{couple_num}
 	values(select c.couple_num, c.couple_id, s.sche_title, s.sche_date, s.sche_notice, sche ) -->
 	
 	insert into schedule(couple_num, id, sche_title, sche_date, sche_notice, sche_typecode)
-	select c.couple_num, lm.id, #{sche_title}, #{sche_date}, #{sche_notice}, #{sche_typecode}
+	select c.couple_num, lm.id, #{sche_title}, #{sche_date}, #{sche_notice}, 'travel'
 	from couple c
 	join ling_member lm on c.mid = lm.id or c.fid = lm.id
 	where lm.id = #{id}
