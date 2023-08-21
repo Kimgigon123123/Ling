@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.example.ling.MainActivity;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityCalendarBinding;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -90,9 +91,10 @@ public class CalendarActivity extends AppCompatActivity {
 
     public void select(){
         CommonConn conn = new CommonConn(this, "sche_list");
+        conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
         conn.onExcute((isResult, data) -> {
             ArrayList<ScheAddVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<ScheAddVO>>(){}.getType());
-            Log.d("리스트사이즈", "select: " + list.size());
+//            Log.d("리스트사이즈", "select: " + list.size());
             //if문으로 list의 사이즈처리 해야함.
             CalendarAdapter adapter = new CalendarAdapter(list,this);
 

@@ -28,7 +28,7 @@ import java.util.List;
 public class ChatFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private List<ChatData> chatList;
+    private List<ChatVO> chatList;
     private String nick = "nick1";
     private ChatAdapter mAdapter;
 
@@ -54,7 +54,7 @@ public class ChatFragment extends Fragment {
                 String msg = EditText_chat.getText().toString(); //msg
 
                 if(msg != null) {
-                    ChatData chat = new ChatData();
+                    ChatVO chat = new ChatVO();
                     chat.setNickname(nick);
                     chat.setMessage(msg);
                     myRef.push().setValue(chat);
@@ -86,7 +86,7 @@ public class ChatFragment extends Fragment {
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                ChatData chat = snapshot.getValue(ChatData.class);
+                ChatVO chat = snapshot.getValue(ChatVO.class);
                  mAdapter.addChat(chat);
                  mAdapter.notifyDataSetChanged();
 

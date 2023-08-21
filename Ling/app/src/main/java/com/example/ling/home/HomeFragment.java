@@ -2,6 +2,8 @@ package com.example.ling.home;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -18,7 +20,12 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 
 import com.bumptech.glide.Glide;
 import com.example.ling.R;
@@ -29,8 +36,6 @@ import com.example.ling.common.RetInterface;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentHomeBinding;
-import com.example.ling.login.PreferenceManager;
-//import com.ramotion.fluidslider.FluidSlider;
 import com.example.ling.photo.PhotoActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -64,41 +69,86 @@ public class HomeFragment extends Fragment {
     private final int DEFALUT_MANIMG = R.drawable.man;
 
 
-//    String couple_num;
+    String couple_num;
 
     private SimpleDateFormat mFormat = new SimpleDateFormat("yyyy/M/d");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if(!CommonVar.loginInfo.getId().equals("admin") ) {
+
+        CommonConn conn = new CommonConn(getContext(),"select_couple_info");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
 
 
-            CommonConn conn = new CommonConn(getContext(), "select_couple_info");
-            conn.addParamMap("id", CommonVar.loginInfo.getId());
 
-            conn.onExcute((isResult, data) -> {
-                ArrayList<MainVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<MainVO>>() {
-                }.getType());
 
-                binding.tvMid.setText(list.get(0).mname);
-                binding.tvFid.setText(list.get(0).fname);
-                binding.tvDay.setText("사귄지 " + list.get(0).day + "일" + "커플번호는 " + list.get(0).couple_num);
-//                couple_num = list.get(0).couple_num;
+        conn.onExcute((isResult, data) -> {
+            ArrayList<MainVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<MainVO>>() {}.getType());
 
-            });
-        }
+            binding.tvMid.setText(list.get(0).mname);
+            binding.tvFid.setText(list.get(0).fname);
+           // binding.tvDay.setText("사귄지 "+list.get(0).day+"일"+"커플번호는 "+list.get(0).couple_num);
+            binding.waveLoadingView.setBottomTitle("사귄지 "+list.get(0).day+"일"+"커플번호는 "+list.get(0).couple_num);
+            couple_num=list.get(0).couple_num;
+
+        });
+
 
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
+
+
+
+
+        binding.waveLoadingView.setCenterTitle("무슨 커플");
+        binding.waveLoadingView.setAnimDuration(5000);
+
+            ObjectAnimator animator = ObjectAnimator.ofFloat(binding.imgvManSub, "rotation", 360);
+            //animator.setStartDelay(500);
+            animator.setDuration(10000);
+            animator.setRepeatCount(ValueAnimator.INFINITE);
+            animator.start();
+
+
+        ObjectAnimator animator2 = ObjectAnimator.ofFloat(binding.imgvWomanSub, "rotation", 360);
+        //animator.setStartDelay(500);
+        animator2.setDuration(10000);
+        animator2.setRepeatCount(ValueAnimator.INFINITE);
+        animator2.start();
+
+        ObjectAnimator animator3 =ObjectAnimator.ofFloat(binding.mainSub3, "translationY", 0, 20, 0);
+        animator3.setStartDelay(1000);
+        animator3.setDuration(5000);
+        animator3.setRepeatCount(ValueAnimator.INFINITE);
+        animator3.start();
+//        ArcAnimator.createArcAnimator(binding.imgvWomanSub, 100, 100, 100, Side.LEFT)
+//                .setDuration(1500)
+//
+//                .start();
+
+
+
+
+//        SupportAnimator animator = ViewAnimationUtils.createCircularReveal(mRed, cx, cy, 0, mRed.getWidth() / 2);
+//        animator.addListener(new SimpleListener() {
+//            @Override
+//            public void onAnimationEnd() {
+//                upRed();
+//            }
+//        });
+//        animator.setInterpolator(ACCELERATE);
+//        animator.start();
+
+
         Glide.with(this).load("http://192.168.0.28/hanul/img//andimg.jpg").into(binding.imgvManProfile);
-        binding.imgvPhoto.setOnClickListener(v -> {
+        binding.carvPhoto.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), PhotoActivity.class);
             startActivity(intent);
         });
 
-        binding.imgvCalendar.setOnClickListener(v -> {
+        binding.carvCalendar.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), CalendarActivity.class);
             startActivity(intent);
         });
@@ -107,10 +157,10 @@ public class HomeFragment extends Fragment {
             showDialog();
         });
 
-        binding.imgvLocTracking.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), LocTrackingActivity.class);
-            startActivity(intent);
-        });
+//        binding.imgvLocTracking.setOnClickListener(v -> {
+//            Intent intent = new Intent(getContext(), LocTrackingActivity.class);
+//            startActivity(intent);
+//        });
 
         binding.imgvTimeCapsule.setOnClickListener(v->{
             Intent intent = new Intent(getContext(), CapsuleMainActivity.class);
@@ -118,30 +168,28 @@ public class HomeFragment extends Fragment {
         });
 
 
+        Date date = new Date();
 
+        String date1 = mFormat.format(date); //날짜1
+        String date2 = "2023/07/23"; //날짜2
 
-//        Date date = new Date();
-//
-//        String date1 = mFormat.format(date); //날짜1
-//        String date2 = "2023/07/23"; //날짜2
-//
-//        Date format1 = null;
-//        try {
-//            format1 = new SimpleDateFormat("yyyy/MM/dd").parse(date1);
-//        } catch (ParseException e) {
-//            throw new RuntimeException(e);
-//        }
-//        Date format2 = null;
-//        try {
-//            format2 = new SimpleDateFormat("yyyy/MM/dd").parse(date2);
-//        } catch (ParseException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        long diffSec = (format1.getTime() - format2.getTime()) / 1000; //초 차이
-//        String diffDays = String.valueOf(diffSec / (24*60*60)); //일자수 차이
-//
-//        binding.loveDDay.setText(diffDays);
+        Date format1 = null;
+        try {
+            format1 = new SimpleDateFormat("yyyy/MM/dd").parse(date1);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        Date format2 = null;
+        try {
+            format2 = new SimpleDateFormat("yyyy/MM/dd").parse(date2);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        long diffSec = (format1.getTime() - format2.getTime()) / 1000; //초 차이
+        String diffDays = String.valueOf(diffSec / (24*60*60)); //일자수 차이
+
+        binding.waveLoadingView.setBottomTitle(diffDays);
 
         //김기곤 test chat
 //        binding.tvTestChat.setOnClickListener(v -> {
@@ -154,9 +202,6 @@ public class HomeFragment extends Fragment {
 //            transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
 //            transaction.commit();
 //        });
-
-
-
 
         return binding.getRoot();
 

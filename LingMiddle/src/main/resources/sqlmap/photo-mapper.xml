@@ -6,13 +6,45 @@
 	<select id="list" resultType="photo.PhotoVO">
 		select * from photo_category where pho_img like '%/'||(select couple_num
 		from couple where couple_num = #{couple_num}) || '/' ||
-		(select folder_name from photo_folder where folder_name= 'all')
+		(select folder_name from photo_folder where folder_name= #{folder_name})
 		||'%'
 	</select>
+<!-- 	<select id="list" resultType="photo.PhotoVO">
+	<![CDATA[
+		SELECT * FROM photo_category
+WHERE folder_name = 'all' AND pho_img LIKE '%' || '/' || (
+    SELECT couple_num
+    FROM couple 
+    WHERE couple_num = #{couple_num}
+) || '/' || (
+    SELECT folder_name 
+    FROM photo_folder 
+    WHERE folder_name = 'all'
+) || '%'
+UNION
+SELECT * FROM photo_category
+WHERE folder_name <> 'all' AND pho_img LIKE '%' || '/' || (
+    SELECT couple_num
+    FROM couple 
+    WHERE couple_num = #{couple_num}
+) || '/' || (
+    SELECT folder_name 
+    FROM photo_folder 
+    WHERE folder_name = #{folder_name}
+) || '%'
+]]>
+	</select> -->
 
 	<select id="folder" resultType="photo.FolderVO">
 		select id, couple_num, folder_name from photo_folder where couple_num = #{couple_num} and id = #{id}
-		<!-- where couple_num = #{couple_num} -->
+	</select>
+	
+	<select id="folder_LastImg" resultType="photo.FolderVO">
+		select id, couple_num, folder_name, (select pho_img
+		from photo_category
+		where folder_name= #{folder_name}
+		and pho_no = (  select max(pho_no) from photo_category where folder_name= #{folder_name}))from photo_folder 
+		where couple_num = #{couple_num} and id = #{id}
 	</select>
 
 	<insert id="folder_insert">
@@ -33,5 +65,17 @@
 	<delete id="folder_delete">
 		delete from photo_folder where folder_name = #{folder_name}
 	</delete>
-
+	
+	
+	<select id="storage" resultType="photo.PhotoVO">
+		select pho_img from photo_category where folder_name = 'all' and pho_img like '%' || '/' || (
+    	SELECT couple_num
+    	FROM couple 
+    	WHERE couple_num = #{couple_num}
+		) || '/' || (
+   	 	SELECT folder_name 
+    	FROM photo_folder 
+    	WHERE folder_name = 'all'
+		) || '%';
+	</select>
 </mapper>
