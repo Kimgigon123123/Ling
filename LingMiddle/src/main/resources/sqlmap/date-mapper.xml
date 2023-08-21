@@ -47,7 +47,7 @@
 
 <!-- 맛집목록_전체 -->
 <select id="restaurant" resultType="date.DateInfoVO">
-	select * from date_info where date_category_code = 'RE'
+	select * from date_info where date_category_code = 'RE' and rownum <![CDATA[<=]]> 500
 </select>
 
 <!-- 축제목록_전체 -->
