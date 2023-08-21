@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.ling.R;
 import com.example.ling.calendar.CalendarActivity;
+import com.example.ling.capsule.CapsuleMainActivity;
 import com.example.ling.common.RetClient;
 import com.example.ling.common.RetInterface;
 import com.example.ling.common.CommonConn;
@@ -108,6 +109,11 @@ public class HomeFragment extends Fragment {
 
         binding.imgvLocTracking.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), LocTrackingActivity.class);
+            startActivity(intent);
+        });
+
+        binding.imgvTimeCapsule.setOnClickListener(v->{
+            Intent intent = new Intent(getContext(), CapsuleMainActivity.class);
             startActivity(intent);
         });
 
