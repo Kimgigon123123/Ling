@@ -44,6 +44,7 @@ public class RestaurantActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 CommonConn conn = new CommonConn(RestaurantActivity.this, "date_searchrest");
+                conn.addParamMap("id", CommonVar.loginInfo.getId());
                 conn.addParamMap("date_name", query);
                 conn.addParamMap("date_address", query);
                 conn.onExcute((isResult, data) -> {
@@ -64,6 +65,7 @@ public class RestaurantActivity extends AppCompatActivity {
                         restaurantList();
                     } else {
                         CommonConn conn = new CommonConn(RestaurantActivity.this, "date_searchrest");
+                        conn.addParamMap("id", CommonVar.loginInfo.getId());
                         conn.addParamMap("date_name", newText);
                         conn.addParamMap("date_address", newText);
                         conn.onExcute((isResult, data) -> {

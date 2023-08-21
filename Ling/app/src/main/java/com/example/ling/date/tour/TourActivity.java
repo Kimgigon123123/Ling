@@ -46,6 +46,7 @@ public class TourActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 CommonConn conn = new CommonConn(TourActivity.this, "date_searchtour");
+                conn.addParamMap("id", CommonVar.loginInfo.getId());
                 conn.addParamMap("date_name", query);
                 conn.addParamMap("date_address", query);
                 conn.onExcute((isResult, data) -> {
@@ -66,6 +67,7 @@ public class TourActivity extends AppCompatActivity {
                         tourList();
                     } else {
                         CommonConn conn = new CommonConn(TourActivity.this, "date_searchtour");
+                        conn.addParamMap("id", CommonVar.loginInfo.getId());
                         conn.addParamMap("date_name", newText);
                         conn.addParamMap("date_address", newText);
                         conn.onExcute((isResult, data) -> {

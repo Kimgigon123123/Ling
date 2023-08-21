@@ -50,6 +50,7 @@ public class FestivalActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 CommonConn conn = new CommonConn(FestivalActivity.this, "date_searchfest");
+                conn.addParamMap("id", CommonVar.loginInfo.getId());
                 conn.addParamMap("date_name", query);
                 conn.addParamMap("date_address", query);
                 conn.onExcute((isResult, data) -> {
@@ -70,6 +71,7 @@ public class FestivalActivity extends AppCompatActivity {
                         festivalList();
                     } else {
                         CommonConn conn = new CommonConn(FestivalActivity.this, "date_searchfest");
+                        conn.addParamMap("id", CommonVar.loginInfo.getId());
                         conn.addParamMap("date_name", newText);
                         conn.addParamMap("date_address", newText);
                         conn.onExcute((isResult, data) -> {

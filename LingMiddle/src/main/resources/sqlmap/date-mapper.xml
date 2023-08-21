@@ -79,17 +79,29 @@
 
 <!-- 여행 검색 -->
 <select id="searchtour" resultType="date.DateInfoVO">
-	select * from date_info where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'TO'
+	select i.*, 
+	case when i.date_id in (select d.date_id from date_dibs d where id=#{id}) then '♥'
+	else '♡'
+	end as dibs
+	from date_info i where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'TO'
 </select> 
 
 <!-- 맛집 검색 -->
 <select id="searchrest" resultType="date.DateInfoVO">
-	select * from date_info where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'RE'
+	select i.*,
+	case when i.date_id in (select d.date_id from date_dibs d where id=#{id}) then '♥'
+	else '♡'
+	end as dibs
+	from date_info i where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'RE'
 </select>
 
 <!-- 축제 검색 -->
 <select id="searchfest" resultType="date.DateInfoVO">
-	select * from date_info where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'FE'
+	select i.*,
+	case when i.date_id in (select d.date_id from date_dibs d where id=#{id}) then '♥'
+	else '♡'
+	end as dibs
+	from date_info i where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'FE'
 </select>
 
 <!-- 여행 목록 5개 -->
