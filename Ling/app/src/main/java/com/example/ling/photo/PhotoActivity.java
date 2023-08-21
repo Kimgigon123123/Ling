@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.ContentValues;
@@ -24,6 +25,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 
 import com.bumptech.glide.Glide;
+import com.example.ling.chat.ChatActivity;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.common.RetClient;
@@ -53,6 +55,8 @@ public class PhotoActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> launcher;
     ArrayList<FolderVO> folder_List;
 
+    private EditText name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +77,15 @@ public class PhotoActivity extends AppCompatActivity {
 
         binding.imgvElbumBack.setOnClickListener(v -> {
             finish();
+        });
+
+        // 챗 테스트 지울 옮길 예정
+        binding.imgvChat.setOnClickListener(view -> {
+            Intent intent = new Intent(PhotoActivity.this, ChatActivity.class);
+            intent.putExtra("id", CommonVar.loginInfo.getId());
+            intent.putExtra("name", CommonVar.loginInfo.getName());
+            intent.putExtra("couple_num", CommonVar.loginInfo.getCouple_num());
+            startActivity(intent);
         });
 
 
@@ -110,7 +123,7 @@ public class PhotoActivity extends AppCompatActivity {
 
 
             AlertDialog.Builder follder = new AlertDialog.Builder(this);
-            final EditText name = new EditText(this);
+            name = new EditText(this);
 
             follder.setTitle("생성할 폴더명");
             follder.setView(name);
@@ -151,8 +164,10 @@ public class PhotoActivity extends AppCompatActivity {
         FolderVO vo = new FolderVO();
         conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+//        conn.addParamMap("folder_name", name.getText().toString().trim());
         vo.setId(CommonVar.loginInfo.getId());
         vo.setCouple_num(CommonVar.loginInfo.getCouple_num());
+//        vo.setFolder_name(name.getText().toString().trim());
         conn.onExcute((isResult, data) -> {
             ArrayList<FolderVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
 //            Log.d("리스트사이즈", "select: " + list.size());
@@ -162,7 +177,7 @@ public class PhotoActivity extends AppCompatActivity {
 
 
             binding.gridGallery.setAdapter(adapter);
-            binding.gridGallery.setLayoutManager(new LinearLayoutManager(this));
+            binding.gridGallery.setLayoutManager(new GridLayoutManager(this, 2));
 
         });
     }

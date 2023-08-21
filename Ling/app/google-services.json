@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "40936195708",
+    "firebase_url": "https://ling-4eaf9-default-rtdb.firebaseio.com",
     "project_id": "ling-4eaf9",
     "storage_bucket": "ling-4eaf9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:40936195708:android:8c7ab8f75f207268d72bf9",
+        "mobilesdk_app_id": "1:40936195708:android:50ad159bf8a2feabd72bf9",
         "android_client_info": {
           "package_name": "com.example.ling"
         }

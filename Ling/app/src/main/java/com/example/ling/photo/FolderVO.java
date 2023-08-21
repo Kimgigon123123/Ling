@@ -1,7 +1,21 @@
 package com.example.ling.photo;
 
 public class FolderVO {
-	private String id,  folder_name , couple_num;
+	private String id;
+	private String folder_name;
+	private String couple_num;
+
+	private String last_photo;
+
+	public String getLast_photo() {
+		return last_photo;
+	}
+
+	public void setLast_photo(String last_photo) {
+		this.last_photo = last_photo;
+	}
+
+
 //	private int couple_num;
 	
 	public String getId() {
