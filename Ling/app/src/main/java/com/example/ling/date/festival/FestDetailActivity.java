@@ -33,6 +33,8 @@ public class FestDetailActivity extends AppCompatActivity {
         bundle.putString("intro", getIntent().getStringExtra("intro"));
         bundle.putString("open", getIntent().getStringExtra("open"));
         bundle.putString("end", getIntent().getStringExtra("end"));
+        bundle.putInt("date_id", getIntent().getIntExtra("date_id", -1));
+        bundle.putString("date_category_code", getIntent().getStringExtra("date_category_code"));
         festInfoFragment.setArguments(bundle);
 
         bundle.putString("lan", getIntent().getStringExtra("lan"));

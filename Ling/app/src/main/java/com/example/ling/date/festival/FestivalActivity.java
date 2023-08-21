@@ -55,7 +55,7 @@ public class FestivalActivity extends AppCompatActivity {
                 conn.onExcute((isResult, data) -> {
                     ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
                     }.getType());
-                    binding.recvFestact.setAdapter(new TourAdapter(FestivalActivity.this, list));
+                    binding.recvFestact.setAdapter(new FestivalAdapter(FestivalActivity.this, list));
                     binding.recvFestact.setLayoutManager(new GridLayoutManager(FestivalActivity.this, 2));
                     binding.tvNull.setVisibility(list.size()==0 ? View.VISIBLE : View.INVISIBLE);
                 });
@@ -75,7 +75,7 @@ public class FestivalActivity extends AppCompatActivity {
                         conn.onExcute((isResult, data) -> {
                             ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
                             }.getType());
-                            binding.recvFestact.setAdapter(new TourAdapter(FestivalActivity.this, list));
+                            binding.recvFestact.setAdapter(new FestivalAdapter(FestivalActivity.this, list));
                             binding.recvFestact.setLayoutManager(new GridLayoutManager(FestivalActivity.this, 2));
                             binding.tvNull.setVisibility(list.size() == 0 ? View.VISIBLE : View.INVISIBLE);
                         });
@@ -131,5 +131,11 @@ public class FestivalActivity extends AppCompatActivity {
             binding.recvFestact.setAdapter(new FestivalAdapter(this, list));
             binding.recvFestact.setLayoutManager(new GridLayoutManager(this, 2));
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        festivalList();
     }
 }

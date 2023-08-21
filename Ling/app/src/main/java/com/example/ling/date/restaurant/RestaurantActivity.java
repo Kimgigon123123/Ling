@@ -49,7 +49,7 @@ public class RestaurantActivity extends AppCompatActivity {
                 conn.onExcute((isResult, data) -> {
                     ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
                     }.getType());
-                    binding.recvRestact.setAdapter(new TourAdapter(RestaurantActivity.this, list));
+                    binding.recvRestact.setAdapter(new RestaurantAdapter(RestaurantActivity.this, list));
                     binding.recvRestact.setLayoutManager(new GridLayoutManager(RestaurantActivity.this, 2));
                     binding.tvNull.setVisibility(list.size()==0 ? View.VISIBLE : View.INVISIBLE);
                 });
@@ -69,7 +69,7 @@ public class RestaurantActivity extends AppCompatActivity {
                         conn.onExcute((isResult, data) -> {
                             ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
                             }.getType());
-                            binding.recvRestact.setAdapter(new TourAdapter(RestaurantActivity.this, list));
+                            binding.recvRestact.setAdapter(new RestaurantAdapter(RestaurantActivity.this, list));
                             binding.recvRestact.setLayoutManager(new GridLayoutManager(RestaurantActivity.this, 2));
                             binding.tvNull.setVisibility(list.size() == 0 ? View.VISIBLE : View.INVISIBLE);
                         });
@@ -93,5 +93,11 @@ public class RestaurantActivity extends AppCompatActivity {
             binding.recvRestact.setAdapter(new RestaurantAdapter(this, list));
             binding.recvRestact.setLayoutManager(new GridLayoutManager(this, 2));
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        restaurantList();
     }
 }

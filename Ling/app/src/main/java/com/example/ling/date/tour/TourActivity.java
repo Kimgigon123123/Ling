@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.example.ling.R;
@@ -95,5 +96,11 @@ public class TourActivity extends AppCompatActivity {
             binding.recvTouract.setAdapter(new TourAdapter(this, list));
             binding.recvTouract.setLayoutManager(new GridLayoutManager(this, 2));
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tourList();
     }
 }

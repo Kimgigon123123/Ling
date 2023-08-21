@@ -50,6 +50,8 @@ public class TourItemAdapter extends RecyclerView.Adapter<TourItemAdapter.ViewHo
             intent.putExtra("end", list.get(i).getEnd());
             intent.putExtra("lan", list.get(i).getLan());
             intent.putExtra("lng", list.get(i).getLng());
+            intent.putExtra("date_id", list.get(i).getDate_id());
+            intent.putExtra("date_category_code", list.get(i).getDate_category_code());
             context.startActivity(intent);
         });
     }
