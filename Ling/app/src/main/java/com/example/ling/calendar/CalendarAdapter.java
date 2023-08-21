@@ -48,18 +48,20 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
 
         //캘린더 리스트에서 날짜 조회(형식 변환 후 날짜가 불일치 문제!!!)
-        String calDate = list.get(i).getSche_date()+"";
-        SimpleDateFormat newDate = new SimpleDateFormat("yyyymmdd", Locale.KOREA);
-        SimpleDateFormat oldDate = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+//        String calDate = list.get(i).getSche_date()+"";
+//        SimpleDateFormat newDate = new SimpleDateFormat("yyyyMMdd", Locale.KOREA);
+//        SimpleDateFormat oldDate = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+//
+//        try {
+//            Date newFormat = newDate.parse(calDate);
+//            String tv_date = oldDate.format(newFormat);
 
-        try {
-            Date newFormat = newDate.parse(calDate);
-            String tv_date = oldDate.format(newFormat);
+//            h.binding.tvCalendarDate.setText(tv_date);
+//        } catch (ParseException e) {
+//            throw new RuntimeException(e);
+//        }
 
-            h.binding.tvCalendarDate.setText(tv_date);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        h.binding.tvCalendarDate.setText(list.get(i).getSche_date());
 
 
         //캘린더 리스트에서 알림 여부 조회

@@ -40,6 +40,7 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
                 h.binding.tvFolderTitle.setText(list.get(i).getFolder_name());
 
+
                 CommonConn conn = new CommonConn(context, "folder_LastImg");
                 conn.addParamMap("id", CommonVar.loginInfo.getId());
                 conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());

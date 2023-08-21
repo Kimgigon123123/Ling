@@ -19,11 +19,17 @@ import com.example.ling.R;
 
 public final class DrawableUtils {
 
+    public static Drawable getCircleDrawableWithText(Context context) {
+        Drawable background = ContextCompat.getDrawable(context, R.drawable.sample_circle);
+
+        Drawable[] layers = {background};
+        return new LayerDrawable(layers);
+    }
+
     public static Drawable getCircleDrawableWithText(Context context, String string) {
         Drawable background = ContextCompat.getDrawable(context, R.drawable.sample_circle);
-        Drawable text = CalendarUtils.getDrawableText(context, string, null, android.R.color.white, 12);
 
-        Drawable[] layers = {background, text};
+        Drawable[] layers = {background};
         return new LayerDrawable(layers);
     }
 
