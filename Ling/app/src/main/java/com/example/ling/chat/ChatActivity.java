@@ -41,7 +41,7 @@ public class ChatActivity extends AppCompatActivity {
     private Button Button_send;
     private DatabaseReference myRef;
 
-    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm", Locale.KOREA);
+    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh시 mm분", Locale.KOREA);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

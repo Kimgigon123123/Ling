@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:id="@+id/ln_chat"
     android:padding="16dp">
 
 
@@ -13,8 +15,13 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/man"
-        android:layout_alignParentRight="true"/>
+        />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
     <TextView
         android:id="@+id/TextView_nickname"
         android:layout_width="wrap_content"
@@ -22,7 +29,6 @@
         android:text="name"
         android:layout_marginBottom="5dp"
         android:textColor="#333333"
-        android:layout_toLeftOf="@+id/iv"
         android:layout_marginRight="16dp"/>
 
     <TextView
@@ -30,8 +36,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello android"
-        android:layout_below="@+id/TextView_nickname"
-        android:layout_toLeftOf="@id/iv"
         android:background="@drawable/chat_message"
         android:layout_marginRight="16dp"
         android:padding="12dp"
@@ -41,11 +45,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="13:35"
-        android:layout_alignEnd="@+id/TextView_msg"
         android:textColor="#000000"
         android:textSize="10sp"
         android:layout_marginTop="5dp"
-        android:layout_below="@+id/TextView_msg"
         android:layout_marginRight="8dp"
         />
-</RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
