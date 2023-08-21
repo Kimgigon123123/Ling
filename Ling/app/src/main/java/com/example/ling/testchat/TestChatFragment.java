@@ -31,65 +31,68 @@ public class TestChatFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-      binding = FragmentTestChatBinding.inflate(inflater,container,false);
+        binding = FragmentTestChatBinding.inflate(inflater, container, false);
 
+        if (!CommonVar.loginInfo.getId().equals("admin")) {
+            CommonConn conn = new CommonConn(getContext(), "select_chat");
+            conn.addParamMap("id", CommonVar.loginInfo.getId());
+            conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
 
-        CommonConn conn = new CommonConn(getContext(),"select_chat");
-        conn.addParamMap("id",CommonVar.loginInfo.getId());
-        conn.addParamMap("couple_num",CommonVar.loginInfo.getCouple_num());
+            conn.onExcute((isResult, data) -> {
 
-        conn.onExcute((isResult, data) -> {
+                ArrayList<ChatVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<ChatVO>>() {
+                }.getType());
 
-            ArrayList<ChatVO> list = new Gson().fromJson(data,new TypeToken<ArrayList<ChatVO>>(){}.getType());
-
-            binding.recvChat.setAdapter(new TestChatAdapter(list,getContext()));
-            binding.recvChat.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        });
-
-        binding.btnChat.setOnClickListener(v -> {
-
-            CommonConn conn2 = new CommonConn(getContext(),"insert_chat");
-            conn2.addParamMap("id",CommonVar.loginInfo.getId());
-            conn2.addParamMap("couple_num",CommonVar.loginInfo.getCouple_num());
-            conn2.addParamMap("chat_content",binding.edtChat.getText().toString());
-
-            conn2.onExcute((isResult, data) -> {
-
-                CommonConn conn3 = new CommonConn(getContext(),"select_chat");
-                conn3.addParamMap("id",CommonVar.loginInfo.getId());
-                conn3.addParamMap("couple_num",CommonVar.loginInfo.getCouple_num());
-
-                conn3.onExcute((isResult3, data3) -> {
-
-                    ArrayList<ChatVO> list = new Gson().fromJson(data3,new TypeToken<ArrayList<ChatVO>>(){}.getType());
-
-                    binding.recvChat.setAdapter(new TestChatAdapter(list,getContext()));
-                    binding.recvChat.setLayoutManager(new LinearLayoutManager(getContext()));
-
-                });
-
+                binding.recvChat.setAdapter(new TestChatAdapter(list, getContext()));
+                binding.recvChat.setLayoutManager(new LinearLayoutManager(getContext()));
 
             });
 
-        });
+            binding.btnChat.setOnClickListener(v -> {
+
+                CommonConn conn2 = new CommonConn(getContext(), "insert_chat");
+                conn2.addParamMap("id", CommonVar.loginInfo.getId());
+                conn2.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+                conn2.addParamMap("chat_content", binding.edtChat.getText().toString());
+
+                conn2.onExcute((isResult, data) -> {
+
+                    CommonConn conn3 = new CommonConn(getContext(), "select_chat");
+                    conn3.addParamMap("id", CommonVar.loginInfo.getId());
+                    conn3.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+
+                    conn3.onExcute((isResult3, data3) -> {
+
+                        ArrayList<ChatVO> list = new Gson().fromJson(data3, new TypeToken<ArrayList<ChatVO>>() {
+                        }.getType());
+
+                        binding.recvChat.setAdapter(new TestChatAdapter(list, getContext()));
+                        binding.recvChat.setLayoutManager(new LinearLayoutManager(getContext()));
+
+                    });
 
 
-        CommonConn conn4 = new CommonConn(getContext(),"select_couple_name");
-        conn4.addParamMap("id",CommonVar.loginInfo.getId());
-        conn4.addParamMap("couple_num",CommonVar.loginInfo.getCouple_num());
+                });
 
-        conn4.onExcute((isResult, data) -> {
-
-            ArrayList<ChatVO> list = new Gson().fromJson(data,new TypeToken<ArrayList<ChatVO>>(){}.getType());
-
-           binding.tvChat.setText(list.get(0).getCouple_name()+"님과의 채팅");
-
-        });
+            });
 
 
-      return binding.getRoot();
-    }
+            CommonConn conn4 = new CommonConn(getContext(), "select_couple_name");
+            conn4.addParamMap("id", CommonVar.loginInfo.getId());
+            conn4.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+
+            conn4.onExcute((isResult, data) -> {
+
+                ArrayList<ChatVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<ChatVO>>() {
+                }.getType());
+
+                binding.tvChat.setText(list.get(0).getCouple_name() + "님과의 채팅");
+
+            });
+
+        }
+            return binding.getRoot();
+        }
 
 
 

@@ -64,6 +64,7 @@ public class DibsActivity extends AppCompatActivity {
             ArrayList<DateDibsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateDibsVO>>(){}.getType());
             binding.recvDibs.setAdapter(new DibsAdapter(this, list));
             binding.recvDibs.setLayoutManager(new GridLayoutManager(this, 2));
+            binding.tvNull.setVisibility(list.size()==0 ? View.VISIBLE : View.INVISIBLE);
         });
     }
 
@@ -74,6 +75,7 @@ public class DibsActivity extends AppCompatActivity {
             ArrayList<DateDibsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateDibsVO>>(){}.getType());
             binding.recvDibs.setAdapter(new DibsAdapter(this, list));
             binding.recvDibs.setLayoutManager(new GridLayoutManager(this, 2));
+            binding.tvNull.setVisibility(list.size()==0 ? View.VISIBLE : View.INVISIBLE);
         });
     }
 
@@ -84,6 +86,7 @@ public class DibsActivity extends AppCompatActivity {
             ArrayList<DateDibsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateDibsVO>>(){}.getType());
             binding.recvDibs.setAdapter(new DibsAdapter(this, list));
             binding.recvDibs.setLayoutManager(new GridLayoutManager(this, 2));
+            binding.tvNull.setVisibility(list.size()==0 ? View.VISIBLE : View.INVISIBLE);
         });
     }
 
@@ -94,6 +97,7 @@ public class DibsActivity extends AppCompatActivity {
             ArrayList<DateDibsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateDibsVO>>(){}.getType());
             binding.recvDibs.setAdapter(new DibsAdapter(this, list));
             binding.recvDibs.setLayoutManager(new GridLayoutManager(this, 2));
+            binding.tvNull.setVisibility(list.size()==0 ? View.VISIBLE : View.INVISIBLE);
         });
     }
 

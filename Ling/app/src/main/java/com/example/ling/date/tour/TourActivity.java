@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,6 +29,8 @@ import java.util.Stack;
 public class TourActivity extends AppCompatActivity {
 
     ActivityTourBinding binding;
+    private Handler handler = new Handler();
+    private Runnable runnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,50 +47,38 @@ public class TourActivity extends AppCompatActivity {
                 conn.addParamMap("date_name", query);
                 conn.addParamMap("date_address", query);
                 conn.onExcute((isResult, data) -> {
-                ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
-                }.getType());
-                binding.recvTouract.setAdapter(new TourAdapter(TourActivity.this, list));
-                binding.recvTouract.setLayoutManager(new GridLayoutManager(TourActivity.this, 2));
-            });
+                    ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
+                    }.getType());
+                    binding.recvTouract.setAdapter(new TourAdapter(TourActivity.this, list));
+                    binding.recvTouract.setLayoutManager(new GridLayoutManager(TourActivity.this, 2));
+                    binding.tvNull.setVisibility(list.size() == 0 ? View.VISIBLE : View.INVISIBLE);
+                });
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if(newText.isEmpty()) {
-                    tourList();
-                } else {
-                    CommonConn conn = new CommonConn(TourActivity.this, "date_searchtour");
-                    conn.addParamMap("date_name", newText);
-                    conn.addParamMap("date_address", newText);
-                    conn.onExcute((isResult, data) -> {
-                        ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
-                        }.getType());
-                        binding.recvTouract.setAdapter(new TourAdapter(TourActivity.this, list));
-                        binding.recvTouract.setLayoutManager(new GridLayoutManager(TourActivity.this, 2));
-                    });
-                }
+                handler.removeCallbacks(runnable);
+                runnable = () -> {
+                    if (newText.isEmpty()) {
+                        tourList();
+                    } else {
+                        CommonConn conn = new CommonConn(TourActivity.this, "date_searchtour");
+                        conn.addParamMap("date_name", newText);
+                        conn.addParamMap("date_address", newText);
+                        conn.onExcute((isResult, data) -> {
+                            ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
+                            }.getType());
+                            binding.recvTouract.setAdapter(new TourAdapter(TourActivity.this, list));
+                            binding.recvTouract.setLayoutManager(new GridLayoutManager(TourActivity.this, 2));
+                            binding.tvNull.setVisibility(list.size() == 0 ? View.VISIBLE : View.INVISIBLE);
+                        });
+                    }
+                };
+                handler.postDelayed(runnable, 400);
                 return true;
             }
         });
-
-//        binding.imgvSearch.setOnClickListener(v -> {
-//            CommonConn conn = new CommonConn(TourActivity.this, "date_searchtour");
-//            conn.addParamMap("date_name", binding.edtSearch.getText().toString());
-//            conn.addParamMap("date_address", binding.edtSearch.getText().toString());
-//            conn.onExcute((isResult, data) -> {
-//                ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
-//                }.getType());
-//                binding.recvTouract.setAdapter(new TourAdapter(this, list));
-//                binding.recvTouract.setLayoutManager(new GridLayoutManager(this, 2));
-//            });
-//
-//        });
-
-//        binding.imgvRefresh.setOnClickListener(v -> {
-//            binding.edtSearch.setText("");
-//            tourList();
-//        });
 
         binding.imgvBefore.setOnClickListener(v -> {
             finish();
@@ -97,7 +88,8 @@ public class TourActivity extends AppCompatActivity {
     public void tourList() {
         CommonConn conn = new CommonConn(this, "date_tour");
         conn.onExcute((isResult, data) -> {
-            ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>(){}.getType());
+            ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
+            }.getType());
             binding.recvTouract.setAdapter(new TourAdapter(this, list));
             binding.recvTouract.setLayoutManager(new GridLayoutManager(this, 2));
         });

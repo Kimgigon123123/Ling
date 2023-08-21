@@ -16,6 +16,7 @@ import com.example.ling.databinding.ActivityLocTrackingBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
@@ -72,6 +73,12 @@ public class LocTrackingActivity extends AppCompatActivity implements OnMapReady
     public void onMapReady(@NonNull NaverMap naverMap) {
         this.naverMap = naverMap;
         naverMap.setLocationSource(locationSource);
-        naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
+        naverMap.setLocationTrackingMode(LocationTrackingMode.Face);
+
+        // 상대방의 위치를 표시할 마커 생성
+        LatLng targetLocation = new LatLng(35.15345070401861, 126.88800442419425 ); // 상대방의 위도와 경도로 설정
+        Marker marker = new Marker();
+        marker.setPosition(targetLocation);
+        marker.setMap(naverMap);
     }
 }

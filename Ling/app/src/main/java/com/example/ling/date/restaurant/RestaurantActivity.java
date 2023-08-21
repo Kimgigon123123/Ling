@@ -1,10 +1,14 @@
 package com.example.ling.date.restaurant;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,6 +28,8 @@ import java.util.List;
 public class RestaurantActivity extends AppCompatActivity {
 
     ActivityRestaurantBinding binding;
+    private Handler handler = new Handler();
+    private Runnable runnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,74 +50,34 @@ public class RestaurantActivity extends AppCompatActivity {
                     }.getType());
                     binding.recvRestact.setAdapter(new TourAdapter(RestaurantActivity.this, list));
                     binding.recvRestact.setLayoutManager(new GridLayoutManager(RestaurantActivity.this, 2));
+                    binding.tvNull.setVisibility(list.size()==0 ? View.VISIBLE : View.INVISIBLE);
                 });
                 return true;
             }
-
+            
             @Override
             public boolean onQueryTextChange(String newText) {
-                if(newText.isEmpty()) {
-                    restaurantList();
-                } else {
-                    CommonConn conn = new CommonConn(RestaurantActivity.this, "date_searchrest");
-                    conn.addParamMap("date_name", newText);
-                    conn.addParamMap("date_address", newText);
-                    conn.onExcute((isResult, data) -> {
-                        ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
-                        }.getType());
-                        binding.recvRestact.setAdapter(new TourAdapter(RestaurantActivity.this, list));
-                        binding.recvRestact.setLayoutManager(new GridLayoutManager(RestaurantActivity.this, 2));
-                    });
-                }
+                handler.removeCallbacks(runnable);
+                runnable = () -> {
+                    if (newText.isEmpty()) {
+                        restaurantList();
+                    } else {
+                        CommonConn conn = new CommonConn(RestaurantActivity.this, "date_searchrest");
+                        conn.addParamMap("date_name", newText);
+                        conn.addParamMap("date_address", newText);
+                        conn.onExcute((isResult, data) -> {
+                            ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
+                            }.getType());
+                            binding.recvRestact.setAdapter(new TourAdapter(RestaurantActivity.this, list));
+                            binding.recvRestact.setLayoutManager(new GridLayoutManager(RestaurantActivity.this, 2));
+                            binding.tvNull.setVisibility(list.size() == 0 ? View.VISIBLE : View.INVISIBLE);
+                        });
+                    }
+                };
+                handler.postDelayed(runnable, 400);
                 return true;
             }
         });
-
-//        binding.imgvSearch.setOnClickListener(v -> {
-//            CommonConn conn = new CommonConn(RestaurantActivity.this, "date_searchrest");
-//            conn.addParamMap("date_name", binding.edtSearch.getText().toString());
-//            conn.addParamMap("date_address", binding.edtSearch.getText().toString());
-//            conn.onExcute((isResult, data) -> {
-//                ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
-//                }.getType());
-//                binding.recvRestact.setAdapter(new TourAdapter(this, list));
-//                binding.recvRestact.setLayoutManager(new GridLayoutManager(this, 2));
-//            });
-//
-//        });
-
-//        binding.spnSido.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-//                if (binding.spnSido.getSelectedItem().equals("시/도 선택")) {
-//                    binding.spnSigungu.setAdapter(null);
-//                    restaurantList();
-//                    sggAdapter = ArrayAdapter.createFromResource(RestaurantActivity.this, R.array.empty, android.R.layout.simple_spinner_dropdown_item);
-//                    sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                    binding.spnSigungu.setAdapter(sggAdapter);
-//                } else {
-//                    //디비연동.
-//                    CommonConn conn = new CommonConn(RestaurantActivity.this, "date_sigungu");
-//                    conn.addParamMap("sido", binding.spnSido.getSelectedItem().toString());
-//                    conn.onExcute((isResult, data) -> {
-//                        List<String> sigungu = new Gson().fromJson(data , new TypeToken<List<String>>(){}.getType());
-//                        sggAdapter = new ArrayAdapter(RestaurantActivity.this , android.R.layout.simple_spinner_dropdown_item , sigungu);
-//                        sggAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                        binding.spnSigungu.setAdapter(sggAdapter);
-//                    });
-//                }
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-
-//        binding.imgvRefresh.setOnClickListener(v -> {
-//            binding.edtSearch.setText("");
-//            restaurantList();
-//        });
 
         binding.imgvBefore.setOnClickListener(v -> {
             finish();

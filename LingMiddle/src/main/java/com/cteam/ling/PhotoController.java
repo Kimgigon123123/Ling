@@ -29,6 +29,7 @@ public class PhotoController {
 	@Autowired SqlSession sql;
 	public static String ip = "192.168.0.28";
 	public static String folderPath = "D:\\Ling\\Ling\\image\\photo\\";
+//	public static String folderPath = "D:\\WorkSpace\\Ling\\image\\photo\\";
 	
 	@RequestMapping(value="/file.f", produces="text/html;charset=utf-8")
 	public String list(HttpServletRequest req) throws IllegalStateException, IOException { //req(요청에 대한 모든정보), res
@@ -63,7 +64,7 @@ public class PhotoController {
 	}
 	
 	@RequestMapping(value="/photo_list", produces="text/html;charset=utf-8")
-	public String photo_list(int couple_num, String folder_name) {
+	public String photo_list(String id, String couple_num, String folder_name, String pho_img) {
 		
 		
 		
@@ -71,9 +72,10 @@ public class PhotoController {
 //		imageSelect(voJson, req);
 		
 		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("id", id);
 		param.put("couple_num", couple_num);
 		param.put("folder_name", folder_name);
-//		File folder = new File(folderPath + vo.getFolder_name());
+		param.put("pho_img", pho_img);		
 		
 		
 		List<PhotoVO> list = dao.getList(param) ;
@@ -83,13 +85,41 @@ public class PhotoController {
 		return gson.toJson(list);
 }
 	
+	
+	
+	@RequestMapping(value="/storage", produces="text/html;charset=utf-8")
+	public String photo_storage(String id, String couple_num, String folder_name, String pho_img) {
+		
+		
+		
+		//folder_name을 비교해서 그 folder_name을 가진 view 클릭 시 그 폴더 내부의 이미지 조회
+//		imageSelect(voJson, req);
+		
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("id", id);
+		param.put("couple_num", couple_num);
+		param.put("folder_name", folder_name);
+		param.put("pho_img", pho_img);		
+		
+		
+		List<PhotoVO> list = dao.getList(param) ;
+		
+		Gson gson = new Gson();	
+		
+		return gson.toJson(list);
+	}
+	
 
 	
 	
 	@RequestMapping(value="/folder_list", produces="text/html;charset=utf-8")
-	public String folder_list() {
+	public String folder_list(String id, String couple_num) {
 			
-			List<FolderVO> list = dao.getFolder() ;
+			HashMap<String, Object> param = new HashMap<String, Object>();
+			param.put("id", id);
+			param.put("couple_num", couple_num);
+					 //couple_num
+			List<FolderVO> list = dao.getFolder(param) ;
 
 			Gson gson = new Gson();	
 			
@@ -97,17 +127,35 @@ public class PhotoController {
 		
 	}
 	
+	@RequestMapping(value="/folder_LastImg", produces="text/html;charset=utf-8")
+	public String folder_LastImg(String id, String couple_num) {
+		
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("id", id);
+		param.put("couple_num", couple_num);
+		//couple_num
+		List<FolderVO> list = dao.getFolder(param) ;
+		
+		Gson gson = new Gson();	
+		
+		return gson.toJson(list);
+		
+	}
+	
 	
 	@RequestMapping(value="/folder_insert", produces="text/html;charset=utf-8")
-	public String folder_insert(String voJson, HttpServletRequest req) {
-//		HashMap<String, String> params = new HashMap<String, String>();
-//		params.put("folder", folderName);
-//		HashMap<String, Object> param = new HashMap<String, Object>();
-//		param.put("couple_num", couple_num);
+	public String folder_insert(String voJson, HttpServletRequest req, String id, String couple_num) {
+		
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("id", id);
+		param.put("couple_num", couple_num);
+		
+//		HashMap<String, Object> params = new HashMap<String, Object>();
+
+
 		FolderVO vo = new Gson().fromJson(voJson, FolderVO.class);
 		
-		//folderPath = folderPath + vo.getCouple_num();
-		//createFolder(folderPath, req);
+
 		String tempPath = folderPath; 
 		if (!vo.getFolder_name().isEmpty()) {
             // 특정 경로와 입력된 폴더 이름으로 폴더 경로를 생성
@@ -125,7 +173,7 @@ public class PhotoController {
 			Gson gson = new Gson();	
 			
 			
-			return gson.toJson(dao.getFolder() );
+			return gson.toJson(dao.getFolder(param));
 		
 	}
 	

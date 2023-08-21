@@ -1,4 +1,4 @@
-package com.example.ling;
+package com.example.ling.board;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;

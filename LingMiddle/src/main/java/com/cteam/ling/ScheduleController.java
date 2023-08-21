@@ -1,5 +1,6 @@
 package com.cteam.ling;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -20,8 +21,12 @@ public class ScheduleController {
 	@Autowired ScheDAO dao;
 	
 	@RequestMapping(value="/sche_list",produces="text/html;charset=utf-8")
-	public String sche_List() {
-		List<ScheAddVO> list = dao.getList() ;
+	public String sche_List(String id, String couple_num) {
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("id", id);
+		param.put("couple_num", couple_num);
+		
+		List<ScheAddVO> list = dao.getList(param) ;
 		Gson gson = new Gson();	
 		
 		return gson.toJson(list);
