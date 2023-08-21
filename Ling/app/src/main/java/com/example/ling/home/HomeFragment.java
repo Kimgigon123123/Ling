@@ -162,7 +162,7 @@ public class HomeFragment extends Fragment {
 //            startActivity(intent);
 //        });
 
-        binding.imgvTimeCapsule.setOnClickListener(v->{
+        binding.imgvMenuTimeCapsule.setOnClickListener(v->{
             Intent intent = new Intent(getContext(), CapsuleMainActivity.class);
             startActivity(intent);
         });
