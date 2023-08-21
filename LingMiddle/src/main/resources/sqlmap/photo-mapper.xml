@@ -76,6 +76,6 @@ WHERE folder_name <> 'all' AND pho_img LIKE '%' || '/' || (
    	 	SELECT folder_name 
     	FROM photo_folder 
     	WHERE folder_name = 'all'
-		) || '%';
+		) || '%'
 	</select>
 </mapper>

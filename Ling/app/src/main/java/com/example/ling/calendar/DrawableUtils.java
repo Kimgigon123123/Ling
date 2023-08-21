@@ -26,8 +26,15 @@ public final class DrawableUtils {
         return new LayerDrawable(layers);
     }
 
-    public static Drawable getCircleDrawableWithText(Context context, String string) {
-        Drawable background = ContextCompat.getDrawable(context, R.drawable.sample_circle);
+    public static Drawable schedule(Context context) {
+        Drawable background = ContextCompat.getDrawable(context, R.drawable.btm_menu_2);
+
+        Drawable[] layers = {background};
+        return new LayerDrawable(layers);
+    }
+
+    public static Drawable getToday(Context context) {
+        Drawable background = ContextCompat.getDrawable(context, R.drawable.today);
 
         Drawable[] layers = {background};
         return new LayerDrawable(layers);

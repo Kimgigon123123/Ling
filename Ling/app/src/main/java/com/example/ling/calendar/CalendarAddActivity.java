@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +14,7 @@ import com.example.ling.R;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityCalendarAddBinding;
+
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -134,15 +136,14 @@ public class CalendarAddActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                Spinner selectSpinner = list.get(i);
-                String SpinnerName = selectSpinner.getName();
-                if(SpinnerName.equals("결혼기념일")){
+                String selectedSpinner = parent.getItemAtPosition(i).toString();
+                if(selectedSpinner.equals("결혼기념일")){
                     conn.addParamMap("sche_typecode", "wedding");
-                }else if(SpinnerName.equals("생일")){
+                }else if(selectedSpinner.equals("생일")){
                     conn.addParamMap("sche_typecode", "birth");
-                }else if(SpinnerName.equals("출산예정일")){
+                }else if(selectedSpinner.equals("출산예정일")){
                     conn.addParamMap("sche_typecode", "childbirth");
-                }else if(SpinnerName.equals("커플여행")){
+                }else if(selectedSpinner.equals("커플여행")){
                     conn.addParamMap("sche_typecode", "travel");
                 }else{
                     conn.addParamMap("sche_typecode", "default");
@@ -161,6 +162,8 @@ public class CalendarAddActivity extends AppCompatActivity {
         conn.onExcute((isResult, data) ->  {
 
         });
+
     }
+
 
 }

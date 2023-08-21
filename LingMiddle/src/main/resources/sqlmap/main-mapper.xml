@@ -14,7 +14,7 @@ and m.id=#{id}
 </select>
 
 
-<select id="select_couple_image" resultType="main.MainVO">
+<select id="select_couple_img" resultType="main.MainVO">
 select c.couple_num, lm.id,
 case
 when lm.gender = '남' then 'mid'
