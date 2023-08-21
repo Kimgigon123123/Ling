@@ -34,7 +34,9 @@ public class StorePurchaseActivity extends AppCompatActivity {
         binding= ActivityStorePurchaseBinding.inflate(getLayoutInflater());
 
         Intent intent = getIntent();
-        setContentView(binding.getRoot());
+
+
+
 
         String name = intent.getStringExtra("name");
         String content = intent.getStringExtra("content");
