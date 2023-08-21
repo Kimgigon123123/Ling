@@ -99,6 +99,8 @@ dependencies {
     //dialog용
     implementation 'com.airbnb.android:lottie:3.3.0'
 
+    
+    implementation 'me.itangqi.waveloadingview:library:0.3.5'
 
 
 }

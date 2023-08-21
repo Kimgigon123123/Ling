@@ -116,9 +116,9 @@
                 android:id="@+id/imgv_calendar_check"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/calendar"
-                />
 
+                />
+       <!--     android:src="@drawable/calendar"-->
         </LinearLayout>
 
         <View
