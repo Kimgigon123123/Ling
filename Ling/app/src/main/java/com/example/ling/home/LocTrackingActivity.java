@@ -2,21 +2,32 @@ package com.example.ling.home;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.ling.MainActivity;
 import com.example.ling.R;
 import com.example.ling.calendar.CalendarActivity;
+import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityLocTrackingBinding;
+import com.example.ling.login.Ling_MemberVO;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.naver.maps.geometry.LatLng;
+import com.naver.maps.map.CameraAnimation;
+import com.naver.maps.map.CameraUpdate;
 import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
@@ -41,12 +52,11 @@ public class LocTrackingActivity extends AppCompatActivity implements OnMapReady
         setContentView(binding.getRoot());
 
         binding.imgvHome.setOnClickListener(v -> {
-            Intent intent = new Intent(LocTrackingActivity.this, HomeFragment.class);
-            startActivity(intent);
+            finish();
         });
 
         FragmentManager fm = getSupportFragmentManager();
-        MapFragment mapFragment = (MapFragment)fm.findFragmentById(R.id.map);
+        MapFragment mapFragment = (MapFragment) fm.findFragmentById(R.id.map);
         if (mapFragment == null) {
             mapFragment = MapFragment.newInstance();
             fm.beginTransaction().add(R.id.map, mapFragment).commit();
@@ -55,9 +65,11 @@ public class LocTrackingActivity extends AppCompatActivity implements OnMapReady
         locationSource =
                 new FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE);
     }
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,  @NonNull int[] grantResults) {
+                                           @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (locationSource.onRequestPermissionsResult(
                 requestCode, permissions, grantResults)) {
             if (!locationSource.isActivated()) { // 권한 거부됨
@@ -76,9 +88,40 @@ public class LocTrackingActivity extends AppCompatActivity implements OnMapReady
         naverMap.setLocationTrackingMode(LocationTrackingMode.Face);
 
         // 상대방의 위치를 표시할 마커 생성
-        LatLng targetLocation = new LatLng(35.15345070401861, 126.88800442419425 ); // 상대방의 위도와 경도로 설정
-        Marker marker = new Marker();
-        marker.setPosition(targetLocation);
-        marker.setMap(naverMap);
+//        Location lastLocation = locationSource.getLastLocation();
+//        if (lastLocation != null) {
+//            LatLng targetLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude()); // 상대방의 위도와 경도로 설정
+//            Marker marker = new Marker();
+//            marker.setPosition(targetLocation);
+//            marker.setMap(naverMap);
+//            CameraUpdate cameraUpdate = CameraUpdate.scrollAndZoomTo(targetLocation, 15)
+//                    .animate(CameraAnimation.Fly, 2000);
+//            naverMap.moveCamera(cameraUpdate);
+//        } else {
+//            Log.d("error", "onMapReady: " + "실패");
+//        }
+
+        CommonConn conn = new CommonConn(this, "select_location");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
+        conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+        conn.onExcute((isResult, data) -> {
+            Ling_MemberVO location = new Gson().fromJson(data, new TypeToken<Ling_MemberVO>(){}.getType());
+            LatLng targetLocation = new LatLng(Double.parseDouble(location.getLat()), Double.parseDouble(location.getLng()));
+            Marker marker = new Marker();
+            marker.setPosition(targetLocation);
+            marker.setMap(naverMap);
+            CameraUpdate cameraUpdate = CameraUpdate.scrollAndZoomTo(
+                            new LatLng(targetLocation.latitude, targetLocation.longitude), 15)
+                    .animate(CameraAnimation.Fly, 2000);
+            naverMap.moveCamera(cameraUpdate);
+        });
+//        LatLng targetLocation = new LatLng( 35.15344618961562, 126.88799619924883); // 상대방의 위도와 경도로 설정
+//        Marker marker = new Marker();
+//        marker.setPosition(targetLocation);
+//        marker.setMap(naverMap);
+//        CameraUpdate cameraUpdate = CameraUpdate.scrollAndZoomTo(
+//                        new LatLng(targetLocation.latitude, targetLocation.longitude), 15)
+//                .animate(CameraAnimation.Fly, 2000);
+//        naverMap.moveCamera(cameraUpdate);
     }
 }

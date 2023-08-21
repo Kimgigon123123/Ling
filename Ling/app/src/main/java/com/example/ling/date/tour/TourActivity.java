@@ -11,10 +11,12 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityTourBinding;
 import com.example.ling.date.DateInfoVO;
 import com.example.ling.date.festival.FestivalActivity;
@@ -44,6 +46,7 @@ public class TourActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 CommonConn conn = new CommonConn(TourActivity.this, "date_searchtour");
+                conn.addParamMap("id", CommonVar.loginInfo.getId());
                 conn.addParamMap("date_name", query);
                 conn.addParamMap("date_address", query);
                 conn.onExcute((isResult, data) -> {
@@ -64,6 +67,7 @@ public class TourActivity extends AppCompatActivity {
                         tourList();
                     } else {
                         CommonConn conn = new CommonConn(TourActivity.this, "date_searchtour");
+                        conn.addParamMap("id", CommonVar.loginInfo.getId());
                         conn.addParamMap("date_name", newText);
                         conn.addParamMap("date_address", newText);
                         conn.onExcute((isResult, data) -> {
@@ -87,11 +91,18 @@ public class TourActivity extends AppCompatActivity {
 
     public void tourList() {
         CommonConn conn = new CommonConn(this, "date_tour");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
             ArrayList<DateInfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateInfoVO>>() {
             }.getType());
             binding.recvTouract.setAdapter(new TourAdapter(this, list));
             binding.recvTouract.setLayoutManager(new GridLayoutManager(this, 2));
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tourList();
     }
 }

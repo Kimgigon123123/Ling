@@ -1,5 +1,6 @@
 package com.cteam.ling;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -12,6 +13,7 @@ import com.google.gson.Gson;
 
 import date.DateDibsVO;
 import date.DateInfoVO;
+import member.MemberVO;
 
 @RestController
 public class DateController {
@@ -64,22 +66,22 @@ public class DateController {
 
 	// 여행목록_전체
 	@RequestMapping(value = "/date_tour", produces = "text/html;charset=utf-8")
-	public String tourList() {
-		List<DateInfoVO> tourlist = sql.selectList("date.tour");
+	public String tourList(String id) {
+		List<DateInfoVO> tourlist = sql.selectList("date.tour", id);
 		return new Gson().toJson(tourlist);
 	}
 
 	// 맛집목록_전체
 	@RequestMapping(value = "/date_restaurant", produces = "text/html;charset=utf-8")
-	public String restaurantList() {
-		List<DateInfoVO> restaurantList = sql.selectList("date.restaurant");
+	public String restaurantList(String id) {
+		List<DateInfoVO> restaurantList = sql.selectList("date.restaurant", id);
 		return new Gson().toJson(restaurantList);
 	}
 
 	// 축제목록_전체
 	@RequestMapping(value = "/date_festival", produces = "text/html;charset=utf-8")
-	public String festivalList() {
-		List<DateInfoVO> festivalList = sql.selectList("date.festival");
+	public String festivalList(String id) {
+		List<DateInfoVO> festivalList = sql.selectList("date.festival", id);
 		return new Gson().toJson(festivalList);
 	}
 	
@@ -136,4 +138,12 @@ public class DateController {
 		List<DateInfoVO> festival5 = sql.selectList("date.festival5");
 		return new Gson().toJson(festival5);
 	}
+	
+	// 상대방 위도경도
+	@RequestMapping(value="/select_location", produces="text/html;charset=utf-8")
+	public String location(MemberVO vo) {
+		MemberVO location = sql.selectOne("date.location", vo);
+		return new Gson().toJson(location);
+	}
+	
 }
