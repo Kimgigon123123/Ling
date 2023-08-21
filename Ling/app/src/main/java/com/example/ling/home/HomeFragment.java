@@ -2,6 +2,8 @@ package com.example.ling.home;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -19,6 +21,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.bumptech.glide.Glide;
 import com.example.ling.R;
@@ -72,6 +76,9 @@ public class HomeFragment extends Fragment {
         CommonConn conn = new CommonConn(getContext(),"select_couple_info");
         conn.addParamMap("id", CommonVar.loginInfo.getId());
 
+
+
+
         conn.onExcute((isResult, data) -> {
             ArrayList<MainVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<MainVO>>() {}.getType());
 
@@ -86,6 +93,17 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
+
+            ObjectAnimator animator = ObjectAnimator.ofFloat(binding.imgvMain1, "rotation", 360);
+            //animator.setStartDelay(500);
+            animator.setDuration(10000);
+            animator.setRepeatCount(ValueAnimator.INFINITE);
+            animator.start();
+        ObjectAnimator animator2 = ObjectAnimator.ofFloat(binding.imgvMain2, "rotation", 360);
+        //animator.setStartDelay(500);
+        animator2.setDuration(15000);
+        animator2.setRepeatCount(ValueAnimator.INFINITE);
+        animator2.start();
         Glide.with(this).load("http://192.168.0.28/hanul/img//andimg.jpg").into(binding.imgvManProfile);
         binding.imgvPhoto.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), PhotoActivity.class);
