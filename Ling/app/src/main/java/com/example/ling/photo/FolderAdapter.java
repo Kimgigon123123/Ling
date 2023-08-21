@@ -10,8 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ItemRecvFolderBinding;
 
 import java.util.ArrayList;
@@ -37,6 +39,26 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
                 h.binding.tvFolderTitle.setText(list.get(i).getFolder_name());
+
+                CommonConn conn = new CommonConn(context, "folder_LastImg");
+                conn.addParamMap("id", CommonVar.loginInfo.getId());
+                conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+                conn.addParamMap("folder_name", list.get(i).getFolder_name());
+                conn.addParamMap("pho_img", "");
+                conn.onExcute(new CommonConn.JswCallBack() {
+                    @Override
+                    public void onResult(boolean isResult, String data) {
+
+                        Glide.with(context).load(list.get(i).getLast_photo()).into(h.binding.imgvFolder);
+                    }
+                });
+
+//        conn.addParamMap("id", CommonVar.loginInfo.getId());
+//        conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+//        conn.addParamMap("folder_name", folder_name);
+//        conn.addParamMap("pho_img", vo1.getPho_img());
+
+
 //                h.binding.tvFolderCnt.setText("("+list.size()+")");
                 h.binding.imgvFolderDelete.setOnClickListener(v -> {
                     AlertDialog.Builder alert = new AlertDialog.Builder(context);

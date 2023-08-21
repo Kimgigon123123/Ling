@@ -5,41 +5,53 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ling.R;
+import com.example.ling.common.CommonVar;
 
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder>{
 
-    private List<ChatData> mDataset;
-    private String myNickName;
+    private List<ChatVO> mDataset;
+
+    private String mynickName = CommonVar.loginInfo.getName();
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         public TextView TextView_nickname;
         public TextView TextView_msg;
+
+        public TextView TextView_time;
         public View rootView;
+
+
+
         public MyViewHolder(@NonNull View v) {
             super(v);
             TextView_nickname = v.findViewById(R.id.TextView_nickname);
             TextView_msg = v.findViewById(R.id.TextView_msg);
+            TextView_time = v.findViewById(R.id.tv_time);
             rootView = v;
         }
     }
 
-    public ChatAdapter(List<ChatData> mDataset, Context context, String myNickName) {
+
+
+    public ChatAdapter(List<ChatVO> mDataset, Context context, String myNickName) {
         this.mDataset = mDataset;
-        this.myNickName = myNickName;
+        this.mynickName = mynickName;
+
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LinearLayout v = (LinearLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_row_chat,parent,false);
+        RelativeLayout v = (RelativeLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_row_chat,parent,false);
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
     }
@@ -48,22 +60,27 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder>{
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
 
-        ChatData chat = mDataset.get(position);
-
-
+        ChatVO chat = mDataset.get(position);
 
         holder.TextView_nickname.setText(mDataset.get(position).getNickname());
         holder.TextView_msg.setText(mDataset.get(position).getMessage());
+        holder.TextView_time.setText(mDataset.get(position).getTime());
 
 
-//        if(chat.getNickname().equals(this.myNickName)) {
-            holder.TextView_msg.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+
+
+        if(chat.getNickname() != null && chat.getNickname().equals(mynickName)) {
             holder.TextView_nickname.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
-//        }
-//        else {
-//            holder.TextView_msg.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-//            holder.TextView_nickname.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-//        }
+            holder.TextView_msg.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+            holder.TextView_time.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+
+
+        }
+        else if(chat.getNickname() != null && !chat.getNickname().equals(mynickName)) {
+            holder.TextView_msg.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+            holder.TextView_nickname.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+            holder.TextView_time.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+        }
 
     }
 
@@ -73,10 +90,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder>{
     }
 
 
-    public ChatData getChat(int position){
+    public ChatVO getChat(int position){
         return mDataset != null ? mDataset.get(position) : null;
     }
-    public void addChat(ChatData chat) {
+    public void addChat(ChatVO chat) {
         mDataset.add(chat);
         notifyItemInserted(mDataset.size()-1); //갱신
 

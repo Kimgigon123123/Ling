@@ -1,5 +1,6 @@
 package schedule;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -13,8 +14,8 @@ public class ScheDAO {
 	
 	@Autowired @Qualifier ("test") SqlSession sql;
 	
-	public List<ScheAddVO> getList(){
-		List<ScheAddVO>  list = sql.selectList("sche.list");
+	public List<ScheAddVO> getList(HashMap<String, Object> param){
+		List<ScheAddVO>  list = sql.selectList("sche.list", param);
 		return list;
 	}
 	

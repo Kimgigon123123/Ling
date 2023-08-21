@@ -13,4 +13,18 @@ where ((co.fid =m.id) or (co.mid = m.id))
 and m.id=#{id}
 </select>
 
+
+<select id="select_couple_img" resultType="main.MainVO">
+select c.couple_num, lm.id,
+case
+when lm.gender = '남' then 'mid'
+else
+'fid'
+end as gender
+from couple c, ling_member lm
+where lm.id = #{id} and c.couple_num = #{couple_num}
+
+</select>
+
+
 </mapper>

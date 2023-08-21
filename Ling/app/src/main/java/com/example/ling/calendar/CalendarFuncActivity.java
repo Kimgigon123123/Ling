@@ -2,8 +2,10 @@ package com.example.ling.calendar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,7 +21,11 @@ import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.exceptions.OutOfDateRangeException;
 import com.applandeo.materialcalendarview.utils.DateUtils;
 import com.example.ling.R;
+import com.example.ling.common.CommonConn;
+import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityCalendarFuncBinding;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,18 +47,14 @@ public class CalendarFuncActivity extends AppCompatActivity {
 
         Calendar calendar = Calendar.getInstance();
         events.add(new EventDay(calendar, DrawableUtils.getCircleDrawableWithText(this, "Today")));
+        events.add(new EventDay(calendar, DrawableUtils.getCircleDrawableWithText(this, "Today")));
+
+
+
 
 
         com.applandeo.materialcalendarview.CalendarView calendarView = (CalendarView) findViewById(R.id.calendarView);
 
-        Calendar min = Calendar.getInstance();
-        min.add(Calendar.MONTH, -2);
-
-        Calendar max = Calendar.getInstance();
-        max.add(Calendar.MONTH, 2);
-
-        calendarView.setMinimumDate(min);
-        calendarView.setMaximumDate(max);
 
         calendarView.setEvents(events);
 
@@ -84,6 +86,20 @@ public class CalendarFuncActivity extends AppCompatActivity {
         return calendars;
     }
 
+
+    public void select(){
+        CommonConn conn = new CommonConn(this, "sche_list");
+        conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+        conn.onExcute((isResult, data) -> {
+//            ArrayList<ScheAddVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<ScheAddVO>>(){}.getType());
+////            Log.d("리스트사이즈", "select: " + list.size());
+//            //if문으로 list의 사이즈처리 해야함.
+//            CalendarAdapter adapter = new CalendarAdapter(list,this);
+//
+//            binding.recvSchedule.setAdapter(adapter);
+//            binding.recvSchedule.setLayoutManager(new LinearLayoutManager(this));
+        });
+    }
 
 
 
