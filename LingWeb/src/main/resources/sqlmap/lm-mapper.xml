@@ -39,5 +39,12 @@ select * from Ling_member where id = #{id}
 insert into couple (mid, fid) values (#{mid} , #{fid})
 </insert>
 
+<!-- 전체 회원정보 조회 -->
+<select id="list" resultType="member.MemberVO">
+select id, pw, name, gender, email, phone, birth
+from LING_MEMBER
+where admin='N'
+</select>
+
 
 </mapper>

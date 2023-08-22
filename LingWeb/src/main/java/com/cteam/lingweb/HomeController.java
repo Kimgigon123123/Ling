@@ -58,11 +58,5 @@ public class HomeController {
 		return "admin";
 	}
 	
-	@RequestMapping(value = "/lingmember", method = RequestMethod.GET)
-	public String lingmember(HttpSession session) {
-		
-		session.setAttribute("active_category", "lingmember");
-		return "lingmember";
-	}
-	//헹
+
 }
