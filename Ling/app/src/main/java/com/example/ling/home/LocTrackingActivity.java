@@ -10,9 +10,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.airbnb.lottie.L;
 import com.example.ling.MainActivity;
 import com.example.ling.R;
 import com.example.ling.calendar.CalendarActivity;
@@ -20,6 +22,7 @@ import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityLocTrackingBinding;
 import com.example.ling.login.Ling_MemberVO;
+import com.google.android.gms.common.internal.service.Common;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -81,6 +84,10 @@ public class LocTrackingActivity extends AppCompatActivity implements OnMapReady
                 requestCode, permissions, grantResults);
     }
 
+    private Marker currentMarker;
+    private Handler handler = new Handler();
+    private LatLng targetLocation;
+
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
         this.naverMap = naverMap;
@@ -88,40 +95,57 @@ public class LocTrackingActivity extends AppCompatActivity implements OnMapReady
         naverMap.setLocationTrackingMode(LocationTrackingMode.Face);
 
         // 상대방의 위치를 표시할 마커 생성
-//        Location lastLocation = locationSource.getLastLocation();
-//        if (lastLocation != null) {
-//            LatLng targetLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude()); // 상대방의 위도와 경도로 설정
-//            Marker marker = new Marker();
-//            marker.setPosition(targetLocation);
-//            marker.setMap(naverMap);
-//            CameraUpdate cameraUpdate = CameraUpdate.scrollAndZoomTo(targetLocation, 15)
-//                    .animate(CameraAnimation.Fly, 2000);
-//            naverMap.moveCamera(cameraUpdate);
-//        } else {
-//            Log.d("error", "onMapReady: " + "실패");
-//        }
-
-        CommonConn conn = new CommonConn(this, "select_location");
-        conn.addParamMap("id", CommonVar.loginInfo.getId());
-        conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
-        conn.onExcute((isResult, data) -> {
-            Ling_MemberVO location = new Gson().fromJson(data, new TypeToken<Ling_MemberVO>(){}.getType());
-            LatLng targetLocation = new LatLng(Double.parseDouble(location.getLat()), Double.parseDouble(location.getLng()));
-            Marker marker = new Marker();
-            marker.setPosition(targetLocation);
-            marker.setMap(naverMap);
-            CameraUpdate cameraUpdate = CameraUpdate.scrollAndZoomTo(
-                            new LatLng(targetLocation.latitude, targetLocation.longitude), 15)
-                    .animate(CameraAnimation.Fly, 2000);
-            naverMap.moveCamera(cameraUpdate);
+        naverMap.addOnCameraIdleListener(() -> {
+            Location lastLocation = locationSource.getLastLocation();
+            if (lastLocation != null) {
+                // 처음에 마커 한번 찍음
+                if (currentMarker == null) {
+                    CommonConn conn = new CommonConn(this, "select_location");
+                    conn.addParamMap("id", CommonVar.loginInfo.getId());
+                    conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+                    conn.onExcute((isResult, data) -> {
+                        Ling_MemberVO location = new Gson().fromJson(data, new TypeToken<Ling_MemberVO>() {
+                        }.getType());
+                        targetLocation = new LatLng(Double.parseDouble(location.getLat()), Double.parseDouble(location.getLng()));
+                        currentMarker = new Marker();
+                        currentMarker.setPosition(targetLocation);
+                        currentMarker.setMap(naverMap);
+                        CameraUpdate cameraUpdate = CameraUpdate.scrollAndZoomTo(targetLocation, 15)
+                                .animate(CameraAnimation.Fly, 2000);
+                        naverMap.moveCamera(cameraUpdate);
+                    });
+                }
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        CommonConn conn = new CommonConn(LocTrackingActivity.this, "update_location");
+                        conn.addParamMap("lat", lastLocation.getLatitude());
+                        conn.addParamMap("lng", lastLocation.getLongitude());
+                        conn.addParamMap("id", CommonVar.loginInfo.getId());
+                        conn.onExcute((isResult, data) -> {
+                            CommonConn locationConn = new CommonConn(LocTrackingActivity.this, "select_location");
+                            locationConn.addParamMap("id", CommonVar.loginInfo.getId());
+                            locationConn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+                            locationConn.onExcute((isResult1, data1) -> {
+                                Ling_MemberVO location = new Gson().fromJson(data1, new TypeToken<Ling_MemberVO>() {
+                                }.getType());
+                                targetLocation = new LatLng(Double.parseDouble(location.getLat()), Double.parseDouble(location.getLng()));
+                                if (currentMarker != null) {
+                                    currentMarker.setMap(null);
+                                }
+                                currentMarker = new Marker();
+                                currentMarker.setPosition(targetLocation);
+                                currentMarker.setMap(naverMap);
+                                CameraUpdate cameraUpdate = CameraUpdate.scrollAndZoomTo(targetLocation, 15)
+                                        .animate(CameraAnimation.Fly, 2000);
+                                naverMap.moveCamera(cameraUpdate);
+                            });
+                        });
+                    }
+                }, 180000);
+            } else {
+                Toast.makeText(this, "위치를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
+            }
         });
-//        LatLng targetLocation = new LatLng( 35.15344618961562, 126.88799619924883); // 상대방의 위도와 경도로 설정
-//        Marker marker = new Marker();
-//        marker.setPosition(targetLocation);
-//        marker.setMap(naverMap);
-//        CameraUpdate cameraUpdate = CameraUpdate.scrollAndZoomTo(
-//                        new LatLng(targetLocation.latitude, targetLocation.longitude), 15)
-//                .animate(CameraAnimation.Fly, 2000);
-//        naverMap.moveCamera(cameraUpdate);
     }
 }

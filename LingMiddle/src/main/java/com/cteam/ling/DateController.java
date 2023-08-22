@@ -139,6 +139,12 @@ public class DateController {
 		return new Gson().toJson(festival5);
 	}
 	
+	// 마지막 위치 저장
+	@RequestMapping(value="/update_location", produces="text/html;charset=utf-8")
+	public void updateLocation(MemberVO vo) {
+		int result = sql.update("date.updatelocation", vo);
+	}
+	
 	// 상대방 위도경도
 	@RequestMapping(value="/select_location", produces="text/html;charset=utf-8")
 	public String location(MemberVO vo) {
