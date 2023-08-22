@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     public void initItem(){
         //                      붙일프래그먼트  ,        아이콘               ,   선택배경색상 ,    글씨  ,       뱃지보여줄꺼면 뱃지 그씨
         list.add(new MainMenuDTO(new DateFragment() , R.drawable.btm_menu_1 ,"#FF8F1B" , "여행지" ,  "여행지 선택"  ));
-        list.add(new MainMenuDTO(new TestChatFragment() , R.drawable.btm_menu_2 ,"#567891" , "채팅" ,  null ));
+        list.add(new MainMenuDTO(new ChatFragment() , R.drawable.btm_menu_2 ,"#567891" , "채팅" ,  null ));
         list.add(new MainMenuDTO(new HomeFragment() , R.drawable.btm_menu_3 ,"#1A000000" , "홈" ,  "홈 선택"  ));
         list.add(new MainMenuDTO(new BoardFragment() , R.drawable.btm_menu_4 ,"#5FB59C" , "게시판" ,  null  ));
         list.add(new MainMenuDTO(new StoreCoFragment() , R.drawable.btm_menu_5 ,"#847253" , "스토어" ,  "스토어 선택"  ));

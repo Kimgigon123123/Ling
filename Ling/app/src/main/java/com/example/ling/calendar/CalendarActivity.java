@@ -57,9 +57,18 @@ public class CalendarActivity extends AppCompatActivity {
         String time = mFormat.format(date);
         binding.tvCalendarNow.setText(time);
 
+        //커플별로 create_date를 가져와야 각자의 기념일을 계산할 수 있음
+        CommonConn conn = new CommonConn(this, "sche_dday");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
+        conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+        conn.addParamMap("create_date", ""); //값을 어떻게 가져오지..
+        conn.onExcute((isResult, data) -> {
+
+        });
 
         SimpleDateFormat anniversary = new SimpleDateFormat("yyyy-MM-dd");
         try {
+            //createDay 조회해서 변경해야 함
             date = anniversary.parse("2023-07-23");
         } catch (ParseException e) {
             throw new RuntimeException(e);

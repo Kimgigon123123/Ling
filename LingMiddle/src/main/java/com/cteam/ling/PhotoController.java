@@ -205,6 +205,7 @@ public class PhotoController {
 			}
 		}
 		
+		
 		int result = dao.FolderDelete(vo);
 		
 		Gson gson = new Gson();
@@ -212,24 +213,38 @@ public class PhotoController {
 		return gson.toJson(result);
 	}
 	
-	
-	
-	
-//  if (folder.exists() && folder.isDirectory()) {
-//  File[] files = folder.listFiles();
-//  if (files != null) {
-//      for (File file : files) {
-//          if (file.isFile() && isImageFile(file.getName())) {
-//          	for (int i = 0; i < files.length; i++) {
-//          	    System.out.println("file: " + files[i]);
-//          	}
+//	@RequestMapping(value = "/folder_delete", produces = "text/html;charset=utf-8")
+//	public String Folder_Delete(FolderVO vo) {
 //
-//          }
-//      }
-//  }
-//}
+//	    // 폴더 삭제 함수 호출
+//	    boolean deleteResult = deleteFolder(new File(folderPath));
 //
-		
+//	    int result = dao.FolderDelete(vo);
+//
+//	    Gson gson = new Gson();
+//
+//	    return gson.toJson(result);
+//	}
+//
+//	// 폴더와 하위 폴더, 파일들을 재귀적으로 삭제하는 함수
+//	private boolean deleteFolder(File folder) {
+//	    if (folder.exists()) {
+//	        File[] files = folder.listFiles();
+//	        if (files != null) {
+//	            for (File file : files) {
+//	                if (file.isDirectory()) {
+//	                    deleteFolder(file); // 하위 폴더 삭제
+//	                } else {
+//	                    file.delete(); // 파일 삭제
+//	                }
+//	            }
+//	        }
+//	        return folder.delete(); // 폴더 삭제
+//	    }
+//	    return false; // 폴더가 존재하지 않을 경우에도 실패로 간주
+//	}
+	
+	
 	
     private boolean isImageFile(String fileName) {
         // 이미지 파일 확장자 체크 (여기에 필요한 이미지 확장자를 추가하세요)
@@ -239,56 +254,13 @@ public class PhotoController {
                 || fileName.toLowerCase().endsWith(".gif");
     }
 	
-	
 
-	
-	
 	private String replaceURL(HttpServletRequest req) {
 		String replaceURL = req.getContextPath();
 		return "http://" + req.getLocalAddr() + ":" + req.getLocalPort() + replaceURL + "/images/photo/";
 	}
 	
 	
-//	@RequestMapping(value="/latest_image", produces="text/html;charset=utf-8")
-//	public String latest_image(HttpServletRequest req) {
-//	    String imageFolderPath = folderPath; // 이미지 폴더 경로를 지정하세요
-//	    File folder = new File(imageFolderPath);
-//
-//	    if (folder.exists() && folder.isDirectory()) {
-//	        File[] imageFiles = folder.listFiles(new FilenameFilter() {
-//	            @Override
-//	            public boolean accept(File dir, String name) {
-//	                String lowercaseName = name.toLowerCase();
-//	                return lowercaseName.endsWith(".jpg") || lowercaseName.endsWith(".jpeg") ||
-//	                        lowercaseName.endsWith(".png") || lowercaseName.endsWith(".gif");
-//	            }
-//	        });
-//
-//	        if (imageFiles != null && imageFiles.length > 0) {
-//	            Arrays.sort(imageFiles, Comparator.comparingLong(File::lastModified).reversed());
-//	            String latestImagePath = imageFiles[0].getAbsolutePath();
-//	            
-//	            Gson gson = new Gson();
-//	            return gson.toJson(latestImagePath);
-//	        }
-//	    }
-//
-//	    return replaceURL(req);
-//	}
-	
-	
-//	String imageExtension = ""; // 이미지 확장자를 저장할 변수 초기화
-//	
-//	String imageName = "";
-//	// 이미지 확장자가 "png" 또는 "jpg"일 때 처리
-//	if (imageName.endsWith(".png") || imageName.endsWith(".jpg")) {
-//	    imageExtension = imageName.substring(imageName.lastIndexOf(".") + 1);
-//
-//	    // 이미지 확장자에 따라 다른 이미지 URL을 생성
-//	    if (!imageExtension.isEmpty()) {
-//	        String imageUrl = "http://" + ip + ":8080/ling/image/photo/" + imageName;
-//
-//	}
-////		ulleung.png
+
 	
 }

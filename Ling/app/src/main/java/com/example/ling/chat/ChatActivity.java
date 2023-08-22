@@ -41,19 +41,23 @@ public class ChatActivity extends AppCompatActivity {
     private Button Button_send;
     private DatabaseReference myRef;
 
-    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm", Locale.KOREA);
+    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh시 mm분", Locale.KOREA);
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityChatBinding.inflate(getLayoutInflater());
 
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         Button_send = binding.btnChat;
         EditText_chat = binding.edtChat;
 
         nick = CommonVar.loginInfo.getName();
+
+
+
+
 
         Date date = new Date(System.currentTimeMillis());
 //        mRecyclerView.scrollToPosition(chatList.size()-1);
@@ -65,15 +69,19 @@ public class ChatActivity extends AppCompatActivity {
                 if(msg != null) {
 
                     chat.setId(CommonVar.loginInfo.getId());
+//                    chat.setCouple_num(CommonVar.loginInfo.getCouple_num());
                     chat.setNickname(nick);
                     chat.setMessage(msg);
                     chat.setTime(mFormat.format(date));
 
 
-
                     mAdapter.notifyDataSetChanged();
                     binding.edtChat.setText("");
+                    myRef = database.getReference().child("chat").child(CommonVar.loginInfo.getCouple_num());
                     myRef.push().setValue(chat);
+
+                    // 특정 조건에 따라 채팅 데이터 삭제
+//                    myRef.child("chat").child(CommonVar.loginInfo.getCouple_num()).removeValue();
 
                 }
 
@@ -93,9 +101,8 @@ public class ChatActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
         // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
-
+        myRef = myRef.child("chat").child(CommonVar.loginInfo.getCouple_num());
 
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -128,7 +135,9 @@ public class ChatActivity extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
+//                myRef.child("chat").child(CommonVar.loginInfo.getCouple_num()).removeValue();
+//                chatList.clear();
+//                mAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -141,7 +150,6 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
-
 
         setContentView(binding.getRoot());
     }
