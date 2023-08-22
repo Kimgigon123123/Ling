@@ -4,8 +4,12 @@
 
 <select id="store_select" resultType="store.StoreVO">
 
-select * from store_item
+select i.*,(item_price*sales) as sales_amount from store_item i
 
+</select>
+
+<select id="store_select_totalsales" resultType="Integer">
+select sum(item_price*sales) as total_sales from store_item
 </select>
 
 

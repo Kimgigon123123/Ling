@@ -22,7 +22,9 @@ public class StoreController {
 	public String store(HttpSession session, Model model) {
 		session.setAttribute("active_category", "store");
 		List<StoreVO> list = sql.selectList("store.store_select");
+		int total_sales = sql.selectOne("store.store_select_totalsales");
 		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
 		return "store";
 	}
 	

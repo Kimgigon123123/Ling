@@ -3,9 +3,34 @@ package store;
 public class StoreVO {
 
  	private String item_code,category_code, item_name,  item_img, item_content,zzim_product ;
-	private int item_price,popular;
+	private int item_price,popular,sales,total_sales,sales_amount;
 
 	
+	
+public int getSales_amount() {
+		return sales_amount;
+	}
+
+	public void setSales_amount(int sales_amount) {
+		this.sales_amount = sales_amount;
+	}
+
+public int getTotal_sales() {
+		return total_sales;
+	}
+
+	public void setTotal_sales(int total_sales) {
+		this.total_sales = total_sales;
+	}
+
+public int getSales() {
+		return sales;
+	}
+
+	public void setSales(int sales) {
+		this.sales = sales;
+	}
+
 public String getZzim_product() {
 		return zzim_product;
 	}

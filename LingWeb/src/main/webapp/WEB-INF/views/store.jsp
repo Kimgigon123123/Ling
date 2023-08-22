@@ -34,15 +34,25 @@
 							<c:forEach items="${list}" var="list">
 								<tr>
 									<th scope="row"><input type="checkbox" /></th>
-									<td class="tm-product-name">${list.item_name}</td>
-									<td>${list.item_price }</td>
-									<td>550</td>
-									<td>28 March 2019</td>
-									<td><a href="#" class="tm-product-delete-link"> <i
-											class="far fa-trash-alt tm-product-delete-icon"></i>
+									<td class="tm-product-name"  style="padding-right: 20px;">${list.item_name}</td>
+									<td  style="padding-right: 20px;">${list.item_price }</td>
+									<td  style="padding-right: 50px;">${list.sales }</td>
+									<td  style="padding-right: 20px;">${list.sales_amount }</td>
+									<td><a href="#" class="tm-product-delete-link"> 
+									<i class='fa-solid fa-circle-info'></i>
 									</a></td>
 								</tr>
 								</c:forEach>
+								
+								<tr>
+									<th scope="row"></th>
+									<td class="tm-product-name"  style="padding-right: 20px;">총 매출</td>
+									<td  style="padding-right: 20px;"></td>
+									<td  style="padding-right: 50px;"></td>
+									<td  style="padding-right: 20px;">${total_sales}</td>
+									<td></td>
+								</tr>
+								
 							</tbody>
 						</table>
 					</div>
@@ -50,7 +60,7 @@
 					<a href="addstore"
 						class="btn btn-primary btn-block text-uppercase mb-3">새상품 등록</a>
 					<button class="btn btn-primary btn-block text-uppercase">
-						Delete selected products</button>
+					상품 삭제</button>
 				</div>
 			</div>
 			<div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
