@@ -55,5 +55,10 @@ public class MemberDAO {
 		return sql.insert("member.matching", map);
 	}
 
+	@Autowired
+	public List<MemberVO> member_list() {
+		
+		return sql.selectList("member.list");
+	}
 	
 }

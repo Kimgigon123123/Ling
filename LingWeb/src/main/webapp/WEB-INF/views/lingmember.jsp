@@ -2,140 +2,63 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Accounts - Product Admin Template</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:400,700"
-    />
-    <!-- https://fonts.google.com/specimen/Roboto -->
-    <link rel="stylesheet" href="css/fontawesome.min.css" />
-    <!-- https://fontawesome.com/ -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <!-- https://getbootstrap.com/ -->
-    <link rel="stylesheet" href="css/templatemo-style.css">
-    <!--
-	Product Admin CSS Template
-	https://templatemo.com/tm-524-product-admin
-	-->
-  </head>
+  
 <body id="reportsPage">
+
 <div class="container mt-5">
-        <div class="row tm-content-row">
-          <div class="col-12 tm-block-col">
-            <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-              <h2 class="tm-block-title">List of Accounts</h2>
-              <p class="text-white">Accounts</p>
-              <select class="custom-select">
-                <option value="0">Select account</option>
-                <option value="1">Admin</option>
-                <option value="2">Editor</option>
-                <option value="3">Merchant</option>
-                <option value="4">Customer</option>
-              </select>
+      <div class="row tm-content-row">
+        <div class="col-12 col-12 tm-block-col">
+          <div class="tm-bg-primary-dark tm-block tm-block-products">
+          <div class="row mx-0 justify-content-between align-items-center mb-3">
+	          <h2 class="tm-block-title col-lg-4 px-0">회원 리스트</h2>
+					
+	            <select class="custom-select col-lg-4">
+	                <option value="0">LING_MEMBER</option>
+	                <option value="1">COUPLE</option>
+	            </select>
             </div>
+            <div class="tm-product-table-container">
+              <table class="table table-hover tm-table-small tm-product-table">
+                <thead>
+				<tr>
+					<th scope="col">&nbsp;</th>
+					<th scope="col">ID</th>
+					<th scope="col">PW</th>
+					<th scope="col">NAME</th>
+					<th scope="col">GENDER</th>
+					<th scope="col">EMAIL</th>
+					<th scope="col">PHONE</th>
+					<th scope="col">BIRTH</th>
+					<th scope="col">&nbsp;</th>
+				</tr>
+                </thead>
+                <tbody>
+				<c:forEach items="${list}" var="vo">
+				<tr>
+					<th scope="row"><input type="checkbox" /></th>
+					<td class="tm-product-name">${vo.id }</td>
+					<td>${vo.pw }</td>
+					<td>${vo.name }</td>
+					<td>${vo.gender }</td>
+					<td>${vo.email }</td>
+					<td>${vo.phone }</td>
+					<td>${vo.birth }</td>
+					<td><a href="#" class="tm-product-delete-link"> <i
+							class="far fa-trash-alt tm-product-delete-icon"></i>
+					</a></td>
+				</tr>
+				</c:forEach>
+                </tbody>
+              </table>
+            </div>
+            <!-- table container -->
+            <a href="detailmember" class="btn btn-primary btn-block mb-3">신규등록</a>
+			<button class="btn btn-primary btn-block col-lg-4">선택 삭제</button>
           </div>
         </div>
-        <!-- row -->
-        <div class="row tm-content-row">
-          <div class="tm-block-col tm-col-avatar">
-            <div class="tm-bg-primary-dark tm-block tm-block-avatar">
-              <h2 class="tm-block-title">Change Avatar</h2>
-              <div class="tm-avatar-container">
-                <img
-                  src="img/avatar.png"
-                  alt="Avatar"
-                  class="tm-avatar img-fluid mb-4"
-                />
-                <a href="#" class="tm-avatar-delete-link">
-                  <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                </a>
-              </div>
-              <button class="btn btn-primary btn-block text-uppercase">
-                Upload New Photo
-              </button>
-            </div>
-          </div>
-          <div class="tm-block-col tm-col-account-settings">
-            <div class="tm-bg-primary-dark tm-block tm-block-settings">
-              <h2 class="tm-block-title">Account Settings</h2>
-              <form action="" class="tm-signup-form row">
-                <div class="form-group col-lg-6">
-                  <label for="name">Account Name</label>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    class="form-control validate"
-                  />
-                </div>
-                <div class="form-group col-lg-6">
-                  <label for="email">Account Email</label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    class="form-control validate"
-                  />
-                </div>
-                <div class="form-group col-lg-6">
-                  <label for="password">Password</label>
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    class="form-control validate"
-                  />
-                </div>
-                <div class="form-group col-lg-6">
-                  <label for="password2">Re-enter Password</label>
-                  <input
-                    id="password2"
-                    name="password2"
-                    type="password"
-                    class="form-control validate"
-                  />
-                </div>
-                <div class="form-group col-lg-6">
-                  <label for="phone">Phone</label>
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    class="form-control validate"
-                  />
-                </div>
-                <div class="form-group col-lg-6">
-                  <label class="tm-hide-sm">&nbsp;</label>
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-block text-uppercase"
-                  >
-                    Update Your Profile
-                  </button>
-                </div>
-                <div class="col-12">
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-block text-uppercase"
-                  >
-                    Delete Your Account
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+        
       </div>
-      
     </div>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <!-- https://jquery.com/download/ -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- https://getbootstrap.com/ -->
 </body>
 </html>
