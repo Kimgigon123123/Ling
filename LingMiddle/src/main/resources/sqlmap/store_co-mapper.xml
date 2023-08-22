@@ -64,5 +64,9 @@ order by p.order_num desc
 
 </select>
 
+<update id="sales_up">
+update store_item set sales=sales+#{purchase_cnt} where item_code=#{item_code}
+</update>
+
 
 </mapper>

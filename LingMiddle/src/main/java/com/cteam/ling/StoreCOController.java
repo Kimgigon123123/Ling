@@ -95,6 +95,14 @@ public class StoreCOController {
 		return gson.toJson(list);
 	}
 	
+	//물건 구매시 판매량  증가
+	@RequestMapping(value="/store_sales_up",produces="text/html;charset=utf-8")
+	public String sales_up(StorePurchaseListVO vo) {
+		int result = sql.update("store_co.sales_up",vo);
+		Gson gson = new Gson();
+		return gson.toJson(result);
+	}
+	
 	
 	
 }

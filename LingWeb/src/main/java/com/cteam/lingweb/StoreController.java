@@ -22,10 +22,18 @@ public class StoreController {
 	public String store(HttpSession session, Model model) {
 		session.setAttribute("active_category", "store");
 		List<StoreVO> list = sql.selectList("store.store_select");
-		int total_sales = sql.selectOne("store.store_select_totalsales");
+		String total_sales = sql.selectOne("store.store_select_totalsales");
 		model.addAttribute("list",list);
 		model.addAttribute("total_sales",total_sales);
 		return "store";
+	}
+	
+	@RequestMapping(value = "/store_delivery", method = RequestMethod.GET)
+	public String store_delivery(HttpSession session, Model model) {
+		session.setAttribute("active_category", "store");
+		List<StoreVO> list = sql.selectList("store.store_delivery_select");
+		model.addAttribute("list",list);
+		return "store_delivery";
 	}
 	
 	@RequestMapping(value = "/addstore", method = RequestMethod.GET)
