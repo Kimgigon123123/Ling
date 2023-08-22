@@ -187,6 +187,11 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
+        binding.carvPhoto.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), PhotoActivity.class);
+            startActivity(intent);
+        });
+
 
         Date date = new Date();
 

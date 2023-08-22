@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -57,6 +58,10 @@ public class ChatFragment extends Fragment {
         EditText_chat = binding.edtChat;
 
         nick = CommonVar.loginInfo.getName();
+
+
+        //키보드 올라올 시 view가림 방지
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
 
 
