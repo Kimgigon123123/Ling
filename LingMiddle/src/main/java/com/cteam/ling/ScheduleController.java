@@ -51,4 +51,23 @@ public class ScheduleController {
 		
 		return gson.toJson(result);
 	}
+	
+	@RequestMapping(value="/sche_update",produces="text/html;charset=utf-8")
+	public String sche_Update(ScheAddVO vo) {
+		int result = dao.update(vo);
+		
+		Gson gson = new Gson();
+		return gson.toJson(result);
+	}
+	
+	@RequestMapping(value="/sche_dday",produces="text/html;charset=utf-8")
+	public String sche_Dday(ScheAddVO vo) {
+		
+		List<ScheAddVO> list = dao.getDday(vo) ;
+		Gson gson = new Gson();	
+		
+		return gson.toJson(list);
+	}
+	
+	
 }

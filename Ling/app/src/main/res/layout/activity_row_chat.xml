@@ -8,15 +8,16 @@
     android:padding="16dp">
 
 
-
     <ImageView
         android:id="@+id/iv"
         android:layout_marginTop="10dp"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/man"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/woman"
+        android:scaleType="fitXY"
+        android:background="@drawable/chat_layout_radius"
         />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

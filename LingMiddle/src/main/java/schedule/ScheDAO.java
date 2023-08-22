@@ -29,4 +29,14 @@ public class ScheDAO {
 		int result = sql.delete("sche.delete", vo);
 		return result;
 	}
+	
+	public int update(ScheAddVO vo) {
+		int result = sql.update("sche.update", vo);
+		return result;
+	}
+	
+	public List<ScheAddVO> getDday(ScheAddVO vo){
+		List<ScheAddVO>  list = sql.selectList("sche.dday", vo);
+		return list;
+	}
 }

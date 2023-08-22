@@ -79,14 +79,7 @@ public class PhotoActivity extends AppCompatActivity {
             finish();
         });
 
-        // 챗 테스트 지울 옮길 예정
-        binding.imgvChat.setOnClickListener(view -> {
-            Intent intent = new Intent(PhotoActivity.this, ChatActivity.class);
-            intent.putExtra("id", CommonVar.loginInfo.getId());
-            intent.putExtra("name", CommonVar.loginInfo.getName());
-            intent.putExtra("couple_num", CommonVar.loginInfo.getCouple_num());
-            startActivity(intent);
-        });
+
 
 
 

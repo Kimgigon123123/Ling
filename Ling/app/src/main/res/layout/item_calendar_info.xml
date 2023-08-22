@@ -2,30 +2,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     >
+    <ImageView
+        android:id="@+id/imgv_cal_category"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/sample_circle"
+        />
+
 
     <TextView
         android:id="@+id/tv_calendar_info_title"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
+        android:layout_marginLeft="3dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:textSize="15dp"
         android:textStyle="bold"
         android:text="일정: "
         />
 
-    <TextView
-        android:id="@+id/tv_calendar_info_date"
-        android:layout_marginLeft="20dp"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/imgv_btn_menu"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="15dp"
-        android:text="날짜:"
-        android:paddingBottom="10dp"
+        android:src="@drawable/menu"
+        android:layout_marginRight="20dp"
         />
+
+
 
 
 

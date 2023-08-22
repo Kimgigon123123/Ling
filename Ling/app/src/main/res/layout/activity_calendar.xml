@@ -162,7 +162,6 @@
             android:orientation="horizontal"
             >
             <TextView
-
                 android:layout_marginLeft="10dp"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
