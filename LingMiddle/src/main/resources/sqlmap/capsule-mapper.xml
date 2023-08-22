@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="capsule">
+
+<insert id="capsule_insert">
+insert into time_capsule 
+values (seq_capsule.nextval,#{couple_num},#{id},#{tc_title},to_date(#{tc_date}),#{tc_content},'CLOSE',sysdate)
+</insert>
+
+<select id="capsule_select" resultType="capsule.CapsuleVO">
+
+SELECT 
+    i.*,
+    CASE WHEN TO_DATE(tc_date, 'YYYY-MM-DD') - TO_DATE(create_date, 'YYYY-MM-DD') > 0 then 'd-'||to_char((TO_DATE(tc_date, 'YYYY-MM-DD') - TO_DATE(create_date, 'YYYY-MM-DD')))
+    else 'd-day'
+    end as d_day,
+    CASE 
+        WHEN TO_DATE(tc_date, 'YYYY-MM-DD') - TO_DATE(create_date, 'YYYY-MM-DD') > 0 THEN '개봉불가'
+        ELSE '개봉가능'
+    END as isopen
+FROM time_capsule i
+where couple_num=#{couple_num}
+order by tc_date
+
+</select>
+
+<select id="letter_select" resultType="capsule.CapsuleVO">
+
+SELECT 
+    t.*,
+    CASE WHEN TO_DATE(tc_date, 'YYYY-MM-DD') - TO_DATE(create_date, 'YYYY-MM-DD') > 0 then 'd-'||to_char((TO_DATE(tc_date, 'YYYY-MM-DD') - TO_DATE(create_date, 'YYYY-MM-DD')))
+    else 'd-day'
+    end as d_day,
+    CASE 
+        WHEN TO_DATE(tc_date, 'YYYY-MM-DD') - TO_DATE(create_date, 'YYYY-MM-DD') > 0 THEN '개봉불가'
+        ELSE '개봉가능'
+    END as isopen,
+    name
+FROM time_capsule t,ling_member m
+where couple_num=#{couple_num}
+and t.id = m.id
+order by tc_date
+</select>
+</mapper>
