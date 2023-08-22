@@ -32,9 +32,12 @@ public class StorePurchaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding= ActivityStorePurchaseBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         Intent intent = getIntent();
-        setContentView(binding.getRoot());
+
+
+
 
         String name = intent.getStringExtra("name");
         String content = intent.getStringExtra("content");

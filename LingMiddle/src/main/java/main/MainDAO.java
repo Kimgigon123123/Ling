@@ -18,7 +18,7 @@ public class MainDAO {
 	SqlSession sql;
 	
 	public List<MainVO> getProfile_img(HashMap<String, Object> param){
-		List<MainVO> list = sql.selectList("main.select_couple_image",param);
+		List<MainVO> list = sql.selectList("main.select_couple_img",param);
 		return list;
 	}
 	

@@ -4,7 +4,23 @@ public class DateInfoVO {
 
 	private int date_id;
 	private String date_category_code, date_name, date_intro, date_address, date_sido, date_sigungu, tel, lan, lng,
-			open, end, date_img;
+			open, end, date_img, dibs, id;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getDibs() {
+		return dibs;
+	}
+
+	public void setDibs(String dibs) {
+		this.dibs = dibs;
+	}
 
 	public String getDate_img() {
 		return date_img;

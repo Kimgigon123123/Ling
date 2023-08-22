@@ -34,6 +34,8 @@ public class RestDetailActivity extends AppCompatActivity {
         bundle.putString("tel", getIntent().getStringExtra("tel"));
         bundle.putString("open", getIntent().getStringExtra("open"));
         bundle.putString("end", getIntent().getStringExtra("end"));
+        bundle.putInt("date_id", getIntent().getIntExtra("date_id", -1));
+        bundle.putString("date_category_code", getIntent().getStringExtra("date_category_code"));
         restInfoFragment.setArguments(bundle);
 
         bundle.putString("lan", getIntent().getStringExtra("lan"));

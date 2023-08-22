@@ -42,17 +42,29 @@
 
 <!-- 여행목록_전체 -->
 <select id="tour" resultType="date.DateInfoVO">
-	select * from date_info where date_category_code = 'TO'
+	select i.*,
+	case when i.date_id in (select d.date_id from date_dibs d where id=#{id}) then '♥'
+	else '♡'
+	end as dibs
+	from date_info i where date_category_code = 'TO'
 </select>
 
 <!-- 맛집목록_전체 -->
 <select id="restaurant" resultType="date.DateInfoVO">
-	select * from date_info where date_category_code = 'RE' and rownum <![CDATA[<=]]> 500
+	select i.*,
+	case when i.date_id in (select d.date_id from date_dibs d where id=#{id}) then '♥'
+	else '♡'
+	end as dibs
+	from date_info i where date_category_code = 'RE' and rownum <![CDATA[<=]]> 300
 </select>
 
 <!-- 축제목록_전체 -->
 <select id="festival" resultType="date.DateInfoVO">
-	select * from date_info where date_category_code = 'FE'
+	select i.*,
+	case when i.date_id in (select d.date_id from date_dibs d where id=#{id}) then '♥'
+	else '♡'
+	end as dibs
+	from date_info i where date_category_code = 'FE'
 </select>
 
 <!-- 관심 목록 추가 -->
@@ -62,22 +74,34 @@
 
 <!-- 관심 목록 제거 -->
 <delete id="delete_dibs">
-	delete from date_dibs where dibs_id = #{dibs_id} and id = #{id}
+	delete from date_dibs where date_id = #{date_id} and id = #{id}
 </delete>
 
 <!-- 여행 검색 -->
 <select id="searchtour" resultType="date.DateInfoVO">
-	select * from date_info where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'TO'
+	select i.*, 
+	case when i.date_id in (select d.date_id from date_dibs d where id=#{id}) then '♥'
+	else '♡'
+	end as dibs
+	from date_info i where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'TO'
 </select> 
 
 <!-- 맛집 검색 -->
 <select id="searchrest" resultType="date.DateInfoVO">
-	select * from date_info where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'RE'
+	select i.*,
+	case when i.date_id in (select d.date_id from date_dibs d where id=#{id}) then '♥'
+	else '♡'
+	end as dibs
+	from date_info i where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'RE'
 </select>
 
 <!-- 축제 검색 -->
 <select id="searchfest" resultType="date.DateInfoVO">
-	select * from date_info where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'FE'
+	select i.*,
+	case when i.date_id in (select d.date_id from date_dibs d where id=#{id}) then '♥'
+	else '♡'
+	end as dibs
+	from date_info i where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'FE'
 </select>
 
 <!-- 여행 목록 5개 -->
@@ -93,6 +117,21 @@
 <!-- 축제 목록 5개 -->
 <select id="festival5" resultType="date.DateInfoVO">
 	select * from date_info where date_category_code = 'FE' and rownum <![CDATA[<=]]> 5
+</select>
+
+<!-- 마지막 위치 저장 -->
+<update id="updatelocation">
+	update ling_member
+	set lat = #{lat}, lng = #{lng}
+	where id = #{id}
+</update>
+
+<!-- 상대방 위도경도 -->
+<select id="location" resultType="member.MemberVO">
+	select lat, lng from ling_member m, couple co
+	where ((co.fid=m.id) or (co.mid=m.id))
+	and m.id != #{id}
+	and co.couple_num = #{couple_num}
 </select>
 
 </mapper>

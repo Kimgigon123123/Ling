@@ -40,7 +40,7 @@ public class HomeController {
 	public String home() {
 
 
-		return "address";
+		return "address/address/address";
 	}
 	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)

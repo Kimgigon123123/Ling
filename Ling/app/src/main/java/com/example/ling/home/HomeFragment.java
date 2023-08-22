@@ -30,6 +30,7 @@ import android.view.animation.RotateAnimation;
 import com.bumptech.glide.Glide;
 import com.example.ling.R;
 import com.example.ling.calendar.CalendarActivity;
+import com.example.ling.capsule.CapsuleMainActivity;
 import com.example.ling.common.RetClient;
 import com.example.ling.common.RetInterface;
 import com.example.ling.common.CommonConn;
@@ -160,6 +161,16 @@ public class HomeFragment extends Fragment {
 //            Intent intent = new Intent(getContext(), LocTrackingActivity.class);
 //            startActivity(intent);
 //        });
+
+        binding.imgvMenuTimeCapsule.setOnClickListener(v->{
+            Intent intent = new Intent(getContext(), CapsuleMainActivity.class);
+            startActivity(intent);
+        });
+
+        binding.imgvMenuLocation.setOnClickListener(v->{
+            Intent intent = new Intent(getContext(), LocTrackingActivity.class);
+            startActivity(intent);
+        });
 
 
         Date date = new Date();

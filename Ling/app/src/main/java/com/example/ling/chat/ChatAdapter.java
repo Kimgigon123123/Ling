@@ -1,6 +1,7 @@
 package com.example.ling.chat;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,18 +70,19 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder>{
 
 
 
-        if(chat.getNickname() != null && chat.getNickname().equals(mynickName)) {
-            holder.TextView_nickname.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
-            holder.TextView_msg.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
-            holder.TextView_time.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+        if(chat.getNickname() != null) {
+            if(chat.getNickname().equals(mynickName)) {
+                holder.TextView_nickname.setGravity(Gravity.END);
+                holder.TextView_msg.setGravity(Gravity.END);
+                holder.TextView_time.setGravity(Gravity.END);
 
+            }else{
+                holder.TextView_msg.setGravity(Gravity.START);
+                holder.TextView_nickname.setGravity(Gravity.START);
+                holder.TextView_time.setGravity(Gravity.START);
+            }
+        }
 
-        }
-        else if(chat.getNickname() != null && !chat.getNickname().equals(mynickName)) {
-            holder.TextView_msg.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-            holder.TextView_nickname.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-            holder.TextView_time.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-        }
 
     }
 

@@ -49,7 +49,7 @@ public class DibsAdapter extends RecyclerView.Adapter<DibsAdapter.ViewHolder> {
         h.binding.tvAddr.setText(list.get(i).getDate_address());
         h.binding.btnDelete.setOnClickListener(v -> {
             CommonConn conn = new CommonConn(context, "date_deletedibs");
-            conn.addParamMap("dibs_id", list.get(i).getDibs_id());
+            conn.addParamMap("date_id", list.get(i).getDate_id());
             conn.addParamMap("id", CommonVar.loginInfo.getId());
             conn.onExcute((isResult, data) -> {
                 list.remove(i);

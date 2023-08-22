@@ -28,8 +28,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".chat.ChatActivity"
-            android:windowSoftInputMode="adjustResize"
+            android:name=".capsule.CapsuleAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".capsule.CapsuleMainActivity"
             android:exported="false" />
         <activity
             android:name=".board.Board_ReCommentActivity"
