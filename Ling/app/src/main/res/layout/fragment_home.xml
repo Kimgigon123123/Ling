@@ -61,14 +61,14 @@
 
 
             <LinearLayout
+
                 android:layout_gravity="bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
 
                 <FrameLayout
-                    android:padding="10dp"
-                    android:layout_marginTop="20dp"
+
                     android:layout_gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -80,6 +80,7 @@
                         android:layout_height="match_parent"/>
 
                     <RelativeLayout
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         >
@@ -92,22 +93,17 @@
                             android:layout_height="80dp">
 
                             <LinearLayout
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:layout_marginLeft="20dp"
-                                android:layout_margin="20dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-
+                                android:layout_margin="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
                                 <androidx.cardview.widget.CardView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     app:cardCornerRadius="100dp"
                                     >
                                     <ImageView
                                         android:id="@+id/imgv_manProfile"
-                                        android:layout_width="match_parent"
+                                        android:layout_width="100dp"
                                         android:layout_height="86dp"
                                         android:scaleType="fitXY"
                                         android:src="@drawable/man" />
@@ -133,11 +129,11 @@
 
                                 <TextView
                                     android:id="@+id/tv_mid"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     android:padding="5dp"
                                     android:text="남자 이름"
-                                    android:textColor="#000"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
+                                    android:textColor="#000" />
                             </androidx.cardview.widget.CardView>
                         </FrameLayout>
 
@@ -152,10 +148,7 @@
 
 
                             <LinearLayout
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:layout_marginLeft="20dp"
-                                android:layout_margin="20dp"
+                                android:layout_margin="10dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
@@ -196,11 +189,11 @@
 
                                 <TextView
                                     android:id="@+id/tv_fid"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     android:padding="5dp"
                                     android:text="여자 이름"
-                                    android:textColor="#000"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
+                                    android:textColor="#000" />
 
                             </androidx.cardview.widget.CardView>
                         </FrameLayout>
@@ -295,10 +288,9 @@
                 android:layout_weight="2"
                 >
                 <androidx.cardview.widget.CardView
-                    android:backgroundTint="#00000000"
+
                     style="@style/frag_home_menu_cardv"
-                    android:outlineProvider="none"
-                    android:translationZ="12dp"
+                    android:backgroundTint="#FFFFFF"
                     >
                     <ImageView
                         android:src="@drawable/menu_homefrag_img5"
