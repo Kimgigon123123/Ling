@@ -28,8 +28,8 @@ public class PhotoController {
 	@Autowired PhotoDAO dao;
 	@Autowired SqlSession sql;
 	public static String ip = "192.168.0.28";
-	public static String folderPath = "D:\\Ling\\Ling\\image\\photo\\";
-//	public static String folderPath = "D:\\WorkSpace\\Ling\\image\\photo\\";
+//	public static String folderPath = "D:\\Ling\\Ling\\image\\photo\\";
+	public static String folderPath = "D:\\WorkSpace\\Ling\\image\\photo\\";
 	
 	@RequestMapping(value="/file.f", produces="text/html;charset=utf-8")
 	public String list(HttpServletRequest req) throws IllegalStateException, IOException { //req(요청에 대한 모든정보), res
@@ -168,7 +168,7 @@ public class PhotoController {
         }
 		
 
-			dao.FolderInsert(vo) ;
+			dao.folderInsert(vo) ;
 			
 			Gson gson = new Gson();	
 			
@@ -191,59 +191,73 @@ public class PhotoController {
         return replaceURL(req);
     }
 	
-	@RequestMapping(value="/folder_delete",produces="text/html;charset=utf-8")
-	public String Folder_Delete(FolderVO vo) {
-		
-		File folder = new File(folderPath);
-		if(folder.exists()) {
-			boolean delete = folder.delete();
-			
-			if(delete) {
-				System.out.println("폴더가 삭제되었습니다.");
-			}else {
-				System.out.println("폴더 삭제에 실패했습니다.");
-			}
-		}
-		
-		
-		int result = dao.FolderDelete(vo);
-		
-		Gson gson = new Gson();
-		
-		return gson.toJson(result);
+//	@RequestMapping(value="/folder_delete",produces="text/html;charset=utf-8")
+//	public String Folder_Delete(FolderVO vo) {
+//		
+//		File folder = new File(folderPath);
+//		if(folder.exists()) {
+//			boolean delete = folder.delete();
+//			
+//			if(delete) {
+//				System.out.println("폴더가 삭제되었습니다.");
+//			}else {
+//				System.out.println("폴더 삭제에 실패했습니다.");
+//			}
+//		}
+//		
+//		
+//		int result = dao.FolderDelete(vo);
+//		
+//		Gson gson = new Gson();
+//		
+//		return gson.toJson(result);
+//	}
+	
+	@RequestMapping(value = "/folder_delete", produces = "text/html;charset=utf-8")
+	public String folder_Delete(FolderVO vo) {
+
+	    // 폴더 삭제 함수 호출
+		String addPath = "/" + vo.getCouple_num() + "/" + vo.getFolder_name();
+		String fullPath = folderPath + addPath;
+	    boolean deleteResult = deleteFolder(new File(fullPath));
+
+	    int result = dao.folderDelete(vo);
+
+	    Gson gson = new Gson();
+
+	    return gson.toJson(result);
+	}
+
+	// 폴더와 하위 폴더, 파일들을 재귀적으로 삭제하는 함수
+	private boolean deleteFolder(File folder) {
+	    if (folder.exists()) {
+	        File[] files = folder.listFiles();
+	        if (files != null) {
+	            for (File file : files) {
+	                if (file.isDirectory()) {
+	                    deleteFolder(file); // 하위 폴더 삭제
+	                } else {
+	                    file.delete(); // 파일 삭제
+	                }
+	            }
+	        }
+	        return folder.delete(); // 폴더 삭제
+	    }
+	    return false; // 폴더가 존재하지 않을 경우에도 실패로 간주
 	}
 	
-//	@RequestMapping(value = "/folder_delete", produces = "text/html;charset=utf-8")
-//	public String Folder_Delete(FolderVO vo) {
-//
-//	    // 폴더 삭제 함수 호출
-//	    boolean deleteResult = deleteFolder(new File(folderPath));
-//
-//	    int result = dao.FolderDelete(vo);
-//
-//	    Gson gson = new Gson();
-//
-//	    return gson.toJson(result);
-//	}
-//
-//	// 폴더와 하위 폴더, 파일들을 재귀적으로 삭제하는 함수
-//	private boolean deleteFolder(File folder) {
-//	    if (folder.exists()) {
-//	        File[] files = folder.listFiles();
-//	        if (files != null) {
-//	            for (File file : files) {
-//	                if (file.isDirectory()) {
-//	                    deleteFolder(file); // 하위 폴더 삭제
-//	                } else {
-//	                    file.delete(); // 파일 삭제
-//	                }
-//	            }
-//	        }
-//	        return folder.delete(); // 폴더 삭제
-//	    }
-//	    return false; // 폴더가 존재하지 않을 경우에도 실패로 간주
-//	}
 	
+	@RequestMapping(value = "/file_delete", produces = "text/html;charset=utf-8")
+	public String file_Delete(PhotoVO vo) {
+		
+		int result = dao.fileDelete(vo);
+
+	    Gson gson = new Gson();
+
+	    return gson.toJson(result);
+	
+		
+	}
 	
 	
     private boolean isImageFile(String fileName) {

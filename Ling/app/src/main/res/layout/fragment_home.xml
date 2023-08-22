@@ -291,6 +291,7 @@
                 android:layout_weight="2"
                 >
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cdv_photo"
                     style="@style/frag_home_menu_cardv"
                     android:backgroundTint="#FFFFFF"
                     >
