@@ -119,6 +119,13 @@
 	select * from date_info where date_category_code = 'FE' and rownum <![CDATA[<=]]> 5
 </select>
 
+<!-- 마지막 위치 저장 -->
+<update id="updatelocation">
+	update ling_member
+	set lat = #{lat}, lng = #{lng}
+	where id = #{id}
+</update>
+
 <!-- 상대방 위도경도 -->
 <select id="location" resultType="member.MemberVO">
 	select lat, lng from ling_member m, couple co
