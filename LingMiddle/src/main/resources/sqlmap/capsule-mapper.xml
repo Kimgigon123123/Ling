@@ -20,7 +20,7 @@ SELECT
     END as isopen
 FROM time_capsule i
 where couple_num=#{couple_num}
-order by tc_date
+order by tc_date, to_number(tc_no) desc
 
 </select>
 
@@ -39,6 +39,15 @@ SELECT
 FROM time_capsule t,ling_member m
 where couple_num=#{couple_num}
 and t.id = m.id
-order by tc_date
+order by tc_date , to_number(tc_no) desc
 </select>
+
+
+<update id="update_capsule_state">
+update time_capsule set tc_state = 'OPEN' where tc_no=#{tc_no}
+</update>
+
+<delete id="delete_capsule">
+delete time_capsule where tc_no=#{tc_no}
+</delete>
 </mapper>
