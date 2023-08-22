@@ -66,6 +66,10 @@ WHERE folder_name <> 'all' AND pho_img LIKE '%' || '/' || (
 		delete from photo_folder where folder_name = #{folder_name}
 	</delete>
 	
+	<delete id="file_delete">
+		delete from photo_category where folder_name = #{folder_name}
+	</delete>
+	
 	
 	<select id="storage" resultType="photo.PhotoVO">
 		select pho_img from photo_category where folder_name = 'all' and pho_img like '%' || '/' || (
