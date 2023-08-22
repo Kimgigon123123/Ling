@@ -26,4 +26,14 @@ and s.couple_num = #{couple_num}
 	delete from schedule where sche_no = #{sche_no}
 </delete>
 
+<update id="update">
+	update schedule set sche_title = #{sche_title} where couple_num = #{couple_num} and sche_no = #{sche_no}
+</update>
+
+<select id="dday" resultType="schedule.ScheAddVO">
+	select c.create_date, s.id, s.couple_num 
+	from schedule s, couple c 
+	where s.couple_num=c.couple_num and s.couple_num = #{couple_num}
+</select>
+
 </mapper>

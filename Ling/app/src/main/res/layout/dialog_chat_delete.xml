@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/chat_layout_radius"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/textDeleteMessage"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="해당 메시지를 삭제하시겠습니까?" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+    <Button
+        android:id="@+id/btnConfirmDelete"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#2B8FB6"
+        android:layout_margin="20dp"
+        android:text="삭제" />
+
+    <Button
+        android:id="@+id/btnCancelDelete"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#D32A3E"
+        android:layout_margin="20dp"
+        android:text="취소" />
+    </LinearLayout>
+</LinearLayout>

@@ -28,7 +28,7 @@ public class CalendarAddActivity extends AppCompatActivity {
     Calendar myCalendar = Calendar.getInstance();
 
     ArrayList<Spinner> list = new ArrayList<>();
-
+    String sche_typecode = "";
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(android.widget.DatePicker view, int year, int month, int dayOfMonth) {
@@ -122,6 +122,7 @@ public class CalendarAddActivity extends AppCompatActivity {
         conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
         conn.addParamMap("sche_title", binding.edtCalendarTitle.getText().toString());
         conn.addParamMap("sche_date", binding.tvCalendarSche.getText().toString());
+//        conn.addParamMap("sche_typecode", );
 
 
         if(binding.pushCheck.isChecked()){
@@ -132,21 +133,21 @@ public class CalendarAddActivity extends AppCompatActivity {
         }
 
 
-
+        // 수정필요
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
                 String selectedSpinner = parent.getItemAtPosition(i).toString();
                 if(selectedSpinner.equals("결혼기념일")){
-                    conn.addParamMap("sche_typecode", "wedding");
+                    sche_typecode= "wedding";
                 }else if(selectedSpinner.equals("생일")){
-                    conn.addParamMap("sche_typecode", "birth");
+                    sche_typecode= "birth";
                 }else if(selectedSpinner.equals("출산예정일")){
-                    conn.addParamMap("sche_typecode", "childbirth");
+                    sche_typecode= "childbirth";
                 }else if(selectedSpinner.equals("커플여행")){
-                    conn.addParamMap("sche_typecode", "travel");
+                    sche_typecode= "travel";
                 }else{
-                    conn.addParamMap("sche_typecode", "default");
+                    sche_typecode= "default";
                 }
 
             }
