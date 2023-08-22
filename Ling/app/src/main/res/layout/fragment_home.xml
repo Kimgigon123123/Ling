@@ -229,6 +229,7 @@
                 style="@style/frag_home_menu_cardv_linear"
                 >
             <androidx.cardview.widget.CardView
+                android:id="@+id/cdv_loctacking"
                 style="@style/frag_home_menu_cardv"
                 >
                 <ImageView
@@ -253,6 +254,7 @@
                 style="@style/frag_home_menu_cardv_linear"
                 >
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cdv_calendar"
                     style="@style/frag_home_menu_cardv"
                     >
                     <ImageView
@@ -268,6 +270,7 @@
 
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cdv_capsule"
                     style="@style/frag_home_menu_cardv"
                     >
                     <ImageView
