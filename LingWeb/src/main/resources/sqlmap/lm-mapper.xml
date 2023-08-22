@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+<select id="login" resultType="member.MemberVO">
+select L.* , NVL2( NVL(M.COUPLE_NUM,F.COUPLE_NUM) , NVL(F.COUPLE_NUM,M.COUPLE_NUM) , 0  ) COUPLE_NUM
+from Ling_member L left outer join (SELECT COUPLE_NUM , C.MID ID  FROM COUPLE C ) M ON M.ID = L.ID
+                   left outer join (SELECT COUPLE_NUM , C.FID ID  FROM COUPLE C ) F ON F.ID = L.ID
+
+where L.id=#{id} and L.pw=#{pw}
+</select>	
+
+<select id="findid" resultType="member.MemberVO">
+select id from Ling_member where name = #{name} and phone =#{phone}
+</select>
+
+<!--아이디와 이메일에 해당하는 회원명 조회  -->
+<select id="useridEmail" resultType="String">
+select name from Ling_member where id = #{id} and email =#{email}
+</select>
+
+<!--비번 변경저장  -->
+<update id="resetPassword">
+update Ling_member set pw = #{pw} where id = #{id}
+</update>
+
+<!--회원가입:회원정보신규저장  -->
+<insert id="join">
+insert into Ling_member (id, pw, name, gender, birth, phone, email)
+values (#{id}, #{pw}, #{name}, #{gender}, #{birth}, #{phone},#{email})
+</insert>
+
+<!--해당 아이디의 회원정보 조회  -->
+<select id="info" resultType="member.MemberVO">
+select * from Ling_member where id = #{id}
+</select>
+
+<insert id="matching">
+insert into couple (mid, fid) values (#{mid} , #{fid})
+</insert>
+
+
+</mapper>
