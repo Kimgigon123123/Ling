@@ -87,7 +87,8 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".chat.ChatActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".home.RowChatActivity"
             android:exported="false" />
@@ -136,9 +137,15 @@
         <activity
             android:name=".store.StorePaymentActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".chat.ChatFragment"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|adjustPan"/>
         <activity
             android:name=".date.DateFragment"
-            android:exported="false" />
+            android:exported="false"
+            />
         <activity
             android:name=".store.StorePurchaseActivity"
             android:exported="false" />
