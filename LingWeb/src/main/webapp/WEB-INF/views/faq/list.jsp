@@ -99,20 +99,15 @@
 	<th>작성일자</th>
 </tr>
 </table>
-<div>
+<div style="overflow: auto;">
  <img src="<c:url value= '/image/couple.jpg'/>" alt="image" width="160" height="120">
         <!-- 왼쪽 마진 적용해보기 : 잘 안됨 -->
-        <p style="margin-left: 10px;">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam delectus saepe amet! Aliquid odio quia provident suscipit culpa, eaque enim labore possimus deleniti quos expedita laudantium, obcaecati ad cumque voluptates.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates itaque molestias nihil debitis enim natus repellendus corrupti commodi quidem doloremque ex necessitatibus dolore earum laborum animi, numquam beatae, quaerat error.
-        </p>
+        <div style="text-align: left;"><strong class="f-xlarge"><font style="font-size: 16px; text-align: left;">Ling에 대해서 궁금증을 해결하셨나요?</font></strong></div>
+<p class="f-large"><strong style="font-size: 16px; text-align: left;">여기서 모두 해결하고 가세요!</strong></p>
+<p class="f-large"><strong style="font-size: 16px; text-align: left;"> 여러분들의 행복한 연애생활을</strong></p>
+<p class="f-large mb-2"><strong style="font-size: 16px; text-align: left;">Ling에서 즐겨보세요!</strong></p>
  
-        <!-- float에 의해 요소가 아래에 깔리는 것을 확인해보기 -->
-        <p style="background-color: cadetblue; border: 2px solid red;">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam repellendus molestias tempora voluptate beatae enim doloremque a, veritatis repudiandae tenetur exercitationem est quam esse repellat labore autem nesciunt corporis facilis.
-        </p>
- 
-        <p class="p2">여기는 위 이미지와 상관없는 새로운 블럭입니다.</p>
+
 </div>
 <!-- 삽입내용 시작 -->
 
