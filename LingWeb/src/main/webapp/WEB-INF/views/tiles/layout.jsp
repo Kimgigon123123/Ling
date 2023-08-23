@@ -57,16 +57,16 @@ ${active_category}
 							<i class="fa-regular fa-clipboard"></i> 게시판 <spanclass="sr-only"></span>
 						</a></li>
 						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="travel" id="navbarDropdown"
+							class="nav-link dropdown-toggle" href="date" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="far fa-file-alt"></i> <span>
-									여행지 <i class="fas fa-angle-down"></i>
+									데이트 <i class="fas fa-angle-down"></i>
 							</span>
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">여행</a> <a
-									class="dropdown-item" href="#">맛집</a> <a
-									class="dropdown-item" href="#">축제</a>
+								<a class="dropdown-item" href="travel">여행</a> <a
+									class="dropdown-item" href="restaurant">맛집</a> <a
+									class="dropdown-item" href="festival">축제</a>
 							</div></li>
 						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle " href="store"
 						id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"

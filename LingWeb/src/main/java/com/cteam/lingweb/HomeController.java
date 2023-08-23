@@ -36,12 +36,12 @@ public class HomeController {
 	
 	
 	
-	@RequestMapping(value = "/travel", method = RequestMethod.GET)
-	public String travel(HttpSession session) {
-		session.setAttribute("active_category", "travel");
-		
-		return "travel";
-	}
+//	@RequestMapping(value = "/date", method = RequestMethod.GET)
+//	public String date(HttpSession session) {
+//		session.setAttribute("active_category", "date");
+//		
+//		return "date";
+//	}
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String admin(HttpSession session) {
