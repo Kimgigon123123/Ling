@@ -30,7 +30,7 @@
 								<tr>
 									<th scope="col">&nbsp;</th>
 									<th scope="col">상품명</th>
-									<th scope="col">배송상태</th>
+									<th scope="col">환불상태</th>
 									<th scope="col">주소</th>
 									<th scope="col">주문정보</th>
 									<th scope="col">&nbsp;</th>
@@ -41,10 +41,13 @@
 							
 							<c:forEach items="${list}" var="vo">
 								<tr>
-									<th scope="row"><input type="checkbox" /></th>
-									<input type="hidden" class="order_num" value="${vo.order_num }">
+									<th scope="row">
+							
+									<input type="checkbox" />
+									<input type="hidden" class="return_code" value="${vo.return_code }">
+									</th>
 									<td class="tm-product-name"  style="padding-right: 20px;">${vo.item_name}</td>
-									<td  style="padding-right: 20px;"  data-code="${vo.delivery_state } ">${vo.delivery_state }</td>
+									<td  style="padding-right: 20px;" data-code="${vo.return_code } ">${vo.return_state }</td>
 									<td  style="padding-right: 50px;">${vo.address }</td>
 									<td  style="padding-right: 20px;">${vo.item_price} * ${vo.purchase_cnt }개 <br> ${vo.total_price }원</td>
 									<td><a href="#" class="tm-product-delete-link"> 
@@ -60,9 +63,9 @@
 					</div>
 					<!-- table container -->
 					<a 
-						class="btn btn-primary btn-block text-uppercase mb-3" onclick="CompleteDeliveryFunc();">배송완료</a>
-					<button class="btn btn-primary btn-block text-uppercase">
-					배송취소</button>
+						class="btn btn-primary btn-block text-uppercase mb-3" onclick="refundFunc();">환불처리</a>
+					<a class="btn btn-primary btn-block text-uppercase" onclick="cancelFunc();">
+					환불거절</a>
 				</div>
 			</div>
 <!-- 			<div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col"> -->
@@ -84,14 +87,8 @@
 	<script src="js/bootstrap.min.js"></script>
 	<!-- https://getbootstrap.com/ -->
 	<script>
-    $(function() {
-        $(".tm-product-name").on("click", function() {
-          window.location.href = "edit-product.html";
-        });
-      }); 
-    
-    
-    function CompleteDeliveryFunc() {
+
+	function refundFunc() {
 		var chkBoxs = $("input[type=checkbox]:checked", ".table");
 		var checkedValue='';
 		for(var i = 0 ; i<chkBoxs.length ; i ++){
@@ -100,21 +97,55 @@
 
 		 $.ajax({
 		        type: "GET", //get
-		        url: "accept_delivery", // 컨트롤러의 URL 설정
-		        data: { orderNums: checkedValue }, // 선택된 return_code를 컨트롤러로 전송
+		        url: "accept_return", // 컨트롤러의 URL 설정
+		        data: { returnCodes: checkedValue }, // 선택된 return_code를 컨트롤러로 전송
 		        success: function(response) {
 		        	
 		        	if(  parseInt(response) >0){
-		        		alert("배송완료처리가 되었습니다.");
+		        		alert("환불처리가 완료되었습니다.");
 		        		$(chkBoxs).each(function(){
 		        			$(this).prop('checked', false);
-		        			$(this).closest('tr').children('td:eq(1)').text('배송완료');
+		        			$(this).closest('tr').children('td:eq(1)').text('환불처리');
 		        		})
 		        		
 		        		
 			            // 처리 완료 후 필요한 동작을 수행
 		        	}else{
-				            alert("실패");
+				            alert("환불처리 실패");
+				  
+		        	}
+		            
+		        },
+		        
+		    });
+		}
+	
+	
+	
+	function cancelFunc() {
+		var chkBoxs = $("input[type=checkbox]:checked", ".table");
+		var checkedValue='';
+		for(var i = 0 ; i<chkBoxs.length ; i ++){
+			checkedValue += (checkedValue==''?'':',') +  $(chkBoxs[i]).siblings().val();
+		}	
+
+		 $.ajax({
+		        type: "GET", //get
+		        url: "cancel_return", // 컨트롤러의 URL 설정
+		        data: { returnCodes: checkedValue }, // 선택된 return_code를 컨트롤러로 전송
+		        success: function(response) {
+		        	
+		        	if(  parseInt(response) >0){
+		        		alert("환불처리가 취소되었습니다.");
+		        		$(chkBoxs).each(function(){
+		        			$(this).prop('checked', false);
+		        			$(this).closest('tr').children('td:eq(1)').text('환불취소');
+		        		})
+		        		
+		        		
+			            // 처리 완료 후 필요한 동작을 수행
+		        	}else{
+				            alert("환불처리 실패");
 				  
 		        	}
 		            
@@ -123,6 +154,9 @@
 		    });
 		}
 		
+
+
+
     </script>
 </body>
 </html>

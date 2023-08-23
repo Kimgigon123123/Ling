@@ -31,37 +31,13 @@
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">상품등록</h2>
+                <h2 class="tm-block-title d-inline-block">등록하기</h2>
               </div>
             </div>
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
-                <form action="store_insert" class="tm-edit-product-form">
-                  <div class="form-group mb-3">
-                    <label
-                      for="name"
-                      >상품이름
-                    </label>
-                    <input
-                      id="item_name"
-                      name="item_name"
-                      type="text"
-                      class="form-control validate"
-                      required
-                    />
-                  </div>
-                  <div class="form-group mb-3">
-                    <label
-                      for="description"
-                      >상품설명</label
-                    >
-                    <textarea
-                      class="form-control validate"
-                      rows="3"
-                      required
-                    ></textarea>
-                  </div>
-                  <div class="form-group mb-3">
+                <form action="" class="tm-edit-product-form">
+                <div class="form-group mb-3">
                     <label
                       for="category"
                       >카테고리</label
@@ -70,18 +46,88 @@
                       class="custom-select tm-select-accounts"
                       id="category"
                     >
-                      <option selected>카테고리선택</option>
-                      <option value="1">커플옷</option>
-                      <option value="2">커플반지</option>
-                      <option value="3">선물</option>
-                      <option value="3">기타</option>
+                      <option selected>카테고리 선택</option>
+                      <option value="1">여행</option>
+                      <option value="2">맛집</option>
+                      <option value="3">축제</option>
                     </select>
                   </div>
-                  <div class="row">
+                  <div class="form-group mb-3">
+                    <label
+                      for="name"
+                      >이름
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      class="form-control validate"
+                      required
+                    />
+                    </div>
+                    <div class="form-group mb-3">
+                    <label
+                      for="address"
+                      >주소
+                    </label>
+                    <input
+                      id="address"
+                      name="address"
+                      type="address"
+                      class="form-control validate"
+                    />
+                  </div>
+                    <div class="form-group mb-3">
+                    <label
+                      for="tel"
+                      >전화번호
+                    </label>
+                    <input
+                      id="tel"
+                      name="tel"
+                      type="tel"
+                      class="form-control validate"
+                    />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label
+                      for="open"
+                      >OPEN
+                    </label>
+                    <input
+                      id="open"
+                      name="open"
+                      type="text"
+                      class="form-control validate"
+                    />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label
+                      for="end"
+                      >END
+                    </label>
+                    <input
+                      id="END"
+                      name="END"
+                      type="text"
+                      class="form-control validate"
+                    />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label
+                      for="description"
+                      >상세정보</label
+                    >
+                    <textarea
+                      class="form-control validate"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                  <!-- <div class="row">
                       <div class="form-group mb-3 col-xs-12 col-sm-6">
                           <label
                             for="expire_date"
-                            >수량
+                            >Expire Date
                           </label>
                           <input
                             id="expire_date"
@@ -91,8 +137,20 @@
                             data-large-mode="true"
                           />
                         </div>
-                        
-                  </div>
+                        <div class="form-group mb-3 col-xs-12 col-sm-6">
+                          <label
+                            for="stock"
+                            >Units In Stock
+                          </label>
+                          <input
+                            id="stock"
+                            name="stock"
+                            type="text"
+                            class="form-control validate"
+                            required
+                          />
+                        </div>
+                  </div> -->
                   
               </div>
               <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
@@ -107,13 +165,13 @@
                   <input
                     type="button"
                     class="btn btn-primary btn-block mx-auto"
-                    value="상품 이미지"
+                    value="이미지 업로드"
                     onclick="document.getElementById('fileInput').click();"
                   />
                 </div>
               </div>
               <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase">상품 등록하기</button>
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">완료</button>
               </div>
             </form>
             </div>

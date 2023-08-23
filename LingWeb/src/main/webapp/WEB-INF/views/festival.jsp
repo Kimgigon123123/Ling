@@ -34,6 +34,7 @@
 									<th scope="col">이름</th>
 									<th scope="col">주소</th>
 									<th scope="col">전화번호</th>
+									<th scope="col">기간</th>
 									<th scope="col">&nbsp;</th>
 								</tr>
 							</thead>
@@ -41,9 +42,15 @@
 							<c:forEach items="${list}" var="list">
 								<tr>
 									<th scope="row"><input type="checkbox" /></th>
-									<td>${list.date_name }</td>
+									<td class="tm-product-name">${list.date_name }</td>
 									<td>${list.date_address }</td>
-									<td>${list.tel }</td>
+									<c:if test="${list.tel == null}">
+									    <td> - </td>
+									</c:if>
+									<c:if test="${list.tel != null}">
+									    <td>${list.tel}</td>
+									</c:if>
+									<td>${list.open } - ${list.end }</td>
 									<td><a href="info" class="tm-product-info-link">
 									<i class="fa-solid fa-circle-info" style="color: #ffffff;"></i>
 									</a></td>
@@ -54,7 +61,7 @@
 					</div>
 					<!-- table container -->
 					<a href="new"
-						class="btn btn-primary btn-block text-uppercase mb-3">관광지 등록</a>
+						class="btn btn-primary btn-block text-uppercase mb-3">축제 등록</a>
 					<button class="btn btn-primary btn-block text-uppercase">
 						선택 항목 삭제</button>
 				</div>

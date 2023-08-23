@@ -3,7 +3,18 @@ package storereturn;
 public class StoreReturnListVO {
 	
 	int purchase_cnt,  delivery_code,  order_num,return_code,total_price;
-	String item_name,item_img,item_content,address;
+	String item_name,item_img,item_content,address,return_state;
+	
+	
+	
+	public String getReturn_state() {
+		return return_state;
+	}
+
+	public void setReturn_state(String return_state) {
+		this.return_state = return_state;
+	}
+
 	public int getTotal_price() {
 		return total_price;
 	}
