@@ -1,4 +1,4 @@
-package com.example.ling.date.festival;
+package com.example.ling.date.list;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentFestInfoBinding;
 import com.squareup.picasso.Picasso;
 
-public class FestInfoFragment extends Fragment {
+public class DateDatailInfoFragment extends Fragment {
 
     FragmentFestInfoBinding binding;
 
@@ -23,20 +23,34 @@ public class FestInfoFragment extends Fragment {
         binding = FragmentFestInfoBinding.inflate(inflater, container, false);
 
         Bundle bundle = getArguments();
-        if(bundle !=null){
-            String imageUrl=bundle.getString("img");
+        DateInfoVO vo = (DateInfoVO) bundle.getSerializable("vo");
+
             Picasso.get()
-                    .load(imageUrl)
+                    .load(vo.getDate_img())
                     .into(binding.imgv);
             binding.tvName.setText(bundle.getString("name"));
-            binding.tvTime.setText("축제일자 : " + bundle.get("open") + " ~ " + bundle.getString("end"));
-            binding.tvAddress.setText("주소 : " + bundle.getString("address"));
-            binding.tvIntro.setText("소개 : " + bundle.getString("intro"));
+
+            binding.tvTel.setVisibility(View.GONE);
+            binding.tvTime.setVisibility(View.GONE);
+
+            if(vo.getDate_category_code().equals("TO")){
+                binding.tvName.setText(bundle.getString("name"));
+                binding.tvTime.setVisibility(View.GONE);
+            }else if(vo.getDate_category_code().equals("FE")){
+                binding.tvTime.setText("축제일자 : " + vo.getOpen() + " ~ " + vo.getEnd());
+            }else if(vo.getDate_category_code().equals("RE")){
+                binding.tvTel.setVisibility(View.VISIBLE);
+                binding.tvTel.setText("전화번호 : " + vo.getTel());
+                binding.tvTime.setText("영업시간 : " + vo.getOpen() + " ~ " + vo.getEnd());
+            }
+            binding.tvAddress.setText("주소 : " + vo.getDate_address());
+            binding.tvIntro.setText("소개 : " + vo.getDate_intro());
+
             binding.btnAdd.setOnClickListener(v -> {
                 CommonConn conn = new CommonConn(getContext(), "date_insertdibs");
                 conn.addParamMap("id", CommonVar.loginInfo.getId());
-                conn.addParamMap("date_id", bundle.getInt("date_id", -1));
-                conn.addParamMap("date_category_code", bundle.getString("date_category_code"));
+                conn.addParamMap("date_id", vo.getDate_id());
+                conn.addParamMap("date_category_code", vo.getDate_category_code());
                 conn.onExcute((isResult, data) -> {
                     if(data==null) {
                         Toast.makeText(getContext(), "이미 등록되어있습니다.", Toast.LENGTH_SHORT).show();
@@ -45,7 +59,6 @@ public class FestInfoFragment extends Fragment {
                     }
                 });
             });
-        }
 
         return binding.getRoot();
 

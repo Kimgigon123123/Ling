@@ -1,10 +1,9 @@
-package com.example.ling.date;
+package com.example.ling.date.slider;
 
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -12,11 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
-import com.example.ling.databinding.FragmentDateBinding;
 import com.example.ling.databinding.ItemSliderBinding;
-import com.example.ling.date.festival.FestivalActivity;
-import com.example.ling.date.restaurant.RestaurantActivity;
-import com.example.ling.date.tour.TourActivity;
+import com.example.ling.date.list.DateListActivity;
 
 import java.util.ArrayList;
 
@@ -43,16 +39,18 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.ViewHolder
         h.binding.imgSlider.setImageResource(list.get(i).getImgRes());
         h.binding.sdText.setText(list.get(i).getName());
         h.binding.btn.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DateListActivity.class);
             if(list.get(i).getName().equals("전국 여행")) {
-                Intent intent = new Intent(context, TourActivity.class);
-                context.startActivity(intent);
+
+                intent.putExtra("category" , "TO");
+
             } else if (list.get(i).getName().equals("전국 맛집")) {
-                Intent intent = new Intent(context, RestaurantActivity.class);
-                context.startActivity(intent);
+                intent.putExtra("category" , "RE");
             } else {
-                Intent intent = new Intent(context, FestivalActivity.class);
-                context.startActivity(intent);
+                intent.putExtra("category" , "FE");
             }
+
+            context.startActivity(intent);
         });
 
         if (i == list.size() - 2) {

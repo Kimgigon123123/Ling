@@ -35,7 +35,13 @@
         <item name="android:layout_height">match_parent</item>
 
     </style>
-
+    <style name="ImageView.Corner" parent="">
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">100dp</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
 <!--    android:outlineProvider="none"
     android:translationZ="12dp"-->
 </resources>

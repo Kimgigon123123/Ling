@@ -37,14 +37,13 @@
                 app:wlv_titleCenterColor="@android:color/white"
                 app:wlv_titleCenterStrokeWidth="1dp"
                 app:wlv_titleCenter="Center Title"
-
                 app:wlv_titleCenterSize="24sp"
                 app:wlv_titleBottom="사귄지 몇일"
                 app:wlv_titleBottomStrokeColor="@color/colorGradientEnd"
                 app:wlv_titleBottomColor="@android:color/white"
                 app:wlv_titleBottomStrokeWidth="1dp"
                 app:wlv_waveAmplitude="70"
-                app:wlv_waveColor="#D87282"
+                app:wlv_waveColor="@color/ling_main_color0"
                 android:paddingBottom="100dp"
                 />
 
@@ -214,7 +213,7 @@
 
         <LinearLayout
             android:layout_marginTop="30dp"
-            android:background="#1A000000"
+            android:background="#F9F5F6"
             android:layout_marginBottom="10dp"
             android:layout_gravity="bottom"
             android:elevation="20dp"

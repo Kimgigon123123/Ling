@@ -1,0 +1,24 @@
+
+2023.08.23 작업 진행
+
+package date
+
+	1. date모듈 수정
+	 => DateHomeFragment 이름 변경
+		- 1.FestivalActivity , RestaurantActivity등 똑같은 로직에서 select 만 차이가 있어 통합시킴.( DateListActivity )
+		- 2.Tour/Festival/Rest..ItemAdapter  반복되서 통합. => DateMainItemAdapter
+		- 3.Tour/Festival/RestRecyclerView...반복되서 통합. => selectCountList()메소드 참조 
+		- 4.pacakge tour/rastarunt/festival 삭제 후 통합 => list pacakge 참조
+		- 5.Tour/Festival/Rest activity 삭제 후 통합 => DateListActivity참조
+		- 6.Tour/Festival/Rest 관련 반복 코드 전체 통합 => DateDetailInfoFragment , DateDetailActivity참조
+		- 7.맵관련 클래스 map package에 이동
+		- 8.dibsVo dibs package로 이동
+		- 9.dibsActivity -> dibsDetailActivity연결 부분 DateDetailActivity로 변경.
+		- 10.Spring 맵핑,맵퍼 부분 반복되는부분 삭제 후 통합 =>
+
+
+		DateHomeFragment메인부터 디자인 작업중
+
+		(조회 조건이나 내용만 다르고 결과(모양)이 같다면 파라메터를 이용하는 방법을 생각해보면 좋습니다.)
+		
+ 

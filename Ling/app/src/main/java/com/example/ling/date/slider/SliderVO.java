@@ -1,4 +1,4 @@
-package com.example.ling.date;
+package com.example.ling.date.slider;
 
 public class SliderVO {
     private int imgRes;

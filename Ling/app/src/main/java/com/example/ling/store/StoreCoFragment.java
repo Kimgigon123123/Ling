@@ -1,17 +1,13 @@
 package com.example.ling.store;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.opengl.EGLExt;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,16 +15,11 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.ling.R;
-import com.example.ling.chat.ChatFragment;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentStoreCoBinding;
-import com.example.ling.date.DateFragment;
-import com.example.ling.home.HomeFragment;
 import com.example.ling.store.basket.BasketActivity;
 import com.example.ling.store.myinfo.StoreMyinfoActivity;
 import com.example.ling.store.myinfo.ZZimActivity;

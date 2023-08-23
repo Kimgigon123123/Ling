@@ -2,40 +2,25 @@ package com.example.ling;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.ling.board.BoardFragment;
 
-import com.example.ling.common.CommonConn;
-import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityMainBinding;
-import com.example.ling.date.DateFragment;
+import com.example.ling.date.DateHomeFragment;
 import com.example.ling.chat.ChatFragment;
 import com.example.ling.home.HomeFragment;
-import com.example.ling.home.MainVO;
 import com.example.ling.store.StoreCoFragment;
-import com.example.ling.testchat.TestChatFragment;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
@@ -57,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
         window = this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
+        window.getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
 
         AnimationDrawable animDrawable = (AnimationDrawable) binding.layoutMain.getBackground();
@@ -83,11 +68,11 @@ public class MainActivity extends AppCompatActivity {
     //바텀 네비게이션 아이템 초기화 메소드 2023-08-16 kym
     public void initItem(){
         //                      붙일프래그먼트  ,        아이콘               ,   선택배경색상 ,    글씨  ,       뱃지보여줄꺼면 뱃지 그씨
-        list.add(new MainMenuDTO(new DateFragment() , R.drawable.btm_menu_1 ,"#FF8F1B" , "여행지" ,  "여행지 선택"  ));
-        list.add(new MainMenuDTO(new ChatFragment() , R.drawable.btm_menu_2 ,"#567891" , "채팅" ,  null ));
+        list.add(new MainMenuDTO(new DateHomeFragment() , R.drawable.btm_menu_1 ,"#F8E8EE" , "여행지" ,  "여행지 선택"  ));
+        list.add(new MainMenuDTO(new ChatFragment() , R.drawable.btm_menu_2 ,"#FDCEDF" , "채팅" ,  null ));
         list.add(new MainMenuDTO(new HomeFragment() , R.drawable.btm_menu_3 ,"#1A000000" , "홈" ,  "홈 선택"  ));
-        list.add(new MainMenuDTO(new BoardFragment() , R.drawable.btm_menu_4 ,"#5FB59C" , "게시판" ,  null  ));
-        list.add(new MainMenuDTO(new StoreCoFragment() , R.drawable.btm_menu_5 ,"#847253" , "스토어" ,  "스토어 선택"  ));
+        list.add(new MainMenuDTO(new BoardFragment() , R.drawable.btm_menu_4 ,"#F2BED1" , "게시판" ,  null  ));
+        list.add(new MainMenuDTO(new StoreCoFragment() , R.drawable.btm_menu_5 ,"#F9F5F6" , "스토어" ,  "스토어 선택"  ));
     }
 
     //바텀 네비게이션 초기화 및 뷰페이저 초기화  ↗ 로직 끝나고 실행해야함  2023-08-16 kym

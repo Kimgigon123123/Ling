@@ -1,0 +1,7 @@
+메인 컬러 colorhunt 통해 결정
+참조-
+ <!--https://colorhunt.co/palette/f9f5f6f8e8eefdcedff2bed1-->
+    <color name="ling_main_color1">#F2BED1</color>
+    <color name="ling_main_color2">#FDCEDF</color>
+    <color name="ling_main_color3">#F8E8EE</color>
+    <color name="ling_main_color4">#F9F5F6</color>

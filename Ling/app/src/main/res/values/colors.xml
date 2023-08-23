@@ -35,4 +35,14 @@
     <color name="colorGradientCenter">#DAB3BA</color>
     <color name="colorGradientEnd">#B7D6F5</color>
 
+
+
+
+    <!--https://colorhunt.co/palette/f9f5f6f8e8eefdcedff2bed1-->
+    <color name="ling_main_color0">#A8627C</color>
+    <color name="ling_main_color1">#F2BED1</color>
+    <color name="ling_main_color2">#FDCEDF</color>
+    <color name="ling_main_color3">#F8E8EE</color>
+    <color name="ling_main_color4">#F9F5F6</color>
+
 </resources>

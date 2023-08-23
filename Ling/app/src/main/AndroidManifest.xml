@@ -99,13 +99,13 @@
             android:name=".photo.PhotoActivity"
             android:exported="false" />
         <activity
-            android:name=".date.festival.FestivalActivity"
+            android:name=".date.list.DateListActivity"
             android:exported="false" />
         <activity
             android:name=".calendar.CalendarActivity"
             android:exported="false" />
         <activity
-            android:name=".date.festival.FestDetailActivity"
+            android:name=".date.list.DateDetailActivity"
             android:exported="false" />
         <activity
             android:name=".date.restaurant.RestaurantActivity"
@@ -121,9 +121,6 @@
             android:exported="false" />
         <activity
             android:name=".date.dibs.DibsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".date.dibs.DibsDetailActivity"
             android:exported="false" />
         <activity
             android:name=".store.myinfo.StoreMyinfoActivity"
@@ -143,7 +140,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize|adjustPan"/>
         <activity
-            android:name=".date.DateFragment"
+            android:name=".date.DateHomeFragment"
             android:exported="false"
             />
         <activity

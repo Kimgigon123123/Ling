@@ -1,6 +1,8 @@
-package com.example.ling.date;
+package com.example.ling.date.list;
 
-public class DateInfoVO {
+import java.io.Serializable;
+
+public class DateInfoVO implements Serializable {
 
 	private int date_id;
 	private String date_category_code, date_name, date_intro, date_address, date_sido, date_sigungu, tel, lan, lng,

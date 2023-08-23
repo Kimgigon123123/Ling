@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".date.festival.FestInfoFragment">
+    tools:context=".date.list.DateDatailInfoFragment">
 
     <ImageView
         android:id="@+id/imgv"
@@ -29,6 +29,15 @@
             android:textColor="#111"
             android:textSize="20dp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginBottom="4dp"
+            android:textColor="#111"
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/tv_time"

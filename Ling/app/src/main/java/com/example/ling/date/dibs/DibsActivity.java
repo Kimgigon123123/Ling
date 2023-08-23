@@ -4,17 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityDibsBinding;
-import com.example.ling.date.DateDibsVO;
-import com.example.ling.date.DateInfoVO;
-import com.google.android.gms.common.internal.service.Common;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -40,13 +35,13 @@ public class DibsActivity extends AppCompatActivity {
                 if(binding.spnDibs.getSelectedItem().equals("전체")) {
 //                    binding.recvDibs.setAdapter(new DibsAdapter(DibsActivity.this));
 //                    binding.recvDibs.setLayoutManager(new GridLayoutManager(DibsActivity.this, 2));
-                    selectAll();
+                   selectDibs("");
                 } else if(binding.spnDibs.getSelectedItem().equals("여행")) {
-                    selectTour();
+                    selectDibs("TO");
                 } else if(binding.spnDibs.getSelectedItem().equals("맛집")) {
-                    selectRestaurant();
+                    selectDibs("RE");
                 } else {
-                    selectFestival();
+                    selectDibs("FE");
                 }
             }
 
@@ -56,43 +51,48 @@ public class DibsActivity extends AppCompatActivity {
             }
         });
     }
+//
+//    public void selectAll() {
+//        CommonConn conn = new CommonConn(this, "date_alldibs");
+//        conn.addParamMap("id", CommonVar.loginInfo.getId());
+//        conn.onExcute((isResult, data) -> {
+//            ArrayList<DateDibsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateDibsVO>>(){}.getType());
+//            binding.recvDibs.setAdapter(new DibsAdapter(this, list));
+//            binding.recvDibs.setLayoutManager(new GridLayoutManager(this, 2));
+//            binding.tvNull.setVisibility(list.size()==0 ? View.VISIBLE : View.INVISIBLE);
+//        });
+//    }
+//
+//    public void selectTour() {
+//        CommonConn conn = new CommonConn(this, "date_tourdibs");
+//        conn.addParamMap("id", CommonVar.loginInfo.getId());
+//        conn.onExcute((isResult, data) -> {
+//            ArrayList<DateDibsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateDibsVO>>(){}.getType());
+//            binding.recvDibs.setAdapter(new DibsAdapter(this, list));
+//            binding.recvDibs.setLayoutManager(new GridLayoutManager(this, 2));
+//            binding.tvNull.setVisibility(list.size()==0 ? View.VISIBLE : View.INVISIBLE);
+//        });
+//    }
+//
+//    public void selectRestaurant() {
+//        CommonConn conn = new CommonConn(this, "date_restaurantdibs");
+//        conn.addParamMap("id", CommonVar.loginInfo.getId());
+//        conn.onExcute((isResult, data) -> {
+//            ArrayList<DateDibsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateDibsVO>>(){}.getType());
+//            binding.recvDibs.setAdapter(new DibsAdapter(this, list));
+//            binding.recvDibs.setLayoutManager(new GridLayoutManager(this, 2));
+//            binding.tvNull.setVisibility(list.size()==0 ? View.VISIBLE : View.INVISIBLE);
+//        });
+//    }
+//
+//    public void selectFestival() {
+//
+//    }
 
-    public void selectAll() {
-        CommonConn conn = new CommonConn(this, "date_alldibs");
+    public void selectDibs(String category){
+        CommonConn conn = new CommonConn(this, "date_selectdibs");
         conn.addParamMap("id", CommonVar.loginInfo.getId());
-        conn.onExcute((isResult, data) -> {
-            ArrayList<DateDibsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateDibsVO>>(){}.getType());
-            binding.recvDibs.setAdapter(new DibsAdapter(this, list));
-            binding.recvDibs.setLayoutManager(new GridLayoutManager(this, 2));
-            binding.tvNull.setVisibility(list.size()==0 ? View.VISIBLE : View.INVISIBLE);
-        });
-    }
-
-    public void selectTour() {
-        CommonConn conn = new CommonConn(this, "date_tourdibs");
-        conn.addParamMap("id", CommonVar.loginInfo.getId());
-        conn.onExcute((isResult, data) -> {
-            ArrayList<DateDibsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateDibsVO>>(){}.getType());
-            binding.recvDibs.setAdapter(new DibsAdapter(this, list));
-            binding.recvDibs.setLayoutManager(new GridLayoutManager(this, 2));
-            binding.tvNull.setVisibility(list.size()==0 ? View.VISIBLE : View.INVISIBLE);
-        });
-    }
-
-    public void selectRestaurant() {
-        CommonConn conn = new CommonConn(this, "date_restaurantdibs");
-        conn.addParamMap("id", CommonVar.loginInfo.getId());
-        conn.onExcute((isResult, data) -> {
-            ArrayList<DateDibsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateDibsVO>>(){}.getType());
-            binding.recvDibs.setAdapter(new DibsAdapter(this, list));
-            binding.recvDibs.setLayoutManager(new GridLayoutManager(this, 2));
-            binding.tvNull.setVisibility(list.size()==0 ? View.VISIBLE : View.INVISIBLE);
-        });
-    }
-
-    public void selectFestival() {
-        CommonConn conn = new CommonConn(this, "date_festivaldibs");
-        conn.addParamMap("id", CommonVar.loginInfo.getId());
+        conn.addParamMap("category", category);
         conn.onExcute((isResult, data) -> {
             ArrayList<DateDibsVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<DateDibsVO>>(){}.getType());
             binding.recvDibs.setAdapter(new DibsAdapter(this, list));

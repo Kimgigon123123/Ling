@@ -60,86 +60,29 @@ import kotlin.jvm.functions.Function1;
 
 
 public class HomeFragment extends Fragment {
-    //ActivityResultLauncher<Intent> launcher; // <-- onCreate에서 초기화하면 오류발생.
     FragmentHomeBinding binding;
     Uri camera_uri;
 
     private final int REQ_Gallery = 1000 , REQ_CAMERA = 1001;
-
     private final int DEFALUT_MANIMG = R.drawable.man;
-
-
     String couple_num;
-
     private SimpleDateFormat mFormat = new SimpleDateFormat("yyyy/M/d");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        CommonConn conn = new CommonConn(getContext(),"select_couple_info");
-        conn.addParamMap("id", CommonVar.loginInfo.getId());
-
-
-
-
-        conn.onExcute((isResult, data) -> {
-            ArrayList<MainVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<MainVO>>() {}.getType());
-
-            binding.tvMid.setText(list.get(0).mname);
-            binding.tvFid.setText(list.get(0).fname);
-           // binding.tvDay.setText("사귄지 "+list.get(0).day+"일"+"커플번호는 "+list.get(0).couple_num);
-            binding.waveLoadingView.setBottomTitle("사귄지 "+list.get(0).day+"일"+"커플번호는 "+list.get(0).couple_num);
-            couple_num=list.get(0).couple_num;
-
-        });
-
-
-
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-
-
-
-
-
-        binding.waveLoadingView.setCenterTitle("무슨 커플");
+        binding.waveLoadingView.setCenterTitle("무슨 커플  명칭");
         binding.waveLoadingView.setAnimDuration(5000);
 
-            ObjectAnimator animator = ObjectAnimator.ofFloat(binding.imgvManSub, "rotation", 360);
-            //animator.setStartDelay(500);
-            animator.setDuration(10000);
-            animator.setRepeatCount(ValueAnimator.INFINITE);
-            animator.start();
-
-
-        ObjectAnimator animator2 = ObjectAnimator.ofFloat(binding.imgvWomanSub, "rotation", 360);
-        //animator.setStartDelay(500);
-        animator2.setDuration(10000);
-        animator2.setRepeatCount(ValueAnimator.INFINITE);
-        animator2.start();
 
         ObjectAnimator animator3 =ObjectAnimator.ofFloat(binding.mainSub3, "translationY", 0, 20, 0);
         animator3.setStartDelay(1000);
         animator3.setDuration(5000);
         animator3.setRepeatCount(ValueAnimator.INFINITE);
         animator3.start();
-//        ArcAnimator.createArcAnimator(binding.imgvWomanSub, 100, 100, 100, Side.LEFT)
-//                .setDuration(1500)
-//
-//                .start();
 
-
-
-
-//        SupportAnimator animator = ViewAnimationUtils.createCircularReveal(mRed, cx, cy, 0, mRed.getWidth() / 2);
-//        animator.addListener(new SimpleListener() {
-//            @Override
-//            public void onAnimationEnd() {
-//                upRed();
-//            }
-//        });
-//        animator.setInterpolator(ACCELERATE);
-//        animator.start();
 
 
         Glide.with(this).load("http://192.168.0.28/hanul/img//andimg.jpg").into(binding.imgvManProfile);
@@ -156,11 +99,6 @@ public class HomeFragment extends Fragment {
         binding.imgvManProfile.setOnClickListener(v -> {
             showDialog();
         });
-
-//        binding.imgvLocTracking.setOnClickListener(v -> {
-//            Intent intent = new Intent(getContext(), LocTrackingActivity.class);
-//            startActivity(intent);
-//        });
 
         binding.imgvMenuTimeCapsule.setOnClickListener(v->{
             Intent intent = new Intent(getContext(), CapsuleMainActivity.class);
@@ -216,25 +154,11 @@ public class HomeFragment extends Fragment {
 
         binding.waveLoadingView.setBottomTitle(diffDays);
 
-        //김기곤 test chat
-//        binding.tvTestChat.setOnClickListener(v -> {
-//            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager(); // getActivity() 대신 requireActivity()를 사용합니다.
-//            FragmentTransaction transaction = fragmentManager.beginTransaction();
-//
-//            TestChatFragment testChatFragment = new TestChatFragment(); // TestChatFragment로 교체할 프래그먼트 인스턴스 생성
-//            transaction.replace(R.id.container, testChatFragment); // R.id.container는 프래그먼트가 표시될 레이아웃의 ID입니다.
-//
-//            transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
-//            transaction.commit();
-//        });
-
         return binding.getRoot();
-
 
     }
 
 
-    Handler handler = new Handler();
 
 
     public void showDialog(){
@@ -264,15 +188,16 @@ public class HomeFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        Activity activity = getActivity();
+        CommonConn conn = new CommonConn(getContext(),"select_couple_info");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
+        conn.onExcute((isResult, data) -> {
+            ArrayList<MainVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<MainVO>>() {}.getType());
+            binding.tvMid.setText(list.get(0).mname);
+            binding.tvFid.setText(list.get(0).fname);
+            binding.waveLoadingView.setBottomTitle("사귄지 "+list.get(0).day+"일"+"커플번호는 "+list.get(0).couple_num);
+            couple_num=list.get(0).couple_num;
 
-//        launcher = getActivity().registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-//            @Override
-//            public void onActivityResult(ActivityResult result) {
-//                //액티비티(카메라 액티비티)가 종료되면 콜백으로 데이터를 받는 부분. (기존에는 onActivityResult메소드가 실행/ 현재는 해당 메소드)
-//
-//            }
-//        });
+        });
     }
 
 

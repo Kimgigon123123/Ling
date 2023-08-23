@@ -3,19 +3,17 @@ package com.example.ling.date.dibs;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ling.R;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ItemRecvDibsBinding;
-import com.example.ling.date.DateDibsVO;
-import com.example.ling.date.tour.TourDetailActivity;
+import com.example.ling.date.list.DateDetailActivity;
+import com.example.ling.date.list.DateInfoVO;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -58,27 +56,21 @@ public class DibsAdapter extends RecyclerView.Adapter<DibsAdapter.ViewHolder> {
             Toast.makeText(context, "목록에서 삭제되었습니다.", Toast.LENGTH_SHORT).show();
         });
         h.binding.lnDibs.setOnClickListener(v -> {
-            Intent intent = new Intent(context, DibsDetailActivity.class);
-            if(list.get(i).getDate_category_code().equals("TO")) {
-                intent.putExtra("img", list.get(i).getDate_img());
-                intent.putExtra("name", list.get(i).getDate_name());
-                intent.putExtra("address", list.get(i).getDate_address());
-                intent.putExtra("intro", list.get(i).getDate_intro());
-                intent.putExtra("code", list.get(i).getDate_category_code());
-                intent.putExtra("lan", list.get(i).getLan());
-                intent.putExtra("lng", list.get(i).getLng());
-            } else if(list.get(i).getDate_category_code().equals("RE") || list.get(i).getDate_category_code().equals("FE")) {
-                intent.putExtra("img", list.get(i).getDate_img());
-                intent.putExtra("name", list.get(i).getDate_name());
-                intent.putExtra("address", list.get(i).getDate_address());
-                intent.putExtra("intro", list.get(i).getDate_intro());
-                intent.putExtra("tel", list.get(i).getTel());
-                intent.putExtra("open", list.get(i).getOpen());
-                intent.putExtra("end", list.get(i).getEnd());
-                intent.putExtra("code", list.get(i).getDate_category_code());
-                intent.putExtra("lan", list.get(i).getLan());
-                intent.putExtra("lng", list.get(i).getLng());
-            }
+            Intent intent = new Intent(context, DateDetailActivity.class);
+            DateInfoVO vo = new DateInfoVO();
+            vo.setDate_img(list.get(i).getDate_img());
+            vo.setDate_category_code(list.get(i).getDate_category_code());
+            vo.setOpen(list.get(i).getOpen());
+            vo.setEnd(list.get(i).getEnd());
+            vo.setTel(list.get(i).getTel());
+            vo.setDate_address(list.get(i).getDate_address());
+            vo.setDate_intro(list.get(i).getDate_intro());
+            vo.setDate_id(list.get(i).getDate_id());
+            vo.setLng(list.get(i).getLng());
+            vo.setLan(list.get(i).getLan());
+
+
+            intent.putExtra("vo", list.get(i));
             context.startActivity(intent);
         });
         // if 문 카테고리 별로 intent putextra 다르게

@@ -1,6 +1,8 @@
-package com.example.ling.date;
+package com.example.ling.date.dibs;
 
-public class DateDibsVO {
+import java.io.Serializable;
+
+public class DateDibsVO implements Serializable {
 	private int dibs_id, date_id;
 	private String id, date_category_code, date_name, date_address, date_intro, open, end, lan, lng, date_img, tel;
 
