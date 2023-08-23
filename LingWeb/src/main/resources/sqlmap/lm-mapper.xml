@@ -32,7 +32,7 @@ values (#{id}, #{pw}, #{name}, #{gender}, #{birth}, #{phone},#{email})
 
 <!--해당 아이디의 회원정보 조회  -->
 <select id="info" resultType="member.MemberVO">
-select * from Ling_member where id = #{id}
+select id, pw, name, gender, email, phone, to_char(birth,'YYYY-MM-DD')birth from Ling_member where id = #{id}
 </select>
 
 <insert id="matching">
@@ -41,10 +41,36 @@ insert into couple (mid, fid) values (#{mid} , #{fid})
 
 <!-- 전체 회원정보 조회 -->
 <select id="list" resultType="member.MemberVO">
-select id, pw, name, gender, email, phone, birth
+select id, pw, name, gender, email, phone, to_char(birth,'YYYY-MM-DD')birth
 from LING_MEMBER
 where admin='N'
 </select>
+
+<select id="adminlist" resultType="member.MemberVO">
+select id, pw, name, gender, email, phone, to_char(birth,'YYYY-MM-DD')birth
+from LING_MEMBER
+where admin='Y'
+</select>
+
+<select id="couplelist" resultType="member.CoupleVO">
+select couple_num, mid, fid, create_date
+from couple
+</select>
+
+<!-- 회원정보 변경저장 -->
+<update id="update">
+update LING_MEMBER 
+set pw = #{pw}, name = #{name}
+	, gender = #{gender}, email = #{email}, phone = #{phone}, birth = #{birth}
+where id = #{id}	
+</update>
+
+<!-- 회원정보 삭제 -->
+<delete id="delete">
+delete from LING_MEMBER where id in (${id})
+</delete>
+
+
 
 
 </mapper>

@@ -31,6 +31,9 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.min.js"></script>
 	<!-- https://getbootstrap.com/ -->
 	<script src="js/tooplate-scripts.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<script src="js/common.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 </head>
 
 <body id="reportsPage">
@@ -52,8 +55,20 @@
 ${active_category}
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mx-auto h-100">
+					<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> <i class="fas fa-cog"></i> <span>
+									설정 <i class="fas fa-angle-down"></i>
+							</span>
+						</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="#">설정</a> <a
+									class="dropdown-item" href="#">설정</a> <a
+									class="dropdown-item" href="#">설정</a>
+							</div></li>
 						<li class="nav-item">
-							<a class="nav-link  ${active_category eq 'admin' ? 'active' : '' }" href="admin">
+							<a class="nav-link  ${active_category eq 'admin' ? 'active' : '' }" href="board">
 							<i class="fa-regular fa-clipboard"></i> 게시판 <spanclass="sr-only"></span>
 						</a></li>
 						<li class="nav-item dropdown"><a
@@ -83,18 +98,7 @@ ${active_category}
 						<li class="nav-item"><a class="nav-link ${active_category eq 'lingmember' ? 'active' : '' }" href="lingmember">
 								<i class="far fa-user"></i> 회원관리
 						</a></li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-cog"></i> <span>
-									설정 <i class="fas fa-angle-down"></i>
-							</span>
-						</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">설정</a> <a
-									class="dropdown-item" href="#">설정</a> <a
-									class="dropdown-item" href="#">설정</a>
-							</div></li>
+						
 					</ul>
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link d-block"
@@ -112,9 +116,9 @@ ${active_category}
 		<footer class="tm-footer row tm-mt-small">
 			<div class="col-12 font-weight-light">
 				<p class="text-center text-white mb-0 px-4 small">
-					Copyright &copy; <b>2018</b> All rights reserved. Design: <a
-						rel="nofollow noopener" href="https://templatemo.com"
-						class="tm-footer-link">Template Mo</a>
+					Copyright &copy; <b>2023</b> All rights reserved C-Team <a
+						rel="nofollow noopener" href="#"
+						class="tm-footer-link">Project LING</a>
 				</p>
 			</div>
 		</footer>
