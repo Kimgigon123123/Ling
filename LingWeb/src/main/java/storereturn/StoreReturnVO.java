@@ -16,7 +16,16 @@ public int getTotal_price() {
 public void setTotal_price(int total_price) {
 	this.total_price = total_price;
 }
-String item_code,item_name,delivery_state,item_img,id,address,category_code;
+String item_code,item_name,delivery_state,item_img,id,address,category_code,return_state;
+
+
+
+public String getReturn_state() {
+	return return_state;
+}
+public void setReturn_state(String return_state) {
+	this.return_state = return_state;
+}
 public String getCategory_code() {
 	return category_code;
 }
