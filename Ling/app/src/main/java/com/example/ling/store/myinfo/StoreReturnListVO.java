@@ -2,10 +2,18 @@ package com.example.ling.store.myinfo;
 
 public class StoreReturnListVO {
 	
-	int purchase_cnt;
-	int delivery_code;
-	int order_num;
-	int return_code;
+	int purchase_cnt,  delivery_code,  order_num,return_code,total_price;
+	String item_name,item_img,item_content,address,return_state;
+	
+	
+	
+	public String getReturn_state() {
+		return return_state;
+	}
+
+	public void setReturn_state(String return_state) {
+		this.return_state = return_state;
+	}
 
 	public int getTotal_price() {
 		return total_price;
@@ -14,9 +22,6 @@ public class StoreReturnListVO {
 	public void setTotal_price(int total_price) {
 		this.total_price = total_price;
 	}
-
-	int total_price;
-	String item_name,item_img,item_content,address;
 	int item_price;
 	public int getReturn_code() {
 		return return_code;

@@ -31,20 +31,20 @@
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">Add Product</h2>
+                <h2 class="tm-block-title d-inline-block">상품등록</h2>
               </div>
             </div>
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
-                <form action="" class="tm-edit-product-form">
+                <form action="store_insert" class="tm-edit-product-form">
                   <div class="form-group mb-3">
                     <label
                       for="name"
-                      >Product Name
+                      >상품이름
                     </label>
                     <input
-                      id="name"
-                      name="name"
+                      id="item_name"
+                      name="item_name"
                       type="text"
                       class="form-control validate"
                       required
@@ -53,7 +53,7 @@
                   <div class="form-group mb-3">
                     <label
                       for="description"
-                      >Description</label
+                      >상품설명</label
                     >
                     <textarea
                       class="form-control validate"
@@ -64,23 +64,24 @@
                   <div class="form-group mb-3">
                     <label
                       for="category"
-                      >Category</label
+                      >카테고리</label
                     >
                     <select
                       class="custom-select tm-select-accounts"
                       id="category"
                     >
-                      <option selected>Select category</option>
-                      <option value="1">New Arrival</option>
-                      <option value="2">Most Popular</option>
-                      <option value="3">Trending</option>
+                      <option selected>카테고리선택</option>
+                      <option value="1">커플옷</option>
+                      <option value="2">커플반지</option>
+                      <option value="3">선물</option>
+                      <option value="3">기타</option>
                     </select>
                   </div>
                   <div class="row">
                       <div class="form-group mb-3 col-xs-12 col-sm-6">
                           <label
                             for="expire_date"
-                            >Expire Date
+                            >수량
                           </label>
                           <input
                             id="expire_date"
@@ -90,19 +91,7 @@
                             data-large-mode="true"
                           />
                         </div>
-                        <div class="form-group mb-3 col-xs-12 col-sm-6">
-                          <label
-                            for="stock"
-                            >Units In Stock
-                          </label>
-                          <input
-                            id="stock"
-                            name="stock"
-                            type="text"
-                            class="form-control validate"
-                            required
-                          />
-                        </div>
+                        
                   </div>
                   
               </div>
@@ -118,13 +107,13 @@
                   <input
                     type="button"
                     class="btn btn-primary btn-block mx-auto"
-                    value="UPLOAD PRODUCT IMAGE"
+                    value="상품 이미지"
                     onclick="document.getElementById('fileInput').click();"
                   />
                 </div>
               </div>
               <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Product Now</button>
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">상품 등록하기</button>
               </div>
             </form>
             </div>

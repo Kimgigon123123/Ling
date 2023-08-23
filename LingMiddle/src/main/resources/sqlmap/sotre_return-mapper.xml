@@ -39,7 +39,7 @@ order by return_code desc
 </select>
 
 <select id="store_return_detail" resultType="storereturn.StoreReturnListVO">
-select order_num,i.item_code,i.category_code,delivery_code,id,purchase_cnt,return_code,i.item_name,i.item_price,(purchase_cnt*i.item_price) as total_price, address,i.item_img
+select order_num,i.item_code,i.category_code,delivery_code,id,purchase_cnt,return_code,i.item_name,i.item_price,(purchase_cnt*i.item_price) as total_price, address,i.item_img,r.return_state
 from store_return_list r, store_item i
 where i.item_code = r.item_code
 and order_num=#{order_num}

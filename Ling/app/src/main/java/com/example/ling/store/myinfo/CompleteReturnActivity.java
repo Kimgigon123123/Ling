@@ -48,6 +48,7 @@ public class CompleteReturnActivity extends AppCompatActivity {
             binding.tvAddress.setText(list.get(0).getAddress());
             binding.tvPrice.setText(list.get(0).getItem_price()+"원");
             binding.tvTotalPrice.setText(list.get(0).getTotal_price()+"원");
+            binding.tvReturnState.setText(list.get(0).getReturn_state());
 
 
 
