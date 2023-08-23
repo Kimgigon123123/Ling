@@ -460,6 +460,15 @@ input[type="checkbox"]:focus {
   height: 40px;
   text-align: center;
 }
+.tm-product-info-link {
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #394e64;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+}
 .tm-product-delete-link:hover .tm-product-delete-icon {
   color: #6d8ca6;
 }

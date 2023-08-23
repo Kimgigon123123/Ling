@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="date">
-	
+
+<select id="travel" resultType="date.DateVO">
+	select * from date_info where date_category_code = 'TO'
+</select>
+
+<select id="restaurant" resultType="date.DateVO">
+	select * from date_info where date_category_code = 'RE'
+</select>
+
+<select id="festival" resultType="date.DateVO">
+	select * from date_info where date_category_code = 'FE'
+</select>
+
 </mapper>
