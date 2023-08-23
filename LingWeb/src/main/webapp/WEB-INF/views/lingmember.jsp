@@ -43,8 +43,7 @@
 					<td>${vo.email }</td>
 					<td>${vo.phone }</td>
 					<td>${vo.birth }</td>
-					<td><a href="#" class="tm-product-delete-link"> <i
-							class="far fa-trash-alt tm-product-delete-icon"></i>
+					<td><a href="#" class="tm-product-delete-link"> <i class="fa-solid fa-wrench"></i>
 					</a></td>
 				</tr>
 				</c:forEach>
