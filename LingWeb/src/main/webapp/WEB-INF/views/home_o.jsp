@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 	<c:choose>
-	<c:when test="${category eq 'default' }"><c:set var="title" value="Ling소개"/> </c:when>
+	<c:when test="${category eq 'home' }"><c:set var="title" value="Ling소개"/> </c:when>
 	<c:when test="${category eq 'faq' }"><c:set var="title" value="Community"/> </c:when>
 <%-- 	<c:when test="${category eq 'no' }"><c:set var="title" value="공지사항"/> </c:when>
 	<c:when test="${category eq 'bo' }"><c:set var="title" value="방명록"/> </c:when> --%>
@@ -30,7 +30,34 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
- 
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
+            <div class="container px-5">
+                <a class="navbar-brand fw-bold" href="#page-top">LING</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="bi-list"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                       <li class="nav-item"><a class="nav-link me-lg-3" href="#container">LING 소개</a></li>
+                       <a class="nav-link me-lg-3 ${category eq 'faq' ? 'active' : ''}" href="<c:url value='/faq/list'/>">Community</a>
+
+                    <%-- <a class="${category eq 'home' ? 'active':'' } list-group-item list-group-item-action list-group-item-light p-3" href="<c:url value='/default/home'/>">Ling소개</a> --%>
+                    <%-- <a class="${category eq 'faq' ? 'active':'' } list-group-item list-group-item-action list-group-item-light p-3" href="<c:url value='/faq/list'/>">Community</a> --%>
+					<li class="nav-item"><a class="nav-link me-lg-3" href="#chart">Chart</a></li>
+                    <li class="nav-item"><a class="nav-link me-lg-3" href="#download">Download</a></li>
+                        
+                    </ul>
+                    <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#feedbackModal">
+                        <span class="d-flex align-items-center">
+                            <i class="bi-chat-text-fill me-2"></i>
+                            <span class="small">Send Feedback</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </nav>
 
 <!-- Mashead header-->
         <header class="masthead">
@@ -206,7 +233,19 @@
             </div>
         </section>
         
-
+ <!-- Footer-->
+        <footer class="bg-black text-center py-5">
+            <div class="container px-5">
+                <div class="text-white-50 small">
+                    <div class="mb-2">&copy; Your Website 2023. All Rights Reserved.</div>
+                    <a href="login">Privacy</a>
+                    <span class="mx-1">&middot;</span>
+                    <a href="#!">Terms</a>
+                    <span class="mx-1">&middot;</span>
+                    <a href="#!">FAQ</a>
+                </div>
+            </div>
+        </footer>
         <!-- Feedback Modal-->
         <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
