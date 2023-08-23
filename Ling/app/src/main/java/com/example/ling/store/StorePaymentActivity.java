@@ -13,6 +13,7 @@ import com.example.ling.MainActivity;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityStorePaymentBinding;
+import com.example.ling.store.basket.StoreBasketVO;
 import com.example.ling.store.myinfo.AddressActivity;
 import com.example.ling.store.myinfo.AddressMainActivity;
 import com.example.ling.store.myinfo.DetailAddActivity;
@@ -21,6 +22,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StorePaymentActivity extends AppCompatActivity {
 
@@ -238,6 +240,13 @@ public class StorePaymentActivity extends AppCompatActivity {
                 int cnt = intent.getIntExtra("cnt",0);
                 String category_code = intent.getStringExtra("category_code");
 
+                CommonConn conn5 = new CommonConn(this,"store_sales_up");
+                conn5.addParamMap("item_code",item_code);
+                conn5.addParamMap("purchase_cnt",cnt);
+                conn5.onExcute(((isResult5, data5) -> {
+
+                }));
+
                 CommonConn conn2 = new CommonConn(this , "insert_purchase");
                 conn2.addParamMap("id",CommonVar.loginInfo.getId());
                 conn2.addParamMap("item_code" , item_code);
@@ -264,6 +273,22 @@ public class StorePaymentActivity extends AppCompatActivity {
         conn.addParamMap("totalPrice",totalPrice);
         conn.addParamMap("id",CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
+
+            CommonConn conn6 = new CommonConn(this,"store_list_basket");
+            conn6.addParamMap("id",CommonVar.loginInfo.getId());
+            conn6.onExcute((isResult6, data6) -> {
+                ArrayList<StoreBasketVO> list = new Gson().fromJson(data6, new TypeToken<ArrayList<StoreBasketVO>>() {}.getType());
+
+                CommonConn conn7 = new CommonConn(this,"store_sales_up");
+                for(int i=0;i<list.size();i++){
+                    conn7.addParamMap("item_code",list.get(i).getItem_code());
+                    conn7.addParamMap("purchase_cnt",list.get(i).getSelection());
+                    conn7.onExcute(((isResult7, data7) -> {
+
+                    }));
+                }
+
+                    });
 
             CommonConn conn2 = new CommonConn(this , "insert_basket_buylist");
             conn2.addParamMap("id",CommonVar.loginInfo.getId());

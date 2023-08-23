@@ -172,6 +172,26 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
+        binding.cdvLoctacking.setOnClickListener(v->{
+            Intent intent = new Intent(getContext(), LocTrackingActivity.class);
+            startActivity(intent);
+        });
+
+        binding.cdvCalendar.setOnClickListener(v->{
+            Intent intent = new Intent(getContext(), CalendarActivity.class);
+            startActivity(intent);
+        });
+
+        binding.cdvCapsule.setOnClickListener(v->{
+            Intent intent = new Intent(getContext(), CapsuleMainActivity.class);
+            startActivity(intent);
+        });
+
+       binding.cdvPhoto.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), PhotoActivity.class);
+            startActivity(intent);
+        });
+
 
         Date date = new Date();
 

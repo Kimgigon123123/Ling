@@ -69,9 +69,22 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
                     alert.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            CommonConn conn = new CommonConn(context, "folder_delete");
+                            CommonConn conn = new CommonConn(context, "file_delete");
+                            // 추가적인 파라미터 설정
+                            conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
                             conn.addParamMap("folder_name", list.get(i).getFolder_name());
-                            conn.addParamMap("couple_num", list.get(i).getCouple_num());
+
+                            // 쿼리 실행
+                            conn.onExcute(new CommonConn.JswCallBack() {
+                                @Override
+                                public void onResult(boolean isResult, String data) {
+                                    // 추가 작업 수행
+                                }
+                            });
+
+                            conn = new CommonConn(context, "folder_delete");
+                            conn.addParamMap("folder_name", list.get(i).getFolder_name());
+                            conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
                             list.remove(i);
                             notifyDataSetChanged();
                             conn.onExcute(new CommonConn.JswCallBack() {

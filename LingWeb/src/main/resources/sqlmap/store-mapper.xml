@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store">
+
+<select id="store_select" resultType="store.StoreVO">
+
+select i.*,(item_price*sales) as sales_amount from store_item i
+
+</select>
+
+<select id="store_select_totalsales" resultType="String">
+select TO_CHAR(SUM(item_price * sales), '999,999,999') as total_sales from store_item
+</select>
+
+<select id="store_delivery_select" resultType="storereturn.StoreReturnVO">
+
+select order_num,p.item_code,
+case  when delivery_code=1 then '배송중'
+     when delivery_code=2 then '배송완료'
+     when delivery_code=3 then '배송취소'
+     end as delivery_state
+,
+id,item_price,(purchase_cnt*item_price) as total_price,purchase_cnt,item_name,item_img,address,i.category_code
+from store_purchase_product p , store_item i
+where p.item_code = i.item_code
+order by to_number(order_num) desc
+
+</select>
+
+
+</mapper>

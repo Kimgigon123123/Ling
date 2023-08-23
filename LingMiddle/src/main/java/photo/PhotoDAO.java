@@ -29,13 +29,18 @@ public class PhotoDAO {
 		return list;
 	}
 	
-	public void FolderInsert(FolderVO vo) {
+	public void folderInsert(FolderVO vo) {
 		int result = sql.insert("photo.folder_insert", vo);
 		System.out.println("성공여부 : " + result);
 	}
 	
-	public int FolderDelete(FolderVO vo) {
+	public int folderDelete(FolderVO vo) {
 		int result = sql.delete("photo.folder_delete", vo);
+		return result;
+	}
+	
+	public int fileDelete(PhotoVO vo) {
+		int result = sql.delete("photo.file_delete", vo);
 		return result;
 	}
 	

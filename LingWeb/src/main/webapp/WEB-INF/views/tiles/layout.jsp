@@ -68,9 +68,17 @@ ${active_category}
 									class="dropdown-item" href="#">맛집</a> <a
 									class="dropdown-item" href="#">축제</a>
 							</div></li>
-						<li class="nav-item"><a class="nav-link  ${active_category eq 'store' ? 'active' : '' }" href="store">
-								<i class="fas fa-shopping-cart"></i> 스토어
-						</a></li>
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle " href="store"
+						id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"><i class="far fa-file-alt"></i><span>
+						스토어<i class="fas fa-angle-down"></i></span>
+						</a>
+						
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="store">상품관리/매출확인</a> <a
+									class="dropdown-item" href="store_delivery">주문조회</a> <a
+									class="dropdown-item" href="store_return">환불목록</a>
+							</div></li>
 
 						<li class="nav-item"><a class="nav-link ${active_category eq 'lingmember' ? 'active' : '' }" href="lingmember">
 								<i class="far fa-user"></i> 회원관리

@@ -30,9 +30,9 @@
 								<tr>
 									<th scope="col">&nbsp;</th>
 									<th scope="col">상품명</th>
-									<th scope="col">상품가격</th>
-									<th scope="col">판매갯수</th>
-									<th scope="col">매출액</th>
+									<th scope="col">배송상태</th>
+									<th scope="col">주소</th>
+									<th scope="col">주문정보</th>
 									<th scope="col">&nbsp;</th>
 								</tr>
 							</thead>
@@ -43,32 +43,25 @@
 								<tr>
 									<th scope="row"><input type="checkbox" /></th>
 									<td class="tm-product-name"  style="padding-right: 20px;">${list.item_name}</td>
-									<td  style="padding-right: 20px;">${list.item_price }</td>
-									<td  style="padding-right: 50px;">${list.sales }</td>
-									<td  style="padding-right: 20px;">${list.sales_amount }</td>
+									<td  style="padding-right: 20px;">${list.delivery_state }</td>
+									<td  style="padding-right: 50px;">${list.address }</td>
+									<td  style="padding-right: 20px;">${list.item_price} * ${list.purchase_cnt }개 <br> ${list.total_price }원</td>
 									<td><a href="#" class="tm-product-delete-link"> 
 									<i class='fa-solid fa-circle-info'></i>
 									</a></td>
 								</tr>
 								</c:forEach>
 								
-								<tr>
-									<th scope="row"></th>
-									<td class="tm-product-name"  style="padding-right: 20px;">총 매출</td>
-									<td  style="padding-right: 20px;"></td>
-									<td  style="padding-right: 50px;"></td>
-									<td  style="padding-right: 20px;">${total_sales}</td>
-									<td></td>
-								</tr>
+								
 								
 							</tbody>
 						</table>
 					</div>
 					<!-- table container -->
 					<a href="addstore"
-						class="btn btn-primary btn-block text-uppercase mb-3">새상품 등록</a>
+						class="btn btn-primary btn-block text-uppercase mb-3">배송완료</a>
 					<button class="btn btn-primary btn-block text-uppercase">
-					상품 삭제</button>
+					배송취소</button>
 				</div>
 			</div>
 <!-- 			<div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col"> -->

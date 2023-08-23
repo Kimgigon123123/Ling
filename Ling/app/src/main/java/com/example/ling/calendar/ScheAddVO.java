@@ -1,8 +1,17 @@
 package com.example.ling.calendar;
 
 public class ScheAddVO {
-	private String id, sche_title, sche_typecode, sche_date;
+	private String id, sche_title, sche_typecode, sche_date, create_date;
 	private int d_day, couple_num, sche_notice, sche_no;
+
+	public String getCreate_date() {
+		return create_date;
+	}
+
+	public void setCreate_date(String create_date) {
+		this.create_date = create_date;
+	}
+
 	public int getSche_no() {
 		return sche_no;
 	}
