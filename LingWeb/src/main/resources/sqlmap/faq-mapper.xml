@@ -4,9 +4,6 @@
 <mapper namespace="faq">
 
 	<select id="list" resultType="faq.FaqVO">
-		select f.* 
-		from faq f, ling_member lm
-		where f.faq_id = lm.id
+		select * from faq  order by faq_no desc
 	</select>
-
 </mapper>

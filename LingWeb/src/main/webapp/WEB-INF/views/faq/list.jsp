@@ -19,9 +19,11 @@
          
          .p2{ clear: both;}
         
-    .tb-list {
+   .tb-list {
         width: 100%;
         border-collapse: collapse;
+        border-radius: 16px;
+        overflow:hidden;
     }
 
     .tb-list th,
@@ -50,7 +52,34 @@
     .tb-list td:nth-child(4) {
         width: 120px;
     }
+    
+    table.type11 {
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
 
+}
+table.type11 thead th {
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #369;
+  text-align: center;
+  background-color: #f3f6f7;
+  border-bottom: 3px solid #036;
+}
+table.type11 tbody td {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  
+}
+
+	
+	
 
 </style>
 </head>
@@ -85,27 +114,36 @@
 </div>
 </form>
 
-<table class="tb-list">
-<colgroup>
-<col width="100px">
-<col width="120px">
-<col>
-<col width="120px">
-</colgroup>
+<table class="tb-list type11">
+
+<thead>
 <tr>
 	<th>번호</th>
 	<th>카테고리</th>
 	<th>작성내용</th>
 	<th>작성일자</th>
 </tr>
+</thead>
+<tbody>
+<c:forEach items="${list}" var="vo">
+			<tr>
+				<%-- <td><a class="text-link" href="info.cu?id=${vo.id }">${vo.faqname }</a></td> --%>
+				
+				<td>${vo.faq_no }</td>
+				<td>${vo.faq_category }</td>
+				<td>${vo.faq_content }</td>
+				<td>${vo.faq_date }</td>
+			</tr>
+		</c:forEach>
+</tbody>
 </table>
-<div style="overflow: auto;">
+<div style="overflow: auto; border: 2px solid black; padding: 2px;">
  <img src="<c:url value= '/image/couple.jpg'/>" alt="image" width="160" height="120">
         <!-- 왼쪽 마진 적용해보기 : 잘 안됨 -->
         <div style="text-align: left;"><strong class="f-xlarge"><font style="font-size: 16px; text-align: left;">Ling에 대해서 궁금증을 해결하셨나요?</font></strong></div>
-<p class="f-large"><strong style="font-size: 16px; text-align: left;">여기서 모두 해결하고 가세요!</strong></p>
-<p class="f-large"><strong style="font-size: 16px; text-align: left;"> 여러분들의 행복한 연애생활을</strong></p>
-<p class="f-large mb-2"><strong style="font-size: 16px; text-align: left;">Ling에서 즐겨보세요!</strong></p>
+		<p class="f-large"><strong style="font-size: 16px; text-align: left; margin:0">여기서 모두 해결하고 가세요!</strong></p>
+		<p class="f-large"><strong style="font-size: 16px; text-align: left; margin:0"> 여러분들의 행복한 연애생활을</strong></p>
+		<p class="f-large"><strong style="font-size: 16px; text-align: left; margin:0">Ling에서 즐겨보세요!</strong></p>
  
 
 </div>
