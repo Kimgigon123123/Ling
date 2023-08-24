@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import date.DateDAO;
 import date.DateVO;
@@ -39,23 +40,38 @@ public class DateController {
 		return "festival";
 	}
 	
+	// 상세 정보 화면
+	@RequestMapping(value="/info", method = RequestMethod.GET)
+	public String info(Model model, int date_id) {
+		model.addAttribute("vo", dao.date_info(date_id));
+		return "info";
+	}
+	
 	// 신규 등록 화면
 	@RequestMapping("/new")
 	public String date() {
 		return "new";
 	}
 	
-	// 신규 등록 저장 화면
+	// 신규 등록 저장
+	@RequestMapping("/register")
 	public String register(DateVO vo) {
 		dao.date_insert(vo);
 		return "redirect:travel";
 	}
 	
-	// 상세 정보 화면
-	@RequestMapping(value="/info", method = RequestMethod.GET)
-	public String info(Model model, int date_id) {
+	// 삭제
+	@RequestMapping("/deletedate")
+	public String delete(int date_id) {
+		dao.date_delete(date_id);
+		return "redirect:travel";
+	}
+	
+	// 수정 화면 요청
+	@RequestMapping("/modify")
+	public String modify(@RequestParam Integer date_id, Model model) {
 		model.addAttribute("vo", dao.date_info(date_id));
-		return "info";
+		return "modify";
 	}
 	
 
