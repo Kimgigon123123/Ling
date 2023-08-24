@@ -2,6 +2,8 @@
  * 공통함수선언
  */
  
+ 
+ 
  //10MB를 넘는 파이릉ㄹ 걸러내는 ㅎ처리
  function filteredFile(files){
 	var exist = false;
@@ -172,7 +174,19 @@
 		return false;
 }
  
- $( function() {
+$( function() {
+
+	$('li.dropdown').click(function(){
+		if( $(this).hasClass('show') ){
+			$(this).removeClass('show');
+			$(this).children('div.dropdown-menu').removeClass('show');
+		}else{
+			$(this).addClass('show');
+			$(this).children('div.dropdown-menu').addClass('show');
+		}
+	})	
+	
+	
 	//ㅊ다중파일선택 처리
 	$('input#file-multiple').on('change', function(){
 		var files = filteredFile(this.files);
@@ -242,21 +256,23 @@
 	})
 	var today = new Date();
     var	range = today.getFullYear()-100 + ':' + today.getFullYear();
-	$.datepicker.setDefaults({
-		dateFormat: "yy-mm-dd", 
-		changeYear: true,
-		changeMonth: true,
-		yearRange: range,
-		showMonthAfterYear: true,
-		monthNamesShort: [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ],
-		dayNamesMin: ["일","월","화","수","목","금","토"],
-		maxDate: today, 
-	})
-	
-	console.log('ppppppppp',today)
-    $( ".date" ).datepicker();
-    $( ".date" ).attr('readonly',true);
     
+    if( $( ".date" ).length > 0 ){
+		$.datepicker.setDefaults({
+			dateFormat: "yy-mm-dd", 
+			changeYear: true,
+			changeMonth: true,
+			yearRange: range,
+			showMonthAfterYear: true,
+			monthNamesShort: [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ],
+			dayNamesMin: ["일","월","화","수","목","금","토"],
+			maxDate: today, 
+		})
+		
+		console.log('ppppppppp',today)
+	    $( ".date" ).datepicker();
+	    $( ".date" ).attr('readonly',true);
+    }
 	
 	
 	$('.date').change(function(){
