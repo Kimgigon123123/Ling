@@ -50,7 +50,7 @@
 									<td  style="padding-right: 20px;"  data-code="${vo.order_num} ">${vo.delivery_state }</td>
 									<td  style="padding-right: 50px;">${vo.address }</td>
 									<td  style="padding-right: 20px;">${vo.item_price} * ${vo.purchase_cnt }개 <br> ${vo.total_price }원</td>
-									<td><a href="#" class="tm-product-delete-link"> 
+									<td><a href="store_info?item_code=${vo.item_code }" class="tm-product-delete-link"> 
 									<i class='fa-solid fa-circle-info'></i>
 									</a></td>
 								</tr>

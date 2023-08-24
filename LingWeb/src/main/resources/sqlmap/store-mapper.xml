@@ -60,6 +60,9 @@ insert into store_item values(seq_item_code.nextval, #{category_code}, #{item_na
 <!-- </insert> -->
 
 
+<select id="info" resultType="store.StoreVO">
+select * from Store_item where item_code=#{item_code}
+</select>
 
 
 </mapper>
