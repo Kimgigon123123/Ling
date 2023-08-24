@@ -61,8 +61,8 @@ public class ScheduleController {
 	}
 	
 	@RequestMapping(value="/sche_dday",produces="text/html;charset=utf-8")
-	public String sche_Dday(ScheAddVO vo) {
-		
+	public String sche_Dday(ScheAddVO vo, String id, String couple_num, String create_date) {
+//		HashMap<>
 		List<ScheAddVO> list = dao.getDday(vo) ;
 		Gson gson = new Gson();	
 		
