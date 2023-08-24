@@ -63,11 +63,28 @@ public class StoreController {
 	}
 	
 	@ResponseBody@RequestMapping(value = "/accept_delivery", method = RequestMethod.GET)
-	public String accept_delivery(HttpSession session, Model model,String  orderNums) {
+	public String accept_delivery(HttpSession session, Model model,String orderNums) {
 		session.setAttribute("active_category", "store");
-		int result = sql.update("store.store_delivery_update", orderNums);
+		int result = sql.update("store.store_delivery_update",orderNums);
+		System.out.println(result);
 		
 		return String.valueOf(result);
+	}
+	
+	@ResponseBody@RequestMapping(value = "/cancel_delivery", method = RequestMethod.GET)
+	public String cancel_delivery(HttpSession session, Model model,String orderNums) {
+		session.setAttribute("active_category", "store");
+		int result = sql.update("store.store_delivery_cancel",orderNums);
+		System.out.println(result);
+		
+		return String.valueOf(result);
+	}
+	
+	
+	@RequestMapping(value="store_insert",method = RequestMethod.GET)
+	public String store_insert(StoreVO vo) {
+		int result = sql.insert("store.store_insert",vo);
+		return "redirect:/store";
 	}
 	
 	@RequestMapping(value = "/addstore", method = RequestMethod.GET)
