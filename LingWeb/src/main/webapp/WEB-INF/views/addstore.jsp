@@ -34,9 +34,10 @@
                 <h2 class="tm-block-title d-inline-block">상품등록</h2>
               </div>
             </div>
+            
+            <form method ="post" action="store_insert" class="tm-edit-product-form"enctype="multipart/form-data">
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
-                <form action="store_insert" class="tm-edit-product-form">
                   <div class="form-group mb-3">
                     <label
                       for="name"
@@ -103,7 +104,7 @@
                  <img class="tm-product-img-dummy mx-auto" id="preview" />
                 </div>
                 <div class="custom-file mt-3 mb-3">
-                  <input id="fileInput" name="item_img" type="file" style="display:none" onchange="readURL(this)"; />
+                  <input id="fileInput" name="file" type="file" style="display:none" onchange="readURL(this)"; />
                   <input
                     type="button"
                     class="btn btn-primary btn-block mx-auto"
@@ -118,8 +119,9 @@
               <div class="col-12">
                 <button type="submit" class="btn btn-primary btn-block text-uppercase">상품 등록하기</button>
               </div>
-            </form>
+
             </div>
+          	</form>
           </div>
         </div>
       </div>

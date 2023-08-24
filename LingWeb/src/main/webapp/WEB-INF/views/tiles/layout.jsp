@@ -73,7 +73,7 @@ ${active_category}
 								<i class="far fa-user"></i> 회원관리
 						</a></li>
 						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="travel" id="navbarDropdown"
+							class="nav-link ${active_category eq 'travel' ? 'active' : '' } dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="far fa-file-alt"></i> <span>
 									데이트 <i class="fas fa-angle-down"></i>
@@ -84,7 +84,7 @@ ${active_category}
 									class="dropdown-item" href="restaurant">맛집</a> <a
 									class="dropdown-item" href="festival">축제</a>
 							</div></li>
-						<li class="nav-item dropdown"><a class="nav-link ${active_category eq 'store' ? 'active' : '' } dropdown-toggle " href="#"
+						<li class="nav-item dropdown"><a class="nav-link ${active_category eq 'store' ? 'active' : '' }  dropdown-toggle " href="#"
 						id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"><i class="far fa-file-alt"></i><span>
 						스토어<i class="fas fa-angle-down"></i></span>

@@ -1,7 +1,9 @@
 package com.cteam.lingweb;
 
+import java.io.File;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -9,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import store.StoreVO;
 import storereturn.StoreReturnVO;
@@ -81,9 +85,23 @@ public class StoreController {
 	}
 	
 	
-	@RequestMapping(value="store_insert",method = RequestMethod.GET)
-	public String store_insert(StoreVO vo) {
-		int result = sql.insert("store.store_insert",vo);
+	@RequestMapping(value="store_insert",method = RequestMethod.POST)
+	public String store_insert(StoreVO vo,MultipartFile file,HttpServletRequest request) throws Exception {
+		
+		
+		 if (file != null && !file.isEmpty()) {
+				String uploadPath="D:\\Ling\\Ling\\image\\store\\";
+				String filename = file.getOriginalFilename();
+				File filePath = new File(uploadPath, filename);
+				String item_img = "http://192.168.0.36:8080/ling/image/store/"+filename;
+				vo.setItem_img(item_img);
+				 file.transferTo(filePath);
+				
+		 }
+		 
+		 int result = sql.insert("store.store_insert",vo);
+		
+		
 		return "redirect:/store";
 	}
 	
