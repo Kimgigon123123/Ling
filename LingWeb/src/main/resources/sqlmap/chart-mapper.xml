@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="chart">
+	<select id="age" resultType="hashmap">
+		SELECT
+    	FLOOR((TO_CHAR(SYSDATE, 'yyyy') - TO_CHAR(birth, 'yyyy')) / 10) * 10 AS age_group, COUNT(*) AS count
+		FROM ling_member
+		GROUP BY FLOOR((TO_CHAR(SYSDATE, 'yyyy') - TO_CHAR(birth, 'yyyy')) / 10) * 10
+		ORDER BY age_group
+	</select>
+	
+</mapper>
