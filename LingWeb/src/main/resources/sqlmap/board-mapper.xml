@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+
+<select id="select_board" resultType="board.BoardVO">
+select row_number() over(order by id desc) no, b.id, b.title, b.writer,
+	   to_char(b.writedate, 'YY-MM-dd') writedate, b.BOARD_CD,b.readcnt 
+from LING_BOARD b
+where board_cd = #{board_cd}
+ 
+<!-- <if test="keyword != null">
+	AND
+	(title like '%'|| #{keyword} ||'%' or content like '%'|| #{keyword} ||'%' or writer like '%'|| #{keyword} ||'%')
+</if> -->
+  
+</select>
+
+<!-- <select id="noticeselect" resultType="board.BoardVO">
+select row_number() over(order by id desc) no, b.id, b.title, to_char(b.writedate, 'YY-MM-dd') writedate, b.BOARD_CD
+b.readcnt from LING_BOARD b
+
+where board_cd = #{board_cd}
+<if test="keyword != null">
+	AND
+	(title like '%'|| #{keyword} ||'%' or content like '%'|| #{keyword} ||'%' or writer like '%'|| #{keyword} ||'%')
+</if>
+  
+</select>
+	
+<select id="freeselect" resultType="board.BoardVO">
+select row_number() over(order by id desc) no, b.id, b.title, b.writer, to_char(b.writedate, 'YY-MM-dd') writedate, 
+b.readcnt from LING_BOARD b
+
+where board_cd = #{board_cd}
+<if test="keyword != null">
+	AND
+	(title like '%'|| #{keyword} ||'%' or content like '%'|| #{keyword} ||'%' or writer like '%'|| #{keyword} ||'%')
+</if>
+</select> -->	
+
+<!-- <select id="worryselect" resultType="board.BoardVO">
+select id, title, writer, to_char(writedate, 'YY-MM-dd') writedate, readcnt from LING_BOARD where board_cd = 'WORRY'
+</select> -->	
+
+<!-- <select id="playselect" resultType="board.BoardVO">
+select id, title, to_char(writedate, 'YY-MM-dd') writedate, readcnt from LING_BOARD where board_cd = 'PLAY'
+</select> -->
+
+<!-- <select id="content" resultType="board.BoardVO">
+select id, title, to_char(writedate, 'YY-MM-dd') writedate, content, readcnt from LING_BOARD 
+where id = #{id} and (board_cd = 'NOTICE' or board_cd = 'PLAY')
+</select> -->
+
+<select id="usercontent" resultType="board.BoardVO">
+select id, writer, title, to_char(writedate, 'YY-MM-dd') writedate, content, readcnt from LING_BOARD 
+where id = #{id} and board_cd = #{board_cd}
+</select>
+
+<!--선택한 공지글 조회수 증가처리  -->
+<update id="read">
+update LING_BOARD set readcnt= readcnt+1
+where id = #{id}
+</update>
+
+<!--신규 게시글 저장  -->
+<insert id="insert">
+insert into LING_BOARD(board_cd, title, content, writer)
+values (#{board_cd}, #{title}, #{content}, #{writer})
+</insert>
+
+<!--글 변경저장 처리 -->
+<update id="update">
+update LING_BOARD set title = #{title}, content = #{content}
+where id = #{id}
+</update>
+
+<!-- 글 삭제  -->
+<delete id="delete">
+delete from LING_BOARD where id =#{id}
+</delete>
+
+<!--게시글 댓글 목록 조회  -->
+<select id="commentList" resultType="board.BoardCommentVO">
+select c.ID, c.WRITER, c.CONTENT, c.WRITEDATE, c.BOARD_ID
+from LING_BOARD_COMMENT1 c inner join Ling_member m on m.id= c.writer
+where board_id = #{board_id}
+order by c.id desc
+</select>
+
+<!-- 게시글 댓글신규저장처리 -->
+<insert id="commentRegister">
+insert into LING_BOARD_COMMENT1 (content, writer, board_id)
+values ( #{content}, #{writer}, #{board_id} )
+</insert>
+
+<!--게시글 댓글삭제  -->
+<delete id="commentDelete">
+delete from LING_BOARD_COMMENT1 where id =#{id}
+</delete>
+
+<!--게시글 댓글 변경저장  -->
+<update id="commentUpdate">
+update LING_BOARD_COMMENT1 set content = #{content} where id = #{id}
+</update>
+
+<!--게시글 댓글 목록 조회  -->
+<select id="RecommentList" resultType="board.BoardReCommentVO">
+select c.ID, c.WRITER, c.CONTENT, c.WRITEDATE, c.comment_id
+from LING_BOARD_COMMENT2 c inner join LING_BOARD_COMMENT1 m on m.id= c.comment_id
+where comment_id = #{comment_id}
+order by c.id desc
+</select>
+
+<!-- 게시글 댓글신규저장처리 -->
+<insert id="RecommentRegister">
+insert into LING_BOARD_COMMENT2 (content, writer, comment_id)
+values ( #{content}, #{writer}, #{comment_id} )
+</insert>
+
+
+</mapper>

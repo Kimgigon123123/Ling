@@ -19,8 +19,8 @@ import org.springframework.stereotype.Repository;
 public class BoardDAO {
 	@Autowired @Qualifier("test") SqlSession sql;
 	
-	public List<Object> selectBoard(HashMap<String, String> params){
-		List<Object> vo = sql.selectList("board.select_board", params);
+	public List<BoardVO> selectBoard(String board_cd){
+		List<BoardVO> vo = sql.selectList("board.select_board", board_cd);
 		return vo;
 	}
 	
