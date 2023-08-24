@@ -47,4 +47,19 @@ update store_purchase_product set delivery_code = 2 where order_num in ( ${order
 </update>
 
 
+<update id="store_delivery_cancel">
+update store_purchase_product set delivery_code = 3 where order_num in ( ${orderNums} )
+</update>
+
+<insert id="store_insert">
+insert into store_item values(seq_item_code.nextval, #{category_code}, #{item_name}, #{item_price}, #{item_img},#{item_content}, 0, 0)
+</insert>
+
+<!-- <insert id="store_insert"> -->
+<!-- insert into store_item (max(to_number(item_code))+1 as item_code, 'Dr', #{item_name}, #{item_price}, null, #{item_content}, 0, 0) -->
+<!-- </insert> -->
+
+
+
+
 </mapper>

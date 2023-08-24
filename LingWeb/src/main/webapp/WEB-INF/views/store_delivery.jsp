@@ -41,10 +41,13 @@
 							
 							<c:forEach items="${list}" var="vo">
 								<tr>
-									<th scope="row"><input type="checkbox" /></th>
-									<input type="hidden" class="order_num" value="${vo.order_num }">
+									<th scope="row">
+									<input type="checkbox" />
+											<input type="hidden" class="order_num" value="${vo.order_num}">
+									</th>
+							
 									<td class="tm-product-name"  style="padding-right: 20px;">${vo.item_name}</td>
-									<td  style="padding-right: 20px;"  data-code="${vo.delivery_state } ">${vo.delivery_state }</td>
+									<td  style="padding-right: 20px;"  data-code="${vo.order_num} ">${vo.delivery_state }</td>
 									<td  style="padding-right: 50px;">${vo.address }</td>
 									<td  style="padding-right: 20px;">${vo.item_price} * ${vo.purchase_cnt }개 <br> ${vo.total_price }원</td>
 									<td><a href="#" class="tm-product-delete-link"> 
@@ -61,8 +64,8 @@
 					<!-- table container -->
 					<a 
 						class="btn btn-primary btn-block text-uppercase mb-3" onclick="CompleteDeliveryFunc();">배송완료</a>
-					<button class="btn btn-primary btn-block text-uppercase">
-					배송취소</button>
+					<a class="btn btn-primary btn-block text-uppercase" onclick="CancelDeliveryFunc();">
+					배송취소</a>
 				</div>
 			</div>
 <!-- 			<div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col"> -->
@@ -95,6 +98,7 @@
 		var chkBoxs = $("input[type=checkbox]:checked", ".table");
 		var checkedValue='';
 		for(var i = 0 ; i<chkBoxs.length ; i ++){
+			console.log($(chkBoxs[i]).siblings().value);
 			checkedValue += (checkedValue==''?'':',') +  $(chkBoxs[i]).siblings().val();
 		}	
 
@@ -109,6 +113,41 @@
 		        		$(chkBoxs).each(function(){
 		        			$(this).prop('checked', false);
 		        			$(this).closest('tr').children('td:eq(1)').text('배송완료');
+		        		})
+		        		
+		        		
+			            // 처리 완료 후 필요한 동작을 수행
+		        	}else{
+				            alert("실패");
+				  
+		        	}
+		            
+		        },
+		        
+		    });
+		}
+    
+    
+    
+    function CancelDeliveryFunc() {
+		var chkBoxs = $("input[type=checkbox]:checked", ".table");
+		var checkedValue='';
+		for(var i = 0 ; i<chkBoxs.length ; i ++){
+			console.log($(chkBoxs[i]).siblings().value);
+			checkedValue += (checkedValue==''?'':',') +  $(chkBoxs[i]).siblings().val();
+		}	
+
+		 $.ajax({
+		        type: "GET", //get
+		        url: "cancel_delivery", // 컨트롤러의 URL 설정
+		        data: { orderNums: checkedValue }, // 선택된 return_code를 컨트롤러로 전송
+		        success: function(response) {
+		        	
+		        	if(  parseInt(response) >0){
+		        		alert("배송취소 되었습니다.");
+		        		$(chkBoxs).each(function(){
+		        			$(this).prop('checked', false);
+		        			$(this).closest('tr').children('td:eq(1)').text('배송취소');
 		        		})
 		        		
 		        		

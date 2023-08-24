@@ -56,6 +56,8 @@
                       >상품설명</label
                     >
                     <textarea
+                      id="item_content"
+                      name="item_content"
                       class="form-control validate"
                       rows="3"
                       required
@@ -68,24 +70,25 @@
                     >
                     <select
                       class="custom-select tm-select-accounts"
-                      id="category"
+                      id="category_code"
+                      name="category_code"
                     >
                       <option selected>카테고리선택</option>
-                      <option value="1">커플옷</option>
-                      <option value="2">커플반지</option>
-                      <option value="3">선물</option>
-                      <option value="3">기타</option>
+                      <option value="Dr">커플옷</option>
+                      <option value="Ri">커플반지</option>
+                      <option value="Gi">선물</option>
+                      <option value="Etc">기타</option>
                     </select>
                   </div>
                   <div class="row">
                       <div class="form-group mb-3 col-xs-12 col-sm-6">
                           <label
                             for="expire_date"
-                            >수량
+                            >가격
                           </label>
                           <input
-                            id="expire_date"
-                            name="expire_date"
+                            id="item_price"
+                            name="item_price"
                             type="text"
                             class="form-control validate"
                             data-large-mode="true"
@@ -97,13 +100,10 @@
               </div>
               <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                 <div class="tm-product-img-dummy mx-auto">
-                  <i
-                    class="fas fa-cloud-upload-alt tm-upload-icon"
-                    onclick="document.getElementById('fileInput').click();"
-                  ></i>
+                 <img class="tm-product-img-dummy mx-auto" id="preview" />
                 </div>
                 <div class="custom-file mt-3 mb-3">
-                  <input id="fileInput" type="file" style="display:none;" />
+                  <input id="fileInput" name="item_img" type="file" style="display:none" onchange="readURL(this)"; />
                   <input
                     type="button"
                     class="btn btn-primary btn-block mx-auto"
@@ -112,6 +112,9 @@
                   />
                 </div>
               </div>
+              
+              
+              
               <div class="col-12">
                 <button type="submit" class="btn btn-primary btn-block text-uppercase">상품 등록하기</button>
               </div>
@@ -131,6 +134,18 @@
       $(function() {
         $("#expire_date").datepicker();
       });
+      
+      function readURL(input) {
+    	  if (input.files && input.files[0]) {
+    	    var reader = new FileReader();
+    	    reader.onload = function(e) {
+    	      document.getElementById('preview').src = e.target.result;
+    	    };
+    	    reader.readAsDataURL(input.files[0]);
+    	  } else {
+    	    document.getElementById('preview').src = "";
+    	  }
+    	}
     </script>
 </body>
 </html>
