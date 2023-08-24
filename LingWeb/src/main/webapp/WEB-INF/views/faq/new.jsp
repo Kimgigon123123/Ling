@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<form method="post" action="faq_insert.jsp">
+<form method="post" action="faq_insert">
 <div class="container my-4">
 
   <h2>새로운 FAQ 추가</h2>          
