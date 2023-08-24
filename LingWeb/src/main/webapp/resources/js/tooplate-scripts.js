@@ -190,3 +190,4 @@ function updateBarChart() {
     barChart.update();
   }
 }
+

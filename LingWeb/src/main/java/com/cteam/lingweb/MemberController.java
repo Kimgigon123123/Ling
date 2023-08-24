@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -76,13 +77,53 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/detailmember", method = RequestMethod.GET)
-	public String addproduct() {
+	public String detailmember(String id, Model model) {
 
-		
+		model.addAttribute("vo", dao.info(id));
 		return "detailmember";
 	}
-		
+	
+	@RequestMapping("/updatemember")
+	public String update(MemberVO vo, Model model) {
 
+		model.addAttribute("vo", dao.updatemember(vo));
+		return "redirect:lingmember";
+	}
+		
+	@RequestMapping(value = "/insertmember", method = RequestMethod.GET)
+	public String insertmember() {
+
+		//model.addAttribute(dao.join(vo));
+		return "insertmember";
+	}
+	
+	@PostMapping("/insertmember")
+	public String insert(MemberVO vo) {
+
+		dao.join(vo);
+		return "redirect:lingmember";
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(String ids) {
+		
+		dao.delete(ids);
+		return "redirect:lingmember";
+	}
+	
+	@RequestMapping("/changelist")
+	public String changelist(int tablename, Model model ) {
+		if(tablename==0) {
+			model.addAttribute("list", dao.member_list());
+			return "memberlist/folder/member";			
+		}else if(tablename==1) {
+			model.addAttribute("list", dao.couplelist());
+			return "memberlist/folder/couple";
+		}else {
+			model.addAttribute("list", dao.adminlist());
+			return "memberlist/folder/member";
+		}
+	}
 		
 		
 }

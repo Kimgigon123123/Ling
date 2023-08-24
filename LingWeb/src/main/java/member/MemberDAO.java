@@ -55,10 +55,29 @@ public class MemberDAO {
 		return sql.insert("member.matching", map);
 	}
 
-	@Autowired
 	public List<MemberVO> member_list() {
 		
 		return sql.selectList("member.list");
+	}
+	
+	public List<MemberVO> adminlist() {
+		
+		return sql.selectList("member.adminlist");
+	}
+	
+	public List<MemberVO> couplelist() {
+		
+		return sql.selectList("member.couplelist");
+	}
+	
+	public int updatemember(MemberVO vo) {
+		
+		return sql.update("member.update", vo);
+	}
+	
+	
+	public int delete(String id) {
+		return sql.delete("member.delete", id);
 	}
 	
 }

@@ -8,8 +8,8 @@
         <div class="row tm-content-row">
           <div class="col-12 tm-block-col">
             <div class="tm-bg-primary-dark tm-block tm-block-settings">
-              <h2 class="tm-block-title">회원정보 수정</h2>
-              <form action="updatemember" class="tm-signup-form row">
+              <h2 class="tm-block-title">회원등록</h2>
+              <form action="insertmember" method="post" class="tm-signup-form row">
                 <div class="form-group col-lg-6">
                   <label for="id">ID</label>
                   
@@ -46,27 +46,30 @@
                 </div>
                 <div class="form-group col-lg-6">
                   <label for="gender">GENDER</label>
-                  	<div class="form-check form-check-inline">
+                  <div>
+                 <div class="form-check form-check-inline">
     					<label class="form-check-label">
-        				<input class="form-check-input" type="radio" name="gender" value="남" ${vo.gender == '남' ? 'checked' : ''}>남
+        				<input class="form-check-input" type="radio" name="gender" value="남" >남
     					</label>
 				 	</div>
 					<div class="form-check form-check-inline">
     					<label class="form-check-label">
-        				<input class="form-check-input" type="radio" name="gender" value="여" ${vo.gender == '여' ? 'checked' : ''}>여
+        				<input class="form-check-input" type="radio" name="gender" value="여" >여
     					</label>
+					</div>
 					</div>
                 </div>
                  <div class="form-group col-lg-6">
                   <label for="birth">BIRTH</label>
                   <input
-        				id="birth"
-        				name="birth"
-				        type="text" 
-				        value="${vo.birth}"
-				        class="form-control validate" 
-				        placeholder="${vo.birth}" 
-				    />
+                    id="birth"
+                    name="birth"
+                    type="text"
+                    placeholder="${vo.birth}"
+                    value="${vo.birth}"
+                    style="background-color: #54657d;"
+                    class="form-control validate date"
+                  />
                 </div>
                 <div class="form-group col-lg-6">
                   <label for="phone">PHONE</label>
@@ -96,17 +99,10 @@
                   <button
                     type="submit"
                     class="btn btn-primary btn-block text-uppercase">
-                    변경저장
+                    신규저장
                   </button>
                 </div>
-                <div class="col-12">
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-block text-uppercase"
-                  >
-                    Delete Your Account
-                  </button>
-                </div>
+                
               </form>
             </div>
           </div>
@@ -121,6 +117,16 @@
           </div>
         </div>
       </div>
-     
+<script>
+      $(function(){
+	var today = new Date();
+	//년도 : 13년전 해의 12월 31일 까지는 선택 가능 
+	//var endDay = new Date(today.getFullYear()-13, today.getMonth(), today.getDate()-1);
+	//만 나이를 적용한다면: 13년전 해의 오늘날짜 이전까지는 선택 가능
+	var endDay = new Date(today.getFullYear()-13, 11, 31);
+	//$('[name=birth]').datepicker('option', 'maxDate', endDay);
+	
+})
+</script>
   </body>
 </html>

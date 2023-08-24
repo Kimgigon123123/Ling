@@ -12,9 +12,10 @@
           <div class="row mx-0 justify-content-between align-items-center mb-3">
 	          <h2 class="tm-block-title col-lg-4 px-0">회원 리스트</h2>
 					
-	            <select class="custom-select col-lg-4">
+	            <select class="custom-select col-lg-4" id="filterSelect">
 	                <option value="0">LING_MEMBER</option>
 	                <option value="1">COUPLE</option>
+	                <option value="2">ADMIN</option>
 	            </select>
             </div>
             <div class="tm-product-table-container">
@@ -43,8 +44,7 @@
 					<td>${vo.email }</td>
 					<td>${vo.phone }</td>
 					<td>${vo.birth }</td>
-					<td><a href="#" class="tm-product-delete-link"> <i
-							class="far fa-trash-alt tm-product-delete-icon"></i>
+					<td><a href="detailmember?id=${vo.id }" class="tm-product-delete-link"> <i class="fa-solid fa-wrench"></i>
 					</a></td>
 				</tr>
 				</c:forEach>
@@ -52,23 +52,46 @@
               </table>
             </div>
             <!-- table container -->
-            <a href="detailmember" class="btn btn-primary btn-block mb-3">신규등록</a>
-			<button class="btn btn-primary btn-block col-lg-4">선택 삭제</button>
+            <a href="insertmember" class="btn btn-primary btn-block mb-3">신규등록</a>
+			<button class="btn btn-primary btn-block col-lg-4" id="delete">선택 삭제</button>
           </div>
         </div>
         
       </div>
     </div>
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<!-- https://jquery.com/download/ -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- https://getbootstrap.com/ -->
-	<script>
-      $(function() {
-        $(".tm-product-name").on("click", function() {
-          window.location.href = "edit-product.html";
+<script>
+    $(document).ready(function() {
+        $("#delete").click(function() {
+    	 
+
+            var selectedIds = [];
+            $(".tm-product-table tbody input[type='checkbox']:checked").each(function() {
+                selectedIds.push("'"+$(this).closest("tr").find(".tm-product-name").text() + "'");
+                
+            });
+           //alert('???'+ selectedIds.length + '[' +selectedIds.join(",")+']')     
+            console.log('1', selectedIds)
+            if (selectedIds.length > 0) {
+                if (confirm("선택한 항목을 삭제하시겠습니까?")) {
+                    var selectedIdsStr = selectedIds.join(",");
+                    window.location.href = "delete?ids=" + selectedIdsStr;
+                }
+            } else {
+                alert("삭제할 항목을 선택하세요.");
+            }
         });
-      });
-    </script>
+   	  $("#filterSelect").change(function(){
+   		  console.log($(this).val())
+       		$.ajax({
+    		   url:'changelist', 
+    		   data: {tablename:$(this).val()}
+    	   }).done(function(response){
+    		   $('.tm-product-table-container').html(response)
+    	     }) 
+   	  }) 
+        
+    });
+    
+</script>
 </body>
 </html>
