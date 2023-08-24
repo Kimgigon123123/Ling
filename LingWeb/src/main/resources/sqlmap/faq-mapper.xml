@@ -3,7 +3,58 @@
 
 <mapper namespace="faq">
 
-	<select id="list" resultType="faq.FaqVO">
+
+<select id="list" resultType="faq.FaqVO">
 		select * from faq  order by faq_no desc
-	</select>
+</select>
+
+<insert id="faq_insert">
+	insert into faq(faq_category,fq_title, faq_content, faq_id)
+    values(
+        <choose>
+            <when test="search == 'age'">
+                #{faq_category}
+            </when>
+            <when test="search == 'account'">
+                #{faq_category}
+            </when>
+            <when test="search == 'change'">
+                #{faq_category}
+            </when>
+        </choose>,
+        #{faq_title},
+        #{faq_content},
+        'admin'
+    );
+</insert>
+
+<select id="info" resultType="faq.FaqVO">
+	select faq.*
+	from faq inner join ling_member on id = id
+	where id = #{id} and faq_title = #{faq_title};
+</select>
+	
+<sql id="searchWhere">
+	<choose>
+		<!-- 전체 -->
+		<when test="search == 'all'">
+			where content like '%' || #{keyword} || '%'
+		    or writer like '%' || #{keyword} || '%'
+		</when>
+		<!-- 카테고리, 내용 -->
+		<when test="search == 'category' or search == 'content'">
+			where ${search} like '%' || #{keyword} || '%'
+		</when>
+	</choose>
+</sql>
+
+
+
+
+<!-- 총 글의 건수 조회  -->
+<select id="totalList" resultType="integer">
+	select count(*) from faq <include refid="searchWhere"/>
+</select>
+
+
 </mapper>

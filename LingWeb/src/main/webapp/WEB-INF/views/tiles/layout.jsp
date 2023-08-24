@@ -30,7 +30,7 @@
 	<!-- http://www.chartjs.org/docs/latest/ -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.min.js"></script>
 	<!-- https://getbootstrap.com/ -->
-	<script src="js/tooplate-scripts.js"></script>
+	<script src="<c:url value='js/tooplate-scripts.js'/>"></script>
 </head>
 
 <body id="reportsPage">
