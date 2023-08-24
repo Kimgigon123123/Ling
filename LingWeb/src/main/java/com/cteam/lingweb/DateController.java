@@ -74,5 +74,11 @@ public class DateController {
 		return "modify";
 	}
 	
+	// 수정 저장
+	@RequestMapping("/update")
+	public String update(DateVO vo) {
+		dao.date_update(vo);
+		return "redirect:info?date_id=" + vo.getDate_id();
+	}
 
 }

@@ -35,4 +35,8 @@ public class DateDAO {
 	public void date_delete(int date_id) {
 		sql.delete("date.delete", date_id);
 	}
+	
+	public void date_update(DateVO vo) {
+		sql.update("date.update", vo);
+	}
 }

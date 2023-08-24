@@ -12,7 +12,7 @@
 						<h2 class="tm-block-title d-inline-block">정보수정</h2>
 					</div>
 				</div>
-              <form action="modify" method="post" class="tm-signup-form row">
+              <form action="update" method="post" class="tm-signup-form row">
                 <div class="form-group col-lg-6">
                   <label for="name">이름</label>
                   <input

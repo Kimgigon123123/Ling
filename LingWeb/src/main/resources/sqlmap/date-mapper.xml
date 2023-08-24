@@ -27,4 +27,10 @@
 	delete from date_info where date_id = #{date_id}
 </delete>
 
+<update id="update">
+	update date_info set date_name = #{date_name}, date_address = #{date_address}, tel = #{tel}, 
+	open = #{open} , end = #{end}, date_intro = #{date_intro}
+	where date_id = #{date_id} 
+</update>
+
 </mapper>
