@@ -24,6 +24,7 @@
         border-collapse: collapse;
         border-radius: 16px;
         overflow:hidden;
+        
     }
 
     .tb-list th,
@@ -78,8 +79,11 @@ table.type11 tbody td {
   
 }
 
+container {
+
 	
-	
+}
+
 
 </style>
 </head>
@@ -87,7 +91,7 @@ table.type11 tbody td {
 <h3 class="my-4">FAQ</h3>
 
 
-<div class="container px-1">
+<div class="container my-4">
 <form method="post" action="list">
 <input type="hidden" name="curPage" value="1"/>
 <div class="row justify-content-between mb-3 mt-3">
@@ -96,10 +100,8 @@ table.type11 tbody td {
 		<div class="input-group">
 			<select name="search" class="form-select">
 				<option value="all" ${page.search eq 'all' ? 'selected' : '' }>전체</option>
-				<option value="title" <c:if test="${page.search eq 'title'}">selected</c:if>>제목</option>
+				<option value="category" ${page.search eq 'category' ? 'selected' : '' }>카테고리</option>
 				<option value="content" ${page.search eq 'content' ? 'selected' : '' }>내용</option>
-				<option value="writer" ${page.search eq 'category' ? 'selected' : '' }>카테고리</option>
-				<option value="t_c" ${page.search eq 'c_c' ? 'selected' : '' }>카테고리+내용</option>
 			</select>
 		  <input type="text" name="keyword" value="${page.keyword }" class="form-control">
 		 <button class="btn btn-primary px-3"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -114,13 +116,13 @@ table.type11 tbody td {
 </div>
 </form>
 
-<table class="tb-list type11">
+<table class="tb-list type11 mb-4">
 
 <thead>
 <tr>
 	<th>번호</th>
 	<th>카테고리</th>
-	<th>작성내용</th>
+	<th>제목</th>
 	<th>작성일자</th>
 </tr>
 </thead>
@@ -131,7 +133,7 @@ table.type11 tbody td {
 				
 				<td>${vo.faq_no }</td>
 				<td>${vo.faq_category }</td>
-				<td>${vo.faq_content }</td>
+				<td>${vo.faq_title }</td>
 				<td>${vo.faq_date }</td>
 			</tr>
 		</c:forEach>

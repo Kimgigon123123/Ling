@@ -16,4 +16,14 @@ public class FaqDAO {
 		List<FaqVO> list = sql.selectList("faq.list");
 		return list;
 	}
+	
+	public int faq_insert(FaqVO vo) {
+		int result = sql.insert("faq.faq_insert");
+		return result;
+	}
+	
+	public int faq_info(int id) {
+		int result = sql.selectOne("faq.faq_info");
+		return result;
+	}
 }

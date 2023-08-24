@@ -2,7 +2,16 @@ package faq;
 
 public class FaqVO {
 	private int faq_no;
-	private String faq_category, faq_content, faq_date, faq_id;
+	private String faq_category, faq_content, faq_date, faq_id, faq_title;
+	
+	
+	
+	public String getFaq_title() {
+		return faq_title;
+	}
+	public void setFaq_title(String faq_title) {
+		this.faq_title = faq_title;
+	}
 	public int getFaq_no() {
 		return faq_no;
 	}
