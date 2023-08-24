@@ -65,6 +65,26 @@ public class MemberController {
 		}
 	}
 	
+//	@RequestMapping("default/login")
+//	@ResponseBody
+//	public String admin(HttpSession session , String id, String pw) {
+//		HashMap<String, String> params = new HashMap<String, String>();
+//		params.put("id", id);
+//		params.put("pw", pw);
+//		MemberVO vo = dao.login(params);
+//	    if (vo == null) {
+//	        return "failure";
+//	    } else {
+//	        if (vo.getAdmin().equals("Y")) {
+//	            // 세션에 로그인한 아이디 저장
+//	            session.setAttribute("loginId", id);
+//	            return "success";
+//	        } else {
+//	            return "failure";
+//	        }
+//	    }
+//	}
+	
 	@RequestMapping("/admin")
 	public String admin(HttpSession session) {
 		
@@ -150,6 +170,8 @@ public class MemberController {
 			return "memberlist/folder/member";
 		}
 	}
+	
+
 		
 		
 }

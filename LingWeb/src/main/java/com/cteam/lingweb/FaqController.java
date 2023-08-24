@@ -46,7 +46,9 @@ public class FaqController {
 	//FAQ 글 정보 화면요청
 	@RequestMapping("/faq_info")
 	public String faq_content(int id, Model model) {
-		
+		model.addAttribute("crlf", "\r\n"); //carrage return line feed
+		model.addAttribute("lf", "\n"); //line feed
+		model.addAttribute("vo", dao.faq_info(id));
 		return "default/faq/faq_info";
 	}
 	

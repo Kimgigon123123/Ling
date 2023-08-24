@@ -26,6 +26,12 @@
         overflow:hidden;
         
     }
+    a{color:inherit}
+
+a:not(.btn):link, a:not(.btn):hover{ text-decoration: none;
+		color: inherit;
+}
+    
 
     .tb-list th,
     .tb-list td {
@@ -133,7 +139,8 @@ container {
 				
 				<td>${vo.faq_no }</td>
 				<td>${vo.faq_category }</td>
-				<td>${vo.faq_title }</td>
+				<td><a class="text-link" href="faq_info?id=${vo.faq_id }">${vo.faq_title }</a></td>
+				<%-- <td>${vo.faq_title }</td> --%>
 				<td>${vo.faq_date }</td>
 			</tr>
 		</c:forEach>

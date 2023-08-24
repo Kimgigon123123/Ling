@@ -9,7 +9,7 @@
 </select>
 
 <insert id="faq_insert">
-	insert into faq(faq_category,fq_title, faq_content, faq_id)
+	insert into faq(faq_category, faq_title, faq_content, faq_id)
     values(
         <choose>
             <when test="search == 'age'">
@@ -31,7 +31,7 @@
 <select id="info" resultType="faq.FaqVO">
 	select faq.*
 	from faq inner join ling_member on id = id
-	where id = #{id} and faq_title = #{faq_title};
+	where id = #{faq_id} and faq_title = #{faq_title};
 </select>
 	
 <sql id="searchWhere">
