@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import member.MemberDAO;
 import member.MemberVO;
@@ -26,25 +27,50 @@ public class MemberController {
 	@Autowired
 	MemberDAO dao;
 
-	@RequestMapping(value = "/adminlogin", produces = "text/html;charset=utf-8")
-	public String login(String id, String pw) {
-
+//	@RequestMapping(value = "default/login", produces = "text/html;charset=utf-8")
+//	public String login(String id, String pw) {
+//
+//		HashMap<String, String> params = new HashMap<String, String>();
+//		params.put("id", id);
+//		params.put("pw", pw);
+//		MemberVO vo = dao.login(params);
+//		if(vo==null) {
+//			return "default/login";
+//		}else {
+//			if(vo.getAdmin().equals("Y")) {
+//				return "admin";
+//			}else {
+//				return "default/login";
+//			}
+//		}
+//		
+//	}
+	
+	@RequestMapping("default/login") @ResponseBody
+	public String admin(HttpSession session , String id, String pw) {
+		// ajax처리 필요함. 로그인 성공 실패에 따라서 스크립트로 페이지 이동.
+		// Session에 로그인 정보 담기,.
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("id", id);
 		params.put("pw", pw);
 		MemberVO vo = dao.login(params);
 		if(vo==null) {
-			return "login";
+			return "failure";
 		}else {
 			if(vo.getAdmin().equals("Y")) {
-				return "admin";
+				return "success";
 			}else {
-				return "login";
+				return "failure";
 			}
 		}
-		
 	}
 	
+	@RequestMapping("/admin")
+	public String admin(HttpSession session) {
+		
+		session.setAttribute("active_category", "admin");
+		return "admin";
+	}
 	
 	@RequestMapping(value = "/lingmember2", method = RequestMethod.GET)
 	public String lingmember2(HttpSession session, Model model) {

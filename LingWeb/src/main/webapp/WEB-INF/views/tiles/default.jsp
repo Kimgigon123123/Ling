@@ -20,7 +20,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="<c:url value='/css/styles.css'/>" rel="stylesheet" />
     </head>
-    <body id="page-top">
+        <body id="page-top">
          <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
             <div class="container px-5">
@@ -48,13 +48,12 @@
                     </button>
                 </div>
             </div>
-        </nav>     
+        </nav> 
         <div id="container" class="container-fluid my-0">
                     <tiles:insertAttribute name="container"/>
                 </div>
        
-        
-      <!-- Footer-->
+        <!-- Footer-->
         <footer class="bg-black text-center py-5">
             <div class="container px-5">
                 <div class="text-white-50 small">
@@ -66,7 +65,8 @@
                     <a href="#!">FAQ</a>
                 </div>
             </div>
-        </footer>   
+        </footer>  
+      
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

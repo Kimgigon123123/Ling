@@ -3,7 +3,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
 <meta charset="UTF-8">
@@ -16,7 +16,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <!-- https://fontawesome.com/ -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
+
 <!-- https://getbootstrap.com/ -->
+
 <link rel="stylesheet" href="css/templatemo-style.css">
 <!--
 	Product Admin CSS Template
@@ -34,6 +36,8 @@
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	<script src="js/common.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	
+	
 </head>
 
 <body id="reportsPage">
@@ -56,23 +60,17 @@ ${active_category}
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mx-auto h-100">
 					<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="fas fa-cog"></i> <span>
-									설정 <i class="fas fa-angle-down"></i>
+							class="nav-link ${active_category eq 'admin' ? 'active' : '' }" href="admin" id="navbarDropdown">
+							<i class="fa-solid fa-house-user"></i> <span>
+									관리자 모드 
 							</span>
 						</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">설정</a> <a
-									class="dropdown-item" href="#">설정</a> <a
-									class="dropdown-item" href="#">설정</a>
-							</div></li>
-						<li class="nav-item">
-							<a class="nav-link  ${active_category eq 'admin' ? 'active' : '' }" href="board">
-							<i class="fa-regular fa-clipboard"></i> 게시판 <spanclass="sr-only"></span>
+							</li>
+						<li class="nav-item"><a class="nav-link ${active_category eq 'lingmember' ? 'active' : '' }" href="lingmember">
+								<i class="far fa-user"></i> 회원관리
 						</a></li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="date" id="navbarDropdown"
+						<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="date" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="far fa-file-alt"></i> <span>
 									데이트 <i class="fas fa-angle-down"></i>
@@ -83,7 +81,7 @@ ${active_category}
 									class="dropdown-item" href="restaurant">맛집</a> <a
 									class="dropdown-item" href="festival">축제</a>
 							</div></li>
-						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle " href="store"
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle " href="#"
 						id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"><i class="far fa-file-alt"></i><span>
 						스토어<i class="fas fa-angle-down"></i></span>
@@ -95,10 +93,10 @@ ${active_category}
 									class="dropdown-item" href="store_return">환불목록</a>
 							</div></li>
 
-						<li class="nav-item"><a class="nav-link ${active_category eq 'lingmember' ? 'active' : '' }" href="lingmember">
-								<i class="far fa-user"></i> 회원관리
+						<li class="nav-item">
+							<a class="nav-link  ${active_category eq 'board' ? 'active' : '' }" href="board">
+							<i class="fa-regular fa-clipboard"></i> 게시판 <spanclass="sr-only"></span>
 						</a></li>
-						
 					</ul>
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link d-block"
