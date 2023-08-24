@@ -59,6 +59,9 @@ select i.*,
 </select>
 
 
+<select id="countList" resultType="date.DateInfoVO">
+	select * from date_info where date_category_code = #{category} and rownum <![CDATA[<=]]> #{count}
+</select>	
 
 
 <!-- 관심목록_전체 -->
@@ -145,9 +148,6 @@ select i.*,
 	from date_info i where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'FE'
 </select> -->
 
-<select id="countList" resultType="date.DateInfoVO">
-	select * from date_info where date_category_code = #{category} and rownum <![CDATA[<=]]> #{count}
-</select>	
 <!-- 여행 목록 5개 -->
 <!-- <select id="tour5" resultType="date.DateInfoVO">
 	select * from date_info where date_category_code = 'TO' and rownum <![CDATA[<=]]> 5

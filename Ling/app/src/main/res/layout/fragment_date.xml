@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/shape"
     android:orientation="vertical"
+    android:id="@+id/innerContainer"
     tools:context=".date.DateHomeFragment">
 
 

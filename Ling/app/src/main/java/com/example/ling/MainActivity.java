@@ -28,8 +28,7 @@ import devlight.io.library.ntb.NavigationTabBar;
 
 public class MainActivity extends AppCompatActivity {
 
-    ActivityMainBinding binding;
-    Window window ;
+    public ActivityMainBinding binding;
     ArrayList<MainMenuDTO> list = new ArrayList<>();
     String couple_num;
     @Override
@@ -39,12 +38,12 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        window = this.getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
-        window.getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-
+//        window = this.getWindow();
+//        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//
+//        window.getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+//
 
         AnimationDrawable animDrawable = (AnimationDrawable) binding.layoutMain.getBackground();
         animDrawable.setEnterFadeDuration(10);
@@ -77,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
     //바텀 네비게이션 초기화 및 뷰페이저 초기화  ↗ 로직 끝나고 실행해야함  2023-08-16 kym
     private void initUI() {
+
        binding.pager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
            @NonNull
            @Override
@@ -103,8 +103,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         binding.ntbHorizontal.setModels(models);
+
         binding.ntbHorizontal.setViewPager(binding.pager, 2);
-        window.setStatusBarColor(Color.parseColor(list.get(2).color));
+
         binding.ntbHorizontal.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {
@@ -113,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(final int position) {
-                window.setStatusBarColor(Color.parseColor(list.get(position).color));
                 binding.ntbHorizontal.getModels().get(position).hideBadge();
             }
 

@@ -42,9 +42,7 @@
         <activity
             android:name=".store.myinfo.CompleteReturnActivity"
             android:exported="false" />
-        <activity
-            android:name=".board.Board_New_ContentActivity"
-            android:exported="false" />
+
         <activity
             android:name=".store.myinfo.DetailAddActivity"
             android:exported="false" />
@@ -107,18 +105,7 @@
         <activity
             android:name=".date.list.DateDetailActivity"
             android:exported="false" />
-        <activity
-            android:name=".date.restaurant.RestaurantActivity"
-            android:exported="false" />
-        <activity
-            android:name=".date.restaurant.RestDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".date.tour.TourActivity"
-            android:exported="false" />
-        <activity
-            android:name=".date.tour.TourDetailActivity"
-            android:exported="false" />
+
         <activity
             android:name=".date.dibs.DibsActivity"
             android:exported="false" />
@@ -150,6 +137,7 @@
             android:name=".SplashActivity"
             android:exported="false" />
         <activity
+
             android:name=".MainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize|adjustPan" />

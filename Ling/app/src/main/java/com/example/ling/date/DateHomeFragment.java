@@ -1,8 +1,13 @@
 package com.example.ling.date;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.WindowCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,9 +17,11 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 
+import com.example.ling.MainActivity;
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.FragmentDateBinding;
@@ -95,6 +102,24 @@ public class DateHomeFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getActivity().getWindow().setFlags(         WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        if(Build.VERSION.SDK_INT >= 30) {
+            WindowCompat.setDecorFitsSystemWindows( getActivity().getWindow(), false);
+        }
+
+
+        MainActivity activity = (MainActivity) getActivity();
+        int bottomNav = (int) (70 *  Resources.getSystem().getDisplayMetrics().density + 0.5f);
+        activity.binding.layoutMain.setPadding( 0 , 0 , 0 , bottomNav );
+        }
+
+
+
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         binding = null;
@@ -111,9 +136,16 @@ public class DateHomeFragment extends Fragment {
         handler.removeCallbacks(runnable);
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        if(Build.VERSION.SDK_INT >= 30) {
+            WindowCompat.setDecorFitsSystemWindows( getActivity().getWindow(), true);
+        }
+    }
 
-
-    //2023.08.23 KYM 수정예정
+//2023.08.23 KYM 수정예정
 //    void drawerLayoutEvent(){
 //
 //        binding.imgvMenu.setOnClickListener(v -> {
