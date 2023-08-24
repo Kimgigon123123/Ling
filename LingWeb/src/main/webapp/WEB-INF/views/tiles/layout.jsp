@@ -15,6 +15,7 @@
 <!-- https://fonts.google.com/specimen/Roboto -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <!-- https://fontawesome.com/ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 
 <!-- https://getbootstrap.com/ -->
@@ -30,7 +31,7 @@
 	<!-- https://momentjs.com/ -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 	<!-- http://www.chartjs.org/docs/latest/ -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.min.js"></script>
+	
 	<!-- https://getbootstrap.com/ -->
 	<script src="js/tooplate-scripts.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
@@ -59,6 +60,8 @@
 ${active_category}
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mx-auto h-100">
+					
+					
 					<li class="nav-item dropdown"><a
 							class="nav-link ${active_category eq 'admin' ? 'active' : '' }" href="admin" id="navbarDropdown">
 							<i class="fa-solid fa-house-user"></i> <span>
@@ -81,7 +84,7 @@ ${active_category}
 									class="dropdown-item" href="restaurant">맛집</a> <a
 									class="dropdown-item" href="festival">축제</a>
 							</div></li>
-						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle " href="#"
+						<li class="nav-item dropdown"><a class="nav-link ${active_category eq 'store' ? 'active' : '' } dropdown-toggle " href="#"
 						id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"><i class="far fa-file-alt"></i><span>
 						스토어<i class="fas fa-angle-down"></i></span>
