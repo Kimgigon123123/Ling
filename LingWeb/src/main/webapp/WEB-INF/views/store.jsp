@@ -46,7 +46,7 @@
 									<td  style="padding-right: 20px;">${list.item_price }</td>
 									<td  style="padding-right: 50px;">${list.sales }</td>
 									<td  style="padding-right: 20px;">${list.sales_amount }</td>
-									<td><a href="#" class="tm-product-delete-link"> 
+									<td><a href="store_info?item_code=${list.item_code }" class="tm-product-delete-link"> 
 									<i class='fa-solid fa-circle-info'></i>
 									</a></td>
 								</tr>

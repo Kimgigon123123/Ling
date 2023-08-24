@@ -110,6 +110,16 @@ public class StoreController {
 		return "redirect:/store";
 	}
 	
+	// 상세 정보 화면
+		@RequestMapping(value="/store_info", method = RequestMethod.GET)
+		public String info(Model model, String item_code) {
+			
+			StoreVO vo = sql.selectOne("store.info", item_code);
+			model.addAttribute("vo",vo );
+			
+			return "store_info";
+		}
+	
 	
 	
 	
