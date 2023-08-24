@@ -5,12 +5,7 @@
 <c:set var="now" value="<%=new java.util.Date() %>"/>
 <!DOCTYPE html>
 <html lang="ko">
-	<c:choose>
-	<c:when test="${category eq 'default' }"><c:set var="title" value="Ling소개"/> </c:when>
-	<c:when test="${category eq 'faq' }"><c:set var="title" value="Community"/> </c:when>
-<%-- 	<c:when test="${category eq 'no' }"><c:set var="title" value="공지사항"/> </c:when>
-	<c:when test="${category eq 'bo' }"><c:set var="title" value="방명록"/> </c:when> --%>
-</c:choose>	
+
 		
     <head>
         <meta charset="utf-8" />
@@ -28,6 +23,26 @@
         <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        
+        <style>
+        	    a{color:inherit}
+
+		a:not(.btn):link, a:not(.btn):hover{ text-decoration: none;
+		color: inherit;
+		}
+		
+		a.text-link{
+	text-decoration: none;
+	cursor: pointer;
+}		
+		#chart{
+		margin-top: 20px; 
+		margin-bottom: 20px;
+		background-color: #f0f0f0;
+		
+		}
+		
+        </style>
     </head>
     
  
@@ -167,7 +182,8 @@
         </section>
         
         <!-- Basic features section-->
-        <section id="chart" class="bg-light">
+        <section class="bg-light">
+        <div id='tab-content' class="m-md-2 m-lg-3" style='height: 520px'>
             <div class="container px-5">
             <h3 class="my-4">Ling Chart</h3>
                 <ul class="nav nav-tabs">
@@ -175,10 +191,8 @@
 		<li class="nav-item"><a class="nav-link">연애기간별</a></li>
 		<li class="nav-item"><a class="nav-link">이번년도 ...?? ex(핫 아이템, 핫플레이스 top3)</a></li>
 	</ul>
-	
-	
-		
-	
+            </div>
+            <canvas id="chart" class="h-100 m-auto"></canvas>
             </div>
         </section>
         <!-- Call to action section-->
@@ -285,7 +299,7 @@
 	<!-- 색상자동생성 라이브러리 -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors@0.2.2/dist/chartjs-plugin-autocolors.min.js"></script>
-	<script>
+	
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
@@ -296,14 +310,121 @@
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
         
+
+<!-- <script>
+$(document).ready(function() {
+    // 기본 탭 선택 (첫 번째 탭)
+    var defaultTab = "age";
+    activateChart(defaultTab);
+
+    // 탭 클릭 시 차트 활성화
+    $("#chartTabs a").click(function(e) {
+        e.preventDefault();
+        var chartType = $(this).text(); // 현재 클릭한 탭의 텍스트를 가져옴
+        activateChart(chartType);
+        $(this).tab("show");
+    });
+});
+
+function activateChart(chartType) {
+    if (chartType === "연령별") {
+        age();
+    }
+    // 연애기간별이나 다른 탭에 대한 로직 추가
+}
+
+function age() {
+    initCanvas();
+
+    $.ajax({
+        url: 'age',
+    }).done(function(response) {
+        var info = {};
+        info.category = [], info.datas = [], info.colors = [];
+        $(response).each(function() {
+            info.category.push(this.age_group);
+            info.datas.push(this.count);
+            info.colors.push(this.count);
+        });
+        donutChart(info);
+    });
+}
+
+function donutChart(info) {
+    $('#chart').css('height', '550');
+
+    var sum = 0;
+    $(info.datas).each(function() {
+        sum += this;
+    });
+
+    info.pct = info.datas.map(function(data) {
+        return Math.round(data / sum * 10000) / 100;
+    });
+
+    visual = new Chart($('#chart'), {
+        type: 'doughnut',
+        data: {
+            labels: info.category,
+            datasets: [{
+                label: '연령별',
+                data: info.datas,
+                hoverOffset: 5,
+                backgroundColor: info.colors, // 배경색 설정 추가
+            }]
+        },
+        options: {
+            cutout: '60%',
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                autocolors: { mode: 'data' },
+                datalabels: {
+                    anchor: 'middle',
+                    formatter: function(value, item) {
+                        return `${value}명(${info.pct[item.dataIndex]}%)`;
+                    }
+                }
+            }
+        }
+    });
+}
+
+</script> -->
+
         
         <script>
+        
+        Chart.defaults.font.size = 16;
+      //const defaultLegendClickHandler = Chart.defaults.plugins.legend.onClick;
+      Chart.defaults.set('plugins.legend', {
+      	position: 'bottom',
+      })
+
+
+      Chart.register(ChartDataLabels); // Register the plugin to all charts:
+      Chart.register(window['chartjs-plugin-autocolors']); // All charts autoColors
+
+
+      //데이터라벨 default 적용 지정
+      Chart.defaults.set('plugins.datalabels', {
+      	anchor: 'end', //데이터위치
+      	align: 'start',//앵커기준으로 한 위치
+      	offset: -20,//얼마나 떨어져있게 할 것인지
+      	color: '#000', //폰트 색상
+      	font: {weight: 'bold'}, //폰트 굵게
+      })
+        
+
+        
+        
+        
         $('ul.nav-tabs li').on({
         	'click' : function(){
         		$('ul.nav-tabs li a').removeClass('active');
         		$(this).children('a').addClass('active');
         		
-        		var idx = $(this).index();
+         		var idx = $(this).index();
         		$('#tab-content .tab').addClass('d-none');
         		$('#tab-content .tab').eq(idx).removeClass('d-none');
         		
@@ -324,7 +445,10 @@
 			$('#tab-content').append(`<canvas id="chart" class="h-100 m-auto"></canvas>`);
 		}
         
-        
+      	$(function(){
+      		$('ul.nav-tabs li').eq(0).trigger('click')
+      	})
+        //연령별 인원 수 조회
         function age(){
         	initCanvas();
         	
@@ -335,11 +459,11 @@
         		var info = {};
         		info.category = [], info.datas = [], info.colors = [];
         		$(response).each(function(){
-        			info.category.push(this.age_group);
-        			info.datas.push(this.count);
-        			info.colors.push(this.count);
+        			info.category.push(this.AGE_GROUP);
+        			info.datas.push(this.COUNT);
+        			info.colors.push(this.COUNT);
         		})
-        		console.log(info);
+        		console.log('data',info);
        			donutChart(info);
         	})
         }
@@ -384,7 +508,9 @@
         		    	}
         		    }
         	});
+        	
         }
+        
         </script>
         
     </body>

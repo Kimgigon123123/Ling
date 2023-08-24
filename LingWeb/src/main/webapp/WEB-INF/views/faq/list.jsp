@@ -114,11 +114,13 @@ container {
 		</div>
 	</div>
 <!-- 	관리자로 로그인 되어 있는 경우만 새글쓰기 가능 -->
-	<c:if test="${loginInfo.admin eq 'Y' }"></c:if>
+	<c:if test="${loginId eq 'admin'}">
+		<div class="col-auto">
+			<a class="btn btn-primary" href="new">새글쓰기</a>
+		</div>
+	</c:if>
 
-	<div class="col-auto">
-		<a class="btn btn-primary" href="new">새글쓰기</a>
-	</div>
+
 </div>
 </form>
 

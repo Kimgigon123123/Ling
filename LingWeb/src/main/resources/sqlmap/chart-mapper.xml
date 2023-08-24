@@ -10,4 +10,15 @@
 		ORDER BY age_group
 	</select>
 	
+	<select id="period" resultType="hashmap">
+	SELECT FLOOR(period / 100) * 100 AS period_range, COUNT(*) AS count 
+	FROM (
+    SELECT TRUNC(SUBSTR(TO_CHAR(sysdate - create_date), 2)) AS period
+    FROM couple
+	)
+	GROUP BY FLOOR(period / 100) * 100
+	ORDER BY period_range
+	
+	</select>
+	
 </mapper>

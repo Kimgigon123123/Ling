@@ -66,6 +66,13 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping("/admin")
+	public String admin(HttpSession session) {
+		
+		session.setAttribute("active_category", "admin");
+		return "admin";
+	}
+	
 //	@RequestMapping("default/login")
 //	@ResponseBody
 //	public String admin(HttpSession session , String id, String pw) {
@@ -86,12 +93,7 @@ public class MemberController {
 //	    }
 //	}
 	
-	@RequestMapping("/admin")
-	public String admin(HttpSession session) {
-		
-		session.setAttribute("active_category", "admin");
-		return "admin";
-	}
+
 	
 	@RequestMapping(value = "/lingmember2", method = RequestMethod.GET)
 	public String lingmember2(HttpSession session, Model model) {

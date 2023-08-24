@@ -9,11 +9,14 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import chart.ChartDAO;
 import store.StoreVO;
 
 
@@ -42,6 +45,15 @@ public class HomeController {
 //		
 //		return "date";
 //	}
+	
+	
+	@Autowired private ChartDAO service;
+	
+	@ResponseBody @RequestMapping("/age")
+	public Object age() {
+		//DB에서 부서별 사원수를 조회해와 응답한다.
+		return service.age();
+	}
 	
 
 	
