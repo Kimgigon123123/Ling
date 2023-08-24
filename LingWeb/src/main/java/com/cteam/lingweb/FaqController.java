@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import faq.FaqDAO;
 import faq.FaqVO;
+import member.MemberVO;
 
 @Controller @RequestMapping("/faq")
 public class FaqController {
@@ -22,10 +23,11 @@ public class FaqController {
 	@RequestMapping("/list")
 	public String list(Model model, HttpSession session) {
 	session.setAttribute("category", "faq");
-	
+	 String loginId = (String) session.getAttribute("active_category");
 	List<FaqVO> list = dao.list();
 	
 	model.addAttribute("list", list);
+	model.addAttribute("loginId", loginId);
 	return "default/faq/list";
 	}
 	
@@ -45,7 +47,7 @@ public class FaqController {
 	
 	//FAQ 글 정보 화면요청
 	@RequestMapping("/faq_info")
-	public String faq_content(int id, Model model) {
+	public String faq_content(String id, Model model) {
 		model.addAttribute("crlf", "\r\n"); //carrage return line feed
 		model.addAttribute("lf", "\n"); //line feed
 		model.addAttribute("vo", dao.faq_info(id));

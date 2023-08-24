@@ -18,12 +18,11 @@ public class FaqDAO {
 	}
 	
 	public int faq_insert(FaqVO vo) {
-		int result = sql.insert("faq.faq_insert");
+		int result = sql.insert("faq.faq_insert", vo);
 		return result;
 	}
 	
-	public int faq_info(int id) {
-		int result = sql.selectOne("faq.faq_info");
-		return result;
+	public FaqVO faq_info(String id) {
+		return sql.selectOne("faq.faq_info", id);
 	}
 }

@@ -4,10 +4,13 @@
 <mapper namespace="faq">
 
 
+<!-- FAQ 글 목록  -->
 <select id="list" resultType="faq.FaqVO">
 		select * from faq  order by faq_no desc
 </select>
 
+
+<!-- FAQ 글 추가 --> 
 <insert id="faq_insert">
 	insert into faq(faq_category, faq_title, faq_content, faq_id)
     values(
@@ -25,16 +28,30 @@
         #{faq_title},
         #{faq_content},
         'admin'
-    );
+    )
 </insert>
 
-<select id="info" resultType="faq.FaqVO">
+<select id="faq_info" resultType="faq.FaqVO">
 	select faq.*
-	from faq inner join ling_member on id = id
-	where id = #{faq_id} and faq_title = #{faq_title};
+	from faq inner join ling_member on faq_id = id
+	where faq_id = #{faq_id} and faq_title = #{faq_title}
 </select>
 	
 <sql id="searchWhere">
+	<choose>
+		<!-- 전체 -->
+		<when test="search == 'all'">
+			where content like '%' || #{keyword} || '%'
+		    or writer like '%' || #{keyword} || '%'
+		</when>
+		<!-- 카테고리, 내용 -->
+		<when test="search == 'category' or search == 'content'">
+			where ${search} like '%' || #{keyword} || '%'
+		</when>
+	</choose>
+</sql>
+
+<sql id="categoryTag">
 	<choose>
 		<!-- 전체 -->
 		<when test="search == 'all'">
