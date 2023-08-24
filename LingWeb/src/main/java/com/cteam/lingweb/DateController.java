@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import date.DateDAO;
+import date.DateVO;
 
 @Controller
 public class DateController {
@@ -41,6 +43,19 @@ public class DateController {
 	@RequestMapping("/new")
 	public String date() {
 		return "new";
+	}
+	
+	// 신규 등록 저장 화면
+	public String register(DateVO vo) {
+		dao.date_insert(vo);
+		return "redirect:travel";
+	}
+	
+	// 상세 정보 화면
+	@RequestMapping(value="/info", method = RequestMethod.GET)
+	public String info(Model model, int date_id) {
+		model.addAttribute("vo", dao.date_info(date_id));
+		return "info";
 	}
 	
 

@@ -14,4 +14,13 @@
 	select * from date_info where date_category_code = 'FE'
 </select>
 
+<select id="info" resultType="date.DateVO">
+	select * from date_info where date_id = #{date_id}
+</select>
+
+<insert id="insert">
+	insert into date_info(date_id, date_category_code, date_name, date_address, tel, open, end, date_intro)
+	values (seq_date_info.nextval, #{date_category_code}, #{date_name}, #{date_address}, #{tel}, #{open}, #{end}, #{date_intro})
+</insert>
+
 </mapper>
