@@ -36,7 +36,7 @@
             </div>
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
-                <form action="" class="tm-edit-product-form">
+                <form action="register" method="post" autocomplete="off" class="tm-edit-product-form">
                 <div class="form-group mb-3">
                     <label
                       for="category"
@@ -171,7 +171,7 @@
                 </div>
               </div>
               <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase">완료</button>
+                <button id="btn-save" type="submit" class="btn btn-primary btn-block text-uppercase">완료</button>
               </div>
             </form>
             </div>
@@ -186,9 +186,13 @@
     <script src="js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
     <script>
-      $(function() {
+      /* $(function() {
         $("#expire_date").datepicker();
-      });
+      }); */
+      $('#btn-save').click(function() {
+			$('form').submit()
+		}
+	})
     </script>
 </body>
 </html>

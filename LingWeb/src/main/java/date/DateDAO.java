@@ -23,4 +23,12 @@ public class DateDAO {
 	public List<DateVO> festival_list() {
 		return sql.selectList("date.festival");
 	}
+	
+	public DateVO date_info(int date_id) {
+		return sql.selectOne("date.info", date_id);
+	}
+	
+	public void date_insert(DateVO vo) {
+		sql.insert("date.insert", vo);
+	}
 }
