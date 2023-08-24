@@ -58,6 +58,7 @@ public class MemberController {
 			return "failure";
 		}else {
 			if(vo.getAdmin().equals("Y")) {
+				session.setAttribute("loginId", id);
 				return "success";
 			}else {
 				return "failure";
