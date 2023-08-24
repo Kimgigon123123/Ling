@@ -72,9 +72,8 @@ ${active_category}
 						<li class="nav-item"><a class="nav-link ${active_category eq 'lingmember' ? 'active' : '' }" href="lingmember">
 								<i class="far fa-user"></i> 회원관리
 						</a></li>
-						<li class="nav-item dropdown"><a
-							class="nav-link ${active_category eq 'travel' ? 'active' : '' } dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
+						<li class="nav-item dropdown"><a class="nav-link ${active_category eq 'travel' ? 'active' : '' } dropdown-toggle" href="#" 
+						id="navbarDropdown"	role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="far fa-file-alt"></i> <span>
 									데이트 <i class="fas fa-angle-down"></i>
 							</span>

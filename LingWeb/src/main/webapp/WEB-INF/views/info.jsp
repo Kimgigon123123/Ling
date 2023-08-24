@@ -77,9 +77,9 @@
 						<div class="btn-toolbar gap-2 mt-5 justify-content-center">
 							<button class="btn btn-primary" onclick="loation='list.cu'">목록으로</button>
 							<button class="btn btn-info"
-								onclick="location='modify?id=${vo.date_id}'">정보수정</button>
+								onclick="location='modify?date_id=${vo.date_id}'">정보수정</button>
 							<button class="btn btn-danger"
-								onclick="if(confirm('삭제하시겠습니까?') ) location='delete?id=${vo.date_id}'">삭제하기</button>
+								onclick="if(confirm('삭제하시겠습니까?') ) location='deletedate?date_id=${vo.date_id}'">삭제하기</button>
 						</div>
 					</div>
 				</div>

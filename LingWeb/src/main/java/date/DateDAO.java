@@ -31,4 +31,8 @@ public class DateDAO {
 	public void date_insert(DateVO vo) {
 		sql.insert("date.insert", vo);
 	}
+	
+	public void date_delete(int date_id) {
+		sql.delete("date.delete", date_id);
+	}
 }

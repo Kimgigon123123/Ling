@@ -73,7 +73,7 @@
                     <input
                       id="address"
                       name="address"
-                      type="address"
+                      type="text"
                       class="form-control validate"
                     />
                   </div>
@@ -85,7 +85,7 @@
                     <input
                       id="tel"
                       name="tel"
-                      type="tel"
+                      type="text"
                       class="form-control validate"
                     />
                   </div>
@@ -171,7 +171,7 @@
                 </div>
               </div>
               <div class="col-12">
-                <button id="btn-save" type="submit" class="btn btn-primary btn-block text-uppercase">완료</button>
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">완료</button>
               </div>
             </form>
             </div>
@@ -189,10 +189,6 @@
       /* $(function() {
         $("#expire_date").datepicker();
       }); */
-      $('#btn-save').click(function() {
-			$('form').submit()
-		}
-	})
     </script>
 </body>
 </html>
