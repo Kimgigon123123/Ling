@@ -51,7 +51,7 @@
 									    <td>${list.tel}</td>
 									</c:if>
 									<td>${list.open } - ${list.end }</td>
-									<td><a href="info" class="tm-product-info-link">
+									<td><a href="info?date_id=${list.date_id }" class="tm-product-info-link">
 									<i class="fa-solid fa-circle-info" style="color: #ffffff;"></i>
 									</a></td>
 								</tr>

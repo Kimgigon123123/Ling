@@ -57,7 +57,7 @@ ${active_category}
 							<i class="fa-regular fa-clipboard"></i> 게시판 <spanclass="sr-only"></span>
 						</a></li>
 						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="date" id="navbarDropdown"
+							class="nav-link dropdown-toggle" href="travel" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="far fa-file-alt"></i> <span>
 									데이트 <i class="fas fa-angle-down"></i>
