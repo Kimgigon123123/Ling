@@ -1,7 +1,12 @@
 package com.cteam.lingweb;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -104,6 +109,14 @@ public class StoreController {
 		
 		return "redirect:/store";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value = "/addstore", method = RequestMethod.GET)
 	public String addproduct() {

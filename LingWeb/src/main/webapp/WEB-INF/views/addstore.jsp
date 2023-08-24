@@ -38,6 +38,7 @@
             <form method ="post" action="store_insert" class="tm-edit-product-form"enctype="multipart/form-data">
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
+                <form action="store_insert" class="tm-edit-product-form" enctype="multipart/form-data" method="post">
                   <div class="form-group mb-3">
                     <label
                       for="name"
@@ -117,7 +118,7 @@
               
               
               <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase">상품 등록하기</button>
+                <button type="submit" class="btn btn-primary btn-block text-uppercase" >상품 등록하기</button>
               </div>
 
             </div>
