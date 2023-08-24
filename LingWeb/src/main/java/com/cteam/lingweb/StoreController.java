@@ -1,7 +1,14 @@
 package com.cteam.lingweb;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -12,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import store.StoreVO;
 import storereturn.StoreReturnVO;
@@ -81,11 +89,36 @@ public class StoreController {
 	}
 	
 	
-	@RequestMapping(value="store_insert",method = RequestMethod.GET)
-	public String store_insert(StoreVO vo) {
+	@RequestMapping(value="store_insert",method = RequestMethod.POST)
+	public String store_insert(StoreVO vo,MultipartFile file,HttpServletRequest request) {
 		int result = sql.insert("store.store_insert",vo);
+		
+		
+		String uploadPath = "D:\\Ling\\Ling\\image\\store";
+			File folder = new File(uploadPath);
+			if(!folder.exists()) {
+				folder.mkdirs();
+				
+			}
+			String filename =file.getOriginalFilename();
+			Path filePath = Paths.get(uploadPath, filename);
+			
+			try {
+				file.transferTo(filePath.toFile()); // 파일 저장
+			} catch (Exception e) {
+				
+			}
+		
 		return "redirect:/store";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value = "/addstore", method = RequestMethod.GET)
 	public String addproduct() {

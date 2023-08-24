@@ -36,7 +36,7 @@
             </div>
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
-                <form action="store_insert" class="tm-edit-product-form">
+                <form action="store_insert" class="tm-edit-product-form" enctype="multipart/form-data" method="post">
                   <div class="form-group mb-3">
                     <label
                       for="name"
@@ -103,7 +103,7 @@
                  <img class="tm-product-img-dummy mx-auto" id="preview" />
                 </div>
                 <div class="custom-file mt-3 mb-3">
-                  <input id="fileInput" name="item_img" type="file" style="display:none" onchange="readURL(this)"; />
+                  <input class="form-control" id="fileInput" name="item_img" type="file" style="display:none" onchange="readURL(this)"; />
                   <input
                     type="button"
                     class="btn btn-primary btn-block mx-auto"
@@ -116,7 +116,7 @@
               
               
               <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase">상품 등록하기</button>
+                <button type="submit" class="btn btn-primary btn-block text-uppercase" >상품 등록하기</button>
               </div>
             </form>
             </div>
