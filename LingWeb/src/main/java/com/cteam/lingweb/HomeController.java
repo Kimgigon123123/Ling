@@ -27,7 +27,7 @@ public class HomeController {
 		return "default/home";
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login() {
 		
 		
@@ -43,12 +43,7 @@ public class HomeController {
 //		return "date";
 //	}
 	
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String admin(HttpSession session) {
-		
-		session.setAttribute("active_category", "admin");
-		return "admin";
-	}
+
 	
 
 }

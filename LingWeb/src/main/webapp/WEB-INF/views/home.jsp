@@ -29,7 +29,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
-    <body id="page-top">
+    
  
 
 <!-- Mashead header-->
@@ -274,7 +274,7 @@
             </div>
             <canvas id="chart" class="h-100 m-auto"></canvas>
         </div>
-    
+     
     
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.js"></script>
