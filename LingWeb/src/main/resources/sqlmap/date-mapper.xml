@@ -24,12 +24,12 @@
 </insert>
 
 <delete id="delete">
-	delete from date_info where date_id = #{date_id}
+	delete from date_info where date_id = #{date_id} and date_category_code = #{date_category_code}
 </delete>
 
 <update id="update">
-	update date_info set date_name = #{date_name}, date_address = #{date_address}, tel = #{tel}, 
-	open = #{open} , end = #{end}, date_intro = #{date_intro}
+	update date_info set date_name = #{date_name}, date_intro = #{date_intro}, date_address = #{date_address}, tel = #{tel}, 
+	open = #{open} , end = #{end}
 	where date_id = #{date_id} 
 </update>
 

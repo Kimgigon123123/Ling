@@ -75,12 +75,26 @@
 							</tr>
 						</table>
 						<div class="btn-toolbar gap-2 mt-5 justify-content-center">
-							<button class="btn btn-primary" onclick="loation='list.cu'">목록으로</button>
+							<button id="listbtn" class="btn btn-primary">목록으로</button>
 							<button class="btn btn-info"
 								onclick="location='modify?date_id=${vo.date_id}'">정보수정</button>
 							<button class="btn btn-danger"
-								onclick="if(confirm('삭제하시겠습니까?') ) location='deletedate?date_id=${vo.date_id}'">삭제하기</button>
+								onclick="if(confirm('삭제하시겠습니까?') ) location='deletedate?date_id=${vo.date_id}&date_category_code=${vo.date_category_code }'">삭제하기</button>
 						</div>
+						<script>
+								var date_category_code = "${vo.date_category_code}";
+								document.getElementById("listbtn").onclick = function() {
+								if(date_category_code === "TO") {
+									window.location.href = "travel";
+								} else if(date_category_code === "RE") {
+									window.location.href = "restaurant";
+								} else if(date_category_code === "FE") {
+									window.location.href = "festival";
+								} else {
+									window.location.href = "travel";
+								}
+							};
+						</script>
 					</div>
 				</div>
 			</div>
