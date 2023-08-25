@@ -57,14 +57,26 @@ public class DateController {
 	@RequestMapping("/register")
 	public String register(DateVO vo) {
 		dao.date_insert(vo);
-		return "redirect:travel";
+		if(vo.getDate_category_code().equals("TO")) {
+			return "redirect:travel";			
+		}else if(vo.getDate_category_code().equals("RE")) {
+			return "redirect:restaurant";
+		}else {
+			return "redirect:festival";
+		}
 	}
 	
 	// 삭제
 	@RequestMapping("/deletedate")
-	public String delete(int date_id) {
-		dao.date_delete(date_id);
-		return "redirect:travel";
+	public String delete(DateVO vo) {
+		dao.date_delete(vo);
+		if(vo.getDate_category_code().equals("TO")) {
+			return "redirect:travel";			
+		}else if(vo.getDate_category_code().equals("RE")) {
+			return "redirect:restaurant";
+		}else {
+			return "redirect:festival";
+		}
 	}
 	
 	// 수정 화면 요청
