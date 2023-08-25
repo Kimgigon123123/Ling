@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import board.BoardDAO;
 import board.BoardVO;
+import member.MemberVO;
 
 
 
@@ -41,7 +42,7 @@ public class BoardController {
 //		params.put("keyword", keyword);
 		
 		session.setAttribute("active_category", "board");
-		
+		model.addAttribute("board_cd", board_cd);
 		model.addAttribute("list", dao.selectBoard(board_cd));
 		return "board";
 	}
@@ -120,31 +121,52 @@ public class BoardController {
 ////			return new Gson().toJson(dao.notice_read(id));
 ////		}
 //		
-//		//신규 공지글 등록 처리 요청
-//		@RequestMapping(value="/board.insert", produces = "text/html;charset=utf-8")
-//		public String register(BoardVO vo) {
-//			
-//			
-//			dao.board_regist(vo);
-//			
-//			return new Gson().toJson(vo);
+	
+		@RequestMapping(value = "/insertboard", method = RequestMethod.GET)
+		public String insertboard(@RequestParam(name = "board_cd") String board_cd, Model model) {
+			
+			model.addAttribute("board_cd", board_cd);
+			return "insertboard";
+		}
+		
+		//신규 공지글 등록 처리 요청
+		@RequestMapping("/insertboard")
+		public String register(BoardVO vo) {
+			
+			
+			dao.board_regist(vo);
+			
+			return "redirect:board";
+		}
+//		
+//		@RequestMapping("/updateboard")
+//		public String update(BoardVO vo, Model model) {
+//
+//			model.addAttribute("vo", dao.board_update(vo));
+//			return "redirect:board";
 //		}
-//		
-//		//선택한 글 정보 수정처리 요청
-//		@RequestMapping(value="/board.update", produces = "text/html;charset=utf-8")
-//		public String update(BoardVO vo) {
-//			
-//			 dao.board_update(vo);
-//			 return new Gson().toJson(vo);
-//		}	
-//		
-//		//선택한 글 정보 수정처리 요청
-//		@RequestMapping(value="/board.delete", produces = "text/html;charset=utf-8")
-//		public String delete(BoardVO vo) {
-//			
-//			 dao.board_delete(vo);
-//			 return new Gson().toJson(vo);
-//		}	
+		@RequestMapping("/updateboard")
+		public String updateboard(BoardVO vo, Model model) {
+
+			model.addAttribute("vo", dao.board_update(vo));
+			return "redirect:board";
+		}
+		@RequestMapping(value = "/detailboard", method = RequestMethod.GET)
+		public String detailboard(String id, Model model) {
+
+			model.addAttribute("vo", dao.info(id));
+			return "detailboard";
+		}	
+		
+		//선택한 글 정보 수정처리 요청
+		@RequestMapping("/deleteboard")
+		public String delete(String ids, String board_cd, Model model) {
+			
+			 dao.board_delete(ids);
+			 //return "redirect:board";
+			 model.addAttribute("list", dao.selectBoard(board_cd));
+			return "boardlist/folder/notice";
+		}	
 //
 //		
 //		//댓글 목록 조회

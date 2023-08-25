@@ -5,7 +5,7 @@
   
 <body>
 
-            <div class="tm-product-table-container">
+            <!-- <div class="tm-product-table-container"> -->
               <table class="table table-hover tm-table-small tm-product-table">
                 <thead>
 				<tr>
@@ -27,7 +27,7 @@
 					<td>${vo.writer}</td>
 					<td>${vo.writedate}</td>
 					<td>${vo.readcnt}</td>
-					<td><a href="detailmember?id=${vo.id }" class="tm-product-delete-link"> <i class="fa-solid fa-wrench"></i>
+					<td><a href="detailboard?id=${vo.id }" class="tm-product-delete-link"> <i class="fa-solid fa-wrench"></i>
 					</a></td>
 				</tr>
 				</c:forEach>

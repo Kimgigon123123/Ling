@@ -131,7 +131,6 @@ public class MemberController {
 		model.addAttribute("vo", dao.info(id));
 		return "detailmember";
 	}
-	
 	@RequestMapping("/updatemember")
 	public String update(MemberVO vo, Model model) {
 

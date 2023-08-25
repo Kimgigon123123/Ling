@@ -43,128 +43,66 @@
 			<div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
 				<div
 					class="tm-bg-primary-dark tm-block tm-block-taller tm-block-overflow">
-					<h2 class="tm-block-title">Notification List</h2>
+					<h2 class="tm-block-title">Developer List</h2>
 					<div class="tm-notification-items">
 						<div class="media tm-notification-item">
 							<div class="tm-gray-circle">
-								<img src="img/notification-01.jpg" alt="Avatar Image"
+								<img src="img/aegigon.jpg" alt="Avatar Image"
 									class="rounded-circle">
 							</div>
 							<div class="media-body">
 								<p class="mb-2">
-									<b>Jessica</b> and <b>6 others</b> sent you new <a href="#"
-										class="tm-notification-link">product updates</a>. Check new
-									orders.
+									<b>김기곤</b> 입니다. <br> <a href="store"
+										class="tm-notification-link">스토어</a>
+									담당입니다.
 								</p>
-								<span class="tm-small tm-text-color-secondary">6h ago.</span>
+								<span class="tm-small tm-text-color-secondary">조장</span>
 							</div>
 						</div>
 						<div class="media tm-notification-item">
 							<div class="tm-gray-circle">
-								<img src="img/notification-02.jpg" alt="Avatar Image"
+								<img src="img/ym.jpg" alt="Avatar Image"
 									class="rounded-circle">
 							</div>
 							<div class="media-body">
 								<p class="mb-2">
-									<b>Oliver Too</b> and <b>6 others</b> sent you existing <a
-										href="#" class="tm-notification-link">product updates</a>.
-									Read more reports.
+									<b>YM'slave</b> 입니다. <br> <a
+										href="lingmember" class="tm-notification-link">회원관리</a>, 
+										<a
+										href="board" class="tm-notification-link">게시판</a>
+									담당입니다.
 								</p>
-								<span class="tm-small tm-text-color-secondary">6h ago.</span>
+								<span class="tm-small tm-text-color-secondary">굴러온 돌</span>
 							</div>
 						</div>
 						<div class="media tm-notification-item">
 							<div class="tm-gray-circle">
-								<img src="img/notification-03.jpg" alt="Avatar Image"
+								<img src="img/suwon.jpg" alt="Avatar Image"
 									class="rounded-circle">
 							</div>
 							<div class="media-body">
 								<p class="mb-2">
-									<b>Victoria</b> and <b>6 others</b> sent you <a href="#"
-										class="tm-notification-link">order updates</a>. Read order
-									information.
+									<b>정수원</b> 입니다. <br> <a href="#"
+										class="tm-notification-link">어려운거</a>
+										담당입니다.
 								</p>
-								<span class="tm-small tm-text-color-secondary">6h ago.</span>
+								<span class="tm-small tm-text-color-secondary">조원</span>
 							</div>
 						</div>
 						<div class="media tm-notification-item">
 							<div class="tm-gray-circle">
-								<img src="img/notification-01.jpg" alt="Avatar Image"
+								<img src="img/hm.jpg" alt="Avatar Image"
 									class="rounded-circle">
 							</div>
 							<div class="media-body">
 								<p class="mb-2">
-									<b>Laura Cute</b> and <b>6 others</b> sent you <a href="#"
-										class="tm-notification-link">product records</a>.
+									<b>김혜민</b> 입니다. <br> <a href="travel"
+										class="tm-notification-link">데이트</a>담당입니다.
 								</p>
-								<span class="tm-small tm-text-color-secondary">6h ago.</span>
+								<span class="tm-small tm-text-color-secondary">홍일점</span>
 							</div>
 						</div>
-						<div class="media tm-notification-item">
-							<div class="tm-gray-circle">
-								<img src="img/notification-02.jpg" alt="Avatar Image"
-									class="rounded-circle">
-							</div>
-							<div class="media-body">
-								<p class="mb-2">
-									<b>Samantha</b> and <b>6 others</b> sent you <a href="#"
-										class="tm-notification-link">order stuffs</a>.
-								</p>
-								<span class="tm-small tm-text-color-secondary">6h ago.</span>
-							</div>
-						</div>
-						<div class="media tm-notification-item">
-							<div class="tm-gray-circle">
-								<img src="img/notification-03.jpg" alt="Avatar Image"
-									class="rounded-circle">
-							</div>
-							<div class="media-body">
-								<p class="mb-2">
-									<b>Sophie</b> and <b>6 others</b> sent you <a href="#"
-										class="tm-notification-link">product updates</a>.
-								</p>
-								<span class="tm-small tm-text-color-secondary">6h ago.</span>
-							</div>
-						</div>
-						<div class="media tm-notification-item">
-							<div class="tm-gray-circle">
-								<img src="img/notification-01.jpg" alt="Avatar Image"
-									class="rounded-circle">
-							</div>
-							<div class="media-body">
-								<p class="mb-2">
-									<b>Lily A</b> and <b>6 others</b> sent you <a href="#"
-										class="tm-notification-link">product updates</a>.
-								</p>
-								<span class="tm-small tm-text-color-secondary">6h ago.</span>
-							</div>
-						</div>
-						<div class="media tm-notification-item">
-							<div class="tm-gray-circle">
-								<img src="img/notification-02.jpg" alt="Avatar Image"
-									class="rounded-circle">
-							</div>
-							<div class="media-body">
-								<p class="mb-2">
-									<b>Amara</b> and <b>6 others</b> sent you <a href="#"
-										class="tm-notification-link">product updates</a>.
-								</p>
-								<span class="tm-small tm-text-color-secondary">6h ago.</span>
-							</div>
-						</div>
-						<div class="media tm-notification-item">
-							<div class="tm-gray-circle">
-								<img src="img/notification-03.jpg" alt="Avatar Image"
-									class="rounded-circle">
-							</div>
-							<div class="media-body">
-								<p class="mb-2">
-									<b>Cinthela</b> and <b>6 others</b> sent you <a href="#"
-										class="tm-notification-link">product updates</a>.
-								</p>
-								<span class="tm-small tm-text-color-secondary">6h ago.</span>
-							</div>
-						</div>
+					
 					</div>
 				</div>
 			</div>

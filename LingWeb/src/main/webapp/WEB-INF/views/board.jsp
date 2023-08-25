@@ -11,13 +11,17 @@
           <div class="tm-bg-primary-dark tm-block tm-block-products">
           <div class="row mx-0 justify-content-between align-items-center mb-3">
 	          <h2 class="tm-block-title col-lg-4 px-0">게시판</h2>
+					<form action="board" class="col-lg-4" method="get">
 					
-	            <select class="custom-select col-lg-4" id="filterSelect">
-	                <option value="NOTICE">공지사항</option>
-	                <option value="FREE">자유게시판</option>
-	                <option value="WORRY">고민상담소</option>
-	                <option value="PLAY">짝궁놀이터</option>
+
+	            <select class="custom-select" id="filterSelect" name="board_cd">
+	                <option value="NOTICE"  ${board_cd eq 'NOTICE' ? 'selected' : ''}>공지사항</option>
+	                <option value="FREE"  ${board_cd eq 'FREE' ? 'selected' : ''}>자유게시판</option>
+	                <option value="WORRY"  ${board_cd eq 'WORRY' ? 'selected' : ''}>고민상담소</option>
+	                <option value="PLAY"  ${board_cd eq 'PLAY' ? 'selected' : ''}>짝궁놀이터</option>
 	            </select>
+	            
+	            					</form>
             </div>
             <div class="tm-product-table-container">
               <table class="table table-hover tm-table-small tm-product-table">
@@ -41,7 +45,7 @@
 					<td>${vo.writer}</td>
 					<td>${vo.writedate}</td>
 					<td>${vo.readcnt}</td>
-					<td><a href="detailmember?id=${vo.id }" class="tm-product-delete-link"> <i class="fa-solid fa-wrench"></i>
+					<td><a href="detailboard?id=${vo.id }" class="tm-product-delete-link"> <i class="fa-solid fa-wrench"></i>
 					</a></td>
 				</tr>
 				</c:forEach>
@@ -49,8 +53,8 @@
               </table>
             </div>
             <!-- table container -->
-            <a href="#" class="btn btn-primary btn-block mb-3">신규등록</a>
-			<button class="btn btn-primary btn-block col-lg-4" id="delete">선택 삭제</button>
+            <a href="insertboard?board_cd=${board_cd}" class="btn btn-primary btn-block mb-3">신규등록</a>
+			<button class="btn btn-primary btn-block col-lg-4" id="deleteboard">선택 삭제</button>
           </div>
         </div>
         
@@ -58,7 +62,8 @@
     </div>
 <script>
     $(document).ready(function() {
-        $("#delete").click(function() {
+    	var selectedValue;
+        $("#deleteboard").click(function() {
     	 
 
             var selectedIds = [];
@@ -71,14 +76,24 @@
             if (selectedIds.length > 0) {
                 if (confirm("선택한 항목을 삭제하시겠습니까?")) {
                     var selectedIdsStr = selectedIds.join(",");
-                    window.location.href = "delete?ids=" + selectedIdsStr;
+                    //window.location.href = "deleteboard?ids=" + selectedIdsStr;
+                    $.ajax({
+                    	url: "deleteboard",
+                    	data:{
+                    		ids:selectedIdsStr, board_cd: "${board_cd}"
+                    	},
+                    	success: function(response){
+                    		$('.tm-product-table-container').html(response)
+                    	}		
+                    })
                 }
             } else {
                 alert("삭제할 항목을 선택하세요.");
             }
         });
    	  $("#filterSelect").change(function(){
-   		var selectedValue = $(this).val(); // 선택한 값을 변수에 저장
+   		  $('form').submit();
+   	/* 	  selectedValue= $(this).val(); // 선택한 값을 변수에 저장
    		  console.log($(this).val())
        		$.ajax({
     		   url:'changeboardlist', 
@@ -87,7 +102,7 @@
        		//$(this).val()
     	   }).done(function(response){
     		   $('.tm-product-table-container').html(response)
-    	     }) 
+    	     })  */
    	  }) 
         
     });
