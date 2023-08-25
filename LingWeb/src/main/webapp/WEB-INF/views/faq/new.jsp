@@ -27,14 +27,14 @@
     <tr>
     <td>
         <div class="input-group" >
-            <select name="search" class="form-select" style="width:12%;" required>
+            <select name="faq_category" class="form-select" style="width:12%;" required>
                 <option value="" disabled selected>카테고리 선택</option>
-                <option value="use">이용방법</option>
-                <option value="change">교환반품</option>
-                <option value="account">계정</option>
+                <option value="이용방법">이용방법</option>
+                <option value="교환반품">교환반품</option>
+                <option value="계정">계정</option>
             </select>
             <div style="width:88%;">
-                <input type="text" class="form-control" placeholder="글 제목" name="contentTitle" maxlength="40" style="width: 100%;">
+                <input type="text" class="form-control" placeholder="글 제목" name="faq_title" maxlength="40" style="width: 100%;">
             </div>
         </div>
     </td>
@@ -42,7 +42,7 @@
 
       <tr>
 
-      	<td><textarea type="text" class="form-control" placeholder="글 내용을 작성하세요" name="contentDetail" maxlength="1024" style="height: 400px;"></textarea></td>
+      	<td><textarea class="form-control" placeholder="글 내용을 작성하세요" name="faq_content" maxlength="1024" style="height: 400px;"></textarea></td>
 
       </tr>
 
@@ -65,6 +65,11 @@
 	
 		<script>
 		$('#btn-save').on('click', function() {
+				if($('[name=faq_category]').val()==null){
+					alert('카테고리를 선택해주세요')
+					$('[name=faq_category]').focus()
+				}
+					else
 				$('form').submit()
 		})
 	</script>
