@@ -66,4 +66,5 @@ public class NoteActivity extends AppCompatActivity {
         });
 
     }
+
 }
