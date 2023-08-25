@@ -44,7 +44,7 @@
 					<td>${vo.email }</td>
 					<td>${vo.phone }</td>
 					<td>${vo.birth }</td>
-					<td><a href="detailmember?id=${vo.id }" class="tm-product-delete-link"> <i class="fa-solid fa-wrench"></i>
+					<td><a href="detailmember?${itemContent}<th scope="col">&nbsp;</th>id=${vo.id }" class="tm-product-delete-link"> <i class="fa-solid fa-wrench"></i>
 					</a></td>
 				</tr>
 				</c:forEach>

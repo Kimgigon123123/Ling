@@ -239,6 +239,7 @@
                     android:text="위치 추적"
                     style="@style/frag_home_menu_tv"/>
             <androidx.cardview.widget.CardView
+                android:id="@+id/cdv_note"
                 style="@style/frag_home_menu_cardv"
                 >
                 <ImageView

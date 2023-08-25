@@ -36,6 +36,7 @@ import com.example.ling.common.RetInterface;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentHomeBinding;
+import com.example.ling.note.NoteActivity;
 import com.example.ling.photo.PhotoActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -88,6 +89,11 @@ public class HomeFragment extends Fragment {
         Glide.with(this).load("http://192.168.0.28/hanul/img//andimg.jpg").into(binding.imgvManProfile);
         binding.carvPhoto.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), PhotoActivity.class);
+            startActivity(intent);
+        });
+
+        binding.cdvNote.setOnClickListener(v->{
+            Intent intent = new Intent(getContext(), NoteActivity.class);
             startActivity(intent);
         });
 
