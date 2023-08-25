@@ -32,9 +32,9 @@
 </insert>
 
 <select id="faq_info" resultType="faq.FaqVO">
-	select faq.*
-	from faq inner join ling_member on faq_id = id
-	where faq_id = #{faq_id} and faq_title = #{faq_title}
+	select *
+	from faq
+	where faq_title = #{faq_title}
 </select>
 	
 <sql id="searchWhere">

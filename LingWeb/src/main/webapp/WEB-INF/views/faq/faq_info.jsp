@@ -13,14 +13,14 @@
 	</colgroup>
 		<tr>
 			<th>제목</th>
-			<td colspan="5">${vo.faq_title }</td>
+			<td colspan="5">${vo.faq_title}</td>
 		</tr>
 		
 		<tr>
 			<th>카테고리</th>
-			<td>${vo.faq_category }</td>
+			<td>${vo.faq_category}</td>
 			<th>작성일자</th>
-			<td>${vo.faq_date }</td>
+			<td>${vo.faq_date}</td>
 		</tr>
 
 		<tr>
@@ -30,23 +30,26 @@
 
 
 	</table>
-		<c:if test="${loginId eq 'admin'}">
-		<div class="btn-toolbar gap-2 my-3 justify-content-center">
-			<a class="btn btn-primary" id="btn-modify">FAQ 수정</a>
-			<a class="btn btn-primary" id="btn-list">FAQ 목록</a>
-			<a class="btn btn-primary" id="btn-delete">FAQ 삭제</a>
-		</div>
-	</c:if>
-	<c:else>
-    <div class="col-auto">
-        <a class="btn btn-primary" id="btn-list">FAQ 목록</a>
-    </div>
-</c:else>
-	<div class="btn-toolbar gap-2 my-3 justify-content-center">
+<c:choose>
+    <c:when test="${loginId eq 'admin'}">
+    <div class="btn-toolbar gap-2 my-3 justify-content-center">
+        <div class="btn-toolbar gap-2 my-3 justify-content-center">
+            <a class="btn btn-primary" id="btn-modify">FAQ 수정</a>
+            <a class="btn btn-primary" id="btn-list">FAQ 목록</a>
+            <a class="btn btn-primary" id="btn-delete">FAQ 삭제</a>
+        </div>
+       </div>
+    </c:when>
+    <c:otherwise>
+        <div class="col-auto">
+            <a class="btn btn-primary" id="btn-list">FAQ 목록</a>
+        </div>
+    </c:otherwise>
+</c:choose>
+	
 		
-		<a class="btn btn-primary" id="btn-list">FAQ 목록</a>
 		
-	</div>
+
 	
 </body>
 </html>

@@ -38,9 +38,16 @@
 		#chart{
 		margin-top: 20px; 
 		margin-bottom: 20px;
-		background-color: #f0f0f0;
 		
 		}
+		#chart_back{
+		background-image: linear-gradient(to right, #8360c3, #2ebf91);
+		}
+		
+		.custom-link {
+    color: #DCDCDC; /* 원하는 색상으로 변경 */
+    /* 다른 스타일 속성 추가 */
+}
 		
         </style>
     </head>
@@ -182,14 +189,14 @@
         </section>
         
         <!-- Basic features section-->
-        <section class="bg-light">
+        <section class="bg-light" id="chart_back">
         <div id='tab-content' class="m-md-2 m-lg-3" style='height: 520px'>
             <div class="container px-5">
             <h3 class="my-4">Ling Chart</h3>
                 <ul class="nav nav-tabs">
-		<li class="nav-item"><a class="nav-link">연령별</a></li>
-		<li class="nav-item"><a class="nav-link">연애기간별</a></li>
-		<li class="nav-item"><a class="nav-link">이번년도 ...?? ex(핫 아이템, 핫플레이스 top3)</a></li>
+		<li class="nav-item"><a class="nav-link custom-link">연령별</a></li>
+		<li class="nav-item"><a class="nav-link custom-link">연애기간별</a></li>
+		<li class="nav-item"><a class="nav-link custom-link">이번년도 ...?? ex(핫 아이템, 핫플레이스 top3)</a></li>
 	</ul>
             </div>
             <canvas id="chart" class="h-100 m-auto"></canvas>
@@ -429,6 +436,7 @@ function donutChart(info) {
         		$('#tab-content .tab').eq(idx).removeClass('d-none');
         		
         		if(idx==0)		age(); //연령별 조회
+        		else if(idx==1) period();
         	},
         	
         	'mouseover' : function(){
@@ -461,12 +469,31 @@ function donutChart(info) {
         		$(response).each(function(){
         			info.category.push(this.AGE_GROUP);
         			info.datas.push(this.COUNT);
-        			info.colors.push(this.COUNT);
         		})
         		console.log('data',info);
        			donutChart(info);
         	})
         }
+      	
+      	
+      	function period(){
+        	initCanvas();
+        	
+        	$.ajax({
+        		url: 'period',
+        	}).done(function(response){
+        		console.log(response)
+        		var info = {};
+        		info.category = [], info.datas = [], info.colors = [];
+        		$(response).each(function(){
+        			info.category.push(this.PERIOD_RANGE);
+        			info.datas.push(this.COUNT);
+        		})
+        		console.log('data',info);
+       			lineChart(info);
+        	})
+        }
+      	
         
         function donutChart(info){
         	$('#tab-content').css('height', '550');
@@ -509,6 +536,51 @@ function donutChart(info) {
         		    }
         	});
         	
+        }
+        //선 그래프
+        function lineChart(info){
+        	initCanvas();
+        	$('#tab-content').css('height', '550');
+        	visual = new Chart($('#chart'),{
+        		type: 'line',
+        		data: {
+        		      labels: info.category,
+        		      datasets: [{
+        		        label: '연애기간별',
+        		        data: info.datas,
+        		        borderColor: '#000000', //그래프선, point테두리에 적용
+        		        tension: 0, //0:완전꺾은선, 1:곡선
+        		        pointRadius: 5,
+        		        pointBackgroundColor: '#ff0000',
+        		      }]
+        		    },
+        		    options: {
+        		    	maintainAspectRatio: false, // 크키조정시 캔버스 가로세로 비율 유지X(기본O)
+        		    	responsive: false, //컨테이너 크기 변경시 캔버스 크기 조정X(기본O)
+        		    	layout: {
+        		    		padding: {top:30}
+        		    	},
+        		    	plugins: {
+        		    		legend: {display: false},
+        		    		datalabels: {
+        		    			formatter: function(value){
+        		    				//return value + '명';
+        		    				return `\${value}명`;
+        		    			}
+        		    		},
+
+        		    	},
+        		    	
+        		    	
+        	    	scales: {
+        		        y: {
+        			          beginAtZero: true,
+        			          title: {text: '연애기간별 회원수', display:true}
+        			         }
+        			      },
+        		    },
+        		
+        	})
         }
         
         </script>
