@@ -27,6 +27,10 @@
 	delete from date_info where date_id = #{date_id} and date_category_code = #{date_category_code}
 </delete>
 
+<delete id="multipledelete">
+	delete from date_info where date_id in ( ${date_id} ) and date_category_code = #{date_category_code}
+</delete>
+
 <update id="update">
 	update date_info set date_name = #{date_name}, date_intro = #{date_intro}, date_address = #{date_address}, tel = #{tel}, 
 	open = #{open} , end = #{end}

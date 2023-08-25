@@ -1,5 +1,7 @@
 package com.cteam.lingweb;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import date.DateDAO;
 import date.DateVO;
@@ -77,6 +80,16 @@ public class DateController {
 		}else {
 			return "redirect:festival";
 		}
+	}
+	
+	// 다중삭제
+	@RequestMapping("/multipledelete")
+	@ResponseBody
+	public void multipledelete(DateVO vo, String tdata) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("date_category_code", vo.getDate_category_code());
+		map.put("date_id", tdata);
+		dao.date_delete(map);
 	}
 	
 	// 수정 화면 요청

@@ -40,8 +40,8 @@
 							<tbody>
 							<c:forEach items="${list}" var="list">
 								<tr>
-									<th scope="row"><input type="checkbox" /></th>
-									<td>${list.date_name }</td>
+									<th scope="row"><input type="checkbox" name="selectedItems" value="${list.date_id }"/></th>
+									<td class="tm-product-name">${list.date_name }</td>
 									<td>${list.date_address }</td>
 									<td>${list.tel }</td>
 									<td><a href="info?date_id=${list.date_id }" class="tm-product-info-link">
@@ -55,7 +55,7 @@
 					<!-- table container -->
 					<a href="new"
 						class="btn btn-primary btn-block text-uppercase mb-3">관광지 등록</a>
-					<button class="btn btn-primary btn-block text-uppercase">
+					<button type="button" class="btn btn-primary btn-block text-uppercase" id="deleteBtn">
 						선택 항목 삭제</button>
 				</div>
 			</div>
@@ -63,14 +63,32 @@
 	</div>
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<!-- https://jquery.com/download/ -->
-	<script src="js/bootstrap.min.js"></script>
+	<!-- <script src="js/bootstrap.min.js"></script> -->
 	<!-- https://getbootstrap.com/ -->
 	<script>
-      /* $(function() {
-        $(".tm-product-name").on("click", function() {
-          window.location.href = "edit-product.html";
-        });
-      }); */
+      document.getElementById("deleteBtn").addEventListener("click", function() {
+          var checkboxes = document.getElementsByName("selectedItems");
+          var checkedItems = [];
+
+          checkboxes.forEach(function(checkbox) {
+              if (checkbox.checked) {
+                  checkedItems.push(checkbox.value);
+              }
+          });
+          
+          if (checkedItems.length > 0) {
+              // document.getElementById("deleteForm").submit();
+              $.ajax({
+            	  url: 'multipledelete',
+            	  data: {tdata: checkedItems.join(), date_category_code:'TO'},
+            	  success:function(){
+            		  location="travel"
+            	  }
+              })
+          } else {
+              alert("삭제할 항목을 선택해주세요.");
+          }
+      })
     </script>
 </body>
 </html>
