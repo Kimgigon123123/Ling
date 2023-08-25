@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html>
+ <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -35,11 +36,13 @@
               </div>
             </div>
             
-            <form method ="post" action="store_insert" class="tm-edit-product-form"enctype="multipart/form-data">
+            <form method ="POST" action="store_complete_update" class="tm-edit-product-form"enctype="multipart/form-data">
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
-                <form action="store_insert" class="tm-edit-product-form" enctype="multipart/form-data" method="post">
+                <form action="store_complete_update" class="tm-edit-product-form" enctype="multipart/form-data" method="post">
                   <div class="form-group mb-3">
+                  <input type="hidden" name="item_code" value="${vo.item_code}">
+                  
                     <label
                       for="name"
                       >상품이름
@@ -47,6 +50,7 @@
                     <input
                       id="item_name"
                       name="item_name"
+                      placeholder="${vo.item_name }"
                       type="text"
                       class="form-control validate"
                       required
@@ -61,6 +65,7 @@
                       id="item_content"
                       name="item_content"
                       class="form-control validate"
+                    placeholder="${vo.item_content}"
                       rows="3"
                       required
                     ></textarea>
@@ -74,12 +79,13 @@
                       class="custom-select tm-select-accounts"
                       id="category_code"
                       name="category_code"
+  						
                     >
                       <option selected>카테고리선택</option>
-                      <option value="Dr">커플옷</option>
-                      <option value="Ri">커플반지</option>
-                      <option value="Gi">선물</option>
-                      <option value="Etc">기타</option>
+                      <option value="Dr"  ${vo.category_code == 'Dr' ? 'selected' : ''}>커플옷</option>
+                      <option value="Ri"  ${vo.category_code == 'Ri' ? 'selected' : ''}>커플반지</option>
+                      <option value="Gi"  ${vo.category_code == 'Gi' ? 'selected' : ''}>선물</option>
+                      <option value="Etc"  ${vo.category_code == 'Etc' ? 'selected' : ''}>기타</option>
                     </select>
                   </div>
                   <div class="row">
@@ -91,6 +97,7 @@
                           <input
                             id="item_price"
                             name="item_price"
+                            placeholder="${vo.item_price }"
                             type="text"
                             class="form-control validate"
                             data-large-mode="true"
@@ -102,7 +109,8 @@
               </div>
               <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                 <div class="tm-product-img-dummy mx-auto">
-                 <img class="tm-product-img-dummy mx-auto" id="preview" />
+                 <img src="${vo.item_img }" class="tm-product-img-dummy mx-auto" id="preview" />
+                 <input type="hidden" value="${vo.item_img }" name="item_img">
                 </div>
                 <div class="custom-file mt-3 mb-3">
                   <input id="fileInput" name="file" type="file" style="display:none" onchange="readURL(this)"; />
@@ -114,19 +122,20 @@
                   />
                 </div>
               </div>
-              
-              
-              
-              <div class="col-12">
-              <div class="d-flex flex-row justify-content-center">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase mr-3" >상품 등록하기</button>
-                <button
-										class="btn btn-success mr-3 text-uppercase" onclick="history.go(-1)">취소</button>
-              </div>
-              </div>
 
-            </div>
+
+							<div class="col-12">
+								<div class="d-flex flex-row justify-content-center">
+									 <button type="submit" class="btn btn-primary mr-3 btn-block text-uppercase">상품수정</button>
+									<button
+										class="btn btn-success mr-3 text-uppercase" onclick="history.go(-1)">취소</button>
+									<button class="btn btn-danger mr-3 text-uppercase" onclick="confirmDelete('${vo.item_code}')">삭제</button>
+								</div>
+							</div>
+
+						</div>
           	</form>
+          	
           </div>
         </div>
       </div>
@@ -153,6 +162,16 @@
     	    document.getElementById('preview').src = "";
     	  }
     	}
+      
+      function confirmDelete(itemCode) {
+          var result = confirm("정말 삭제하시겠습니까?");
+          if (result) {
+              // '확인' 버튼을 눌렀을 때 처리할 내용
+              location.href = 'store_delete?item_code=' + itemCode;
+          } else {
+              // '취소' 버튼을 눌렀을 때 처리할 내용
+          }
+      }
     </script>
 </body>
 </html>

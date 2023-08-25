@@ -22,23 +22,10 @@
 <body>
 
 
-	<div class="container mt-5">
-		<div class="row tm-content-row">
-			<div class="col-sm-12 col-md-12 tm-block-col">
-				<div class="tm-bg-primary-dark tm-block tm-block-products">
-					<div class="row mx-0 justify-content-between align-items-center mb-3">
-	          <h2 class="tm-block-title col-lg-4 px-0">상품 정보</h2>
+	
+				
 					
-	            <select class="custom-select col-lg-4" id="filterSelect">
-	                <option value="0">전체</option>
-	                <option value="1">커플옷</option>
-	                <option value="2">커플반지</option>
-	                 <option value="3">상품권</option>
-	                <option value="4">기타</option>
-	             
-	            </select>
-            </div>
-					<div class="tm-product-table-container">
+					
 						<table class="table table-hover tm-table-small tm-product-table-container2">
 							<thead>
 								<tr>
@@ -88,57 +75,15 @@
 
 							</tbody>
 						</table>
-					</div>
-					<!-- table container -->
-					<a href="addstore"
-						class="btn btn-primary btn-block text-uppercase mb-3">새상품 등록</a> 
+					
+					
 						
 					
-				</div>
-			</div>
-<!-- 			<div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col"> -->
-<!-- 				<div class="tm-bg-primary-dark tm-block tm-block-product-categories"> -->
-<!-- 					<h2 class="tm-block-title">상품 정보</h2> -->
-<!-- 					<div class="tm-product-table-container"> -->
-					
-<!-- 					<image alt="" src=""> -->
-						
-<!-- 					</div> -->
-					<!-- table container -->
-					
-				</div>
-			</div>
-		</div>
-	</div>
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<!-- https://jquery.com/download/ -->
-<!-- 	<script src="js/bootstrap.min.js"></script> -->
-	<!-- https://getbootstrap.com/ -->
-	<script>
-   
-	function openSmallWindow(url) {
-	    var width = 400; // 새 창 너비
-	    var height = 300; // 새 창 높이
-	    var left = (window.innerWidth - width) / 2; // 창 가로 가운데 정렬
-	    var top = (window.innerHeight - height) / 2; // 창 세로 가운데 정렬
+				
+			
 
-	    // 새 창 열기
-	    window.open(url, '_blank', 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top);
-	}
-	
-	$(document).ready(function() {
-		$("#filterSelect").change(function(){
-	   		  console.log($(this).val())
-	       		$.ajax({
-	    		   url:'storelist', 
-	    		   data: {tablename:$(this).val()}
-	    	   }).done(function(response){
-	    		   $('.tm-product-table-container').html(response)
-	    	     }) 
-	   	  }) 
-	        
-	    });
-	    
-    </script>
+				
+			
+
 </body>
 </html>

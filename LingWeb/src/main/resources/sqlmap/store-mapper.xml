@@ -12,6 +12,39 @@ select i.*,(item_price*sales) as sales_amount from store_item i
 select TO_CHAR(SUM(item_price * sales), '999,999,999') as total_sales from store_item
 </select>
 
+
+<select id="store_dr" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount from store_item i where category_code='Dr'
+</select>
+
+<select id="store_total_dr" resultType="String">
+select TO_CHAR(SUM(item_price * sales), '999,999,999') as total_sales from store_item where category_code='Dr'
+</select>
+
+<select id="store_ri" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount from store_item i where category_code='Ri'
+</select>
+
+<select id="store_total_ri" resultType="String">
+select TO_CHAR(SUM(item_price * sales), '999,999,999') as total_sales from store_item where category_code='Ri'
+</select>
+
+<select id="store_gi" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount from store_item i where category_code='Gi'
+</select>
+
+<select id="store_total_gi" resultType="String">
+select TO_CHAR(SUM(item_price * sales), '999,999,999') as total_sales from store_item where category_code='Gi'
+</select>
+
+<select id="store_etc" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount from store_item i where category_code='Etc'
+</select>
+
+<select id="store_total_etc" resultType="String">
+select TO_CHAR(SUM(item_price * sales), '999,999,999') as total_sales from store_item where category_code='Etc'
+</select>
+
 <select id="store_delivery_select" resultType="storereturn.StoreReturnVO">
 
 select order_num,p.item_code,
@@ -55,6 +88,12 @@ update store_purchase_product set delivery_code = 3 where order_num in ( ${order
 insert into store_item values(seq_item_code.nextval, #{category_code}, #{item_name}, #{item_price}, #{item_img},#{item_content}, 0, 0)
 </insert>
 
+<update id="store_update">
+update store_item set item_name=#{item_name} , item_content=#{item_content} , item_price=#{item_price} , 
+category_code=#{category_code}, item_img=#{item_img}
+where item_code=#{item_code}
+</update>
+
 <!-- <insert id="store_insert"> -->
 <!-- insert into store_item (max(to_number(item_code))+1 as item_code, 'Dr', #{item_name}, #{item_price}, null, #{item_content}, 0, 0) -->
 <!-- </insert> -->
@@ -64,5 +103,8 @@ insert into store_item values(seq_item_code.nextval, #{category_code}, #{item_na
 select * from Store_item where item_code=#{item_code}
 </select>
 
+<delete id="store_delete">
+delete store_item where item_code=#{item_code}
+</delete>
 
 </mapper>
