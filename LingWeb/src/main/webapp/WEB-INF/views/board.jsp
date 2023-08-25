@@ -40,8 +40,8 @@
 				<c:forEach items="${list}" var="vo">
 				<tr>
 					<th scope="row"><input type="checkbox" /></th>
-					<td class="tm-product-name">${vo.id}</td>
-					<td>${vo.title}</td>
+					<td>${vo.id}</td>
+					<td class="tm-board-show">${vo.title}</td>
 					<td>${vo.writer}</td>
 					<td>${vo.writedate}</td>
 					<td>${vo.readcnt}</td>
@@ -106,6 +106,11 @@
    	  }) 
         
     });
+   /*  $(function() {
+        $(".tm-board-show").on("click", function() {
+          window.location.href = "detailboard?id=${vo.id }";
+        });
+      }); */
     
 </script>
 </body>
