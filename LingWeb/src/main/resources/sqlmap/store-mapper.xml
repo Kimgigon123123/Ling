@@ -68,11 +68,11 @@ order by return_code desc
 </select>
 
 <update id="store_return_update">
-update store_return_list set return_state = '환불처리' where return_code in ( ${returnCodes} )
+update store_return_list set return_state = '환불처리완료' where return_code in ( ${returnCodes} )
 </update>
 
 <update id="store_return_cancel">
-update store_return_list set return_state = '환불처리' where return_code in ( ${returnCodes} )
+update store_return_list set return_state = '환불취소' where return_code in ( ${returnCodes} )
 </update>
 
 <update id="store_delivery_update">

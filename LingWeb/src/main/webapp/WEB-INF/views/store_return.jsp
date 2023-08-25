@@ -107,7 +107,7 @@
 		        		alert("환불처리가 완료되었습니다.");
 		        		$(chkBoxs).each(function(){
 		        			$(this).prop('checked', false);
-		        			$(this).closest('tr').children('td:eq(1)').text('환불처리');
+		        			$(this).closest('tr').children('td:eq(1)').text('환불처리완료');
 		        		})
 		        		
 		        		
