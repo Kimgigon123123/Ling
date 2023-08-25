@@ -45,11 +45,13 @@
 									<td class="tm-product-name"  style="padding-right: 20px;">${list.item_name}</td>
 									<td  style="padding-right: 20px;">${list.item_price }</td>
 									<td  style="padding-right: 50px;">${list.sales }</td>
-									<td  style="padding-right: 20px;">${list.sales_amount }</td>
-									<td><a href="store_info?item_code=${list.item_code }" class="tm-product-delete-link"> 
-									<i class='fa-solid fa-circle-info'></i>
-									</a></td>
-								</tr>
+										<td style="padding-right: 20px;">${list.sales_amount }</td>
+										<td><a 
+											onclick="openSmallWindow('${list.item_img}')"
+											class="tm-product-delete-link"> <i
+												class='fa-solid fa-circle-info'></i>
+										</a></td>
+									</tr>
 								</c:forEach>
 								
 								<tr>
@@ -67,8 +69,9 @@
 					<!-- table container -->
 					<a href="addstore"
 						class="btn btn-primary btn-block text-uppercase mb-3">새상품 등록</a>
-					<button class="btn btn-primary btn-block text-uppercase">
-					상품 삭제</button>
+						
+					<a class="btn btn-primary btn-block text-uppercase">
+					상품 삭제</a>
 				</div>
 			</div>
 <!-- 			<div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col"> -->
@@ -91,6 +94,17 @@
 	<!-- https://getbootstrap.com/ -->
 	<script>
    
+	function openSmallWindow(url) {
+	    var width = 400; // 새 창 너비
+	    var height = 300; // 새 창 높이
+	    var left = (window.innerWidth - width) / 2; // 창 가로 가운데 정렬
+	    var top = (window.innerHeight - height) / 2; // 창 세로 가운데 정렬
+
+	    // 새 창 열기
+	    window.open(url, '_blank', 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top);
+	}
+	
+	
     </script>
 </body>
 </html>
