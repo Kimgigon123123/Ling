@@ -55,9 +55,9 @@
 								<tr>
 									<th scope="row"></th>
 									<td class="tm-product-name"  style="padding-right: 20px;">총 매출</td>
-									<td  style="padding-right: 20px;"></td>
-									<td  style="padding-right: 50px;"></td>
-									<td  style="padding-right: 20px;">${total_sales}</td>
+									<td ></td>
+									<td></td>
+									<td >${total_sales}</td>
 									<td></td>
 								</tr>
 								
