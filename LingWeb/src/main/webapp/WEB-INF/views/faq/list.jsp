@@ -31,7 +31,9 @@
 a:not(.btn):link, a:not(.btn):hover{ text-decoration: none;
 		color: inherit;
 }
-    
+    .foot-banner{
+    	background-image: linear-gradient(90deg, #B7D6F5 20% ,#F0D3D8 80%);
+    }
 
     .tb-list th,
     .tb-list td {
@@ -107,7 +109,7 @@ container {
 			<select name="search" class="form-select">
 				<option value="all" ${page.search eq 'all' ? 'selected' : '' }>전체</option>
 				<option value="category" ${page.search eq 'category' ? 'selected' : '' }>카테고리</option>
-				<option value="content" ${page.search eq 'content' ? 'selected' : '' }>내용</option>
+				<option value="title" ${page.search eq 'content' ? 'selected' : '' }>제목</option>
 			</select>
 		  <input type="text" name="keyword" value="${page.keyword }" class="form-control">
 		 <button class="btn btn-primary px-3"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -135,7 +137,7 @@ container {
 </tr>
 </thead>
 <tbody>
-<c:forEach items="${list}" var="vo">
+<c:forEach items="${page.list}" var="vo">
 			<tr>
 				<%-- <td><a class="text-link" href="info.cu?id=${vo.id }">${vo.faqname }</a></td> --%>
 				
@@ -148,7 +150,9 @@ container {
 		</c:forEach>
 </tbody>
 </table>
-<div style="overflow: auto; border: 2px solid black; padding: 2px;">
+
+<jsp:include page="page.jsp"></jsp:include>
+<div class="foot-banner" style="overflow: auto; border: 1px solid black; padding: 2px;">
  <img src="<c:url value= '/image/couple.jpg'/>" alt="image" width="160" height="120">
         <!-- 왼쪽 마진 적용해보기 : 잘 안됨 -->
         <div style="text-align: left;"><strong class="f-xlarge"><font style="font-size: 16px; text-align: left;">Ling에 대해서 궁금증을 해결하셨나요?</font></strong></div>

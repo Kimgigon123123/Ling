@@ -46,13 +46,15 @@
 									<input type="checkbox" />
 									<input type="hidden" class="return_code" value="${vo.return_code }">
 									</th>
-									<td class="tm-product-name"  style="padding-right: 20px;">${vo.item_name}</td>
-									<td  style="padding-right: 20px;" data-code="${vo.return_code } ">${vo.return_state }</td>
-									<td  style="padding-right: 50px;">${vo.address }</td>
-									<td  style="padding-right: 20px;">${vo.item_price} * ${vo.purchase_cnt }개 <br> ${vo.total_price }원</td>
-									<td><a href="store_info?item_code=${vo.item_code }" class="tm-product-delete-link"> 
-									<i class='fa-solid fa-circle-info'></i>
-									</a></td>
+									<td class="tm-product-name">${vo.item_name}</td>
+									<td   data-code="${vo.return_code } ">${vo.return_state }</td>
+									<td  >${vo.address }</td>
+									<td >${vo.item_price} * ${vo.purchase_cnt }개 <br> ${vo.total_price }원</td>
+									<td><a 
+											onclick="openSmallWindow('${vo.item_img}')"
+											class="tm-product-delete-link"> <i
+												class='fa-solid fa-circle-info'></i>
+										</a></td>
 								</tr>
 								</c:forEach>
 								
@@ -105,7 +107,7 @@
 		        		alert("환불처리가 완료되었습니다.");
 		        		$(chkBoxs).each(function(){
 		        			$(this).prop('checked', false);
-		        			$(this).closest('tr').children('td:eq(1)').text('환불처리');
+		        			$(this).closest('tr').children('td:eq(1)').text('환불처리완료');
 		        		})
 		        		
 		        		
@@ -153,6 +155,16 @@
 		        
 		    });
 		}
+	
+	function openSmallWindow(url) {
+	    var width = 400; // 새 창 너비
+	    var height = 300; // 새 창 높이
+	    var left = (window.innerWidth - width) / 2; // 창 가로 가운데 정렬
+	    var top = (window.innerHeight - height) / 2; // 창 세로 가운데 정렬
+
+	    // 새 창 열기
+	    window.open(url, '_blank', 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top);
+	}
 		
 
 

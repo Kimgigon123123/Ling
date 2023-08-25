@@ -118,7 +118,11 @@
               
               
               <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase" >상품 등록하기</button>
+              <div class="d-flex flex-row justify-content-center">
+                <button type="submit" class="btn btn-primary btn-block text-uppercase mr-3" >상품 등록하기</button>
+                <button
+										class="btn btn-success mr-3 text-uppercase" onclick="history.go(-1)">취소</button>
+              </div>
               </div>
 
             </div>

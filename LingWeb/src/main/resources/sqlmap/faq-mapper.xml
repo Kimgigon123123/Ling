@@ -5,8 +5,17 @@
 
 
 <!-- FAQ 글 목록  -->
-<select id="list" resultType="faq.FaqVO">
+<!-- <select id="list" resultType="faq.FaqVO">
 		select * from faq  order by faq_no desc
+</select> -->
+
+<select id="list" resultType="faq.FaqVO">
+select *
+from (select row_number() over(order by faq_no) no, f.*
+	from faq f inner join ling_member lm on f.faq_id = lm.id 
+	<include refid="searchWhere"/>) f
+	where no between #{beginList} and #{endList}
+	order by no desc
 </select>
 
 
@@ -14,56 +23,39 @@
 <insert id="faq_insert">
 	insert into faq(faq_category, faq_title, faq_content, faq_id)
     values(
-        <choose>
-            <when test="search == 'age'">
-                #{faq_category}
-            </when>
-            <when test="search == 'account'">
-                #{faq_category}
-            </when>
-            <when test="search == 'change'">
-                #{faq_category}
-            </when>
-        </choose>,
+        #{faq_category},
         #{faq_title},
         #{faq_content},
         'admin'
     )
 </insert>
 
+
+
+
 <select id="faq_info" resultType="faq.FaqVO">
-	select *
-	from faq
-	where faq_title = #{faq_title}
+	select * from faq where faq_no = #{faq_no}
 </select>
 	
 <sql id="searchWhere">
 	<choose>
 		<!-- 전체 -->
 		<when test="search == 'all'">
-			where content like '%' || #{keyword} || '%'
-		    or writer like '%' || #{keyword} || '%'
+			where faq_content like '%' || #{keyword} || '%'
+		    or faq_title like '%' || #{keyword} || '%'
 		</when>
-		<!-- 카테고리, 내용 -->
-		<when test="search == 'category' or search == 'content'">
-			where ${search} like '%' || #{keyword} || '%'
+		<!--제목-->
+		<when test="search == 'title'">
+			where faq_title like '%' || #{keyword} || '%'
+		</when>
+		<!-- 카테고리-->
+		<when test="search == 'category'">
+			where faq_category like '%' || #{keyword} || '%'
 		</when>
 	</choose>
 </sql>
 
-<sql id="categoryTag">
-	<choose>
-		<!-- 전체 -->
-		<when test="search == 'all'">
-			where content like '%' || #{keyword} || '%'
-		    or writer like '%' || #{keyword} || '%'
-		</when>
-		<!-- 카테고리, 내용 -->
-		<when test="search == 'category' or search == 'content'">
-			where ${search} like '%' || #{keyword} || '%'
-		</when>
-	</choose>
-</sql>
+
 
 
 

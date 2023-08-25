@@ -1,11 +1,20 @@
 package faq;
 
+import java.sql.Date;
+
 public class FaqVO {
 	private int faq_no;
-	private String faq_category, faq_content, faq_date, faq_id, faq_title;
+	private String faq_category, faq_content,  faq_id, faq_title, search;
+	private Date faq_date;
 	
 	
 	
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
 	public String getFaq_title() {
 		return faq_title;
 	}
@@ -30,10 +39,12 @@ public class FaqVO {
 	public void setFaq_content(String faq_content) {
 		this.faq_content = faq_content;
 	}
-	public String getFaq_date() {
+
+	
+	public Date getFaq_date() {
 		return faq_date;
 	}
-	public void setFaq_date(String faq_date) {
+	public void setFaq_date(Date faq_date) {
 		this.faq_date = faq_date;
 	}
 	public String getFaq_id() {

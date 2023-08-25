@@ -31,13 +31,18 @@
 		color: inherit;
 		}
 		
-		a.text-link{
-	text-decoration: none;
-	cursor: pointer;
-}		
-		#chart{
+	.nav-link{
+        color: #000000;
+    }	
+    
+     .nav-link:hover{
+     	cursor: pointer;
+     }
+
+	#chart{
 		margin-top: 20px; 
 		margin-bottom: 20px;
+		/* background-color: #f0f0f0; */
 		
 		}
 		#chart_back{
@@ -48,6 +53,11 @@
     color: #DCDCDC; /* 원하는 색상으로 변경 */
     /* 다른 스타일 속성 추가 */
 }
+		
+		.bg-light{
+			background-image: linear-gradient(90deg, #B7D6F5 20% ,#F0D3D8 80%);
+		}
+		
 		
         </style>
     </head>
@@ -189,14 +199,14 @@
         </section>
         
         <!-- Basic features section-->
-        <section class="bg-light" id="chart_back">
+        <section class="bg-light" id="chart_section">
         <div id='tab-content' class="m-md-2 m-lg-3" style='height: 520px'>
             <div class="container px-5">
             <h3 class="my-4">Ling Chart</h3>
                 <ul class="nav nav-tabs">
-		<li class="nav-item"><a class="nav-link custom-link">연령별</a></li>
-		<li class="nav-item"><a class="nav-link custom-link">연애기간별</a></li>
-		<li class="nav-item"><a class="nav-link custom-link">이번년도 ...?? ex(핫 아이템, 핫플레이스 top3)</a></li>
+		<li class="nav-item"><a class="nav-link">연령별</a></li>
+		<li class="nav-item"><a class="nav-link">연애기간별</a></li>
+		<li class="nav-item"><a class="nav-link">아이템 Top10</a></li>
 	</ul>
             </div>
             <canvas id="chart" class="h-100 m-auto"></canvas>
@@ -316,90 +326,7 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-        
-
-<!-- <script>
-$(document).ready(function() {
-    // 기본 탭 선택 (첫 번째 탭)
-    var defaultTab = "age";
-    activateChart(defaultTab);
-
-    // 탭 클릭 시 차트 활성화
-    $("#chartTabs a").click(function(e) {
-        e.preventDefault();
-        var chartType = $(this).text(); // 현재 클릭한 탭의 텍스트를 가져옴
-        activateChart(chartType);
-        $(this).tab("show");
-    });
-});
-
-function activateChart(chartType) {
-    if (chartType === "연령별") {
-        age();
-    }
-    // 연애기간별이나 다른 탭에 대한 로직 추가
-}
-
-function age() {
-    initCanvas();
-
-    $.ajax({
-        url: 'age',
-    }).done(function(response) {
-        var info = {};
-        info.category = [], info.datas = [], info.colors = [];
-        $(response).each(function() {
-            info.category.push(this.age_group);
-            info.datas.push(this.count);
-            info.colors.push(this.count);
-        });
-        donutChart(info);
-    });
-}
-
-function donutChart(info) {
-    $('#chart').css('height', '550');
-
-    var sum = 0;
-    $(info.datas).each(function() {
-        sum += this;
-    });
-
-    info.pct = info.datas.map(function(data) {
-        return Math.round(data / sum * 10000) / 100;
-    });
-
-    visual = new Chart($('#chart'), {
-        type: 'doughnut',
-        data: {
-            labels: info.category,
-            datasets: [{
-                label: '연령별',
-                data: info.datas,
-                hoverOffset: 5,
-                backgroundColor: info.colors, // 배경색 설정 추가
-            }]
-        },
-        options: {
-            cutout: '60%',
-            maintainAspectRatio: false,
-            responsive: true,
-            plugins: {
-                autocolors: { mode: 'data' },
-                datalabels: {
-                    anchor: 'middle',
-                    formatter: function(value, item) {
-                        return `${value}명(${info.pct[item.dataIndex]}%)`;
-                    }
-                }
-            }
-        }
-    });
-}
-
-</script> -->
-
-        
+                
         <script>
         
         Chart.defaults.font.size = 16;
@@ -437,6 +364,7 @@ function donutChart(info) {
         		
         		if(idx==0)		age(); //연령별 조회
         		else if(idx==1) period();
+        		else if(idx==2) item();
         	},
         	
         	'mouseover' : function(){
@@ -475,26 +403,45 @@ function donutChart(info) {
         	})
         }
       	
-      	
       	function period(){
+      		initCanvas();
+      		$.ajax({
+      			url: 'period'
+      		}).done(function(response){
+      			var info = {};
+      			info.category = [], info.datas = [];
+      			$(response).each(function(){
+      				info.category.push(this.PERIOD_TEXT);
+      				info.datas.push(this.COUNT);
+      				
+      			})
+      			lineChart(info);
+      		})
+      		
+      	}
+      	
+      	function item(){
         	initCanvas();
         	
         	$.ajax({
-        		url: 'period',
+        		url: 'item_rank',
         	}).done(function(response){
         		console.log(response)
         		var info = {};
-        		info.category = [], info.datas = [], info.colors = [];
+        		info.category = [], info.datas = [], info.itemNames = [], info.colors = [];
         		$(response).each(function(){
-        			info.category.push(this.PERIOD_RANGE);
-        			info.datas.push(this.COUNT);
+        			info.category.push(this.RANK);
+        			info.datas.push(this.SALES);
+        			info.itemNames.push(this.ITEM_NAME);
+        			/* info.colors.push(this.ITEM_NAME); */
         		})
         		console.log('data',info);
-       			lineChart(info);
+       			barChart(info);
         	})
         }
       	
-        
+      	
+        //도넛 차트
         function donutChart(info){
         	$('#tab-content').css('height', '550');
         	
@@ -537,9 +484,9 @@ function donutChart(info) {
         	});
         	
         }
-        //선 그래프
+      //선 그래프
+
         function lineChart(info){
-        	initCanvas();
         	$('#tab-content').css('height', '550');
         	visual = new Chart($('#chart'),{
         		type: 'line',
@@ -548,7 +495,7 @@ function donutChart(info) {
         		      datasets: [{
         		        label: '연애기간별',
         		        data: info.datas,
-        		        borderColor: '#000000', //그래프선, point테두리에 적용
+        		        borderColor: '#0000ff', //그래프선, point테두리에 적용
         		        tension: 0, //0:완전꺾은선, 1:곡선
         		        pointRadius: 5,
         		        pointBackgroundColor: '#ff0000',
@@ -581,6 +528,110 @@ function donutChart(info) {
         		    },
         		
         	})
+        }
+        
+        
+      //막대 그래프
+        function barChart(info){
+        	$('#tab-content').css('height', '520');
+        	visual = new Chart($('#chart'), {
+        	    type: 'bar',
+        	    data: {
+        	      labels: info.category,
+        	      datasets: [{
+        	        label: '아이템',
+        	        data: info.datas,
+        	        borderWidth: 2,
+        	        barPercentage: 0.5,
+        	        backgroundColor: info.colors,
+        	      }]
+        	    },
+        	    options: {
+        	    	maintainAspectRatio: false, // 크키조정시 캔버스 가로세로 비율 유지X(기본O)
+        	    	responsive: false, //컨테이너 크기 변경시 캔버스 크기 조정X(기본O)
+        	    	layout: {
+        	    		padding: {top:30, bottom:20}
+        	    	},
+        	    	plugins: {
+        	    		legend: {display: false},
+        	    		datalabels: {
+        	    			formatter: function(value, context) {
+        	    			    var itemRank = context.chart.data.labels[context.dataIndex];
+        	    			    var itemName = info.itemNames[context.dataIndex]
+        	    			    return '<' + itemName + '>'; 
+        	    			}
+        	    		},
+        	        autocolors: {
+        	            mode: 'data'
+        	          },
+        	         
+        	    	},
+        	    	
+        	    	 tooltip: { // tooltip 설정을 별도로 분리
+        	                callbacks: {
+        	                    title: function(context) {
+        	                        return info.itemNames[context.dataIndex];
+        	                    },
+        	                    label: function(value, context) {
+        	                        var value = context.parsed.y;
+        	                        return value + '개'; // 개를 문자열로 인식하도록 따옴표로 묶음
+        	                    }
+        	                }
+        	            },
+        	    	
+        	    	
+            	scales: {
+        	        y: {
+        	        	beginAtZero: true, // y축 시작값을 0으로 설정
+        		       title: {text: '아이템 구매횟수', display:true}
+        		         }
+        		      },
+        	    }
+        	  });
+        	/* makeLegend(); */
+        	
+        }
+
+
+        //데이터수치 범위에 해당하는 범례 만들기
+        function makeLegend(){
+        	var tag =
+        		`
+        		<ul class="row d-flex justify-content-center m-0 mt-4 p-0 small" id='legend'>`;
+        		
+        		for(var no=0; no<=6; no++){
+        			
+        		tag +=
+        			`<li class="col-auto"><span></span><font>\${no*10}~\${no*10+9}명</font></li>`;
+        			
+        		}
+        		tag +=
+        			`<li class="col-auto"><span></span><font>\${no*10}명 이상</font></li>
+        		</ul>`;
+        		$('#tab-content').after(tag);
+        		$('#legend span').each(function(idx, item){
+        			$(this).css('background-color', colors[idx]);
+        		})
+        }
+        
+        function customLegend(){
+        	var tag =
+        		`
+        		<ul class="row d-flex justify-content-center m-0 mt-4 p-0 small" id='legend'>`;
+        		
+        		for(var no=0; no<=6; no++){
+        			
+        		tag +=
+        			`<li class="col-auto"><span></span><font>\${no*10}~\${no*10+9}명</font></li>`;
+        			
+        		}
+        		tag +=
+        			`<li class="col-auto"><span></span><font>\${no*10}명 이상</font></li>
+        		</ul>`;
+        		$('#tab-content').after(tag);
+        		$('#legend span').each(function(idx, item){
+        			$(this).css('background-color', colors[idx]);
+        		})
         }
         
         </script>

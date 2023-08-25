@@ -1,5 +1,6 @@
 package date;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -32,8 +33,11 @@ public class DateDAO {
 		sql.insert("date.insert", vo);
 	}
 	
-	public void date_delete(int date_id) {
-		sql.delete("date.delete", date_id);
+	public void date_delete(DateVO vo) {
+		sql.delete("date.delete", vo);
+	}
+	public void date_delete(HashMap<String, String> map) {
+		sql.delete("date.multipledelete", map);
 	}
 	
 	public void date_update(DateVO vo) {

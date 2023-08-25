@@ -57,6 +57,11 @@ select id, writer, title, to_char(writedate, 'YY-MM-dd') writedate, content, rea
 where id = #{id} and board_cd = #{board_cd}
 </select>
 
+<!--해당 글 정보 조회  -->
+<select id="info" resultType="board.BoardVO">
+select board_cd, id, title, content, writer from LING_BOARD where id = #{id}
+</select>
+
 <!--선택한 공지글 조회수 증가처리  -->
 <update id="read">
 update LING_BOARD set readcnt= readcnt+1
@@ -77,7 +82,7 @@ where id = #{id}
 
 <!-- 글 삭제  -->
 <delete id="delete">
-delete from LING_BOARD where id =#{id}
+delete from LING_BOARD where id in (${id})
 </delete>
 
 <!--게시글 댓글 목록 조회  -->

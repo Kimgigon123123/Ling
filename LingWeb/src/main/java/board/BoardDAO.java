@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import member.MemberVO;
+
 
 
 
@@ -45,6 +47,11 @@ public class BoardDAO {
 		return sql.selectOne("board.usercontent", param);
 	}
 	
+	public BoardVO info(String id) {
+		
+		return sql.selectOne("board.info", id);
+	}
+	
 	public int board_read(String id) {
 		return sql.update("board.read", id);
 	}
@@ -58,9 +65,9 @@ public class BoardDAO {
 		return sql.update("board.update", vo);
 	}
 	
-	public int board_delete(BoardVO vo) {
+	public int board_delete(String id) {
 	
-		return sql.delete("board.delete", vo);
+		return sql.delete("board.delete", id);
 	}
 	
 	public List<BoardCommentVO> board_comment_list(String board_id) {

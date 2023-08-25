@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table class="tb-row">
+	<table class="tb-row mt-5">
 	<colgroup>
 	<col width="180px"><col><col width="160px"><col width="160px"><col width="100px"><col width="100px">
 	</colgroup>
@@ -30,15 +30,13 @@
 
 
 	</table>
-<c:choose>
+	<c:choose>
     <c:when test="${loginId eq 'admin'}">
-    <div class="btn-toolbar gap-2 my-3 justify-content-center">
         <div class="btn-toolbar gap-2 my-3 justify-content-center">
             <a class="btn btn-primary" id="btn-modify">FAQ 수정</a>
             <a class="btn btn-primary" id="btn-list">FAQ 목록</a>
             <a class="btn btn-primary" id="btn-delete">FAQ 삭제</a>
         </div>
-       </div>
     </c:when>
     <c:otherwise>
         <div class="col-auto">
@@ -46,10 +44,6 @@
         </div>
     </c:otherwise>
 </c:choose>
-	
-		
-		
-
 	
 </body>
 </html>

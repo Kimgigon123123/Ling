@@ -41,7 +41,7 @@
 							<tbody>
 							<c:forEach items="${list}" var="list">
 								<tr>
-									<th scope="row"><input type="checkbox" /></th>
+									<th scope="row"><input type="checkbox" name="selectedItems" value="${list.date_id }"/></th>
 									<td class="tm-product-name">${list.date_name }</td>
 									<td>${list.date_address }</td>
 									<c:if test="${list.tel == null}">
@@ -62,113 +62,40 @@
 					<!-- table container -->
 					<a href="new"
 						class="btn btn-primary btn-block text-uppercase mb-3">축제 등록</a>
-					<button class="btn btn-primary btn-block text-uppercase">
+					<button type="button" class="btn btn-primary btn-block text-uppercase" id="deleteBtn">
 						선택 항목 삭제</button>
 				</div>
 			</div>
-<!-- 			<div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
-				<div class="tm-bg-primary-dark tm-block tm-block-product-categories">
-					<h2 class="tm-block-title">Product Categories</h2>
-					<div class="tm-product-table-container">
-						<table class="table tm-table-small tm-product-table">
-							<tbody>
-								<tr>
-									<td class="tm-product-name">Product Category 1</td>
-									<td class="text-center"><a href="#"
-										class="tm-product-delete-link"> <i
-											class="far fa-trash-alt tm-product-delete-icon"></i>
-									</a></td>
-								</tr>
-								<tr>
-									<td class="tm-product-name">Product Category 2</td>
-									<td class="text-center"><a href="#"
-										class="tm-product-delete-link"> <i
-											class="far fa-trash-alt tm-product-delete-icon"></i>
-									</a></td>
-								</tr>
-								<tr>
-									<td class="tm-product-name">Product Category 3</td>
-									<td class="text-center"><a href="#"
-										class="tm-product-delete-link"> <i
-											class="far fa-trash-alt tm-product-delete-icon"></i>
-									</a></td>
-								</tr>
-								<tr>
-									<td class="tm-product-name">Product Category 4</td>
-									<td class="text-center"><a href="#"
-										class="tm-product-delete-link"> <i
-											class="far fa-trash-alt tm-product-delete-icon"></i>
-									</a></td>
-								</tr>
-								<tr>
-									<td class="tm-product-name">Product Category 5</td>
-									<td class="text-center"><a href="#"
-										class="tm-product-delete-link"> <i
-											class="far fa-trash-alt tm-product-delete-icon"></i>
-									</a></td>
-								</tr>
-								<tr>
-									<td class="tm-product-name">Product Category 6</td>
-									<td class="text-center"><a href="#"
-										class="tm-product-delete-link"> <i
-											class="far fa-trash-alt tm-product-delete-icon"></i>
-									</a></td>
-								</tr>
-								<tr>
-									<td class="tm-product-name">Product Category 7</td>
-									<td class="text-center"><a href="#"
-										class="tm-product-delete-link"> <i
-											class="far fa-trash-alt tm-product-delete-icon"></i>
-									</a></td>
-								</tr>
-								<tr>
-									<td class="tm-product-name">Product Category 8</td>
-									<td class="text-center"><a href="#"
-										class="tm-product-delete-link"> <i
-											class="far fa-trash-alt tm-product-delete-icon"></i>
-									</a></td>
-								</tr>
-								<tr>
-									<td class="tm-product-name">Product Category 9</td>
-									<td class="text-center"><a href="#"
-										class="tm-product-delete-link"> <i
-											class="far fa-trash-alt tm-product-delete-icon"></i>
-									</a></td>
-								</tr>
-								<tr>
-									<td class="tm-product-name">Product Category 10</td>
-									<td class="text-center"><a href="#"
-										class="tm-product-delete-link"> <i
-											class="far fa-trash-alt tm-product-delete-icon"></i>
-									</a></td>
-								</tr>
-								<tr>
-									<td class="tm-product-name">Product Category 11</td>
-									<td class="text-center"><a href="#"
-										class="tm-product-delete-link"> <i
-											class="far fa-trash-alt tm-product-delete-icon"></i>
-									</a></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					table container
-					<button class="btn btn-primary btn-block text-uppercase mb-3">
-						Add new category</button>
-				</div>
-			</div> -->
 		</div>
 	</div>
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<!-- https://jquery.com/download/ -->
-	<script src="js/bootstrap.min.js"></script>
+	<!-- <script src="js/bootstrap.min.js"></script> -->
 	<!-- https://getbootstrap.com/ -->
 	<script>
-      /* $(function() {
-        $(".tm-product-name").on("click", function() {
-          window.location.href = "edit-product.html";
-        });
-      }); */
+		document.getElementById("deleteBtn").addEventListener("click", function() {
+	        var checkboxes = document.getElementsByName("selectedItems");
+	        var checkedItems = [];
+	
+	        checkboxes.forEach(function(checkbox) {
+	            if (checkbox.checked) {
+	                checkedItems.push(checkbox.value);
+	            }
+	        });
+	        
+	        if (checkedItems.length > 0) {
+	            // document.getElementById("deleteForm").submit();
+	            $.ajax({
+	          	  url: 'multipledelete',
+	          	  data: {tdata: checkedItems.join(), date_category_code:'FE'},
+	          	  success:function(){
+	          		  location="festival"
+	          	  }
+	            })
+	        } else {
+	        	alert("삭제할 항목을 선택해주세요.");
+	        }
+	    })
     </script>
 </body>
 </html>
