@@ -1,5 +1,7 @@
 package com.cteam.lingweb;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -51,13 +53,43 @@ public class FaqController {
 
 	// FAQ 글 정보 화면요청
 	@RequestMapping("/faq_info")
-	public String faq_content(int faq_no, Model model) {
+	public String faq_content(int faq_no, Model model, PageVO page) {
 		dao.faq_info(faq_no);
 		model.addAttribute("crlf", "\r\n"); // carrage return line feed
 		model.addAttribute("lf", "\n"); // line feed
 		model.addAttribute("vo", dao.faq_info(faq_no));
+		model.addAttribute("page", page);
 
 		return "default/faq/faq_info";
 	}
+	
+	@RequestMapping("/faq_modify")
+	public String faq_modify(PageVO page, Model model, int faq_no) {
+		dao.faq_info(faq_no);
+		model.addAttribute("crlf", "\r\n"); // carrage return line feed
+		model.addAttribute("lf", "\n"); // line feed
+		model.addAttribute("vo", dao.faq_info(faq_no));
+		model.addAttribute("page", page);
+		return "default/faq/faq_modify";
+	}
+	
+	@RequestMapping("/faq_update")
+	public String faq_update(FaqVO vo, PageVO page) {
+		dao.faq_update(vo);
+		return "redirect:faq_info?faq_no=" + vo.getFaq_no()
+				+ "&curPage=" + page.getCurPage()
+				+ "&search=" + page.getSearch();
+	}
+	
+	@RequestMapping("faq_delete")
+	public String faq_delete(PageVO page, int faq_no) throws UnsupportedEncodingException {
+		dao.faq_delete(faq_no);
+		return "redirect:list"
+				+ "?curPage=" + page.getCurPage()
+				+ "&search=" + page.getSearch()
+				+ "&keyword=" + URLEncoder.encode(page.getKeyword(), "utf-8")
+				;
+	}
+	
 
 }

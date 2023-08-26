@@ -395,7 +395,7 @@
         		var info = {};
         		info.category = [], info.datas = [], info.colors = [];
         		$(response).each(function(){
-        			info.category.push(this.AGE_GROUP);
+        			info.category.push(this.AGE_TEXT);
         			info.datas.push(this.COUNT);
         		})
         		console.log('data',info);

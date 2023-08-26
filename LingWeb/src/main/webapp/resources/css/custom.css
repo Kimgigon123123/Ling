@@ -1,0 +1,180 @@
+@charset "UTF-8";
+
+.mt-6 {
+  margin-top: 6rem !important;
+}
+
+.mt-7 {
+  margin-top: 7rem !important;
+}
+
+.mt-2 {
+  margin-top: 2rem !important;
+}
+
+.mt-9 {
+  margin-top: 9rem !important;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+.page-link:focus {
+  z-index: 3;
+  color: #123456;
+  background-color: var(--bs-pagination-hover-bg);
+  outline: 0;
+  box-shadow: var(--bs-pagination-focus-box-shadow);
+}
+
+.page-link.active{
+  z-index: 3;
+  color: #123456;
+  background-color: #ffffff;
+  border-color: var(--bs-pagination-active-border-color);
+}
+
+.page-link:hover {
+  z-index: 2;
+  color: var(--bs-pagination-hover-color);
+  background-color: var(--bs-pagination-hover-bg);
+  border-color: var(--bs-pagination-hover-border-color);
+}
+
+
+.tb-row tr {
+    line-height: 1.5; /* 원하는 줄 간격 값을 지정하세요 */
+  }
+  
+          img{ float: left;}
+         
+         .p2{ clear: both;}
+        
+   .tb-list {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 16px;
+        overflow:hidden;
+        
+    }
+    a{color:inherit}
+
+a:not(.btn):link, a:not(.btn):hover{ text-decoration: none;
+		color: inherit;
+}
+    .foot-banner{
+    	background-image: linear-gradient(90deg, #B7D6F5 20% ,#F0D3D8 80%);
+    }
+
+    .tb-list th,
+    .tb-list td {
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+
+    .tb-list th:first-child,
+    .tb-list td:first-child {
+        width: 100px;
+    }
+
+    .tb-list th:nth-child(2),
+    .tb-list td:nth-child(2) {
+    width: 120px;
+    }
+
+    .tb-list th:nth-child(3),
+    .tb-list td:nth-child(3) {
+    width: auto;
+        
+    }
+
+    .tb-list th:nth-child(4),
+    .tb-list td:nth-child(4) {
+        width: 120px;
+    }
+    
+    table.type11 {
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+
+}
+table.type11 thead th {
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #369;
+  text-align: center;
+  background-color: #f3f6f7;
+  border-bottom: 3px solid #036;
+}
+table.type11 tbody td {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  
+}
+
+.foot-banner {
+    overflow: auto;
+    border: 1px solid black;
+    padding: 2px;
+    background-image: url('/image/couple.jpg'); /* 이미지 파일 경로로 변경하세요 */
+    background-size: cover; /* 이미지를 요소에 맞게 크기 조절 */
+
+  }
+  
+
+.custom-footer-banner {
+    position: absolute;
+    bottom: 200px; /* 원하는 간격으로 조정하세요 */
+    width: 1330px;
+}
+
+.content-line-height{
+	line-height: 1.6;
+}
+
+  
+  footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+  #info_table th{
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    background-color: #f0f0f0;
+  }
+
+  #info_table .td-center{
+  	text-align: center;
+  }
+  
+  #info_table .td-margin {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#btn-faqList{
+	background: #f8f9fa;
+	color: #123456;
+  border-color: var(--bs-pagination-active-border-color);
+}
+
+#btn-faqList:hover{
+  background: #f8f9fa;
+  color: #123456;
+  border-color: var(--bs-pagination-active-border-color);
+  box-shadow: var(--bs-pagination-focus-box-shadow1);
+}
+
+
