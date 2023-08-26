@@ -102,17 +102,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            android:fontFamily="@font/font4"
+            android:layout_marginRight="20dp"
             android:id="@+id/btn_complete"
-
+            style="@style/LingButtonStyle"
             android:text="작성완료"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"/>
-        <Button
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:fontFamily="@font/font4"
+            android:layout_marginLeft="20dp"
+            style="@style/CancelButtonStyle"
             android:id="@+id/btn_delete"
             android:layout_gravity="center"
             android:text="삭제"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"/>
 
 
