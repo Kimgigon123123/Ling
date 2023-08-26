@@ -55,7 +55,17 @@ public class HomeController {
 		return service.age();
 	}
 	
-
+	@ResponseBody @RequestMapping("/period")
+	public Object period() {
+		//DB에서 부서별 사원수를 조회해와 응답한다.
+		return service.period();
+	}
+	
+	
+	@ResponseBody @RequestMapping("/item_rank")
+	public Object item_rank() {
+		return service.item_top3();
+	}
 	
 
 }

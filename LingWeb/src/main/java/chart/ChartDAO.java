@@ -18,9 +18,13 @@ public class ChartDAO implements ChartService {
 	}
 
 	@Override
-	public List<HashMap<String, Object>> courtship() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<HashMap<String, Object>> period() {
+		return sql.selectList("chart.period");
+	}
+
+	@Override
+	public List<HashMap<String, Object>> item_top3() {
+		return sql.selectList("chart.item_rank");
 	}
 
 }

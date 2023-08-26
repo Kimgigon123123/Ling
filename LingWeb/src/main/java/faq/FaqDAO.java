@@ -22,7 +22,13 @@ public class FaqDAO {
 		return result;
 	}
 	
-	public FaqVO faq_info(String id) {
-		return sql.selectOne("faq.faq_info", id);
+	public FaqVO faq_info(int faq_no) {
+		return sql.selectOne("faq.faq_info", faq_no);
+	}
+	
+	public PageVO faq_list(PageVO page) {
+		page.setTotalList((Integer) sql.selectOne("faq.totalList", page));
+		page.setList(sql.selectList("faq.list",page));
+		return page;
 	}
 }

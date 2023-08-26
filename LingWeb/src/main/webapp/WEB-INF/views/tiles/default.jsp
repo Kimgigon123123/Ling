@@ -36,7 +36,7 @@
 
                     <%-- <a class="${category eq 'home' ? 'active':'' } list-group-item list-group-item-action list-group-item-light p-3" href="<c:url value='/default/home'/>">Ling소개</a> --%>
                     <%-- <a class="${category eq 'faq' ? 'active':'' } list-group-item list-group-item-action list-group-item-light p-3" href="<c:url value='/faq/list'/>">Community</a> --%>
-					<li class="nav-item"><a class="nav-link me-lg-3" href="#chart">Chart</a></li>
+					<li class="nav-item"><a class="nav-link me-lg-3" href="#chart_section">Chart</a></li>
                     <li class="nav-item"><a class="nav-link me-lg-3" href="#download">Download</a></li>
                         
                     </ul>
