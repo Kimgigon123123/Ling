@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
@@ -24,6 +25,10 @@ public class NoteAddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding=ActivityNoteAddBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.imgvBefore.setOnClickListener(v -> {
+            finish();
+        });
 
         binding.radioButton1.setChecked(true);
 
@@ -49,6 +54,8 @@ public class NoteAddActivity extends AppCompatActivity {
             conn.addParamMap("content",binding.edtContent.getText().toString());
             conn.addParamMap("view_range",selectedValue);
             conn.onExcute((isResult, data) -> {
+                finish();
+                Toast.makeText(this, "작성완료", Toast.LENGTH_SHORT).show();
 
             });
         });
