@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#fff"
+    android:background="@drawable/main_back_gradient_animation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".store.StoreRiFragment"
@@ -18,81 +18,130 @@
 
 
         <LinearLayout
-            android:gravity="center_vertical"
-            android:background="@drawable/shape"
-            android:orientation="horizontal"
-            android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="70dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <ImageView
-                android:layout_marginLeft="15dp"
                 android:id="@+id/imgv_menu"
-                android:src="@drawable/ic_menu"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/baseline_menu_24" />
 
             <TextView
-                android:layout_marginLeft="20dp"
-                android:textStyle="bold"
-                android:textSize="17dp"
                 android:id="@+id/tv_date"
-                android:textColor="#fff"
-
-                android:text="커플반지"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"/>
-            <ImageView
-                android:id="@+id/imgv_basket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="80dp"
-                android:src="@drawable/baseline_shopping_basket_24" />
+                android:layout_marginLeft="10dp"
+                android:text="Ling Store"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/imgv_zzim"
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:layout_marginLeft="10dp"
+                style="@style/LingButtonStyle"
+                android:id="@+id/btn_basket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:src="@drawable/ic_dibs" />
+                android:drawableLeft="@drawable/baseline_shopping_basket_24"
+                android:text=" 장바구니"
+                android:padding="5dp"
+                android:layout_gravity="right|center"
+                />
+            <androidx.appcompat.widget.AppCompatButton
 
-            <ImageView
-                android:id="@+id/imgv_myinfo"
+                style="@style/LingButtonStyle"
+                android:id="@+id/btn_zzim"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:src="@drawable/baseline_info" />
+                android:drawableLeft="@drawable/ic_dibs"
+                android:text="찜목록"
+                android:padding="5dp"
+                android:layout_gravity="right|center"
+                />
+            <androidx.appcompat.widget.AppCompatButton
+
+                style="@style/LingButtonStyle"
+                android:id="@+id/btn_myinfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/baseline_info"
+                android:text="내 정보"
+                android:padding="5dp"
+                android:layout_gravity="right|center"
+                />
 
 
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:layout_marginLeft="130dp"
+                style="@style/LingButtonStyle"
+                android:id="@+id/btn_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/baseline_info"
+                android:text="내 정보"
+                android:padding="8dp"
+                android:layout_gravity="right|center"
+                />
 
 
 
 
         </LinearLayout>
 
+        <FrameLayout
+            android:background="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
 
-        <RelativeLayout
-            android:layout_marginRight="20dp"
-            android:layout_gravity="right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <Spinner
-                android:entries="@array/store"
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="#E4E4E4"
-                android:id="@+id/spinner"
-                android:layout_width="70dp"
-                android:layout_height="30dp"/>
-
-            <ImageView
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="11dp"
-                android:src="@drawable/ic_dropdown"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:text="커플반지"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-        </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp">
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#E4E4E4"
+                    android:entries="@array/store" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginTop="11dp"
+                    android:src="@drawable/ic_dropdown" />
+            </RelativeLayout>
+
+        </FrameLayout>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -136,87 +185,100 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:id="@+id/fl"
-        android:visibility="invisible"
-        android:background="@drawable/shape"
         android:layout_width="150dp"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/shape"
+        android:orientation="vertical"
+        android:visibility="invisible">
 
         <TextView
-            android:textColor="@android:color/black"
-            android:layout_margin="10dp"
-            android:layout_gravity="end"
-            android:textSize="24sp"
             android:id="@+id/tv_nav_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="10dp"
             android:text="X"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#C5C4C4"/>
+            android:background="#C5C4C4" />
 
         <TextView
-            android:textSize="20sp"
+            android:id="@+id/tv_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Ling Store"
+            android:textSize="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#C5C4C4" />
+
+        <TextView
             android:id="@+id/tv_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
             android:text="전체"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp"/>
+            android:textSize="20sp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#C5C4C4"/>
+            android:background="#C5C4C4" />
 
         <TextView
-            android:textSize="20sp"
             android:id="@+id/tv_dr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
             android:text="커플옷"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp"/>
+            android:textSize="20sp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#C5C4C4"/>
+            android:background="#C5C4C4" />
 
         <TextView
-            android:textSize="20sp"
             android:id="@+id/tv_ring"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
             android:text="커플반지"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp"/>
+            android:textSize="20sp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#C5C4C4"/>
+            android:background="#C5C4C4" />
 
         <TextView
-            android:textSize="20sp"
             android:id="@+id/tv_gift"
-            android:text="상품권"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"/>
+            android:padding="16dp"
+            android:text="상품권"
+            android:textSize="20sp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#C5C4C4"/>
+            android:background="#C5C4C4" />
 
         <TextView
-            android:textSize="20sp"
             android:id="@+id/tv_etc"
-            android:text="기타"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"/>
+            android:padding="16dp"
+            android:text="기타"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

@@ -7,8 +7,14 @@
 <!--        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>-->
 <!--        <item name="android:windowTranslucentStatus">true</item>-->
 
+
+     <item name="android:fontFamily">@font/font4</item>
+
         <item name="actionBarSize">0dp</item>
     </style>
+
+
+
     <style name="Theme.Ling" parent="Base.Theme.Ling"></style>
 
     <style name="CustomShapeAppearance">

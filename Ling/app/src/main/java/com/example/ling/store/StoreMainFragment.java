@@ -7,19 +7,23 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
-import com.example.ling.databinding.FragmentStoreCoBinding;
+import com.example.ling.databinding.FragmentDateBinding;
+import com.example.ling.databinding.FragmentStoreMainBinding;
 import com.example.ling.store.basket.BasketActivity;
 import com.example.ling.store.myinfo.StoreMyinfoActivity;
 import com.example.ling.store.myinfo.ZZimActivity;
@@ -29,48 +33,61 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
+public class StoreMainFragment extends Fragment {
 
-public class StoreCoFragment extends Fragment {
-    String[] items = {"최신","이름","인기","가격"};
-    FragmentStoreCoBinding binding;
-    String order = "recent";
+    FragmentStoreMainBinding binding;
+
+     ImagePagerAdapter adapter;
+
+     int currentPage = 0;
+     final long delayTime = 3000; // 3초
+    Handler handler = new Handler(Looper.getMainLooper());
+     Runnable runnable = new Runnable() {
+        public void run() {
+            if (currentPage == adapter.getCount()) {
+                currentPage = 0;
+            }
+            binding.viewPager.setCurrentItem(currentPage++, true);
+            handler.postDelayed(this, delayTime);
+        }
+    };
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentStoreCoBinding.inflate(inflater, container, false);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,items);
-        adapter.setDropDownViewResource(
-                android.R.layout.simple_spinner_dropdown_item
-        );
-        binding.spinner.setAdapter(adapter);
+        // Inflate the layout for this fragment
+        binding = FragmentStoreMainBinding.inflate(inflater, container, false);
+
+        adapter = new ImagePagerAdapter(getContext());
+        binding.viewPager.setAdapter(adapter);
+
+        select("popular");
 
 
-        binding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+
+        handler.postDelayed(runnable, delayTime);
+
+        binding.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                String str = items[position];
-                if(str.equals("최신")){
-                    order = "recent";
-                }else if(str.equals("이름")){
-                    order = "name";
-                }else if(str.equals("인기")){
-                    order = "popular";
-                }else if(str.equals("가격")){
-                    order = "price";
-                }
-
-
-                select(order);
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onPageSelected(int position) {
+                currentPage = position;
 
+                // 숫자 업데이트
+                binding.currentPageText.setText(String.valueOf(currentPage + 1));
             }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+
         });
 
-
+        binding.totalPagesText.setText(String.valueOf(adapter.getCount()));
 
         binding.imgvMenu.setOnClickListener(v -> {
             binding.fl.setVisibility(View.VISIBLE);
@@ -104,11 +121,13 @@ public class StoreCoFragment extends Fragment {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
             // 기존의 StoreMainFragment 대신 새로운 StoreMainFragment로 교체
-            transaction.replace(R.id.co, newFragment);
+            transaction.replace(R.id.store_home, newFragment);
 
             transaction.addToBackStack(null);
             transaction.commit();
         });
+
+
 
         binding.tvAll.setOnClickListener(v -> {
 
@@ -116,7 +135,7 @@ public class StoreCoFragment extends Fragment {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
             StoreCoFragment storeCoFragment = new StoreCoFragment();
-            transaction.replace(R.id.co, storeCoFragment);
+            transaction.replace(R.id.store_home, storeCoFragment);
 
             transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
             transaction.commit();
@@ -130,7 +149,7 @@ public class StoreCoFragment extends Fragment {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
             StoreDrFragment storeDrFragment = new StoreDrFragment(); // StoreDrFragment로 교체할 프래그먼트 인스턴스 생성
-            transaction.replace(R.id.co, storeDrFragment);
+            transaction.replace(R.id.store_home, storeDrFragment);
 
             transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
             transaction.commit();
@@ -146,7 +165,7 @@ public class StoreCoFragment extends Fragment {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
             StoreRiFragment storeRiFragment= new StoreRiFragment(); // StoreDrFragment로 교체할 프래그먼트 인스턴스 생성
-            transaction.replace(R.id.co, storeRiFragment);
+            transaction.replace(R.id.store_home, storeRiFragment);
 
             transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
             transaction.commit();
@@ -162,7 +181,7 @@ public class StoreCoFragment extends Fragment {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
             StoreGiFragment storeGiFragment= new StoreGiFragment(); // StoreDrFragment로 교체할 프래그먼트 인스턴스 생성
-            transaction.replace(R.id.co, storeGiFragment);
+            transaction.replace(R.id.store_home, storeGiFragment);
 
             transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
             transaction.commit();
@@ -176,13 +195,11 @@ public class StoreCoFragment extends Fragment {
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
             StoreEtcFragment storeEtcFragment= new StoreEtcFragment(); // StoreDrFragment로 교체할 프래그먼트 인스턴스 생성
-            transaction.replace(R.id.co, storeEtcFragment);
+            transaction.replace(R.id.store_home, storeEtcFragment);
 
             transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
             transaction.commit();
         });
-
-
 
         binding.btnMyinfo.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), StoreMyinfoActivity.class);
@@ -199,20 +216,19 @@ public class StoreCoFragment extends Fragment {
             getActivity().startActivity(intent);
         });
 
+        binding.tvMore.setOnClickListener(v->{
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
 
+            StoreCoFragment storeCoFragment = new StoreCoFragment();
+            transaction.replace(R.id.store_home, storeCoFragment);
 
-
-
+            transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
+            transaction.commit();
+        });
 
         return binding.getRoot();
     }
-
-
-
-
-
-
-
 
     public void select(String order) {
         CommonConn conn = new CommonConn(getContext(), "storelist");
@@ -224,64 +240,15 @@ public class StoreCoFragment extends Fragment {
             }.getType());
 
 
-            binding.recvStoreCo.setAdapter(new StoreCoAdater(list, getContext()));
-            binding.recvStoreCo.setLayoutManager(new GridLayoutManager(getContext(),3));
+            binding.recvItem.setAdapter(new StoreCoAdater(list, getContext()));
+            binding.recvItem.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
 
         });
 
     }
 
-//    public void by_name() {
-//        CommonConn conn = new CommonConn(getContext(), "store_by_name");
-//        conn.onExcute((isResult, data) -> {
-//
-//            ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
-//            }.getType());
-//
-//
-//            binding.recvStoreCo.setAdapter(new StoreCoAdater(list, getContext()));
-//            binding.recvStoreCo.setLayoutManager(new GridLayoutManager(getContext(),3));
-//
-//        });
-//
-//    }
-//
-//
-//    public void by_popular() {
-//        CommonConn conn = new CommonConn(getContext(), "store_by_popular");
-//        conn.onExcute((isResult, data) -> {
-//
-//            ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
-//            }.getType());
-//
-//
-//            binding.recvStoreCo.setAdapter(new StoreCoAdater(list, getContext()));
-//            binding.recvStoreCo.setLayoutManager(new GridLayoutManager(getContext(),3));
-//
-//        });
-//
-//    }
-//
-//
-//    public void by_price() {
-//        CommonConn conn = new CommonConn(getContext(), "store_by_price");
-//        conn.onExcute((isResult, data) -> {
-//
-//            ArrayList<StoreCOVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreCOVO>>() {
-//            }.getType());
-//
-//
-//            binding.recvStoreCo.setAdapter(new StoreCoAdater(list, getContext()));
-//            binding.recvStoreCo.setLayoutManager(new GridLayoutManager(getContext(),3));
-//
-//        });
-//
-//    }
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        select(order);
-    }
+
+
 }
