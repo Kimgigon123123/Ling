@@ -222,28 +222,6 @@
 								<td>11:00, 10 OCT 2018</td>
 								<td>03:00, 14 OCT 2018</td>
 							</tr>
-							<tr>
-								<th scope="row"><b>#122340</b></th>
-								<td>
-									<div class="tm-status-circle cancelled"></div>Cancelled
-								</td>
-								<td><b>Wilson Cookies</b></td>
-								<td><b>London, UK</b></td>
-								<td><b>218 km</b></td>
-								<td>17:30, 12 OCT 2018</td>
-								<td>08:30, 22 OCT 2018</td>
-							</tr>
-							<tr>
-								<th scope="row"><b>#122339</b></th>
-								<td>
-									<div class="tm-status-circle moving"></div>Moving
-								</td>
-								<td><b>Richard Clamon</b></td>
-								<td><b>London, UK</b></td>
-								<td><b>150 km</b></td>
-								<td>15:00, 12 OCT 2018</td>
-								<td>09:20, 26 OCT 2018</td>
-							</tr>
 						</tbody>
 					</table>
 				</div>
