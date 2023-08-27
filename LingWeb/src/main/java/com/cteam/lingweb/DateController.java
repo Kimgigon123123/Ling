@@ -1,7 +1,10 @@
 package com.cteam.lingweb;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import date.DateDAO;
 import date.DateVO;
@@ -57,8 +61,16 @@ public class DateController {
 	}
 	
 	// 신규 등록 저장
-	@RequestMapping("/register")
-	public String register(DateVO vo) {
+	@RequestMapping(value="/register", method = RequestMethod.POST)
+	public String register(DateVO vo, MultipartFile file, HttpServletRequest request) throws Exception {
+		if(file != null && !file.isEmpty()) {
+			String uploadPath="D:\\lingimg";
+			String filename = file.getOriginalFilename();
+			File filePath = new File(uploadPath, filename);
+			String date_img = "http://192.168.0.31:8080/ling/img/date/"+filename;
+			vo.setDate_img(date_img);
+			 file.transferTo(filePath);
+		}
 		dao.date_insert(vo);
 		if(vo.getDate_category_code().equals("TO")) {
 			return "redirect:travel";			
@@ -100,8 +112,16 @@ public class DateController {
 	}
 	
 	// 수정 저장
-	@RequestMapping("/update")
-	public String update(DateVO vo) {
+	@RequestMapping(value="/update", method = RequestMethod.POST)
+	public String update(DateVO vo, Model model, MultipartFile file) throws Exception {
+		if(file != null && !file.isEmpty()) {
+			String uploadPath="D:\\lingimg";
+			String filename = file.getOriginalFilename();
+			File filePath = new File(uploadPath, filename);
+			String date_img = "http://192.168.0.31:8080/ling/img/date/"+filename;
+			vo.setDate_img(date_img);
+			 file.transferTo(filePath);
+		}
 		dao.date_update(vo);
 		return "redirect:info?date_id=" + vo.getDate_id();
 	}

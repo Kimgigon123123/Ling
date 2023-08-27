@@ -34,7 +34,7 @@
 							<h2 class="tm-block-title d-inline-block">등록하기</h2>
 						</div>
 					</div>
-					<form action="register" method="post" autocomplete="off"
+					<form action="register" method="post" enctype="multipart/form-data" autocomplete="off"
 						class="tm-edit-product-form">
 						<div class="row tm-edit-product-row">
 							<div class="col-xl-6 col-lg-6 col-md-12">
@@ -105,19 +105,21 @@
 							</div>
 							<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
 								<div class="tm-product-img-dummy mx-auto">
-									<i class="fas fa-cloud-upload-alt tm-upload-icon"
-										onclick="document.getElementById('fileInput').click();"></i>
-								</div>
+			                 		<img class="tm-product-img-dummy mx-auto" id="preview" />
+                				</div>
 								<div class="custom-file mt-3 mb-3">
-									<input id="fileInput" type="file" style="display: none;" /> <input
+									<input id="fileInput" name="file" type="file" style="display: none;" onchange="readURL(this)" />
+									<input
 										type="button" class="btn btn-primary btn-block mx-auto"
 										value="이미지 업로드"
 										onclick="document.getElementById('fileInput').click();" />
 								</div>
 							</div>
 							<div class="col-12">
-								<button id="submitbtn" type="submit"
-									class="btn btn-primary btn-block text-uppercase">완료</button>
+							<div class="btn-toolbar gap-2 my-3 justify-content-center">
+								<button type="submit" class="btn btn-primary">저장</button>
+								<button type="button" class="btn btn-danger" onclick="history.go(-1)">취소</button>
+							</div>
 							</div>
 						</div>
 					</form>
@@ -131,5 +133,18 @@
 	<!-- https://jqueryui.com/download/ -->
 	<script src="js/bootstrap.min.js"></script>
 	<!-- https://getbootstrap.com/ -->
+	<script>
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+    	    var reader = new FileReader();
+    	    reader.onload = function(e) {
+    	      document.getElementById('preview').src = e.target.result;
+    	    };
+    	    reader.readAsDataURL(input.files[0]);
+    	  } else {
+    	    document.getElementById('preview').src = "";
+    	  }
+		}
+	</script>
 </body>
 </html>

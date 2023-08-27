@@ -34,7 +34,7 @@
 							<h2 class="tm-block-title d-inline-block">정보수정</h2>
 						</div>
 					</div>
-					<form action="update" method="post" autocomplete="off"
+					<form action="update" method="post" enctype="multipart/form-data" autocomplete="off"
 						class="tm-edit-product-form">
 						<div class="row tm-edit-product-row">
 							<div class="col-xl-6 col-lg-6 col-md-12">
@@ -77,12 +77,11 @@
 							</div>
 							<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
 								<div class="tm-product-img-dummy mx-auto">
-									<i class="fas fa-cloud-upload-alt tm-upload-icon"
-										onclick="document.getElementById('fileInput').click();">
-									</i>
+									<img src="${vo.date_img }" class="tm-product-img-dummy mx-auto" id="preview" />
+									<input type="hidden" value="${vo.date_img }" name="date_img">
 								</div>
 								<div class="custom-file mt-3 mb-3">
-									<input id="fileInput" type="file" style="display: none;" /> <input
+									<input id="fileInput" name="file" type="file" style="display: none" onchange="readURL(this)" /> <input
 										type="button" class="btn btn-primary btn-block mx-auto"
 										value="이미지 업로드"
 										onclick="document.getElementById('fileInput').click();" />
@@ -109,6 +108,17 @@
 		/* $(function() {
 		  $("#expire_date").datepicker();
 		}); */
+      function readURL(input) {
+    	  if (input.files && input.files[0]) {
+    	    var reader = new FileReader();
+    	    reader.onload = function(e) {
+    	      document.getElementById('preview').src = e.target.result;
+    	    };
+    	    reader.readAsDataURL(input.files[0]);
+    	  } else {
+    	    document.getElementById('preview').src = "";
+    	  }
+    	}
 	</script>
 </body>
 </html>
