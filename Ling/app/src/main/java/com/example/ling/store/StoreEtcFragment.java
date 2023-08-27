@@ -100,6 +100,36 @@ public class StoreEtcFragment extends Fragment {
 
         });
 
+        binding.tvHome.setOnClickListener(v -> {
+
+            StoreMainFragment newFragment = new StoreMainFragment();
+
+            // 프래그먼트 트랜잭션 설정
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+            // 기존의 StoreMainFragment 대신 새로운 StoreMainFragment로 교체
+            transaction.replace(R.id.etc, newFragment);
+
+            transaction.addToBackStack(null);
+            transaction.commit();
+        });
+
+
+        binding.tvAll.setOnClickListener(v -> {
+
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+            StoreCoFragment storeCoFragment = new StoreCoFragment();
+            transaction.replace(R.id.etc, storeCoFragment);
+
+            transaction.addToBackStack(null); // 백 스택에 추가하여 뒤로 가기 가능
+            transaction.commit();
+
+
+        });
+
         binding.tvAll.setOnClickListener(v -> {
 
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -172,17 +202,17 @@ public class StoreEtcFragment extends Fragment {
 
 
 
-        binding.imgvMyinfo.setOnClickListener(v -> {
+        binding.btnMyinfo.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), StoreMyinfoActivity.class);
             getActivity().startActivity(intent);
         });
 
-        binding.imgvZzim.setOnClickListener(v -> {
+        binding.btnZzim.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ZZimActivity.class);
             getActivity().startActivity(intent);
         });
 
-        binding.imgvBasket.setOnClickListener(v -> {
+        binding.btnBasket.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), BasketActivity.class);
             getActivity().startActivity(intent);
         });
