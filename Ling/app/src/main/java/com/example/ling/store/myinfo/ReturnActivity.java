@@ -28,7 +28,7 @@ public class ReturnActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         int intValue = getIntent().getIntExtra("order_num",0);
-        Toast.makeText(this, intValue+"", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, intValue+"", Toast.LENGTH_SHORT).show();
 
         AtomicInteger return_money= new AtomicInteger();
         CommonConn conn = new CommonConn(this , "store_return");
@@ -65,12 +65,12 @@ public class ReturnActivity extends AppCompatActivity {
         binding.btnReturn.setOnClickListener(v->{
             Toast.makeText(this, "환불처리되었습니다.", Toast.LENGTH_SHORT).show();
 
-            CommonConn conn2 = new CommonConn(this , "store_return_money");
-            conn2.addParamMap("id", CommonVar.loginInfo.getId());
-            conn2.addParamMap("money" , return_money);
-            conn2.onExcute((isResult, data) -> {
-
-            });
+//            CommonConn conn2 = new CommonConn(this , "store_return_money");
+//            conn2.addParamMap("id", CommonVar.loginInfo.getId());
+//            conn2.addParamMap("money" , return_money);
+//            conn2.onExcute((isResult, data) -> {
+//
+//            });
 
             CommonConn conn3 = new CommonConn(this , "store_insert_return");
             conn3.addParamMap("order_num" , intValue);

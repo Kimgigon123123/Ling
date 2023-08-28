@@ -18,6 +18,7 @@ import com.example.ling.store.ChargeCashActivity;
 import com.example.ling.store.ChargeVO;
 import com.example.ling.store.CompleteDialog;
 import com.example.ling.store.StoreCoAdater;
+import com.example.ling.store.basket.BasketActivity;
 import com.example.ling.store.storeCO.StoreCOVO;
 import com.example.ling.store.storeCO.StorePurchaseListVO;
 import com.google.gson.Gson;
@@ -55,6 +56,17 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
 
 
+        binding.btnZzim.setOnClickListener(v -> {
+            finish();
+            Intent intent = new Intent(this, ZZimActivity.class);
+            startActivity(intent);
+        });
+
+        binding.btnBasket.setOnClickListener(v -> {
+            finish();
+            Intent intent = new Intent(this, BasketActivity.class);
+            startActivity(intent);
+        });
 
         binding.imgvBefore.setOnClickListener(v -> {
             finish();

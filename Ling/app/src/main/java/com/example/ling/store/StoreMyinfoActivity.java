@@ -3,14 +3,17 @@ package com.example.ling.store;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
 import com.example.ling.R;
 import com.example.ling.databinding.ActivityStoreMyinfoBinding;
+import com.example.ling.store.basket.BasketActivity;
 import com.example.ling.store.myinfo.BuylistAdapter;
 import com.example.ling.store.myinfo.ReturnAdapter;
+import com.example.ling.store.myinfo.ZZimActivity;
 
 public class StoreMyinfoActivity extends AppCompatActivity {
 
@@ -34,6 +37,18 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
         binding.imgvBefore.setOnClickListener(v -> {
             finish();
+        });
+
+        binding.btnBasket.setOnClickListener(v->{
+            finish();
+            Intent intent = new Intent(this, BasketActivity.class);
+            startActivity(intent);
+        });
+
+        binding.btnZzim.setOnClickListener(v->{
+            finish();
+            Intent intent = new Intent(this, ZZimActivity.class);
+            startActivity(intent);
         });
 
         binding.btnCharge.setOnClickListener(v->{

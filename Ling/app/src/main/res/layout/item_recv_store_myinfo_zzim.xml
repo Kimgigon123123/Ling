@@ -30,9 +30,10 @@
         android:id="@+id/tv_name"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:text="상품이름"
+        android:text="상품이름 \n asdasdasd"
         android:layout_width="85dp"
         android:layout_height="20dp"
+        android:textSize="16dp"
         android:layout_below="@+id/imgv_item"/>
 
 </RelativeLayout>

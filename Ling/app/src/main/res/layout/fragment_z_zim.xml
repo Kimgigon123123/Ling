@@ -10,17 +10,17 @@
 
     <androidx.cardview.widget.CardView
 
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="30dp"
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:padding="10dp"
-            android:background="@color/gray"
             android:id="@+id/recv_zzim"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:background="@drawable/main_back_gradient_animation"
+            android:padding="10dp" />
 
         <TextView
             android:layout_gravity="center"
