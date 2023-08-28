@@ -3,15 +3,18 @@
 <mapper namespace="date">
 
 <select id="travel" resultType="date.DateVO">
-	select * from date_info where date_category_code = 'TO'
+	select * from date_info where date_category_code = 'TO' and (date_name like '%' || #{search,jdbcType=VARCHAR} || '%' or date_address like '%' || #{search,jdbcType=VARCHAR} || '%') 
+	and rownum <![CDATA[<=]]> 500
 </select>
 
 <select id="restaurant" resultType="date.DateVO">
-	select * from date_info where date_category_code = 'RE'
+	select * from date_info where date_category_code = 'RE' and (date_name like '%' || #{search,jdbcType=VARCHAR} || '%' or date_address like '%' || #{search,jdbcType=VARCHAR} || '%') 
+	and rownum <![CDATA[<=]]> 500
 </select>
 
 <select id="festival" resultType="date.DateVO">
-	select * from date_info where date_category_code = 'FE'
+	select * from date_info where date_category_code = 'FE' and (date_name like '%' || #{search,jdbcType=VARCHAR} || '%' or date_address like '%' || #{search,jdbcType=VARCHAR} || '%') 
+	and rownum <![CDATA[<=]]> 500
 </select>
 
 <select id="info" resultType="date.DateVO">
