@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import store.StoreMyinfoVO;
 import store.StoreVO;
 import storereturn.StoreReturnVO;
 
@@ -61,9 +63,25 @@ public class StoreController {
 	}
 	
 	@ResponseBody@RequestMapping(value = "/accept_return", method = RequestMethod.GET)
-	public String accept_return(HttpSession session, Model model,String returnCodes) {
+	public String accept_return(HttpSession session, Model model,String returnCodes,String userids) {
 		session.setAttribute("active_category", "store");
-		int result = sql.update("store.store_return_update",returnCodes);
+		String[] returnCodeArr = returnCodes.split(","); 
+		String[] userIdArr = userids.split(",");
+		ArrayList<StoreReturnVO> list = new ArrayList<StoreReturnVO>();
+		
+		for (int i = 0; i < returnCodeArr.length; i++) {
+			StoreReturnVO vo = new StoreReturnVO();
+			vo.setId(userIdArr[i]);
+			vo.setReturn_code(Integer.parseInt(returnCodeArr[i]));
+			list.add(vo);
+		}
+		
+		
+		int result = sql.update("store.store_return_update",list);
+		int result2 = sql.update("store.store_return_update2",list);
+		
+		
+	
 		
 		return String.valueOf(result);
 	}

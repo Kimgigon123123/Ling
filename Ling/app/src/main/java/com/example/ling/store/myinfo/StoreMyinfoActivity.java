@@ -54,6 +54,10 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
 
 
+        binding.btnAddress.setOnClickListener(v->{
+            Intent intent = new Intent(this, AddressMainActivity.class);
+            startActivity(intent);
+        });
 
 
         binding.btnZzim.setOnClickListener(v -> {
@@ -100,7 +104,7 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
     public void select(){
         CommonConn conn = new CommonConn(this,"store_myinfo");
-            conn.addParamMap("id",CommonVar.loginInfo.getId());
+        conn.addParamMap("id",CommonVar.loginInfo.getId());
 
         conn.onExcute((isResult, data) -> {
 
@@ -109,6 +113,7 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
             binding.tvMoney.setText(list.get(0).getMoney()+"");
             binding.tvName.setText(list.get(0).getName());
+            binding.tvAddress.setText(list.get(0).getAddress()+list.get(0).getDetail_add());
 
 
 
@@ -193,4 +198,3 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
     }
 }
-
