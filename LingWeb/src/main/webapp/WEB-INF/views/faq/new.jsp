@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/custom.css">
 
 <style>
 	container{
@@ -20,20 +21,20 @@
 
   <h2>새로운 FAQ 추가</h2>          
 
-  <table class="table table-hover">
+  <table class="table table-hover mt-7">
 
     <tbody>
 
     <tr>
     <td>
         <div class="input-group" >
-            <select name="faq_category" class="form-select" style="width:12%;" required>
+            <select name="faq_category" class="form-select" style="width:14%;" required>
                 <option value="" disabled selected>카테고리 선택</option>
                 <option value="이용방법">이용방법</option>
                 <option value="교환반품">교환반품</option>
                 <option value="계정">계정</option>
             </select>
-            <div style="width:88%;">
+            <div style="width:86%;">
                 <input type="text" class="form-control" placeholder="글 제목" name="faq_title" maxlength="40" style="width: 100%;">
             </div>
         </div>
@@ -68,8 +69,14 @@
 				if($('[name=faq_category]').val()==null){
 					alert('카테고리를 선택해주세요')
 					$('[name=faq_category]').focus()
+				}else if($('[name=faq_title]').val()==''){
+					alert('제목을 입력해주세요')
+					$('[name=faq_title]').focus()
+				}else if($('[name=faq_content]').val()==''){
+					alert('제목을 입력해주세요')
+					$('[name=faq_content]').focus()
 				}
-					else
+				else
 				$('form').submit()
 		})
 	</script>

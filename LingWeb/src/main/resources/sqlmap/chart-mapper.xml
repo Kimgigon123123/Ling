@@ -3,9 +3,16 @@
 
 <mapper namespace="chart">
 	<select id="age" resultType="hashmap">
-		SELECT
-    	FLOOR((TO_CHAR(SYSDATE, 'yyyy') - TO_CHAR(birth, 'yyyy')) / 10) * 10 AS age_group, COUNT(*) AS count
-		FROM ling_member
+		SELECT FLOOR((TO_CHAR(SYSDATE, 'yyyy') - TO_CHAR(birth, 'yyyy')) / 10) * 10 AS age_group,
+    	MAX(CASE WHEN chart_age.age_range = FLOOR((TO_CHAR(SYSDATE, 'yyyy') 
+    												- TO_CHAR(birth, 'yyyy')) / 10) * 10 
+        	THEN chart_age.age_text
+    		END) AS age_text,
+    		COUNT(*) AS count
+		FROM ling_member 
+		LEFT JOIN
+    	chart_age ON FLOOR((TO_CHAR(SYSDATE, 'yyyy') 
+    							- TO_CHAR(birth, 'yyyy')) / 10) * 10 = chart_age.age_range
 		GROUP BY FLOOR((TO_CHAR(SYSDATE, 'yyyy') - TO_CHAR(birth, 'yyyy')) / 10) * 10
 		ORDER BY age_group
 	</select>

@@ -19,6 +19,12 @@
         <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="<c:url value='/css/styles.css'/>" rel="stylesheet" />
+        
+            <style>
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+    </style>
     </head>
         <body id="page-top">
          <!-- Navigation-->
@@ -36,7 +42,7 @@
 
                     <%-- <a class="${category eq 'home' ? 'active':'' } list-group-item list-group-item-action list-group-item-light p-3" href="<c:url value='/default/home'/>">Ling소개</a> --%>
                     <%-- <a class="${category eq 'faq' ? 'active':'' } list-group-item list-group-item-action list-group-item-light p-3" href="<c:url value='/faq/list'/>">Community</a> --%>
-					<li class="nav-item"><a class="nav-link me-lg-3" href="#chart_section">Chart</a></li>
+					<li class="nav-item"><a class="nav-link me-lg-3" href="<c:url value= '/#chart_section'/>">Chart</a></li>
                     <li class="nav-item"><a class="nav-link me-lg-3" href="#download">Download</a></li>
                         
                     </ul>

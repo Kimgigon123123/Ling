@@ -72,7 +72,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
                     }.getType());
 
 
-                    Toast.makeText(activity, list.get(i).getSelection()+"개", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(activity, list.get(i).getSelection()+"개", Toast.LENGTH_SHORT).show();
                     h.binding.tvCnt.setText(list.get(i).getSelection()+"");
                     h.binding.tvPrice.setText("총: "+list.get(i).getItem_price()*list.get(i).getSelection()+"원");
 
@@ -122,7 +122,7 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
 
                         }else{
 
-                            Toast.makeText(activity, list.get(i).getSelection()+"개", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(activity, list.get(i).getSelection()+"개", Toast.LENGTH_SHORT).show();
                             h.binding.tvCnt.setText(list.get(i).getSelection()+"");
                             h.binding.tvPrice.setText("총: "+list.get(i).getItem_price()*list.get(i).getSelection()+"원");
                             activity.basket_total_price();

@@ -56,7 +56,14 @@ from (select row_number() over(order by faq_no) no, f.*
 </sql>
 
 
+<update id="faq_update">
+	update faq set faq_title=#{faq_title}, faq_content=#{faq_content}, faq_category=#{faq_category}
+	where faq_no = #{faq_no}
+</update>
 
+<delete id="faq_delete">
+	delete from faq where faq_no = #{faq_no}
+</delete>
 
 
 

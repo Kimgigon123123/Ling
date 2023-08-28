@@ -31,4 +31,12 @@ public class FaqDAO {
 		page.setList(sql.selectList("faq.list",page));
 		return page;
 	}
+	
+	public int faq_update(FaqVO vo) {
+		return sql.update("faq.faq_update");
+	}
+	
+	public int faq_delete(int faq_no) {
+		return sql.delete("faq.faq_delete", faq_no);
+	}
 }

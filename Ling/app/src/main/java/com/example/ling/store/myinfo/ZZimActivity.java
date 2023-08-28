@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.example.ling.R;
 import com.example.ling.databinding.ActivityZzimBinding;
 import com.example.ling.store.FragmentAdapter;
+import com.example.ling.store.basket.BasketActivity;
 import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
@@ -30,6 +32,18 @@ public class ZZimActivity extends AppCompatActivity {
 
         binding.imgvBefore.setOnClickListener(v->{
             finish();
+        });
+
+        binding.btnBasket.setOnClickListener(v->{
+            finish();
+            Intent intent = new Intent(this, BasketActivity.class);
+            startActivity(intent);
+        });
+
+        binding.btnMyinfo.setOnClickListener(v->{
+            finish();
+            Intent intent = new Intent(this, StoreMyinfoActivity.class);
+            startActivity(intent);
         });
 
 
