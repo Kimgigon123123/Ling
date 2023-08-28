@@ -51,7 +51,7 @@ public class HomeController {
 	
 	@ResponseBody @RequestMapping("/age")
 	public Object age() {
-		//DB에서 부서별 사원수를 조회해와 응답한다.
+		//DB에서 연령별 유저수 조회
 		return service.age();
 	}
 	

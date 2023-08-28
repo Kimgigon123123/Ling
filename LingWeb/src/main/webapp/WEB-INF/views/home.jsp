@@ -24,10 +24,15 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         
+        
         <style>
-        	    a{color:inherit}
 
-		a:not(.btn):link, a:not(.btn):hover{ text-decoration: none;
+
+
+        
+    a{color:inherit}
+
+	a:not(.btn):link, a:not(.btn):hover{ text-decoration: none;
 		color: inherit;
 		}
 		
@@ -45,6 +50,14 @@
 		/* background-color: #f0f0f0; */
 		
 		}
+		#chart_back{
+		background-image: linear-gradient(to right, #8360c3, #2ebf91);
+		}
+		
+		.custom-link {
+    color: #DCDCDC; /* 원하는 색상으로 변경 */
+    /* 다른 스타일 속성 추가 */
+}
 		
 		.bg-light{
 			background-image: linear-gradient(90deg, #B7D6F5 20% ,#F0D3D8 80%);
@@ -86,17 +99,23 @@
                                 <rect x="-32.54" y="78.39" width="305.92" height="84.05" rx="42.03" transform="translate(120.42 -49.88) rotate(45)"></rect>
                                 <rect x="-32.54" y="78.39" width="305.92" height="84.05" rx="42.03" transform="translate(-49.88 120.42) rotate(-45)"></rect></svg
                             ><svg class="shape-2 d-none d-sm-block" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"></circle></svg>
-                            <div class="device-wrapper">
-                                <div class="device" data-device="iPhoneX" data-orientation="portrait" data-color="black">
-                                    <div class="screen bg-black">
-                                        <!-- PUT CONTENTS HERE:-->
-                                        <!-- * * This can be a video, image, or just about anything else.-->
-                                        <!-- * * Set the max width of your media to 100% and the height to-->
-                                        <!-- * * 100% like the demo example below.-->
-                                        <video muted="muted" autoplay="" loop="" style="max-width: 100%; height: 100%"><source src="assets/img/demo-screen.mp4" type="video/mp4" /></video>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="container">
+    <div class="container" data-device="iPhoneX" data-orientation="portrait" data-color="black">
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="<c:url value='/resources/images/couple.jpg'/>" class="d-block" width="600px" height="600px" alt="Image 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="<c:url value='/resources/images/ling_app_main.png'/>" class="d-block" width="600px" height="600px"  alt="Image 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="<c:url value='/resources/images/ling_slogun.png'/>" class="d-block" width="600px" height="600px" alt="Image 3">
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
                         </div>
                     </div>
                 </div>
@@ -124,7 +143,7 @@
                                 <div class="col-md-6 mb-5">
                                     <!-- Feature item-->
                                     <div class="text-center">
-                                        <i class="bi-phone icon-feature text-gradient d-block mb-3"></i>
+                                        <img src="<c:url value='/resources/images/chat.png'/>" class="d-block w-100 h-100" alt="Image 2">
                                         <h3 class="font-alt">Device Mockups</h3>
                                         <p class="text-muted mb-0">Ready to use HTML/CSS device mockups, no Photoshop required!</p>
                                     </div>
@@ -132,7 +151,7 @@
                                 <div class="col-md-6 mb-5">
                                     <!-- Feature item-->
                                     <div class="text-center">
-                                        <i class="bi-camera icon-feature text-gradient d-block mb-3"></i>
+                                        <img src="<c:url value='/resources/images/calendar.png'/>" class="d-block w-100 h-100" alt="Image 2">
                                         <h3 class="font-alt">Flexible Use</h3>
                                         <p class="text-muted mb-0">Put an image, video, animation, or anything else in the screen!</p>
                                     </div>
@@ -387,7 +406,7 @@
         		var info = {};
         		info.category = [], info.datas = [], info.colors = [];
         		$(response).each(function(){
-        			info.category.push(this.AGE_GROUP);
+        			info.category.push(this.AGE_TEXT);
         			info.datas.push(this.COUNT);
         		})
         		console.log('data',info);
@@ -625,6 +644,12 @@
         			$(this).css('background-color', colors[idx]);
         		})
         }
+        
+        
+        const carousel = new bootstrap.Carousel(document.getElementById('carouselExample'), {
+            interval: 5000, // 이미지 전환 간격 (밀리초)
+            pause: false,   // 마우스 오버시 자동 재생 일시 중단 여부
+          });
         
         </script>
         

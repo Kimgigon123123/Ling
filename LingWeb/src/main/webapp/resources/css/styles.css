@@ -7615,6 +7615,8 @@ textarea.form-control-lg {
   margin-top: 3rem !important;
 }
 
+
+
 .mt-auto {
   margin-top: auto !important;
 }
@@ -10920,14 +10922,15 @@ section {
 }
 
 .device[data-device=iPhoneX][data-orientation=portrait][data-color=black] {
-  padding-bottom: 198.898071625%;
+  /* padding-bottom: 198.898071625%; */
 }
 
 .device[data-device=iPhoneX][data-orientation=portrait][data-color=black] .screen {
   top: 3.1855955679%;
   left: 6.8870523416%;
   width: 86.2258953168%;
-  height: 93.6288088643%;
+  height: auto;
+/*   height: 93.6288088643%; */
 }
 
 .device[data-device=iPhoneX][data-orientation=portrait][data-color=black]::after {

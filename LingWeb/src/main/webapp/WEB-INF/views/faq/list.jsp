@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+  />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/custom.css">
+
 <!--         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         Google fonts
         <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -14,92 +20,12 @@
         Core theme CSS (includes Bootstrap)
         <link href="css/styles.css" rel="stylesheet" /> -->
         
-        <style>
-         img{ float: left;}
-         
-         .p2{ clear: both;}
-        
-   .tb-list {
-        width: 100%;
-        border-collapse: collapse;
-        border-radius: 16px;
-        overflow:hidden;
-        
-    }
-    a{color:inherit}
-
-a:not(.btn):link, a:not(.btn):hover{ text-decoration: none;
-		color: inherit;
-}
-    .foot-banner{
-    	background-image: linear-gradient(90deg, #B7D6F5 20% ,#F0D3D8 80%);
-    }
-
-    .tb-list th,
-    .tb-list td {
-        padding: 8px;
-        border: 1px solid #ddd;
-    }
-
-    .tb-list th:first-child,
-    .tb-list td:first-child {
-        width: 100px;
-    }
-
-    .tb-list th:nth-child(2),
-    .tb-list td:nth-child(2) {
-    width: 120px;
-    }
-
-    .tb-list th:nth-child(3),
-    .tb-list td:nth-child(3) {
-    width: auto;
-        
-    }
-
-    .tb-list th:nth-child(4),
-    .tb-list td:nth-child(4) {
-        width: 120px;
-    }
-    
-    table.type11 {
-  border-collapse: collapse;
-  text-align: left;
-  line-height: 1.5;
-
-}
-table.type11 thead th {
-  padding: 10px;
-  font-weight: bold;
-  vertical-align: top;
-  color: #369;
-  text-align: center;
-  background-color: #f3f6f7;
-  border-bottom: 3px solid #036;
-}
-table.type11 tbody td {
-  width: 150px;
-  padding: 10px;
-  font-weight: bold;
-  vertical-align: top;
-  text-align: center;
-  border-bottom: 1px solid #ccc;
-  
-}
-
-container {
-
-	
-}
-
-
-</style>
 </head>
 <body>
 <h3 class="my-4">FAQ</h3>
 
 
-<div class="container my-4">
+<div class="container mt-6 mb-4">
 <form method="post" action="list">
 <input type="hidden" name="curPage" value="1"/>
 <div class="row justify-content-between mb-3 mt-3">
@@ -112,13 +38,13 @@ container {
 				<option value="title" ${page.search eq 'content' ? 'selected' : '' }>제목</option>
 			</select>
 		  <input type="text" name="keyword" value="${page.keyword }" class="form-control">
-		 <button class="btn btn-primary px-3"><i class="fa-solid fa-magnifying-glass"></i></button>
+		 <button class="btn btn-primary px-3"><i class="fa fa-search"></i></button>
 		</div>
 	</div>
 <!-- 	관리자로 로그인 되어 있는 경우만 새글쓰기 가능 -->
 	<c:if test="${loginId eq 'admin'}">
 		<div class="col-auto">
-			<a class="btn btn-primary" href="new">새글쓰기</a>
+			<a class="btn btn-primary" id="btn-faqList" href="new">새글쓰기</a>
 		</div>
 	</c:if>
 
@@ -126,7 +52,7 @@ container {
 </div>
 </form>
 
-<table class="tb-list type11 mb-4">
+<table class="tb-list type11 mb-4 mt-2">
 
 <thead>
 <tr>
@@ -152,15 +78,14 @@ container {
 </table>
 
 <jsp:include page="page.jsp"></jsp:include>
-<div class="foot-banner" style="overflow: auto; border: 1px solid black; padding: 2px;">
- <img src="<c:url value= '/image/couple.jpg'/>" alt="image" width="160" height="120">
-        <!-- 왼쪽 마진 적용해보기 : 잘 안됨 -->
-        <div style="text-align: left;"><strong class="f-xlarge"><font style="font-size: 16px; text-align: left;">Ling에 대해서 궁금증을 해결하셨나요?</font></strong></div>
-		<p class="f-large"><strong style="font-size: 16px; text-align: left; margin:0">여기서 모두 해결하고 가세요!</strong></p>
-		<p class="f-large"><strong style="font-size: 16px; text-align: left; margin:0"> 여러분들의 행복한 연애생활을</strong></p>
-		<p class="f-large"><strong style="font-size: 16px; text-align: left; margin:0">Ling에서 즐겨보세요!</strong></p>
- 
-
+<div class="foot-banner custom-footer-banner" style="overflow: auto; border: 1px solid black; padding: 2px; display: flex; align-items: center;">
+  <img src="<c:url value= '/image/couple.jpg'/>" alt="image" width="160" height="120" style="vertical-align: middle; margin-right: 10px;">
+  <div style="text-align: left; display: inline-block;">
+    <strong class="f-xlarge" style="font-size: 16px;">Ling에 대해서 궁금증을 해결하셨나요?</strong>
+    <p class="f-large" style="margin: 0;">멘트가 이상하대..</p>
+    <p class="f-large" style="margin: 0;">나중에 작성할 예정..</p>
+    <p class="f-large" style="margin: 0;">...</p>
+  </div>
 </div>
 <!-- 삽입내용 시작 -->
 
