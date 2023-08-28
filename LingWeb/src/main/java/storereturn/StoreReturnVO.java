@@ -2,7 +2,8 @@ package storereturn;
 
 public class StoreReturnVO {
  int order_num,item_price,purchase_cnt,total_price,return_code;
- 
+ String item_code,item_name,delivery_state,item_img,id,address,category_code,return_state;
+
  
  public int getReturn_code() {
 	return return_code;
@@ -16,7 +17,6 @@ public int getTotal_price() {
 public void setTotal_price(int total_price) {
 	this.total_price = total_price;
 }
-String item_code,item_name,delivery_state,item_img,id,address,category_code,return_state;
 
 
 

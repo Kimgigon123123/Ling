@@ -46,7 +46,23 @@ public class MainController {
 			return gson.toJson(list);
 		}
 		
-
+		// 애칭 변경 
+		
+		@RequestMapping(value = "/update_couple_name", produces = "text/html;charset=utf-8")
+		public String update_couple_name(MainVO vo) {
+			int result = dao.update_couple_name(vo);
+			Gson gson = new Gson();
+			return gson.toJson(result);
+		}
+		
+		
+		//애칭 select
+		@RequestMapping(value = "/select_couplename", produces = "text/html;charset=utf-8")
+		public String select_couple_name(MainVO vo) {
+			List<MainVO> list = dao.select_couplename(vo);
+			Gson gson = new Gson();
+			return gson.toJson(list);
+		}
 		
 	
 }

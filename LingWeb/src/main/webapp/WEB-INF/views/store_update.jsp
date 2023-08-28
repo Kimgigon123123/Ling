@@ -98,7 +98,7 @@
                             id="item_price"
                             name="item_price"
                             placeholder="${vo.item_price }"
-                            type="text"
+                            type="number"
                             class="form-control validate"
                             data-large-mode="true"
                           />

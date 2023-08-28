@@ -40,11 +40,13 @@
 							
 							
 							<c:forEach items="${list}" var="vo">
+						
 								<tr>
 									<th scope="row">
-							
+									
 									<input type="checkbox" />
 									<input type="hidden" class="return_code" value="${vo.return_code }">
+									<input type="hidden" class="userid" value="${vo.id }">
 									</th>
 									<td class="tm-product-name">${vo.item_name}</td>
 									<td   data-code="${vo.return_code } ">${vo.return_state }</td>
@@ -92,34 +94,40 @@
 
 	function refundFunc() {
 		var chkBoxs = $("input[type=checkbox]:checked", ".table");
-		var checkedValue='';
+		var return_codes ='';
+		var userids ='';
 		for(var i = 0 ; i<chkBoxs.length ; i ++){
-			checkedValue += (checkedValue==''?'':',') +  $(chkBoxs[i]).siblings().val();
+			return_codes += (return_codes==''?'':',') +  $(chkBoxs[i]).siblings('.return_code').val();
+			userids += (userids==''?'':',') +  $(chkBoxs[i]).siblings('.userid').val();
 		}	
+		
+		console.log(return_codes);
 
-		 $.ajax({
+	 	 $.ajax({
 		        type: "GET", //get
 		        url: "accept_return", // 컨트롤러의 URL 설정
-		        data: { returnCodes: checkedValue }, // 선택된 return_code를 컨트롤러로 전송
+		        data: { returnCodes: return_codes , userids: userids } , // 선택된 return_code를 컨트롤러로 전송
 		        success: function(response) {
 		        	
 		        	if(  parseInt(response) >0){
-		        		alert("환불처리가 완료되었습니다.");
-		        		$(chkBoxs).each(function(){
-		        			$(this).prop('checked', false);
-		        			$(this).closest('tr').children('td:eq(1)').text('환불처리완료');
-		        		})
+		        		 alert("환불처리 실패");
+				            
 		        		
 		        		
 			            // 처리 완료 후 필요한 동작을 수행
 		        	}else{
-				            alert("환불처리 실패");
+				           
+				            alert("환불처리가 완료되었습니다.");
+			        		$(chkBoxs).each(function(){
+			        			$(this).prop('checked', false);
+			        			$(this).closest('tr').children('td:eq(1)').text('환불처리완료');
+			        		})
 				  
 		        	}
 		            
 		        },
 		        
-		    });
+		    }); 
 		}
 	
 	
