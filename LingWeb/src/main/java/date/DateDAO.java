@@ -13,16 +13,16 @@ public class DateDAO {
 	@Autowired @Qualifier("test")
 	SqlSession sql;
 	
-	public List<DateVO> travel_list() {
-		return sql.selectList("date.travel");
+	public List<DateVO> travel_list(String search) {
+		return sql.selectList("date.travel", search);
 	}
 
-	public List<DateVO> restaurant_list() {
-		return sql.selectList("date.restaurant");
+	public List<DateVO> restaurant_list(String search) {
+		return sql.selectList("date.restaurant", search);
 	}
 
-	public List<DateVO> festival_list() {
-		return sql.selectList("date.festival");
+	public List<DateVO> festival_list(String search) {
+		return sql.selectList("date.festival", search);
 	}
 	
 	public DateVO date_info(int date_id) {

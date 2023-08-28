@@ -25,25 +25,25 @@ public class DateController {
 	
 	// 여행 목록
 	@RequestMapping("/travel")
-	public String travel(HttpSession session, Model model) {
+	public String travel(HttpSession session, Model model, String search) {
 		session.setAttribute("active_category", "travel");
-		model.addAttribute("list", dao.travel_list());
+		model.addAttribute("list", dao.travel_list(search));
 		return "travel";
 	}
 	
 	// 맛집 목록
 	@RequestMapping("/restaurant")
-	public String restaurant(HttpSession session, Model model) {
+	public String restaurant(HttpSession session, Model model, String search) {
 		session.setAttribute("active_category", "restaurant");
-		model.addAttribute("list", dao.restaurant_list());
+		model.addAttribute("list", dao.restaurant_list(search));
 		return "restaurant";
 	}
 	
 	// 축제 목록
 	@RequestMapping("/festival")
-	public String festival(HttpSession session, Model model) {
+	public String festival(HttpSession session, Model model, String search) {
 		session.setAttribute("active_category", "festival");
-		model.addAttribute("list", dao.festival_list());
+		model.addAttribute("list", dao.festival_list(search));
 		return "festival";
 	}
 	
