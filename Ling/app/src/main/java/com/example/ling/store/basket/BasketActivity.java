@@ -74,6 +74,12 @@ public class BasketActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        binding.btnBasket.setOnClickListener(v->{
+            finish();
+            Intent intent = new Intent(this, BasketActivity.class);
+            startActivity(intent);
+        });
+
         binding.imgvBefore.setOnClickListener(v->{
             finish();
         });

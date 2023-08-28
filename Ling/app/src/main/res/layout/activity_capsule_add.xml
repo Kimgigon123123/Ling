@@ -23,15 +23,40 @@
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="20dp"
-        android:hint="(커플이름)님 에게 보내는 타임캡슐"
+        android:hint="연인에게 보내는 타임캡슐"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <ImageView
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:src="@drawable/capsule"
-        android:layout_marginBottom="20dp"/>
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/btn_left"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center"
+            android:src="@drawable/capsule_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.viewpager.widget.ViewPager
+
+            android:id="@+id/viewPager"
+            android:layout_width="250dp"
+            android:layout_height="250dp" />
+
+        <ImageView
+            android:id="@+id/btn_right"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:src="@drawable/capsule_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 
     <ScrollView
@@ -105,18 +130,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
         <Button
+            android:backgroundTint="@color/purchace"
             android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:id="@+id/btn_cancel"
-            android:text="취소"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <Button
-            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:id="@+id/btn_ok"
             android:text="확인"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:backgroundTint="@color/basket"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:id="@+id/btn_cancel"
+            android:text="취소"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

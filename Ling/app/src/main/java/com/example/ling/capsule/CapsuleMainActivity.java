@@ -1,15 +1,21 @@
 package com.example.ling.capsule;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Toast;
 
+import com.example.ling.MainActivity;
 import com.example.ling.R;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
@@ -70,6 +76,9 @@ public class CapsuleMainActivity extends AppCompatActivity {
             }.getType());
 
 
+
+
+
             if(list.isEmpty()){
                 binding.cdvCapsule.setVisibility(View.INVISIBLE);
                 binding.tvEmptyCapsule.setVisibility(View.VISIBLE);
@@ -91,11 +100,28 @@ public class CapsuleMainActivity extends AppCompatActivity {
                 binding.tvDate.setText(list.get(i).getTc_date());
                 binding.tvIsopen.setText(list.get(i).getIsopen());
 
-                if(list.get(i).tc_state.equals("OPEN")){
-                    binding.imgvCapsule.setImageResource(R.drawable.capsule_open);
+                if(list.get(i).tc_state.equals("OPEN")&&list.get(i).getColor().equals("B")){
+                    binding.imgvCapsule.setImageResource(R.drawable.blue_open);
                     binding.cdvIsopen.setVisibility(View.INVISIBLE);
+                    binding.tvDDay.setText("개봉됨");
+                }else if(list.get(i).tc_state.equals("OPEN")&&list.get(i).getColor().equals("Y")){
+                    binding.imgvCapsule.setImageResource(R.drawable.yellow_open);
+                    binding.cdvIsopen.setVisibility(View.INVISIBLE);
+                    binding.tvDDay.setText("개봉됨");
+                }else if(list.get(i).tc_state.equals("OPEN")&&list.get(i).getColor().equals("R")){
+                    binding.imgvCapsule.setImageResource(R.drawable.red_open);
+                    binding.cdvIsopen.setVisibility(View.INVISIBLE);
+                    binding.tvDDay.setText("개봉됨");
+                } else if (list.get(i).tc_state.equals("CLOSE")&&list.get(i).getColor().equals("B")) {
+                    binding.imgvCapsule.setImageResource(R.drawable.blue_close);
+                    binding.cdvIsopen.setVisibility(View.VISIBLE);
+                    
+                }else if (list.get(i).tc_state.equals("CLOSE")&&list.get(i).getColor().equals("R")) {
+                    binding.imgvCapsule.setImageResource(R.drawable.red_close);
+                    binding.cdvIsopen.setVisibility(View.VISIBLE);
+
                 }else{
-                    binding.imgvCapsule.setImageResource(R.drawable.capsule);
+                    binding.imgvCapsule.setImageResource(R.drawable.yellow_close);
                     binding.cdvIsopen.setVisibility(View.VISIBLE);
                 }
 
@@ -108,26 +134,51 @@ public class CapsuleMainActivity extends AppCompatActivity {
                 binding.btnOpen.setOnClickListener(v->{
                     if(binding.tvIsopen.getText().equals("개봉불가")){
                         Toast.makeText(this, "아직 개봉이 불가능합니다", Toast.LENGTH_SHORT).show();
+                        ObjectAnimator animator = ObjectAnimator.ofFloat(binding.imgvCapsule, "translationX", 0f, 20f, -20f, 20f, -20f, 0f);
+                        animator.setDuration(500); // Animation duration in milliseconds
+                        animator.setInterpolator(new AccelerateDecelerateInterpolator());
+                        animator.start();
+
                     }else{
                         CommonConn conn2 = new CommonConn(this, "update_capsule_state");
                         conn2.addParamMap("tc_no" , list.get(i).tc_no);
+                        if(list.get(i).tc_state.equals("CLOSE")){
+//                            Toast.makeText(this, "아직 개봉 안된상태", Toast.LENGTH_SHORT).show();
+                            shakeImage();
+
+                        }else if(list.get(i).tc_state.equals("OPEN")){
+//                            Toast.makeText(this, "개봉된 상태", Toast.LENGTH_SHORT).show();
+                        LetterDialog dialog = new LetterDialog(this,i);
+                        dialog.show();
+                            select();
+                        }
                         conn2.onExcute((isResult2, data2) -> {
 
                         });
 
-                        select();
-
-                        LetterDialog dialog = new LetterDialog(this,i);
-                        dialog.show();
+//                        select();
+//
+//                        LetterDialog dialog = new LetterDialog(this,i);
+//                        dialog.show();
                     }
                 });
 
                 binding.btnDelete.setOnClickListener(v->{
-                    CommonConn conn2 = new CommonConn(this, "delete_capsule");
-                    conn2.addParamMap("tc_no" , list.get(i).tc_no);
-                    conn2.onExcute((isResult2, data2) -> {
-                        select();
-                    });
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage("정말 삭제하시겠습니까?")
+                            .setPositiveButton("예", (dialog, which) -> {
+                                CommonConn conn2 = new CommonConn(this, "delete_capsule");
+                                conn2.addParamMap("tc_no", list.get(i).tc_no);
+                                conn2.onExcute((isResult2, data2) -> {
+                                    i=0;
+                                    select();
+
+                                });
+                            })
+                            .setNegativeButton("아니오", (dialog, which) -> {
+                                // 아무 작업도 수행하지 않음
+                            })
+                            .show();
                 });
 
 
@@ -138,9 +189,33 @@ public class CapsuleMainActivity extends AppCompatActivity {
 
     }
 
+    private void shakeImage() {
+        ObjectAnimator animator = ObjectAnimator.ofFloat(binding.imgvCapsule, "translationX", 0f, 20f, -20f, 20f, -20f, 0f);
+        animator.setDuration(500); // Animation duration in milliseconds
+        animator.setInterpolator(new AccelerateDecelerateInterpolator());
+
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                openLetterDialog();
+            }
+        });
+
+        animator.start();
+
+    }
+
+    private void openLetterDialog() {
+        LetterDialog dialog = new LetterDialog(CapsuleMainActivity.this, i);
+        dialog.show();
+        select();
+    }
+
     @Override
     protected void onRestart() {
         super.onRestart();
+        i=0;
         select();
+
     }
 }

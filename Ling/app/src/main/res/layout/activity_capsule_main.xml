@@ -5,39 +5,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".capsule.CapsuleMainActivity"
+    android:background="@drawable/pinkbackground"
     android:orientation="vertical">
 
     <LinearLayout
+        android:background="@color/white"
+        android:paddingTop="10dp"
+        android:paddingBottom="15dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/shape"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <ImageView
+            android:layout_gravity="center"
 
             android:id="@+id/imgv_before"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:src="@drawable/ic_before" />
+            android:src="@drawable/baseline_navigate_before_24_black" />
 
         <TextView
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20dp"
             android:text="타임캡슐"
-            android:textColor="#fff"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
 
 
 
     </LinearLayout>
+
+    <FrameLayout
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></FrameLayout>
 
 
 
@@ -54,30 +59,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cdv_capsule"
-            android:layout_gravity="center"
-            android:backgroundTint="#226A6A6A"
-            app:cardCornerRadius="5dp"
-            android:layout_width="350dp"
-            android:layout_height="600dp">
+
 
             <LinearLayout
+                android:layout_gravity="center"
+                android:id="@+id/cdv_capsule"
+                android:layout_width="350dp"
+                android:layout_height="600dp"
+                android:background="@drawable/capsule_japan"
                 android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                >
 
 
 
                    <TextView
+                       android:textColor="@color/black"
                        android:id="@+id/tv_title"
-                       android:layout_margin="10dp"
+                       android:layout_marginTop="10dp"
+                       android:layout_marginLeft="10dp"
+                       android:layout_marginRight="10dp"
                        android:layout_gravity="center"
                        android:textSize="30dp"
                        android:text="제목sdfsdfsdgfdgsdfgsdfsdfgsdfgdfgdfgdfgdfgdfgdfg"
                        android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:maxHeight="80dp"/>
+                       android:layout_height="40dp"
+                       android:layout_marginBottom="40dp"/>
 
                 <LinearLayout
                     android:layout_marginTop="20dp"
@@ -101,12 +107,12 @@
 
                         <ImageView
                             android:id="@+id/imgv_capsule"
-                            android:layout_marginRight="30dp"
-                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="10dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/capsule"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:src="@drawable/blue_close"
+                            android:layout_width="200dp"
+                            android:layout_height="300dp"/>
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/cdv_isopen"
@@ -160,25 +166,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
-                <FrameLayout
-                    android:layout_marginTop="20dp"
-                    android:background="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
-
                 <Button
+                    android:backgroundTint="#37B8E8"
+                    app:strokeColor="@color/black"
+                    app:strokeWidth="1dp"
                     android:id="@+id/btn_open"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginTop="45dp"
                     android:layout_gravity="center"
-                    android:textSize="35dp"
+                    android:textSize="25dp"
                     android:text="캡슐 열기"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
                 <Button
+                    android:backgroundTint="#37B8E8"
+                    android:layout_marginLeft="60dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/black"
                     android:id="@+id/btn_delete"
                     android:layout_gravity="center"
-                    android:textSize="35dp"
+                    android:textSize="25dp"
                     android:text="캡슐 삭제"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -190,7 +198,7 @@
 
 
 
-        </androidx.cardview.widget.CardView>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_margin="10dp"
