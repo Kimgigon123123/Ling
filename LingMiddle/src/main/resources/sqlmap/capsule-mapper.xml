@@ -4,7 +4,7 @@
 
 <insert id="capsule_insert">
 insert into time_capsule 
-values (seq_capsule.nextval,#{couple_num},#{id},#{tc_title},to_date(#{tc_date}),#{tc_content},'CLOSE',sysdate)
+values (seq_capsule.nextval,#{couple_num},#{id},#{tc_title},to_date(#{tc_date}),#{tc_content},'CLOSE',sysdate,#{color})
 </insert>
 
 <select id="capsule_select" resultType="capsule.CapsuleVO">
@@ -20,7 +20,7 @@ i.*,
     END as isopen
 FROM time_capsule i
 where couple_num=#{couple_num}
-order by tc_date, to_number(tc_no) desc
+order by to_number(tc_no) desc
 
 </select>
 

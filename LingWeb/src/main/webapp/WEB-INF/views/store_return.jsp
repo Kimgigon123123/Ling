@@ -17,7 +17,14 @@
 <!-- https://getbootstrap.com/ -->
 <link rel="stylesheet" href="css/templatemo-style.css">
 
-
+<style>
+        /* 체크박스 비활성화 스타일 */
+        input[type="checkbox"]:disabled {
+            background-color: #888888; /* 배경색 */
+            
+            
+        }
+    </style>
 </head>
 <body>
 	<div class="container mt-5">
@@ -37,54 +44,53 @@
 								</tr>
 							</thead>
 							<tbody>
-							
-							
-							<c:forEach items="${list}" var="vo">
-						
-								<tr>
-									<th scope="row">
-									
-									<input type="checkbox" />
-									<input type="hidden" class="return_code" value="${vo.return_code }">
-									<input type="hidden" class="userid" value="${vo.id }">
-									</th>
-									<td class="tm-product-name">${vo.item_name}</td>
-									<td   data-code="${vo.return_code } ">${vo.return_state }</td>
-									<td  >${vo.address }</td>
-									<td >${vo.item_price} * ${vo.purchase_cnt }개 <br> ${vo.total_price }원</td>
-									<td><a 
-											onclick="openSmallWindow('${vo.item_img}')"
+
+
+								<c:forEach items="${list}" var="vo">
+									<tr>
+										<th scope="row"><input type="checkbox"
+											${vo.return_state == '환불처리완료' || vo.return_state == '환불취소' ? 'disabled' : ''} />
+											<input type="hidden" class="return_code"
+											value="${vo.return_code }"> <input type="hidden"
+											class="userid" value="${vo.id }"></th>
+										<td class="tm-product-name">${vo.item_name}</td>
+										<td data-code="${vo.return_code}">${vo.return_state}</td>
+										<td>${vo.address}</td>
+										<td>${vo.item_price}* ${vo.purchase_cnt }개 <br>
+											${vo.total_price}원
+										</td>
+										<td><a onclick="openSmallWindow('${vo.item_img}')"
 											class="tm-product-delete-link"> <i
 												class='fa-solid fa-circle-info'></i>
 										</a></td>
-								</tr>
+									</tr>
 								</c:forEach>
-								
-								
-								
+
+
+
 							</tbody>
 						</table>
 					</div>
 					<!-- table container -->
-					<a 
-						class="btn btn-primary btn-block text-uppercase mb-3" onclick="refundFunc();">환불처리</a>
-					<a class="btn btn-primary btn-block text-uppercase" onclick="cancelFunc();">
-					환불거절</a>
+					<a class="btn btn-primary btn-block text-uppercase mb-3"
+						onclick="refundFunc();">환불처리</a> <a
+						class="btn btn-primary btn-block text-uppercase"
+						onclick="cancelFunc();"> 환불거절</a>
 				</div>
 			</div>
-<!-- 			<div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col"> -->
-<!-- 				<div class="tm-bg-primary-dark tm-block tm-block-product-categories"> -->
-<!-- 					<h2 class="tm-block-title">상품 정보</h2> -->
-<!-- 					<div class="tm-product-table-container"> -->
-					
-<!-- 					<image alt="" src=""> -->
-						
-<!-- 					</div> -->
-					<!-- table container -->
-					
-				</div>
-			</div>
+			<!-- 			<div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col"> -->
+			<!-- 				<div class="tm-bg-primary-dark tm-block tm-block-product-categories"> -->
+			<!-- 					<h2 class="tm-block-title">상품 정보</h2> -->
+			<!-- 					<div class="tm-product-table-container"> -->
+
+			<!-- 					<image alt="" src=""> -->
+
+			<!-- 					</div> -->
+			<!-- table container -->
+
 		</div>
+	</div>
+	</div>
 	</div>
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<!-- https://jquery.com/download/ -->
@@ -121,6 +127,7 @@
 			        		$(chkBoxs).each(function(){
 			        			$(this).prop('checked', false);
 			        			$(this).closest('tr').children('td:eq(1)').text('환불처리완료');
+			        			 location.reload(); 
 			        		})
 				  
 		        	}
@@ -150,6 +157,7 @@
 		        		$(chkBoxs).each(function(){
 		        			$(this).prop('checked', false);
 		        			$(this).closest('tr').children('td:eq(1)').text('환불취소');
+		        			 location.reload(); 
 		        		})
 		        		
 		        		
@@ -174,6 +182,7 @@
 	    window.open(url, '_blank', 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top);
 	}
 		
+	 
 
 
 

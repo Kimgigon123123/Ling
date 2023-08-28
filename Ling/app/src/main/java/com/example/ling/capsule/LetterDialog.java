@@ -17,6 +17,8 @@ import java.util.ArrayList;
 public class LetterDialog extends Dialog {
 
     TextView tv_title,tv_content,tv_date,tv_name;
+
+
     public LetterDialog(@NonNull Context context,int i) {
         super(context);
         setContentView(R.layout.dialog_letter);

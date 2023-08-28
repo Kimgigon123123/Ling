@@ -72,6 +72,13 @@ public class StoreMyinfoActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+
+        binding.btnMyinfo.setOnClickListener(v -> {
+            finish();
+            Intent intent = new Intent(this, StoreMyinfoActivity.class);
+            startActivity(intent);
+        });
+
         binding.imgvBefore.setOnClickListener(v -> {
             finish();
         });
