@@ -35,9 +35,8 @@ public class DateController {
 		List<String> sigungu = sql.selectList("date.sigungu", sido);
 		return new Gson().toJson(sigungu);
 	}
-
 	
-	
+	// 카테고리별 관심 목록
 	//2023.08.23 KYM 수정 DibsActivity selectDibs()메소드 확인.
 	@RequestMapping(value = "/date_selectdibs", produces = "text/html;charset=utf-8")
 	public String allDibs(String id , String category) {
@@ -60,13 +59,15 @@ public class DateController {
 		int result = sql.delete("date.delete_dibs", vo);
 	}
 
-	
+	// 전체 목록/검색 결과
 	//2023.08.23 KYM 수정 DateListActivity selecttList()메소드 확인.
 	@RequestMapping(value="/date_SelectList", produces="text/html;charset=utf-8")
 	public String date_SelectList(DateInfoVO vo) {
 		List<DateInfoVO> searchFest = sql.selectList("date.searchlist", vo);
 		return new Gson().toJson(searchFest);
 	}
+	
+	// 데이트 메인화면 아이템
 	//2023.08.23 KYM 수정 DateFragment countList()메소드 확인.
 	@RequestMapping(value = "/date_count_list", produces="text/html;charset=utf-8")
 	public String date_countList(String category , int count) {
