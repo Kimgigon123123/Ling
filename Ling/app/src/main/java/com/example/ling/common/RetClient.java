@@ -12,7 +12,7 @@ public class RetClient {
     //192.168.0.31 김혜민
     public Retrofit getRet(){
         Retrofit ret = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.36:8080/ling/")
+                .baseUrl("http://192.168.0.31:8080/ling/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         return ret;

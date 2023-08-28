@@ -31,9 +31,13 @@ public class DateListActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         date_category_code = getIntent().getStringExtra("category");
 
-
-
-
+        if(date_category_code.equals("TO")) {
+            binding.tvTitle.setText("여행");
+        }else if(date_category_code.equals("RE")) {
+            binding.tvTitle.setText("맛집");
+        }else {
+            binding.tvTitle.setText("축제");
+        }
 
         datelList("");
 
