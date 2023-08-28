@@ -86,7 +86,7 @@ public class HomeFragment extends Fragment {
 
 
 
-        Glide.with(this).load("http://192.168.0.28/hanul/img//andimg.jpg").into(binding.imgvManProfile);
+
         binding.carvPhoto.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), PhotoActivity.class);
             startActivity(intent);

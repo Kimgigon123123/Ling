@@ -1,12 +1,10 @@
 package schedule;
 
+import java.sql.Date;
+
 public class ScheAddVO {
 	private String id, sche_title, sche_typecode, sche_date, create_date;
 	private int d_day, couple_num, sche_notice, sche_no;
-	
-	
-	
-	
 	
 	public String getCreate_date() {
 		return create_date;

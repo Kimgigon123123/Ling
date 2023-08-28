@@ -16,6 +16,8 @@ import com.example.ling.MainActivity;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityCalendarBinding;
+import com.example.ling.home.MainVO;
+import com.example.ling.photo.FolderVO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -28,6 +30,9 @@ import java.util.Date;
 public class CalendarActivity extends AppCompatActivity {
 
     ActivityCalendarBinding binding;
+
+    Date date = new Date();
+
     Window window;
     private SimpleDateFormat mFormat = new SimpleDateFormat("yyyy/MM/dd");
     @Override
@@ -65,50 +70,78 @@ public class CalendarActivity extends AppCompatActivity {
 
 
 
-        Date date = new Date();
         String time = mFormat.format(date);
         binding.tvCalendarNow.setText(time);
 
         //커플별로 create_date를 가져와야 각자의 기념일을 계산할 수 있음
         CommonConn conn = new CommonConn(this, "sche_dday");
+
         conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
-        conn.addParamMap("create_date", ""); //값을 어떻게 가져오지..
+
         conn.onExcute((isResult, data) -> {
 
+            ArrayList<ScheAddVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<ScheAddVO>>() {}.getType());
+//            SimpleDateFormat anniversary = new SimpleDateFormat("yyyy-MM-dd");
+            binding.tv100day.setText(list.get(0).getCreate_date());
+
+//            Date voDate;
+//            try {
+//                //createDay 조회해서 변경해야 함
+//                voDate = anniversary.parse(list.get(0).getCreate_date());
+//
+//                Calendar cal = Calendar.getInstance();
+//                cal.setTime(voDate); // 커플의 기념일 설정
+//
+//                Calendar cal100 = (Calendar) cal.clone();
+//                cal100.add(Calendar.DATE, 100); // 100일 후 계산
+//                String hundred = anniversary.format(cal100.getTime());
+//                binding.tv100day.setText(hundred);
+//
+//                Calendar cal200 = (Calendar) cal.clone();
+//                cal200.add(Calendar.DATE, 200); // 200일 후 계산
+//                String two_hundred = anniversary.format(cal200.getTime());
+//                binding.tv200day.setText(two_hundred);
+//
+//                Calendar cal300 = (Calendar) cal.clone();
+//                cal300.add(Calendar.DATE, 300); // 300일 후 계산
+//                String three_hundred = anniversary.format(cal300.getTime());
+//                binding.tv300day.setText(three_hundred);
+//
+//                Calendar cal365 = (Calendar) cal.clone();
+//                cal365.add(Calendar.DATE, 365); // 365일 후 계산 (1년 후)
+//                String first_anniversary = anniversary.format(cal365.getTime());
+//                binding.tv365day.setText(first_anniversary);
+//            } catch (Exception e) {
+//                throw new RuntimeException(e);
+//            }
+
+//            Calendar cal1 = Calendar.getInstance();
+//            Calendar cal2 = Calendar.getInstance();
+//            Calendar cal3 = Calendar.getInstance();
+//            Calendar cal4 = Calendar.getInstance();
+//            cal1.setTime(date); // 시간 설정
+//            cal2.setTime(date);
+//            cal3.setTime(date);
+//            cal4.setTime(date);
+//            cal1.add(Calendar.DATE, 100); // 일 연산
+//            cal2.add(Calendar.DATE, 200); // 일 연산
+//            cal3.add(Calendar.DATE, 300); // 일 연산
+//            cal4.add(Calendar.DATE, 400); // 일 연산
+//
+//
+//            String hundred = anniversary.format(cal1.getTime());
+//            String two_hundred = anniversary.format(cal2.getTime());
+//            String three_hundred = anniversary.format(cal3.getTime());
+//            String first_anniversary = anniversary.format(cal4.getTime());
+//            binding.tv100day.setText(hundred);
+//            binding.tv200day.setText(two_hundred);
+//            binding.tv300day.setText(three_hundred);
+//            binding.tv365day.setText(first_anniversary);
         });
-
-        SimpleDateFormat anniversary = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            //createDay 조회해서 변경해야 함
-            date = anniversary.parse("2023-07-23");
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
         }
-        
-        Calendar cal1 = Calendar.getInstance();
-        Calendar cal2 = Calendar.getInstance();
-        Calendar cal3 = Calendar.getInstance();
-        Calendar cal4 = Calendar.getInstance();
-        cal1.setTime(date); // 시간 설정
-        cal2.setTime(date);
-        cal3.setTime(date);
-        cal4.setTime(date);
-        cal1.add(Calendar.DATE, 100); // 일 연산
-        cal2.add(Calendar.DATE, 200); // 일 연산
-        cal3.add(Calendar.DATE, 300); // 일 연산
-        cal4.add(Calendar.DATE, 400); // 일 연산
 
 
-        String hundred = anniversary.format(cal1.getTime());
-        String two_hundred = anniversary.format(cal2.getTime());
-        String three_hundred = anniversary.format(cal3.getTime());
-        String first_anniversary = anniversary.format(cal4.getTime());
-        binding.tv100day.setText(hundred);
-        binding.tv200day.setText(two_hundred);
-        binding.tv300day.setText(three_hundred);
-        binding.tv365day.setText(first_anniversary);
-    }
 
     public void select(){
         CommonConn conn = new CommonConn(this, "sche_list");

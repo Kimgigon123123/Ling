@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,26 +34,32 @@ public class PhotoController {
 //	public static String folderPath = "D:\\WorkSpace\\Ling\\image\\photo\\";
 	
 	@RequestMapping(value="/file.f", produces="text/html;charset=utf-8")
-	public String list(HttpServletRequest req) throws IllegalStateException, IOException { //req(요청에 대한 모든정보), res
+	public String list(HttpServletRequest req, String id, String couple_num, FolderVO vo) throws IllegalStateException, IOException { //req(요청에 대한 모든정보), res
 		System.out.println(req.getLocalAddr());
 		System.out.println(req.getLocalPort());
 		System.out.println(req.getContextPath() + "/폴더");
-		
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("id", id);
+		param.put("couple_num", couple_num);
 		
 		MultipartRequest mReq = (MultipartRequest) req;
 		MultipartFile file = mReq.getFile("file");
 		
 		//파일이 있는 상태의 요청을 받았는지에 따라서 유동적으로 MultipartRequest로 캐스팅
 		if (file != null) {
-		    String originalFilename = file.getOriginalFilename();
-		    File targetFile = new File("D:\\Ling\\Ling\\image\\photo", originalFilename);
-		    
-		    try {
-		        file.transferTo(targetFile);
-		    } catch (IOException e) {
-		        e.printStackTrace();
-		        // 업로드 실패 처리
-		    }
+			
+//			file.transferTo(new File("D:\\Ling\\Ling\\image\\photo\\all" ,"andimg.jpg"));
+			file.transferTo(new File(folderPath + "/" + vo.getCouple_num() + "/all","andimg.jpg"));
+			
+//		    String originalFilename = file.getOriginalFilename();
+//		    File targetFile = new File("D:\\Ling\\Ling\\image\\photo\\all", originalFilename);
+//		    
+//		    try {
+//		        file.transferTo(targetFile);
+//		    } catch (IOException e) {
+//		        e.printStackTrace();
+//		        // 업로드 실패 처리
+//		    }
 		} else {
 		    // 파일이 업로드되지 않은 경우 처리
 		}
@@ -127,21 +135,23 @@ public class PhotoController {
 		
 	}
 	
-	@RequestMapping(value="/folder_LastImg", produces="text/html;charset=utf-8")
-	public String folder_LastImg(String id, String couple_num) {
-		
-		HashMap<String, Object> param = new HashMap<String, Object>();
-		param.put("id", id);
-		param.put("couple_num", couple_num);
-		//couple_num
-		List<FolderVO> list = dao.getFolder(param) ;
-		
-		Gson gson = new Gson();	
-		
-		return gson.toJson(list);
-		
-	}
 	
+	  @RequestMapping(value="/folder_LastImg", produces="text/html;charset=utf-8")
+	  public String folder_LastImg(String id, String couple_num) {
+	  
+	  HashMap<String, Object> param = new HashMap<String, Object>();
+	  param.put("id", id); param.put("couple_num", couple_num); //couple_num
+	  List<FolderVO> list = dao.getFolder(param) ;
+	  
+	  Gson gson = new Gson();
+	  
+	  return gson.toJson(list);
+	  
+	  }
+	 
+	
+	
+
 	
 	@RequestMapping(value="/folder_insert", produces="text/html;charset=utf-8")
 	public String folder_insert(String voJson, HttpServletRequest req, String id, String couple_num) {

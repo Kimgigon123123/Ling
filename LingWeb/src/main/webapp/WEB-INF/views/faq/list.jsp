@@ -69,7 +69,7 @@
 				
 				<td>${vo.faq_no }</td>
 				<td>${vo.faq_category }</td>
-				<td><a class="text-link" href="faq_info?id=${vo.faq_id }">${vo.faq_title }</a></td>
+				<td><a class="text-link" href="faq_info?faq_no=${vo.faq_no}">${vo.faq_title }</a></td>
 				<%-- <td>${vo.faq_title }</td> --%>
 				<td>${vo.faq_date }</td>
 			</tr>
@@ -79,7 +79,7 @@
 
 <jsp:include page="page.jsp"></jsp:include>
 <div class="foot-banner custom-footer-banner" style="overflow: auto; border: 1px solid black; padding: 2px; display: flex; align-items: center;">
-  <img src="<c:url value= '/image/couple.jpg'/>" alt="image" width="160" height="120" style="vertical-align: middle; margin-right: 10px;">
+  <img src="<c:url value='/image/couple.jpg'/>" alt="image" width="160" height="120" style="vertical-align: middle; margin-right: 10px;">
   <div style="text-align: left; display: inline-block;">
     <strong class="f-xlarge" style="font-size: 16px;">Ling에 대해서 궁금증을 해결하셨나요?</strong>
     <p class="f-large" style="margin: 0;">멘트가 이상하대..</p>

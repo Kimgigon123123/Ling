@@ -31,8 +31,6 @@ from (select row_number() over(order by faq_no) no, f.*
 </insert>
 
 
-
-
 <select id="faq_info" resultType="faq.FaqVO">
 	select * from faq where faq_no = #{faq_no}
 </select>
@@ -57,7 +55,7 @@ from (select row_number() over(order by faq_no) no, f.*
 
 
 <update id="faq_update">
-	update faq set faq_title=#{faq_title}, faq_content=#{faq_content}, faq_category=#{faq_category}
+	update faq set  faq_title=#{faq_title}, faq_content=#{faq_content}, faq_category=#{faq_category}
 	where faq_no = #{faq_no}
 </update>
 

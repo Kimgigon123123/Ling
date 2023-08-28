@@ -36,9 +36,10 @@
 	<c:choose>
     <c:when test="${loginId eq 'admin'}">
         <div class="btn-toolbar gap-2 my-3 justify-content-center">
-            <a class="btn btn-primary" id="btn-faqList" href="faq_modify">FAQ 수정</a>
-            <a class="btn btn-primary" id="btn-faqList">FAQ 목록</a>
-            <a class="btn btn-primary" id="btn-faqList">FAQ 삭제</a>
+            <a class="btn btn-primary" id="btn-faqList" href="faq_modify?faq_no=${vo.faq_no}">FAQ 수정</a>
+            <a class="btn btn-primary" id="btn-faqList" href="list">FAQ 목록</a>
+            <a class="btn btn-primary" id="btn-faqList" href="javascript:if(confirm('이 FAQ 글을 삭제하시겠습니까?'))
+            											 {location='faq_delete?faq_no=${vo.faq_no }'}">FAQ 삭제</a>
         </div>
     </c:when>
     <c:otherwise>

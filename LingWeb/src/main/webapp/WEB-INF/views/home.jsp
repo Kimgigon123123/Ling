@@ -51,7 +51,7 @@
 		
 		}
 		#chart_back{
-		background-image: linear-gradient(to right, #8360c3, #2ebf91);
+		background-image: url('<c:url value="/images/back.jpg"/>');
 		}
 		
 		.custom-link {
@@ -59,9 +59,9 @@
     /* 다른 스타일 속성 추가 */
 }
 		
-		.bg-light{
-			background-image: linear-gradient(90deg, #B7D6F5 20% ,#F0D3D8 80%);
-		}
+/* 		.bg-light{
+			background-image: url('<c:url value="/resources/images/back.jpg"/>');
+		} */
 		
 		
         </style>
@@ -404,7 +404,7 @@
         	}).done(function(response){
         		console.log(response)
         		var info = {};
-        		info.category = [], info.datas = [], info.colors = [];
+        		info.category = [], info.datas = [];
         		$(response).each(function(){
         			info.category.push(this.AGE_TEXT);
         			info.datas.push(this.COUNT);
@@ -444,7 +444,7 @@
         			info.category.push(this.RANK);
         			info.datas.push(this.SALES);
         			info.itemNames.push(this.ITEM_NAME);
-        			/* info.colors.push(this.ITEM_NAME); */
+        			info.colors.push(this.ITEM_NAME);
         		})
         		console.log('data',info);
        			barChart(info);
@@ -454,7 +454,7 @@
       	
         //도넛 차트
         function donutChart(info){
-        	$('#tab-content').css('height', '550');
+        	$('#tab-content').css('height', '700');
         	
         	//각 수치데이터에 대한 백분율 구하기
         	var sum = 0;
@@ -498,7 +498,7 @@
       //선 그래프
 
         function lineChart(info){
-        	$('#tab-content').css('height', '550');
+        	$('#tab-content').css('height', '700');
         	visual = new Chart($('#chart'),{
         		type: 'line',
         		data: {
@@ -543,87 +543,88 @@
         
         
       //막대 그래프
-        function barChart(info){
-        	$('#tab-content').css('height', '520');
-        	visual = new Chart($('#chart'), {
-        	    type: 'bar',
-        	    data: {
-        	      labels: info.category,
-        	      datasets: [{
-        	        label: '아이템',
-        	        data: info.datas,
-        	        borderWidth: 2,
-        	        barPercentage: 0.5,
-        	        backgroundColor: info.colors,
-        	      }]
-        	    },
-        	    options: {
-        	    	maintainAspectRatio: false, // 크키조정시 캔버스 가로세로 비율 유지X(기본O)
-        	    	responsive: false, //컨테이너 크기 변경시 캔버스 크기 조정X(기본O)
-        	    	layout: {
-        	    		padding: {top:30, bottom:20}
-        	    	},
-        	    	plugins: {
-        	    		legend: {display: false},
-        	    		datalabels: {
-        	    			formatter: function(value, context) {
-        	    			    var itemRank = context.chart.data.labels[context.dataIndex];
-        	    			    var itemName = info.itemNames[context.dataIndex]
-        	    			    return '<' + itemName + '>'; 
-        	    			}
-        	    		},
-        	        autocolors: {
-        	            mode: 'data'
-        	          },
-        	         
-        	    	},
-        	    	
-        	    	 tooltip: { // tooltip 설정을 별도로 분리
-        	                callbacks: {
-        	                    title: function(context) {
-        	                        return info.itemNames[context.dataIndex];
-        	                    },
-        	                    label: function(value, context) {
-        	                        var value = context.parsed.y;
-        	                        return value + '개'; // 개를 문자열로 인식하도록 따옴표로 묶음
-        	                    }
-        	                }
-        	            },
-        	    	
-        	    	
-            	scales: {
-        	        y: {
-        	        	beginAtZero: true, // y축 시작값을 0으로 설정
-        		       title: {text: '아이템 구매횟수', display:true}
-        		         }
-        		      },
-        	    }
-        	  });
-        	/* makeLegend(); */
-        	
+function barChart(info) {
+    $('#tab-content').css('height', '700');
+    visual = new Chart($('#chart'), {
+        type: 'bar',
+        data: {
+            labels: info.category,
+            datasets: [{
+                label: '아이템',
+                data: info.datas,
+                borderWidth: 2,
+                barPercentage: 0.5,
+                backgroundColor: info.colors,
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            responsive: false,
+            layout: {
+                padding: {top:30, bottom:20}
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                datalabels: {
+                    formatter: function(value, context) {
+                        var itemRank = context.chart.data.labels[context.dataIndex];
+                        var itemName = info.itemNames[context.dataIndex]
+                        return '<' + itemName + '>'; 
+                    }
+                },
+                autocolors: {
+                    mode: 'data'
+                },
+            },
+            tooltip: {
+                callbacks: {
+                    title: function(context) {
+                        return info.itemNames[context.dataIndex];
+                    },
+                    label: function(value, context) {
+                        var value = context.parsed.y;
+                        return value + '개';
+                    }
+                }
+            },
+            scales: {
+                x: { // x축 설정
+                    beginAtZero: true,
+                    title: {text: '순위', display:true},
+                    position: 'bottom' // x축 위치 설정
+                },
+                y: { // y축 설정
+                    beginAtZero: true,
+                    title: {text: '아이템 구매횟수', display:true}
+                }
+            }
         }
+    });
 
+    makeLegend();
+}
 
         //데이터수치 범위에 해당하는 범례 만들기
-        function makeLegend(){
-        	var tag =
-        		`
-        		<ul class="row d-flex justify-content-center m-0 mt-4 p-0 small" id='legend'>`;
-        		
-        		for(var no=0; no<=6; no++){
-        			
-        		tag +=
-        			`<li class="col-auto"><span></span><font>\${no*10}~\${no*10+9}명</font></li>`;
-        			
-        		}
-        		tag +=
-        			`<li class="col-auto"><span></span><font>\${no*10}명 이상</font></li>
-        		</ul>`;
-        		$('#tab-content').after(tag);
-        		$('#legend span').each(function(idx, item){
-        			$(this).css('background-color', colors[idx]);
-        		})
-        }
+function makeLegend() {
+    var tag =
+        `<ul class="row d-flex justify-content-center m-0 mt-4 p-0 small" id='legend'>`;
+        
+    for (var no = 0; no <= 6; no++) {
+        tag +=
+            `<li class="col-auto"><span></span><font>${no * 10}~${no * 10 + 9}명</font></li>`;
+    }
+    tag +=
+        `<li class="col-auto"><span></span><font>${no * 10}명 이상</font></li>
+        </ul>`;
+    
+    // 범례를 그래프 아래에 위치시키기 위해 그래프 아래에 추가하도록 변경
+    $('#chart').after(tag);
+    $('#legend span').each(function(idx, item) {
+        $(this).css('background-color', colors[idx]);
+    });
+}
         
         function customLegend(){
         	var tag =
@@ -648,7 +649,7 @@
         
         const carousel = new bootstrap.Carousel(document.getElementById('carouselExample'), {
             interval: 5000, // 이미지 전환 간격 (밀리초)
-            pause: false,   // 마우스 오버시 자동 재생 일시 중단 여부
+            pause: true,   // 마우스 오버시 자동 재생 일시 중단 여부
           });
         
         </script>

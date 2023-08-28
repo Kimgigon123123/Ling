@@ -20,11 +20,15 @@ import java.util.ArrayList;
 
 public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder>{
 
-    public FolderAdapter(ArrayList<FolderVO> list) {
+
+    public FolderAdapter
+            (ArrayList<FolderVO> list) {
         this.list = list;
     }
 
     ArrayList<FolderVO> list;
+    ArrayList<PhotoVO> photo_list;
+
 
     Context context;
 
@@ -45,7 +49,7 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
                 conn.addParamMap("id", CommonVar.loginInfo.getId());
                 conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
                 conn.addParamMap("folder_name", list.get(i).getFolder_name());
-                conn.addParamMap("pho_img", "");
+//                conn.addParamMap("pho_img", photo_list.get(i).getLast_photo());
                 conn.onExcute(new CommonConn.JswCallBack() {
                     @Override
                     public void onResult(boolean isResult, String data) {

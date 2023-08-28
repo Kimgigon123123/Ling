@@ -97,7 +97,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
             loadingDialog.show();
 
             //최초에 접속시 한 번만 다이얼로그 표현 -> 문제 있음 , 일정을 삭제하게 되면 알림 on상태에 있던 모든 것들이 알림 off가 됨
-            list.get(i).setSche_notice(1);
+//            list.get(i).setSche_notice(1);
         }
 
 

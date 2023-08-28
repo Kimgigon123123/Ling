@@ -9,31 +9,7 @@
 		(select folder_name from photo_folder where folder_name= #{folder_name})
 		||'%'
 	</select>
-<!-- 	<select id="list" resultType="photo.PhotoVO">
-	<![CDATA[
-		SELECT * FROM photo_category
-WHERE folder_name = 'all' AND pho_img LIKE '%' || '/' || (
-    SELECT couple_num
-    FROM couple 
-    WHERE couple_num = #{couple_num}
-) || '/' || (
-    SELECT folder_name 
-    FROM photo_folder 
-    WHERE folder_name = 'all'
-) || '%'
-UNION
-SELECT * FROM photo_category
-WHERE folder_name <> 'all' AND pho_img LIKE '%' || '/' || (
-    SELECT couple_num
-    FROM couple 
-    WHERE couple_num = #{couple_num}
-) || '/' || (
-    SELECT folder_name 
-    FROM photo_folder 
-    WHERE folder_name = #{folder_name}
-) || '%'
-]]>
-	</select> -->
+
 
 	<select id="folder" resultType="photo.FolderVO">
 		select id, couple_num, folder_name from photo_folder where couple_num = #{couple_num} and id = #{id}

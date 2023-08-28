@@ -22,7 +22,7 @@ public class FaqDAO {
 		return result;
 	}
 	
-	public FaqVO faq_info(int faq_no) {
+	public FaqVO faq_info(Integer faq_no) {
 		return sql.selectOne("faq.faq_info", faq_no);
 	}
 	
@@ -33,10 +33,10 @@ public class FaqDAO {
 	}
 	
 	public int faq_update(FaqVO vo) {
-		return sql.update("faq.faq_update");
+		return sql.update("faq.faq_update", vo);
 	}
 	
-	public int faq_delete(int faq_no) {
+	public int faq_delete(Integer faq_no) {
 		return sql.delete("faq.faq_delete", faq_no);
 	}
 }

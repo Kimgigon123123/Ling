@@ -55,6 +55,8 @@ public class PhotoActivity extends AppCompatActivity {
     private final int REQ_Gallery = 1000;
     ActivityResultLauncher<Intent> launcher;
     ArrayList<FolderVO> folder_List;
+
+    ArrayList<PhotoVO> photo_List;
     Window window ;
     private EditText name;
 
@@ -136,6 +138,8 @@ public class PhotoActivity extends AppCompatActivity {
 //                    vo.setFolder_name(vo.getCouple_num()+"");
                     //확인 버튼을 클릭했을때
                     conn.addParamMap("voJson", new Gson().toJson(vo) );
+                    conn.addParamMap("id", CommonVar.loginInfo.getId());
+                    conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
                     conn.onExcute((isResult, data) -> {
                         folder_List = new Gson(). fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
 
@@ -186,7 +190,7 @@ public class PhotoActivity extends AppCompatActivity {
             @Override
             public void onActivityResult(ActivityResult result) {
                 //액티비티(카메라 액티비티)가 종료되면 콜백으로 데이터를 받는 부분. (기존에는 onActivityResult메소드가 실행/ 현재는 해당 메소드)
-                Glide.with(PhotoActivity.this).load(camera_uri).into(binding.imgvElbumCamera);
+//                Glide.with(PhotoActivity.this).load(camera_uri).into(binding.imgvElbumCamera);
                 File file = new File(getRealPath(camera_uri));
 
                 if(file!=null){
