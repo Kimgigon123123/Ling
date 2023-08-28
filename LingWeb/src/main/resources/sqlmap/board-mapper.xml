@@ -59,7 +59,19 @@ where id = #{id} and board_cd = #{board_cd}
 
 <!--해당 글 정보 조회  -->
 <select id="info" resultType="board.BoardVO">
-select board_cd, id, title, content, writer from LING_BOARD where id = #{id}
+select (select count(*) from ling_board_comment1 where BOARD_ID = #{id}) count, board_cd, id, title, content, writer from LING_BOARD where id = #{id}
+</select>
+
+<!--해당 댓글 정보 조회  -->
+<select id="commentinfo" resultType="board.BoardCommentVO">
+select (select count(*) from ling_board_comment2 where comment_ID = COMMENT1.id) count, ID, WRITER, WRITEDATE, CONTENT, BOARD_ID from LING_BOARD_COMMENT1 COMMENT1 where BOARD_ID = #{id}
+
+</select>
+
+<!--해당 답글 정보 조회  -->
+<select id="recommentinfo" resultType="board.BoardReCommentVO">
+ select ID, WRITER, CONTENT, WRITEDATE, COMMENT_ID from LING_BOARD_COMMENT2 where COMMENT_ID = #{id}
+
 </select>
 
 <!--선택한 공지글 조회수 증가처리  -->

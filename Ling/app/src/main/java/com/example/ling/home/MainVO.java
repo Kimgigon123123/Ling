@@ -2,7 +2,20 @@ package com.example.ling.home;
 
 public class MainVO {
 
-	String couple_num,mid,fid,day,id,mname,fname;
+	String couple_num,mid,fid,day,id,mname,fname,couple_name;
+	int profile_img;
+	
+	
+
+	
+	
+	public String getCouple_name() {
+		return couple_name;
+	}
+
+	public void setCouple_name(String couple_name) {
+		this.couple_name = couple_name;
+	}
 
 	public int getProfile_img() {
 		return profile_img;
@@ -12,10 +25,6 @@ public class MainVO {
 		this.profile_img = profile_img;
 	}
 
-	int profile_img;
-
-	
-	
 	public String getMname() {
 		return mname;
 	}

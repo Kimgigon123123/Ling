@@ -5,48 +5,87 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".store.myinfo.StoreMyinfoActivity"
+    android:background="@drawable/main_back_gradient_animation"
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_marginBottom="5dp"
-        android:gravity="center_vertical"
-        android:background="@drawable/shape"
-        android:orientation="horizontal"
-        android:layout_gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="70dp"
+        android:layout_gravity="center_vertical"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <ImageView
+            android:layout_gravity="center"
 
-            android:layout_marginLeft="15dp"
             android:id="@+id/imgv_before"
-            android:src="@drawable/ic_before"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/baseline_navigate_before_24_black" />
 
         <TextView
-            android:layout_marginLeft="20dp"
-            android:textStyle="bold"
-            android:textSize="17dp"
             android:id="@+id/tv_date"
-            android:textColor="#fff"
-
-            android:text="내정보"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="내 정보   "
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
+        <androidx.appcompat.widget.AppCompatButton
 
+            android:layout_marginLeft="10dp"
+            style="@style/LingButtonStyle"
+            android:id="@+id/btn_basket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/baseline_shopping_basket_24"
+            android:text=" 장바구니"
+            android:padding="5dp"
+            android:layout_gravity="right|center"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+
+            style="@style/LingButtonStyle"
+            android:id="@+id/btn_zzim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_dibs"
+            android:text="찜목록"
+            android:padding="5dp"
+            android:layout_gravity="right|center"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+
+            style="@style/LingButtonStyle"
+            android:id="@+id/btn_myinfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/baseline_info"
+            android:text="내 정보"
+            android:padding="5dp"
+            android:layout_gravity="right|center"
+            />
 
 
 
 
     </LinearLayout>
 
+    <FrameLayout
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
 
     <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
@@ -70,9 +109,11 @@
 
 
         <LinearLayout
+            android:layout_weight="3"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content">
 
 
@@ -115,10 +156,57 @@
                     android:layout_height="wrap_content"
                     android:text="원"/>
 
+
+
             </LinearLayout>
 
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="주소지: "/>
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="농성동"/>
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
             <Button
-                android:layout_marginTop="10dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/purchace"
                 android:id="@+id/btn_charge"
                 app:strokeColor="@color/black"
                 app:strokeWidth="1dp"
@@ -126,11 +214,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
+            <Button
+                android:backgroundTint="@color/basket"
+                android:layout_gravity="right"
+                android:layout_marginTop="5dp"
+                android:id="@+id/btn_address"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1dp"
+                android:text="주소변경"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-
+            
 
         </LinearLayout>
-
 
 
 

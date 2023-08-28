@@ -25,9 +25,19 @@
 	<div class="container mt-5">
 		<div class="row tm-content-row">
 			<div class="col-sm-12 col-md-12 tm-block-col">
-				<div class="tm-bg-primary-dark tm-block tm-block-products">
-					<div class="tm-product-table-container">
-						<table class="table tm-table-small tm-product-table">
+			<div class="col-4">
+			<form method="post" action="restaurant">
+				<div class="input-group mb-4">
+					<input type="text" autocomplete="off" name="search" placeholder="검색어를 입력하세요." class="form-control custom-search-input">
+					<button class="btn px-3 py-2">
+						<i class="fa-solid fa-magnifying-glass"></i>
+					</button>
+				</div>
+			</form>
+		</div>			
+				<div class="tm-bg-primary-dark tm-block tm-block-products2">
+					<div class="tm-product-table-container2">
+						<table class="table tm-table-small">
 							<thead>
 								<tr>
 									<th scope="col">&nbsp;</th>
@@ -68,6 +78,11 @@
 	<!-- <script src="js/bootstrap.min.js"></script> -->
 	<!-- https://getbootstrap.com/ -->
 	<script>
+	$(function(){
+		if($('.tm-product-table-container2 table tbody tr').length > 10) {
+			$('.tm-product-table-container2 table').addClass('tm-product-table')
+		}
+	})
 		document.getElementById("deleteBtn").addEventListener("click", function() {
 	        var checkboxes = document.getElementsByName("selectedItems");
 	        var checkedItems = [];
@@ -79,6 +94,8 @@
 	        });
 	        
 	        if (checkedItems.length > 0) {
+	        	var confirmation = confirm("삭제하시겠습니까?");
+	        	if(confirmation) {
 	            // document.getElementById("deleteForm").submit();
 	            $.ajax({
 	          	  url: 'multipledelete',
@@ -86,7 +103,8 @@
 	          	  success:function(){
 	          		  location="restaurant"
 	          	  }
-	            })
+	            });
+	          }
 	        } else {
 	        	alert("삭제할 항목을 선택해주세요.");
 	        }

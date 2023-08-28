@@ -14,6 +14,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -26,6 +27,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
+import android.widget.EditText;
 
 import com.bumptech.glide.Glide;
 import com.example.ling.R;
@@ -38,6 +40,9 @@ import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentHomeBinding;
 import com.example.ling.note.NoteActivity;
 import com.example.ling.photo.PhotoActivity;
+import com.example.ling.store.StoreCoAdater;
+import com.example.ling.store.myinfo.StoreReturnListVO;
+import com.example.ling.store.storeCO.StoreCOVO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -64,6 +69,8 @@ public class HomeFragment extends Fragment {
     FragmentHomeBinding binding;
     Uri camera_uri;
 
+    String enteredText;
+
     private final int REQ_Gallery = 1000 , REQ_CAMERA = 1001;
     private final int DEFALUT_MANIMG = R.drawable.man;
     String couple_num;
@@ -74,8 +81,46 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        binding.waveLoadingView.setCenterTitle("무슨 커플  명칭");
+        binding.waveLoadingView.setCenterTitle("애칭");
         binding.waveLoadingView.setAnimDuration(5000);
+
+        select_couplename();
+
+        binding.waveLoadingView.setOnClickListener(v->{
+            // 다이얼로그 생성
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("애칭 입력");
+
+            // EditText를 다이얼로그에 추가
+            EditText editText = new EditText(getContext());
+            builder.setView(editText);
+
+            // "확인" 버튼 클릭 시 동작 정의
+            builder.setPositiveButton("확인", (dialog, which) -> {
+                enteredText = editText.getText().toString();
+                // 입력된 텍스트를 사용하여 원하는 동작 수행
+                // 예: 텍스트를 어딘가에 표시하거나 다른 처리 수행
+
+                CommonConn conn = new CommonConn(getContext(),"update_couple_name");
+                conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+                conn.addParamMap("couple_name",enteredText);
+                conn.onExcute((isResult, data) -> {
+                        select_couplename();
+
+                });
+
+            });
+
+            // "취소" 버튼 클릭 시 동작 정의
+            builder.setNegativeButton("취소", (dialog, which) -> {
+                // 다이얼로그를 닫기만 함
+                dialog.cancel();
+            });
+
+            // 다이얼로그 표시
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        });
 
 
         ObjectAnimator animator3 =ObjectAnimator.ofFloat(binding.mainSub3, "translationY", 0, 20, 0);
@@ -200,7 +245,7 @@ public class HomeFragment extends Fragment {
             ArrayList<MainVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<MainVO>>() {}.getType());
             binding.tvMid.setText(list.get(0).mname);
             binding.tvFid.setText(list.get(0).fname);
-            binding.waveLoadingView.setBottomTitle("사귄지 "+list.get(0).day+"일"+"커플번호는 "+list.get(0).couple_num);
+            binding.waveLoadingView.setBottomTitle("D +"+list.get(0).day);
             couple_num=list.get(0).couple_num;
 
         });
@@ -302,5 +347,19 @@ public class HomeFragment extends Fragment {
 
         Log.d("TAG", "getRealPath: 커서" + res);
         return res;
+    }
+
+    public void select_couplename() {
+        CommonConn conn = new CommonConn(getContext(), "select_couplename");
+
+        conn.addParamMap("couple_num" , CommonVar.loginInfo.getCouple_num());
+        conn.onExcute((isResult, data) -> {
+
+            ArrayList<MainVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<MainVO>>() {
+            }.getType());
+            binding.waveLoadingView.setCenterTitle(list.get(0).getCouple_name());
+
+        });
+
     }
 }

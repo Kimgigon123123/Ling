@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".login.LoginFindFragment"
     android:orientation="vertical"
-    android:padding="30dp">
+    android:padding="30dp"
+    android:background="@drawable/main_back_gradient_animation">
 
     <ImageView
         android:layout_marginTop="80dp"

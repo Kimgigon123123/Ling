@@ -28,7 +28,7 @@ public class CompleteReturnActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         int intValue = getIntent().getIntExtra("order_num",0);
-        Toast.makeText(this, intValue+"", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, intValue+"", Toast.LENGTH_SHORT).show();
 
         CommonConn conn = new CommonConn(this , "store_return_detail");
         conn.addParamMap("order_num" , intValue);

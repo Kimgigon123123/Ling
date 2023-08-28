@@ -6,7 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".login.LoginFragment"
     android:orientation="vertical"
-    android:padding="30dp">
+    android:padding="30dp"
+    android:background="@drawable/main_back_gradient_animation">
 
     <ImageView
         android:layout_marginTop="80dp"

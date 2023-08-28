@@ -105,6 +105,11 @@ ${active_category}
 							href="login"> admin, <b>Logout</b>
 						</a></li>
 					</ul>
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link d-block"
+							href="/lingweb"> admin, <b>home</b>
+						</a></li>
+					</ul>
 				</div>
 			</div>
 

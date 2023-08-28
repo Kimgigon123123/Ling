@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.example.ling.R;
 import com.example.ling.databinding.FragmentNMapBinding;
+import com.example.ling.date.list.DateInfoVO;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraAnimation;
 import com.naver.maps.map.CameraUpdate;
@@ -72,13 +73,14 @@ public class NMapFragment extends Fragment implements OnMapReadyCallback {
         naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
         Marker marker = new Marker();
         Bundle bundle = getArguments();
+        DateInfoVO vo = (DateInfoVO) bundle.getSerializable("vo");
         if(bundle != null) {
-            marker.setPosition(new LatLng(Double.parseDouble(bundle.get("lan").toString()), (Double.parseDouble(bundle.get("lng").toString()))));
+            marker.setPosition(new LatLng(Double.parseDouble(vo.getLan()), (Double.parseDouble(vo.getLng()))));
         }
         marker.setIcon(OverlayImage.fromResource(com.naver.maps.map.R.drawable.navermap_default_marker_icon_red));
         marker.setMap(naverMap);
         CameraUpdate cameraUpdate = CameraUpdate.scrollAndZoomTo(
-                new LatLng(Double.parseDouble(bundle.get("lan").toString()), (Double.parseDouble(bundle.get("lng").toString()))), 15)
+                new LatLng(Double.parseDouble(vo.getLan()), (Double.parseDouble(vo.getLng()))), 15)
                 .animate(CameraAnimation.Fly, 2000);
         naverMap.moveCamera(cameraUpdate);
     }

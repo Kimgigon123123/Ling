@@ -10,7 +10,9 @@
 <!-- 시군구 -->
 <select id="sigungu" resultType="String">
 	select distinct date_sigungu from date_info where date_sido = #{date_sido} order by date_sigungu
-</select> 
+</select>
+
+<!-- 카테고리별 관심 목록 --> 
 <select id="selectdibs" resultType="date.DateDibsVO">
 select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.lng, i.date_img, i.tel
 	from date_dibs d, date_info i
@@ -19,7 +21,6 @@ select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.l
 	and d.date_category_code = #{date_category_code}
 	</if>
 </select>
-
 
 <!-- 관심 목록 추가 -->
 <insert id="insert_dibs">
@@ -31,7 +32,12 @@ select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.l
 	delete from date_dibs where date_id = #{date_id} and id = #{id}
 </delete>
 
+<!-- 데이트 메인화면 아이템 -->
+<select id="countList" resultType="date.DateInfoVO">
+	select * from date_info where date_category_code = #{category} and rownum <![CDATA[<=]]> #{count}
+</select>
 
+<!-- 전체 목록/검색 결과 -->
 <select id="searchlist" resultType="date.DateInfoVO">
 select i.*, 
 	case when i.date_id in (select d.date_id from date_dibs d where id=#{id}) then '♥'
@@ -40,8 +46,6 @@ select i.*,
 	from date_info i where date_category_code = #{date_category_code} and (date_name like '%' || #{date_name,jdbcType=VARCHAR} || '%' or date_address like '%' || #{date_address,jdbcType=VARCHAR} || '%') 
 	and rownum <![CDATA[<=]]> 300
 </select>
-
-
 
 <!-- 마지막 위치 저장 -->
 <update id="updatelocation">
@@ -144,10 +148,7 @@ select i.*,
 	end as dibs
 	from date_info i where (date_name like '%' || #{date_name} || '%' or date_address like '%' || #{date_address} || '%') and date_category_code = 'FE'
 </select> -->
-
-<select id="countList" resultType="date.DateInfoVO">
-	select * from date_info where date_category_code = #{category} and rownum <![CDATA[<=]]> #{count}
-</select>	
+	
 <!-- 여행 목록 5개 -->
 <!-- <select id="tour5" resultType="date.DateInfoVO">
 	select * from date_info where date_category_code = 'TO' and rownum <![CDATA[<=]]> 5

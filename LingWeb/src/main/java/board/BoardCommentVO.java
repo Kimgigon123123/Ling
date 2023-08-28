@@ -1,8 +1,17 @@
 package board;
 
+import java.util.List;
+
 public class BoardCommentVO {
-	private int id, board_id;
+	private int id, board_id, count;
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	private String content, writer, name, writedate;
+	
 	public int getId() {
 		return id;
 	}

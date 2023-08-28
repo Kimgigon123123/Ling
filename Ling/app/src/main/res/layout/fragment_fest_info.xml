@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginBottom="8dp"
+            android:fontFamily="@font/font8"
             android:textColor="#111"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -36,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginBottom="4dp"
+            android:fontFamily="@font/font8"
             android:textColor="#111"
             android:textSize="14dp" />
 
@@ -45,6 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginBottom="4dp"
+            android:fontFamily="@font/font8"
             android:textColor="#111"
             android:textSize="14dp" />
 
@@ -54,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginBottom="4dp"
+            android:fontFamily="@font/font8"
             android:textColor="#111"
             android:textSize="14dp" />
 
@@ -61,6 +65,7 @@
             android:id="@+id/tv_intro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/font8"
             android:layout_gravity="start"
             android:textColor="#111"
             android:textSize="14dp" />

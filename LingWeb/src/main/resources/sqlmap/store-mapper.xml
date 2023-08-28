@@ -67,9 +67,31 @@ where r.item_code = i.item_code
 order by return_code desc
 </select>
 
-<update id="store_return_update">
-update store_return_list set return_state = '환불처리완료' where return_code in ( ${returnCodes} )
+
+
+<update id="store_return_update"  parameterType="java.util.List">
+
+<foreach collection="list" item="item" open="DECLARE BEGIN" close="; END;" separator=";" >
+	update store_return_list set return_state = '환불처리완료'  where return_code = #{item.return_code}
+</foreach>
+
 </update>
+
+<update id="store_return_update2"   parameterType="java.util.List">
+
+<foreach collection="list"  item="item" open="DECLARE BEGIN" close="; END;" separator=";" >
+
+	update store_myinfo set money = money + 
+	(select  ((purchase_cnt)*(i.item_price)) as total_price
+	from store_return_list r, store_item i
+	where r.item_code = i.item_code
+	and return_code= #{item.return_code})
+	where id= #{item.id}
+</foreach>
+
+</update>
+
+
 
 <update id="store_return_cancel">
 update store_return_list set return_state = '환불취소' where return_code in ( ${returnCodes} )
@@ -106,5 +128,7 @@ select * from Store_item where item_code=#{item_code}
 <delete id="store_delete">
 delete store_item where item_code=#{item_code}
 </delete>
+
+
 
 </mapper>

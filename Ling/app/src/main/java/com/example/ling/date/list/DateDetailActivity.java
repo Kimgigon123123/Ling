@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.example.ling.R;
 import com.example.ling.databinding.ActivityDateDetailBinding;
+import com.example.ling.date.dibs.DateDibsVO;
 import com.example.ling.date.map.NMapFragment;
 
 public class DateDetailActivity extends AppCompatActivity {
@@ -22,7 +23,6 @@ public class DateDetailActivity extends AppCompatActivity {
         binding.imgvBefore.setOnClickListener(v -> {
             finish();
         });
-
 
         DateDatailInfoFragment dateDetailFragment = new DateDatailInfoFragment();
         NMapFragment nMapFragment = new NMapFragment();

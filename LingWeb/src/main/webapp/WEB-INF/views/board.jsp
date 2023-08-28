@@ -41,7 +41,7 @@
 				<tr>
 					<th scope="row"><input type="checkbox" /></th>
 					<td>${vo.id}</td>
-					<td class="tm-board-show">${vo.title}</td>
+					<td><a href="contentboard?id=${vo.id }">${vo.title}</a></td>
 					<td>${vo.writer}</td>
 					<td>${vo.writedate}</td>
 					<td>${vo.readcnt}</td>
@@ -106,9 +106,9 @@
    	  }) 
         
     });
-   /*  $(function() {
+    /* $(function() {
         $(".tm-board-show").on("click", function() {
-          window.location.href = "detailboard?id=${vo.id }";
+          window.location.href = "contentboard?id=${vo.id }";
         });
       }); */
     

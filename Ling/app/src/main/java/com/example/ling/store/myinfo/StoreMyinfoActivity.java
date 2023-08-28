@@ -18,6 +18,7 @@ import com.example.ling.store.ChargeCashActivity;
 import com.example.ling.store.ChargeVO;
 import com.example.ling.store.CompleteDialog;
 import com.example.ling.store.StoreCoAdater;
+import com.example.ling.store.basket.BasketActivity;
 import com.example.ling.store.storeCO.StoreCOVO;
 import com.example.ling.store.storeCO.StorePurchaseListVO;
 import com.google.gson.Gson;
@@ -53,8 +54,23 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
 
 
+        binding.btnAddress.setOnClickListener(v->{
+            Intent intent = new Intent(this, AddressMainActivity.class);
+            startActivity(intent);
+        });
 
 
+        binding.btnZzim.setOnClickListener(v -> {
+            finish();
+            Intent intent = new Intent(this, ZZimActivity.class);
+            startActivity(intent);
+        });
+
+        binding.btnBasket.setOnClickListener(v -> {
+            finish();
+            Intent intent = new Intent(this, BasketActivity.class);
+            startActivity(intent);
+        });
 
         binding.imgvBefore.setOnClickListener(v -> {
             finish();
@@ -88,7 +104,7 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
     public void select(){
         CommonConn conn = new CommonConn(this,"store_myinfo");
-            conn.addParamMap("id",CommonVar.loginInfo.getId());
+        conn.addParamMap("id",CommonVar.loginInfo.getId());
 
         conn.onExcute((isResult, data) -> {
 
@@ -97,6 +113,7 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
             binding.tvMoney.setText(list.get(0).getMoney()+"");
             binding.tvName.setText(list.get(0).getName());
+            binding.tvAddress.setText(list.get(0).getAddress()+list.get(0).getDetail_add());
 
 
 
@@ -181,4 +198,3 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
     }
 }
-

@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.ling.R;
@@ -19,6 +20,8 @@ import com.example.ling.store.ChargeVO;
 import com.example.ling.store.CompleteDialog;
 import com.example.ling.store.StorePaymentActivity;
 import com.example.ling.store.StorePurchaseActivity;
+import com.example.ling.store.myinfo.StoreMyinfoActivity;
+import com.example.ling.store.myinfo.ZZimActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -47,7 +50,9 @@ public class BasketActivity extends AppCompatActivity {
             ArrayList<StoreBasketVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreBasketVO>>() {
             }.getType());
 
-
+            if(list.isEmpty()){
+                binding.tvBasket.setVisibility(View.VISIBLE);
+            }
             binding.recvBasket.setAdapter(new BasketAdapter(list,this  ));
             binding.recvBasket.setLayoutManager(new LinearLayoutManager(this));
 
@@ -57,7 +62,17 @@ public class BasketActivity extends AppCompatActivity {
 
 
 
+        binding.btnMyinfo.setOnClickListener(v->{
+            finish();
+            Intent intent = new Intent(this, StoreMyinfoActivity.class);
+            startActivity(intent);
+        });
 
+        binding.btnZzim.setOnClickListener(v->{
+            finish();
+            Intent intent = new Intent(this, ZZimActivity.class);
+            startActivity(intent);
+        });
 
         binding.imgvBefore.setOnClickListener(v->{
             finish();
