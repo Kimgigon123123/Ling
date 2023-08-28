@@ -4,11 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".board.BoardFragment">
+    tools:context=".board.BoardFragment"
+    android:background="@drawable/main_back_gradient_animation">
     <com.example.ling.board.KghNav
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:appbarColor="#F0D3D8"
+        app:appbarColor="#F2BED1"
         app:HamMenuIconTintColor="#fff"
         app:appbarTitleTextColor="#fff"
         android:outlineAmbientShadowColor="#F0D3D8"

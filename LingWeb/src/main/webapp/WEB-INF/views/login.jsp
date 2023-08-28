@@ -41,7 +41,7 @@ $(document).ready(function() {
           // 서버 응답을 처리하는 코드 작성
           // 예: 로그인 성공 시 페이지 리다이렉트
           if (response === "success") {
-            window.location.href = "admin";
+            window.location.href = "lingmember";
           } else {
             alert("로그인 실패! 아이디와 비밀번호를 확인하세요.");
           }

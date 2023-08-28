@@ -2,7 +2,13 @@ package board;
 
 public class BoardVO {
 	private String id, writer, board_cd, title, content, writedate, filename, filephth;
-	private int readcnt;
+	private int readcnt, count;
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public String getId() {
 		return id;
 	}

@@ -210,7 +210,7 @@
         </section>
         
         <!-- Basic features section-->
-        <section class="bg-light" id="chart_section">
+        <section class="chart bg-light">
         <div id='tab-content' class="m-md-2 m-lg-3" style='height: 520px'>
             <div class="container px-5">
             <h3 class="my-4">Ling Chart</h3>
@@ -242,8 +242,8 @@
             <div class="container px-5">
                 <h2 class="text-center text-white font-alt mb-4">Get the app now!</h2>
                 <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center">
-                    <a class="me-lg-3 mb-4 mb-lg-0" href="#!"><img class="app-badge" src="assets/img/google-play-badge.svg" alt="..." /></a>
-                    <a href="#!"><img class="app-badge" src="assets/img/app-store-badge.svg" alt="..." /></a>
+                    <a class="me-lg-3 mb-4 mb-lg-0" href="https://www.apple.com/kr/app-store/"><img class="app-badge" src="img/google-play-badge.svg" alt="..." /></a>
+                    <a href=""https://play.google.com/store/games?device=windows&utm_source=apac_med&hl=ko-KR&utm_medium=hasem&utm_content=Jul0121&utm_campaign=Evergreen&pcampaignid=MKT-EDR-apac-kr-1003227-med-hasem-py-Evergreen-Jul0121-Text_Search_BKWS-BKWS%7CONSEM_kwid_43700058439438730_creativeid_477136209358_device_c&gclid=Cj0KCQjwi7GnBhDXARIsAFLvH4kRrVXAETlE64-KVozud3vOt5dRFWmlZF-Uo3DlmR7P7jM8faftiOsaAoZQEALw_wcB&gclsrc=aw.ds""><img class="app-badge" src="img/app-store-badge.svg" alt="..." /></a>
                 </div>
             </div>
         </section>

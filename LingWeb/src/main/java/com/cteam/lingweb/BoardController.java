@@ -15,8 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import board.BoardDAO;
+import board.BoardReCommentVO;
 import board.BoardVO;
 import member.MemberVO;
 
@@ -157,6 +159,24 @@ public class BoardController {
 			model.addAttribute("vo", dao.info(id));
 			return "detailboard";
 		}	
+		
+		@RequestMapping(value = "/recomment", method = RequestMethod.GET)
+		@ResponseBody
+		public List<BoardReCommentVO> recontentboard(String comment_id) {
+
+			
+			return dao.recommentinfo(comment_id);
+			
+		}	
+		
+		@RequestMapping(value = "/contentboard", method = RequestMethod.GET)
+		public String contentboard(String id, Model model, String board_id, String comment_id) {
+
+			model.addAttribute("vo", dao.info(id));
+			model.addAttribute("cvo", dao.commentinfo(id));
+			//model.addAttribute("rvo", dao.recommentinfo(comment_id));
+			return "contentboard";
+		}
 		
 		//선택한 글 정보 수정처리 요청
 		@RequestMapping("/deleteboard")
