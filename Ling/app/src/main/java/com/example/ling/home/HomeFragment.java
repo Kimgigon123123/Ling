@@ -282,6 +282,7 @@ public class HomeFragment extends Fragment {
             //갤러리 액티비티가 종료되었다. (사용자가 사진을 선택했는지)
             Log.d("갤러리", "onActivityResult: " + data.getData());
             Log.d("갤러리", "onActivityResult: " + data.getData().getPath());
+
             Glide.with(this).load(data.getData()).into(binding.imgvManProfile); //갤러리 이미지가 잘 붙는지??
             String img_path = getRealPath(data.getData());
 

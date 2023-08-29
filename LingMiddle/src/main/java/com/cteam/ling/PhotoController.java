@@ -38,6 +38,7 @@ public class PhotoController {
 		System.out.println(req.getLocalAddr());
 		System.out.println(req.getLocalPort());
 		System.out.println(req.getContextPath() + "/폴더");
+		System.out.println(vo.getCouple_num());
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("id", id);
 		param.put("couple_num", couple_num);
@@ -48,20 +49,17 @@ public class PhotoController {
 		//파일이 있는 상태의 요청을 받았는지에 따라서 유동적으로 MultipartRequest로 캐스팅
 		if (file != null) {
 			
-//			file.transferTo(new File("D:\\Ling\\Ling\\image\\photo\\all" ,"andimg.jpg"));
-			file.transferTo(new File(folderPath + "/" + vo.getCouple_num() + "/all","andimg.jpg"));
 			
-//		    String originalFilename = file.getOriginalFilename();
-//		    File targetFile = new File("D:\\Ling\\Ling\\image\\photo\\all", originalFilename);
-//		    
-//		    try {
-//		        file.transferTo(targetFile);
-//		    } catch (IOException e) {
-//		        e.printStackTrace();
-//		        // 업로드 실패 처리
-//		    }
+		    String originalFilename = file.getOriginalFilename();
+		    File targetFile = new File("D:\\Ling\\Ling\\image\\photo"+ vo.getCouple_num() + "\\all" , originalFilename);
+		    
+		    try {
+		        file.transferTo(targetFile);
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		        // 업로드 실패 처리
+		    }
 		} else {
-		    // 파일이 업로드되지 않은 경우 처리
 		}
 		//파일을 빼오기
 		//물리적으로 저장하기.
@@ -126,7 +124,6 @@ public class PhotoController {
 			HashMap<String, Object> param = new HashMap<String, Object>();
 			param.put("id", id);
 			param.put("couple_num", couple_num);
-					 //couple_num
 			List<FolderVO> list = dao.getFolder(param) ;
 
 			Gson gson = new Gson();	
@@ -137,10 +134,12 @@ public class PhotoController {
 	
 	
 	  @RequestMapping(value="/folder_LastImg", produces="text/html;charset=utf-8")
-	  public String folder_LastImg(String id, String couple_num) {
+	  public String folder_LastImg(String id, String couple_num, int folder_num) {
 	  
 	  HashMap<String, Object> param = new HashMap<String, Object>();
-	  param.put("id", id); param.put("couple_num", couple_num); //couple_num
+	  param.put("id", id); 
+	  param.put("couple_num", couple_num); //couple_num
+	  param.put("folder_num", folder_num);
 	  List<FolderVO> list = dao.getFolder(param) ;
 	  
 	  Gson gson = new Gson();

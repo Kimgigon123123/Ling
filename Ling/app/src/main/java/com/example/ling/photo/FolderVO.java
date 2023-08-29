@@ -7,6 +7,16 @@ public class FolderVO {
 
 	private String last_photo;
 
+	private int folder_num;
+
+	public int getFolder_num() {
+		return folder_num;
+	}
+
+	public void setFolder_num(int folder_num) {
+		this.folder_num = folder_num;
+	}
+
 	public String getLast_photo() {
 		return last_photo;
 	}
