@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -37,10 +38,27 @@ public class ReturnActivity extends AppCompatActivity {
             ArrayList<StoreReturnVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreReturnVO>>() {}.getType());
             binding.tvName.setText(list.get(0).getItem_name()+"");
             binding.tvReturnState.setText(list.get(0).getDelivery_state());
-            binding.tvPrice.setText(list.get(0).getItem_price()+"원");
+
+
+            double price = list.get(0).getItem_price();
+
+// 가격 값을 쉼표 포함한 형식으로 포맷팅
+            DecimalFormat decimalFormat = new DecimalFormat("#,###");
+            String formattedPrice = decimalFormat.format(price);
+// TextView에 쉼표 처리된 가격 설정
+            binding.tvPrice.setText(formattedPrice+"원");
+
+//            binding.tvPrice.setText(list.get(0).getItem_price()+"원");
             binding.tvCnt.setText(list.get(0).getPurchase_cnt()+"개");
-            binding.tvTotalPrice.setText(list.get(0).getTotal_price()+"원");
-            binding.tvTotalReturnPrice.setText(list.get(0).getTotal_price()+"원");
+            double totalPrice = list.get(0).getTotal_price();
+
+// 가격 값을 쉼표 포함한 형식으로 포맷팅
+            DecimalFormat decimalFormat2 = new DecimalFormat("#,###");
+            String formattedTotalPrice = decimalFormat2.format(totalPrice);
+
+// TextView에 쉼표 처리된 가격 설정
+            binding.tvTotalPrice.setText(formattedTotalPrice + "원");
+            binding.tvTotalReturnPrice.setText(formattedTotalPrice + "원");
             binding.tvAddress.setText(list.get(0).getAddress());
             return_money.set(list.get(0).getTotal_price());
 
