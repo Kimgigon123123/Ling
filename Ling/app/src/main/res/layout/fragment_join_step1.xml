@@ -93,7 +93,8 @@
 
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/LingButtonStyle"
         android:id="@+id/btn_next"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
