@@ -43,28 +43,24 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
                 h.binding.tvFolderTitle.setText(list.get(i).getFolder_name());
+                h.binding.imgvFolder.setImageResource(R.drawable.wedding);
+
+//                CommonConn conn = new CommonConn(context, "folder_LastImg");
+//                conn.addParamMap("id", CommonVar.loginInfo.getId());
+//                conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+//                conn.addParamMap("folder_num", list.get(i).getFolder_num());
+//
+//                conn.onExcute(new CommonConn.JswCallBack() {
+//
+//
+//                    @Override
+//                    public void onResult(boolean isResult, String data) {
+//
+//                        Glide.with(context).load(list.get(i).getLast_photo()).into(h.binding.imgvFolder);
+//                    }
+//                });
 
 
-                CommonConn conn = new CommonConn(context, "folder_LastImg");
-                conn.addParamMap("id", CommonVar.loginInfo.getId());
-                conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
-                conn.addParamMap("folder_name", list.get(i).getFolder_name());
-//                conn.addParamMap("pho_img", photo_list.get(i).getLast_photo());
-                conn.onExcute(new CommonConn.JswCallBack() {
-                    @Override
-                    public void onResult(boolean isResult, String data) {
-
-                        Glide.with(context).load(list.get(i).getLast_photo()).into(h.binding.imgvFolder);
-                    }
-                });
-
-//        conn.addParamMap("id", CommonVar.loginInfo.getId());
-//        conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
-//        conn.addParamMap("folder_name", folder_name);
-//        conn.addParamMap("pho_img", vo1.getPho_img());
-
-
-//                h.binding.tvFolderCnt.setText("("+list.size()+")");
                 h.binding.imgvFolderDelete.setOnClickListener(v -> {
                     AlertDialog.Builder alert = new AlertDialog.Builder(context);
                     alert.setTitle("앨범삭제");

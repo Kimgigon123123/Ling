@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -38,6 +39,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -66,7 +68,6 @@ public class PhotoActivity extends AppCompatActivity {
         binding = ActivityPhotoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         select();
-//        Glide.with(this).load("http://192.168.0.28/hanul/img//andimg.jpg").into(binding.imgvElbumCamera);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     window = this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -197,6 +198,7 @@ public class PhotoActivity extends AppCompatActivity {
                     RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), file);
                     MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "test.jpg", fileBody);
                     RetInterface api = new RetClient().getRet().create(RetInterface.class);
+
                     api.clientSendFile("file.f", new HashMap<>(), filePart).enqueue(new Callback<String>() {
                         @Override
                         public void onResponse(Call<String> call, Response<String> response) {
@@ -271,6 +273,8 @@ public class PhotoActivity extends AppCompatActivity {
 
 
 
+
+
     public String getRealPath(Uri contentUri){
         String res = null;
         String[] proj = {MediaStore.Images.Media.DATA};//
@@ -287,5 +291,7 @@ public class PhotoActivity extends AppCompatActivity {
         Log.d("TAG", "getRealPath: 커서" + res);
         return res;
     }
+
+
 
 }

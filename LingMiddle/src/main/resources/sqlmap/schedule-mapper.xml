@@ -31,7 +31,7 @@ and s.couple_num = #{couple_num}
 </update>
 
 <select id="dday" resultType="schedule.ScheAddVO">
-	select s.couple_num,trunc(sysdate-c.create_date,0) as create_date  from couple c, schedule s 
+	select s.couple_num, c.create_date as create_date  from couple c, schedule s 
 	where c.couple_num = s.couple_num and s.couple_num= #{couple_num}
 </select>
 
