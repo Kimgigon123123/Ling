@@ -129,6 +129,22 @@ select * from Store_item where item_code=#{item_code}
 delete store_item where item_code=#{item_code}
 </delete>
 
+<delete id="store_delete_zzim">
+delete store_zzim_product where item_code=#{item_code}
+</delete>
+
+<delete id="store_delete_buylist">
+delete store_purchase_product where item_code=#{item_code}
+</delete>
+
+<delete id="store_delete_return">
+delete store_return_list where item_code=#{item_code}
+</delete>
+
+<delete id="store_delete_basket">
+delete store_basket where item_code=#{item_code}
+</delete>
+
 
 
 </mapper>

@@ -3,9 +3,12 @@ package com.example.ling;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -13,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.example.ling.board.BoardFragment;
 
@@ -20,6 +24,8 @@ import com.example.ling.databinding.ActivityMainBinding;
 import com.example.ling.date.DateHomeFragment;
 import com.example.ling.chat.ChatFragment;
 import com.example.ling.home.HomeFragment;
+import com.example.ling.store.ChargeVO;
+import com.example.ling.store.CompleteDialog;
 import com.example.ling.store.StoreCoFragment;
 import com.example.ling.store.StoreMainFragment;
 
@@ -56,12 +62,28 @@ public class MainActivity extends AppCompatActivity {
         initItem();
         initUI();
 
+
+
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        //김기곤이 만듬 (스토어 장바구니 구매시 구매완료 다이얼로그 뜨게하기)
+        if( ChargeVO.isBuy == true){
+            Dialog dialog = new CompleteDialog(this,"BuyComplete");
+            dialog.show();
+            ChargeVO.isBuy=false;
+        }
+
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
 
 
     }

@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,9 +48,27 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
         h.binding.tvName.setText(list.get(i).getItem_name());
-        h.binding.tvPrice.setText("총: "+list.get(i).getItem_price()*list.get(i).getSelection()+"원");
+        // 가격 값 계산
+        double totalPrice = list.get(i).getItem_price() * list.get(i).getSelection();
+
+// 가격 값을 쉼표 포함한 형식으로 포맷팅
+        DecimalFormat decimalFormat2 = new DecimalFormat("#,###");
+        String formattedTotalPrice = decimalFormat2.format(totalPrice);
+
+// TextView에 쉼표 처리된 가격 설정
+        h.binding.tvPrice.setText("총: " + formattedTotalPrice + "원");
         h.binding.tvCnt.setText(list.get(i).getSelection()+"");
-        h.binding.tvPerPrice.setText(list.get(i).getItem_price()+"원");
+
+        // 가져온 가격 값
+        double price = list.get(i).getItem_price();
+
+// 가격 값을 쉼표 포함한 형식으로 포맷팅
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        String formattedPrice = decimalFormat.format(price);
+
+// TextView에 쉼표 처리된 가격 설정
+        h.binding.tvPerPrice.setText(formattedPrice+"원");
+
 
         String imageUrl = list.get(i).getItem_img();
         Picasso.get()
@@ -74,7 +93,15 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
 
 //                    Toast.makeText(activity, list.get(i).getSelection()+"개", Toast.LENGTH_SHORT).show();
                     h.binding.tvCnt.setText(list.get(i).getSelection()+"");
-                    h.binding.tvPrice.setText("총: "+list.get(i).getItem_price()*list.get(i).getSelection()+"원");
+                    // 가격 값 계산
+                    double totalPrice3 = list.get(i).getItem_price() * list.get(i).getSelection();
+
+// 가격 값을 쉼표 포함한 형식으로 포맷팅
+                    DecimalFormat decimalFormat3 = new DecimalFormat("#,###");
+                    String formattedTotalPrice3 = decimalFormat3.format(totalPrice3);
+
+// TextView에 쉼표 처리된 가격 설정
+                    h.binding.tvPrice.setText("총: " + formattedTotalPrice3 + "원");
 
                     activity.basket_total_price();
 
@@ -124,7 +151,15 @@ public class BasketAdapter extends RecyclerView.Adapter<BasketAdapter.ViewHolder
 
 //                            Toast.makeText(activity, list.get(i).getSelection()+"개", Toast.LENGTH_SHORT).show();
                             h.binding.tvCnt.setText(list.get(i).getSelection()+"");
-                            h.binding.tvPrice.setText("총: "+list.get(i).getItem_price()*list.get(i).getSelection()+"원");
+                            // 가격 값 계산
+                            int totalPrice4 = list.get(i).getItem_price() * list.get(i).getSelection();
+
+// 가격 값을 쉼표 포함한 형식으로 포맷팅
+                            DecimalFormat decimalFormat4 = new DecimalFormat("#,###");
+                            String formattedTotalPrice4 = decimalFormat4.format(totalPrice4);
+
+// TextView에 쉼표 처리된 가격 설정
+                            h.binding.tvPrice.setText("총: " + formattedTotalPrice4 + "원");
                             activity.basket_total_price();
 
 
