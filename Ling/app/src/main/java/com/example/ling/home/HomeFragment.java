@@ -245,7 +245,7 @@ public class HomeFragment extends Fragment {
             ArrayList<MainVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<MainVO>>() {}.getType());
             binding.tvMid.setText(list.get(0).mname);
             binding.tvFid.setText(list.get(0).fname);
-            binding.waveLoadingView.setBottomTitle("D +"+list.get(0).day);
+            binding.waveLoadingView.setBottomTitle("D +"+Integer.parseInt(list.get(0).day+1));
             couple_num=list.get(0).couple_num;
 
         });
