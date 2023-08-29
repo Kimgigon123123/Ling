@@ -627,25 +627,7 @@ function makeLegend() {
     });
 }
         
-        function customLegend(){
-        	var tag =
-        		`
-        		<ul class="row d-flex justify-content-center m-0 mt-4 p-0 small" id='legend'>`;
-        		
-        		for(var no=0; no<=6; no++){
-        			
-        		tag +=
-        			`<li class="col-auto"><span></span><font>\${no*10}~\${no*10+9}명</font></li>`;
-        			
-        		}
-        		tag +=
-        			`<li class="col-auto"><span></span><font>\${no*10}명 이상</font></li>
-        		</ul>`;
-        		$('#tab-content').after(tag);
-        		$('#legend span').each(function(idx, item){
-        			$(this).css('background-color', colors[idx]);
-        		})
-        }
+
         
         
         const carousel = new bootstrap.Carousel(document.getElementById('carouselExample'), {

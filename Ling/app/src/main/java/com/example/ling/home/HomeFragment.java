@@ -73,6 +73,7 @@ public class HomeFragment extends Fragment {
 
     private final int REQ_Gallery = 1000 , REQ_CAMERA = 1001;
     private final int DEFALUT_MANIMG = R.drawable.man;
+    private final int DEFALUT_WOMANIMG = R.drawable.woman;
     String couple_num;
     private SimpleDateFormat mFormat = new SimpleDateFormat("yyyy/M/d");
 
@@ -147,9 +148,16 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
-        binding.imgvManProfile.setOnClickListener(v -> {
-            showDialog();
-        });
+        if(CommonVar.loginInfo.getGender().equals("남")){
+            binding.imgvManProfile.setOnClickListener(v -> {
+                showDialog();
+            });
+        }else{
+            binding.imgvWomanProfile.setOnClickListener(v -> {
+                showDialog();
+            });
+        }
+
 
         binding.imgvMenuTimeCapsule.setOnClickListener(v->{
             Intent intent = new Intent(getContext(), CapsuleMainActivity.class);
@@ -223,9 +231,13 @@ public class HomeFragment extends Fragment {
             }else if(dialog_item[i].equals("카메라")){
                 //카메라 로직
                 showCamera();
-            }else if(dialog_item[i].equals("기본이미지")){
-                //카메라 로직
-                binding.imgvManProfile.setImageResource(DEFALUT_MANIMG);
+            }else{
+                if(CommonVar.loginInfo.getGender().equals("남")) {
+                    binding.imgvManProfile.setImageResource(DEFALUT_MANIMG);
+                }else{
+                    binding.imgvWomanProfile.setImageResource(DEFALUT_WOMANIMG);
+                }
+
             }
 
             dialog.dismiss();

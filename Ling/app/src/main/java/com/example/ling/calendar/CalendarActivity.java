@@ -84,7 +84,7 @@ public class CalendarActivity extends AppCompatActivity {
             ArrayList<ScheAddVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<ScheAddVO>>() {
             }.getType());
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String createDateString = list.get(0).getCreate_date() + "";
+            String createDateString = list.get(0).getCreate_date()+"";
             Date date = inputFormat.parse(createDateString);
 
             Calendar cal = Calendar.getInstance();
