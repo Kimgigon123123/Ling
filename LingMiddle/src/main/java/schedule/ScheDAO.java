@@ -41,7 +41,5 @@ public class ScheDAO {
 		return list;
 	}
 	
-//	public ScheAddVO getDday(ScheAddVO vo) {
-//		return sql.selectOne("sche.dday", vo);
-//	}
+
 }
