@@ -145,7 +145,7 @@ public class PhotoActivity extends AppCompatActivity {
 
                         FolderAdapter adapter = new FolderAdapter(folder_List);
                         binding.gridGallery.setAdapter(adapter);
-                        binding.gridGallery.setLayoutManager(new LinearLayoutManager(PhotoActivity.this));
+                        binding.gridGallery.setLayoutManager(new GridLayoutManager(PhotoActivity.this, 2));
 
                       //  Log.d("리스트사이즈", "select: " + foder_List.size());
                         //if문으로 list의 사이즈처리 해야함.

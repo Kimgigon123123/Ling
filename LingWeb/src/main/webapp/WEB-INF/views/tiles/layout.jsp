@@ -102,7 +102,7 @@ ${active_category}
 					</ul>
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link d-block"
-							href="login"> admin, <b>Logout</b>
+							href="logout"> admin, <b>Logout</b>
 						</a></li>
 					</ul>
 					<ul class="navbar-nav">
