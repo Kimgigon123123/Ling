@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -65,8 +66,8 @@ public class DeliveryActivity extends AppCompatActivity {
             binding.tvName.setText(list.get(0).getItem_name()+"");
             binding.tvCnt.setText(list.get(0).getPurchase_cnt()+"개");
             binding.tvDeliveryState.setText(list.get(0).getDelivery_state());
-            binding.tvPrice.setText(list.get(0).getItem_price()+"원");
-            binding.tvTotalPrice.setText("총 "+list.get(0).getTotal_price()+"원");
+            binding.tvPrice.setText(formatPrice(list.get(0).getItem_price()) + "원");
+            binding.tvTotalPrice.setText("총 " + formatPrice(list.get(0).getTotal_price()) + "원");
             binding.tvAddress.setText(list.get(0).getAddress());
         });
 
@@ -110,5 +111,10 @@ public class DeliveryActivity extends AppCompatActivity {
             dialog.show();
             ChargeVO.isBuy=false;
         }
+    }
+
+    private String formatPrice(int price) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        return decimalFormat.format(price);
     }
 }

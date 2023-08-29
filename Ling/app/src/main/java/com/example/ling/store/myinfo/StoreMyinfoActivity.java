@@ -24,6 +24,7 @@ import com.example.ling.store.storeCO.StorePurchaseListVO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class StoreMyinfoActivity extends AppCompatActivity {
@@ -118,7 +119,7 @@ public class StoreMyinfoActivity extends AppCompatActivity {
             ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMyinfoVO>>() {}.getType());
 
 
-            binding.tvMoney.setText(list.get(0).getMoney()+"");
+            binding.tvMoney.setText(formatPriceWithCommas(list.get(0).getMoney()) + "");
             binding.tvName.setText(list.get(0).getName());
             binding.tvAddress.setText(list.get(0).getAddress()+list.get(0).getDetail_add());
 
@@ -203,5 +204,9 @@ public class StoreMyinfoActivity extends AppCompatActivity {
         buylist();
         returnlist();
 
+    }
+
+    private String formatPriceWithCommas(int price) {
+        return NumberFormat.getInstance().format(price);
     }
 }

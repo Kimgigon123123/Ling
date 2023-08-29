@@ -117,8 +117,20 @@ public class StoreController {
 	public String store_insert(StoreVO vo,MultipartFile file,HttpServletRequest request) throws Exception {
 		
 		
+		String uploadPath = "D:\\Ling\\Ling\\image\\store\\"; // 디렉토리 경로
+
+		// 디렉토리 생성
+		File uploadDirectory = new File(uploadPath);
+		if (!uploadDirectory.exists()) {
+		    if (uploadDirectory.mkdirs()) {
+		        System.out.println("디렉토리 생성 성공");
+		    } else {
+		        System.out.println("디렉토리 생성 실패");
+		    }
+		}
+		
 		 if (file != null && !file.isEmpty()) {
-				String uploadPath="D:\\Ling\\Ling\\image\\store\\";
+//				String uploadPath="D:\\Ling\\Ling\\image\\store\\";
 				String filename = file.getOriginalFilename();
 				File filePath = new File(uploadPath, filename);
 				String item_img = "http://192.168.0.36:8080/ling/image/store/"+filename;
@@ -159,8 +171,20 @@ public class StoreController {
 				public String store_complete_update(Model model, StoreVO vo,MultipartFile file) throws Exception {
 					
 					
+					String uploadPath = "D:\\Ling\\Ling\\image\\store\\"; // 디렉토리 경로
+
+					// 디렉토리 생성
+					File uploadDirectory = new File(uploadPath);
+					if (!uploadDirectory.exists()) {
+					    if (uploadDirectory.mkdirs()) {
+					        System.out.println("디렉토리 생성 성공");
+					    } else {
+					        System.out.println("디렉토리 생성 실패");
+					    }
+					}
+					
 					if (file != null && !file.isEmpty()) {
-						String uploadPath="D:\\Ling\\Ling\\image\\store\\";
+//						String uploadPath="D:\\Ling\\Ling\\image\\store\\";
 						String filename = file.getOriginalFilename();
 						File filePath = new File(uploadPath, filename);
 						String item_img = "http://192.168.0.36:8080/ling/image/store/"+filename;
@@ -223,8 +247,12 @@ public class StoreController {
 				
 				@RequestMapping("/store_delete")
 				public String store_delete(String item_code) {
-					int result = sql.delete("store.store_delete",item_code);
 					
+					int result2 = sql.delete("store.store_delete_zzim",item_code);
+					int result3 = sql.delete("store.store_delete_buylist",item_code);
+					int result4 = sql.delete("store.store_delete_return",item_code);
+					int result5 = sql.delete("store.store_delete_basket",item_code);
+					int result = sql.delete("store.store_delete",item_code);
 					return "redirect:/store";
 				}
 	

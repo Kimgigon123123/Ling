@@ -26,8 +26,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class StoreCoAdater extends RecyclerView.Adapter<StoreCoAdater.ViewHolder> {
@@ -61,7 +63,13 @@ public class StoreCoAdater extends RecyclerView.Adapter<StoreCoAdater.ViewHolder
 
         h.binding.imgvItem.setImageResource(R.drawable.ic_launcher_background);
         h.binding.tvName.setText(list.get(i).getItem_name());
-        h.binding.tvPrice.setText(list.get(i).getItem_price()+"원");
+        double price = list.get(i).getItem_price();
+
+// 가격 값을 쉼표 포함한 형식으로 포맷팅
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        String formattedPrice = decimalFormat.format(price);
+// TextView에 쉼표 처리된 가격 설정
+        h.binding.tvPrice.setText(formattedPrice+"원");
         h.binding.btnAdd.setText(list.get(i).getZzim_product());
 //        if(zzimlist.get(num).getItem_code().equals(list.get(i).getItem_code())){
 //                    h.binding.btnAdd.setText("♥");
