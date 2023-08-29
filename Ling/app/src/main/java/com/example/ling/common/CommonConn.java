@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.util.HashMap;
 
 import retrofit2.Call;
@@ -60,18 +61,26 @@ public class CommonConn {
         api.postRet(mapping, paramMap).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                onPostExcute(true, response.body());
+                try {
+                    onPostExcute(true, response.body());
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
                 Toast.makeText(context, "서버와의 연결에 실패했습니다.", Toast.LENGTH_SHORT).show();
-                onPostExcute(false, null);
+                try {
+                    onPostExcute(false, null);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
-    private void onPostExcute(boolean isResult, String data){
+    private void onPostExcute(boolean isResult, String data) throws ParseException {
         if(dialog != null){
             dialog.dismiss();
         }
@@ -95,7 +104,7 @@ public class CommonConn {
 
     //옵저버 패턴 1번
     public interface JswCallBack{ //콜백 인터페이스
-        public void  onResult(boolean isResult, String data);
+        public void  onResult(boolean isResult, String data) throws ParseException;
     }
 
 }

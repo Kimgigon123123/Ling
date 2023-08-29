@@ -16,11 +16,11 @@
 	</select>
 	
 	<select id="folder_LastImg" resultType="photo.FolderVO">
-		select id, couple_num, folder_name, (select pho_img
+		select id, couple_num, folder_num, (select pho_img
 		from photo_category
-		where folder_name= #{folder_name}
-		and pho_no = (  select max(pho_no) from photo_category where folder_name= #{folder_name}))from photo_folder 
-		where couple_num = #{couple_num} and id = #{id}
+		where folder_num= '122'
+		and pho_no = (  select max(pho_no) from photo_category where folder_num= '122')) last_photo from photo_folder 
+		where couple_num = 2 and id = 'skawk1'
 	</select>
 
 	<insert id="folder_insert">
