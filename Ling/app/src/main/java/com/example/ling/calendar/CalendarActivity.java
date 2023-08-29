@@ -96,22 +96,23 @@ public class CalendarActivity extends AppCompatActivity {
             cal.set(nextYear, Calendar.MARCH, 14); // 다음 년도 3월 14일 설정
             Date nextYearMarch14 = cal.getTime();
 
-            cal.set(nextYear, Calendar.FEBRUARY, 14); // 다음 년도 3월 14일 설정
+            cal.set(nextYear, Calendar.FEBRUARY, 14); // 다음 년도 2월 14일 설정
             Date nextYearFeb14 = cal.getTime();
 
-            cal.set(nextYear, Calendar.APRIL, 14); // 다음 년도 3월 14일 설정
+            cal.set(nextYear, Calendar.APRIL, 14); // 다음 년도 4월 14일 설정
             Date nextYearApr14 = cal.getTime();
 
-            cal.set(nextYear, Calendar.MAY, 14); // 다음 년도 3월 14일 설정
+            cal.set(nextYear, Calendar.MAY, 14); // 다음 년도 5월 14일 설정
             Date nextYearMay14 = cal.getTime();
 
-            cal.set(nextYear, Calendar.JUNE, 14); // 다음 년도 3월 14일 설정
+            cal.set(nextYear, Calendar.JUNE, 14); // 다음 년도 6월 14일 설정
             Date nextYearJune14 = cal.getTime();
 
 
 
             SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date today = new Date();
+
 
             cal.setTime(date);
 

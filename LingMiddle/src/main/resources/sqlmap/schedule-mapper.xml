@@ -16,7 +16,7 @@ and s.couple_num = #{couple_num}
 	values(select c.couple_num, c.couple_id, s.sche_title, s.sche_date, s.sche_notice, sche ) -->
 	
 	insert into schedule(couple_num, id, sche_title, sche_date, sche_notice, sche_typecode)
-	select c.couple_num, lm.id, #{sche_title}, #{sche_date}, #{sche_notice}, 'travel'
+	select c.couple_num, lm.id, #{sche_title}, #{sche_date}, #{sche_notice}, #{sche_typecode}
 	from couple c
 	join ling_member lm on c.mid = lm.id or c.fid = lm.id
 	where lm.id = #{id}
@@ -33,6 +33,9 @@ and s.couple_num = #{couple_num}
 <select id="dday" resultType="schedule.ScheAddVO">
 	select s.couple_num, c.create_date as create_date  from couple c, schedule s 
 	where c.couple_num = s.couple_num and s.couple_num= #{couple_num}
+<!-- select c.couple_num, c.create_date from couple c -->
+<!-- left join schedule s on s.couple_num = c.couple_num -->
+
 </select>
 
 </mapper>
