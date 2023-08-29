@@ -54,6 +54,12 @@ public class Board_CommonFragment extends Fragment {
 
             startActivity(intent);
         });
+
+        binding.swipeLayout.setOnRefreshListener(()->{
+            select();
+            binding.swipeLayout.setRefreshing(false);
+        });
+
         return binding.getRoot();
     }
     public void select(){
@@ -68,6 +74,8 @@ public class Board_CommonFragment extends Fragment {
             binding.recvFree.setLayoutManager(new LinearLayoutManager(getContext()));
         });
     }
+
+
 
     @Override
     public void onStart() {

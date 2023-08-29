@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".board.BoardMainFragment"
-    android:background="@drawable/main_back_gradient_animation">
+    android:background="@color/white">
 
 
 
@@ -31,6 +31,15 @@
 
 
                     <LinearLayout
+                        android:layout_margin="10dp"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+
+                    <LinearLayout
+                        android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
@@ -38,13 +47,17 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
                             android:layout_weight="8"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="공지사항"
-                            android:textSize="20dp" />
+                             />
 
                         <TextView
+                            android:gravity="right"
                             android:layout_weight="2"
                             android:id="@+id/tv_notice_more"
                             android:layout_width="0dp"
@@ -52,7 +65,11 @@
                             android:text="+ 더보기" />
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_margin="10dp"
+                        android:padding="8dp"
+                        android:background="@color/gray"
+
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -89,11 +106,23 @@
                     </LinearLayout>
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recv_notice"
-                        android:layout_margin="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
+                    </LinearLayout>
+
+                <LinearLayout
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
                     <LinearLayout
+                        android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
@@ -101,13 +130,17 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
                             android:layout_weight="8"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="자유 게시판"
-                            android:textSize="20dp" />
+                            />
 
                         <TextView
+                            android:gravity="right"
                             android:id="@+id/tv_free_more"
                             android:layout_weight="2"
                             android:layout_width="0dp"
@@ -115,7 +148,11 @@
                             android:text="+ 더보기" />
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_margin="10dp"
+                        android:padding="8dp"
+                        android:background="@color/gray"
+
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -151,12 +188,26 @@
                             android:text="조회수"/>
                     </LinearLayout>
                     <androidx.recyclerview.widget.RecyclerView
+
                         android:id="@+id/recv_free"
-                        android:layout_margin="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
                     <LinearLayout
+                        android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
@@ -164,13 +215,17 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
                             android:layout_weight="8"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="고민 상담소"
-                            android:textSize="20dp" />
+                           />
 
                         <TextView
+                            android:gravity="right"
                             android:id="@+id/tv_worry_more"
                             android:layout_weight="2"
                             android:layout_width="0dp"
@@ -178,7 +233,11 @@
                             android:text="+ 더보기" />
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_margin="10dp"
+                        android:padding="8dp"
+                        android:background="@color/gray"
+
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -220,11 +279,23 @@
                     </LinearLayout>
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recv_worry"
-                        android:layout_margin="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
                     <LinearLayout
+                        android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
@@ -232,13 +303,17 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
                             android:layout_weight="8"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="짝궁 놀이터"
-                            android:textSize="20dp" />
+                             />
 
                         <TextView
+                            android:gravity="right"
                             android:id="@+id/tv_play_more"
                             android:layout_weight="2"
                             android:layout_width="0dp"
@@ -246,7 +321,11 @@
                             android:text="+ 더보기" />
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_margin="10dp"
+                        android:padding="8dp"
+                        android:background="@color/gray"
+
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -283,9 +362,13 @@
                     </LinearLayout>
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recv_play"
-                        android:layout_margin="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
+
+                </LinearLayout>
 
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
