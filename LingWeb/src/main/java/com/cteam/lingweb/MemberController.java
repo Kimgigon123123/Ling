@@ -2,7 +2,7 @@ package com.cteam.lingweb;
 
 import java.util.HashMap;
 
-
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -65,6 +65,15 @@ public class MemberController {
 			}
 		}
 	}
+	
+	@RequestMapping("logout")
+    public String logout(HttpSession session, HttpServletRequest request) {
+        session = request.getSession(false);
+        if (session != null) {
+            session.invalidate(); // 세션 무효화
+        }
+        return "redirect:/login"; // 로그인 페이지로 리디렉션
+    }
 	
 	@RequestMapping("/admin")
 	public String admin(HttpSession session) {
