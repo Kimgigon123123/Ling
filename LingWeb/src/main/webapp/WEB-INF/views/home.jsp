@@ -76,11 +76,11 @@
                     <div class="col-lg-6">
                         <!-- Mashead text and app badges-->
                         <div class="mb-5 mb-lg-0 text-center text-lg-start">
-                            <h1 class="display-1 lh-1 mb-3">Showcase your app beautifully.</h1>
-                            <p class="lead fw-normal text-muted mb-5">Launch your mobile app landing page faster with this free, open source theme from Start Bootstrap!</p>
+                            <h1 class="display-1 lh-1 mb-3">Ama et fac quod vis! Amor aeternus, LING!</h1>
+                            <p class="lead fw-normal text-muted mb-5">The most stingy words before meeting you, <br> the words I lived with after meeting you...</p>
                             <div class="d-flex flex-column flex-lg-row align-items-center">
-                                <a class="me-lg-3 mb-4 mb-lg-0" href="#!"><img class="app-badge" src="assets/img/google-play-badge.svg" alt="..." /></a>
-                                <a href="#!"><img class="app-badge" src="assets/img/app-store-badge.svg" alt="..." /></a>
+                                <a class="me-lg-3 mb-4 mb-lg-0" href="#!"><img class="app-badge" src="img/google-play-badge.svg" alt="..." /></a>
+                                <a href="#!"><img class="app-badge" src="img/app-store-badge.svg" alt="..." /></a>
                             </div>
                         </div>
                     </div>

@@ -39,7 +39,7 @@
                     <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
                        <li class="nav-item"><a class="nav-link me-lg-3" href="<c:url value= '/'/>">LING 소개</a></li>
                        <a class="nav-link me-lg-3 ${category eq 'faq' ? 'active' : ''}" href="<c:url value='/faq/list'/>">Community</a>
-					<li class="nav-item"><a class="nav-link me-lg-3" href="<c:url value= '/#chart_section'/>">Chart</a></li>
+					<li class="nav-item"><a class="nav-link me-lg-3" href="#chart">Chart</a></li>
 					<c:choose>
 
 						<c:when test="${loginId eq 'admin'}">
