@@ -13,9 +13,16 @@ public class Intercepter implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         
-    	
+    	// 컨트롤러가 요청을 처리하기 전에 실행되는 코드
+        HttpSession session = request.getSession();
+        String loginId = (String) session.getAttribute("loginId");
 
-    	    return true;
+        if (loginId == null) {
+            response.sendRedirect(request.getContextPath() + "/");
+            return false; // 컨트롤러 실행을 중단
+        }
+
+        return true; // 컨트롤러 실행 계속
         
         
     }
@@ -24,7 +31,7 @@ public class Intercepter implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
             ModelAndView modelAndView) throws Exception {
         
-        System.out.println("postHandle1");
+    	// 컨트롤러가 요청을 처리한 후에 실행되는 코드
         
         
     }
@@ -33,7 +40,7 @@ public class Intercepter implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
             throws Exception {
         
-        System.out.println("afterCompletion1");
+    	// 뷰 렌더링까지 완료된 후 실행되는 코드
         
         
     }    
