@@ -65,7 +65,8 @@
 
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/LingButtonStyle"
         android:id="@+id/btn_login"
         android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"

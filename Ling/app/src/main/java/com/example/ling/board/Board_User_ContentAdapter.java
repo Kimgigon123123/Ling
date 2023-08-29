@@ -43,7 +43,7 @@ public class Board_User_ContentAdapter extends RecyclerView.Adapter<Board_User_C
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        h.binding.userRecvNum.setText(boardvo.getId()+"");
+//        h.binding.userRecvNum.setText(boardvo.getId()+"");
         h.binding.userRecvWriter.setText(boardvo.getWriter());
         h.binding.userRecvTitle.setText(boardvo.getTitle());
         h.binding.userRecvDate.setText(boardvo.getWritedate());

@@ -243,9 +243,10 @@ public class HomeFragment extends Fragment {
         conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.onExcute((isResult, data) -> {
             ArrayList<MainVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<MainVO>>() {}.getType());
+            int dayValue = Integer.parseInt(list.get(0).day) + 1;
             binding.tvMid.setText(list.get(0).mname);
             binding.tvFid.setText(list.get(0).fname);
-            binding.waveLoadingView.setBottomTitle("D +"+Integer.parseInt(list.get(0).day+1));
+            binding.waveLoadingView.setBottomTitle("D +"+dayValue);
             couple_num=list.get(0).couple_num;
 
         });
