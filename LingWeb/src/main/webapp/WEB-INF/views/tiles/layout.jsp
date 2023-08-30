@@ -57,7 +57,7 @@
 
 <!-- active_category -->
 
-${active_category}
+
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mx-auto h-100">
 					
