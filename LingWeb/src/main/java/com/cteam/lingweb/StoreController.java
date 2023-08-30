@@ -526,6 +526,40 @@ public class StoreController {
 			
 				}
 				
+				
+				@RequestMapping("/returnlist")
+				public String returnlist(int tablename, Model model,HttpSession session ) {
+					if(tablename==0) {
+						session.setAttribute("active_category", "store");
+						List<StoreVO> list = sql.selectList("store.store_return_all");
+					
+						model.addAttribute("list",list);
+						
+						return "storelist/folder/return";	
+					}
+					else if(tablename==1) {
+						session.setAttribute("active_category", "store");
+						List<StoreVO> list = sql.selectList("store.store_return_ing");
+						model.addAttribute("list",list);
+						return "storelist/folder/return";		
+						
+					}else if(tablename==2) {
+						session.setAttribute("active_category", "store");
+						List<StoreVO> list = sql.selectList("store.store_return_complete");
+						model.addAttribute("list",list);
+						return "storelist/folder/return";	
+						
+					}else {
+						session.setAttribute("active_category", "store");
+						List<StoreVO> list = sql.selectList("store.store_return_cancel2");
+						model.addAttribute("list",list);
+						return "storelist/folder/return";	
+						
+					}
+					
+			
+				}
+				
 				@RequestMapping("/store_delete")
 				public String store_delete(String item_code) {
 					

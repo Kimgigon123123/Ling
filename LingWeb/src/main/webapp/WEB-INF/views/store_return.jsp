@@ -37,7 +37,7 @@
 				<div class="row mx-0 justify-content-between align-items-center mb-3">
 	          <h2 class="tm-block-title col-lg-4 px-0">상품 정보</h2>
 					
-	            <select class="custom-select col-lg-4" id="DeliverySelect">
+	            <select class="custom-select col-lg-4" id="ReturnSelect">
 	                <option value="0">전체</option>
 	                <option value="1" >환불처리중</option>
 	                <option value="2" >환불처리완료</option>
@@ -50,7 +50,7 @@
 				
 				
 					<div class="tm-product-table-container">
-						<table class="table table-hover tm-table-small tm-product-table">
+						<table class="table table-hover tm-table-small tm-product-table-container2">
 							<thead>
 								<tr>
 									<th scope="col">&nbsp;</th>
@@ -202,7 +202,18 @@
 		
 	 
 
-
+	 $(document).ready(function() {
+			$("#ReturnSelect").change(function(){
+		   		  console.log($(this).val())
+		       		$.ajax({
+		    		   url:'returnlist', 
+		    		   data: {tablename:$(this).val()}
+		    	   }).done(function(response){
+		    		   $('.tm-product-table-container').html(response)
+		    	     }) 
+		   	  }) 
+		        
+		    });
 
     </script>
 </body>
