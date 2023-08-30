@@ -162,7 +162,7 @@ public class CalendarAddActivity extends AppCompatActivity {
 
 
 
-
+        adapter.notifyDataSetChanged();
 
         conn.onExcute((isResult, data) ->  {
 

@@ -39,7 +39,7 @@ from (select row_number() over(order by faq_no) no, f.*
 	<choose>
 		<!-- 전체 -->
 		<when test="search == 'all'">
-			where faq_content like '%' || #{keyword} || '%'
+			where faq_category like '%' || #{keyword} || '%'
 		    or faq_title like '%' || #{keyword} || '%'
 		</when>
 		<!--제목-->

@@ -418,7 +418,7 @@
       	function period(){
       		initCanvas();
       		$.ajax({
-      			url: 'period'
+      			url: 'period',
       		}).done(function(response){
       			var info = {};
       			info.category = [], info.datas = [];
@@ -444,7 +444,7 @@
         		$(response).each(function(){
         			info.category.push(this.RANK);
         			info.datas.push(this.SALES);
-        			info.itemNames.push(this.ITEM_NAME);
+        			info.itemNames.push(this.ITEM_NAME); 
         			info.colors.push(this.ITEM_NAME);
         		})
         		console.log('data',info);
@@ -578,6 +578,8 @@ function barChart(info) {
                 autocolors: {
                     mode: 'data'
                 },
+                
+                
             },
             tooltip: {
                 callbacks: {
@@ -608,7 +610,7 @@ function barChart(info) {
 }
 
         //데이터수치 범위에 해당하는 범례 만들기
-function makeLegend() {
+/* function makeLegend() {
     var tag =
         `<ul class="row d-flex justify-content-center m-0 mt-4 p-0 small" id='legend'>`;
         
@@ -625,7 +627,19 @@ function makeLegend() {
     $('#legend span').each(function(idx, item) {
         $(this).css('background-color', colors[idx]);
     });
+} */
+
+function makeLegend(info) {
+    var tag = `<ul class="legend-list">`;
+        
+    for (var i = 0; i < info.itemNames.length; i++) {
+        tag += `<li><span style="background-color: ${info.colors[i]}"></span>${info.itemNames[i]}</li>`;
+    }
+    tag += `</ul>`;
+    
+    $('#legend-container').html(tag);
 }
+
         
 
         

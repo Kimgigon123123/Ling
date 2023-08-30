@@ -60,11 +60,10 @@ public class PhotoController {
 		        // 업로드 실패 처리
 		    }
 		} else {
+			
 		}
-		//파일을 빼오기
-		//물리적으로 저장하기.
-		//Middle/img/파일명을 크롬으로 요청하면 열리게 하기.
-		//실제 파일은 D:\Android\폴더\...
+		
+		
 		return new Gson().toJson("");
 		
 	}

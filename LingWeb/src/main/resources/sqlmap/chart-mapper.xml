@@ -19,8 +19,8 @@
 	
 	<select id="period" resultType="hashmap">
 	SELECT pr.period_text AS period_text, FLOOR(c.period / 100) * 100 AS period_range, COUNT(*) AS count
-	FROM (SELECT TRUNC(SUBSTR(TO_CHAR(sysdate - create_date), 2)) AS period
-   		  FROM couple
+	FROM (select trunc(to_char(sysdate - create_date)) as period
+            from couple
 		  ) c
 	JOIN period_range pr ON pr.period_range = FLOOR(c.period / 100) * 100
 	GROUP BY pr.period_text, FLOOR(c.period / 100) * 100
@@ -30,11 +30,15 @@
 	<select id="item_rank" resultType="hashmap">
 	<![CDATA[
 		SELECT rm.rank_text AS rank, si.item_name, si.sales
-		FROM (SELECT dense_rank() OVER (ORDER BY sales DESC) as item_rank, item_name, sales
-    		  FROM store_item
-				) si
-		JOIN rank_mapping rm ON si.item_rank = rm.rank_num
-		WHERE si.item_rank <= 10
+FROM (
+    SELECT DENSE_RANK() OVER (ORDER BY sales DESC) AS item_rank, 
+           item_name, 
+           sales,
+           ROW_NUMBER() OVER (PARTITION BY sales ORDER BY item_name) AS row_num
+    FROM store_item
+) si
+JOIN rank_mapping rm ON si.item_rank = rm.rank_num
+WHERE si.item_rank <= 10 AND si.row_num = 1
 	]]>
 	</select>
 	
