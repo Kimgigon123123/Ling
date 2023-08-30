@@ -1,7 +1,6 @@
 package com.cteam.lingweb;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import date.DateDAO;
 import date.DateVO;
+import date.PageVO;
 
 @Controller
 public class DateController {
@@ -25,25 +25,25 @@ public class DateController {
 	
 	// 여행 목록
 	@RequestMapping("/travel")
-	public String travel(HttpSession session, Model model, String search) {
+	public String travel(HttpSession session, Model model, PageVO page) {
 		session.setAttribute("active_category", "travel");
-		model.addAttribute("list", dao.travel_list(search));
+		model.addAttribute("page", dao.travel_list(page));
 		return "travel";
 	}
 	
 	// 맛집 목록
 	@RequestMapping("/restaurant")
-	public String restaurant(HttpSession session, Model model, String search) {
-		session.setAttribute("active_category", "restaurant");
-		model.addAttribute("list", dao.restaurant_list(search));
+	public String restaurant(HttpSession session, Model model, PageVO page) {
+		session.setAttribute("active_category", "travel");
+		model.addAttribute("page", dao.restaurant_list(page));
 		return "restaurant";
 	}
 	
 	// 축제 목록
 	@RequestMapping("/festival")
-	public String festival(HttpSession session, Model model, String search) {
-		session.setAttribute("active_category", "festival");
-		model.addAttribute("list", dao.festival_list(search));
+	public String festival(HttpSession session, Model model, PageVO page) {
+		session.setAttribute("active_category", "travel");
+		model.addAttribute("page", dao.festival_list(page));
 		return "festival";
 	}
 	

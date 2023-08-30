@@ -13,9 +13,9 @@
 <!-- https://fonts.google.com/specimen/Roboto -->
 <link rel="stylesheet" href="css/fontawesome.min.css" />
 <!-- https://fontawesome.com/ -->
-<link rel="stylesheet" href="css/bootstrap.min.css" />
+<!-- <link rel="stylesheet" href="css/bootstrap.min.css" /> -->
 <!-- https://getbootstrap.com/ -->
-<link rel="stylesheet" href="css/templatemo-style.css">
+<!-- <link rel="stylesheet" href="css/templatemo-style.css"> -->
 <!--
 	Product Admin CSS Template
 	https://templatemo.com/tm-524-product-admin
@@ -25,16 +25,26 @@
 	<div class="container mt-5">
 		<div class="row tm-content-row">
 			<div class="col-sm-12 col-md-12 tm-block-col">
-			<div class="col-4">
-			<form method="post" action="travel">
-				<div class="input-group mb-4">
-					<input type="text" autocomplete="off" name="search" placeholder="검색어를 입력하세요." class="form-control custom-search-input">
-					<button class="btn px-3 py-2">
-						<i class="fa-solid fa-magnifying-glass"></i>
-					</button>
-				</div>
-			</form>
-		</div>
+				<form method="post" action="travel">
+				<div class="row justify-content-between">
+				<div class="col-4">
+					<div class="input-group mb-4">
+						<input type="text" autocomplete="off" value="${page.search }" name="search" placeholder="검색어를 입력하세요." class="form-control custom-search-input">
+						<button class="btn px-3 py-2">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</div>
+					</div>
+					<div class="col-auto">
+					<select class="form-select" name="pageList">
+						<c:forEach var="i" begin="1" end="5">
+							<option value="${10*i }">${10*i }개씩</option>
+						</c:forEach>
+					</select>
+					</div>
+					<input type="hidden" name="curPage" value="1">
+					</div>
+				</form>
 				<div class="tm-bg-primary-dark tm-block tm-block-products2">
 					<div class="tm-product-table-container2">
 						<table class="table tm-table-small">
@@ -48,13 +58,13 @@
 								</tr>
 							</thead>
 							<tbody>
-							<c:forEach items="${list}" var="list">
+							<c:forEach items="${page.list}" var="vo">
 								<tr>
-									<th scope="row"><input type="checkbox" name="selectedItems" value="${list.date_id }"/></th>
-									<td class="tm-product-name">${list.date_name }</td>
-									<td>${list.date_address }</td>
-									<td>${list.tel }</td>
-									<td><a href="info?date_id=${list.date_id }" class="tm-product-info-link">
+									<th scope="row"><input type="checkbox" name="selectedItems" value="${vo.date_id }"/></th>
+									<td class="tm-product-name">${vo.date_name }</td>
+									<td>${vo.date_address }</td>
+									<td>${vo.tel }</td>
+									<td><a href="info?date_id=${vo.date_id }" class="tm-product-info-link">
 									<i class="fa-solid fa-circle-info" style="color: #ffffff;"></i>
 									</a></td>
 								</tr>
@@ -62,6 +72,7 @@
 							</tbody>
 						</table>
 					</div>
+					<jsp:include page="/WEB-INF/views/page.jsp" />
 					<!-- table container -->
 					<a href="new"
 						class="btn btn-primary btn-block text-uppercase mb-3">관광지 등록</a>
@@ -107,6 +118,15 @@
             alert("삭제할 항목을 선택해주세요.");
         }
     })
+    
+    	// 조회목록갯수변경시
+		$('[name=pageList]').change(function(){
+			// 목록갯수 변경시는 총 페이지수가 달라지므로 항상 1페이지에 위치해야 함.
+			if ($('[name=curPage]').val(${page.curPage}))
+			$('form').submit()
+		})
+		// 해당 목록갯수가 선택되어있게
+		$('[name=pageList]').val(${page.pageList}).prop('selected', true);
     </script>
 </body>
 </html>

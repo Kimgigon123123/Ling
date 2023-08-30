@@ -4523,7 +4523,6 @@ textarea.form-control-lg {
   padding-left: 0;
   list-style: none;
 }
-
 .page-link {
   position: relative;
   display: block;
@@ -4542,9 +4541,10 @@ textarea.form-control-lg {
 }
 .page-link:hover {
   z-index: 2;
-  color: var(--bs-pagination-hover-color);
-  background-color: var(--bs-pagination-hover-bg);
-  border-color: var(--bs-pagination-hover-border-color);
+  color: red;
+  /* color: var(--bs-pagination-hover-color); */
+  /* background-color: var(--bs-pagination-hover-bg);
+  border-color: var(--bs-pagination-hover-border-color); */
 }
 .page-link:focus {
   z-index: 3;
