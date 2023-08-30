@@ -5,6 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+        /* 체크박스 비활성화 스타일 */
+        input[type="checkbox"]:disabled {
+            background-color: #888888; /* 배경색 */
+            
+            
+        }
+    </style>
 </head>
 <body>
 <table class="table table-hover tm-table-small tm-product-table">
@@ -24,7 +32,7 @@
                 <tbody>
 				<c:forEach items="${list}" var="vo">
 				<tr>
-					<th scope="row"><input type="checkbox" /></th>
+					<th scope="row"><input type="checkbox" ${vo.couple_num != null ? 'disabled' : ''}/></th>
 					<td class="tm-product-name">${vo.id }</td>
 					<td>${vo.pw }</td>
 					<td>${vo.name }</td>

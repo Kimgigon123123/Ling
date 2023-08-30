@@ -2,6 +2,16 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
+<head>
+<style>
+        /* 체크박스 비활성화 스타일 */
+        input[type="checkbox"]:disabled {
+            background-color: #888888; /* 배경색 */
+            
+            
+        }
+    </style>
+</head>
   
 <body id="reportsPage">
 
@@ -36,7 +46,7 @@
                 <tbody>
 				<c:forEach items="${list}" var="vo">
 				<tr>
-					<th scope="row"><input type="checkbox" /></th>
+					<th scope="row"><input type="checkbox" ${vo.couple_num != null ? 'disabled' : ''} /></th>
 					<td class="tm-product-name">${vo.id }</td>
 					<td>${vo.pw }</td>
 					<td>${vo.name }</td>
@@ -44,7 +54,7 @@
 					<td>${vo.email }</td>
 					<td>${vo.phone }</td>
 					<td>${vo.birth }</td>
-					<td><a href="detailmember?${itemContent}<th scope="col">&nbsp;</th>id=${vo.id }" class="tm-product-delete-link"> <i class="fa-solid fa-wrench"></i>
+					<td><a href="detailmember?id=${vo.id}" class="tm-product-delete-link"> <i class="fa-solid fa-wrench"></i>
 					</a></td>
 				</tr>
 				</c:forEach>
@@ -90,6 +100,26 @@
     	     }) 
    	  }) 
         
+   	  // 첫 페이지 로딩 시
+    checkAdminFilter();
+   
+    // ADMIN 선택 시 신규등록 버튼 보이기/숨기기
+    $("#filterSelect").change(function() {
+        checkAdminFilter();
+        
+    });
+
+    function checkAdminFilter() {
+        var selectedValue = $("#filterSelect").val();
+        if (selectedValue === "2") { // ADMIN
+            $(".btn-block.mb-3").show(); // 신규등록 버튼 보이기
+        } else {
+            $(".btn-block.mb-3").hide(); // 신규등록 버튼 숨기기
+        }
+        
+    }
+    
+    
     });
     
 </script>
