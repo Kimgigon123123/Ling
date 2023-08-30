@@ -40,7 +40,21 @@
            <interceptor>
                <mapping path="/lingmember"/>
                <mapping path="/board"/>
+               <mapping path="/addstore"/>
+               <mapping path="/admin"/>
+               <mapping path="/contentboard"/>
+               <mapping path="/detailboard"/>
+               <mapping path="/detailmember"/>
+               <mapping path="/festival"/>
+               <mapping path="/insertboard"/>
+               <mapping path="/insertmember"/>
+               <mapping path="/restaurant"/>
+               <mapping path="/store_delivery"/>
+               <mapping path="/store_info"/>
+               <mapping path="/store_return"/>
+               <mapping path="/store_update"/>
                <mapping path="/store"/>
+               <mapping path="/travel"/>
                <!-- <mapping path="/**"/> -->
                    <beans:bean id="Intercepter" class="member.Intercepter"/>
         </interceptor>

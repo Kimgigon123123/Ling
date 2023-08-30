@@ -76,7 +76,7 @@
 						</table>
 						<div class="btn-toolbar gap-2 mt-5">
 							<button class="btn btn-primary" onclick="goBack()">목록으로</button>
-							<button class="btn btn-info" onclick="toggleComments()">댓글보기</button>
+							<button class="btn btn-info" onclick="toggleComments()">댓글보기 (${vo.count})</button>
 						</div>
 					
 
@@ -101,7 +101,7 @@
             <div class="author">${cvo.writer}</div>
             <div class="content">${cvo.content}</div>
             <div class="time">${cvo.writedate }</div>
-            <button onclick="toggleReComments(${cvo.id},$(this))">답글(${cvo.count})</button>
+            <button onclick="toggleReComments(${cvo.id},$(this))">답글(<span class="count">${cvo.count}</span>)</button>
             	<div class="recommentSection" style="display: none; margin-left: 30px;margin-top: 20px;">
                   	<div class="row">
 					<div class="col-10">
@@ -141,7 +141,9 @@ function toggleComments() {
 }
 function toggleReComments(id,button) {
 	console.log(button.text())
-	
+	if(button.children('.count').text()==0){
+		return
+	}
     var recommentSection = button.siblings('.recommentSection');
     if ($(recommentSection).css('display') === "none") {
     	$.ajax({
@@ -156,7 +158,9 @@ function toggleReComments(id,button) {
     	    		<div class="author">\${this.writer}</div>
     	            <div class="content">\${this.content}</div>
     	            <div class="time">\${this.writedate}</div></div>`
-    		})
+    		})    		
+    		button.siblings('.recommentSection').children('.recomment').remove()
+    		
     		button.siblings('.recommentSection').append(recomment)
     	})
         $(recommentSection).css('display', "block");
