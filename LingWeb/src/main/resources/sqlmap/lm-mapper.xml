@@ -26,8 +26,8 @@ update Ling_member set pw = #{pw} where id = #{id}
 
 <!--회원가입:회원정보신규저장  -->
 <insert id="join">
-insert into Ling_member (id, pw, name, gender, birth, phone, email)
-values (#{id}, #{pw}, #{name}, #{gender}, #{birth}, #{phone},#{email})
+insert into Ling_member (id, pw, name, gender, birth, phone, email, admin)
+values (#{id}, #{pw}, #{name}, #{gender}, #{birth}, #{phone},#{email},#{admin})
 </insert>
 
 <!--해당 아이디의 회원정보 조회  -->
@@ -41,10 +41,17 @@ insert into couple (mid, fid) values (#{mid} , #{fid})
 
 <!-- 전체 회원정보 조회 -->
 <select id="list" resultType="member.MemberVO">
-select id, pw, name, gender, email, phone, to_char(birth,'YYYY-MM-DD')birth
-from LING_MEMBER
+<!-- select id, pw, name, gender, email, phone, to_char(birth,'YYYY-MM-DD')birth
+from LING_MEMBER -->
+select lm.id, lm.pw, lm.name, lm.gender, lm.email, lm.phone, lm.birth, c.couple_num
+from ling_member lm
+left join couple c on lm.id = c.mid or lm.id = c.fid
 where admin='N'
+<if test="order !=null">
+order by ${order} ${sort}
+</if>
 </select>
+
 
 <select id="adminlist" resultType="member.MemberVO">
 select id, pw, name, gender, email, phone, to_char(birth,'YYYY-MM-DD')birth
@@ -55,6 +62,9 @@ where admin='Y'
 <select id="couplelist" resultType="member.CoupleVO">
 select couple_num, mid, fid, create_date
 from couple
+<if test="order !=null">
+order by ${order} ${sort}
+</if>
 </select>
 
 <!-- 회원정보 변경저장 -->

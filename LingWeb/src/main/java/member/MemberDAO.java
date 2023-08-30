@@ -54,10 +54,15 @@ public class MemberDAO {
 	public int matching(HashMap<String, Object> map) {
 		return sql.insert("member.matching", map);
 	}
-
+	
 	public List<MemberVO> member_list() {
 		
 		return sql.selectList("member.list");
+	}
+	
+	public List<MemberVO> member_list_id_by(HashMap<String, Object> map) {
+		
+		return sql.selectList("member.list", map);
 	}
 	
 	public List<MemberVO> adminlist() {
@@ -68,6 +73,11 @@ public class MemberDAO {
 	public List<MemberVO> couplelist() {
 		
 		return sql.selectList("member.couplelist");
+	}
+	
+	public List<MemberVO> couplelist_order(HashMap<String, Object> map) {
+		
+		return sql.selectList("member.couplelist", map);
 	}
 	
 	public int updatemember(MemberVO vo) {

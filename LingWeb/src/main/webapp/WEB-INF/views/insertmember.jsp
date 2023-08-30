@@ -44,7 +44,18 @@
                     class="form-control validate"
                   />
                 </div>
-                <div class="form-group col-lg-6">
+                <div class="form-group col-lg-3">
+                  <label for="admin">ADMIN</label>
+                  <div>
+                 <div class="form-check form-check-inline">
+    					<label class="form-check-label">
+        				<input class="form-check-input" checked type="radio" name="admin" value="Y" >Y
+    					</label>
+				 	</div>
+					
+					</div>
+                </div>
+                <div class="form-group col-lg-3">
                   <label for="gender">GENDER</label>
                   <div>
                  <div class="form-check form-check-inline">
