@@ -82,7 +82,7 @@
     <strong class="f-xlarge" style="font-size: 16px;">Ling에 대해서 궁금증을 해결하셨나요?</strong>
     <p class="f-large" style="margin: 0;">Ling을 사용하시면서 모르는 부분들은 여기서 알아가세요.</p>
     <p class="f-large" style="margin: 0;">여러분들의 행복한 연애생활을 Ling에서도 즐기세요.</p>
-    <p class="f-large" style="margin: 0;">행복</p>
+    <p class="f-large" style="margin: 0;">행복. 그 외의 문의사항 TEL.010-9511-3749 OR ghk1998@naver.com</p>
   </div>
 </div>
 

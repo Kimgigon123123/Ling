@@ -233,7 +233,7 @@
                         <br />
                         With My Partner With LING.
                     </h2>
-                    <a class="btn btn-outline-light py-3 px-4 rounded-pill" href="https://bellruns.com/" target="_blank">커플 밸런스 게임하러가기</a>
+                    <a class="btn btn-outline-light py-3 px-4 rounded-pill" href="#" target="_blank">커플 밸런스 게임하러가기</a>
                 </div>
             </div>
             </section>

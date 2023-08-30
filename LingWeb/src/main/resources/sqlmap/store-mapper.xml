@@ -227,7 +227,8 @@ case  when delivery_code=1 then '배송중'
      when delivery_code=3 then '배송취소'
      end as delivery_state
 ,
-id,item_price,(purchase_cnt*item_price) as total_price,purchase_cnt,item_name,item_img,address,i.category_code
+id,item_price,(purchase_cnt*item_price) as total_price,purchase_cnt,item_name,item_img,address,i.category_code,
+to_char(item_price,'999,999,999') as st_item_price,to_char((purchase_cnt*item_price),'999,999,999') as st_total_price
 from store_purchase_product p , store_item i
 where p.item_code = i.item_code
 order by to_number(order_num) desc
@@ -235,10 +236,12 @@ order by to_number(order_num) desc
 </select>
 
 <select id="store_return_select" resultType="storereturn.StoreReturnVO">
-select r.*,i.item_name,i.item_price,i.item_img,i.item_content ,((r.purchase_cnt)*(i.item_price)) as total_price
+select r.*,i.item_name,i.item_price,i.item_img,i.item_content ,
+((r.purchase_cnt)*(i.item_price)) as total_price,to_char(i.item_price,'999,999,999') as st_item_price,
+to_char((purchase_cnt*i.item_price),'999,999,999') as st_total_price
 from store_return_list r, store_item i
 where r.item_code = i.item_code
-order by return_code desc
+order by to_number(return_code) desc
 </select>
 
 
