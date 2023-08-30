@@ -187,13 +187,16 @@ public class PhotoActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        CommonConn conn = new CommonConn(this, "file.f");
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
+        conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
         launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+
             @Override
             public void onActivityResult(ActivityResult result) {
                 //액티비티(카메라 액티비티)가 종료되면 콜백으로 데이터를 받는 부분. (기존에는 onActivityResult메소드가 실행/ 현재는 해당 메소드)
 //                Glide.with(PhotoActivity.this).load(camera_uri).into(binding.imgvElbumCamera);
                 File file = new File(getRealPath(camera_uri));
-
                 if(file!=null){
                     RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), file);
                     MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "test.jpg", fileBody);

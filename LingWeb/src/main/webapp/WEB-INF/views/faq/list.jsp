@@ -65,12 +65,10 @@
 <tbody>
 <c:forEach items="${page.list}" var="vo">
 			<tr>
-				<%-- <td><a class="text-link" href="info.cu?id=${vo.id }">${vo.faqname }</a></td> --%>
 				
 				<td>${vo.faq_no }</td>
 				<td>${vo.faq_category }</td>
 				<td><a class="text-link" href="faq_info?faq_no=${vo.faq_no}">${vo.faq_title }</a></td>
-				<%-- <td>${vo.faq_title }</td> --%>
 				<td>${vo.faq_date }</td>
 			</tr>
 		</c:forEach>
@@ -82,12 +80,32 @@
   <img src="<c:url value='/image/couple.jpg'/>" alt="image" width="160" height="120" style="vertical-align: middle; margin-right: 10px;">
   <div style="text-align: left; display: inline-block;">
     <strong class="f-xlarge" style="font-size: 16px;">Ling에 대해서 궁금증을 해결하셨나요?</strong>
-    <p class="f-large" style="margin: 0;">멘트가 이상하대..</p>
-    <p class="f-large" style="margin: 0;">나중에 작성할 예정..</p>
-    <p class="f-large" style="margin: 0;">...</p>
+    <p class="f-large" style="margin: 0;">Ling을 사용하시면서 모르는 부분들은 여기서 알아가세요.</p>
+    <p class="f-large" style="margin: 0;">여러분들의 행복한 연애생활을 Ling에서도 즐기세요.</p>
+    <p class="f-large" style="margin: 0;">행복</p>
   </div>
 </div>
-<!-- 삽입내용 시작 -->
+
+
+
+<%-- <c:forEach items="${page.list}" var="vo" varStatus="loop"> --%>
+	
+<!-- <div class="accordion accordion-flush"> -->
+<!--   <div class="accordion-item"> -->
+<!--     <h2 class="accordion-header"> -->
+<%--       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${loop.index}" aria-expanded="false" aria-controls="flush-collapseOne"> --%>
+<%--         ${vo.faq_title } --%>
+<!--       </button> -->
+<!--     </h2> -->
+<%--     <div id="flush-collapse-${loop.index}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample"> --%>
+<%--       <div class="accordion-body" style="max-height: 300px; overflow-y: auto;"><pre>${vo.faq_content }</pre></div> --%>
+<!--     </div> -->
+<!--   </div> -->
+  
+<!-- </div> -->
+<%-- </c:forEach> --%>
+
+<%-- <jsp:include page="page.jsp"></jsp:include> --%>
 
 <div class="clearboth"></div>
 </div>
@@ -96,6 +114,9 @@
 
 
 <div class="content_clear"></div>
+
+
+
 
 </body>
 </html>

@@ -6,6 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/custom.css">
+<style>
+ .container {
+        max-height: 500px; /* 최대 높이 설정 */
+        overflow-y: auto; /* 세로 스크롤 적용 */
+    }
+</style>
 </head>
 <body>
 	<div class="container mt-9">
@@ -29,7 +35,7 @@
     </tr>
     <tr>
       <th>내용</th>
-      <td class="td-margin content-line-height" colspan="6">${vo.faq_content}</td>
+      <td class="td-margin content-line-height" colspan="6"><pre>${vo.faq_content}</pre></td>
     </tr>
   </table>
 </div>

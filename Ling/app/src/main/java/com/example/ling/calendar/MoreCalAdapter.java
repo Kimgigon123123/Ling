@@ -60,7 +60,7 @@ public class MoreCalAdapter extends RecyclerView.Adapter<MoreCalAdapter.ViewHold
 
             // 팝업 메뉴 아이템 클릭 리스너 설정
 
-            //수정 삭제 시 바로바로 반영이 되지 않음
+
             popup.setOnMenuItemClickListener(item -> {
                 int itemId = item.getItemId();
                 if (itemId == R.id.m1) {// 메뉴 아이템 1 선택 시 동작Y
@@ -94,14 +94,6 @@ public class MoreCalAdapter extends RecyclerView.Adapter<MoreCalAdapter.ViewHold
                         dialog.dismiss();
                         notifyDataSetChanged();
 
-                        conn = new CommonConn(context, "sche_list");
-                        conn.addParamMap("id", CommonVar.loginInfo.getId());
-                        conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
-
-                        conn.onExcute((isResult, data) -> {
-
-                        });
-
                     });
 
                     cancelButton.setOnClickListener(v1 -> dialog.dismiss());
@@ -117,6 +109,7 @@ public class MoreCalAdapter extends RecyclerView.Adapter<MoreCalAdapter.ViewHold
                             CommonConn conn = new CommonConn(context, "sche_delete");
                             conn.addParamMap("sche_no", list.get(i).getSche_no());
                             list.remove(i);
+
                             notifyDataSetChanged();
 
                             conn.onExcute((isResult, data) -> {

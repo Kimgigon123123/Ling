@@ -72,11 +72,13 @@ public class CommonConn {
             public void onFailure(Call<String> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getMessage());
                 Toast.makeText(context, "서버와의 연결에 실패했습니다.", Toast.LENGTH_SHORT).show();
+
                 try {
                     onPostExcute(false, null);
                 } catch (ParseException e) {
                     throw new RuntimeException(e);
                 }
+
             }
         });
     }
