@@ -46,11 +46,92 @@ public class StoreController {
 		return "store";
 	}
 	
+	
+	@RequestMapping(value = "/store_dr", method = RequestMethod.GET)
+	public String store_dr(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Dr");
+		List<StoreVO> list = sql.selectList("store.store_dr");
+		String total_sales = sql.selectOne("store.store_total_dr");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+	
+	@RequestMapping(value = "/store_ri", method = RequestMethod.GET)
+	public String store_ri(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Ri");
+		List<StoreVO> list = sql.selectList("store.store_ri");
+		String total_sales = sql.selectOne("store.store_total_ri");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+	
+	@RequestMapping(value = "/store_gi", method = RequestMethod.GET)
+	public String store_gi(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Gi");
+		List<StoreVO> list = sql.selectList("store.store_gi");
+		String total_sales = sql.selectOne("store.store_total_gi");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+	
+	@RequestMapping(value = "/store_etc", method = RequestMethod.GET)
+	public String store_etc(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Etc");
+		List<StoreVO> list = sql.selectList("store.store_etc");
+		String total_sales = sql.selectOne("store.store_total_etc");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+	
 	@RequestMapping(value = "/store_name_by", method = RequestMethod.GET)
 	public String store_name_by(HttpSession session, Model model) {
 		session.setAttribute("active_category", "store");
 		List<StoreVO> list = sql.selectList("store.store_name_by");
 		String total_sales = sql.selectOne("store.store_select_totalsales");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+	
+	@RequestMapping(value = "/store_name_dr", method = RequestMethod.GET)
+	public String store_name_dr(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Dr");
+		List<StoreVO> list = sql.selectList("store.store_name_dr");
+		String total_sales = sql.selectOne("store.store_total_dr");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+	
+	@RequestMapping(value = "/store_name_ri", method = RequestMethod.GET)
+	public String store_name_ri(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Ri");
+		List<StoreVO> list = sql.selectList("store.store_name_ri");
+		String total_sales = sql.selectOne("store.store_total_ri");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+	
+	@RequestMapping(value = "/store_name_gi", method = RequestMethod.GET)
+	public String store_name_gi(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Gi");
+		List<StoreVO> list = sql.selectList("store.store_name_gi");
+		String total_sales = sql.selectOne("store.store_total_gi");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+	
+	@RequestMapping(value = "/store_name_etc", method = RequestMethod.GET)
+	public String store_name_etc(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Etc");
+		List<StoreVO> list = sql.selectList("store.store_name_etc");
+		String total_sales = sql.selectOne("store.store_total_etc");
 		model.addAttribute("list",list);
 		model.addAttribute("total_sales",total_sales);
 		return "store";
@@ -66,6 +147,47 @@ public class StoreController {
 		return "store";
 	}
 	
+	
+	@RequestMapping(value = "/store_price_dr", method = RequestMethod.GET)
+	public String store_price_dr(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Dr");
+		List<StoreVO> list = sql.selectList("store.store_price_dr");
+		String total_sales = sql.selectOne("store.store_total_dr");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+	
+	@RequestMapping(value = "/store_price_ri", method = RequestMethod.GET)
+	public String store_price_ri(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Ri");
+		List<StoreVO> list = sql.selectList("store.store_price_ri");
+		String total_sales = sql.selectOne("store.store_total_ri");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+	
+	@RequestMapping(value = "/store_price_gi", method = RequestMethod.GET)
+	public String store_price_gi(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Gi");
+		List<StoreVO> list = sql.selectList("store.store_price_gi");
+		String total_sales = sql.selectOne("store.store_total_gi");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+	
+	@RequestMapping(value = "/store_price_etc", method = RequestMethod.GET)
+	public String store_price_etc(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Etc");
+		List<StoreVO> list = sql.selectList("store.store_price_etc");
+		String total_sales = sql.selectOne("store.store_total_etc");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+	
 	@RequestMapping(value = "/store_sales_by", method = RequestMethod.GET)
 	public String store_sales_by(HttpSession session, Model model) {
 		session.setAttribute("active_category", "store");
@@ -76,16 +198,95 @@ public class StoreController {
 		return "store";
 	}
 	
-	@RequestMapping(value = "/store_sales_amount", method = RequestMethod.GET)
-	public String store_sales_amount(HttpSession session, Model model) {
+	@RequestMapping(value = "/store_sales_dr", method = RequestMethod.GET)
+	public String store_sales_dr(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Dr");
+		List<StoreVO> list = sql.selectList("store.store_sales_dr");
+		String total_sales = sql.selectOne("store.store_total_dr");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+	
+	@RequestMapping(value = "/store_sales_ri", method = RequestMethod.GET)
+	public String store_sales_ri(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Ri");
+		List<StoreVO> list = sql.selectList("store.store_sales_ri");
+		String total_sales = sql.selectOne("store.store_total_ri");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+	
+	@RequestMapping(value = "/store_sales_gi", method = RequestMethod.GET)
+	public String store_sales_gi(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Gi");
+		List<StoreVO> list = sql.selectList("store.store_sales_gi");
+		String total_sales = sql.selectOne("store.store_total_gi");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+
+	@RequestMapping(value = "/store_sales_etc", method = RequestMethod.GET)
+	public String store_sales_etc(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Etc");
+		List<StoreVO> list = sql.selectList("store.store_sales_etc");
+		String total_sales = sql.selectOne("store.store_total_etc");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+	
+	@RequestMapping(value = "/store_amount", method = RequestMethod.GET)
+	public String store_amount(HttpSession session, Model model) {
 		session.setAttribute("active_category", "store");
-		List<StoreVO> list = sql.selectList("store.store_sales_amount");
+		List<StoreVO> list = sql.selectList("store.store_amount");
 		String total_sales = sql.selectOne("store.store_select_totalsales");
 		model.addAttribute("list",list);
 		model.addAttribute("total_sales",total_sales);
 		return "store";
 	}
 	
+	@RequestMapping(value = "/store_amount_dr", method = RequestMethod.GET)
+	public String store_amount_dr(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Dr");
+		List<StoreVO> list = sql.selectList("store.store_amount_dr");
+		String total_sales = sql.selectOne("store.store_total_dr");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+	
+	@RequestMapping(value = "/store_amount_ri", method = RequestMethod.GET)
+	public String store_amount_ri(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Ri");
+		List<StoreVO> list = sql.selectList("store.store_amount_ri");
+		String total_sales = sql.selectOne("store.store_total_ri");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+	
+	@RequestMapping(value = "/store_amount_gi", method = RequestMethod.GET)
+	public String store_amount_gi(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Gi");
+		List<StoreVO> list = sql.selectList("store.store_amount_gi");
+		String total_sales = sql.selectOne("store.store_total_gi");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
+	
+	@RequestMapping(value = "/store_amount_etc", method = RequestMethod.GET)
+	public String store_amount_etc(HttpSession session, Model model) {
+		session.setAttribute("active_category", "Etc");
+		List<StoreVO> list = sql.selectList("store.store_amount_etc");
+		String total_sales = sql.selectOne("store.store_total_etc");
+		model.addAttribute("list",list);
+		model.addAttribute("total_sales",total_sales);
+		return "store";
+	}
 	
 	@RequestMapping(value = "/store_delivery", method = RequestMethod.GET)
 	public String store_delivery(HttpSession session, Model model) {
@@ -105,7 +306,7 @@ public class StoreController {
 	
 	@ResponseBody@RequestMapping(value = "/accept_return", method = RequestMethod.GET)
 	public String accept_return(HttpSession session, Model model,String returnCodes,String userids) {
-		session.setAttribute("active_category", "store");
+		session.setAttribute("active_category", "Dr");
 		String[] returnCodeArr = returnCodes.split(","); 
 		String[] userIdArr = userids.split(",");
 		ArrayList<StoreReturnVO> list = new ArrayList<StoreReturnVO>();
@@ -242,8 +443,9 @@ public class StoreController {
 		
 				
 				@RequestMapping("/storelist")
-				public String changelist(int tablename, Model model ) {
+				public String changelist(int tablename, Model model,HttpSession session ) {
 					if(tablename==0) {
+						session.setAttribute("active_category", "store");
 						List<StoreVO> list = sql.selectList("store.store_select");
 						String total_sales = sql.selectOne("store.store_select_totalsales");
 						model.addAttribute("list",list);
@@ -251,18 +453,21 @@ public class StoreController {
 						return "storelist/folder/all";	
 					}
 					else if(tablename==1) {
+						session.setAttribute("active_category", "Dr");
 						List<StoreVO> list = sql.selectList("store.store_dr");
 						String total_sales = sql.selectOne("store.store_total_dr");
 						model.addAttribute("list",list);
 						model.addAttribute("total_sales",total_sales);
 						return "storelist/folder/all";			
 					}else if(tablename==2) {
+						session.setAttribute("active_category", "Ri");
 						List<StoreVO> list = sql.selectList("store.store_ri");
 						String total_sales = sql.selectOne("store.store_total_ri");
 						model.addAttribute("list",list);
 						model.addAttribute("total_sales",total_sales);
 						return "storelist/folder/all";	
 					}else if(tablename==3) {
+						session.setAttribute("active_category", "Gi");
 						List<StoreVO> list = sql.selectList("store.store_gi");
 						String total_sales = sql.selectOne("store.store_total_gi");
 						model.addAttribute("list",list);
@@ -270,6 +475,7 @@ public class StoreController {
 						return "storelist/folder/all";
 					}
 					else {
+						session.setAttribute("active_category", "Etc");
 						List<StoreVO> list = sql.selectList("store.store_etc");
 						String total_sales = sql.selectOne("store.store_total_etc");
 						model.addAttribute("list",list);
