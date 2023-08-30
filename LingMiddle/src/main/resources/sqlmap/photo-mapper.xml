@@ -38,12 +38,12 @@
 
 	</insert>
 	
-	<insert id="file.f">
-	insert into photo_category (pho_img, folder_num)
-			select #{pho_img}, pf.folder_num
-			from photo_folder pf
-	where pf.folder_name = 'all';
-	</insert>
+<!-- 	<insert id="file"> -->
+<!-- 	insert into photo_category (pho_img, folder_num) -->
+<!-- 			select #{pho_img}, pf.folder_num -->
+<!-- 			from photo_folder pf -->
+<!-- 	where pf.folder_name = 'all' -->
+<!-- 	</insert> -->
 	
 	<delete id="folder_delete">
 		delete from photo_folder where folder_name = #{folder_name}

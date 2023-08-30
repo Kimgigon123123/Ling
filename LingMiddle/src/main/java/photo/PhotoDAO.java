@@ -36,10 +36,10 @@ public class PhotoDAO {
 		System.out.println("성공여부 : " + result);
 	}
 	
-	public void file(FolderVO vo) {
-		int result = sql.insert("photo.file.f", vo);
-		System.out.println("성공여부 : " + result);
-	}
+//	public void file(FolderVO vo) {
+//		int result = sql.insert("photo.file", vo);
+//		System.out.println("성공여부 : " + result);
+//	}
 	
 	public int folderDelete(FolderVO vo) {
 		int result = sql.delete("photo.folder_delete", vo);
