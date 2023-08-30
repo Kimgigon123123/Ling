@@ -16,7 +16,18 @@
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <!-- https://getbootstrap.com/ -->
 <link rel="stylesheet" href="css/templatemo-style.css">
+<style>
+a {
+  color: white; /* 기본 색상을 흰색으로 설정 */
+  text-decoration: none; /* 밑줄 제거 */
+  transition: color 0.3s; /* 색상 변화에 부드러운 트랜지션 추가 */
+}
 
+/* 링크를 마우스로 호버할 때의 색상 설정 */
+a:hover {
+  color: your-desired-hover-color; /* 호버 시 색상 변경 */
+}
+</style>
 
 </head>
 <body>
@@ -42,11 +53,11 @@
 						<table class="table table-hover tm-table-small tm-product-table-container2">
 							<thead>
 								<tr>
-									<th scope="col">&nbsp;</th>
-									<th scope="col">상품명</th>
-									<th scope="col">상품가격</th>
-									<th scope="col">판매갯수</th>
-									<th scope="col">매출액</th>
+									<th scope="col"><a href="store">아이템번호</a></th>
+									<th scope="col"><a href="store_name_by">상품명</a></th>
+									<th scope="col"><a href="store_price_by">상품가격</a></th>
+									<th scope="col"><a href="store_sales_by">판매갯수</th>
+									<th scope="col"><a href="store_sales_amount">매출액</th>
 									<th scope="col">&nbsp;</th>
 									<th scope="col">&nbsp;</th>
 								</tr>
@@ -56,15 +67,15 @@
 
 								<c:forEach items="${list}" var="list">
 									<tr>
-									<th></th>
+									<th>${list.item_code}</th>
 <%-- 										<th scope="row"><a onclick="openSmallWindow('${list.item_img}')" --%>
 <!-- 											class="tm-product-delete-link"> <i -->
 <!-- 												class='fa-solid fa-circle-info'></i> -->
 <!-- 										</a></th> -->
 										<td class="tm-product-name">${list.item_name}</td>
-										<td>${list.item_price }</td>
+										<td>${list.st_item_price }</td>
 										<td>${list.sales }</td>
-										<td>${list.sales_amount }</td>
+										<td>${list.st_sales_amount }</td>
 										<td><a onclick="openSmallWindow('${list.item_img}')"
 											class="tm-product-delete-link"> <i
 												class='fa-solid fa-circle-info'></i>

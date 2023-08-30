@@ -74,8 +74,10 @@
                       class="custom-select tm-select-accounts"
                       id="category_code"
                       name="category_code"
+                      required
+                      
                     >
-                      <option selected>카테고리선택</option>
+                      <option value="" selected>카테고리선택</option>
                       <option value="Dr">커플옷</option>
                       <option value="Ri">커플반지</option>
                       <option value="Gi">선물</option>
@@ -94,6 +96,7 @@
                             type="number"
                             class="form-control validate"
                             data-large-mode="true"
+                            required
                           />
                         </div>
                         
@@ -102,7 +105,7 @@
               </div>
               <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                 <div class="tm-product-img-dummy mx-auto">
-                 <img class="tm-product-img-dummy mx-auto" id="preview" />
+                 <img class="tm-product-img-dummy mx-auto"  id="preview" />
                 </div>
                 <div class="custom-file mt-3 mb-3">
                   <input id="fileInput" name="file" type="file" style="display:none" onchange="readURL(this)"; />
