@@ -2,19 +2,53 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="date">
 
+<!-- travel -->
+<select id="totalTravel" resultType="Integer">
+	select count(*) from date_info where date_category_code = 'TO' <include refid="datesearch1"></include>
+</select>
+<sql id="datesearch1">
+	<if test="search != ''">
+	and (date_name like '%' || #{search} || '%' or date_address like '%' || #{search} || '%')
+	</if>
+</sql>
 <select id="travel" resultType="date.DateVO">
-	select * from date_info where date_category_code = 'TO' and (date_name like '%' || #{search,jdbcType=VARCHAR} || '%' or date_address like '%' || #{search,jdbcType=VARCHAR} || '%') 
-	and rownum <![CDATA[<=]]> 500
+select * from (select row_number() over( order by date_id desc) rn,  i.* from date_info i where date_category_code = 'TO'
+	<include refid="datesearch1"></include>) i
+where rn between #{beginList} and #{endList} order by rn desc
 </select>
+<!-- <select id="travel" resultType="date.DateVO">
+	select * from date_info where date_category_code = 'TO' and (date_name like '%' || #{search,jdbcType=VARCHAR} || '%' or date_address like '%' || #{search,jdbcType=VARCHAR} || '%')
+	and date_id between #{beginList} and #{endList}
+</select> -->
 
+<!-- restaurant -->
+<select id="totalRestaurant" resultType="Integer">
+	select count(*) from date_info where date_category_code = 'RE' <include refid="datesearch2"></include>
+</select>
+<sql id="datesearch2">
+	<if test="search != ''">
+	and (date_name like '%' || #{search} || '%' or date_address like '%' || #{search} || '%')
+	</if>
+</sql>
 <select id="restaurant" resultType="date.DateVO">
-	select * from date_info where date_category_code = 'RE' and (date_name like '%' || #{search,jdbcType=VARCHAR} || '%' or date_address like '%' || #{search,jdbcType=VARCHAR} || '%') 
-	and rownum <![CDATA[<=]]> 500
+select * from (select row_number() over( order by date_id desc) rn,  i.* from date_info i where date_category_code = 'RE'
+	<include refid="datesearch2"></include>) i
+where rn between #{beginList} and #{endList} order by rn desc
 </select>
 
+<!-- festival -->
+<select id="totalFestival" resultType="Integer">
+	select count(*) from date_info where date_category_code = 'FE' <include refid="datesearch3"></include>
+</select>
+<sql id="datesearch3">
+	<if test="search != ''">
+	and (date_name like '%' || #{search} || '%' or date_address like '%' || #{search} || '%')
+	</if>
+</sql>
 <select id="festival" resultType="date.DateVO">
-	select * from date_info where date_category_code = 'FE' and (date_name like '%' || #{search,jdbcType=VARCHAR} || '%' or date_address like '%' || #{search,jdbcType=VARCHAR} || '%') 
-	and rownum <![CDATA[<=]]> 500
+select * from (select row_number() over( order by date_id desc) rn,  i.* from date_info i where date_category_code = 'FE'
+	<include refid="datesearch3"></include>) i
+where rn between #{beginList} and #{endList} order by rn desc
 </select>
 
 <select id="info" resultType="date.DateVO">
