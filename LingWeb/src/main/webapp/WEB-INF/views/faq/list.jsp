@@ -52,7 +52,7 @@
 </div>
 </form>
 
-<table class="tb-list type11 mb-4 mt-2">
+<%-- <table class="tb-list type11 mb-4 mt-2">
 
 <thead>
 <tr>
@@ -83,29 +83,29 @@
     <p class="f-large" style="margin: 0;">Ling을 사용하시면서 모르는 부분들은 여기서 알아가세요.</p>
     <p class="f-large" style="margin: 0;">여러분들의 행복한 연애생활을 Ling에서도 즐기세요.</p>
     <p class="f-large" style="margin: 0;">행복. 그 외의 문의사항 TEL.010-9511-3749 OR ghk1998@naver.com</p>
-  </div>
-</div>
-
-
-
-<%-- <c:forEach items="${page.list}" var="vo" varStatus="loop"> --%>
-	
-<!-- <div class="accordion accordion-flush"> -->
-<!--   <div class="accordion-item"> -->
-<!--     <h2 class="accordion-header"> -->
-<%--       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${loop.index}" aria-expanded="false" aria-controls="flush-collapseOne"> --%>
-<%--         ${vo.faq_title } --%>
-<!--       </button> -->
-<!--     </h2> -->
-<%--     <div id="flush-collapse-${loop.index}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample"> --%>
-<%--       <div class="accordion-body" style="max-height: 300px; overflow-y: auto;"><pre>${vo.faq_content }</pre></div> --%>
-<!--     </div> -->
-<!--   </div> -->
-  
+  </div> --%>
 <!-- </div> -->
-<%-- </c:forEach> --%>
 
-<%-- <jsp:include page="page.jsp"></jsp:include> --%>
+
+
+<c:forEach items="${page.list}" var="vo" varStatus="loop">
+	
+<div class="accordion accordion-flush">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${loop.index}" aria-expanded="false" aria-controls="flush-collapseOne">
+        ${vo.faq_title }
+      </button>
+    </h2>
+    <div id="flush-collapse-${loop.index}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body" style="max-height: 300px; overflow-y: auto;"><pre>${vo.faq_content }</pre></div>
+    </div>
+  </div>
+  
+</div>
+</c:forEach>
+
+<jsp:include page="page.jsp"></jsp:include>
 
 <div class="clearboth"></div>
 </div>
