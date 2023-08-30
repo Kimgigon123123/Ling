@@ -322,6 +322,65 @@ delete store_return_list where item_code=#{item_code}
 delete store_basket where item_code=#{item_code}
 </delete>
 
+<select id="store_delivery_all" resultType="storereturn.StoreReturnVO">
+select order_num,p.item_code,
+case  when delivery_code=1 then '배송중'
+     when delivery_code=2 then '배송완료'
+     when delivery_code=3 then '배송취소'
+     end as delivery_state
+,
+id,item_price,(purchase_cnt*item_price) as total_price,purchase_cnt,item_name,item_img,address,i.category_code,
+to_char(item_price,'999,999,999') as st_item_price,to_char((purchase_cnt*item_price),'999,999,999') as st_total_price
+from store_purchase_product p , store_item i
+where p.item_code = i.item_code
+order by to_number(order_num) desc
+</select>
+
+<select id="store_delivery_ing" resultType="storereturn.StoreReturnVO">
+select order_num,p.item_code,
+case  when delivery_code=1 then '배송중'
+     when delivery_code=2 then '배송완료'
+     when delivery_code=3 then '배송취소'
+     end as delivery_state
+,
+id,item_price,(purchase_cnt*item_price) as total_price,purchase_cnt,item_name,item_img,address,i.category_code,
+to_char(item_price,'999,999,999') as st_item_price,to_char((purchase_cnt*item_price),'999,999,999') as st_total_price
+from store_purchase_product p , store_item i
+where p.item_code = i.item_code
+and delivery_code =1
+order by to_number(order_num) desc
+</select>
+
+
+<select id="store_delivery_complete" resultType="storereturn.StoreReturnVO">
+select order_num,p.item_code,
+case  when delivery_code=1 then '배송중'
+     when delivery_code=2 then '배송완료'
+     when delivery_code=3 then '배송취소'
+     end as delivery_state
+,
+id,item_price,(purchase_cnt*item_price) as total_price,purchase_cnt,item_name,item_img,address,i.category_code,
+to_char(item_price,'999,999,999') as st_item_price,to_char((purchase_cnt*item_price),'999,999,999') as st_total_price
+from store_purchase_product p , store_item i
+where p.item_code = i.item_code
+and delivery_code =2
+order by to_number(order_num) desc
+</select>
+
+<select id="store_delivery_cancel2" resultType="storereturn.StoreReturnVO">
+select order_num,p.item_code,
+case  when delivery_code=1 then '배송중'
+     when delivery_code=2 then '배송완료'
+     when delivery_code=3 then '배송취소'
+     end as delivery_state
+,
+id,item_price,(purchase_cnt*item_price) as total_price,purchase_cnt,item_name,item_img,address,i.category_code,
+to_char(item_price,'999,999,999') as st_item_price,to_char((purchase_cnt*item_price),'999,999,999') as st_total_price
+from store_purchase_product p , store_item i
+where p.item_code = i.item_code
+and delivery_code =3
+order by to_number(order_num) desc
+</select>
 
 
 </mapper>
