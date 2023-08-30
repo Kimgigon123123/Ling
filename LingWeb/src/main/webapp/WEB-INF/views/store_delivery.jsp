@@ -17,6 +17,15 @@
 <!-- https://getbootstrap.com/ -->
 <link rel="stylesheet" href="css/templatemo-style.css">
 
+<style>
+        /* 체크박스 비활성화 스타일 */
+        input[type="checkbox"]:disabled {
+            background-color: #888888; /* 배경색 */
+            
+            
+        }
+    </style>
+
 
 </head>
 <body>
@@ -42,14 +51,15 @@
 							<c:forEach items="${list}" var="vo">
 								<tr>
 									<th scope="row">
-									<input type="checkbox" />
+									<input type="checkbox" 
+									${vo.delivery_state == '배송완료' || vo.delivery_state == '배송취소' ? 'disabled' : ''} />
 											<input type="hidden" class="order_num" value="${vo.order_num}">
 									</th>
 							
 									<td class="tm-product-name"  style="padding-right: 20px;">${vo.item_name}</td>
 									<td    data-code="${vo.order_num} ">${vo.delivery_state }</td>
 									<td  >${vo.address }</td>
-									<td  >${vo.item_price} * ${vo.purchase_cnt }개 <br> ${vo.total_price }원</td>
+									<td  >${vo.st_item_price} * ${vo.purchase_cnt }개 <br> ${vo.st_total_price }원</td>
 									<td><a 
 											onclick="openSmallWindow('${vo.item_img}')"
 											class="tm-product-delete-link"> <i
@@ -115,6 +125,7 @@
 		        		$(chkBoxs).each(function(){
 		        			$(this).prop('checked', false);
 		        			$(this).closest('tr').children('td:eq(1)').text('배송완료');
+		        			location.reload();
 		        		})
 		        		
 		        		
@@ -150,6 +161,7 @@
 		        		$(chkBoxs).each(function(){
 		        			$(this).prop('checked', false);
 		        			$(this).closest('tr').children('td:eq(1)').text('배송취소');
+		        			location.reload(); 
 		        		})
 		        		
 		        		

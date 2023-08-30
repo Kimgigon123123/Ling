@@ -57,16 +57,16 @@
 
 <!-- active_category -->
 
-<!--  김기곤이 수정함  -->
+<!-- <!--  김기곤이 수정함  --> 
 
-<c:choose>
-    <c:when test="${active_category eq 'store' || active_category eq 'Dr' || active_category eq 'Ri' || active_category eq 'Gi' || active_category eq 'Etc'}">
-        Store
-    </c:when>
-    <c:otherwise>
-        ${active_category}
-    </c:otherwise>
-</c:choose>
+<%-- <c:choose> --%>
+<%--     <c:when test="${active_category eq 'store' || active_category eq 'Dr' || active_category eq 'Ri' || active_category eq 'Gi' || active_category eq 'Etc'}"> --%>
+<!--         Store -->
+<%--     </c:when> --%>
+<%--     <c:otherwise> --%>
+<%--         ${active_category} --%>
+<%--     </c:otherwise> --%>
+<%-- </c:choose> --%>
 
 <!--  ${active_category}  -->
 

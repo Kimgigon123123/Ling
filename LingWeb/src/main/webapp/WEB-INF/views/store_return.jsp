@@ -56,8 +56,8 @@
 										<td class="tm-product-name">${vo.item_name}</td>
 										<td data-code="${vo.return_code}">${vo.return_state}</td>
 										<td>${vo.address}</td>
-										<td>${vo.item_price}* ${vo.purchase_cnt }개 <br>
-											${vo.total_price}원
+										<td>${vo.st_item_price} * ${vo.purchase_cnt }개 <br>
+											${vo.st_total_price}원
 										</td>
 										<td><a onclick="openSmallWindow('${vo.item_img}')"
 											class="tm-product-delete-link"> <i

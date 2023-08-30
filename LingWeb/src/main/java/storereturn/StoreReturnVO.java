@@ -2,10 +2,22 @@ package storereturn;
 
 public class StoreReturnVO {
  int order_num,item_price,purchase_cnt,total_price,return_code;
- String item_code,item_name,delivery_state,item_img,id,address,category_code,return_state;
+ String item_code,item_name,delivery_state,item_img,id,address,category_code,return_state,st_item_price,st_total_price;
 
  
- public int getReturn_code() {
+ public String getSt_item_price() {
+	return st_item_price;
+}
+public void setSt_item_price(String st_item_price) {
+	this.st_item_price = st_item_price;
+}
+public String getSt_total_price() {
+	return st_total_price;
+}
+public void setSt_total_price(String st_total_price) {
+	this.st_total_price = st_total_price;
+}
+public int getReturn_code() {
 	return return_code;
 }
 public void setReturn_code(int return_code) {
