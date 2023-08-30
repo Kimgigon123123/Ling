@@ -23,7 +23,6 @@ import com.google.gson.Gson;
 import photo.FolderVO;
 import photo.PhotoDAO;
 import photo.PhotoVO;
-import schedule.ScheAddVO;
 
 @RestController
 public class PhotoController {
@@ -60,6 +59,7 @@ public class PhotoController {
 		    
 		    try {
 		        file.transferTo(targetFile);
+		        
 		    } catch (IOException e) {
 		        System.out.println("사진 저장에 실패하였습니다.");
 		    }
@@ -123,6 +123,11 @@ public class PhotoController {
 	private String replaceURL(HttpServletRequest req) {
 		String replaceURL = req.getContextPath();
 		return "http://" + req.getLocalAddr() + ":" + req.getLocalPort() + replaceURL + "/images/photo/";
+	}
+	
+	private String replaceURL(HttpServletRequest req , String couple_num, String file_name) {
+		String replaceURL = req.getContextPath();
+		return "http://" + req.getLocalAddr() + ":" + req.getLocalPort() + replaceURL + "/images/photo/" + couple_num + "/all" + file_name;
 	}
 	
 	@RequestMapping(value="/photo_list", produces="text/html;charset=utf-8")
