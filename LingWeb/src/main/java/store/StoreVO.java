@@ -2,11 +2,28 @@ package store;
 
 public class StoreVO {
 
- 	private String item_code,category_code, item_name,  item_img, item_content,zzim_product ;
+ 	private String item_code,category_code, item_name,  item_img, 
+ 	item_content,zzim_product,st_sales_amount,st_item_price ;
 	private int item_price,popular,sales,total_sales,sales_amount;
 
 	
 	
+public String getSt_item_price() {
+		return st_item_price;
+	}
+
+	public void setSt_item_price(String st_item_price) {
+		this.st_item_price = st_item_price;
+	}
+
+public String getSt_sales_amount() {
+		return st_sales_amount;
+	}
+
+	public void setSt_sales_amount(String st_sales_amount) {
+		this.st_sales_amount = st_sales_amount;
+	}
+
 public int getSales_amount() {
 		return sales_amount;
 	}

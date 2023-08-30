@@ -4,8 +4,36 @@
 
 <select id="store_select" resultType="store.StoreVO">
 
-select i.*,(item_price*sales) as sales_amount from store_item i
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i order by to_number(i.item_code) desc
 
+</select>
+
+<select id="store_name_by" resultType="store.StoreVO">
+
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i order by i.item_name
+
+</select>
+
+<select id="store_price_by" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i order by i.item_price
+</select>
+
+<select id="store_sales_by" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i order by i.sales desc
+</select>
+
+<select id="store_sales_amount" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i order by sales_amount desc
 </select>
 
 <select id="store_select_totalsales" resultType="String">
