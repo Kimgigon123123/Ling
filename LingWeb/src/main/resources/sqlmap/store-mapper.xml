@@ -30,7 +30,7 @@ to_char(item_price,'999,999,999') as st_item_price
 from store_item i order by i.sales desc
 </select>
 
-<select id="store_sales_amount" resultType="store.StoreVO">
+<select id="store_amount" resultType="store.StoreVO">
 select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount,
 to_char(item_price,'999,999,999') as st_item_price
 from store_item i order by sales_amount desc
@@ -42,7 +42,139 @@ select TO_CHAR(SUM(item_price * sales), '999,999,999') as total_sales from store
 
 
 <select id="store_dr" resultType="store.StoreVO">
-select i.*,(item_price*sales) as sales_amount from store_item i where category_code='Dr'
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Dr'
+order by to_number(i.item_code) desc
+</select>
+
+<select id="store_name_dr" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Dr'
+order by i.item_name
+</select>
+
+<select id="store_name_ri" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Ri'
+order by i.item_name
+</select>
+
+<select id="store_name_gi" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Gi'
+order by i.item_name
+</select>
+
+<select id="store_name_etc" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Etc'
+order by i.item_name
+</select>
+
+<select id="store_price_dr" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Dr'
+order by i.item_price
+</select>
+
+<select id="store_price_ri" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Ri'
+order by i.item_price
+</select>
+
+<select id="store_price_gi" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Gi'
+order by i.item_price
+</select>
+
+<select id="store_price_etc" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Etc'
+order by i.item_price
+</select>
+
+<select id="store_sales_dr" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Dr'
+order by i.sales desc
+</select>
+
+<select id="store_sales_ri" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Ri'
+order by i.sales desc
+</select>
+
+<select id="store_sales_gi" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Gi'
+order by i.sales desc
+</select>
+
+<select id="store_sales_etc" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Etc'
+order by i.sales desc
+</select>
+
+<select id="store_amount_dr" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Dr'
+order by sales_amount desc
+</select>
+
+<select id="store_amount_ri" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Ri'
+order by sales_amount desc
+</select>
+
+<select id="store_amount_gi" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Gi'
+order by sales_amount desc
+</select>
+
+<select id="store_amount_etc" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Etc'
+order by sales_amount desc
 </select>
 
 <select id="store_total_dr" resultType="String">
@@ -50,15 +182,25 @@ select TO_CHAR(SUM(item_price * sales), '999,999,999') as total_sales from store
 </select>
 
 <select id="store_ri" resultType="store.StoreVO">
-select i.*,(item_price*sales) as sales_amount from store_item i where category_code='Ri'
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Ri'
+order by to_number(i.item_code) desc
 </select>
+
+
 
 <select id="store_total_ri" resultType="String">
 select TO_CHAR(SUM(item_price * sales), '999,999,999') as total_sales from store_item where category_code='Ri'
 </select>
 
 <select id="store_gi" resultType="store.StoreVO">
-select i.*,(item_price*sales) as sales_amount from store_item i where category_code='Gi'
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Gi'
+order by to_number(i.item_code) desc
 </select>
 
 <select id="store_total_gi" resultType="String">
@@ -66,7 +208,11 @@ select TO_CHAR(SUM(item_price * sales), '999,999,999') as total_sales from store
 </select>
 
 <select id="store_etc" resultType="store.StoreVO">
-select i.*,(item_price*sales) as sales_amount from store_item i where category_code='Etc'
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Etc'
+order by to_number(i.item_code) desc
 </select>
 
 <select id="store_total_etc" resultType="String">

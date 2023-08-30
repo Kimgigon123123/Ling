@@ -42,10 +42,10 @@ a:hover {
 					
 	            <select class="custom-select col-lg-4" id="filterSelect">
 	                <option value="0">전체</option>
-	                <option value="1">커플옷</option>
-	                <option value="2">커플반지</option>
-	                 <option value="3">상품권</option>
-	                <option value="4">기타</option>
+	                <option value="1" <c:if test="${active_category eq 'Dr'}">selected</c:if> >커플옷</option>
+	                <option value="2" <c:if test="${active_category eq 'Ri'}">selected</c:if> >커플반지</option>
+	                 <option value="3" <c:if test="${active_category eq 'Gi'}">selected</c:if> >상품권</option>
+	                <option value="4" <c:if test="${active_category eq 'Etc'}">selected</c:if> >기타</option>
 	             
 	            </select>
             </div>
@@ -53,11 +53,41 @@ a:hover {
 						<table class="table table-hover tm-table-small tm-product-table-container2">
 							<thead>
 								<tr>
-									<th scope="col"><a href="store">아이템번호</a></th>
-									<th scope="col"><a href="store_name_by">상품명</a></th>
-									<th scope="col"><a href="store_price_by">상품가격</a></th>
-									<th scope="col"><a href="store_sales_by">판매갯수</th>
-									<th scope="col"><a href="store_sales_amount">매출액</th>
+									<th scope="col"><a 
+									<c:if test="${active_category eq 'store'}">href="store"</c:if>
+									<c:if test="${active_category eq 'Dr'}">href="store_dr"</c:if>
+									<c:if test="${active_category eq 'Ri'}">href="store_ri"</c:if>
+									<c:if test="${active_category eq 'Gi'}">href="store_gi"</c:if>
+									<c:if test="${active_category eq 'Etc'}">href="store_etc"</c:if>
+									>아이템번호</a></th>
+									<th scope="col"><a 
+									<c:if test="${active_category eq 'store'}">href="store_name_by"</c:if>
+									<c:if test="${active_category eq 'Dr'}">href="store_name_dr"</c:if>
+									<c:if test="${active_category eq 'Ri'}">href="store_name_ri"</c:if>
+									<c:if test="${active_category eq 'Gi'}">href="store_name_gi"</c:if>
+									<c:if test="${active_category eq 'Etc'}">href="store_name_etc"</c:if>
+									>상품명</a></th>
+									<th scope="col"><a 
+									<c:if test="${active_category eq 'store'}">href="store_price_by"</c:if>
+									<c:if test="${active_category eq 'Dr'}">href="store_price_dr"</c:if>
+									<c:if test="${active_category eq 'Ri'}">href="store_price_ri"</c:if>
+									<c:if test="${active_category eq 'Gi'}">href="store_price_gi"</c:if>
+									<c:if test="${active_category eq 'Etc'}">href="store_price_etc"</c:if>
+									>상품가격</a></th>
+									<th scope="col"><a
+									<c:if test="${active_category eq 'store'}">href="store_sales_by"</c:if>
+									<c:if test="${active_category eq 'Dr'}">href="store_sales_dr"</c:if>
+									<c:if test="${active_category eq 'Ri'}">href="store_sales_ri"</c:if>
+									<c:if test="${active_category eq 'Gi'}">href="store_sales_gi"</c:if>
+									<c:if test="${active_category eq 'Etc'}">href="store_sales_etc"</c:if>
+									>판매갯수</a></th>
+									<th scope="col"><a 
+									<c:if test="${active_category eq 'store'}">href="store_amount"</c:if>
+									<c:if test="${active_category eq 'Dr'}">href="store_amount_dr"</c:if>
+									<c:if test="${active_category eq 'Ri'}">href="store_amount_ri"</c:if>
+									<c:if test="${active_category eq 'Gi'}">href="store_amount_gi"</c:if>
+									<c:if test="${active_category eq 'Etc'}">href="store_amount_etc"</c:if>
+									>매출액</a></th>
 									<th scope="col">&nbsp;</th>
 									<th scope="col">&nbsp;</th>
 								</tr>
