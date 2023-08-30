@@ -12,6 +12,7 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
     Window window ;
+    private boolean doubleBackToExitPressedOnce = false;
+    private Handler mHandler = new Handler();
     ArrayList<MainMenuDTO> list = new ArrayList<>();
     String couple_num;
     @Override
@@ -182,5 +185,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
 
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+
+        mHandler.postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
+    }
 }
