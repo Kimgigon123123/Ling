@@ -28,7 +28,7 @@
         			<div class="input-group" >
             
             		<div style="width:88%;">
-                	<input type="text" class="form-control" placeholder="글 제목" name="title" value="${vo.title}" maxlength="40" style="width: 100%;">
+                	<input type="text" class="form-control validate"  placeholder="글 제목" name="title" value="${vo.title}" maxlength="40" style="width: 100%;">
             		</div>
         			</div>
    					</td>
@@ -40,7 +40,7 @@
 					<td>
 					<div class="input-group" >
 				
-					<textarea type="text" class="form-control" placeholder="글 내용을 작성하세요" name="content"  maxlength="1024" style="height: 400px;">${vo.content}</textarea></td>
+					<textarea type="text" class="form-control validate" placeholder="글 내용을 작성하세요" name="content"  maxlength="1024" style="height: 400px;">${vo.content}</textarea></td>
 					</div>
       				</tr>
 
@@ -49,9 +49,10 @@
                 
                 
                   
-                  
-                
-                <div class="form-group col-lg-6">
+                  <div class="form-group col-lg-6">
+                <h2 class="tm-block-title">작성자 <br> -${vo.writer}-</h2>
+                </div>
+                <%-- <div class="form-group col-lg-6">
                   <label for="name">writer</label>
                   <input
                     id="writer"
@@ -61,7 +62,7 @@
                     value="${vo.writer}"
                     class="form-control validate"
                   />
-                </div>
+                </div> --%>
                 <div class="form-group col-lg-6">
                   <label class="tm-hide-sm">&nbsp;</label>
                   <button

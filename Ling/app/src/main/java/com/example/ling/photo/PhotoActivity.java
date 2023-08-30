@@ -190,6 +190,7 @@ public class PhotoActivity extends AppCompatActivity {
         CommonConn conn = new CommonConn(this, "file.f");
         conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+
         launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
 
             @Override
@@ -199,10 +200,10 @@ public class PhotoActivity extends AppCompatActivity {
                 File file = new File(getRealPath(camera_uri));
                 if(file!=null){
                     RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), file);
-                    MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "test.jpg", fileBody);
+                    MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "ling.jpg", fileBody);
                     RetInterface api = new RetClient().getRet().create(RetInterface.class);
 
-                    api.clientSendFile("file.f", new HashMap<>(), filePart).enqueue(new Callback<String>() {
+                    api.clientSendFile("file", new HashMap<>(), filePart).enqueue(new Callback<String>() {
                         @Override
                         public void onResponse(Call<String> call, Response<String> response) {
 
