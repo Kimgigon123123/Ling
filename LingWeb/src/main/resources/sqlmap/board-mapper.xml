@@ -83,7 +83,7 @@ where id = #{id}
 <!--신규 게시글 저장  -->
 <insert id="insert">
 insert into LING_BOARD(board_cd, title, content, writer)
-values (#{board_cd}, #{title}, #{content}, admin)
+values (#{board_cd}, #{title}, #{content}, #{writer})
 </insert>
 
 <!--글 변경저장 처리 -->

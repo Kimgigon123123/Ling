@@ -36,7 +36,7 @@
 					<div class="form-group col-lg-12">
 					<label for="content">content</label>
       				<tr>
-					<td><textarea type="text" class="form-control validate" maxlength="1000" placeholder="글 내용을 작성하세요" name="content" value="${vo.content}" maxlength="1024" style="height: 400px;"></textarea></td>
+					<td><textarea  type="text" class="form-control validate" id="content" placeholder="글 내용을 작성하세요" name="content" value="${vo.content}" maxlength="1024" style="height: 400px;"></textarea></td>
 
       				</tr>
 
@@ -81,22 +81,31 @@
           </div>
         </div>
       </div>
-
+<script>
+  $(function() {
+      $("form").submit(function(event) {
+          // 각 입력 필드의 값을 가져옴
+          console.log(rtnNameFindValue("title"));
+          console.log(rtnNameFindValue("content"));
+          console.log(rtnNameFindValue("writer"));
+          
+          if (rtnNameFindValue("title") != "" && rtnNameFindValue("content") != "" && $(".writer").val() != "") {
+         
+          }else{
+        	     alert("모든 입력 항목을 채워주세요.");
+                 event.preventDefault(); // 제출을 막음
+          }
+      });
+  });
+  
+  function rtnNameFindValue(name) {
+	 return  $("[name=" + name + "]").val() ;
+	}
+  </script>
+ 
   </body>
-  <script>
-$(function() {
-    $("form").submit(function(event) {
-        // 각 입력 필드의 값을 가져옴
-        var title = $("#title").val();
-        var content = $("#content").val();
-        var writer = $("#writer").val();
+ 
+ 
+  
 
-        // 각 입력 필드의 값을 검사하여 빈 값인지 확인
-        if (title === "" || content === "" || writer === "") {
-            alert("모든 입력 항목을 채워주세요.");
-            event.preventDefault(); // 제출을 막음
-        }
-    });
-});
-</script>
 </html>
