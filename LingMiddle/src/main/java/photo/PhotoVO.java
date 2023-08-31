@@ -1,7 +1,7 @@
 package photo;
 
 public class PhotoVO {
-	private String folder_name, pho_img, pho_date, last_photo;
+	private String folder_name, pho_img, pho_date;
 	private int folder_num;
 	
 	
@@ -14,13 +14,7 @@ public class PhotoVO {
 		this.folder_num = folder_num;
 	}
 
-	public String getLast_photo() {
-		return last_photo;
-	}
 
-	public void setLast_photo(String last_photo) {
-		this.last_photo = last_photo;
-	}
 
 	public String getFolder_name() {
 		return folder_name;

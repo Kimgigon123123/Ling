@@ -15,13 +15,19 @@
 		select id, couple_num, folder_name from photo_folder where couple_num = #{couple_num} and id = #{id}
 	</select>
 	
-	<select id="folder_LastImg" resultType="photo.FolderVO">
-		select id, couple_num, folder_num, (select pho_img
-		from photo_category
-		where folder_num= '122'
-		and pho_no = (  select max(pho_no) from photo_category where folder_num= '122')) last_photo from photo_folder 
-		where couple_num = 2 and id = 'skawk1'
-	</select>
+<!-- 	<select id="folder_LastImg" resultType="photo.FolderVO"> -->
+<!-- 		SELECT pf.id, pf.couple_num, pf.folder_num, pf.folder_name, -->
+<!--     		(SELECT pc.pho_img  -->
+<!--     		 FROM photo_category pc -->
+<!--      		 WHERE pc.folder_num = pf.folder_num AND pc.pho_no = (SELECT MAX(pho_no)  -->
+<!--                         										  FROM photo_category  -->
+<!--                         										  WHERE folder_num = pf.folder_num)) AS last_photo  -->
+<!-- 		FROM photo_folder pf -->
+<!-- 		WHERE pf.couple_num = #{couple_num} AND pf.id = #{id} -->
+<!--     		  AND pf.folder_num IN (SELECT folder_num  -->
+<!--                          			 FROM photo_category  -->
+<!--                           			WHERE folder_num = pf.folder_num) -->
+<!-- 	</select> -->
 
 	<insert id="folder_insert">
 		INSERT INTO photo_folder (id, couple_num, folder_name)
@@ -36,6 +42,14 @@
 		WHERE
 		lm.id = #{id}
 
+	</insert>
+	
+	<insert id="photo_insert">
+		INSERT INTO photo_category (pho_img, folder_num, pho_date)
+		SELECT #{pho_img}, pf.folder_num, sysdate
+		FROM photo_folder pf
+		WHERE pf.couple_num = #{couple_num} AND pf.id = #{id}
+      	AND pf.folder_name = 'all';
 	</insert>
 	
 <!-- 	<insert id="file"> -->

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -40,6 +41,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.net.URISyntaxException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -109,9 +112,7 @@ public class PhotoActivity extends AppCompatActivity {
 
 
 
-        binding.imgvFolderAdd.setOnClickListener(view -> {
-            insert();
-        });
+
 
 
 
@@ -121,10 +122,15 @@ public class PhotoActivity extends AppCompatActivity {
 
         CommonConn conn = new CommonConn(this, "folder_insert");
 
+        Date currentDate = new Date();
+
+// 날짜를 원하는 형식으로 포맷
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        String formattedDate = dateFormat.format(currentDate);
 
             AlertDialog.Builder follder = new AlertDialog.Builder(this);
             name = new EditText(this);
-
+            name.setText(formattedDate);
             follder.setTitle("생성할 폴더명");
             follder.setView(name);
             follder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
@@ -183,7 +189,9 @@ public class PhotoActivity extends AppCompatActivity {
 
         });
     }
-
+    //어느 폴더에 넣을껀지 질문이나 선택. AlertDialog
+    //새로 폴더 추가 하기를 누르면 지금 년월일을 폴더이름으로한다.
+    //여기서 만들어서보내기.
     @Override
     protected void onStart() {
         super.onStart();
@@ -191,22 +199,51 @@ public class PhotoActivity extends AppCompatActivity {
         conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
 
+
+
+        binding.imgvFolderAdd.setOnClickListener(view -> {
+            insert();
+        });
         launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
 
             @Override
             public void onActivityResult(ActivityResult result) {
                 //액티비티(카메라 액티비티)가 종료되면 콜백으로 데이터를 받는 부분. (기존에는 onActivityResult메소드가 실행/ 현재는 해당 메소드)
 //                Glide.with(PhotoActivity.this).load(camera_uri).into(binding.imgvElbumCamera);
+
+
                 File file = new File(getRealPath(camera_uri));
                 if(file!=null){
                     RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), file);
-                    MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "ling.jpg", fileBody);
+                    MultipartBody.Part filePart = MultipartBody.Part.createFormData("file.f", "ling.jpg", fileBody);
                     RetInterface api = new RetClient().getRet().create(RetInterface.class);
-
-                    api.clientSendFile("file", new HashMap<>(), filePart).enqueue(new Callback<String>() {
+                    HashMap<String, RequestBody> param = new HashMap<>();
+//                    param.put("folder_name", RequestBody.create(MediaType.parse("text/plain"), folder_List.get(0).getFolder_name()));
+                    api.clientSendFile("file.f", param, filePart).enqueue(new Callback<String>() {
                         @Override
                         public void onResponse(Call<String> call, Response<String> response) {
-
+                            // 조회로직
+                            conn.onExcute((isResult, data) -> {
+//                                ArrayList<FolderVO> folderList = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
+//
+//                                // 폴더 이름 리스트 추출
+//                                ArrayList<String> folderNames = new ArrayList<>();
+//                                for (FolderVO folder : folderList) {
+//                                    folderNames.add(folder.getFolder_name());
+//                                }
+//
+//                                // 폴더 이름들을 선택 가능한 항목으로 AlertDialog에 보여주기
+//                                AlertDialog.Builder builder = new AlertDialog.Builder(PhotoActivity.this);
+//                                builder.setTitle("폴더 선택");
+//                                builder.setItems(folderNames.toArray(new String[0]), new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialogInterface, int i) {
+//                                        // 선택한 폴더 이름을 사용할 수 있음 (folderNames.get(i))
+//                                        // 해당 폴더 이름으로 작업 진행
+//                                    }
+//                                });
+//                                builder.create().show();
+                            });
                         }
 
                         @Override

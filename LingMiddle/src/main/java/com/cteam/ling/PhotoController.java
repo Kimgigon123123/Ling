@@ -2,6 +2,8 @@ package com.cteam.ling;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
@@ -33,8 +36,9 @@ public class PhotoController {
 	public static String folderPath = "D:\\Ling\\Ling\\image\\photo\\";
 //	public static String folderPath = "D:\\WorkSpace\\Ling\\image\\photo\\";
 	
-	@RequestMapping(value="/file", produces="text/html;charset=utf-8")
-	public String list(HttpServletRequest req, String id, String couple_num, String voJson) throws IllegalStateException, IOException { //req(요청에 대한 모든정보), res
+	//폴더명을 파라메터로 받아와야함/.
+	@RequestMapping(value="/file.f", produces="text/html;charset=utf-8")
+	public String list(HttpServletRequest req, String id, String couple_num, @RequestParam String folder_name, String voJson) throws IllegalStateException, IOException { //req(요청에 대한 모든정보), res
 		System.out.println(req.getLocalAddr());
 		System.out.println(req.getLocalPort());
 		System.out.println(req.getContextPath() + "/폴더");
@@ -51,26 +55,57 @@ public class PhotoController {
 		
 		//파일이 있는 상태의 요청을 받았는지에 따라서 유동적으로 MultipartRequest로 캐스팅
 		if (file != null) {
+			String filename = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();file.getOriginalFilename();
+			File targetFile = new File("D:\\Ling\\Ling\\image\\photo\\"+ couple_num + "\\" + folder_name , filename);
+//			String fileURL = replaceURL(req, couple_num, filename);
 			
-		    String filename = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();file.getOriginalFilename();
-		    File targetFile = new File("D:\\Ling\\Ling\\image\\photo"+ vo.getCouple_num() + "\\all" , filename);
-//		    File targetFile = new File("D:\\Ling\\Ling\\image\\photo\\2\\all" , filename);
-		    
-		    
-		    try {
-		        file.transferTo(targetFile);
-		        
-		    } catch (IOException e) {
-		        System.out.println("사진 저장에 실패하였습니다.");
-		    }
+			try {
+				file.transferTo(targetFile);
+//				photo_insert(null, req, couple_num, fileURL);
+			} catch (Exception e) {
+				System.out.println("사진 저장에 실패하였습니다.");
+			}
 		} else {
 			
 		}
+		
+
+		
+		System.out.println(req.getLocalAddr());
+		System.out.println(req.getLocalPort());
+		System.out.println(req.getContextPath());
+		System.out.println(couple_num);
+		System.out.println(folder_name);
 		
 		
 		return new Gson().toJson("");
 		
 	}
+	
+//	public String photo_insert(PhotoVO vo, HttpServletRequest req, String id, String couple_num) {
+//		
+//		MultipartRequest mReq = (MultipartRequest) req;
+//		MultipartFile file = mReq.getFile("file");
+//		
+//		String filename = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();
+//	    String filePath = "http://" + req.getLocalAddr() + ":" + req.getLocalPort() + req.getContextPath() 
+//	    					+ "/images/photo/" + couple_num + "/all" + filename;
+//	    
+//		HashMap<String, Object> param = new HashMap<String, Object>();
+//		param.put("id", id);
+//		param.put("couple_num", couple_num);
+//		param.put("filePath", filePath);
+//		
+//		
+//	    
+//	    // photoInsert 메소드에서 param 대신 vo 객체를 넘겨주도록 수정
+//	    
+//		int result = dao.photoInsert(vo);
+//		Gson gson = new Gson();
+//		
+//		return gson.toJson(result);
+//		
+//	}
 	
 	@RequestMapping(value="/folder_insert", produces="text/html;charset=utf-8")
 	public String folder_insert(String voJson, HttpServletRequest req, String id, String couple_num) {
@@ -89,8 +124,7 @@ public class PhotoController {
 		if (!vo.getFolder_name().isEmpty()) {
             // 특정 경로와 입력된 폴더 이름으로 폴더 경로를 생성
 			tempPath = folderPath + "/" + vo.getCouple_num() + "/" + vo.getFolder_name();
-            
-            
+
 //             
             // 폴더 생성 로직을 호출하여 폴더 생성
             createFolder(tempPath, req);
@@ -195,12 +229,11 @@ public class PhotoController {
 	
 	
 	  @RequestMapping(value="/folder_LastImg", produces="text/html;charset=utf-8")
-	  public String folder_LastImg(String id, String couple_num, int folder_num) {
+	  public String folder_LastImg(String id, String couple_num, int folder_num, String last_photo) {
 	  
 	  HashMap<String, Object> param = new HashMap<String, Object>();
 	  param.put("id", id); 
 	  param.put("couple_num", couple_num); //couple_num
-	  param.put("folder_num", folder_num);
 	  List<FolderVO> list = dao.getFolder(param) ;
 	  
 	  Gson gson = new Gson();
@@ -284,13 +317,10 @@ public class PhotoController {
 	}
 	
 	
-    private boolean isImageFile(String fileName) {
-        // 이미지 파일 확장자 체크 (여기에 필요한 이미지 확장자를 추가하세요)
-        return fileName.toLowerCase().endsWith(".jpg")
-                || fileName.toLowerCase().endsWith(".jpeg")
-                || fileName.toLowerCase().endsWith(".png")
-                || fileName.toLowerCase().endsWith(".gif");
-    }
+	private boolean checkFolderExist(String folderPath) {
+	    File folder = new File(folderPath);
+	    return folder.exists();
+	}
 	
 
 

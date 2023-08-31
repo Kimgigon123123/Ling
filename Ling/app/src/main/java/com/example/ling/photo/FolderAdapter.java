@@ -15,6 +15,8 @@ import com.example.ling.R;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ItemRecvFolderBinding;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
@@ -27,7 +29,6 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
     }
 
     ArrayList<FolderVO> list;
-    ArrayList<PhotoVO> photo_list;
 
 
     Context context;
@@ -43,22 +44,23 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
                 h.binding.tvFolderTitle.setText(list.get(i).getFolder_name());
-                h.binding.imgvFolder.setImageResource(R.drawable.wedding);
+//                h.binding.imgvFolder.setImageResource(R.drawable.wedding);
 
-//                CommonConn conn = new CommonConn(context, "folder_LastImg");
-//                conn.addParamMap("id", CommonVar.loginInfo.getId());
-//                conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
-//                conn.addParamMap("folder_num", list.get(i).getFolder_num());
-//
-//                conn.onExcute(new CommonConn.JswCallBack() {
-//
-//
-//                    @Override
-//                    public void onResult(boolean isResult, String data) {
-//
-//                        Glide.with(context).load(list.get(i).getLast_photo()).into(h.binding.imgvFolder);
-//                    }
-//                });
+                CommonConn conn = new CommonConn(context, "folder_LastImg");
+                conn.addParamMap("id", CommonVar.loginInfo.getId());
+                conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+                conn.addParamMap("folder_name", list.get(i).getFolder_name()); 
+
+                conn.onExcute((isResult, data) -> {
+                    if (isResult) {
+                        ArrayList<FolderVO> folderList = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
+                        if (folderList != null && !folderList.isEmpty()) {
+                            FolderVO folderVO = folderList.get(0);
+                            list.get(i).setLast_photo(folderVO.getLast_photo());
+                            Glide.with(context).load(folderVO.getLast_photo()).into(h.binding.imgvFolder);
+                        }
+                    }
+                });
 
 
                 h.binding.imgvFolderDelete.setOnClickListener(v -> {
