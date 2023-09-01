@@ -97,14 +97,14 @@ public class StoreMyinfoActivity extends AppCompatActivity {
         });
 
         binding.imgvIntoBylist.setOnClickListener(v->{
-            Intent intent = new Intent(StoreMyinfoActivity.this, ZZimActivity.class);
-            intent.putExtra("buylist","buylist");
+            Intent intent = new Intent(this, ZZimActivity.class);
+            intent.putExtra("selected_chip", 2);
             startActivity(intent);
         });
 
         binding.imgvReturn.setOnClickListener(v->{
             Intent intent = new Intent(StoreMyinfoActivity.this, ZZimActivity.class);
-            intent.putExtra("return","return");
+            intent.putExtra("selected_chip", 3);
             startActivity(intent);
         });
 
