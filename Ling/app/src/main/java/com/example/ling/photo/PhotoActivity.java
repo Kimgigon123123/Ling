@@ -119,12 +119,8 @@ public class PhotoActivity extends AppCompatActivity {
     }
 
     public void insert(){
-
         CommonConn conn = new CommonConn(this, "folder_insert");
-
         Date currentDate = new Date();
-
-// 날짜를 원하는 형식으로 포맷
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         String formattedDate = dateFormat.format(currentDate);
 
@@ -172,10 +168,8 @@ public class PhotoActivity extends AppCompatActivity {
         FolderVO vo = new FolderVO();
         conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
-//        conn.addParamMap("folder_name", name.getText().toString().trim());
         vo.setId(CommonVar.loginInfo.getId());
         vo.setCouple_num(CommonVar.loginInfo.getCouple_num());
-//        vo.setFolder_name(name.getText().toString().trim());
         conn.onExcute((isResult, data) -> {
             ArrayList<FolderVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
 //            Log.d("리스트사이즈", "select: " + list.size());
@@ -195,12 +189,6 @@ public class PhotoActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        CommonConn conn = new CommonConn(this, "file.f");
-        conn.addParamMap("id", CommonVar.loginInfo.getId());
-        conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
-
-
-
         binding.imgvFolderAdd.setOnClickListener(view -> {
             insert();
         });
@@ -215,35 +203,27 @@ public class PhotoActivity extends AppCompatActivity {
                 File file = new File(getRealPath(camera_uri));
                 if(file!=null){
                     RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), file);
-                    MultipartBody.Part filePart = MultipartBody.Part.createFormData("file.f", "ling.jpg", fileBody);
+                    MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "test.jpg", fileBody);
                     RetInterface api = new RetClient().getRet().create(RetInterface.class);
                     HashMap<String, RequestBody> param = new HashMap<>();
-//                    param.put("folder_name", RequestBody.create(MediaType.parse("text/plain"), folder_List.get(0).getFolder_name()));
-                    api.clientSendFile("file.f", param, filePart).enqueue(new Callback<String>() {
+
+//                    String folder_Name = "test";
+//                    String couple_num = CommonVar.loginInfo.getCouple_num();
+
+                    FolderVO vo = new FolderVO();
+                    vo.setFolder_name("test");
+                    vo.setCouple_num(CommonVar.loginInfo.getCouple_num());
+                    RequestBody folder_req = RequestBody.create(new Gson().toJson(vo), MediaType.parse("text/plain"));
+                    param.put("folder" ,    folder_req  );
+
+//                    PhotoVO photovo = new PhotoVO();
+//                    RequestBody photo_req = RequestBody.create(new Gson().toJson(photovo), MediaType.parse("text/plain"));
+//                    param.put("photo", photo_req);
+
+                    api.clientSendFile("file", param, filePart).enqueue(new Callback<String>() {
                         @Override
                         public void onResponse(Call<String> call, Response<String> response) {
-                            // 조회로직
-                            conn.onExcute((isResult, data) -> {
-//                                ArrayList<FolderVO> folderList = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
-//
-//                                // 폴더 이름 리스트 추출
-//                                ArrayList<String> folderNames = new ArrayList<>();
-//                                for (FolderVO folder : folderList) {
-//                                    folderNames.add(folder.getFolder_name());
-//                                }
-//
-//                                // 폴더 이름들을 선택 가능한 항목으로 AlertDialog에 보여주기
-//                                AlertDialog.Builder builder = new AlertDialog.Builder(PhotoActivity.this);
-//                                builder.setTitle("폴더 선택");
-//                                builder.setItems(folderNames.toArray(new String[0]), new DialogInterface.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(DialogInterface dialogInterface, int i) {
-//                                        // 선택한 폴더 이름을 사용할 수 있음 (folderNames.get(i))
-//                                        // 해당 폴더 이름으로 작업 진행
-//                                    }
-//                                });
-//                                builder.create().show();
-                            });
+
                         }
 
                         @Override
@@ -291,7 +271,7 @@ public class PhotoActivity extends AppCompatActivity {
             RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), new File(img_path));
             MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "test.jpg", fileBody);
             RetInterface api = new RetClient().getRet().create(RetInterface.class);
-            api.clientSendFile("file.f", new HashMap<>(), filePart).enqueue(new Callback<String>() {
+            api.clientSendFile("file", new HashMap<>(), filePart).enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
 

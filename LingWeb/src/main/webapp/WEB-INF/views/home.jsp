@@ -63,6 +63,15 @@
 			background-image: url('<c:url value="/resources/images/back.jpg"/>');
 		} */
 		
+	.legend-list span {
+		width: 44px;
+		height: 17px;
+		margin-right: 5px;
+	}
+	.legend-list li {
+		display: flex;
+		align-items: center;
+	}
 		
         </style>
     </head>
@@ -223,6 +232,8 @@
             </div>
             <canvas id="chart" class="h-100 mb-4 mt-4"></canvas>
             </div>
+            <div class="mt-5" style="height:50px"></div>
+            <div id='legend-container' class="mt-4"></div>
         </section>
         <!-- Call to action section-->
         <section class="cta" id="cta">
@@ -394,7 +405,7 @@
 		}
         
       	$(function(){
-      		$('ul.nav-tabs li').eq(0).trigger('click')
+      		$('ul.nav-tabs li').eq(2).trigger('click')
       	})
         //연령별 인원 수 조회
         function age(){
@@ -441,11 +452,11 @@
         		console.log(response)
         		var info = {};
         		info.category = [], info.datas = [], info.itemNames = [], info.colors = [];
-        		$(response).each(function(){
+        		$(response).each(function(idx){
         			info.category.push(this.RANK);
         			info.datas.push(this.SALES);
         			info.itemNames.push(this.ITEM_NAME); 
-        			info.colors.push(this.ITEM_NAME);
+        			info.colors.push(colors[idx]);
         		})
         		console.log('data',info);
        			barChart(info);
@@ -543,15 +554,17 @@
         }
         
         
+        var colors = ['#85a832', '#a83294', '#c7c922', '#db4ba6', '#d4aca7', '#8be0c0', '#5340cf', '#021438','#d4cc83','#c1f0b4'];
+      
       //막대 그래프
 function barChart(info) {
+    	  console.log('barChart> ', info.itemNames)
     $('#tab-content').css('height', '700');
     visual = new Chart($('#chart'), {
         type: 'bar',
         data: {
             labels: info.category,
             datasets: [{
-                label: '아이템',
                 data: info.datas,
                 borderWidth: 2,
                 barPercentage: 0.5,
@@ -568,30 +581,16 @@ function barChart(info) {
                 legend: {
                     display: false
                 },
-                datalabels: {
-                    formatter: function(value, context) {
-                        var itemRank = context.chart.data.labels[context.dataIndex];
-                        var itemName = info.itemNames[context.dataIndex]
-                        return '<' + itemName + '>'; 
-                    }
-                },
                 autocolors: {
                     mode: 'data'
                 },
+                datalabels:{
+                	display:false
+                },
                 
                 
             },
-            tooltip: {
-                callbacks: {
-                    title: function(context) {
-                        return info.itemNames[context.dataIndex];
-                    },
-                    label: function(value, context) {
-                        var value = context.parsed.y;
-                        return value + '개';
-                    }
-                }
-            },
+            
             scales: {
                 x: { // x축 설정
                     beginAtZero: true,
@@ -606,7 +605,7 @@ function barChart(info) {
         }
     });
 
-    makeLegend();
+    makeLegend(info);
 }
 
         //데이터수치 범위에 해당하는 범례 만들기
@@ -630,12 +629,14 @@ function barChart(info) {
 } */
 
 function makeLegend(info) {
-    var tag = `<ul class="legend-list">`;
+    var tag = `<ul class="nav legend-list row d-flex justify-content-center m-0 p-0 ">`;
         
     for (var i = 0; i < info.itemNames.length; i++) {
-        tag += `<li><span style="background-color: ${info.colors[i]}"></span>${info.itemNames[i]}</li>`;
+//         tag += `<li><span style="background-color: ${info.colors[i]}"></span>${info.itemNames[i]}</li>`;
+        tag += `<li class="col-auto"><span style="background-color: \${info.colors[i]}"></span>\${info.itemNames[i]}</li>`;
     }
     tag += `</ul>`;
+	console.log('2> ', tag)
     
     $('#legend-container').html(tag);
 }

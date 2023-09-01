@@ -11,15 +11,7 @@
   />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/custom.css">
 
-<!--         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        Google fonts
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
-        Core theme CSS (includes Bootstrap)
-        <link href="css/styles.css" rel="stylesheet" /> -->
-        
+
 </head>
 <body>
 <h3 class="my-4">FAQ</h3>
@@ -44,7 +36,7 @@
 <!-- 	관리자로 로그인 되어 있는 경우만 새글쓰기 가능 -->
 	<c:if test="${loginId eq 'admin'}">
 		<div class="col-auto">
-			<a class="btn btn-primary" id="btn-faqList" href="new">새글쓰기</a>
+			<a class="btn btn-primary" id="btn-faqList" href="new">FAQ 등록</a>
 		</div>
 	</c:if>
 
@@ -94,12 +86,28 @@
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${loop.index}" aria-expanded="false" aria-controls="flush-collapseOne">
-        ${vo.faq_title }
+        [${vo.faq_category }]  ${vo.faq_title }
       </button>
     </h2>
     <div id="flush-collapse-${loop.index}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body" style="max-height: 300px; overflow-y: auto;"><pre>${vo.faq_content }</pre></div>
+  <div class="accordion-body" style="max-height: 300px; overflow-y: auto;">
+    <div class="d-flex justify-content-between">
+      <pre>${vo.faq_content }</pre>
+      <c:if test="${loginId eq 'admin'}">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton-${loop.index}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           ···
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-${loop.index}">
+          <a class="dropdown-item" href="faq_modify?faq_no=${vo.faq_no}">수정</a>
+          <a class="dropdown-item" href="javascript:if(confirm('이 FAQ 글을 삭제하시겠습니까?'))
+                                                     {location='faq_delete?faq_no=${vo.faq_no }'}">삭제</a>
+        </div>
+      </div>
+      </c:if>
     </div>
+  </div>
+</div>
   </div>
   
 </div>
@@ -115,8 +123,20 @@
 
 <div class="content_clear"></div>
 
+<script>
+    // 페이지 로드 시 실행되는 함수
+    window.onload = function() {
+        // select 요소의 값이 변경될 때마다 호출되는 함수
+        document.querySelector('select[name="search"]').addEventListener('change', function() {
+            // 선택된 옵션의 값 가져오기
+            var selectedValue = this.value;
 
-
-
+            // 만약 '전체' 옵션을 선택한 경우, keyword input 값을 초기화
+            if (selectedValue === 'all') {
+                document.getElementById('keyword-input').value = '';
+            }
+        });
+    };
+</script>
 </body>
 </html>

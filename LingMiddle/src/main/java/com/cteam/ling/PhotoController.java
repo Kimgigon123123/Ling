@@ -32,64 +32,87 @@ public class PhotoController {
 	
 	@Autowired PhotoDAO dao;
 	@Autowired SqlSession sql;
-	public static String ip = "192.168.0.28";
 	public static String folderPath = "D:\\Ling\\Ling\\image\\photo\\";
 //	public static String folderPath = "D:\\WorkSpace\\Ling\\image\\photo\\";
+
+	
 	
 	//폴더명을 파라메터로 받아와야함/.
-	@RequestMapping(value="/file.f", produces="text/html;charset=utf-8")
-	public String list(HttpServletRequest req, String id, String couple_num, @RequestParam String folder_name, String voJson) throws IllegalStateException, IOException { //req(요청에 대한 모든정보), res
+	@RequestMapping(value="/file", produces="text/html;charset=utf-8")
+	public String list(HttpServletRequest req, String couple_num, String folder_name, String voJson, String pho_img
+						) throws IllegalStateException, IOException {
+		
+		
+		
+		
 		System.out.println(req.getLocalAddr());
 		System.out.println(req.getLocalPort());
 		System.out.println(req.getContextPath() + "/폴더");
 		HashMap<String, Object> param = new HashMap<String, Object>();
-		param.put("id", id);
 		param.put("couple_num", couple_num);
 		
 		MultipartRequest mReq = (MultipartRequest) req;
 		MultipartFile file = mReq.getFile("file");
 		
+		String filename = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();file.getOriginalFilename();
 		
-		FolderVO vo = new Gson().fromJson(voJson, FolderVO.class);
+		String filePath = "http://" + req.getLocalAddr() + ":" + req.getLocalPort() + req.getContextPath() 
+		+ "/images/photo/" + couple_num + folder_name + filename;
 		
-		
-		//파일이 있는 상태의 요청을 받았는지에 따라서 유동적으로 MultipartRequest로 캐스팅
-		if (file != null) {
-			String filename = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();file.getOriginalFilename();
-			File targetFile = new File("D:\\Ling\\Ling\\image\\photo\\"+ couple_num + "\\" + folder_name , filename);
-//			String fileURL = replaceURL(req, couple_num, filename);
-			
-			try {
-				file.transferTo(targetFile);
-//				photo_insert(null, req, couple_num, fileURL);
-			} catch (Exception e) {
-				System.out.println("사진 저장에 실패하였습니다.");
-			}
-		} else {
-			
+		FolderVO vo  = null;
+		if(req.getParameter("folder")!=null) {
+			 vo =   new Gson().fromJson(req.getParameter("folder"), FolderVO.class);
+			folder_name = vo.getFolder_name();
+			couple_num = vo.getCouple_num();
+//			folder_num = vo.getFolder_num();
 		}
+	
 		
+		
+		   PhotoVO photo_vo = null;  
+		   if(req.getParameter("photo")!=null) { 
+		  photo_vo = new Gson().fromJson(req.getParameter("test_and"), PhotoVO.class);
+		  folder_name = photo_vo.getFolder_name();
+		  pho_img = filePath;
+		
+		   }	
+		//FolderVO vo = new Gson().fromJson(voJson, FolderVO.class);
+		
+		
+		//			String filename = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();file.getOriginalFilename();
+					File targetFile = new File("D:\\Ling\\Ling\\image\\photo\\"+ couple_num + "\\" + folder_name , filename);
+					
+					
+					try {
+						file.transferTo(targetFile);
+						
+						
+						
+					} catch (Exception e) {
+						System.out.println("사진 저장에 실패하였습니다.");
+					}
+					
+					 
+					 dao.file(vo, filePath);
+		
+		
+		List<PhotoVO> list = dao.getList(param) ;
 
+		Gson gson = new Gson();	
+				
+		return gson.toJson(list);
 		
-		System.out.println(req.getLocalAddr());
-		System.out.println(req.getLocalPort());
-		System.out.println(req.getContextPath());
-		System.out.println(couple_num);
-		System.out.println(folder_name);
-		
-		
-		return new Gson().toJson("");
 		
 	}
 	
-//	public String photo_insert(PhotoVO vo, HttpServletRequest req, String id, String couple_num) {
+//	public String photo_insert(PhotoVO vo, HttpServletRequest req, String id, String couple_num, String folder_name) {
 //		
 //		MultipartRequest mReq = (MultipartRequest) req;
 //		MultipartFile file = mReq.getFile("file");
 //		
 //		String filename = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();
 //	    String filePath = "http://" + req.getLocalAddr() + ":" + req.getLocalPort() + req.getContextPath() 
-//	    					+ "/images/photo/" + couple_num + "/all" + filename;
+//	    					+ "/images/photo/" + couple_num + folder_name + filename;
 //	    
 //		HashMap<String, Object> param = new HashMap<String, Object>();
 //		param.put("id", id);
@@ -114,7 +137,6 @@ public class PhotoController {
 		param.put("id", id);
 		param.put("couple_num", couple_num);
 		
-//		HashMap<String, Object> params = new HashMap<String, Object>();
 
 
 		FolderVO vo = new Gson().fromJson(voJson, FolderVO.class);
@@ -229,7 +251,7 @@ public class PhotoController {
 	
 	
 	  @RequestMapping(value="/folder_LastImg", produces="text/html;charset=utf-8")
-	  public String folder_LastImg(String id, String couple_num, int folder_num, String last_photo) {
+	  public String folder_LastImg(String id, String couple_num, String last_photo) {
 	  
 	  HashMap<String, Object> param = new HashMap<String, Object>();
 	  param.put("id", id); 
