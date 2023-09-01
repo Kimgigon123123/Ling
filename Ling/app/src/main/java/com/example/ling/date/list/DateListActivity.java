@@ -39,12 +39,12 @@ public class DateListActivity extends AppCompatActivity {
             binding.tvTitle.setText("축제");
         }
 
-        datelList("");
+        dateList("");
 
         binding.searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                datelList(query);
+                dateList(query);
                 return true;
             }
 
@@ -52,7 +52,7 @@ public class DateListActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
                 handler.removeCallbacks(runnable);
                 runnable = () -> {
-                    datelList(newText);
+                    dateList(newText);
                 };
                 handler.postDelayed(runnable, 400);
                 return true;
@@ -64,7 +64,7 @@ public class DateListActivity extends AppCompatActivity {
         });
     }
 
-    public void datelList(String query) {
+    public void dateList(String query) {
         CommonConn conn = new CommonConn(this, "date_SelectList");
 
         conn.addParamMap("date_category_code" , date_category_code);

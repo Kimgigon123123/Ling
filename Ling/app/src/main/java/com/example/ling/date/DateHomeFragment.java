@@ -70,7 +70,7 @@ public class DateHomeFragment extends Fragment {
 //
 
 
-        binding.fltbtnDibs.setOnClickListener(v -> {
+        binding.btnDibs.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), DibsActivity.class);
 
             startActivity(intent);

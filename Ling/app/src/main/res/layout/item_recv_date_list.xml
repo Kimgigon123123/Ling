@@ -54,7 +54,7 @@
                 android:id="@+id/btn_add"
                 android:text="♡"
                 android:textSize="20dp"
-                android:fontFamily="@font/font6"
+                android:fontFamily="@font/font8"
                 android:textColor="@color/red"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
