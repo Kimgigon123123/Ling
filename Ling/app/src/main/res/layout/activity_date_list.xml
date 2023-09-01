@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_back_gradient_animation"
     android:orientation="vertical"
     tools:context=".date.list.DateListActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_gravity="center_vertical"
-        android:background="@drawable/shape"
+        android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -26,44 +27,49 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="축제"
-            android:textColor="#fff"
-            android:textSize="18dp"
+            android:layout_marginLeft="10dp"
+            android:text="데이트"
+            android:textColor="@color/black"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
     </LinearLayout>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black" />
+
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchview"
-        app:queryHint="검색어를 입력하세요."
-        app:iconifiedByDefault="false"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:iconifiedByDefault="false"
+        app:queryHint="검색어를 입력하세요." />
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginHorizontal="10dp"-->
-<!--        android:layout_marginVertical="5dp"-->
-<!--        android:gravity="center"-->
-<!--        android:orientation="horizontal">-->
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginHorizontal="10dp"-->
+    <!--        android:layout_marginVertical="5dp"-->
+    <!--        android:gravity="center"-->
+    <!--        android:orientation="horizontal">-->
 
-<!--        <EditText-->
-<!--            android:id="@+id/edt_search"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="0.9"-->
-<!--            android:hint="  검색어를 입력해주세요." />-->
+    <!--        <EditText-->
+    <!--            android:id="@+id/edt_search"-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_weight="0.9"-->
+    <!--            android:hint="  검색어를 입력해주세요." />-->
 
-<!--        <ImageView-->
-<!--            android:id="@+id/imgv_search"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="35dp"-->
-<!--            android:layout_weight="0.1"-->
-<!--            android:src="@drawable/ic_search" />-->
+    <!--        <ImageView-->
+    <!--            android:id="@+id/imgv_search"-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_height="35dp"-->
+    <!--            android:layout_weight="0.1"-->
+    <!--            android:src="@drawable/ic_search" />-->
 
-<!--    </LinearLayout>-->
+    <!--    </LinearLayout>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recv_festact"
@@ -71,13 +77,13 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:visibility="invisible"
-        android:gravity="center"
         android:id="@+id/tv_null"
-        android:text="검색결과가 없습니다."
-        android:textSize="17dp"
-        android:textColor="#111"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="검색결과가 없습니다."
+        android:textColor="#111"
+        android:textSize="17dp"
+        android:visibility="invisible" />
 
 </LinearLayout>
