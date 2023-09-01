@@ -36,7 +36,7 @@
 				</div>
 				</div>
 				<div class="col-auto">
-				<select class="form-select" name="pageList">
+				<select class="custom-select px-4" name="pageList">
 						<c:forEach var="i" begin="1" end="5">
 							<option value="${10*i }">${10*i }개씩</option>
 						</c:forEach>
