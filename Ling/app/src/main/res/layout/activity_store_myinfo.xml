@@ -96,7 +96,7 @@
         app:cardCornerRadius="50dp">
 
         <ImageView
-
+            android:id="@+id/imgv_profile"
             android:scaleType="centerCrop"
             android:src="@drawable/store_grade"
             android:layout_width="match_parent"
