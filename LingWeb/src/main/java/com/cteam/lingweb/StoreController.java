@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import date.PageVO;
 import store.StoreMyinfoVO;
 import store.StoreVO;
 import storereturn.StoreReturnVO;
@@ -289,10 +290,11 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value = "/store_delivery", method = RequestMethod.GET)
-	public String store_delivery(HttpSession session, Model model) {
+	public String store_delivery(HttpSession session, Model model,PageVO page) {
 		session.setAttribute("active_category", "store");
 		List<StoreVO> list = sql.selectList("store.store_delivery_select");
 		model.addAttribute("list",list);
+		model.addAttribute("page", page);
 		return "store_delivery";
 	}
 	

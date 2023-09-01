@@ -84,9 +84,13 @@
 								
 								
 								
+								
+								
 							</tbody>
 						</table>
+						
 					</div>
+					
 					<!-- table container -->
 					<a 
 						class="btn btn-primary btn-block text-uppercase mb-3" onclick="CompleteDeliveryFunc();">배송완료</a>
@@ -212,6 +216,7 @@
 	   	  }) 
 	        
 	    });
+    
 		
     </script>
 </body>

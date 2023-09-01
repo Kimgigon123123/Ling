@@ -27,7 +27,6 @@ public class ZZimActivity extends AppCompatActivity {
        binding=ActivityZzimBinding.inflate(getLayoutInflater());
        setContentView(binding.getRoot());
 
-
         FragmentAdapter adapter = new FragmentAdapter( this, getFragmentList());
         binding.zzimRecv.setAdapter(adapter);
 
@@ -56,9 +55,14 @@ public class ZZimActivity extends AppCompatActivity {
 
 
         binding.zzimChipGrp.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
+
+
             @Override
+
+
             public void onCheckedChanged(ChipGroup group, int checkedId) {
                 Log.d("들오온정보", "onCheckedChanged: ");
+
                 if(checkedId==R.id.zzim_chip1){
                     binding.zzimRecv.setCurrentItem(0,true);
                 }else if(checkedId==R.id.zzim_chip2){
@@ -82,6 +86,13 @@ public class ZZimActivity extends AppCompatActivity {
                 }
             }
         });
+
+        int selectedChipId = getIntent().getIntExtra("selected_chip", -1);
+        if(selectedChipId==2){
+            binding.zzimChipGrp.check(R.id.zzim_chip2);
+        }else if(selectedChipId==3){
+            binding.zzimChipGrp.check(R.id.zzim_chip3);
+        }
 
 
     }
