@@ -69,7 +69,8 @@ public class Board_CommonFragment extends Fragment {
         conn.onExcute((isResult, data) -> {
             ArrayList<BoardVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<BoardVO>>(){}.getType());
 
-            Board_CommonAdapter adapter = new Board_CommonAdapter(list);
+            //Board_CommonAdapter adapter = new Board_CommonAdapter(list);
+            Board_CommonAdapter adapter = new Board_CommonAdapter(list, Board_CommonFragment.this);
             binding.recvFree.setAdapter(adapter);
             binding.recvFree.setLayoutManager(new LinearLayoutManager(getContext()));
         });

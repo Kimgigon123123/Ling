@@ -53,7 +53,8 @@ public class BoardMainFragment extends Fragment {
         conn.addParamMap("board_cd" , "NOTICE");
         conn.onExcute((isResult, data) -> {
             ArrayList<BoardVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<BoardVO>>(){}.getType());
-            BoardMain_CommonAdapter adapter = new BoardMain_CommonAdapter(list , fragment);
+            //BoardMain_CommonAdapter adapter = new BoardMain_CommonAdapter(list , fragment);
+            BoardMain_CommonAdapter adapter = new BoardMain_CommonAdapter(list , fragment, BoardMainFragment.this);
             binding.recvNotice.setAdapter(adapter);
             binding.recvNotice.setLayoutManager(new LinearLayoutManager(getContext()));
         });

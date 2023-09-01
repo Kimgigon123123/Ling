@@ -10,12 +10,14 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.ling.MainActivity;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentInsertMateBinding;
 import com.example.ling.databinding.FragmentJoinCompleteBinding;
+import com.example.ling.login.Ling_MemberVO;
 import com.example.ling.login.LoginActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -36,6 +38,38 @@ public class JoinCompleteFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentJoinCompleteBinding.inflate(inflater, container, false);
 
+        binding.tvMid.setText(CommonVar.idMap.get("mid"));
+        binding.tvFid.setText(    CommonVar.idMap.get("fid"));
+
+        binding.btnGoHome.setOnClickListener(v->{
+
+            CommonConn conn = new CommonConn(getActivity(), "login");
+            conn.addParamMap("id", CommonVar.loginInfo.getId());
+            conn.addParamMap("pw", CommonVar.loginInfo.getPw());
+            conn.onExcute((isResult, data) -> {
+            if (isResult) {
+                CommonVar.loginInfo = new Gson().fromJson(data, Ling_MemberVO.class);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+
+
+            }
+        });
+
+        });
+
+
+        return binding.getRoot();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        binding.tvMid.setText(CommonVar.idMap.get("mid"));
+        binding.tvFid.setText(    CommonVar.idMap.get("fid"));
+
+
         new Handler().postDelayed(()->{
             binding.viewKonfetti.build()
                     .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
@@ -50,21 +84,5 @@ public class JoinCompleteFragment extends Fragment {
 
 
         } , 1000);
-        commonVar = new CommonVar();
-        binding.tvMid.setText(  ((JoinActivity)getActivity()).idMap.get("mid"));
-        binding.tvFid.setText(    ((JoinActivity)getActivity()).idMap.get("fid"));
-        binding.btnGoHome.setOnClickListener(v->{
-
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            startActivity(intent);
-
-
-
-        });
-
-
-
-        return binding.getRoot();
-
     }
 }

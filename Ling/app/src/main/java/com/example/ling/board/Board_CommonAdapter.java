@@ -15,10 +15,16 @@ import java.util.ArrayList;
 
 public class Board_CommonAdapter extends RecyclerView.Adapter<Board_CommonAdapter.ViewHolder> {
     ArrayList<BoardVO> list;
+    Board_CommonFragment commonFragment;
 
     public Board_CommonAdapter(ArrayList<BoardVO> list) {
         this.list = list;
     }
+    public Board_CommonAdapter(ArrayList<BoardVO> list, Board_CommonFragment commonFragment) {
+        this.list = list;
+        this.commonFragment = commonFragment;
+    }
+
 
     Context context;
     @NonNull
@@ -38,7 +44,9 @@ public class Board_CommonAdapter extends RecyclerView.Adapter<Board_CommonAdapte
         h.binding.boardCnt.setText(list.get(i).getReadcnt()+"");
 
         h.binding.lnUser.setOnClickListener(v->{
-            Intent intent = new Intent(context, Board_DetailtActivity.class);
+            //Intent intent = new Intent(context, Board_DetailtActivity.class);
+            Intent intent = new Intent(commonFragment.getContext(), Board_DetailtActivity.class);
+//            Intent intent = new Intent(commonFragment.getActivity(), Board_DetailtActivity.class);
             intent.putExtra("board_no", list.get(i).getId());
             intent.putExtra("board_cd", list.get(i).getBoard_cd());
 
