@@ -1,7 +1,9 @@
 package com.example.ling.store.myinfo;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -65,15 +67,38 @@ public class ReturnAdapter extends RecyclerView.Adapter<ReturnAdapter.ViewHolder
 
 
         h.binding.imgvCancel.setOnClickListener(v->{
-            CommonConn conn = new CommonConn(context , "store_delete_return");
-            conn.addParamMap("return_code" , list.get(i).getReturn_code());
+            // 사용자에게 확인을 묻는 다이얼로그 표시
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("반품목록에서 삭제하시겠습니까?");
 
-            conn.onExcute((isResult, data) -> {
-                list.remove(i);
-                notifyDataSetChanged();
+            // "확인" 버튼을 눌렀을 때
+            builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    CommonConn conn = new CommonConn(context , "store_delete_return");
+                    conn.addParamMap("return_code" , list.get(i).getReturn_code());
+
+                    conn.onExcute((isResult, data) -> {
+                        list.remove(i);
+                        notifyDataSetChanged();
+                    });
+
+                    Toast.makeText(context, "반품목록에서 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                }
             });
 
-            Toast.makeText(context, "반품목록에서 삭제 되었습니다.", Toast.LENGTH_SHORT).show();
+            // "취소" 버튼을 눌렀을 때
+            builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // 아무런 작업을 하지 않고 다이얼로그를 닫습니다.
+                    dialog.dismiss();
+                }
+            });
+
+            // 다이얼로그 표시
+            AlertDialog dialog = builder.create();
+            dialog.show();
         });
 
     }

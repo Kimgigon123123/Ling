@@ -2,6 +2,7 @@ package com.example.ling.store.myinfo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -10,6 +11,8 @@ import com.example.ling.MainActivity;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityReturnBinding;
+import com.example.ling.store.ChargeVO;
+import com.example.ling.store.CompleteDialog;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
@@ -81,7 +84,9 @@ public class ReturnActivity extends AppCompatActivity {
         });
 
         binding.btnReturn.setOnClickListener(v->{
-            Toast.makeText(this, "환불처리되었습니다.", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "반품요청 처리가 되었습니다.", Toast.LENGTH_SHORT).show();
+
+            ChargeVO.isReturn=true;
 
 //            CommonConn conn2 = new CommonConn(this , "store_return_money");
 //            conn2.addParamMap("id", CommonVar.loginInfo.getId());
@@ -103,9 +108,10 @@ public class ReturnActivity extends AppCompatActivity {
             });
 
 
-            Intent intent = new Intent(ReturnActivity.this, MainActivity.class);
+            Intent intent = new Intent(ReturnActivity.this, StoreMyinfoActivity.class);
             intent.putExtra("order_num" , intValue);
             startActivity(intent);
+            finish();
         });
 
     }

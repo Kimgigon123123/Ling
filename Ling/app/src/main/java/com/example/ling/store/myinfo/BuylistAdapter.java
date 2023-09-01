@@ -1,6 +1,8 @@
 package com.example.ling.store.myinfo;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -70,17 +72,37 @@ public class BuylistAdapter extends RecyclerView.Adapter<BuylistAdapter.ViewHold
         });
 
         h.binding.imgvCancel.setOnClickListener(v->{
-            CommonConn conn = new CommonConn(context , "store_delete_buylist");
-            conn.addParamMap("order_num" , list.get(i).getOrder_num());
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("정말로 삭제하시겠습니까?");
 
-            conn.onExcute((isResult, data) -> {
-                list.remove(i);
-                notifyDataSetChanged();
+            // "확인" 버튼을 눌렀을 때
+            builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    CommonConn conn = new CommonConn(context , "store_delete_zzim");
+                    conn.addParamMap("item_code" , list.get(i).getItem_code());
+
+                    conn.onExcute((isResult, data) -> {
+                        list.remove(i);
+                        notifyDataSetChanged();
+                    });
+
+                    Toast.makeText(context, "찜목록에서 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                }
             });
 
+            // "취소" 버튼을 눌렀을 때
+            builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // 아무런 작업을 하지 않고 다이얼로그를 닫습니다.
+                    dialog.dismiss();
+                }
+            });
 
-
-            Toast.makeText(context, "구매목록에서 삭제 되었습니다.", Toast.LENGTH_SHORT).show();
+            // 다이얼로그 표시
+            AlertDialog dialog = builder.create();
+            dialog.show();
         });
 
 //

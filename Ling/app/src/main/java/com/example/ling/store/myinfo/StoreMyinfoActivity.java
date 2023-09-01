@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.ling.R;
 import com.example.ling.Static;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
@@ -23,6 +24,7 @@ import com.example.ling.store.storeCO.StoreCOVO;
 import com.example.ling.store.storeCO.StorePurchaseListVO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -47,6 +49,12 @@ public class StoreMyinfoActivity extends AppCompatActivity {
         zzimlist();
         buylist();
         returnlist();
+
+        if(ChargeVO.isReturn){
+            Dialog dialog = new CompleteDialog(this,"return");
+            dialog.show();
+            ChargeVO.isReturn=false;
+        }
 
 
 
@@ -118,6 +126,19 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
             ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMyinfoVO>>() {}.getType());
 
+
+            String imageUrl = list.get(0).profile;
+
+            if (imageUrl != null && !imageUrl.equals(" ")) {
+                Picasso.get()
+                        .load(imageUrl)
+                        .into(binding.imgvProfile);
+            } else {
+                // URL이 없는 경우 기본 이미지를 설정
+                Picasso.get()
+                        .load(R.drawable.profile_img)
+                        .into(binding.imgvProfile);
+            }
 
             binding.tvMoney.setText(formatPriceWithCommas(list.get(0).getMoney()) + "");
             binding.tvName.setText(list.get(0).getName());
@@ -199,10 +220,22 @@ public class StoreMyinfoActivity extends AppCompatActivity {
             dialog.show();
             ChargeVO.isCharge=false;
         }
+
+
+        if(ChargeVO.isReturn){
+            Dialog dialog = new CompleteDialog(this,"return");
+            dialog.show();
+            ChargeVO.isReturn=false;
+        }
+
+
         select();
         zzimlist();
         buylist();
         returnlist();
+
+
+
 
     }
 

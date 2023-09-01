@@ -3,7 +3,7 @@
 <mapper namespace="store_myinfo">
 
 <select id="myinfo" resultType="storemyinfo.StoreMyinfoVO">
-select m.id,s.money,m.name ,nvl(s.address,' ') as address,nvl(s.detail_add,' ') as detail_add
+select m.id,s.money,m.name ,nvl(s.address,' ') as address,nvl(s.detail_add,' ') as detail_add,nvl(profile,' ') as profile
 from store_myinfo s, ling_member m
 where s.id = m.id
 and m.id=#{id}
