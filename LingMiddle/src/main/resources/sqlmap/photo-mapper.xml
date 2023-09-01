@@ -44,20 +44,20 @@
 
 	</insert>
 	
-	<insert id="photo_insert">
+<!-- 	<insert id="photo_insert">
 		INSERT INTO photo_category (pho_img, folder_num, pho_date)
 		SELECT #{pho_img}, pf.folder_num, sysdate
 		FROM photo_folder pf
 		WHERE pf.couple_num = #{couple_num} AND pf.id = #{id}
       	AND pf.folder_name = 'all';
-	</insert>
+	</insert> -->
 	
-<!-- 	<insert id="file"> -->
-<!-- 	insert into photo_category (pho_img, folder_num) -->
-<!-- 			select #{pho_img}, pf.folder_num -->
-<!-- 			from photo_folder pf -->
-<!-- 	where pf.folder_name = 'all' -->
-<!-- 	</insert> -->
+	<insert id="file">
+	insert into photo_category (pho_img, folder_num)
+			select #{pho_img}, pf.folder_num
+			from photo_folder pf
+	where pf.folder_name = #{folder_name}
+	</insert>
 	
 	<delete id="folder_delete">
 		delete from photo_folder where folder_name = #{folder_name}
