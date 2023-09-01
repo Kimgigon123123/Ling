@@ -29,7 +29,8 @@ public class Board_DetailtActivity extends AppCompatActivity {
         binding = ActivityNoticeContextBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         binding.tvBefore.setOnClickListener(v->{
-            onBackPressed();
+            //onBackPressed();
+            finish();
         });
         binding.btnRegistComment.setOnClickListener(v->{
             if (binding.edtComment.getText().toString().length()>1){

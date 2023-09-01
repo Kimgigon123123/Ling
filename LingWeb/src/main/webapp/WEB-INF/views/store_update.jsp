@@ -129,7 +129,7 @@
 									 <button type="submit" class="btn btn-primary mr-3 btn-block text-uppercase">상품수정</button>
 									<button
 										class="btn btn-success mr-3 text-uppercase" onclick="history.go(-1)">취소</button>
-									<button class="btn btn-danger mr-3 text-uppercase" onclick="confirmDelete('${vo.item_code}')">삭제</button>
+									<button type="button" class="btn btn-danger mr-3 text-uppercase" onclick="confirmDelete('${vo.item_code}')">삭제</button>
 								</div>
 							</div>
 

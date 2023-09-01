@@ -14,11 +14,14 @@ import com.example.ling.join.JoinTabPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import java.util.HashMap;
+
 public class LoginActivity extends AppCompatActivity {
 
     ActivityLoginBinding binding;
     int idx = 0;
     public boolean isFindCheck = true;
+
     TabLayout tabLayout;
     ViewPager2 viewPager;
     LoginTabPagerAdapter adapter;
@@ -34,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         // adapter 준비 및 연결
         adapter = new LoginTabPagerAdapter(this);
         viewPager.setAdapter(adapter);
-
+        viewPager.setOffscreenPageLimit(1);
         // TabLayout, ViewPager 연결
         new TabLayoutMediator(tabLayout, viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override

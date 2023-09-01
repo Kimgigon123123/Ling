@@ -27,7 +27,7 @@ public class JoinActivity extends AppCompatActivity {
     int idx = 0;
 
      ActivityJoinBinding binding;
-    HashMap<String , String> idMap = new HashMap<>();
+
     TabLayout tabLayout;
     ViewPager2 viewPager;
     JoinTabPagerAdapter adapter;

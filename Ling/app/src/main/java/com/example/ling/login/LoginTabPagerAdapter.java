@@ -17,7 +17,10 @@ public class LoginTabPagerAdapter extends FragmentStateAdapter {
             new LoginFragment(),
             new LoginFindFragment(),
             new Loginfind_IdFragment(),
-            new LoginTemp_PwFragment()};
+            new LoginTemp_PwFragment(),
+            new LoginMiddleFragment(),
+            new InsertLoginMateFragment(),
+            new JoinCompleteFragment()};
 
 
 
