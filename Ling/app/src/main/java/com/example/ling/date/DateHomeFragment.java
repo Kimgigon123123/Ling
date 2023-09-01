@@ -43,11 +43,9 @@ public class DateHomeFragment extends Fragment {
         //drawerLayoutEvent();//DrawerLayout이벤트.( 삭제 예정 )
 
 
-
         selectCountList("TO",5,binding.recvTour);
         selectCountList("RE",5,binding.recvRestaurant);
         selectCountList("FE",5,binding.recvFestival);
-
 
 
 //        binding.tvTour.setOnClickListener(v -> {

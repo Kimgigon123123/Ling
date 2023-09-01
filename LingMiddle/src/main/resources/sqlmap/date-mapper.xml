@@ -29,7 +29,7 @@ select d.*, i.date_name, i.date_address, i.date_intro, i.open, i.end, i.lan, i.l
 
 <!-- 관심 목록 제거 -->
 <delete id="delete_dibs">
-	delete from date_dibs where date_id = #{date_id} and id = #{id}
+	delete from date_dibs where date_id = #{date_id} and id = #{id}voronoi view map
 </delete>
 
 <!-- 데이트 메인화면 아이템 -->
