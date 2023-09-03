@@ -59,9 +59,12 @@
     /* 다른 스타일 속성 추가 */
 }
 		
-/* 		.bg-light{
-			background-image: url('<c:url value="/resources/images/back.jpg"/>');
-		} */
+.bg-light{
+ 			 background-image: url('<c:url value="/resources/images/faq_back.jpg"/>');
+   			 background-size: cover; /* 화면에 꽉 차게 배경 이미지 조정 */
+    		background-repeat: no-repeat; /* 이미지 반복 없음 */
+    		background-position: center center; /* 이미지 중앙 정렬 */
+ 		} 
 		
 	.legend-list span {
 		width: 44px;
