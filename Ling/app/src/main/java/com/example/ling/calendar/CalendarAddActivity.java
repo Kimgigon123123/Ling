@@ -28,7 +28,10 @@ public class CalendarAddActivity extends AppCompatActivity {
     Calendar myCalendar = Calendar.getInstance();
 
     ArrayList<Spinner> list = new ArrayList<>();
-    String sche_typecode = "";
+    String sche_typecode;
+
+
+
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(android.widget.DatePicker view, int year, int month, int dayOfMonth) {
@@ -38,6 +41,8 @@ public class CalendarAddActivity extends AppCompatActivity {
             updateLabel();
         }
     };
+
+
     private android.widget.Spinner spinner;
     private SpinnerAdapter adapter;
     @Override
@@ -138,13 +143,13 @@ public class CalendarAddActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
                 String selectedSpinner = parent.getItemAtPosition(i).toString();
-                if(selectedSpinner.equals("wedding")){
+                if(selectedSpinner.equals("결혼기념일")){
                     sche_typecode= "wedding";
-                }else if(selectedSpinner.equals("birth")){
+                }else if(selectedSpinner.equals("생일")){
                     sche_typecode= "birth";
-                }else if(selectedSpinner.equals("childbirth")){
+                }else if(selectedSpinner.equals("출산예정일")){
                     sche_typecode= "childbirth";
-                }else if(selectedSpinner.equals("travel")){
+                }else if(selectedSpinner.equals("커플여행")){
                     sche_typecode= "travel";
                 }else{
                     sche_typecode= "default";

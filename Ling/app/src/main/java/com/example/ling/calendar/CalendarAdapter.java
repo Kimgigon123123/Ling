@@ -7,13 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ling.R;
 import com.example.ling.common.CommonConn;
 import com.example.ling.databinding.ItemRecvScheduleBinding;
 
@@ -21,7 +19,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
 
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHolder> {
 
@@ -45,12 +42,12 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder h, int a) {
+    public void onBindViewHolder(@NonNull ViewHolder h, int i) {
 
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date scheDate = null;
         try {
-            scheDate = inputFormat.parse(list.get(a).getSche_date());
+            scheDate = inputFormat.parse(list.get(i).getSche_date());
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -62,8 +59,8 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
 
 
         //캘린더 리스트에서 알림 여부 조회
-        h.binding.tvCalendarTitle.setText(list.get(a).getSche_title());
-        if(list.get(a).getSche_notice() != 0){
+        h.binding.tvCalendarTitle.setText(list.get(i).getSche_title());
+        if(list.get(i).getSche_notice() != 0){
             h.binding.materialSwitch.setChecked(false);
         }else{
             h.binding.materialSwitch.setChecked(true);
@@ -74,7 +71,10 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
 
 
         //캘린더 리스트에서 d-day 조회
-        int dDay = list.get(a).getD_day();
+        if(list.get(i).getD_day()==0){
+            h.binding.tvDday.setVisibility(View.GONE);
+        }else{
+        int dDay = list.get(i).getD_day();
         String dDayText;
         if (dDay < 10) {
             dDayText = "D-0" + dDay;
@@ -83,7 +83,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
         }
         h.binding.tvDday.setText(dDayText);
 
-        if (list.get(a).getD_day() <= 3 && list.get(a).getSche_notice() == 0) {
+        if (list.get(i).getD_day() <= 3 && list.get(i).getSche_notice() == 0) {
 //            Toast.makeText(context, "d-day가 3일밖에 남지 않은 일정이 있어요!", Toast.LENGTH_SHORT).show();
 
 
@@ -103,6 +103,9 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
             //최초에 접속시 한 번만 다이얼로그 표현 -> 문제 있음 , 일정을 삭제하게 되면 알림 on상태에 있던 모든 것들이 알림 off가 됨
 //            list.get(i).setSche_notice(1);
         }
+        }
+
+
 
 
         //캘린더 리스트에서 일정 삭제
@@ -115,8 +118,8 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     CommonConn conn = new CommonConn(context, "sche_delete");
-                    conn.addParamMap("sche_no", list.get(a).getSche_no());
-                    list.remove(a);
+                    conn.addParamMap("sche_no", list.get(i).getSche_no());
+                    list.remove(i);
                     notifyDataSetChanged();
                     conn.onExcute(new CommonConn.JswCallBack() {
 

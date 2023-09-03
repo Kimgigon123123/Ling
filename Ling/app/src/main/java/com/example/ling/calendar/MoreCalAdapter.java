@@ -86,13 +86,13 @@ public class MoreCalAdapter extends RecyclerView.Adapter<MoreCalAdapter.ViewHold
                         conn.addParamMap("sche_no", list.get(i).getSche_no());
 
                         conn.onExcute((isResult, data) -> {
+                            Toast.makeText(context, "수정이 완료되었습니다. " + editedText, Toast.LENGTH_SHORT).show();
 
+                            dialog.dismiss();
+                            notifyDataSetChanged();
                         });
 
-                        Toast.makeText(context, "수정이 완료되었습니다. " + editedText, Toast.LENGTH_SHORT).show();
 
-                        dialog.dismiss();
-                        notifyDataSetChanged();
 
                     });
 
@@ -108,12 +108,14 @@ public class MoreCalAdapter extends RecyclerView.Adapter<MoreCalAdapter.ViewHold
                         public void onClick(DialogInterface dialog, int which) {
                             CommonConn conn = new CommonConn(context, "sche_delete");
                             conn.addParamMap("sche_no", list.get(i).getSche_no());
-                            list.remove(i);
 
-                            notifyDataSetChanged();
 
                             conn.onExcute((isResult, data) -> {
+                                    if(isResult){
+                                        list.remove(i);
 
+                                        notifyDataSetChanged();
+                                    }
                             });
                         }
                     });
