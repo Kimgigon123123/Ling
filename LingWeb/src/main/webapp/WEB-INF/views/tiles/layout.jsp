@@ -57,7 +57,20 @@
 
 <!-- active_category -->
 
-${active_category}
+<!-- <!--  김기곤이 수정함  --> 
+
+<%-- <c:choose> --%>
+<%--     <c:when test="${active_category eq 'store' || active_category eq 'Dr' || active_category eq 'Ri' || active_category eq 'Gi' || active_category eq 'Etc'}"> --%>
+<!--         Store -->
+<%--     </c:when> --%>
+<%--     <c:otherwise> --%>
+<%--         ${active_category} --%>
+<%--     </c:otherwise> --%>
+<%-- </c:choose> --%>
+
+<!--  ${active_category}  -->
+
+
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mx-auto h-100">
 					
@@ -74,16 +87,17 @@ ${active_category}
 						</a></li>
 						<li class="nav-item dropdown"><a class="nav-link ${active_category eq 'travel' ? 'active' : '' } dropdown-toggle" href="#" 
 						id="navbarDropdown"	role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <i class="far fa-file-alt"></i> <span>
-									데이트 <i class="fas fa-angle-down"></i>
-							</span>
+						aria-expanded="false"> <i class="far fa-file-alt"></i> <span>
+						데이트 <i class="fas fa-angle-down"></i></span>
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="travel">여행</a> <a
 									class="dropdown-item" href="restaurant">맛집</a> <a
 									class="dropdown-item" href="festival">축제</a>
 							</div></li>
-						<li class="nav-item dropdown"><a class="nav-link ${active_category eq 'store' ? 'active' : '' }  dropdown-toggle " href="#"
+						<li class="nav-item dropdown"><a class="nav-link 
+						${active_category eq 'store' || active_category eq 'Dr' || active_category eq 'Ri' || active_category eq 'Gi' || active_category eq 'Etc' ? 'active' : ''}
+						dropdown-toggle " href="#"
 						id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"><i class="far fa-file-alt"></i><span>
 						스토어<i class="fas fa-angle-down"></i></span>
@@ -102,7 +116,12 @@ ${active_category}
 					</ul>
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link d-block"
-							href="login"> admin, <b>Logout</b>
+							href="logout"> admin, <b>Logout</b>
+						</a></li>
+					</ul>
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link d-block"
+							href="/lingweb"> admin, <b>home</b>
 						</a></li>
 					</ul>
 				</div>

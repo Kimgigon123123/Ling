@@ -6,14 +6,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".login.LoginFind_PwFragment"
     android:orientation="vertical"
-    android:padding="30dp">
+    android:padding="30dp"
+    android:background="@drawable/main_back_gradient_animation">
 
     <ImageView
         android:layout_marginTop="80dp"
         android:layout_gravity="center"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/logo_ling"/>
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:src="@drawable/linglogo"/>
 
     <TextView
         android:layout_marginTop="5dp"
@@ -58,7 +59,8 @@
 
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/LingButtonStyle"
         android:id="@+id/btn_next"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"

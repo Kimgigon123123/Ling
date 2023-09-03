@@ -24,13 +24,28 @@ public class PhotoDAO {
 		return list;
 	}
 	
-	public List<FolderVO> getFolder_LastImg(HashMap<String, Object> param){
-		List<FolderVO> list = sql.selectList("photo.folder_LastImg",param);
-		return list;
-	}
+	
+	  public List<FolderVO> getFolder_LastImg(HashMap<String, Object> param){
+	  List<FolderVO> list = sql.selectList("photo.folder_LastImg",param); 
+	  return list; 
+	  }
+	 
+	
 	
 	public void folderInsert(FolderVO vo) {
 		int result = sql.insert("photo.folder_insert", vo);
+		System.out.println("성공여부 : " + result);
+	}
+	
+	
+	public int photoInsert(PhotoVO vo) {
+		int result = sql.insert("photo.photo_insert", vo);
+		System.out.println("성공여부 : " + result);
+		return result;
+	}
+	
+	public void file(FolderVO vo, String filePath) {
+		int result = sql.insert("photo.file", vo);
 		System.out.println("성공여부 : " + result);
 	}
 	

@@ -16,6 +16,7 @@ import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.FragmentInsertMateBinding;
 import com.example.ling.databinding.FragmentJoinCompleteBinding;
+import com.example.ling.login.LoginActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -53,8 +54,11 @@ public class JoinCompleteFragment extends Fragment {
         binding.tvMid.setText(  ((JoinActivity)getActivity()).idMap.get("mid"));
         binding.tvFid.setText(    ((JoinActivity)getActivity()).idMap.get("fid"));
         binding.btnGoHome.setOnClickListener(v->{
+
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
+
+
 
         });
 

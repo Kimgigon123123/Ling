@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -38,6 +40,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
+import java.net.URISyntaxException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -55,6 +60,8 @@ public class PhotoActivity extends AppCompatActivity {
     private final int REQ_Gallery = 1000;
     ActivityResultLauncher<Intent> launcher;
     ArrayList<FolderVO> folder_List;
+
+    ArrayList<PhotoVO> photo_List;
     Window window ;
     private EditText name;
 
@@ -64,7 +71,6 @@ public class PhotoActivity extends AppCompatActivity {
         binding = ActivityPhotoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         select();
-//        Glide.with(this).load("http://192.168.0.28/hanul/img//andimg.jpg").into(binding.imgvElbumCamera);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     window = this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -106,22 +112,21 @@ public class PhotoActivity extends AppCompatActivity {
 
 
 
-        binding.imgvFolderAdd.setOnClickListener(view -> {
-            insert();
-        });
+
 
 
 
     }
 
     public void insert(){
-
         CommonConn conn = new CommonConn(this, "folder_insert");
-
+        Date currentDate = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        String formattedDate = dateFormat.format(currentDate);
 
             AlertDialog.Builder follder = new AlertDialog.Builder(this);
             name = new EditText(this);
-
+            name.setText(formattedDate);
             follder.setTitle("생성할 폴더명");
             follder.setView(name);
             follder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
@@ -136,12 +141,14 @@ public class PhotoActivity extends AppCompatActivity {
 //                    vo.setFolder_name(vo.getCouple_num()+"");
                     //확인 버튼을 클릭했을때
                     conn.addParamMap("voJson", new Gson().toJson(vo) );
+                    conn.addParamMap("id", CommonVar.loginInfo.getId());
+                    conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
                     conn.onExcute((isResult, data) -> {
                         folder_List = new Gson(). fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
 
                         FolderAdapter adapter = new FolderAdapter(folder_List);
                         binding.gridGallery.setAdapter(adapter);
-                        binding.gridGallery.setLayoutManager(new LinearLayoutManager(PhotoActivity.this));
+                        binding.gridGallery.setLayoutManager(new GridLayoutManager(PhotoActivity.this, 2));
 
                       //  Log.d("리스트사이즈", "select: " + foder_List.size());
                         //if문으로 list의 사이즈처리 해야함.
@@ -161,10 +168,8 @@ public class PhotoActivity extends AppCompatActivity {
         FolderVO vo = new FolderVO();
         conn.addParamMap("id", CommonVar.loginInfo.getId());
         conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
-//        conn.addParamMap("folder_name", name.getText().toString().trim());
         vo.setId(CommonVar.loginInfo.getId());
         vo.setCouple_num(CommonVar.loginInfo.getCouple_num());
-//        vo.setFolder_name(name.getText().toString().trim());
         conn.onExcute((isResult, data) -> {
             ArrayList<FolderVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
 //            Log.d("리스트사이즈", "select: " + list.size());
@@ -178,22 +183,44 @@ public class PhotoActivity extends AppCompatActivity {
 
         });
     }
-
+    //어느 폴더에 넣을껀지 질문이나 선택. AlertDialog
+    //새로 폴더 추가 하기를 누르면 지금 년월일을 폴더이름으로한다.
+    //여기서 만들어서보내기.
     @Override
     protected void onStart() {
         super.onStart();
+        binding.imgvFolderAdd.setOnClickListener(view -> {
+            insert();
+        });
         launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+
             @Override
             public void onActivityResult(ActivityResult result) {
                 //액티비티(카메라 액티비티)가 종료되면 콜백으로 데이터를 받는 부분. (기존에는 onActivityResult메소드가 실행/ 현재는 해당 메소드)
-                Glide.with(PhotoActivity.this).load(camera_uri).into(binding.imgvElbumCamera);
-                File file = new File(getRealPath(camera_uri));
+//                Glide.with(PhotoActivity.this).load(camera_uri).into(binding.imgvElbumCamera);
 
+
+                File file = new File(getRealPath(camera_uri));
                 if(file!=null){
                     RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), file);
                     MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "test.jpg", fileBody);
                     RetInterface api = new RetClient().getRet().create(RetInterface.class);
-                    api.clientSendFile("file.f", new HashMap<>(), filePart).enqueue(new Callback<String>() {
+                    HashMap<String, RequestBody> param = new HashMap<>();
+
+//                    String folder_Name = "test";
+//                    String couple_num = CommonVar.loginInfo.getCouple_num();
+
+                    FolderVO vo = new FolderVO();
+                    vo.setFolder_name("test");
+                    vo.setCouple_num(CommonVar.loginInfo.getCouple_num());
+                    RequestBody folder_req = RequestBody.create(new Gson().toJson(vo), MediaType.parse("text/plain"));
+                    param.put("folder" ,    folder_req  );
+
+//                    PhotoVO photovo = new PhotoVO();
+//                    RequestBody photo_req = RequestBody.create(new Gson().toJson(photovo), MediaType.parse("text/plain"));
+//                    param.put("photo", photo_req);
+
+                    api.clientSendFile("file", param, filePart).enqueue(new Callback<String>() {
                         @Override
                         public void onResponse(Call<String> call, Response<String> response) {
 
@@ -244,7 +271,7 @@ public class PhotoActivity extends AppCompatActivity {
             RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), new File(img_path));
             MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", "test.jpg", fileBody);
             RetInterface api = new RetClient().getRet().create(RetInterface.class);
-            api.clientSendFile("file.f", new HashMap<>(), filePart).enqueue(new Callback<String>() {
+            api.clientSendFile("file", new HashMap<>(), filePart).enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
 
@@ -267,6 +294,8 @@ public class PhotoActivity extends AppCompatActivity {
 
 
 
+
+
     public String getRealPath(Uri contentUri){
         String res = null;
         String[] proj = {MediaStore.Images.Media.DATA};//
@@ -283,5 +312,7 @@ public class PhotoActivity extends AppCompatActivity {
         Log.d("TAG", "getRealPath: 커서" + res);
         return res;
     }
+
+
 
 }

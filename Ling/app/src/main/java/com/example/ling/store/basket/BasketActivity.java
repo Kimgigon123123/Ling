@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.ling.R;
@@ -19,9 +20,12 @@ import com.example.ling.store.ChargeVO;
 import com.example.ling.store.CompleteDialog;
 import com.example.ling.store.StorePaymentActivity;
 import com.example.ling.store.StorePurchaseActivity;
+import com.example.ling.store.myinfo.StoreMyinfoActivity;
+import com.example.ling.store.myinfo.ZZimActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
@@ -47,7 +51,9 @@ public class BasketActivity extends AppCompatActivity {
             ArrayList<StoreBasketVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreBasketVO>>() {
             }.getType());
 
-
+            if(list.isEmpty()){
+                binding.tvBasket.setVisibility(View.VISIBLE);
+            }
             binding.recvBasket.setAdapter(new BasketAdapter(list,this  ));
             binding.recvBasket.setLayoutManager(new LinearLayoutManager(this));
 
@@ -57,7 +63,23 @@ public class BasketActivity extends AppCompatActivity {
 
 
 
+        binding.btnMyinfo.setOnClickListener(v->{
+            finish();
+            Intent intent = new Intent(this, StoreMyinfoActivity.class);
+            startActivity(intent);
+        });
 
+        binding.btnZzim.setOnClickListener(v->{
+            finish();
+            Intent intent = new Intent(this, ZZimActivity.class);
+            startActivity(intent);
+        });
+
+        binding.btnBasket.setOnClickListener(v->{
+            finish();
+            Intent intent = new Intent(this, BasketActivity.class);
+            startActivity(intent);
+        });
 
         binding.imgvBefore.setOnClickListener(v->{
             finish();
@@ -100,8 +122,17 @@ public class BasketActivity extends AppCompatActivity {
 
     protected void onRestart() {
         super.onRestart();
+        //왜 만든건지 모르겠음
+//        binding.tvTotalPrice.setText(StaticBasket.tv_total_price+"원");
 
-        binding.tvTotalPrice.setText(StaticBasket.tv_total_price+"원");
+            if(ChargeVO.isBuy){
+                Dialog dialog = new CompleteDialog(this,"BuyComplete");
+                dialog.show();
+                ChargeVO.isBuy=false;
+            }
+
+
+
 
 
     }
@@ -121,7 +152,8 @@ public class BasketActivity extends AppCompatActivity {
                             binding.tvTotalPrice.setText("0원");
 
                         }else{
-                                binding.tvTotalPrice.setText(list.get(0).getTotal_price()+"원");
+                            int totalPrice = list.get(0).getTotal_price();
+                            binding.tvTotalPrice.setText(formatPrice(totalPrice) + "원");
 
 
                         }
@@ -132,4 +164,9 @@ public class BasketActivity extends AppCompatActivity {
 
         });
     }
+    private String formatPrice(int price) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        return decimalFormat.format(price);
+    }
+
 }

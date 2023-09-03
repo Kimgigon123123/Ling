@@ -2,11 +2,17 @@ package com.example.ling.store.myinfo;
 
 
 public class StoreMyinfoVO {
-	String id, address, bank,name,detail_add;
+	String id, address, bank,name,detail_add,profile;
 	int money,totalPrice;
 	
 	
 	
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 	public String getDetail_add() {
 		return detail_add;
 	}

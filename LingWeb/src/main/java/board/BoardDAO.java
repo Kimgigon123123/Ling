@@ -52,6 +52,16 @@ public class BoardDAO {
 		return sql.selectOne("board.info", id);
 	}
 	
+	public List<BoardCommentVO> commentinfo(String id) {
+		List<BoardCommentVO> cvo = sql.selectList("board.commentinfo", id);
+		return cvo;
+	}
+	
+	public List<BoardReCommentVO> recommentinfo(String comment_id) {
+		
+		return sql.selectList("board.recommentinfo", comment_id);
+	}
+	
 	public int board_read(String id) {
 		return sql.update("board.read", id);
 	}

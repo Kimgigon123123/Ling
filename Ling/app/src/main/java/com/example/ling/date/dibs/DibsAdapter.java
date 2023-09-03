@@ -58,19 +58,19 @@ public class DibsAdapter extends RecyclerView.Adapter<DibsAdapter.ViewHolder> {
         h.binding.lnDibs.setOnClickListener(v -> {
             Intent intent = new Intent(context, DateDetailActivity.class);
             DateInfoVO vo = new DateInfoVO();
-            vo.setDate_img(list.get(i).getDate_img());
-            vo.setDate_category_code(list.get(i).getDate_category_code());
-            vo.setOpen(list.get(i).getOpen());
-            vo.setEnd(list.get(i).getEnd());
-            vo.setTel(list.get(i).getTel());
-            vo.setDate_address(list.get(i).getDate_address());
-            vo.setDate_intro(list.get(i).getDate_intro());
-            vo.setDate_id(list.get(i).getDate_id());
-            vo.setLng(list.get(i).getLng());
-            vo.setLan(list.get(i).getLan());
-
-
-            intent.putExtra("vo", list.get(i));
+            DateDibsVO dibsVO = list.get(i);
+            vo.setDate_img(dibsVO.getDate_img());
+            vo.setDate_category_code(dibsVO.getDate_category_code());
+            vo.setDate_name(dibsVO.getDate_name());
+            vo.setOpen(dibsVO.getOpen());
+            vo.setEnd(dibsVO.getEnd());
+            vo.setTel(dibsVO.getTel());
+            vo.setDate_address(dibsVO.getDate_address());
+            vo.setDate_intro(dibsVO.getDate_intro());
+            vo.setDate_id(dibsVO.getDate_id());
+            vo.setLng(dibsVO.getLng());
+            vo.setLan(dibsVO.getLan());
+            intent.putExtra("vo", vo);
             context.startActivity(intent);
         });
         // if 문 카테고리 별로 intent putextra 다르게

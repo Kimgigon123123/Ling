@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 
+
 @Repository
 public class ScheDAO {
 	
@@ -36,7 +37,9 @@ public class ScheDAO {
 	}
 	
 	public List<ScheAddVO> getDday(ScheAddVO vo){
-		List<ScheAddVO>  list = sql.selectList("sche.dday", vo);
+		List<ScheAddVO> list = sql.selectList("sche.dday", vo);
 		return list;
 	}
+	
+
 }

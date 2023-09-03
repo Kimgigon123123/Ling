@@ -390,12 +390,15 @@ thead {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.page-link {
+/* .page-link {
   padding: 12px 18px;
+} */
+.page-link {
+	background-color: transparent;
+  color: #fff !important;
 }
-.page-link,
 .page-link:hover {
-  color: #000;
+  color: #212529 !important;
 }
 .page-item {
   margin-right: 18px;
@@ -404,9 +407,13 @@ thead {
   margin-right: 0;
 }
 .page-item.active .page-link {
-  background-color: #e9ecef;
-  border-color: #dee2e6;
-  color: #000;
+  background-color: #f5a623 !important;
+  border-color: #f5a623 !important; 
+  color: #fff;
+}
+.custom-search-input {
+	background-color: #FFFFFF; /* 원하는 배경색으로 변경 */
+    color: #111111; /* 원하는 폰트 색상으로 변경 */
 }
 input[type="checkbox"] {
   cursor: pointer;
@@ -433,7 +440,10 @@ input[type="checkbox"]:focus {
   min-height: 725px;
 }
 .tm-block-products2 {
-  min-height: 1100px;
+  min-height: 1000px;
+}
+.tm-block-products3 {
+  min-height: 1200px;
 }
 .tm-block-product-categories {
   min-height: 650px;
@@ -444,7 +454,7 @@ input[type="checkbox"]:focus {
   overflow-y: scroll;
 }
 .tm-product-table-container2 {
-  min-height: 1000px;
+  max-height: 760px;
   margin-bottom: 15px;
   overflow-y: scroll;
 }
@@ -454,8 +464,14 @@ input[type="checkbox"]:focus {
   margin-bottom: 15px;
   overflow-y: scroll;
 }
+.tm-product-table-container4 {
+  max-height: 1100px;
+  margin-bottom: 15px;
+}
 
-
+/* .tm-product-table { */
+/*   min-height: 950px; */
+/* } */
 .tm-product-table tr {
   font-weight: 600;
 }

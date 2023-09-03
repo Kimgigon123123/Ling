@@ -25,20 +25,23 @@ public class CompleteDialog extends Dialog {
 
         if(str.equals("BuyComplete")){
             TextView tv = findViewById(R.id.tv);
-            tv.setText("구매완료~~~!!!");
+            tv.setText("구매 완료 되었습니다.");
         }
 
         if(str.equals("regi")){
             TextView tv = findViewById(R.id.tv);
-            tv.setText("등록완료~~~~!!!");
+            tv.setText("등록 완료 되었습니다.");
         }
         else if(str.equals("charge")){
             TextView tv = findViewById(R.id.tv);
-            tv.setText("충전완료~~~~!!!");
+            tv.setText("충전 완료 되었습니다.");
         }
         else if(str.equals("isMyinfo")){
             TextView tv = findViewById(R.id.tv);
-            tv.setText("충전완료~~~~!!!");
+            tv.setText("충전 완료 되었습니다.");
+        }else if(str.equals("return")){
+            TextView tv = findViewById(R.id.tv);
+            tv.setText("반품처리가 요청 되었습니다. \n빠른 시일내에 처리해드리겠습니다.");
         }
 
 
@@ -66,6 +69,8 @@ public class CompleteDialog extends Dialog {
             else if(str.equals("BuyComplete")){
 //                Intent intent = new Intent(context, StorePaymentActivity.class);
 //                context.startActivity(intent);
+                dismiss();
+            }else if(str.equals("return")){
                 dismiss();
             }
 

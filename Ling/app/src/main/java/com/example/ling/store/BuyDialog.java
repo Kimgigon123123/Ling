@@ -20,6 +20,8 @@ import com.example.ling.databinding.ActivityStorePurchaseBinding;
 import com.example.ling.store.storeCO.StorePurchaseListVO;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.text.DecimalFormat;
+
 
 public class BuyDialog extends BottomSheetDialog {
 
@@ -31,24 +33,29 @@ public class BuyDialog extends BottomSheetDialog {
     public BuyDialog(@NonNull Context context,String name, int price,String item_code,String category_code) {
         super(context);
         setContentView(R.layout.dialog_buy);
-        btn_buy=findViewById(R.id.btn_buy);
-        btn_basket=findViewById(R.id.btn_basket);
-        imgv_close=findViewById(R.id.imgv_close);
-        tv_name=findViewById(R.id.tv_name);
+        btn_buy = findViewById(R.id.btn_buy);
+        btn_basket = findViewById(R.id.btn_basket);
+        imgv_close = findViewById(R.id.imgv_close);
+        tv_name = findViewById(R.id.tv_name);
         tv_name.setText(name);
-        tv_price=findViewById(R.id.tv_price);
-        tv_price.setText(price+"");
-        tv_cnt=findViewById(R.id.tv_cnt);
-        imgv_up=findViewById(R.id.imgv_up);
-        imgv_down=findViewById(R.id.imgv_down);
-        tv_total_price=findViewById(R.id.tv_total_price);
-        tv_total_price.setText(Integer.parseInt(tv_price.getText().toString())*Integer.parseInt(tv_cnt.getText().toString())+"");
+        tv_price = findViewById(R.id.tv_price);
+
+        // 가격 값을 쉼표 포함한 형식으로 포맷팅
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        String formattedPrice = decimalFormat.format(price);
+        tv_price.setText(formattedPrice+"");
+
+        tv_cnt = findViewById(R.id.tv_cnt);
+        imgv_up = findViewById(R.id.imgv_up);
+        imgv_down = findViewById(R.id.imgv_down);
+        tv_total_price = findViewById(R.id.tv_total_price);
+        tv_total_price.setText(decimalFormat.format(price * cnt)+"");
         String payment="payment";
 
         imgv_up.setOnClickListener(v -> {
             cnt++;
-            tv_cnt.setText(cnt+"");
-            tv_total_price.setText(Integer.parseInt(tv_price.getText().toString())*cnt+"");
+            tv_cnt.setText(cnt + "");
+            tv_total_price.setText(decimalFormat.format(price * cnt)+"");
 
         });
 
@@ -59,8 +66,8 @@ public class BuyDialog extends BottomSheetDialog {
                 cnt++;
             }else{
                 cnt--;
-                tv_cnt.setText(cnt+"");
-                tv_total_price.setText(Integer.parseInt(tv_price.getText().toString())*cnt+"");
+                tv_cnt.setText(cnt + "");
+                tv_total_price.setText(decimalFormat.format(price * cnt)+"");
             }
 
 
@@ -94,7 +101,8 @@ public class BuyDialog extends BottomSheetDialog {
 
 
                 Intent intent = new Intent(context,StorePaymentActivity.class);
-                intent.putExtra("price",Integer.parseInt(tv_total_price.getText().toString()) );
+                int priceWithoutCommas = Integer.parseInt(tv_total_price.getText().toString().replace(",", ""));
+                intent.putExtra("price", priceWithoutCommas);
                 intent.putExtra("item_code",item_code);
                 intent.putExtra("cnt",cnt);
                 intent.putExtra("category_code",category_code);

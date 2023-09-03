@@ -2,10 +2,16 @@ package capsule;
 
 public class CapsuleVO {
 
-	String tc_no,  id, tc_title, tc_date, tc_content, tc_state, create_date,isopen,d_day,name;
+	String tc_no,  id, tc_title, tc_date, tc_content, tc_state, create_date,isopen,d_day,name,color;
 	int couple_num;
 	
 	
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
 	public String getName() {
 		return name;
 	}

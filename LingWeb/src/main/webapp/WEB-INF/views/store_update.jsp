@@ -50,7 +50,7 @@
                     <input
                       id="item_name"
                       name="item_name"
-                      placeholder="${vo.item_name }"
+                      value="${vo.item_name }"
                       type="text"
                       class="form-control validate"
                       required
@@ -65,10 +65,10 @@
                       id="item_content"
                       name="item_content"
                       class="form-control validate"
-                    placeholder="${vo.item_content}"
+                  
                       rows="3"
                       required
-                    ></textarea>
+                    >${vo.item_content}</textarea>
                   </div>
                   <div class="form-group mb-3">
                     <label
@@ -79,9 +79,9 @@
                       class="custom-select tm-select-accounts"
                       id="category_code"
                       name="category_code"
-  						
+  						required
                     >
-                      <option selected>카테고리선택</option>
+                      <option value="" selected>카테고리선택</option>
                       <option value="Dr"  ${vo.category_code == 'Dr' ? 'selected' : ''}>커플옷</option>
                       <option value="Ri"  ${vo.category_code == 'Ri' ? 'selected' : ''}>커플반지</option>
                       <option value="Gi"  ${vo.category_code == 'Gi' ? 'selected' : ''}>선물</option>
@@ -97,8 +97,8 @@
                           <input
                             id="item_price"
                             name="item_price"
-                            placeholder="${vo.item_price }"
-                            type="text"
+                            value="${vo.item_price }"
+                            type="number"
                             class="form-control validate"
                             data-large-mode="true"
                           />
@@ -113,7 +113,7 @@
                  <input type="hidden" value="${vo.item_img }" name="item_img">
                 </div>
                 <div class="custom-file mt-3 mb-3">
-                  <input id="fileInput" name="file" type="file" style="display:none" onchange="readURL(this)"; />
+                  <input reqiured id="fileInput" name="file" type="file" style="display:none" onchange="readURL(this)"; />
                   <input
                     type="button"
                     class="btn btn-primary btn-block mx-auto"
@@ -129,7 +129,7 @@
 									 <button type="submit" class="btn btn-primary mr-3 btn-block text-uppercase">상품수정</button>
 									<button
 										class="btn btn-success mr-3 text-uppercase" onclick="history.go(-1)">취소</button>
-									<button class="btn btn-danger mr-3 text-uppercase" onclick="confirmDelete('${vo.item_code}')">삭제</button>
+									<button type="button" class="btn btn-danger mr-3 text-uppercase" onclick="confirmDelete('${vo.item_code}')">삭제</button>
 								</div>
 							</div>
 

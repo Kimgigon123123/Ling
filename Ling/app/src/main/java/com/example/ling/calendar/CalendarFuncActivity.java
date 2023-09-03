@@ -8,10 +8,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
@@ -43,6 +46,7 @@ import java.util.Random;
 public class CalendarFuncActivity extends AppCompatActivity {
 
     ActivityCalendarFuncBinding binding;
+    Window window;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +54,14 @@ public class CalendarFuncActivity extends AppCompatActivity {
         binding = ActivityCalendarFuncBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         List<EventDay> events = new ArrayList<>();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window = this.getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
+            window.getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            window.setStatusBarColor(Color.parseColor("#595959"));
+        }
 
 
         select();

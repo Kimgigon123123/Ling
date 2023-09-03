@@ -13,16 +13,32 @@ public class DateDAO {
 	@Autowired @Qualifier("test")
 	SqlSession sql;
 	
-	public List<DateVO> travel_list() {
-		return sql.selectList("date.travel");
+//	public List<DateVO> travel_list(String search) {
+//		return sql.selectList("date.travel", search);
+//	}
+	
+	public PageVO travel_list(PageVO page) {
+		// 건수 조회
+		page.setTotalList(sql.selectOne("date.totalTravel", page));
+		// 해당 페이지의 목록( 기본 10건 )
+		page.setList(sql.selectList("date.travel", page));
+		return page;
 	}
 
-	public List<DateVO> restaurant_list() {
-		return sql.selectList("date.restaurant");
+	public PageVO restaurant_list(PageVO page) {
+		// 건수 조회
+		page.setTotalList(sql.selectOne("date.totalRestaurant", page));
+		// 해당 페이지의 목록( 기본 10건 )
+		page.setList(sql.selectList("date.restaurant", page));
+		return page;
 	}
 
-	public List<DateVO> festival_list() {
-		return sql.selectList("date.festival");
+	public PageVO festival_list(PageVO page) {
+		// 건수 조회
+		page.setTotalList(sql.selectOne("date.totalFestival", page));
+		// 해당 페이지의 목록( 기본 10건 )
+		page.setList(sql.selectList("date.festival", page));
+		return page;
 	}
 	
 	public DateVO date_info(int date_id) {

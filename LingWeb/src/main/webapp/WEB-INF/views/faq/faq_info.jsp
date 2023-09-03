@@ -6,6 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/custom.css">
+<style>
+ .container {
+        max-height: 500px; /* 최대 높이 설정 */
+        overflow-y: auto; /* 세로 스크롤 적용 */
+    }
+</style>
 </head>
 <body>
 	<div class="container mt-9">
@@ -29,16 +35,17 @@
     </tr>
     <tr>
       <th>내용</th>
-      <td class="td-margin content-line-height" colspan="6">${vo.faq_content}</td>
+      <td class="td-margin content-line-height" colspan="6"><pre>${vo.faq_content}</pre></td>
     </tr>
   </table>
 </div>
 	<c:choose>
     <c:when test="${loginId eq 'admin'}">
         <div class="btn-toolbar gap-2 my-3 justify-content-center">
-            <a class="btn btn-primary" id="btn-faqList" href="faq_modify">FAQ 수정</a>
-            <a class="btn btn-primary" id="btn-faqList">FAQ 목록</a>
-            <a class="btn btn-primary" id="btn-faqList">FAQ 삭제</a>
+            <a class="btn btn-primary" id="btn-faqList" href="faq_modify?faq_no=${vo.faq_no}">FAQ 수정</a>
+            <a class="btn btn-primary" id="btn-faqList" href="list">FAQ 목록</a>
+            <a class="btn btn-primary" id="btn-faqList" href="javascript:if(confirm('이 FAQ 글을 삭제하시겠습니까?'))
+            											 {location='faq_delete?faq_no=${vo.faq_no }'}">FAQ 삭제</a>
         </div>
     </c:when>
     <c:otherwise>

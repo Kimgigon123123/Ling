@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.ling.R;
 import com.example.ling.Static;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
@@ -18,11 +19,14 @@ import com.example.ling.store.ChargeCashActivity;
 import com.example.ling.store.ChargeVO;
 import com.example.ling.store.CompleteDialog;
 import com.example.ling.store.StoreCoAdater;
+import com.example.ling.store.basket.BasketActivity;
 import com.example.ling.store.storeCO.StoreCOVO;
 import com.example.ling.store.storeCO.StorePurchaseListVO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class StoreMyinfoActivity extends AppCompatActivity {
@@ -46,6 +50,12 @@ public class StoreMyinfoActivity extends AppCompatActivity {
         buylist();
         returnlist();
 
+        if(ChargeVO.isReturn){
+            Dialog dialog = new CompleteDialog(this,"return");
+            dialog.show();
+            ChargeVO.isReturn=false;
+        }
+
 
 
 
@@ -53,8 +63,30 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
 
 
+        binding.btnAddress.setOnClickListener(v->{
+            Intent intent = new Intent(this, AddressMainActivity.class);
+            startActivity(intent);
+        });
 
 
+        binding.btnZzim.setOnClickListener(v -> {
+            finish();
+            Intent intent = new Intent(this, ZZimActivity.class);
+            startActivity(intent);
+        });
+
+        binding.btnBasket.setOnClickListener(v -> {
+            finish();
+            Intent intent = new Intent(this, BasketActivity.class);
+            startActivity(intent);
+        });
+
+
+        binding.btnMyinfo.setOnClickListener(v -> {
+            finish();
+            Intent intent = new Intent(this, StoreMyinfoActivity.class);
+            startActivity(intent);
+        });
 
         binding.imgvBefore.setOnClickListener(v -> {
             finish();
@@ -73,14 +105,14 @@ public class StoreMyinfoActivity extends AppCompatActivity {
         });
 
         binding.imgvIntoBylist.setOnClickListener(v->{
-            Intent intent = new Intent(StoreMyinfoActivity.this, ZZimActivity.class);
-            intent.putExtra("buylist","buylist");
+            Intent intent = new Intent(this, ZZimActivity.class);
+            intent.putExtra("selected_chip", 2);
             startActivity(intent);
         });
 
         binding.imgvReturn.setOnClickListener(v->{
             Intent intent = new Intent(StoreMyinfoActivity.this, ZZimActivity.class);
-            intent.putExtra("return","return");
+            intent.putExtra("selected_chip", 3);
             startActivity(intent);
         });
 
@@ -88,15 +120,29 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
     public void select(){
         CommonConn conn = new CommonConn(this,"store_myinfo");
-            conn.addParamMap("id",CommonVar.loginInfo.getId());
+        conn.addParamMap("id",CommonVar.loginInfo.getId());
 
         conn.onExcute((isResult, data) -> {
 
             ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMyinfoVO>>() {}.getType());
 
 
-            binding.tvMoney.setText(list.get(0).getMoney()+"");
+            String imageUrl = list.get(0).profile;
+
+            if (imageUrl != null && !imageUrl.equals(" ")) {
+                Picasso.get()
+                        .load(imageUrl)
+                        .into(binding.imgvProfile);
+            } else {
+                // URL이 없는 경우 기본 이미지를 설정
+                Picasso.get()
+                        .load(R.drawable.profile_img)
+                        .into(binding.imgvProfile);
+            }
+
+            binding.tvMoney.setText(formatPriceWithCommas(list.get(0).getMoney()) + "");
             binding.tvName.setText(list.get(0).getName());
+            binding.tvAddress.setText(list.get(0).getAddress()+list.get(0).getDetail_add());
 
 
 
@@ -174,11 +220,26 @@ public class StoreMyinfoActivity extends AppCompatActivity {
             dialog.show();
             ChargeVO.isCharge=false;
         }
+
+
+        if(ChargeVO.isReturn){
+            Dialog dialog = new CompleteDialog(this,"return");
+            dialog.show();
+            ChargeVO.isReturn=false;
+        }
+
+
         select();
         zzimlist();
         buylist();
         returnlist();
 
+
+
+
+    }
+
+    private String formatPriceWithCommas(int price) {
+        return NumberFormat.getInstance().format(price);
     }
 }
-

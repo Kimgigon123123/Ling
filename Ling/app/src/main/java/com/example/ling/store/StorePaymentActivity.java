@@ -21,6 +21,7 @@ import com.example.ling.store.myinfo.StoreMyinfoVO;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,9 +62,9 @@ public class StorePaymentActivity extends AppCompatActivity {
         int basket_total_price = intent3.getIntExtra("basket_total_price",0);
 
         if(basket_total_price != 0){
-            binding.tvPrice.setText(basket_total_price+"원");
-            binding.tvTotalPrice.setText(basket_total_price+3000+"원");
-            totalPrice = basket_total_price+3000;
+            binding.tvPrice.setText(formatPriceWithCommas(basket_total_price) + "원");
+            binding.tvTotalPrice.setText(formatPriceWithCommas(basket_total_price+3000) + "원");
+            totalPrice = basket_total_price + 3000;
 
             binding.btnBuy.setOnClickListener(v->{
 //                Toast.makeText(this, "장바구니에서 구매 버튼 누름", Toast.LENGTH_SHORT).show();
@@ -85,9 +86,10 @@ public class StorePaymentActivity extends AppCompatActivity {
                             dialog.show();
                         } else {
                             basket_buy();
-                            Intent intent = new Intent(StorePaymentActivity.this, MainActivity.class);
-                            startActivity(intent);
+//                            Intent intent = new Intent(StorePaymentActivity.this, MainActivity.class);
+//                            startActivity(intent);
                             ChargeVO.isBuy = true;
+                            finish();
                         }
                     });
                 }
@@ -99,10 +101,10 @@ public class StorePaymentActivity extends AppCompatActivity {
 
             Intent intent2 = getIntent();
             int price = intent2.getIntExtra("price", 0);
-            binding.tvPrice.setText(price + "원");
+            binding.tvPrice.setText(formatPriceWithCommas(price) + "원");
 
             totalPrice = price + 3000;
-            binding.tvTotalPrice.setText(totalPrice + "원");
+            binding.tvTotalPrice.setText(formatPriceWithCommas(totalPrice) + "원");
 
 
             binding.btnBuy.setOnClickListener(v -> {
@@ -209,7 +211,7 @@ public class StorePaymentActivity extends AppCompatActivity {
             }.getType());
 
 
-            binding.tvMymoney.setText(list.get(0).getMoney() + "");
+            binding.tvMymoney.setText(formatPriceWithCommas(list.get(0).getMoney()) + "");
 
         });
     }
@@ -222,7 +224,7 @@ public class StorePaymentActivity extends AppCompatActivity {
             ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMyinfoVO>>() {}.getType());
 
 
-            binding.tvMymoney.setText(list.get(0).getMoney()+"");
+            binding.tvMymoney.setText(formatPriceWithCommas(list.get(0).getMoney()) + "");
 
     });
 }
@@ -330,6 +332,13 @@ public class StorePaymentActivity extends AppCompatActivity {
 
         });
     }
+
+    private String formatPriceWithCommas(int price) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        return decimalFormat.format(price);
+    }
+
+
 
 
 }

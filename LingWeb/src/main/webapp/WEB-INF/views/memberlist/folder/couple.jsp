@@ -11,7 +11,7 @@
                 <thead>
 				<tr>
 					<th scope="col">&nbsp;</th>
-					<th scope="col">COUPLE_NUM</th>
+					<th scope="col"><a class="sort" data-couple_numsort='${couplesort}' data-order='couple_num'>COUPLE_NUM</a></th>
 					<th scope="col">MID</th>
 					<th scope="col">FID</th>
 					<th scope="col">CREATE_DATE</th>

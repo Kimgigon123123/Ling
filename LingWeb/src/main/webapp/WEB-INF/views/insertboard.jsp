@@ -8,7 +8,7 @@
         <div class="row tm-content-row">
           <div class="col-12 tm-block-col">
             <div class="tm-bg-primary-dark tm-block tm-block-settings">
-              <h2 class="tm-block-title">새글 등록 (${board_cd})</h2>
+              <h2 class="tm-block-title">글 등록 및 수정 (${board_cd})</h2>
               
               
               <form action="insertboard" method="post" class="tm-signup-form row">
@@ -27,7 +27,7 @@
         			<div class="input-group" >
             
             		<div style="width:88%;">
-                	<input type="text" class="form-control" placeholder="글 제목" name="title" value="${vo.title}" maxlength="40" style="width: 100%;">
+                	<input type="text" class="form-control validate" minlength="2" maxlength="50" placeholder="글 제목" name="title" value="${vo.title}" maxlength="40" style="width: 100%;">
             		</div>
         			</div>
    					</td>
@@ -36,7 +36,7 @@
 					<div class="form-group col-lg-12">
 					<label for="content">content</label>
       				<tr>
-					<td><textarea type="text" class="form-control" placeholder="글 내용을 작성하세요" name="content" value="${vo.content}" maxlength="1024" style="height: 400px;"></textarea></td>
+					<td><textarea  type="text" class="form-control validate" id="content" placeholder="글 내용을 작성하세요" name="content" value="${vo.content}" maxlength="1024" style="height: 400px;"></textarea></td>
 
       				</tr>
 
@@ -54,7 +54,7 @@
                     name="writer"
                     type="text"
                     placeholder="admin"
-                    value="${vo.writer}"
+                    value="admin"
                     class="form-control validate"
                   />
                 </div>
@@ -81,6 +81,31 @@
           </div>
         </div>
       </div>
-
+<script>
+  $(function() {
+      $("form").submit(function(event) {
+          // 각 입력 필드의 값을 가져옴
+          console.log(rtnNameFindValue("title"));
+          console.log(rtnNameFindValue("content"));
+          console.log(rtnNameFindValue("writer"));
+          
+          if (rtnNameFindValue("title") != "" && rtnNameFindValue("content") != "" && $(".writer").val() != "") {
+         
+          }else{
+        	     alert("모든 입력 항목을 채워주세요.");
+                 event.preventDefault(); // 제출을 막음
+          }
+      });
+  });
+  
+  function rtnNameFindValue(name) {
+	 return  $("[name=" + name + "]").val() ;
+	}
+  </script>
+ 
   </body>
+ 
+ 
+  
+
 </html>

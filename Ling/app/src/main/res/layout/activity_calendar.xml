@@ -128,14 +128,18 @@
         android:layout_marginHorizontal="15dp"
         >
         <LinearLayout
+            android:background="@drawable/border_layout_notop"
             android:paddingVertical="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
             <TextView
+                android:id="@+id/tv_100"
                 android:layout_marginLeft="10dp"
-                android:layout_width="40dp"
+                android:layout_width="100dp"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:text="100일"
                 android:textStyle="bold"
@@ -158,13 +162,16 @@
         <LinearLayout
             android:paddingVertical="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:background="@drawable/border_layout_notop"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
             <TextView
+                android:id="@+id/tv_200"
                 android:layout_marginLeft="10dp"
-                android:layout_width="40dp"
+                android:layout_width="100dp"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:text="200일"
                 android:textStyle="bold"
@@ -186,11 +193,15 @@
             android:paddingVertical="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/border_layout_notop"
             android:orientation="horizontal"
             >
             <TextView
+                android:id="@+id/tv_300"
                 android:layout_marginLeft="10dp"
-                android:layout_width="40dp"
+                android:layout_width="100dp"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:text="300일"
                 android:textStyle="bold"
@@ -212,12 +223,15 @@
             android:paddingVertical="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_layout"
+            android:background="@drawable/border_layout_notop"
             android:orientation="horizontal"
             >
             <TextView
+                android:id="@+id/tv_365"
                 android:layout_marginLeft="10dp"
-                android:layout_width="40dp"
+                android:layout_width="100dp"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:text="1주년"
                 android:textStyle="bold"

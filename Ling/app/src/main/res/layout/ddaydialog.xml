@@ -28,7 +28,7 @@
         android:gravity="center"
 
         android:layout_height="wrap_content"
-        android:text="d-day가 3일 남은 일정이 있습니다!!"
+        android:text="d-day가 3일도 안 남은 일정이 있습니다!!"
         android:textStyle="bold"
         android:textSize="20dp"
         android:layout_below="@+id/loading_image"

@@ -122,7 +122,7 @@ public class CalendarAddActivity extends AppCompatActivity {
         conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
         conn.addParamMap("sche_title", binding.edtCalendarTitle.getText().toString());
         conn.addParamMap("sche_date", binding.tvCalendarSche.getText().toString());
-//        conn.addParamMap("sche_typecode", );
+
 
 
         if(binding.pushCheck.isChecked()){
@@ -138,19 +138,21 @@ public class CalendarAddActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
                 String selectedSpinner = parent.getItemAtPosition(i).toString();
-                if(selectedSpinner.equals("결혼기념일")){
+                if(selectedSpinner.equals("wedding")){
                     sche_typecode= "wedding";
-                }else if(selectedSpinner.equals("생일")){
+                }else if(selectedSpinner.equals("birth")){
                     sche_typecode= "birth";
-                }else if(selectedSpinner.equals("출산예정일")){
+                }else if(selectedSpinner.equals("childbirth")){
                     sche_typecode= "childbirth";
-                }else if(selectedSpinner.equals("커플여행")){
+                }else if(selectedSpinner.equals("travel")){
                     sche_typecode= "travel";
                 }else{
                     sche_typecode= "default";
                 }
-
+                conn.addParamMap("sche_typecode", sche_typecode);
             }
+
+
 
 
             @Override
@@ -159,6 +161,8 @@ public class CalendarAddActivity extends AppCompatActivity {
         });
 
 
+
+        adapter.notifyDataSetChanged();
 
         conn.onExcute((isResult, data) ->  {
 

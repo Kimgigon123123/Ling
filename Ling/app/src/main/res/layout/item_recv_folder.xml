@@ -11,7 +11,6 @@
         android:layout_marginLeft="10dp"
         android:layout_width="190dp"
         android:layout_height="200dp"
-        android:src="@drawable/wedding"
         />
 
 
@@ -38,15 +37,8 @@
             android:textSize="20dp"
             />
 
-        <TextView
-            android:textColor="@color/white"
-            android:id="@+id/tv_folder_cnt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10"
-            android:textSize="20dp"
-            android:layout_marginBottom="5dp"
-            />
+
+
     </LinearLayout>
 
     <ImageView
@@ -60,3 +52,14 @@
         />
 
 </RelativeLayout>
+
+<!--
+<TextView
+android:textColor="@color/white"
+android:id="@+id/tv_folder_cnt"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="10"
+android:textSize="20dp"
+android:layout_marginBottom="5dp"
+    />-->

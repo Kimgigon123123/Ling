@@ -4,8 +4,36 @@
 
 <select id="store_select" resultType="store.StoreVO">
 
-select i.*,(item_price*sales) as sales_amount from store_item i
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i order by to_number(i.item_code) desc
 
+</select>
+
+<select id="store_name_by" resultType="store.StoreVO">
+
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i order by i.item_name
+
+</select>
+
+<select id="store_price_by" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i order by i.item_price
+</select>
+
+<select id="store_sales_by" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i order by i.sales desc
+</select>
+
+<select id="store_amount" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i order by sales_amount desc
 </select>
 
 <select id="store_select_totalsales" resultType="String">
@@ -14,7 +42,139 @@ select TO_CHAR(SUM(item_price * sales), '999,999,999') as total_sales from store
 
 
 <select id="store_dr" resultType="store.StoreVO">
-select i.*,(item_price*sales) as sales_amount from store_item i where category_code='Dr'
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Dr'
+order by to_number(i.item_code) desc
+</select>
+
+<select id="store_name_dr" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Dr'
+order by i.item_name
+</select>
+
+<select id="store_name_ri" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Ri'
+order by i.item_name
+</select>
+
+<select id="store_name_gi" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Gi'
+order by i.item_name
+</select>
+
+<select id="store_name_etc" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Etc'
+order by i.item_name
+</select>
+
+<select id="store_price_dr" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Dr'
+order by i.item_price
+</select>
+
+<select id="store_price_ri" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Ri'
+order by i.item_price
+</select>
+
+<select id="store_price_gi" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Gi'
+order by i.item_price
+</select>
+
+<select id="store_price_etc" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Etc'
+order by i.item_price
+</select>
+
+<select id="store_sales_dr" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Dr'
+order by i.sales desc
+</select>
+
+<select id="store_sales_ri" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Ri'
+order by i.sales desc
+</select>
+
+<select id="store_sales_gi" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Gi'
+order by i.sales desc
+</select>
+
+<select id="store_sales_etc" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Etc'
+order by i.sales desc
+</select>
+
+<select id="store_amount_dr" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Dr'
+order by sales_amount desc
+</select>
+
+<select id="store_amount_ri" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Ri'
+order by sales_amount desc
+</select>
+
+<select id="store_amount_gi" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Gi'
+order by sales_amount desc
+</select>
+
+<select id="store_amount_etc" resultType="store.StoreVO">
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Etc'
+order by sales_amount desc
 </select>
 
 <select id="store_total_dr" resultType="String">
@@ -22,15 +182,25 @@ select TO_CHAR(SUM(item_price * sales), '999,999,999') as total_sales from store
 </select>
 
 <select id="store_ri" resultType="store.StoreVO">
-select i.*,(item_price*sales) as sales_amount from store_item i where category_code='Ri'
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Ri'
+order by to_number(i.item_code) desc
 </select>
+
+
 
 <select id="store_total_ri" resultType="String">
 select TO_CHAR(SUM(item_price * sales), '999,999,999') as total_sales from store_item where category_code='Ri'
 </select>
 
 <select id="store_gi" resultType="store.StoreVO">
-select i.*,(item_price*sales) as sales_amount from store_item i where category_code='Gi'
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Gi'
+order by to_number(i.item_code) desc
 </select>
 
 <select id="store_total_gi" resultType="String">
@@ -38,7 +208,11 @@ select TO_CHAR(SUM(item_price * sales), '999,999,999') as total_sales from store
 </select>
 
 <select id="store_etc" resultType="store.StoreVO">
-select i.*,(item_price*sales) as sales_amount from store_item i where category_code='Etc'
+select i.*,(item_price*sales) as sales_amount,TO_CHAR((item_price*sales),'999,999,999') as st_sales_amount ,
+to_char(item_price,'999,999,999') as st_item_price
+from store_item i 
+where category_code='Etc'
+order by to_number(i.item_code) desc
 </select>
 
 <select id="store_total_etc" resultType="String">
@@ -53,7 +227,8 @@ case  when delivery_code=1 then '배송중'
      when delivery_code=3 then '배송취소'
      end as delivery_state
 ,
-id,item_price,(purchase_cnt*item_price) as total_price,purchase_cnt,item_name,item_img,address,i.category_code
+id,item_price,(purchase_cnt*item_price) as total_price,purchase_cnt,item_name,item_img,address,i.category_code,
+to_char(item_price,'999,999,999') as st_item_price,to_char((purchase_cnt*item_price),'999,999,999') as st_total_price
 from store_purchase_product p , store_item i
 where p.item_code = i.item_code
 order by to_number(order_num) desc
@@ -61,15 +236,39 @@ order by to_number(order_num) desc
 </select>
 
 <select id="store_return_select" resultType="storereturn.StoreReturnVO">
-select r.*,i.item_name,i.item_price,i.item_img,i.item_content ,((r.purchase_cnt)*(i.item_price)) as total_price
+select r.*,i.item_name,i.item_price,i.item_img,i.item_content ,
+((r.purchase_cnt)*(i.item_price)) as total_price,to_char(i.item_price,'999,999,999') as st_item_price,
+to_char((purchase_cnt*i.item_price),'999,999,999') as st_total_price
 from store_return_list r, store_item i
 where r.item_code = i.item_code
-order by return_code desc
+order by to_number(return_code) desc
 </select>
 
-<update id="store_return_update">
-update store_return_list set return_state = '환불처리완료' where return_code in ( ${returnCodes} )
+
+
+<update id="store_return_update"  parameterType="java.util.List">
+
+<foreach collection="list" item="item" open="DECLARE BEGIN" close="; END;" separator=";" >
+	update store_return_list set return_state = '환불처리완료'  where return_code = #{item.return_code}
+</foreach>
+
 </update>
+
+<update id="store_return_update2"   parameterType="java.util.List">
+
+<foreach collection="list"  item="item" open="DECLARE BEGIN" close="; END;" separator=";" >
+
+	update store_myinfo set money = money + 
+	(select  ((purchase_cnt)*(i.item_price)) as total_price
+	from store_return_list r, store_item i
+	where r.item_code = i.item_code
+	and return_code= #{item.return_code})
+	where id= #{item.id}
+</foreach>
+
+</update>
+
+
 
 <update id="store_return_cancel">
 update store_return_list set return_state = '환불취소' where return_code in ( ${returnCodes} )
@@ -106,5 +305,121 @@ select * from Store_item where item_code=#{item_code}
 <delete id="store_delete">
 delete store_item where item_code=#{item_code}
 </delete>
+
+<delete id="store_delete_zzim">
+delete store_zzim_product where item_code=#{item_code}
+</delete>
+
+<delete id="store_delete_buylist">
+delete store_purchase_product where item_code=#{item_code}
+</delete>
+
+<delete id="store_delete_return">
+delete store_return_list where item_code=#{item_code}
+</delete>
+
+<delete id="store_delete_basket">
+delete store_basket where item_code=#{item_code}
+</delete>
+
+<select id="store_delivery_all" resultType="storereturn.StoreReturnVO">
+select order_num,p.item_code,
+case  when delivery_code=1 then '배송중'
+     when delivery_code=2 then '배송완료'
+     when delivery_code=3 then '배송취소'
+     end as delivery_state
+,
+id,item_price,(purchase_cnt*item_price) as total_price,purchase_cnt,item_name,item_img,address,i.category_code,
+to_char(item_price,'999,999,999') as st_item_price,to_char((purchase_cnt*item_price),'999,999,999') as st_total_price
+from store_purchase_product p , store_item i
+where p.item_code = i.item_code
+order by to_number(order_num) desc
+</select>
+
+<select id="store_delivery_ing" resultType="storereturn.StoreReturnVO">
+select order_num,p.item_code,
+case  when delivery_code=1 then '배송중'
+     when delivery_code=2 then '배송완료'
+     when delivery_code=3 then '배송취소'
+     end as delivery_state
+,
+id,item_price,(purchase_cnt*item_price) as total_price,purchase_cnt,item_name,item_img,address,i.category_code,
+to_char(item_price,'999,999,999') as st_item_price,to_char((purchase_cnt*item_price),'999,999,999') as st_total_price
+from store_purchase_product p , store_item i
+where p.item_code = i.item_code
+and delivery_code =1
+order by to_number(order_num) desc
+</select>
+
+
+<select id="store_delivery_complete" resultType="storereturn.StoreReturnVO">
+select order_num,p.item_code,
+case  when delivery_code=1 then '배송중'
+     when delivery_code=2 then '배송완료'
+     when delivery_code=3 then '배송취소'
+     end as delivery_state
+,
+id,item_price,(purchase_cnt*item_price) as total_price,purchase_cnt,item_name,item_img,address,i.category_code,
+to_char(item_price,'999,999,999') as st_item_price,to_char((purchase_cnt*item_price),'999,999,999') as st_total_price
+from store_purchase_product p , store_item i
+where p.item_code = i.item_code
+and delivery_code =2
+order by to_number(order_num) desc
+</select>
+
+<select id="store_delivery_cancel2" resultType="storereturn.StoreReturnVO">
+select order_num,p.item_code,
+case  when delivery_code=1 then '배송중'
+     when delivery_code=2 then '배송완료'
+     when delivery_code=3 then '배송취소'
+     end as delivery_state
+,
+id,item_price,(purchase_cnt*item_price) as total_price,purchase_cnt,item_name,item_img,address,i.category_code,
+to_char(item_price,'999,999,999') as st_item_price,to_char((purchase_cnt*item_price),'999,999,999') as st_total_price
+from store_purchase_product p , store_item i
+where p.item_code = i.item_code
+and delivery_code =3
+order by to_number(order_num) desc
+</select>
+
+
+<select id="store_return_all" resultType="storereturn.StoreReturnVO">
+select r.*,i.item_name,i.item_price,i.item_img,i.item_content ,
+((r.purchase_cnt)*(i.item_price)) as total_price,to_char(i.item_price,'999,999,999') as st_item_price,
+to_char((purchase_cnt*i.item_price),'999,999,999') as st_total_price
+from store_return_list r, store_item i
+where r.item_code = i.item_code
+order by to_number(return_code) desc
+</select>
+
+<select id="store_return_ing" resultType="storereturn.StoreReturnVO">
+select r.*,i.item_name,i.item_price,i.item_img,i.item_content ,
+((r.purchase_cnt)*(i.item_price)) as total_price,to_char(i.item_price,'999,999,999') as st_item_price,
+to_char((purchase_cnt*i.item_price),'999,999,999') as st_total_price
+from store_return_list r, store_item i
+where r.item_code = i.item_code
+and return_state = '환불처리중'
+order by to_number(return_code) desc
+</select>
+
+<select id="store_return_complete" resultType="storereturn.StoreReturnVO">
+select r.*,i.item_name,i.item_price,i.item_img,i.item_content ,
+((r.purchase_cnt)*(i.item_price)) as total_price,to_char(i.item_price,'999,999,999') as st_item_price,
+to_char((purchase_cnt*i.item_price),'999,999,999') as st_total_price
+from store_return_list r, store_item i
+where r.item_code = i.item_code
+and return_state = '환불처리완료'
+order by to_number(return_code) desc
+</select>
+
+<select id="store_return_cancel2" resultType="storereturn.StoreReturnVO">
+select r.*,i.item_name,i.item_price,i.item_img,i.item_content ,
+((r.purchase_cnt)*(i.item_price)) as total_price,to_char(i.item_price,'999,999,999') as st_item_price,
+to_char((purchase_cnt*i.item_price),'999,999,999') as st_total_price,return_state
+from store_return_list r, store_item i
+where r.item_code = i.item_code
+and return_state = '환불취소'
+order by to_number(return_code) desc
+</select>
 
 </mapper>

@@ -20,6 +20,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class ChargeCashActivity extends AppCompatActivity {
@@ -117,7 +118,7 @@ public class ChargeCashActivity extends AppCompatActivity {
             ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data, new TypeToken<ArrayList<StoreMyinfoVO>>() {}.getType());
 
 
-            binding.tvMoney.setText(list.get(0).getMoney()+"");
+            binding.tvMoney.setText(formatMoneyWithCommas(list.get(0).getMoney()) + "");
 
 
         });
@@ -133,6 +134,11 @@ public class ChargeCashActivity extends AppCompatActivity {
             ArrayList<StoreMyinfoVO> list = new Gson().fromJson(data,new TypeToken<ArrayList<StoreMyinfoVO>>(){}.getType());
             binding.tvBankInfo.setText(list.get(0).getBank());
         });
+    }
+
+    private String formatMoneyWithCommas(int money) {
+        NumberFormat nf = NumberFormat.getNumberInstance();
+        return nf.format(money);
     }
 
 

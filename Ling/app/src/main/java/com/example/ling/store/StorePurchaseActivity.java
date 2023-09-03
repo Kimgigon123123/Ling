@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +49,11 @@ public class StorePurchaseActivity extends AppCompatActivity {
 
             binding.tvContent.setText(content);
             binding.tvName.setText(name);
-            binding.tvPrice.setText(price+"");
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        String formattedPrice = decimalFormat.format(price);
+
+// TextView에 쉼표 처리된 가격 설정
+        binding.tvPrice.setText(formattedPrice);
 
         Picasso.get()
                 .load(imageUrl)

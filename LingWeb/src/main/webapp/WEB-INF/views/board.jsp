@@ -2,6 +2,20 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
+<head>
+<style>
+a {
+  color: white; /* 기본 색상을 흰색으로 설정 */
+  text-decoration: none; /* 밑줄 제거 */
+  transition: color 0.3s; /* 색상 변화에 부드러운 트랜지션 추가 */
+}
+
+/* 링크를 마우스로 호버할 때의 색상 설정 */
+a:hover {
+  color: your-desired-hover-color; /* 호버 시 색상 변경 */
+}
+</style>
+</head>
   
 <body id="reportsPage">
 
@@ -40,8 +54,8 @@
 				<c:forEach items="${list}" var="vo">
 				<tr>
 					<th scope="row"><input type="checkbox" /></th>
-					<td class="tm-product-name">${vo.id}</td>
-					<td>${vo.title}</td>
+					<td>${vo.id}</td>
+					<td><a href="contentboard?id=${vo.id }">${vo.title}</a></td>
 					<td>${vo.writer}</td>
 					<td>${vo.writedate}</td>
 					<td>${vo.readcnt}</td>
@@ -106,6 +120,11 @@
    	  }) 
         
     });
+    /* $(function() {
+        $(".tm-board-show").on("click", function() {
+          window.location.href = "contentboard?id=${vo.id }";
+        });
+      }); */
     
 </script>
 </body>

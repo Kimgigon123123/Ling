@@ -51,7 +51,7 @@
 		
 		}
 		#chart_back{
-		background-image: linear-gradient(to right, #8360c3, #2ebf91);
+		background-image: url('<c:url value="/images/back.jpg"/>');
 		}
 		
 		.custom-link {
@@ -59,10 +59,19 @@
     /* 다른 스타일 속성 추가 */
 }
 		
-		.bg-light{
-			background-image: linear-gradient(90deg, #B7D6F5 20% ,#F0D3D8 80%);
-		}
+/* 		.bg-light{
+			background-image: url('<c:url value="/resources/images/back.jpg"/>');
+		} */
 		
+	.legend-list span {
+		width: 44px;
+		height: 17px;
+		margin-right: 5px;
+	}
+	.legend-list li {
+		display: flex;
+		align-items: center;
+	}
 		
         </style>
     </head>
@@ -76,11 +85,11 @@
                     <div class="col-lg-6">
                         <!-- Mashead text and app badges-->
                         <div class="mb-5 mb-lg-0 text-center text-lg-start">
-                            <h1 class="display-1 lh-1 mb-3">Showcase your app beautifully.</h1>
-                            <p class="lead fw-normal text-muted mb-5">Launch your mobile app landing page faster with this free, open source theme from Start Bootstrap!</p>
+                            <h1 class="display-1 lh-1 mb-3">Ama et fac quod vis!<br> Amor aeternus, LING!</h1>
+                            <p class="lead fw-normal text-muted mb-5">The most stingy words before meeting you, <br> the words I lived with after meeting you...</p>
                             <div class="d-flex flex-column flex-lg-row align-items-center">
-                                <a class="me-lg-3 mb-4 mb-lg-0" href="#!"><img class="app-badge" src="assets/img/google-play-badge.svg" alt="..." /></a>
-                                <a href="#!"><img class="app-badge" src="assets/img/app-store-badge.svg" alt="..." /></a>
+                                <a class="me-lg-3 mb-4 mb-lg-0" href="#!"><img class="app-badge" src="img/google-play-badge.svg" alt="..." /></a>
+                                <a href="#!"><img class="app-badge" src="img/app-store-badge.svg" alt="..." /></a>
                             </div>
                         </div>
                     </div>
@@ -135,7 +144,7 @@
         
         <!-- App features section-->
         <section id="features">
-            <div class="container px-5">
+            <div class="container px-5 mb-8">
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-8 order-lg-1 mb-5 mb-lg-0">
                         <div class="container-fluid px-5">
@@ -143,17 +152,17 @@
                                 <div class="col-md-6 mb-5">
                                     <!-- Feature item-->
                                     <div class="text-center">
-                                        <img src="<c:url value='/resources/images/chat.png'/>" class="d-block w-100 h-100" alt="Image 2">
-                                        <h3 class="font-alt">Device Mockups</h3>
-                                        <p class="text-muted mb-0">Ready to use HTML/CSS device mockups, no Photoshop required!</p>
+                                        <img src="<c:url value='/resources/images/menu_homefrag_img1.png'/>" class="justify-content-center w-50 h-50" alt="Image 2">
+                                        <h3 class="font-alt">위치추적</h3>
+                                        <p class="text-muted mb-0">내 짝궁과만 나누는 비밀대화 채팅방</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-5">
                                     <!-- Feature item-->
                                     <div class="text-center">
-                                        <img src="<c:url value='/resources/images/calendar.png'/>" class="d-block w-100 h-100" alt="Image 2">
-                                        <h3 class="font-alt">Flexible Use</h3>
-                                        <p class="text-muted mb-0">Put an image, video, animation, or anything else in the screen!</p>
+                                        <img src="<c:url value='/resources/images/menu_homefrag_img3.png'/>" class="justify-content-between w-50 h-50" alt="Image 2">
+                                        <h3 class="font-alt">캘린더</h3>
+                                        <p class="text-muted mb-0">짝궁과의 기념일 기록과 데이트 및 일정 관리</p>
                                     </div>
                                 </div>
                             </div>
@@ -161,16 +170,16 @@
                                 <div class="col-md-6 mb-5 mb-md-0">
                                     <!-- Feature item-->
                                     <div class="text-center">
-                                        <i class="bi-gift icon-feature text-gradient d-block mb-3"></i>
-                                        <h3 class="font-alt">Free to Use</h3>
+                                        <img src="<c:url value='/resources/images/menu_homefrag_img2.png'/>" class="justify-content-between w-50 h-50" alt="Image 2">
+                                        <h3 class="font-alt">메모장</h3>
                                         <p class="text-muted mb-0">As always, this theme is free to download and use for any purpose!</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <!-- Feature item-->
                                     <div class="text-center">
-                                        <i class="bi-patch-check icon-feature text-gradient d-block mb-3"></i>
-                                        <h3 class="font-alt">Open Source</h3>
+                                        <img src="<c:url value='/resources/images/menu_homefrag_img4.png'/>" class="justify-content-center w-50 h-50" alt="Image 2">
+                                        <h3 class="font-alt">타입캡슐</h3>
                                         <p class="text-muted mb-0">Since this theme is MIT licensed, you can use it commercially!</p>
                                     </div>
                                 </div>
@@ -194,13 +203,13 @@
                             ><svg class="shape-2 d-none d-sm-block" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"></circle></svg>
                             <div class="device-wrapper">
                                 <div class="device" data-device="iPhoneX" data-orientation="portrait" data-color="black">
-                                    <div class="screen bg-black">
-                                        <!-- PUT CONTENTS HERE:-->
-                                        <!-- * * This can be a video, image, or just about anything else.-->
-                                        <!-- * * Set the max width of your media to 100% and the height to-->
-                                        <!-- * * 100% like the demo example below.-->
-                                        <video muted="muted" autoplay="" loop="" style="max-width: 100%; height: 100%"><source src="assets/img/demo-screen.mp4" type="video/mp4" /></video>
-                                    </div>
+<!--                                     <div class="screen bg-black"> -->
+<!--                                         PUT CONTENTS HERE: -->
+<!--                                         * * This can be a video, image, or just about anything else. -->
+<!--                                         * * Set the max width of your media to 100% and the height to -->
+<!--                                         * * 100% like the demo example below. -->
+<!--                                         <video muted="muted" autoplay="" loop="" style="max-width: 100%; height: 100%"><source src="img/demo-screen.mp4" type="video/mp4" /></video> -->
+<!--                                     </div> -->
                                 </div>
                             </div>
                         </div>
@@ -210,8 +219,9 @@
         </section>
         
         <!-- Basic features section-->
-        <section class="bg-light" id="chart_section">
-        <div id='tab-content' class="m-md-2 m-lg-3" style='height: 520px'>
+        <section class="chartt bg-light mb-5" id="chartt">
+        
+        <div id='tab-content' class="m-md-2 m-lg-3" style='height: 300px'>
             <div class="container px-5">
             <h3 class="my-4">Ling Chart</h3>
                 <ul class="nav nav-tabs">
@@ -220,30 +230,32 @@
 		<li class="nav-item"><a class="nav-link">아이템 Top10</a></li>
 	</ul>
             </div>
-            <canvas id="chart" class="h-100 m-auto"></canvas>
+            <canvas id="chart" class="h-100 mb-4 mt-4"></canvas>
             </div>
+            <div class="mt-5" style="height:50px"></div>
+            <div id='legend-container' class="mt-4"></div>
         </section>
         <!-- Call to action section-->
-        <section class="cta">
+        <section class="cta" id="cta">
             <div class="cta-content">
                 <div class="container px-5">
                     <h2 class="text-white display-1 lh-1 mb-4">
-                        Stop waiting.
+                        Couple Playground
                         <br />
-                        Start building.
+                        With My Partner With LING.
                     </h2>
-                    <a class="btn btn-outline-light py-3 px-4 rounded-pill" href="https://startbootstrap.com/theme/new-age" target="_blank">Download for free</a>
+                    <a class="btn btn-outline-light py-3 px-4 rounded-pill" href="#" target="_blank">커플 밸런스 게임하러가기</a>
                 </div>
             </div>
-        </section>
+            </section>
         <!-- App badge section-->
         <section class="bg-gradient-primary-to-secondary" id="download">
         
             <div class="container px-5">
                 <h2 class="text-center text-white font-alt mb-4">Get the app now!</h2>
                 <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center">
-                    <a class="me-lg-3 mb-4 mb-lg-0" href="#!"><img class="app-badge" src="assets/img/google-play-badge.svg" alt="..." /></a>
-                    <a href="#!"><img class="app-badge" src="assets/img/app-store-badge.svg" alt="..." /></a>
+                    <a class="me-lg-3 mb-4 mb-lg-0" href="https://www.apple.com/kr/app-store/"><img class="app-badge" src="img/google-play-badge.svg" alt="..." /></a>
+                    <a href="https://play.google.com/store/games?device=windows&utm_source=apac_med&hl=ko-KR&utm_medium=hasem&utm_content=Jul0121&utm_campaign=Evergreen&pcampaignid=MKT-EDR-apac-kr-1003227-med-hasem-py-Evergreen-Jul0121-Text_Search_BKWS-BKWS%7CONSEM_kwid_43700058439438730_creativeid_477136209358_device_c&gclid=Cj0KCQjwi7GnBhDXARIsAFLvH4kRrVXAETlE64-KVozud3vOt5dRFWmlZF-Uo3DlmR7P7jM8faftiOsaAoZQEALw_wcB&gclsrc=aw.ds"><img class="app-badge" src="img/app-store-badge.svg" alt="..." /></a>
                 </div>
             </div>
         </section>
@@ -393,7 +405,7 @@
 		}
         
       	$(function(){
-      		$('ul.nav-tabs li').eq(0).trigger('click')
+      		$('ul.nav-tabs li').eq(2).trigger('click')
       	})
         //연령별 인원 수 조회
         function age(){
@@ -404,7 +416,7 @@
         	}).done(function(response){
         		console.log(response)
         		var info = {};
-        		info.category = [], info.datas = [], info.colors = [];
+        		info.category = [], info.datas = [];
         		$(response).each(function(){
         			info.category.push(this.AGE_TEXT);
         			info.datas.push(this.COUNT);
@@ -417,7 +429,7 @@
       	function period(){
       		initCanvas();
       		$.ajax({
-      			url: 'period'
+      			url: 'period',
       		}).done(function(response){
       			var info = {};
       			info.category = [], info.datas = [];
@@ -440,11 +452,11 @@
         		console.log(response)
         		var info = {};
         		info.category = [], info.datas = [], info.itemNames = [], info.colors = [];
-        		$(response).each(function(){
+        		$(response).each(function(idx){
         			info.category.push(this.RANK);
         			info.datas.push(this.SALES);
-        			info.itemNames.push(this.ITEM_NAME);
-        			/* info.colors.push(this.ITEM_NAME); */
+        			info.itemNames.push(this.ITEM_NAME); 
+        			info.colors.push(colors[idx]);
         		})
         		console.log('data',info);
        			barChart(info);
@@ -454,7 +466,7 @@
       	
         //도넛 차트
         function donutChart(info){
-        	$('#tab-content').css('height', '550');
+        	$('#tab-content').css('height', '700');
         	
         	//각 수치데이터에 대한 백분율 구하기
         	var sum = 0;
@@ -498,7 +510,7 @@
       //선 그래프
 
         function lineChart(info){
-        	$('#tab-content').css('height', '550');
+        	$('#tab-content').css('height', '700');
         	visual = new Chart($('#chart'),{
         		type: 'line',
         		data: {
@@ -542,113 +554,100 @@
         }
         
         
+        var colors = ['#85a832', '#a83294', '#c7c922', '#db4ba6', '#d4aca7', '#8be0c0', '#5340cf', '#021438','#d4cc83','#c1f0b4'];
+      
       //막대 그래프
-        function barChart(info){
-        	$('#tab-content').css('height', '520');
-        	visual = new Chart($('#chart'), {
-        	    type: 'bar',
-        	    data: {
-        	      labels: info.category,
-        	      datasets: [{
-        	        label: '아이템',
-        	        data: info.datas,
-        	        borderWidth: 2,
-        	        barPercentage: 0.5,
-        	        backgroundColor: info.colors,
-        	      }]
-        	    },
-        	    options: {
-        	    	maintainAspectRatio: false, // 크키조정시 캔버스 가로세로 비율 유지X(기본O)
-        	    	responsive: false, //컨테이너 크기 변경시 캔버스 크기 조정X(기본O)
-        	    	layout: {
-        	    		padding: {top:30, bottom:20}
-        	    	},
-        	    	plugins: {
-        	    		legend: {display: false},
-        	    		datalabels: {
-        	    			formatter: function(value, context) {
-        	    			    var itemRank = context.chart.data.labels[context.dataIndex];
-        	    			    var itemName = info.itemNames[context.dataIndex]
-        	    			    return '<' + itemName + '>'; 
-        	    			}
-        	    		},
-        	        autocolors: {
-        	            mode: 'data'
-        	          },
-        	         
-        	    	},
-        	    	
-        	    	 tooltip: { // tooltip 설정을 별도로 분리
-        	                callbacks: {
-        	                    title: function(context) {
-        	                        return info.itemNames[context.dataIndex];
-        	                    },
-        	                    label: function(value, context) {
-        	                        var value = context.parsed.y;
-        	                        return value + '개'; // 개를 문자열로 인식하도록 따옴표로 묶음
-        	                    }
-        	                }
-        	            },
-        	    	
-        	    	
-            	scales: {
-        	        y: {
-        	        	beginAtZero: true, // y축 시작값을 0으로 설정
-        		       title: {text: '아이템 구매횟수', display:true}
-        		         }
-        		      },
-        	    }
-        	  });
-        	/* makeLegend(); */
-        	
+function barChart(info) {
+    	  console.log('barChart> ', info.itemNames)
+    $('#tab-content').css('height', '700');
+    visual = new Chart($('#chart'), {
+        type: 'bar',
+        data: {
+            labels: info.category,
+            datasets: [{
+                data: info.datas,
+                borderWidth: 2,
+                barPercentage: 0.5,
+                backgroundColor: info.colors,
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            responsive: false,
+            layout: {
+                padding: {top:30, bottom:20}
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                autocolors: {
+                    mode: 'data'
+                },
+                datalabels:{
+                	display:false
+                },
+                
+                
+            },
+            
+            scales: {
+                x: { // x축 설정
+                    beginAtZero: true,
+                    title: {text: '순위', display:true},
+                    position: 'bottom' // x축 위치 설정
+                },
+                y: { // y축 설정
+                    beginAtZero: true,
+                    title: {text: '아이템 구매횟수', display:true}
+                }
+            }
         }
+    });
 
+    makeLegend(info);
+}
 
         //데이터수치 범위에 해당하는 범례 만들기
-        function makeLegend(){
-        	var tag =
-        		`
-        		<ul class="row d-flex justify-content-center m-0 mt-4 p-0 small" id='legend'>`;
-        		
-        		for(var no=0; no<=6; no++){
-        			
-        		tag +=
-        			`<li class="col-auto"><span></span><font>\${no*10}~\${no*10+9}명</font></li>`;
-        			
-        		}
-        		tag +=
-        			`<li class="col-auto"><span></span><font>\${no*10}명 이상</font></li>
-        		</ul>`;
-        		$('#tab-content').after(tag);
-        		$('#legend span').each(function(idx, item){
-        			$(this).css('background-color', colors[idx]);
-        		})
-        }
+/* function makeLegend() {
+    var tag =
+        `<ul class="row d-flex justify-content-center m-0 mt-4 p-0 small" id='legend'>`;
         
-        function customLegend(){
-        	var tag =
-        		`
-        		<ul class="row d-flex justify-content-center m-0 mt-4 p-0 small" id='legend'>`;
-        		
-        		for(var no=0; no<=6; no++){
-        			
-        		tag +=
-        			`<li class="col-auto"><span></span><font>\${no*10}~\${no*10+9}명</font></li>`;
-        			
-        		}
-        		tag +=
-        			`<li class="col-auto"><span></span><font>\${no*10}명 이상</font></li>
-        		</ul>`;
-        		$('#tab-content').after(tag);
-        		$('#legend span').each(function(idx, item){
-        			$(this).css('background-color', colors[idx]);
-        		})
-        }
+    for (var no = 0; no <= 6; no++) {
+        tag +=
+            `<li class="col-auto"><span></span><font>${no * 10}~${no * 10 + 9}명</font></li>`;
+    }
+    tag +=
+        `<li class="col-auto"><span></span><font>${no * 10}명 이상</font></li>
+        </ul>`;
+    
+    // 범례를 그래프 아래에 위치시키기 위해 그래프 아래에 추가하도록 변경
+    $('#chart').after(tag);
+    $('#legend span').each(function(idx, item) {
+        $(this).css('background-color', colors[idx]);
+    });
+} */
+
+function makeLegend(info) {
+    var tag = `<ul class="nav legend-list row d-flex justify-content-center m-0 p-0 ">`;
+        
+    for (var i = 0; i < info.itemNames.length; i++) {
+//         tag += `<li><span style="background-color: ${info.colors[i]}"></span>${info.itemNames[i]}</li>`;
+        tag += `<li class="col-auto"><span style="background-color: \${info.colors[i]}"></span>\${info.itemNames[i]}</li>`;
+    }
+    tag += `</ul>`;
+	console.log('2> ', tag)
+    
+    $('#legend-container').html(tag);
+}
+
+        
+
         
         
         const carousel = new bootstrap.Carousel(document.getElementById('carouselExample'), {
             interval: 5000, // 이미지 전환 간격 (밀리초)
-            pause: false,   // 마우스 오버시 자동 재생 일시 중단 여부
+            pause: true,   // 마우스 오버시 자동 재생 일시 중단 여부
           });
         
         </script>

@@ -3,9 +3,7 @@ package com.cteam.ling;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -61,8 +59,10 @@ public class ScheduleController {
 	}
 	
 	@RequestMapping(value="/sche_dday",produces="text/html;charset=utf-8")
-	public String sche_Dday(ScheAddVO vo, String id, String couple_num, String create_date) {
-//		HashMap<>
+	public String sche_Dday(String id, String couple_num, ScheAddVO vo) {
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("id", id);
+		param.put("couple_num", couple_num);
 		List<ScheAddVO> list = dao.getDday(vo) ;
 		Gson gson = new Gson();	
 		

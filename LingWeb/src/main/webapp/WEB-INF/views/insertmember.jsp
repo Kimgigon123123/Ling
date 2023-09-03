@@ -19,7 +19,7 @@
                     type="text"
                     placeholder="${vo.id}"
                     value="${vo.id}"
-                    class="form-control validate"
+                    class="form-control validate" minlength="5" maxlength="16"
                   />
                 </div>
                 <div class="form-group col-lg-6">
@@ -30,7 +30,7 @@
                     type="password"
                     placeholder="${vo.pw}"
                     value="${vo.pw}"
-                    class="form-control validate"
+                    class="form-control validate" minlength="8" maxlength="17"
                   />
                 </div>
                 <div class="form-group col-lg-6">
@@ -41,10 +41,21 @@
                     type="text"
                     placeholder="${vo.name}"
                     value="${vo.name}"
-                    class="form-control validate"
+                    class="form-control validate" minlength="2" maxlength="17"
                   />
                 </div>
-                <div class="form-group col-lg-6">
+                <div class="form-group col-lg-3">
+                  <label for="admin">ADMIN</label>
+                  <div>
+                 <div class="form-check form-check-inline">
+    					<label class="form-check-label">
+        				<input class="form-check-input" checked type="radio" name="admin" value="Y" >Y
+    					</label>
+				 	</div>
+					
+					</div>
+                </div>
+                <div class="form-group col-lg-3">
                   <label for="gender">GENDER</label>
                   <div>
                  <div class="form-check form-check-inline">
@@ -127,6 +138,23 @@
 	//$('[name=birth]').datepicker('option', 'maxDate', endDay);
 	
 })
+$(function() {
+    $("form").submit(function(event) {
+        // 각 입력 필드의 값을 가져옴
+        var id = $("#id").val();
+        var pw = $("#pw").val();
+        var name = $("#name").val();
+        var birth = $("#birth").val();
+        var phone = $("#phone").val();
+        var email = $("#email").val();
+
+        // 각 입력 필드의 값을 검사하여 빈 값인지 확인
+        if (id === "" || pw === "" || name === "" || birth === "" || phone === "" || email === "") {
+            alert("모든 입력 항목을 채워주세요.");
+            event.preventDefault(); // 제출을 막음
+        }
+    });
+});
 </script>
   </body>
 </html>

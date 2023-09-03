@@ -1,8 +1,11 @@
 package com.example.ling.calendar;
 
+import java.sql.Date;
+
 public class ScheAddVO {
-	private String id, sche_title, sche_typecode, sche_date, create_date;
-	private int d_day, couple_num, sche_notice, sche_no;
+	private String id, sche_title, sche_typecode, sche_date, couple_num, create_date;
+	private int d_day, sche_notice, sche_no;
+
 
 	public String getCreate_date() {
 		return create_date;
@@ -54,15 +57,12 @@ public class ScheAddVO {
 	public void setD_day(int d_day) {
 		this.d_day = d_day;
 	}
-	public int getCouple_num() {
+
+	public String getCouple_num() {
 		return couple_num;
 	}
-	public void setCouple_num(int couple_num) {
+
+	public void setCouple_num(String couple_num) {
 		this.couple_num = couple_num;
 	}
-	
-	
-
-	
-	
 }

@@ -15,6 +15,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class CompleteReturnActivity extends AppCompatActivity {
@@ -28,7 +30,7 @@ public class CompleteReturnActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         int intValue = getIntent().getIntExtra("order_num",0);
-        Toast.makeText(this, intValue+"", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, intValue+"", Toast.LENGTH_SHORT).show();
 
         CommonConn conn = new CommonConn(this , "store_return_detail");
         conn.addParamMap("order_num" , intValue);
@@ -46,8 +48,9 @@ public class CompleteReturnActivity extends AppCompatActivity {
             binding.tvName.setText(list.get(0).getItem_name()+"");
             binding.tvCnt.setText(list.get(0).getPurchase_cnt()+"개");
             binding.tvAddress.setText(list.get(0).getAddress());
-            binding.tvPrice.setText(list.get(0).getItem_price()+"원");
-            binding.tvTotalPrice.setText(list.get(0).getTotal_price()+"원");
+
+            binding.tvPrice.setText(formatPriceWithCommas(list.get(0).getItem_price()) + "원");
+            binding.tvTotalPrice.setText(formatPriceWithCommas(list.get(0).getTotal_price()) + "원");
             binding.tvReturnState.setText(list.get(0).getReturn_state());
 
 
@@ -59,5 +62,9 @@ public class CompleteReturnActivity extends AppCompatActivity {
             finish();
         });
 
+    }
+
+    private String formatPriceWithCommas(int price) {
+        return NumberFormat.getInstance().format(price);
     }
 }

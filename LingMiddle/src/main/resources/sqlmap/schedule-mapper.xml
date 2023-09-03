@@ -31,9 +31,11 @@ and s.couple_num = #{couple_num}
 </update>
 
 <select id="dday" resultType="schedule.ScheAddVO">
-	select c.create_date, s.id, s.couple_num 
-	from schedule s, couple c 
-	where s.couple_num=c.couple_num and s.couple_num = #{couple_num}
+	select s.couple_num, c.create_date as create_date  from couple c, schedule s 
+	where c.couple_num = s.couple_num and s.couple_num= #{couple_num}
+
+<!-- select c.couple_num , c.create_date from couple c, schedule s	 -->
+
 </select>
 
 </mapper>

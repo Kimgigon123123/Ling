@@ -37,21 +37,26 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                       <li class="nav-item"><a class="nav-link me-lg-3" href="<c:url value= '/'/>">LING 소개</a></li>
+                       <li class="nav-item"><a class="nav-link me-lg-3" href="<c:url value= '/#features'/>">LING 소개</a></li>
+					   <li class="nav-item"><a class="nav-link me-lg-3" href="<c:url value= '/#chartt'/>">Chart</a></li>
+					   <li class="nav-item"><a class="nav-link me-lg-3" href="<c:url value= '/#cta'/>">Playground</a></li>
                        <a class="nav-link me-lg-3 ${category eq 'faq' ? 'active' : ''}" href="<c:url value='/faq/list'/>">Community</a>
+					<c:choose>
 
-                    <%-- <a class="${category eq 'home' ? 'active':'' } list-group-item list-group-item-action list-group-item-light p-3" href="<c:url value='/default/home'/>">Ling소개</a> --%>
-                    <%-- <a class="${category eq 'faq' ? 'active':'' } list-group-item list-group-item-action list-group-item-light p-3" href="<c:url value='/faq/list'/>">Community</a> --%>
-					<li class="nav-item"><a class="nav-link me-lg-3" href="<c:url value= '/#chart_section'/>">Chart</a></li>
-                    <li class="nav-item"><a class="nav-link me-lg-3" href="#download">Download</a></li>
-                        
+						<c:when test="${loginId eq 'admin'}">
+							<li class="nav-item"><a class="nav-link me-lg-3"
+								href="<c:url value='/admin'/>">관리자 화면</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="nav-item"><a class="nav-link me-lg-3"
+								href="#download">download</a></li>
+						</c:otherwise>
+
+
+					</c:choose>
+
                     </ul>
-                    <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#feedbackModal">
-                        <span class="d-flex align-items-center">
-                            <i class="bi-chat-text-fill me-2"></i>
-                            <span class="small">Send Feedback</span>
-                        </span>
-                    </button>
+                    
                 </div>
             </div>
         </nav> 
@@ -64,7 +69,7 @@
             <div class="container px-5">
                 <div class="text-white-50 small">
                     <div class="mb-2">&copy; Your Website 2023. All Rights Reserved.</div>
-                    <a href="login">Privacy</a>
+                    <a href="<c:url value= '/login'/>">Privacy</a>
                     <span class="mx-1">&middot;</span>
                     <a href="#!">Terms</a>
                     <span class="mx-1">&middot;</span>

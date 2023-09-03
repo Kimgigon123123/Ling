@@ -26,4 +26,14 @@ public class MainDAO {
 		List<MainVO> list = sql.selectList("main.select_couple_info",vo);
 		return list;
 	}
+	
+	public int update_couple_name(MainVO vo) {
+		int result = sql.update("main.update_couple_name",vo);
+		return result;
+	}
+	
+	public List<MainVO> select_couplename(MainVO vo){
+		List<MainVO> list = sql.selectList("main.select_couplename",vo);
+		return list;
+	}
 }

@@ -33,13 +33,13 @@
 	<div class="container mt-5">
 		<div class="row tm-content-row">
 			<div class="col-sm-12 col-md-12 tm-block-col">
-				<div class="tm-bg-primary-dark tm-block tm-block-products2">
+				<div class="tm-bg-primary-dark tm-block tm-block-products3">
 					<div class="row">
 						<div class="col-12">
 							<h2 class="tm-block-title d-inline-block">상세정보</h2>
 						</div>
 					</div>
-					<div class="tm-product-table-container2">
+					<div class="tm-product-table-container4">
 						<table class="table tm-table-small tm-product-table">
 							<colgroup>
 								<col width="180px">

@@ -25,21 +25,22 @@ public class DateDatailInfoFragment extends Fragment {
         Bundle bundle = getArguments();
         DateInfoVO vo = (DateInfoVO) bundle.getSerializable("vo");
 
+
             Picasso.get()
                     .load(vo.getDate_img())
                     .into(binding.imgv);
-            binding.tvName.setText(bundle.getString("name"));
-
+            binding.tvName.setText(vo.getDate_name());
             binding.tvTel.setVisibility(View.GONE);
-            binding.tvTime.setVisibility(View.GONE);
 
             if(vo.getDate_category_code().equals("TO")){
-                binding.tvName.setText(bundle.getString("name"));
                 binding.tvTime.setVisibility(View.GONE);
+                // binding.tvName.setText(vo.getDate_name());
+                // binding.tvTime.setVisibility(View.GONE);
             }else if(vo.getDate_category_code().equals("FE")){
                 binding.tvTime.setText("축제일자 : " + vo.getOpen() + " ~ " + vo.getEnd());
             }else if(vo.getDate_category_code().equals("RE")){
                 binding.tvTel.setVisibility(View.VISIBLE);
+                binding.tvIntro.setVisibility(View.GONE);
                 binding.tvTel.setText("전화번호 : " + vo.getTel());
                 binding.tvTime.setText("영업시간 : " + vo.getOpen() + " ~ " + vo.getEnd());
             }

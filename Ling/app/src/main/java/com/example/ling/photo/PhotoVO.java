@@ -3,6 +3,19 @@ package com.example.ling.photo;
 public class PhotoVO {
 	private String folder_name, pho_img, pho_date;
 
+	private int folder_num;
+
+
+	public int getFolder_num() {
+		return folder_num;
+	}
+
+	public void setFolder_num(int folder_num) {
+		this.folder_num = folder_num;
+	}
+
+
+
 	public String getFolder_name() {
 		return folder_name;
 	}

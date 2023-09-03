@@ -1,9 +1,23 @@
 package photo;
 
 public class FolderVO {
-	private String id,  folder_name, couple_num;
-//	private int couple_num;
+	private String id,  folder_name, couple_num, last_photo;
+	private int folder_num;
 	
+	
+	
+	public String getLast_photo() {
+		return last_photo;
+	}
+	public void setLast_photo(String last_photo) {
+		this.last_photo = last_photo;
+	}
+	public int getFolder_num() {
+		return folder_num;
+	}
+	public void setFolder_num(int folder_num) {
+		this.folder_num = folder_num;
+	}
 	public String getId() {
 		return id;
 	}

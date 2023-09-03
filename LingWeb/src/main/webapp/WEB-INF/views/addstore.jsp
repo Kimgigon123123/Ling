@@ -35,7 +35,8 @@
               </div>
             </div>
             
-            <form method ="post" action="store_insert" class="tm-edit-product-form"enctype="multipart/form-data">
+            <form method ="post" action="store_insert" class="tm-edit-product-form"enctype="multipart/form-data"
+            class="tm-edit-product-form" onsubmit="return validateForm();">
             <div class="row tm-edit-product-row">
               <div class="col-xl-6 col-lg-6 col-md-12">
                 <form action="store_insert" class="tm-edit-product-form" enctype="multipart/form-data" method="post">
@@ -74,8 +75,10 @@
                       class="custom-select tm-select-accounts"
                       id="category_code"
                       name="category_code"
+                      required
+                      
                     >
-                      <option selected>카테고리선택</option>
+                      <option value="" selected>카테고리선택</option>
                       <option value="Dr">커플옷</option>
                       <option value="Ri">커플반지</option>
                       <option value="Gi">선물</option>
@@ -91,9 +94,10 @@
                           <input
                             id="item_price"
                             name="item_price"
-                            type="text"
+                            type="number"
                             class="form-control validate"
                             data-large-mode="true"
+                            required
                           />
                         </div>
                         
@@ -102,7 +106,7 @@
               </div>
               <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                 <div class="tm-product-img-dummy mx-auto">
-                 <img class="tm-product-img-dummy mx-auto" id="preview" />
+                 <img class="tm-product-img-dummy mx-auto"  id="preview" />
                 </div>
                 <div class="custom-file mt-3 mb-3">
                   <input id="fileInput" name="file" type="file" style="display:none" onchange="readURL(this)"; />
@@ -141,6 +145,18 @@
       $(function() {
         $("#expire_date").datepicker();
       });
+      
+      function validateForm() {
+          // 선택된 이미지 파일 가져오기
+          var fileInput = document.getElementById('fileInput');
+          
+          // 이미지가 선택되었는지 확인
+          if (fileInput.files.length === 0) {
+              alert('이미지를 업로드해주세요.'); // 경고 표시
+              return false; // 양식 제출 방지
+          }
+          return true;
+      }
       
       function readURL(input) {
     	  if (input.files && input.files[0]) {

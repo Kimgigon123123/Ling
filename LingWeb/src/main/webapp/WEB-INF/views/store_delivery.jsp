@@ -17,6 +17,15 @@
 <!-- https://getbootstrap.com/ -->
 <link rel="stylesheet" href="css/templatemo-style.css">
 
+<style>
+        /* 체크박스 비활성화 스타일 */
+        input[type="checkbox"]:disabled {
+            background-color: #888888; /* 배경색 */
+            
+            
+        }
+    </style>
+
 
 </head>
 <body>
@@ -24,8 +33,22 @@
 		<div class="row tm-content-row">
 			<div class="col-sm-12 col-md-12 tm-block-col">
 				<div class="tm-bg-primary-dark tm-block tm-block-products">
+				
+				<div class="row mx-0 justify-content-between align-items-center mb-3">
+	          <h2 class="tm-block-title col-lg-4 px-0">상품 정보</h2>
+					
+	            <select class="custom-select col-lg-4" id="DeliverySelect">
+	                <option value="0">전체</option>
+	                <option value="1" >배송중</option>
+	                <option value="2" >배송완료</option>
+	                 <option value="3" >배송취소</option>
+	               
+	             
+	            </select>
+            </div>
+				
 					<div class="tm-product-table-container">
-						<table class="table table-hover tm-table-small tm-product-table">
+						<table class="table table-hover tm-table-small tm-product-table-container2">
 							<thead>
 								<tr>
 									<th scope="col">&nbsp;</th>
@@ -42,14 +65,15 @@
 							<c:forEach items="${list}" var="vo">
 								<tr>
 									<th scope="row">
-									<input type="checkbox" />
+									<input type="checkbox" 
+									${vo.delivery_state == '배송완료' || vo.delivery_state == '배송취소' ? 'disabled' : ''} />
 											<input type="hidden" class="order_num" value="${vo.order_num}">
 									</th>
 							
 									<td class="tm-product-name"  style="padding-right: 20px;">${vo.item_name}</td>
 									<td    data-code="${vo.order_num} ">${vo.delivery_state }</td>
 									<td  >${vo.address }</td>
-									<td  >${vo.item_price} * ${vo.purchase_cnt }개 <br> ${vo.total_price }원</td>
+									<td  >${vo.st_item_price} * ${vo.purchase_cnt }개 <br> ${vo.st_total_price }원</td>
 									<td><a 
 											onclick="openSmallWindow('${vo.item_img}')"
 											class="tm-product-delete-link"> <i
@@ -60,9 +84,13 @@
 								
 								
 								
+								
+								
 							</tbody>
 						</table>
+						
 					</div>
+					
 					<!-- table container -->
 					<a 
 						class="btn btn-primary btn-block text-uppercase mb-3" onclick="CompleteDeliveryFunc();">배송완료</a>
@@ -115,6 +143,7 @@
 		        		$(chkBoxs).each(function(){
 		        			$(this).prop('checked', false);
 		        			$(this).closest('tr').children('td:eq(1)').text('배송완료');
+		        			location.reload();
 		        		})
 		        		
 		        		
@@ -150,6 +179,7 @@
 		        		$(chkBoxs).each(function(){
 		        			$(this).prop('checked', false);
 		        			$(this).closest('tr').children('td:eq(1)').text('배송취소');
+		        			location.reload(); 
 		        		})
 		        		
 		        		
@@ -173,6 +203,20 @@
 	    // 새 창 열기
 	    window.open(url, '_blank', 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top);
 	}
+    
+    $(document).ready(function() {
+		$("#DeliverySelect").change(function(){
+	   		  console.log($(this).val())
+	       		$.ajax({
+	    		   url:'deliverylist', 
+	    		   data: {tablename:$(this).val()}
+	    	   }).done(function(response){
+	    		   $('.tm-product-table-container').html(response)
+	    	     }) 
+	   	  }) 
+	        
+	    });
+    
 		
     </script>
 </body>

@@ -2,7 +2,7 @@ package com.cteam.lingweb;
 
 import java.util.HashMap;
 
-
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -66,6 +66,15 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping("logout")
+    public String logout(HttpSession session, HttpServletRequest request) {
+        session = request.getSession(false);
+        if (session != null) {
+            session.invalidate(); // 세션 무효화
+        }
+        return "redirect:/login"; // 로그인 페이지로 리디렉션
+    }
+	
 	@RequestMapping("/admin")
 	public String admin(HttpSession session) {
 		
@@ -122,7 +131,7 @@ public class MemberController {
 		//사원 목록 조회
 		model.addAttribute("list", dao.member_list());
 		// 프리젠테이션로직: 응답화면 연결 - 목록화면
-		return "lingmember";
+		return "c";
 	}
 	
 	@RequestMapping(value = "/detailmember", method = RequestMethod.GET)
@@ -163,7 +172,8 @@ public class MemberController {
 	public String changelist(int tablename, Model model ) {
 		if(tablename==0) {
 			model.addAttribute("list", dao.member_list());
-			return "memberlist/folder/member";			
+			return "memberlist/folder/member";
+			
 		}else if(tablename==1) {
 			model.addAttribute("list", dao.couplelist());
 			return "memberlist/folder/couple";
@@ -173,6 +183,30 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping ("/list_id_by")
+	public String list_id_by(HttpSession session, Model model, int filter, String order, int sort) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("order", order);
+		map.put("sort", sort==0?"asc":"desc");
+		model.addAttribute("idsort",0);
+		model.addAttribute("namesort",0);
+		model.addAttribute("couplesort",0);
+		if(filter==0) {
+			model.addAttribute(order+"sort",sort);
+			model.addAttribute("list", dao.member_list_id_by(map));
+			return "memberlist/folder/member";
+			
+		}else if(filter==1) {
+			model.addAttribute("couplesort",sort);
+			model.addAttribute("list", dao.couplelist_order(map));
+			return "memberlist/folder/couple";
+		}else {
+			model.addAttribute("list", dao.adminlist());
+			return "memberlist/folder/member";
+		}
+		
+		
+	}
 
 		
 		
