@@ -21,6 +21,7 @@ import com.example.ling.date.DateHomeFragment;
 import com.example.ling.chat.ChatFragment;
 import com.example.ling.home.HomeFragment;
 import com.example.ling.store.StoreCoFragment;
+import com.example.ling.store.StoreMainFragment;
 
 import java.util.ArrayList;
 
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         list.add(new MainMenuDTO(new ChatFragment() , R.drawable.btm_menu_2 ,"#FDCEDF" , "채팅" ,  null ));
         list.add(new MainMenuDTO(new HomeFragment() , R.drawable.btm_menu_3 ,"#1A000000" , "홈" ,  "홈 선택"  ));
         list.add(new MainMenuDTO(new BoardFragment() , R.drawable.btm_menu_4 ,"#F2BED1" , "게시판" ,  null  ));
-        list.add(new MainMenuDTO(new StoreCoFragment() , R.drawable.btm_menu_5 ,"#F9F5F6" , "스토어" ,  "스토어 선택"  ));
+        list.add(new MainMenuDTO(new StoreMainFragment() , R.drawable.btm_menu_5 ,"#F9F5F6" , "스토어" ,  "스토어 선택"  ));
     }
 
     //바텀 네비게이션 초기화 및 뷰페이저 초기화  ↗ 로직 끝나고 실행해야함  2023-08-16 kym

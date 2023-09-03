@@ -1,10 +1,16 @@
 package com.example.ling.note;
 
 public class NoteVO {
-	String id,content,wrte_date,view_range;
+	String id,content,write_date,view_range,name;
 	int note_id,couple_num;
 	
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getId() {
 		return id;
 	}
@@ -17,11 +23,11 @@ public class NoteVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getWrte_date() {
-		return wrte_date;
+	public String getWrite_date() {
+		return write_date;
 	}
-	public void setWrte_date(String wrte_date) {
-		this.wrte_date = wrte_date;
+	public void setWrite_date(String write_date) {
+		this.write_date = write_date;
 	}
 	public String getView_range() {
 		return view_range;

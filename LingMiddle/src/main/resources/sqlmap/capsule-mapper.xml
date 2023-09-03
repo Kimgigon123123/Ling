@@ -9,13 +9,13 @@ values (seq_capsule.nextval,#{couple_num},#{id},#{tc_title},to_date(#{tc_date}),
 
 <select id="capsule_select" resultType="capsule.CapsuleVO">
 
-SELECT 
-    i.*,
-    CASE WHEN TO_DATE(tc_date, 'YYYY-MM-DD') - TO_DATE(create_date, 'YYYY-MM-DD') > 0 then 'd-'||to_char((TO_DATE(tc_date, 'YYYY-MM-DD') - TO_DATE(create_date, 'YYYY-MM-DD')))
-    else 'd-day'
+SELECT
+i.*,
+    CASE WHEN TO_DATE(tc_date, 'YYYY-MM-DD') - TO_DATE(sysdate,'YYYY-MM-DD') > 0 then 'd-'||to_char((TO_DATE(tc_date, 'YYYY-MM-DD') - TO_DATE(sysdate,'YYYY-MM-DD')))
+    else '개봉가능!!'
     end as d_day,
     CASE 
-        WHEN TO_DATE(tc_date, 'YYYY-MM-DD') - TO_DATE(create_date, 'YYYY-MM-DD') > 0 THEN '개봉불가'
+        WHEN TO_DATE(tc_date, 'YYYY-MM-DD') - TO_DATE(sysdate,'YYYY-MM-DD') > 0 THEN '개봉불가'
         ELSE '개봉가능'
     END as isopen
 FROM time_capsule i

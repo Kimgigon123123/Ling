@@ -6,4 +6,37 @@
 insert into note values(#{id},#{couple_num},#{content},sysdate,#{view_range},seq_note.nextval)
 </select>
 
+<select id="select_note_all" resultType="note.NoteVO">
+select n.id,n.couple_num,content,write_date,view_range,note_id,m.name from note n, ling_member m
+where m.id=n.id
+and n.couple_num=#{couple_num}
+and ((m.id=#{id}) or(view_range='C'))
+order by to_number(note_id) desc
+</select>
+
+<select id="select_note_couple" resultType="note.NoteVO">
+
+select n.id,n.couple_num,content,write_date,view_range,note_id,m.name from note n, ling_member m
+where m.id=n.id
+and view_range='C'
+and n.couple_num=#{couple_num}
+order by to_number(note_id) desc
+</select>
+
+<select id="select_note_private" resultType="note.NoteVO">
+
+select n.id,n.couple_num,content,write_date,view_range,note_id,m.name from note n, ling_member m
+where m.id=n.id
+and view_range='P'
+and m.id=#{id}
+order by to_number(note_id) desc
+</select>
+
+<update id="update_note">
+update note set content = #{content}, view_range= #{view_range},write_date=sysdate where note_id=#{note_id}
+</update>
+
+<delete id="delete_note">
+delete note where note_id=#{note_id}</delete>
+
 </mapper>
