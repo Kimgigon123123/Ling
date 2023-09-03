@@ -605,7 +605,7 @@ function barChart(info) {
         }
     });
 
-    makeLegend(info);
+//     makeLegend(info);
 }
 
         //데이터수치 범위에 해당하는 범례 만들기
