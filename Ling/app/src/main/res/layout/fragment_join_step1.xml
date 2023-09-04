@@ -32,7 +32,7 @@
             style="@style/LingButtonStyle"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:textSize="8dp"
+            android:textSize="12dp"
             android:text="중복 확인"
             android:layout_gravity="right"
             android:layout_marginRight="10dp"
@@ -50,11 +50,11 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/join_id"
-                android:background="#F8E8EE"
-                android:inputType="text"
-                android:maxLength="25"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:background="@color/ling_main_color4"
+                android:inputType="text"
+                android:maxLength="25" />
 
         </com.google.android.material.textfield.TextInputLayout>
     </RelativeLayout>
@@ -73,7 +73,7 @@
             android:id="@+id/join_pw"
             android:inputType="textPassword"
             android:maxLength="20"
-            android:background="#F8E8EE"
+            android:background="@color/ling_main_color4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -91,7 +91,7 @@
             android:id="@+id/check_pw"
             android:inputType="textPassword"
             android:maxLength="20"
-            android:background="#F8E8EE"
+            android:background="@color/ling_main_color4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
