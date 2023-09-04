@@ -22,6 +22,10 @@ import java.util.ArrayList;
 public class Board_CommonFragment extends Fragment {
     private String menu ;
 
+
+    public Board_CommonFragment() {
+    }
+
     public Board_CommonFragment(String menu) {
         this.menu = menu;
     }

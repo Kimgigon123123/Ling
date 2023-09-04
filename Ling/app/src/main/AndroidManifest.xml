@@ -44,7 +44,8 @@
             android:exported="false" />
         <activity
             android:name=".board.Board_ReCommentActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".photo.PhotoListActivity"
             android:exported="false" />

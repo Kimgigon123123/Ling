@@ -55,7 +55,7 @@ public class Board_DetailtActivity extends AppCompatActivity {
                             public void onClick(com.example.ling.board.interfaces.DialogInterface dialogInterface, int i) {
                                 Toast.makeText(getApplicationContext(), "삭제완료!", Toast.LENGTH_SHORT).show();
                                 dialogInterface.dismiss();
-                                //delete();
+                                delete();
                                 finish();
                             }
                         })
@@ -70,8 +70,8 @@ public class Board_DetailtActivity extends AppCompatActivity {
                         .build();
 
             mAnimatedDialog.show();
-                //mAnimatedDialog.setOnClickListener(this);
-            //delete();
+//                mAnimatedDialog.setOnClickListener(this);
+//            delete();
         });
 
 

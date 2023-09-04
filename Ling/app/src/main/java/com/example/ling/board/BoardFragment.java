@@ -25,6 +25,13 @@ public class BoardFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentBoardBinding.inflate(inflater, container, false);
 
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
 
 
 
@@ -61,7 +68,6 @@ public class BoardFragment extends Fragment {
         });
 
         changeFragment(0);
-        return binding.getRoot();
     }
 
     public void changeFragment(int i){
