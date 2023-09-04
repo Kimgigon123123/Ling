@@ -40,7 +40,7 @@ public class DateHomeFragment extends Fragment {
 
         showSlide();//슬라이드 동작.
 
-        //drawerLayoutEvent();//DrawerLayout이벤트.( 삭제 예정 )
+        drawerLayoutEvent();//DrawerLayout이벤트.( 삭제 예정 )
 
 
         selectCountList("TO",5,binding.recvTour);
@@ -112,24 +112,24 @@ public class DateHomeFragment extends Fragment {
 
 
     //2023.08.23 KYM 수정예정
-//    void drawerLayoutEvent(){
-//
-//        binding.imgvMenu.setOnClickListener(v -> {
-//            binding.navigationDrawer.setVisibility(View.VISIBLE);
-//            // 왼쪽에서 나타나는 애니메이션 설정
-//            Animation slideIn = new TranslateAnimation(-binding.navigationDrawer.getWidth(), 0, 0, 0);
-//            slideIn.setDuration(300); // 애니메이션 지속 시간 (밀리초)
-//            binding.navigationDrawer.startAnimation(slideIn);
-//        });
-//
-//        binding.tvNavClose.setOnClickListener(v -> {
-//            // 왼쪽으로 사라지는 애니메이션 설정
-//            Animation slideOut = new TranslateAnimation(0, -binding.navigationDrawer.getWidth(), 0, 0);
-//            slideOut.setDuration(300); // 애니메이션 지속 시간 (밀리초)
-//            binding.navigationDrawer.startAnimation(slideOut);
-//            binding.navigationDrawer.setVisibility(View.GONE);
-//        });
-//    }
+    void drawerLayoutEvent(){
+
+        binding.imgvMenu.setOnClickListener(v -> {
+            binding.navigationDrawer.setVisibility(View.VISIBLE);
+            // 왼쪽에서 나타나는 애니메이션 설정
+            Animation slideIn = new TranslateAnimation(-binding.navigationDrawer.getWidth(), 0, 0, 0);
+            slideIn.setDuration(300); // 애니메이션 지속 시간 (밀리초)
+            binding.navigationDrawer.startAnimation(slideIn);
+        });
+
+        binding.tvNavClose.setOnClickListener(v -> {
+            // 왼쪽으로 사라지는 애니메이션 설정
+            Animation slideOut = new TranslateAnimation(0, -binding.navigationDrawer.getWidth(), 0, 0);
+            slideOut.setDuration(300); // 애니메이션 지속 시간 (밀리초)
+            binding.navigationDrawer.startAnimation(slideOut);
+            binding.navigationDrawer.setVisibility(View.GONE);
+        });
+    }
 
 
     //2023.08.23 KYM 코드 햇갈려서 메소드로 분리만함.
