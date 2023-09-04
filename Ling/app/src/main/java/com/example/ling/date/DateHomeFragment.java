@@ -48,29 +48,27 @@ public class DateHomeFragment extends Fragment {
         selectCountList("FE",5,binding.recvFestival);
 
 
-//        binding.tvTour.setOnClickListener(v -> {
-//            intentActivity("TO");
-//        });
-//
-//        binding.tvRestaurant.setOnClickListener(v -> {
-//            intentActivity("RE");
-//        });
-//
-//        binding.tvFestival.setOnClickListener(v -> {
-//            Intent intent = new Intent(getActivity(), DateListActivity.class);
-//            startActivity(intent);
-//        });
-//
-//        binding.tvDibs.setOnClickListener(v -> {
-//            Intent intent = new Intent(getActivity(), DibsActivity.class);
-//            startActivity(intent);
-//        });
-//
+        binding.tvTour.setOnClickListener(v -> {
+            intentActivity("TO");
+        });
+
+        binding.tvRestaurant.setOnClickListener(v -> {
+            intentActivity("RE");
+        });
+
+        binding.tvFestival.setOnClickListener(v -> {
+            intentActivity("FE");
+        });
+
+        binding.tvDibs.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), DibsActivity.class);
+            startActivity(intent);
+        });
+
 
 
         binding.btnDibs.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), DibsActivity.class);
-
             startActivity(intent);
         });
 
