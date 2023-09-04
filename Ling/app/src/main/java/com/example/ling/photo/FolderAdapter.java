@@ -44,24 +44,6 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
                 h.binding.tvFolderTitle.setText(list.get(i).getFolder_name());
-//                h.binding.imgvFolder.setImageResource(R.drawable.wedding);
-
-                CommonConn conn = new CommonConn(context, "folder_LastImg");
-                conn.addParamMap("id", CommonVar.loginInfo.getId());
-                conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
-                conn.addParamMap("folder_name", list.get(i).getFolder_name()); 
-
-                conn.onExcute((isResult, data) -> {
-                    if (isResult) {
-                        ArrayList<FolderVO> folderList = new Gson().fromJson(data, new TypeToken<ArrayList<FolderVO>>(){}.getType());
-                        if (folderList != null && !folderList.isEmpty()) {
-                            FolderVO folderVO = folderList.get(0);
-                            list.get(i).setLast_photo(folderVO.getLast_photo());
-                            Glide.with(context).load(folderVO.getLast_photo()).into(h.binding.imgvFolder);
-                        }
-                    }
-                });
-
 
                 h.binding.imgvFolderDelete.setOnClickListener(v -> {
                     AlertDialog.Builder alert = new AlertDialog.Builder(context);
@@ -112,28 +94,12 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
                 });
                 h.binding.lnFolder.setOnClickListener(v -> {
                     Intent intent = new Intent(context, PhotoListActivity.class);
+                    intent.putExtra("folder_no" , list.get(i).getFolder_num());
                     intent.putExtra("name" , list.get(i).getFolder_name());
 
                     context.startActivity(intent);
                 });
-//        String directoryPath = "D:\\WorkSpace\\Ling\\image\\photo\\all"; // 이미지 파일이 있는 디렉토리 경로
-//
-//        File directory = new File(directoryPath);
-//        if (directory.isDirectory()) {
-//            File[] files = directory.listFiles();
-//
-//            if (files != null && files.length > 0) {
-//                Arrays.sort(files, (f1, f2) -> Long.compare(f2.lastModified(), f1.lastModified())); // 가장 최근에 수정된 파일순으로 정렬
-//
-//                File lastImageFile = files[0];
-//                if (lastImageFile.isFile()) {
-//                    Bitmap bitmap = BitmapFactory.decodeFile(lastImageFile.getAbsolutePath());
-//                    h.binding.imgvFolder.setImageBitmap(bitmap);
-//                }
-//            } else {
-//                // 디렉토리가 비어있는 경우 처리
-//            }
-//        }
+
 
     }
 

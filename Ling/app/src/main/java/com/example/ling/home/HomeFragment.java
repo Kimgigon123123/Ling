@@ -84,7 +84,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         binding.waveLoadingView.setCenterTitle("애칭");
         binding.waveLoadingView.setAnimDuration(5000);
-
+        select_profile();
         select_couplename();
 
         binding.waveLoadingView.setOnClickListener(v->{
@@ -295,8 +295,17 @@ public class HomeFragment extends Fragment {
             //갤러리 액티비티가 종료되었다. (사용자가 사진을 선택했는지)
             Log.d("갤러리", "onActivityResult: " + data.getData());
             Log.d("갤러리", "onActivityResult: " + data.getData().getPath());
-
-            Glide.with(this).load(data.getData()).into(binding.imgvManProfile); //갤러리 이미지가 잘 붙는지??
+            if (CommonVar.loginInfo.getGender().equals("남")) {
+                Glide.with(this)
+                        .load(data.getData())
+                        .placeholder(DEFALUT_MANIMG) // 남자 프로필 이미지로 설정할 기본 이미지
+                        .into(binding.imgvManProfile);
+            } else {
+                Glide.with(this)
+                        .load(data.getData())
+                        .placeholder(DEFALUT_WOMANIMG) // 여자 프로필 이미지로 설정할 기본 이미지
+                        .into(binding.imgvWomanProfile);
+            }
             String img_path = getRealPath(data.getData());
 
             //MultiPart 형태로 전송 (File)
@@ -375,5 +384,16 @@ public class HomeFragment extends Fragment {
 
         });
 
+    }
+
+    public void  select_profile(){
+        CommonConn conn = new CommonConn(getContext(), "select_couple_img");
+        conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+        conn.addParamMap("id", CommonVar.loginInfo.getId());
+        conn.addParamMap("profile", CommonVar.loginInfo.getProfile());
+
+        conn.onExcute((isResult, data) -> {
+
+        });
     }
 }

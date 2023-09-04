@@ -33,59 +33,50 @@ public class PhotoController {
 	@Autowired PhotoDAO dao;
 	@Autowired SqlSession sql;
 	public static String folderPath = "D:\\Ling\\Ling\\image\\photo\\";
-//	public static String folderPath = "D:\\WorkSpace\\Ling\\image\\photo\\";
+	
+	
 
+	/* 설명 : ....
+	 * System.out.println(req.getLocalAddr());
+	 * System.out.println(req.getLocalPort());
+	 * System.out.println(req.getContextPath() + "/폴더");
+	 */
 	
-	
-	//폴더명을 파라메터로 받아와야함/.
 	@RequestMapping(value="/file", produces="text/html;charset=utf-8")
-	public String list(HttpServletRequest req, String couple_num, String folder_name, String voJson, String pho_img
+	public String list(HttpServletRequest req,  String tempVo
 						) throws IllegalStateException, IOException {
-		
-		
-		
-		
-		System.out.println(req.getLocalAddr());
-		System.out.println(req.getLocalPort());
-		System.out.println(req.getContextPath() + "/폴더");
-		HashMap<String, Object> param = new HashMap<String, Object>();
-		param.put("couple_num", couple_num);
+		FolderVO vo = null;
+		if(req.getParameter("tempVo")!=null) {
+		 vo = new Gson().fromJson(req.getParameter("tempVo"), FolderVO.class);
+		}else {
+			return "";
+		}
 		
 		MultipartRequest mReq = (MultipartRequest) req;
 		MultipartFile file = mReq.getFile("file");
 		
-		String filename = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();file.getOriginalFilename();
+		String filename = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();
+		
 		
 		String filePath = "http://" + req.getLocalAddr() + ":" + req.getLocalPort() + req.getContextPath() 
-		+ "/images/photo/" + couple_num + folder_name + filename;
-		
-		FolderVO vo  = null;
-		if(req.getParameter("folder")!=null) {
-			 vo =   new Gson().fromJson(req.getParameter("folder"), FolderVO.class);
-			folder_name = vo.getFolder_name();
-			couple_num = vo.getCouple_num();
-//			folder_num = vo.getFolder_num();
-		}
-	
+		+ "/photo/" + vo.getCouple_num() + "/" +vo.getFolder_name() + "/" + filename;
+
 		
 		
 		   PhotoVO photo_vo = null;  
-		   if(req.getParameter("photo")!=null) { 
-		  photo_vo = new Gson().fromJson(req.getParameter("test_and"), PhotoVO.class);
-		  folder_name = photo_vo.getFolder_name();
-		  pho_img = filePath;
+		   
+		   if(file!=null) {//? 
+		  photo_vo = new PhotoVO();
+		  photo_vo.setFolder_num(vo.getFolder_num());
+		  photo_vo.setPho_img(filePath);
 		
-		   }	
-		//FolderVO vo = new Gson().fromJson(voJson, FolderVO.class);
-		
-		
-		//			String filename = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();file.getOriginalFilename();
-					File targetFile = new File("D:\\Ling\\Ling\\image\\photo\\"+ couple_num + "\\" + folder_name , filename);
+		   }			
+		   File targetFile = new File("D:\\Ling\\Ling\\image\\photo\\"+ vo.getCouple_num() + "\\" + vo.getFolder_name() , filename);
 					
 					
 					try {
 						file.transferTo(targetFile);
-						
+						dao.photoInsert(photo_vo);
 						
 						
 					} catch (Exception e) {
@@ -93,10 +84,10 @@ public class PhotoController {
 					}
 					
 					 
-					 dao.file(vo, filePath);
 		
 		
-		List<PhotoVO> list = dao.getList(param) ;
+		//?
+		List<FolderVO> list = dao.getFolder(vo.getCouple_num()) ;
 
 		Gson gson = new Gson();	
 				
@@ -105,31 +96,9 @@ public class PhotoController {
 		
 	}
 	
-//	public String photo_insert(PhotoVO vo, HttpServletRequest req, String id, String couple_num, String folder_name) {
-//		
-//		MultipartRequest mReq = (MultipartRequest) req;
-//		MultipartFile file = mReq.getFile("file");
-//		
-//		String filename = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();
-//	    String filePath = "http://" + req.getLocalAddr() + ":" + req.getLocalPort() + req.getContextPath() 
-//	    					+ "/images/photo/" + couple_num + folder_name + filename;
-//	    
-//		HashMap<String, Object> param = new HashMap<String, Object>();
-//		param.put("id", id);
-//		param.put("couple_num", couple_num);
-//		param.put("filePath", filePath);
-//		
-//		
-//	    
-//	    // photoInsert 메소드에서 param 대신 vo 객체를 넘겨주도록 수정
-//	    
-//		int result = dao.photoInsert(vo);
-//		Gson gson = new Gson();
-//		
-//		return gson.toJson(result);
-//		
-//	}
+
 	
+	//폴더 생성 시 vo에 커플넘버 , 아이디 , 폴더명 받아와야함.
 	@RequestMapping(value="/folder_insert", produces="text/html;charset=utf-8")
 	public String folder_insert(String voJson, HttpServletRequest req, String id, String couple_num) {
 		
@@ -158,7 +127,7 @@ public class PhotoController {
 			Gson gson = new Gson();	
 			
 			
-			return gson.toJson(dao.getFolder(param));
+			return gson.toJson(dao.getFolder(vo.getCouple_num()));
 		
 	}
 	
@@ -180,117 +149,50 @@ public class PhotoController {
 		String replaceURL = req.getContextPath();
 		return "http://" + req.getLocalAddr() + ":" + req.getLocalPort() + replaceURL + "/images/photo/";
 	}
+
 	
-	private String replaceURL(HttpServletRequest req , String couple_num, String file_name) {
-		String replaceURL = req.getContextPath();
-		return "http://" + req.getLocalAddr() + ":" + req.getLocalPort() + replaceURL + "/images/photo/" + couple_num + "/all" + file_name;
-	}
+	
+	
+	//폴더 내부 사진목록 조회 시 폴더 NUM하나만필요한 파라메터
 	
 	@RequestMapping(value="/photo_list", produces="text/html;charset=utf-8")
-	public String photo_list(String id, String couple_num, String folder_name, String pho_img) {
+	public String photo_list(int folder_num) {
+
 		
-		
-		
-		//folder_name을 비교해서 그 folder_name을 가진 view 클릭 시 그 폴더 내부의 이미지 조회
-//		imageSelect(voJson, req);
-		
+//		vo = new Gson().fromJson("vo", PhotoVO.class);
 		HashMap<String, Object> param = new HashMap<String, Object>();
-		param.put("id", id);
-		param.put("couple_num", couple_num);
-		param.put("folder_name", folder_name);
-		param.put("pho_img", pho_img);		
+		param.put("folder_num", folder_num);
 		
 		
 		List<PhotoVO> list = dao.getList(param) ;
-
 		Gson gson = new Gson();	
-				
 		return gson.toJson(list);
 }
 	
+//	@RequestMapping(value="/photo_list", produces="text/html;charset=utf-8")
+//	public String photo_list(String folder_num) {
+//
+//		
+//		PhotoVO vo = new Gson().fromJson(folder_num, PhotoVO.class);
+//				
+//		List<PhotoVO> list = dao.getList(vo) ;
+//		Gson gson = new Gson();	
+//		return gson.toJson(list);
+//}
 	
-	
-	@RequestMapping(value="/storage", produces="text/html;charset=utf-8")
-	public String photo_storage(String id, String couple_num, String folder_name, String pho_img) {
-		
-		
-		
-		//folder_name을 비교해서 그 folder_name을 가진 view 클릭 시 그 폴더 내부의 이미지 조회
-//		imageSelect(voJson, req);
-		
-		HashMap<String, Object> param = new HashMap<String, Object>();
-		param.put("id", id);
-		param.put("couple_num", couple_num);
-		param.put("folder_name", folder_name);
-		param.put("pho_img", pho_img);		
-		
-		
-		List<PhotoVO> list = dao.getList(param) ;
-		
-		Gson gson = new Gson();	
-		
-		return gson.toJson(list);
-	}
-	
+
 
 	
 	
 	@RequestMapping(value="/folder_list", produces="text/html;charset=utf-8")
-	public String folder_list(String id, String couple_num) {
-			
-			HashMap<String, Object> param = new HashMap<String, Object>();
-			param.put("id", id);
-			param.put("couple_num", couple_num);
-			List<FolderVO> list = dao.getFolder(param) ;
-
+	public String folder_list( String couple_num) {
+			List<FolderVO> list = dao.getFolder(couple_num) ;
 			Gson gson = new Gson();	
-			
 			return gson.toJson(list);
-		
 	}
 	
 	
-	  @RequestMapping(value="/folder_LastImg", produces="text/html;charset=utf-8")
-	  public String folder_LastImg(String id, String couple_num, String last_photo) {
-	  
-	  HashMap<String, Object> param = new HashMap<String, Object>();
-	  param.put("id", id); 
-	  param.put("couple_num", couple_num); //couple_num
-	  List<FolderVO> list = dao.getFolder(param) ;
-	  
-	  Gson gson = new Gson();
-	  
-	  return gson.toJson(list);
-	  
-	  }
-	 
-	
-	
 
-	
-
-	
-//	@RequestMapping(value="/folder_delete",produces="text/html;charset=utf-8")
-//	public String Folder_Delete(FolderVO vo) {
-//		
-//		File folder = new File(folderPath);
-//		if(folder.exists()) {
-//			boolean delete = folder.delete();
-//			
-//			if(delete) {
-//				System.out.println("폴더가 삭제되었습니다.");
-//			}else {
-//				System.out.println("폴더 삭제에 실패했습니다.");
-//			}
-//		}
-//		
-//		
-//		int result = dao.FolderDelete(vo);
-//		
-//		Gson gson = new Gson();
-//		
-//		return gson.toJson(result);
-//	}
 	
 	@RequestMapping(value = "/folder_delete", produces = "text/html;charset=utf-8")
 	public String folder_Delete(FolderVO vo) {
@@ -337,17 +239,6 @@ public class PhotoController {
 	
 		
 	}
-	
-	
-	private boolean checkFolderExist(String folderPath) {
-	    File folder = new File(folderPath);
-	    return folder.exists();
-	}
-	
-
-
-	
-	
 
 	
 }

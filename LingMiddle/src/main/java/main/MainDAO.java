@@ -17,9 +17,9 @@ public class MainDAO {
 	@Qualifier("test")
 	SqlSession sql;
 	
-	public List<MainVO> getProfile_img(HashMap<String, Object> param){
-		List<MainVO> list = sql.selectList("main.select_couple_img",param);
-		return list;
+	public MainVO getProfile_img(HashMap<String, Object> param){
+		MainVO vo = sql.selectOne("main.select_couple_img",param);
+		return vo;
 	}
 	
 	public List<MainVO> select_couple_info(MainVO vo){

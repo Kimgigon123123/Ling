@@ -32,19 +32,25 @@ public class MainController {
 			return gson.toJson(list);
 		}
 		
-	// 프로필 이미지 변경
+		
+		
+	// 프로필 이미지 조회
 		@RequestMapping(value = "/select_couple_img", produces = "text/html;charset=utf-8")
-		public String select_couple_img(String id, String couple_num) {
+		public String select_couple_img(String id, String couple_num, String profile) {
 			HashMap<String, Object> param = new HashMap<String, Object>();
 			param.put("id", id);
 			param.put("couple_num", couple_num);
+			param.put("profile", profile);
 					 //couple_num
-			List<MainVO> list = dao.getProfile_img(param) ;
+			MainVO vo = dao.getProfile_img(param) ;
 
 			Gson gson = new Gson();	
 			
-			return gson.toJson(list);
+			return gson.toJson(vo);
 		}
+		
+	// 프로필 이미지 변경
+		
 		
 		// 애칭 변경 
 		

@@ -29,7 +29,7 @@
 	
 	<select id="item_rank" resultType="hashmap">
 	<![CDATA[
-		SELECT rm.rank_text AS rank, si.item_name, si.sales
+		SELECT item_rank||'위' AS rank, si.item_name, si.sales
 FROM (
     SELECT DENSE_RANK() OVER (ORDER BY sales DESC) AS item_rank, 
            item_name, 
@@ -37,8 +37,7 @@ FROM (
            ROW_NUMBER() OVER (PARTITION BY sales ORDER BY item_name) AS row_num
     FROM store_item
 ) si
-JOIN rank_mapping rm ON si.item_rank = rm.rank_num
-WHERE si.item_rank <= 10 AND si.row_num = 1
+WHERE si.item_rank <= 10
 	]]>
 	</select>
 	

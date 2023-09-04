@@ -9,7 +9,17 @@ public class FolderVO {
 
 	private int folder_num;
 
-	public int getFolder_num() {
+//	private String folder_num;
+
+//	public String getFolder_num() {
+//		return folder_num;
+//	}
+//
+//	public void setFolder_num(String folder_num) {
+//		this.folder_num = folder_num;
+//	}
+
+		public int getFolder_num() {
 		return folder_num;
 	}
 

@@ -32,25 +32,15 @@ public class PhotoListActivity extends AppCompatActivity {
             finish();
         });
 
-//        binding.tvFolderName.setText("all");
     }
 
     public void select(){
         CommonConn conn = new CommonConn(this, "photo_list");
-        FolderVO vo = new FolderVO();
-        PhotoVO vo1 = new PhotoVO();
 
+       // PhotoVO vo = new PhotoVO();
         String folder_name = getIntent().getStringExtra("name");
-        conn.addParamMap("id", CommonVar.loginInfo.getId());
-        conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
-        conn.addParamMap("folder_name", folder_name);
-        conn.addParamMap("pho_img", vo1.getPho_img());
 
-
-        vo.setId(CommonVar.loginInfo.getId());
-        vo.setCouple_num(CommonVar.loginInfo.getCouple_num());
-//        vo.setFolder_name(vo.getFolder_name());
-
+        conn.addParamMap("folder_num", getIntent().getIntExtra("folder_no", -1));
 
         conn.onExcute((isResult, data) -> {
 

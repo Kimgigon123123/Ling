@@ -23,8 +23,11 @@ else
 end as gender
 from couple c, ling_member lm
 where lm.id = #{id} and c.couple_num = #{couple_num}
-
 </select>
+
+<update id="profile_img">
+	update ling_member set profile = #{profile} where id = #{id}
+</update>
 
 <update id="update_couple_name">
 update couple set couple_name = #{couple_name} where couple_num=#{couple_num}
