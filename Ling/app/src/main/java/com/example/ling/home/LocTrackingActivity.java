@@ -143,9 +143,10 @@ public class LocTrackingActivity extends AppCompatActivity implements OnMapReady
                         });
                     }
                 }, 20000);
-            } else {
-                Toast.makeText(this, "위치를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
             }
+//            else {
+//                Toast.makeText(this, "위치를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
+//            }
         });
     }
 }
