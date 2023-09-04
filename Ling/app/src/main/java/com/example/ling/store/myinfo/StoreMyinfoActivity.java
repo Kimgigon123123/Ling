@@ -6,9 +6,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.shapes.Shape;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.example.ling.R;
 import com.example.ling.Static;
@@ -35,6 +40,7 @@ public class StoreMyinfoActivity extends AppCompatActivity {
 
 
     ActivityStoreMyinfoBinding binding;
+    Window window;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,14 @@ public class StoreMyinfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding=ActivityStoreMyinfoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+
+
+
+
+
+
 
         select();
         zzimlist();
@@ -242,4 +256,6 @@ public class StoreMyinfoActivity extends AppCompatActivity {
     private String formatPriceWithCommas(int price) {
         return NumberFormat.getInstance().format(price);
     }
+
+
 }

@@ -9,6 +9,7 @@
 
 
      <item name="android:fontFamily">@font/font4</item>
+        <item name="android:statusBarColor">#00ff0000</item>
 
         <item name="actionBarSize">0dp</item>
     </style>
