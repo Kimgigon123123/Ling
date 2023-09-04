@@ -55,6 +55,7 @@ public class LocTrackingActivity extends AppCompatActivity implements OnMapReady
         setContentView(binding.getRoot());
 
         binding.imgvHome.setOnClickListener(v -> {
+            handler.removeCallbacksAndMessages(null);
             finish();
         });
 
@@ -68,7 +69,6 @@ public class LocTrackingActivity extends AppCompatActivity implements OnMapReady
         locationSource =
                 new FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE);
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -115,38 +115,42 @@ public class LocTrackingActivity extends AppCompatActivity implements OnMapReady
                         naverMap.moveCamera(cameraUpdate);
                     });
                 }
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        CommonConn conn = new CommonConn(LocTrackingActivity.this, "update_location");
-                        conn.addParamMap("lat", lastLocation.getLatitude());
-                        conn.addParamMap("lng", lastLocation.getLongitude());
-                        conn.addParamMap("id", CommonVar.loginInfo.getId());
-                        conn.onExcute((isResult, data) -> {
-                            CommonConn locationConn = new CommonConn(LocTrackingActivity.this, "select_location");
-                            locationConn.addParamMap("id", CommonVar.loginInfo.getId());
-                            locationConn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
-                            locationConn.onExcute((isResult1, data1) -> {
-                                Ling_MemberVO location = new Gson().fromJson(data1, new TypeToken<Ling_MemberVO>() {
-                                }.getType());
-                                targetLocation = new LatLng(Double.parseDouble(location.getLat()), Double.parseDouble(location.getLng()));
-                                if (currentMarker != null) {
-                                    currentMarker.setMap(null);
-                                }
-                                currentMarker = new Marker();
-                                currentMarker.setPosition(targetLocation);
-                                currentMarker.setMap(naverMap);
-                                CameraUpdate cameraUpdate = CameraUpdate.scrollAndZoomTo(targetLocation, 15)
-                                        .animate(CameraAnimation.Fly, 2000);
-                                naverMap.moveCamera(cameraUpdate);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            CommonConn conn = new CommonConn(LocTrackingActivity.this, "update_location");
+                            conn.addParamMap("lat", lastLocation.getLatitude());
+                            conn.addParamMap("lng", lastLocation.getLongitude());
+                            conn.addParamMap("id", CommonVar.loginInfo.getId());
+                            conn.onExcute((isResult, data) -> {
+                                CommonConn locationConn = new CommonConn(LocTrackingActivity.this, "select_location");
+                                locationConn.addParamMap("id", CommonVar.loginInfo.getId());
+                                locationConn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
+                                locationConn.onExcute((isResult1, data1) -> {
+                                    Ling_MemberVO location = new Gson().fromJson(data1, new TypeToken<Ling_MemberVO>() {
+                                    }.getType());
+                                    targetLocation = new LatLng(Double.parseDouble(location.getLat()), Double.parseDouble(location.getLng()));
+                                    if (currentMarker != null) {
+                                        currentMarker.setMap(null);
+                                    }
+                                    currentMarker = new Marker();
+                                    currentMarker.setPosition(targetLocation);
+                                    currentMarker.setMap(naverMap);
+                                    CameraUpdate cameraUpdate = CameraUpdate.scrollAndZoomTo(targetLocation, 15)
+                                            .animate(CameraAnimation.Fly, 2000);
+                                    naverMap.moveCamera(cameraUpdate);
+                                });
                             });
-                        });
-                    }
-                }, 20000);
+                        }
+                    }, 20000);
             }
 //            else {
 //                Toast.makeText(this, "위치를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
 //            }
         });
+    }
+    protected void onStop() {
+        super.onStop();
+        handler.removeCallbacksAndMessages(null);
     }
 }
