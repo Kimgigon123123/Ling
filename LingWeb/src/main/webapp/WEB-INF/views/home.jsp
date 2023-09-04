@@ -563,6 +563,8 @@ a:not(.btn):link, a:not(.btn):hover {
         		return Math.round(data / sum * 10000)/100;
         	})
         	
+        	var labelAnchors = ['start', 'center', 'end', 'end'];
+        	
         	visual = new Chart($('#chart'), {
         		type: 'doughnut',
         		data: {
@@ -580,7 +582,7 @@ a:not(.btn):link, a:not(.btn):hover {
         		    	plugins:{
         		    		autocolors: {mode:'data'},
         		    		datalabels: {
-        		    			anchor: 'middle', //도넛조각 내부에 데이터 위치하게
+        		    			anchor: labelAnchors, //도넛조각 내부에 데이터 위치하게
         		    			formatter: function(value, item){
         		    				console.log(item);
         		    				return `\${value}명(\${info.pct[item.dataIndex]}%)`;
@@ -641,86 +643,120 @@ a:not(.btn):link, a:not(.btn):hover {
         
         var colors = ['#85a832', '#a83294', '#c7c922', '#db4ba6', '#d4aca7', '#8be0c0', '#5340cf', '#021438','#d4cc83','#c1f0b4'];
       
-      //막대 그래프
+//       //막대 그래프
+// function barChart(info) {
+//     	  console.log('barChart> ', info.itemNames)
+//     $('#tab-content').css('height', '700');
+//     visual = new Chart($('#chart'), {
+//         type: 'bar',
+//         data: {
+//             labels: info.category,
+//             datasets: [{
+//                 data: info.datas,
+//                 borderWidth: 2,
+//                 barPercentage: 0.5,
+//                 backgroundColor: info.colors,
+//             }]
+//         },
+//         options: {
+//             maintainAspectRatio: false,
+//             responsive: false,
+//             layout: {
+//                 padding: {top:30, bottom:20}
+//             },
+//             plugins: {
+//                 legend: {
+//                     display: false
+//                 },
+//                 autocolors: {
+//                     mode: 'data'
+//                 },
+//                 datalabels:{
+//                 	display:false
+//                 },
+                
+                
+//             },
+            
+//             scales: {
+//                 x: { // x축 설정
+//                     beginAtZero: true,
+//                     title: {text: '순위', display:true},
+//                     position: 'bottom' // x축 위치 설정
+//                 },
+//                 y: { // y축 설정
+//                     beginAtZero: true,
+//                     title: {text: '아이템 구매횟수', display:true}
+//                 }
+//             }
+//         }
+//     });
+//     makeLegend(info);
+    
+
+		
+// }
+
+
 function barChart(info) {
-    	  console.log('barChart> ', info.itemNames)
     $('#tab-content').css('height', '700');
     visual = new Chart($('#chart'), {
         type: 'bar',
         data: {
             labels: info.category,
-            datasets: [{
-                data: info.datas,
-                borderWidth: 2,
-                barPercentage: 0.5,
-                backgroundColor: info.colors,
-            }]
+            datasets: [
+                {
+                    label: '바 차트',
+                    data: info.datas,
+                    borderWidth: 2,
+                    barPercentage: 0.5,
+                    backgroundColor: info.colors,
+                },
+//                 {
+//                     label: '선 그래프',
+//                     data: info.lineData,
+//                     fill: false,
+//                     borderColor: '#0000ff',
+//                     tension: 0,
+//                     pointRadius: 5,
+//                     pointBackgroundColor: '#ff0000',
+//                 },
+            ],
         },
         options: {
             maintainAspectRatio: false,
             responsive: false,
             layout: {
-                padding: {top:30, bottom:20}
+                padding: { top: 30, bottom: 20 },
             },
             plugins: {
                 legend: {
-                    display: false
+                    display: true,
                 },
                 autocolors: {
-                    mode: 'data'
+                    mode: 'data',
                 },
-                datalabels:{
-                	display:false
+                datalabels: {
+                    display: false,
                 },
-                
-                
             },
-            
             scales: {
-                x: { // x축 설정
+                x: {
                     beginAtZero: true,
-                    title: {text: '순위', display:true},
-                    position: 'bottom' // x축 위치 설정
+                    title: { text: '순위', display: true },
+                    position: 'bottom',
                 },
-                y: { // y축 설정
+                y: {
                     beginAtZero: true,
-                    title: {text: '아이템 구매횟수', display:true}
-                }
-            }
-        }
+                    title: { text: '아이템 구매횟수', display: true },
+                },
+            },
+        },
     });
     makeLegend(info);
-    
-// 	if($('.nav-tabs .active').text()=='아이템 Top10'){
-		
-//     console.log("d->", $('.nav-tabs .active').text())
-    
-// 	}else{
-// 	console.log("e->")		
-//     $('#legend-container').empty();
-// 	}
-		
 }
 
-        //데이터수치 범위에 해당하는 범례 만들기
-/* function makeLegend() {
-    var tag =
-        `<ul class="row d-flex justify-content-center m-0 mt-4 p-0 small" id='legend'>`;
-        
-    for (var no = 0; no <= 6; no++) {
-        tag +=
-            `<li class="col-auto"><span></span><font>${no * 10}~${no * 10 + 9}명</font></li>`;
-    }
-    tag +=
-        `<li class="col-auto"><span></span><font>${no * 10}명 이상</font></li>
-        </ul>`;
-    
-    // 범례를 그래프 아래에 위치시키기 위해 그래프 아래에 추가하도록 변경
-    $('#chart').after(tag);
-    $('#legend span').each(function(idx, item) {
-        $(this).css('background-color', colors[idx]);
-    });
-} */
+
 
 function makeLegend(info) {
     var tag = `<ul class="nav legend-list row d-flex justify-content-center m-0 p-0 ">`;
