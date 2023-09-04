@@ -9,40 +9,34 @@
 
 
     <LinearLayout
-        android:layout_marginBottom="5dp"
-        android:gravity="center_vertical"
-        android:background="@drawable/shape"
-        android:orientation="horizontal"
-        android:layout_gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="70dp"
+        android:layout_gravity="center_vertical"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <ImageView
+            android:layout_gravity="center"
 
-            android:layout_marginLeft="15dp"
             android:id="@+id/imgv_before"
-            android:src="@drawable/ic_before"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/baseline_navigate_before_24_black" />
 
         <TextView
-            android:layout_marginLeft="20dp"
-            android:textStyle="bold"
-            android:textSize="17dp"
             android:id="@+id/tv_date"
-            android:textColor="#fff"
-
-            android:text="충전하기"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-
-
-
-
+            android:layout_height="wrap_content"
+            android:text="충전하기   "
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
 
     </LinearLayout>
+
 
     <TextView
         android:textSize="25dp"
