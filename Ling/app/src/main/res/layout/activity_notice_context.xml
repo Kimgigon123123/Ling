@@ -73,20 +73,29 @@
         android:id="@+id/ln_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <ImageView
-            android:src="@drawable/change_heart"
-            android:layout_margin="10dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_update"
-            android:text="수정"/>
-        <ImageView
-            android:src="@drawable/save_heart"
-            android:layout_margin="10dp"
-            android:layout_width="50dp"
+            style="@style/LingButtonStyle"
+            android:layout_width="80dp"
             android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:drawableLeft="@drawable/update_pen"
+            android:padding="8dp"
+            android:text="수정" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/LingButtonStyle"
             android:id="@+id/btn_delete"
-            android:text="삭제"/>
+            android:layout_margin="10dp"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:drawableLeft="@drawable/delete_close"
+            android:text="삭제"
+            android:padding="8dp"
+            android:layout_gravity="center"
+            />
     </LinearLayout>
 
 

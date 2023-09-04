@@ -58,9 +58,9 @@ public class BoardMain_CommonAdapter extends RecyclerView.Adapter<BoardMain_Comm
             } else {
                 fragment.changeFragment(4);
             }
-            //Intent intent = new Intent(context, Board_DetailtActivity.class);
+            Intent intent = new Intent(context, Board_DetailtActivity.class);
             //Intent intent = new Intent( mainFragment.getContext(), Board_DetailtActivity.class);
-            Intent intent = new Intent( mainFragment.getContext(), Board_DetailtActivity.class);
+            //Intent intent = new Intent( mainFragment.getContext(), Board_DetailtActivity.class);
             intent.putExtra("board_no", list.get(i).getId());
             intent.putExtra("board_cd", list.get(i).getBoard_cd());
             context.startActivity(intent);

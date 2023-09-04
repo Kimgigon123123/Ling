@@ -25,6 +25,17 @@ public class BoardMainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentBoardMainBinding.inflate(getLayoutInflater() , container , false);
+
+
+
+
+        return binding.getRoot();
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
         fragment = (BoardFragment) getParentFragment();
         binding.tvNoticeMore.setOnClickListener(v->{
             fragment.changeFragment(1);
@@ -42,10 +53,6 @@ public class BoardMainFragment extends Fragment {
         Freeselect();
         Worryselect();
         Playselect();
-
-
-
-        return binding.getRoot();
     }
 
     public void Noticeselect(){
@@ -92,4 +99,5 @@ public class BoardMainFragment extends Fragment {
             binding.recvPlay.setLayoutManager(new LinearLayoutManager(getContext()));
         });
     }
+
 }

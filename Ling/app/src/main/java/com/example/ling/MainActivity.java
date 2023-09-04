@@ -62,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
         animDrawable.start();
 
 
+
+
         initItem();
         initUI();
-
-
 
     }
 
@@ -74,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        //김기곤이 만듬 (스토어 장바구니 구매시 구매완료 다이얼로그 뜨게하기)
+
+        //김기곤이 만듬 (스토어 장바구니 구매시 구매완료 다이얼로그 뜨겁게하기)
         if( ChargeVO.isBuy == true){
             Dialog dialog = new CompleteDialog(this,"BuyComplete");
             dialog.show();
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
     //바텀 네비게이션 아이템 초기화 메소드 2023-08-16 kym
     public void initItem(){
+        list = new ArrayList<>();
         //                      붙일프래그먼트  ,        아이콘               ,   선택배경색상 ,    글씨  ,       뱃지보여줄꺼면 뱃지 그씨
         list.add(new MainMenuDTO(new DateHomeFragment() , R.drawable.btm_menu_1 ,"#F8E8EE" , "여행지" ,  "여행지 선택"  ));
         list.add(new MainMenuDTO(new ChatFragment() , R.drawable.btm_menu_2 ,"#FDCEDF" , "채팅" ,  null ));
@@ -107,7 +109,19 @@ public class MainActivity extends AppCompatActivity {
            @NonNull
            @Override
            public Fragment getItem(int i) {
-               return list.get(i).fragment;
+               if(i == 0 ){
+                   return  new DateHomeFragment();
+               }else if (i == 1){
+                   return  new ChatFragment();
+               }else if (i == 2){
+                   return  new HomeFragment();
+               }else if (i == 3){
+                   return  new BoardFragment();
+               }else if (i == 4){
+                   return  new StoreMainFragment();
+               }else{
+                   return new HomeFragment();
+               }
            }
 
            @Override
@@ -168,6 +182,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }, 500);
+
+        binding.pager.setOffscreenPageLimit(0);
     }
 
     public class MainMenuDTO {

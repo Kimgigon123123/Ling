@@ -32,30 +32,56 @@
     <LinearLayout
         android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="350dp"
         android:orientation="horizontal">
+
+        <ScrollView
+            android:fadeScrollbars="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:scrollbarSize="10dp"
+            android:overScrollMode="always">
+
         <TextView
             android:id="@+id/tv_comment_content"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="작성된 글에 대한 댓글"/>
+
+        </ScrollView>
     </LinearLayout>
     <FrameLayout
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
-        android:layout_height="500dp">
+        android:layout_height="200dp">
 
+
+        <ScrollView
+            android:fadeScrollbars="true"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scrollbars="vertical"
+            android:scrollbarSize="10dp"
+            android:overScrollMode="always">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recv_recontent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
+
+        </ScrollView>
 
     </FrameLayout>
+
+
+
+
     <LinearLayout
+        android:id="@+id/ln_insert_comment"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,14 +92,15 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:hint="댓글을 입력하세요."/>
-        <Button
+        <ImageView
             android:id="@+id/btn_regist_comment"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:textSize="10dp"
-            android:text="입력"/>
+            android:text="입력"
+            android:background="@drawable/btn_send"/>
     </LinearLayout>
 
 
