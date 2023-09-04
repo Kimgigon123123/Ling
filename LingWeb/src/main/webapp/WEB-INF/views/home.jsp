@@ -175,7 +175,7 @@
                                     <div class="text-center">
                                         <img src="<c:url value='/resources/images/menu_homefrag_img2.png'/>" class="justify-content-between w-50 h-50" alt="Image 2">
                                         <h3 class="font-alt">메모장</h3>
-                                        <p class="text-muted mb-0">As always, this theme is free to download and use for any purpose!</p>
+                                        <p class="text-muted mb-0">짝궁과 나눈 사소한것 하나까지도 기록</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -183,7 +183,7 @@
                                     <div class="text-center">
                                         <img src="<c:url value='/resources/images/menu_homefrag_img4.png'/>" class="justify-content-center w-50 h-50" alt="Image 2">
                                         <h3 class="font-alt">타입캡슐</h3>
-                                        <p class="text-muted mb-0">Since this theme is MIT licensed, you can use it commercially!</p>
+                                        <p class="text-muted mb-0">과거의 우리가 미래의 우리에게 보내는 메시지</p>
                                     </div>
                                 </div>
                             </div>
