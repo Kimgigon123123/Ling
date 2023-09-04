@@ -69,7 +69,7 @@
         <activity
             android:name=".board.Board_DetailtActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".store.myinfo.ReturnActivity"
             android:exported="false" />

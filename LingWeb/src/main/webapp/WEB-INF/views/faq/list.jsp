@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/custom.css">
 
 
+
 </head>
 <body>
 <h3 class="my-4">FAQ</h3>
@@ -102,7 +103,7 @@
           <a class="dropdown-item" href="faq_modify?faq_no=${vo.faq_no}">수정</a>
           <a class="dropdown-item" href="javascript:if(confirm('이 FAQ 글을 삭제하시겠습니까?'))
                                                      {location='faq_delete?faq_no=${vo.faq_no }'}">삭제</a>
-        </div>
+        </div>     
       </div>
       </c:if>
     </div>

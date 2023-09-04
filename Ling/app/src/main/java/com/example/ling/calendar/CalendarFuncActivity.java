@@ -135,6 +135,7 @@ public class CalendarFuncActivity extends AppCompatActivity {
 
 
             calendarView.setOnDayClickListener(eventDay -> {
+
                 // 클릭한 날짜의 일정을 필터링하여 RecyclerView에 표시
                 Calendar clickedDate = eventDay.getCalendar();
                 ArrayList<ScheAddVO> filteredList = new ArrayList<>();

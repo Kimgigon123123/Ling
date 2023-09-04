@@ -108,6 +108,16 @@ public class CalendarActivity extends AppCompatActivity {
             cal.set(nextYear, Calendar.JUNE, 14); // 다음 년도 6월 14일 설정
             Date nextYearJune14 = cal.getTime();
 
+            cal.set(nextYear, Calendar.JULY, 14); // 다음 년도 7월 14일 설정
+            Date nextYearJuly14 = cal.getTime();
+
+
+            cal.set(nextYear, Calendar.OCTOBER, 14); // 다음 년도 10월 14일 설정
+            Date nextYearOct14 = cal.getTime();
+
+            cal.set(nextYear, Calendar.DECEMBER, 14); // 다음 년도 12월 14일 설정
+            Date nextYearDec14 = cal.getTime();
+
 
 
             SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -124,22 +134,22 @@ public class CalendarActivity extends AppCompatActivity {
             if (date100.after(today)) {
                 String formattedDate100 = outputFormat.format(date100);
                 binding.tv100day.setText(formattedDate100);
-            }else{
+            }else  if (today.before(nextYearFeb14)) {
                 String formattedDate100 = outputFormat.format(nextYearFeb14);
                 binding.tv100day.setText(formattedDate100);
                 binding.tv100.setText("발렌타인데이"); // 100일이 지난 경우 텍스트 변경
             }
-//            else{
-//                // 다음 년도 4월 14일 계산
-//                cal.set(Calendar.MONTH, Calendar.JUNE);
-//                cal.set(Calendar.DAY_OF_MONTH, 14);
-//                cal.add(Calendar.YEAR, 1);
-//                Date nextYearApril14 = cal.getTime();
-//
-//                String formattedDateApril14 = outputFormat.format(nextYearApril14);
-//                binding.tv100day.setText(formattedDateApril14);
-//                binding.tv100.setText("키스데이"); // 100일과 다음 년도 3월 14일이 모두 지난 경우 텍스트 변경
-//            }
+                else {
+                // 다음 년도 4월 14일 계산
+                cal.set(Calendar.MONTH, Calendar.JUNE);
+                cal.set(Calendar.DAY_OF_MONTH, 14);
+                cal.add(Calendar.YEAR, 1);
+                nextYearFeb14 = cal.getTime();
+
+                String formattedDateJune14 = outputFormat.format(nextYearFeb14);
+                binding.tv100day.setText(formattedDateJune14);
+                binding.tv100.setText("키스데이"); // 100일과 다음 년도 2월 14일이 모두 지난 경우 텍스트 변경
+            }
 
 
 
@@ -151,22 +161,21 @@ public class CalendarActivity extends AppCompatActivity {
             if (date200.after(today)) {
                 String formattedDate200 = outputFormat.format(date200);
                 binding.tv200day.setText(formattedDate200);
-            }else{
+            } else if (today.before(nextYearMarch14)) {
                 String formattedDate200 = outputFormat.format(nextYearMarch14);
                 binding.tv200day.setText(formattedDate200);
                 binding.tv200.setText("화이트데이"); // 200일이 지난 경우 텍스트 변경
+            } else {
+                // 다음 년도 4월 14일 계산
+                cal.set(Calendar.MONTH, Calendar.JULY);
+                cal.set(Calendar.DAY_OF_MONTH, 14);
+                cal.add(Calendar.YEAR, 1);
+                nextYearJuly14 = cal.getTime();
+
+                String formattedDateJuly14 = outputFormat.format(nextYearJuly14);
+                binding.tv200day.setText(formattedDateJuly14);
+                binding.tv200.setText("실버데이"); // 100일과 다음 년도 3월 14일이 모두 지난 경우 텍스트 변경
             }
-//            else{
-//                // 다음 년도 4월 14일 계산
-//                cal.set(Calendar.MONTH, Calendar.APRIL);
-//                cal.set(Calendar.DAY_OF_MONTH, 14);
-//                cal.add(Calendar.YEAR, 1);
-//                Date nextYearApril14 = cal.getTime();
-//
-//                String formattedDateApril14 = outputFormat.format(nextYearApril14);
-//                binding.tv200day.setText(formattedDateApril14);
-//                binding.tv200.setText("화이트데이 지남"); // 100일과 다음 년도 3월 14일이 모두 지난 경우 텍스트 변경
-//            }
 
 
             cal.setTime(date); // 초기화
@@ -178,10 +187,20 @@ public class CalendarActivity extends AppCompatActivity {
             if (date300.after(today)) {
                 String formattedDate300 = outputFormat.format(date300);
                 binding.tv300day.setText(formattedDate300);
-            }else{
+            }else if (today.before(nextYearApr14)){
                 String formattedDate300 = outputFormat.format(nextYearApr14);
                 binding.tv300day.setText(formattedDate300);
                 binding.tv300.setText("블랙데이"); // 300일이 지난 경우 텍스트 변경
+            }else {
+                // 다음 년도 4월 14일 계산
+                cal.set(Calendar.MONTH, Calendar.OCTOBER);
+                cal.set(Calendar.DAY_OF_MONTH, 14);
+                cal.add(Calendar.YEAR, 1);
+                nextYearOct14 = cal.getTime();
+
+                String formattedDateOct14 = outputFormat.format(nextYearOct14);
+                binding.tv300day.setText(formattedDateOct14);
+                binding.tv300.setText("와인데이"); // 100일과 다음 년도 4월 14일이 모두 지난 경우 텍스트 변경
             }
 
             cal.setTime(date); // 초기화
@@ -191,10 +210,20 @@ public class CalendarActivity extends AppCompatActivity {
             if (date365.after(today)) {
                 String formattedDate365 = outputFormat.format(date365);
                 binding.tv365day.setText(formattedDate365);
-            }else{
+            }else if (today.before(nextYearMay14)){
                 String formattedDate365 = outputFormat.format(nextYearMay14);
                 binding.tv365day.setText(formattedDate365);
                 binding.tv365.setText("로즈데이"); // 300일이 지난 경우 텍스트 변경
+            }else {
+                // 다음 년도 4월 14일 계산
+                cal.set(Calendar.MONTH, Calendar.DECEMBER);
+                cal.set(Calendar.DAY_OF_MONTH, 14);
+                cal.add(Calendar.YEAR, 1);
+                nextYearDec14 = cal.getTime();
+
+                String formattedDateDec14 = outputFormat.format(nextYearDec14);
+                binding.tv365day.setText(formattedDateDec14);
+                binding.tv365.setText("허그데이"); // 100일과 다음 년도 5월 14일이 모두 지난 경우 텍스트 변경
             }
 
 
