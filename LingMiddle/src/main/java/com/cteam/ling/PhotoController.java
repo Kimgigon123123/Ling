@@ -87,7 +87,7 @@ public class PhotoController {
 		
 		
 		//?
-		List<FolderVO> list = dao.getFolder(vo.getCouple_num()) ;
+		List<FolderVO> list = dao.getFolderList(vo.getCouple_num()) ;
 
 		Gson gson = new Gson();	
 				
@@ -127,7 +127,7 @@ public class PhotoController {
 			Gson gson = new Gson();	
 			
 			
-			return gson.toJson(dao.getFolder(vo.getCouple_num()));
+			return gson.toJson(dao.getFolderList(vo.getCouple_num()));
 		
 	}
 	
@@ -164,29 +164,19 @@ public class PhotoController {
 		param.put("folder_num", folder_num);
 		
 		
-		List<PhotoVO> list = dao.getList(param) ;
+		List<PhotoVO> list = dao.getPhotoList(param) ;
 		Gson gson = new Gson();	
 		return gson.toJson(list);
 }
 	
-//	@RequestMapping(value="/photo_list", produces="text/html;charset=utf-8")
-//	public String photo_list(String folder_num) {
-//
-//		
-//		PhotoVO vo = new Gson().fromJson(folder_num, PhotoVO.class);
-//				
-//		List<PhotoVO> list = dao.getList(vo) ;
-//		Gson gson = new Gson();	
-//		return gson.toJson(list);
-//}
-	
-
 
 	
 	
 	@RequestMapping(value="/folder_list", produces="text/html;charset=utf-8")
 	public String folder_list( String couple_num) {
-			List<FolderVO> list = dao.getFolder(couple_num) ;
+			
+		
+			List<FolderVO> list = dao.getFolderList(couple_num) ;
 			Gson gson = new Gson();	
 			return gson.toJson(list);
 	}

@@ -114,9 +114,14 @@ public class PhotoActivity extends AppCompatActivity {
 
 
                 public void onClick(DialogInterface dialog, int whichButton) {
-//                    String folderName = name.getText().toString().trim();
-//
-//                    if(folderName.equals())
+                    String folderName = name.getText().toString().trim();
+
+                    if (isFolderNameDuplicate(folderName)) {
+                        // 중복된 이름인 경우 Toast 메시지 표시
+                        Toast.makeText(getApplicationContext(), "이미 같은 이름의 폴더가 존재합니다. 다른 이름을 사용하세요.", Toast.LENGTH_SHORT).show();
+                        return; // 중복된 이름일 경우 더 이상 진행하지 않고 종료
+                    }
+
 
                     FolderVO vo = new FolderVO();
                     vo.setFolder_name(name.getText().toString().trim());
@@ -324,6 +329,15 @@ public class PhotoActivity extends AppCompatActivity {
         dialog.show();
     }
 
-
+    private boolean isFolderNameDuplicate(String folderName) {
+        if (folder_List != null) {
+            for (FolderVO folderVO : folder_List) {
+                if (folderVO.getFolder_name().equalsIgnoreCase(folderName)) {
+                    return true; // 중복된 이름이 있으면 true 반환
+                }
+            }
+        }
+        return false; // 중복된 이름이 없으면 false 반환
+    }
 
 }

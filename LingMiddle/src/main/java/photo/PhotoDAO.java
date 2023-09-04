@@ -14,21 +14,16 @@ public class PhotoDAO {
 	
 	@Autowired @Qualifier ("test") SqlSession sql;
 	
-	public List<PhotoVO> getList(HashMap<String, Object> param){
+	public List<PhotoVO> getPhotoList(HashMap<String, Object> param){
 		List<PhotoVO>  list = sql.selectList("photo.photo_list" , param);
 		return list;
 	}
 	
-	public List<FolderVO> getFolder(String couple_num){
+	public List<FolderVO> getFolderList(String couple_num){
 		List<FolderVO> list = sql.selectList("photo.folder_list",couple_num);
 		return list;
 	}
 	
-	
-	  public List<FolderVO> getFolder_LastImg(HashMap<String, Object> param){
-	  List<FolderVO> list = sql.selectList("photo.folder_LastImg",param); 
-	  return list; 
-	  }
 	 
 	
 	

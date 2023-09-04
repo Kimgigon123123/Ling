@@ -2,7 +2,6 @@ package photo;
 
 public class PhotoVO {
 	private String folder_name, pho_img, pho_date;
-//	, folder_num;
 	private int folder_num;
 	
 	
@@ -16,14 +15,6 @@ public class PhotoVO {
 	}
 
 	
-//	public String getFolder_num() {
-//		return folder_num;
-//	}
-//	
-//	public void setFolder_num(String folder_num) {
-//		this.folder_num = folder_num;
-//	}
-
 	public String getFolder_name() {
 		return folder_name;
 	}

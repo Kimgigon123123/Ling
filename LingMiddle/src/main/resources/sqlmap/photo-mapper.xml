@@ -28,6 +28,8 @@
     WHERE COUPLE_NUM = #{couple_num}
 	</select>
 	
+	
+	
 	<insert id="folder_insert">
 		INSERT INTO photo_folder (id, couple_num, folder_name)
 		VALUES (#{id}, #{couple_num}, #{folder_name} )

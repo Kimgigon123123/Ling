@@ -45,6 +45,14 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
                 h.binding.tvFolderTitle.setText(list.get(i).getFolder_name());
 
+//                CommonConn conn = new CommonConn(context, "folder_list");
+//                conn.addParamMap("couple", CommonVar.loginInfo.getCouple_num());
+//
+//                conn.onExcute((isResult, data) -> {
+//                    Glide.with(context).load(list.get(i).getLast_photo()).into(h.binding.imgvFolder);
+//                });
+
+
                 h.binding.imgvFolderDelete.setOnClickListener(v -> {
                     AlertDialog.Builder alert = new AlertDialog.Builder(context);
                     alert.setTitle("앨범삭제");
