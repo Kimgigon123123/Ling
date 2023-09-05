@@ -259,7 +259,7 @@ a:not(.btn):link, a:not(.btn):hover {
 		<li class="nav-item"><a class="nav-link">아이템 Top10</a></li>
 	</ul>
             </div>
-            <canvas id="chart" class="h-100 mb-4 mt-4"></canvas>
+            <canvas id="chart" class="h-100 mb-4 mt-5"></canvas>
             </div>
             <div class="mt-5" style="height:50px"></div>
             <div id='legend-container' class="mt-4"></div>

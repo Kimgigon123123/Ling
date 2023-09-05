@@ -108,6 +108,10 @@ public class CalendarFuncActivity extends AppCompatActivity {
             // CalendarView에 표시할 이벤트 리스트 생성
             List<EventDay> events = new ArrayList<>();
 
+            Calendar today = Calendar.getInstance();
+            Drawable todayDrawable = DrawableUtils.getToday(this);
+            events.add(new EventDay(today, todayDrawable));
+
             for (ScheAddVO item : list) {
                 // 이벤트 날짜 가져오기 (예시로 item.getSche_date() 가 날짜 데이터라 가정)
                 Calendar eventDate = Calendar.getInstance();
