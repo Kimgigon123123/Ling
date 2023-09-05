@@ -77,6 +77,7 @@ public class PhotoController {
 					try {
 						file.transferTo(targetFile);
 						dao.photoInsert(photo_vo);
+						dao.folder_lastPhoto(vo);
 						
 						
 					} catch (Exception e) {
@@ -87,7 +88,7 @@ public class PhotoController {
 		
 		
 		//?
-		List<FolderVO> list = dao.getFolderList(vo.getCouple_num()) ;
+		List<FolderVO> list = dao.getFolderList(vo) ;
 
 		Gson gson = new Gson();	
 				
@@ -127,7 +128,7 @@ public class PhotoController {
 			Gson gson = new Gson();	
 			
 			
-			return gson.toJson(dao.getFolderList(vo.getCouple_num()));
+			return gson.toJson(dao.getFolderList(vo));
 		
 	}
 	
@@ -173,10 +174,10 @@ public class PhotoController {
 	
 	
 	@RequestMapping(value="/folder_list", produces="text/html;charset=utf-8")
-	public String folder_list( String couple_num) {
+	public String folder_list( FolderVO vo) {
 			
 		
-			List<FolderVO> list = dao.getFolderList(couple_num) ;
+			List<FolderVO> list = dao.getFolderList(vo) ;
 			Gson gson = new Gson();	
 			return gson.toJson(list);
 	}

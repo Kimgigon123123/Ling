@@ -309,7 +309,7 @@ public class PhotoActivity extends AppCompatActivity {
                 api.clientSendFile("file", param, filePart).enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
-
+                        select();//파일 업로드 하고 리스트를 Spring에서 다시 조회해옴.
                     }
 
                     @Override
@@ -322,7 +322,7 @@ public class PhotoActivity extends AppCompatActivity {
                 binding.imgvFolderAdd.performClick();
             }
 
-
+            dialog.dismiss();
 
         });
         AlertDialog dialog = builder.create();

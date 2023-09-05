@@ -18,7 +18,7 @@
 
 	<select id="folder_list" resultType="photo.FolderVO">
 		
-    SELECT PF.* , PC.PHO_IMG
+    SELECT PF.* , PC.PHO_IMG AS LAST_PHOTO
     FROM PHOTO_FOLDER PF LEFT OUTER JOIN 
                                 ( 
                                 SELECT PC.FOLDER_NUM , MAX( PHO_NO ) ,MAX(PHO_IMG)  PHO_IMG
@@ -27,6 +27,21 @@
                                 ) PC ON PF.FOLDER_NUM = PC.FOLDER_NUM
     WHERE COUPLE_NUM = #{couple_num}
 	</select>
+	
+	<update id="folder_lastPhoto">
+	UPDATE photo_folder
+	SET last_photo = (
+    SELECT MAX(PC.PHO_IMG) AS last_photo
+    FROM (
+        SELECT FOLDER_NUM, MAX(PHO_NO) AS max_pho_no
+        FROM PHOTO_CATEGORY
+        GROUP BY FOLDER_NUM
+    ) T 
+    INNER JOIN PHOTO_CATEGORY PC ON T.FOLDER_NUM = PC.FOLDER_NUM AND T.max_pho_no = PC.PHO_NO
+	)	
+	WHERE COUPLE_NUM = #{couple_num}
+	
+	</update>
 	
 	
 	

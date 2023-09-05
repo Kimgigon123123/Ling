@@ -19,12 +19,10 @@ public class PhotoDAO {
 		return list;
 	}
 	
-	public List<FolderVO> getFolderList(String couple_num){
-		List<FolderVO> list = sql.selectList("photo.folder_list",couple_num);
+	public List<FolderVO> getFolderList(FolderVO vo){
+		List<FolderVO> list = sql.selectList("photo.folder_list",vo);
 		return list;
 	}
-	
-	 
 	
 	
 	public void folderInsert(FolderVO vo) {
@@ -32,6 +30,11 @@ public class PhotoDAO {
 		System.out.println("성공여부 : " + result);
 	}
 	
+	
+	public int folder_lastPhoto(FolderVO vo) {
+		int result = sql.selectOne("photo.folder_lastPhoto", vo);
+		return result;
+	}
 	
 	public int photoInsert(PhotoVO vo) {
 		int result = sql.insert("photo.photo_insert", vo);
