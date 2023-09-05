@@ -3,60 +3,65 @@
 
 <mapper namespace="photo">
 
-	<select id="list" resultType="photo.PhotoVO">
-		select * from photo_category where pho_img like '%/'||(select couple_num
+<!-- 
+	select * from photo_category where pho_img like '%/'||(select couple_num
 		from couple where couple_num = #{couple_num}) || '/' ||
 		(select folder_name from photo_folder where folder_name= #{folder_name})
 		||'%'
+		 -->
+	<select id="photo_list" resultType="photo.PhotoVO">
+	select *
+    from photo_category 
+    where FOLDER_NUM = #{folder_num}
 	</select>
 
 
-	<select id="folder" resultType="photo.FolderVO">
-		select id, couple_num, folder_name from photo_folder where couple_num = #{couple_num} and id = #{id}
+	<select id="folder_list" resultType="photo.FolderVO">
+		
+    SELECT PF.* , PC.PHO_IMG AS LAST_PHOTO
+    FROM PHOTO_FOLDER PF LEFT OUTER JOIN 
+                                ( 
+                                SELECT PC.FOLDER_NUM , MAX( PHO_NO ) ,MAX(PHO_IMG)  PHO_IMG
+                                FROM PHOTO_CATEGORY PC
+                                GROUP BY PC.FOLDER_NUM
+                                ) PC ON PF.FOLDER_NUM = PC.FOLDER_NUM
+    WHERE COUPLE_NUM = #{couple_num}
 	</select>
 	
-<!-- 	<select id="folder_LastImg" resultType="photo.FolderVO"> -->
-<!-- 		SELECT pf.id, pf.couple_num, pf.folder_num, pf.folder_name, -->
-<!--     		(SELECT pc.pho_img  -->
-<!--     		 FROM photo_category pc -->
-<!--      		 WHERE pc.folder_num = pf.folder_num AND pc.pho_no = (SELECT MAX(pho_no)  -->
-<!--                         										  FROM photo_category  -->
-<!--                         										  WHERE folder_num = pf.folder_num)) AS last_photo  -->
-<!-- 		FROM photo_folder pf -->
-<!-- 		WHERE pf.couple_num = #{couple_num} AND pf.id = #{id} -->
-<!--     		  AND pf.folder_num IN (SELECT folder_num  -->
-<!--                          			 FROM photo_category  -->
-<!--                           			WHERE folder_num = pf.folder_num) -->
-<!-- 	</select> -->
-
+	<update id="folder_lastPhoto">
+	UPDATE photo_folder
+	SET last_photo = (
+    SELECT MAX(PC.PHO_IMG) AS last_photo
+    FROM (
+        SELECT FOLDER_NUM, MAX(PHO_NO) AS max_pho_no
+        FROM PHOTO_CATEGORY
+        GROUP BY FOLDER_NUM
+    ) T 
+    INNER JOIN PHOTO_CATEGORY PC ON T.FOLDER_NUM = PC.FOLDER_NUM AND T.max_pho_no = PC.PHO_NO
+	)	
+	WHERE COUPLE_NUM = #{couple_num}
+	
+	</update>
+	
+	
+	
 	<insert id="folder_insert">
 		INSERT INTO photo_folder (id, couple_num, folder_name)
-		SELECT
-		lm.id,
-		c.couple_num,
-		#{folder_name}
-		FROM
-		ling_member lm
-		JOIN
-		couple c ON lm.id = c.mid OR lm.id = c.fid
-		WHERE
-		lm.id = #{id}
+		VALUES (#{id}, #{couple_num}, #{folder_name} )
 
 	</insert>
 	
-<!-- 	<insert id="photo_insert">
-		INSERT INTO photo_category (pho_img, folder_num, pho_date)
-		SELECT #{pho_img}, pf.folder_num, sysdate
-		FROM photo_folder pf
-		WHERE pf.couple_num = #{couple_num} AND pf.id = #{id}
-      	AND pf.folder_name = 'all';
-	</insert> -->
+	<insert id="photo_insert">
+		INSERT INTO photo_category (pho_img, pho_date, folder_num)
+		values(#{pho_img}, sysdate, #{folder_num})
+				
+	</insert>
 	
 	<insert id="file">
 	insert into photo_category (pho_img, folder_num)
 			select #{pho_img}, pf.folder_num
 			from photo_folder pf
-	where pf.folder_name = #{folder_name}
+	where pf.folder_num = #{folder_num}
 	</insert>
 	
 	<delete id="folder_delete">

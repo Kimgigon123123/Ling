@@ -14,22 +14,15 @@ public class PhotoDAO {
 	
 	@Autowired @Qualifier ("test") SqlSession sql;
 	
-	public List<PhotoVO> getList(HashMap<String, Object> param){
-		List<PhotoVO>  list = sql.selectList("photo.list" , param);
+	public List<PhotoVO> getPhotoList(HashMap<String, Object> param){
+		List<PhotoVO>  list = sql.selectList("photo.photo_list" , param);
 		return list;
 	}
 	
-	public List<FolderVO> getFolder(HashMap<String, Object> param){
-		List<FolderVO> list = sql.selectList("photo.folder",param);
+	public List<FolderVO> getFolderList(FolderVO vo){
+		List<FolderVO> list = sql.selectList("photo.folder_list",vo);
 		return list;
 	}
-	
-	
-	  public List<FolderVO> getFolder_LastImg(HashMap<String, Object> param){
-	  List<FolderVO> list = sql.selectList("photo.folder_LastImg",param); 
-	  return list; 
-	  }
-	 
 	
 	
 	public void folderInsert(FolderVO vo) {
@@ -38,13 +31,18 @@ public class PhotoDAO {
 	}
 	
 	
+	public int folder_lastPhoto(FolderVO vo) {
+		int result = sql.selectOne("photo.folder_lastPhoto", vo);
+		return result;
+	}
+	
 	public int photoInsert(PhotoVO vo) {
 		int result = sql.insert("photo.photo_insert", vo);
 		System.out.println("성공여부 : " + result);
 		return result;
 	}
 	
-	public void file(FolderVO vo, String filePath) {
+	public void file(PhotoVO vo, String filePath) {
 		int result = sql.insert("photo.file", vo);
 		System.out.println("성공여부 : " + result);
 	}

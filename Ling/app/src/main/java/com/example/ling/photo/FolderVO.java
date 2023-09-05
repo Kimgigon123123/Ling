@@ -9,7 +9,8 @@ public class FolderVO {
 
 	private int folder_num;
 
-	public int getFolder_num() {
+
+		public int getFolder_num() {
 		return folder_num;
 	}
 

@@ -14,11 +14,11 @@ public class PhotoVO {
 		this.folder_num = folder_num;
 	}
 
-
-
+	
 	public String getFolder_name() {
 		return folder_name;
 	}
+
 
 	public void setFolder_name(String folder_name) {
 		this.folder_name = folder_name;
