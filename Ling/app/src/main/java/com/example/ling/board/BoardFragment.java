@@ -25,14 +25,6 @@ public class BoardFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentBoardBinding.inflate(inflater, container, false);
 
-        return binding.getRoot();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-
 
 
         List<MenuItem> menuItems = new ArrayList<>();
@@ -43,6 +35,13 @@ public class BoardFragment extends Fragment {
         menuItems.add(new MenuItem("짝궁 놀이터",R.drawable.shape));
         binding.navigationDrawer.setMenuItemList(menuItems);
         binding.navigationDrawer.setAppbarTitleTV("게시판");
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
 
 
         binding.navigationDrawer.setOnMenuItemClickListener(i -> {
