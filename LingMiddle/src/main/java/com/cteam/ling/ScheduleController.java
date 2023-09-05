@@ -46,7 +46,6 @@ public class ScheduleController {
 		int result = dao.delete(vo);
 		
 		Gson gson = new Gson();
-		
 		return gson.toJson(result);
 	}
 	

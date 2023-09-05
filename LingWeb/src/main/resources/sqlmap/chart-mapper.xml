@@ -29,15 +29,13 @@
 	
 	<select id="item_rank" resultType="hashmap">
 	<![CDATA[
-		SELECT item_rank||'위' AS rank, si.item_name, si.sales
-FROM (
-    SELECT DENSE_RANK() OVER (ORDER BY sales DESC) AS item_rank, 
-           item_name, 
-           sales,
+	SELECT item_rank||'위' AS rank, si.item_name, si.sales, si.POPULAR
+	FROM (
+   		 SELECT DENSE_RANK() OVER (ORDER BY sales DESC) AS item_rank, item_name, sales, POPULAR, 
            ROW_NUMBER() OVER (PARTITION BY sales ORDER BY item_name) AS row_num
-    FROM store_item
-) si
-WHERE si.item_rank <= 10
+    		FROM store_item
+			) si
+	WHERE si.item_rank <= 10
 	]]>
 	</select>
 	

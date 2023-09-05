@@ -64,7 +64,7 @@ public class HomeController {
 	
 	@ResponseBody @RequestMapping("/item_rank")
 	public Object item_rank() {
-		return service.item_top3();
+		return service.item_top10();
 	}
 	
 

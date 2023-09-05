@@ -23,7 +23,7 @@ public class ChartDAO implements ChartService {
 	}
 
 	@Override
-	public List<HashMap<String, Object>> item_top3() {
+	public List<HashMap<String, Object>> item_top10() {
 		return sql.selectList("chart.item_rank");
 	}
 

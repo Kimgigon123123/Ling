@@ -644,10 +644,11 @@ a:not(.btn):link, a:not(.btn):hover {
         	}).done(function(response){
         		console.log(response)
         		var info = {};
-        		info.category = [], info.datas = [], info.itemNames = [], info.colors = [];
+        		info.category = [], info.datas = [], info.itemNames = [], info.colors = [], info.lineData = [];
         		$(response).each(function(idx){
         			info.category.push(this.RANK);
         			info.datas.push(this.SALES);
+        			info.lineData.push(this.POPULAR);
         			info.itemNames.push(this.ITEM_NAME); 
         			info.colors.push(colors[idx]);
         		})
@@ -815,22 +816,24 @@ function barChart(info) {
         data: {
             labels: info.category,
             datasets: [
+            	{
+                    label: '상품 조회',
+                    data: info.lineData,
+                    fill: false,
+                   	type: 'line',
+                    borderColor: '#0000ff',
+                    tension: 0,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#ff0000',
+                },
                 {
-                    label: '바 차트',
+                    label: '상품 판매',
                     data: info.datas,
                     borderWidth: 2,
                     barPercentage: 0.5,
                     backgroundColor: info.colors,
                 },
-//                 {
-//                     label: '선 그래프',
-//                     data: info.lineData,
-//                     fill: false,
-//                     borderColor: '#0000ff',
-//                     tension: 0,
-//                     pointRadius: 5,
-//                     pointBackgroundColor: '#ff0000',
-//                 },
+                
             ],
         },
         options: {
