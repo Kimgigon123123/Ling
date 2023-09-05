@@ -68,20 +68,20 @@ a:not(.btn):link, a:not(.btn):hover {
 	/* 다른 스타일 속성 추가 */
 }
 
-.bg-light {
-	background-image: url('<c:url value="/resources/images/faq_back.jpg"/>');
-	background-size: cover; /* 화면에 꽉 차게 배경 이미지 조정 */
-	background-repeat: no-repeat; /* 이미지 반복 없음 */
-	background-position: center center; /* 이미지 중앙 정렬 */
-}
+/* .bg-light { */
+/* 	background-image: url('<c:url value="/resources/images/faq_back.jpg"/>'); */
+/* 	background-size: cover; /* 화면에 꽉 차게 배경 이미지 조정 */ */
+/* 	background-repeat: no-repeat; /* 이미지 반복 없음 */ */
+/* 	background-position: center center; /* 이미지 중앙 정렬 */ */
+/* } */
 
-.legend-list span {
-	width: 44px;
-	height: 17px;
+#legend-container .legend-list li span {
+	width: 44px !important;
+	height: 17px  !important;
 	margin-right: 5px;
 }
 
-.legend-list li {
+#legend-container .legend-list li {
 	display: flex;
 	align-items: center;
 }
@@ -650,7 +650,7 @@ a:not(.btn):link, a:not(.btn):hover {
         			info.datas.push(this.SALES);
         			info.lineData.push(this.POPULAR);
         			info.itemNames.push(this.ITEM_NAME); 
-        			info.colors.push(colors[idx]);
+        			info.colors.push(colors[idx % 10]);
         		})
         		
         		
@@ -876,7 +876,7 @@ function makeLegend(info) {
         
     for (var i = 0; i < info.itemNames.length; i++) {
 //         tag += `<li><span style="background-color: ${info.colors[i]}"></span>${info.itemNames[i]}</li>`;
-        tag += `<li class="col-auto"><span style="background-color: \${info.colors[i]}"></span>\${info.itemNames[i]}</li>`;
+        tag += `<li class="col-auto"><span style="width: 44px; height:17px; background-color: \${info.colors[i]}"></span>\${info.itemNames[i]}</li>`;
     }
     tag += `</ul>`;
 	console.log('2> ', tag)

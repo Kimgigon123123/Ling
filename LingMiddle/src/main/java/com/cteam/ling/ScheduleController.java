@@ -21,10 +21,20 @@ public class ScheduleController {
 	@RequestMapping(value="/sche_list",produces="text/html;charset=utf-8")
 	public String sche_List(String id, String couple_num) {
 		HashMap<String, Object> param = new HashMap<String, Object>();
-		param.put("id", id);
 		param.put("couple_num", couple_num);
 		
 		List<ScheAddVO> list = dao.getList(param) ;
+		Gson gson = new Gson();	
+		
+		return gson.toJson(list);
+	}
+	
+	@RequestMapping(value="/plus_List",produces="text/html;charset=utf-8")
+	public String plus_List(String id, String couple_num) {
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		param.put("couple_num", couple_num);
+		
+		List<ScheAddVO> list = dao.plus_List(param) ;
 		Gson gson = new Gson();	
 		
 		return gson.toJson(list);

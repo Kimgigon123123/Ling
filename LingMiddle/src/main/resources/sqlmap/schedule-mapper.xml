@@ -10,13 +10,23 @@ where s.couple_num = c.couple_num
 and s.couple_num = #{couple_num}
 </select>
 
+<select id="plus_List" resultType="schedule.ScheAddVO">
+<![CDATA[
+SELECT s.sche_no, s.sche_title, s.sche_date, trunc(to_date(s.sche_date)-sysdate) "d_day", 
+	  RANK() OVER (ORDER BY trunc(to_date(s.sche_date)-sysdate, 0) ASC) AS ranking, s.sche_notice
+	FROM schedule s
+	INNER JOIN couple c ON s.couple_num = c.couple_num
+	WHERE s.couple_num = #{couple_num}
+	AND trunc(to_date(s.sche_date)-sysdate) > 0
+	]]>
+</select>
 
 <insert id="insert">
 	<!-- insert into schedule(couple_num, id, sche_title, sche_date, sche_notice, sche_typecode)
 	values(select c.couple_num, c.couple_id, s.sche_title, s.sche_date, s.sche_notice, sche ) -->
 	
 	insert into schedule(couple_num, id, sche_title, sche_date, sche_notice, sche_typecode)
-	select c.couple_num, lm.id, #{sche_title}, #{sche_date}, #{sche_notice}, 'travel'
+	select c.couple_num, lm.id, #{sche_title}, #{sche_date}, #{sche_notice}, #{sche_typecode}
 	from couple c
 	join ling_member lm on c.mid = lm.id or c.fid = lm.id
 	where lm.id = #{id}
