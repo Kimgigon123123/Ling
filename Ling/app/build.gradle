@@ -103,5 +103,7 @@ dependencies {
     
     implementation 'me.itangqi.waveloadingview:library:0.3.5'
 
+    implementation 'com.applandeo:material-calendar-view:x.y.z'
+
 
 }

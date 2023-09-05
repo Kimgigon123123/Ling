@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
@@ -30,7 +34,7 @@ public class CalendarAddActivity extends AppCompatActivity {
     ArrayList<Spinner> list = new ArrayList<>();
     String sche_typecode;
 
-
+    Window window;
 
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -39,8 +43,12 @@ public class CalendarAddActivity extends AppCompatActivity {
             myCalendar.set(Calendar.MONTH, month);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             updateLabel();
+
+
         }
+
     };
+
 
 
     private android.widget.Spinner spinner;
@@ -52,6 +60,15 @@ public class CalendarAddActivity extends AppCompatActivity {
         binding.imgvCalendarCancel.setOnClickListener(v -> {
             finish();
         });
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window = this.getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+            window.getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            window.setStatusBarColor(Color.parseColor("#FDCEDF"));
+        }
 
         binding.tvCalendarSave.setOnClickListener(v -> {
             Intent intent = new Intent(CalendarAddActivity.this, CalendarActivity.class);
@@ -128,7 +145,12 @@ public class CalendarAddActivity extends AppCompatActivity {
         binding.imgvCalendarCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(CalendarAddActivity.this, myDatePicker, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        CalendarAddActivity.this, myDatePicker, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
+
+                // 최소 날짜를 현재 날짜로 설정
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                datePickerDialog.show();
             }
         }
 

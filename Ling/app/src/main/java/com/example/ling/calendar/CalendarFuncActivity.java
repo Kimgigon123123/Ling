@@ -107,7 +107,7 @@ public class CalendarFuncActivity extends AppCompatActivity {
 
             // CalendarView에 표시할 이벤트 리스트 생성
             List<EventDay> events = new ArrayList<>();
-
+                
             Calendar today = Calendar.getInstance();
             Drawable todayDrawable = DrawableUtils.getToday(this);
             events.add(new EventDay(today, todayDrawable));
@@ -134,7 +134,7 @@ public class CalendarFuncActivity extends AppCompatActivity {
             }
 
             // CalendarView에 이벤트 설정
-            com.applandeo.materialcalendarview.CalendarView calendarView = findViewById(R.id.calendarView);
+            CalendarView calendarView = findViewById(R.id.calendarView);
             calendarView.setEvents(events);
 
 

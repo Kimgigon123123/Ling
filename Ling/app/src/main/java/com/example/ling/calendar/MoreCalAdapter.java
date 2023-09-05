@@ -43,15 +43,22 @@ public class MoreCalAdapter extends RecyclerView.Adapter<MoreCalAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder h, int i) {
-        ScheAddVO vo = list.get(i);
-        // 다음 두 줄을 추가하여 일정이 없는 경우에도 빈 데이터를 처리 (처리가 안 되는중)
-        if (vo.getSche_title() == null || vo.getSche_title().isEmpty()) {
-            h.binding.tvCalendarInfoTitle.setText("일정 없음");
-            h.binding.imgvCalCategory.setVisibility(View.GONE); // 날짜 숨김
+
+        if (list == null || list.isEmpty() || i >= list.size()) {
+            // 데이터가 없는 경우나 해당 위치에 데이터가 없는 경우 처리
+            h.binding.tvCalendarInfoTitle.setText("     -일정 없음-");
+            h.binding.imgvCalCategory.setVisibility(View.GONE);
+            h.binding.imgvBtnMenu.setVisibility(View.GONE);
         } else {
-            h.binding.tvCalendarInfoTitle.setText("일정: "+ vo.getSche_title());
+            // 데이터가 있는 경우 처리
+            ScheAddVO vo = list.get(i);
+            h.binding.tvCalendarInfoTitle.setText("일정: " + vo.getSche_title());
             h.binding.imgvCalCategory.setImageResource(R.drawable.sample_circle);
+            h.binding.imgvBtnMenu.setVisibility(View.VISIBLE);
         }
+
+
+
 
         h.binding.imgvBtnMenu.setOnClickListener(v -> {
             PopupMenu popup= new PopupMenu(context, v);//v는 클릭된 뷰를 의미
@@ -148,14 +155,13 @@ public class MoreCalAdapter extends RecyclerView.Adapter<MoreCalAdapter.ViewHold
 
 
     }
-    private void update_dialog() {
 
-    }
 
 
     @Override
     public int getItemCount() {
-        return list.size();
+
+        return list == null ? 1 : list.size() == 0 ? 1 : list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

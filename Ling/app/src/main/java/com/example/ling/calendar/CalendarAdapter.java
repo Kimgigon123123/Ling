@@ -29,13 +29,11 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
 
     ActivityCalendarBinding binding;
 
-    public CalendarAdapter(ArrayList<ScheAddVO> list,Context context, ActivityCalendarBinding binding) {
+    public CalendarAdapter(ArrayList<ScheAddVO> list, Context context, ActivityCalendarBinding binding) {
         this.list = list;
         this.context = context;
         this.binding = binding;
     }
-
-
 
 
     @NonNull
@@ -64,14 +62,11 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
 
         //캘린더 리스트에서 알림 여부 조회
         h.binding.tvCalendarTitle.setText(list.get(position).getSche_title());
-        if(list.get(position).getSche_notice() != 0){
+        if (list.get(position).getSche_notice() != 0) {
             h.binding.materialSwitch.setChecked(false);
-        }else{
+        } else {
             h.binding.materialSwitch.setChecked(true);
         }
-
-
-
 
 
         //캘린더 리스트에서 d-day 조회
@@ -99,8 +94,8 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
             loadingDialog = new DdayDialog(context);
             WindowManager.LayoutParams wm = loadingDialog.getWindow().getAttributes();  //다이얼로그의 높이 너비 설정하기위해
             wm.copyFrom(loadingDialog.getWindow().getAttributes());  //여기서 설정한값을 그대로 다이얼로그에 넣겠다는의미
-            wm.width = (int)(width *0.9);  //화면 너비의 절반
-            wm.height = (int)(height *0.4);
+            wm.width = (int) (width * 0.9);  //화면 너비의 절반
+            wm.height = (int) (height * 0.4);
 
             loadingDialog.show();
 
@@ -108,8 +103,6 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
 //            list.get(i).setSche_notice(1);
         }
 //        }
-
-
 
 
         //캘린더 리스트에서 일정 삭제
@@ -152,6 +145,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
 
     @Override
     public int getItemCount() {
+
         if(0<list.size()){
             binding.tvScheNone.setVisibility(View.GONE);
             if (list.size()>=3){
