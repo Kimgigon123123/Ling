@@ -61,7 +61,7 @@ public class CalendarAddActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "날짜를 선택해주세요.", Toast.LENGTH_LONG).show();
             }else{
                 insert();
-                startActivity(intent);
+
             }
 
 
@@ -99,7 +99,31 @@ public class CalendarAddActivity extends AppCompatActivity {
         adapter = new SpinnerAdapter(CalendarAddActivity.this, list);
         spinner.setAdapter(adapter);
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                String selectedSpinner = list.get(i).getName();
+                if(selectedSpinner.equals("결혼기념일")){
+                    sche_typecode= "wedding";
+                }else if(selectedSpinner.equals("생일")){
+                    sche_typecode= "birth";
+                }else if(selectedSpinner.equals("출산예정일")){
+                    sche_typecode= "childbirth";
+                }else if(selectedSpinner.equals("커플여행")){
+                    sche_typecode= "travel";
+                }else{
+                    sche_typecode= "default";
+                }
 
+            }
+
+
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
         binding.imgvCalendarCheck.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,8 +151,7 @@ public class CalendarAddActivity extends AppCompatActivity {
         conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
         conn.addParamMap("sche_title", binding.edtCalendarTitle.getText().toString());
         conn.addParamMap("sche_date", binding.tvCalendarSche.getText().toString());
-
-
+        conn.addParamMap("sche_typecode", sche_typecode);
 
         if(binding.pushCheck.isChecked()){
             binding.pushCheck.setChecked((1 != 0));
@@ -139,38 +162,14 @@ public class CalendarAddActivity extends AppCompatActivity {
 
 
         // 수정필요
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                String selectedSpinner = parent.getItemAtPosition(i).toString();
-                if(selectedSpinner.equals("결혼기념일")){
-                    sche_typecode= "wedding";
-                }else if(selectedSpinner.equals("생일")){
-                    sche_typecode= "birth";
-                }else if(selectedSpinner.equals("출산예정일")){
-                    sche_typecode= "childbirth";
-                }else if(selectedSpinner.equals("커플여행")){
-                    sche_typecode= "travel";
-                }else{
-                    sche_typecode= "default";
-                }
-                conn.addParamMap("sche_typecode", sche_typecode);
-            }
 
-
-
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
 
 
 
         adapter.notifyDataSetChanged();
 
         conn.onExcute((isResult, data) ->  {
-
+            finish();
         });
 
     }

@@ -31,10 +31,10 @@ public class PhotoDAO {
 	}
 	
 	
-	public int folder_lastPhoto(FolderVO vo) {
-		int result = sql.selectOne("photo.folder_lastPhoto", vo);
-		return result;
-	}
+//	public int folder_lastPhoto(FolderVO vo) {
+//		int result = sql.selectOne("photo.folder_lastPhoto", vo);
+//		return result;
+//	}
 	
 	public int photoInsert(PhotoVO vo) {
 		int result = sql.insert("photo.photo_insert", vo);

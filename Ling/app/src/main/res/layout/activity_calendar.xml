@@ -109,6 +109,15 @@
             android:id="@+id/recv_schedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
+            />
+        <TextView
+            android:id="@+id/tv_sche_none"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="현재 일정이 없습니다"
+            android:textSize="20dp"
+            android:gravity="center"
             />
 
     </FrameLayout>

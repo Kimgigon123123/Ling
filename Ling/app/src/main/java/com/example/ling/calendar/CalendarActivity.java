@@ -231,9 +231,14 @@ public class CalendarActivity extends AppCompatActivity {
         }
 
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        select();
+    }
 
     public void select(){
-        CommonConn conn = new CommonConn(this, "sche_list");
+        CommonConn conn = new CommonConn(this, "plus_List");
         conn.addParamMap("couple_num", CommonVar.loginInfo.getCouple_num());
 
         conn.onExcute((isResult, data) -> {
@@ -241,7 +246,7 @@ public class CalendarActivity extends AppCompatActivity {
 //            Log.d("리스트사이즈", "select: " + list.size());
             //if문으로 list의 사이즈처리 해야함.
 
-            CalendarAdapter adapter = new CalendarAdapter(list,this);
+            CalendarAdapter adapter = new CalendarAdapter(list,this,binding);
 
 
 

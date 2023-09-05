@@ -87,7 +87,7 @@ public class MoreCalAdapter extends RecyclerView.Adapter<MoreCalAdapter.ViewHold
 
                         conn.onExcute((isResult, data) -> {
                             Toast.makeText(context, "수정이 완료되었습니다. " + editedText, Toast.LENGTH_SHORT).show();
-
+                            list.get(i).setSche_title(editedText);
                             dialog.dismiss();
                             notifyDataSetChanged();
                         });
