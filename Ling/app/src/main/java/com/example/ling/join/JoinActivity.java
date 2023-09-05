@@ -76,6 +76,8 @@ public class JoinActivity extends AppCompatActivity {
         if (idx == 4){
 
             Toast.makeText(this,"이제는 짝궁과 즐거운 시간을 보낼 차례!", Toast.LENGTH_SHORT).show();
+        } else if (idx==2) {
+            Toast.makeText(this,"짝궁 등록을 해주세요!", Toast.LENGTH_SHORT).show();
         } else if(idx != 0){
         idx --;
         changeTab(idx);
@@ -87,6 +89,7 @@ public class JoinActivity extends AppCompatActivity {
 
     public void changeTab(int idx){
         this.idx = idx;
+
         binding.pager.setCurrentItem(idx, true);
     }
 
