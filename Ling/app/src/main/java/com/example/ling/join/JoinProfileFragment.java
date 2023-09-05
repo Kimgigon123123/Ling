@@ -63,11 +63,11 @@ public class JoinProfileFragment extends Fragment {
             if((binding.joinName.getText().toString().length()<1
                     || binding.joinPhone.getText().toString().length()<1
                     || binding.joinEmail.getText().toString().length()<1)
-                    && (binding.radioMen.isChecked() || binding.radioWomen.isChecked())
-                    && binding.joinBirth.getText().toString().length()<1){
+                    || (!binding.radioMen.isChecked() && !binding.radioWomen.isChecked())
+                    || binding.joinBirth.getText().toString().length()<1){
                 Toast.makeText(getActivity(), "빈칸없이 입력해주세요.", Toast.LENGTH_SHORT).show();
 
-            }
+            }else{
                 CommonConn conn = new CommonConn(getActivity(), "register");
                 CommonVar.loginInfo.setName(binding.joinName.getText().toString());
                 if (binding.radioMen.isChecked()) {
@@ -99,7 +99,7 @@ public class JoinProfileFragment extends Fragment {
 
                     }
                 });
-
+            }
         });
 
 
