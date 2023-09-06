@@ -110,6 +110,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 ChatVO chat = snapshot.getValue(ChatVO.class);
 
+                chat.setKey(snapshot.getKey());
 
                 mAdapter.addChat(chat);
                 mAdapter.notifyDataSetChanged();
@@ -135,7 +136,8 @@ public class ChatActivity extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                myRef.child("chat").child(CommonVar.loginInfo.getCouple_num()).removeValue();
+                ChatVO chat = snapshot.getValue(ChatVO.class);
+                myRef.child("chat").child(CommonVar.loginInfo.getCouple_num()).child(chat.getKey()).removeValue();
                 chatList.clear();
                 mAdapter.notifyDataSetChanged();
             }
