@@ -135,9 +135,9 @@ public class ChatActivity extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-//                myRef.child("chat").child(CommonVar.loginInfo.getCouple_num()).removeValue();
-//                chatList.clear();
-//                mAdapter.notifyDataSetChanged();
+                myRef.child("chat").child(CommonVar.loginInfo.getCouple_num()).removeValue();
+                chatList.clear();
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override
