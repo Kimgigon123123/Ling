@@ -544,61 +544,9 @@ a:not(.btn):link, a:not(.btn):hover {
         
         var colors = ['#85a832', '#a83294', '#c7c922', '#db4ba6', '#d4aca7', '#8be0c0', '#5340cf', '#021438','#d4cc83','#c1f0b4'];
       
-//       //막대 그래프
-// function barChart(info) {
-//     	  console.log('barChart> ', info.itemNames)
-//     $('#tab-content').css('height', '700');
-//     visual = new Chart($('#chart'), {
-//         type: 'bar',
-//         data: {
-//             labels: info.category,
-//             datasets: [{
-//                 data: info.datas,
-//                 borderWidth: 2,
-//                 barPercentage: 0.5,
-//                 backgroundColor: info.colors,
-//             }]
-//         },
-//         options: {
-//             maintainAspectRatio: false,
-//             responsive: false,
-//             layout: {
-//                 padding: {top:30, bottom:20}
-//             },
-//             plugins: {
-//                 legend: {
-//                     display: false
-//                 },
-//                 autocolors: {
-//                     mode: 'data'
-//                 },
-//                 datalabels:{
-//                 	display:false
-//                 },
-                
-                
-//             },
-            
-//             scales: {
-//                 x: { // x축 설정
-//                     beginAtZero: true,
-//                     title: {text: '순위', display:true},
-//                     position: 'bottom' // x축 위치 설정
-//                 },
-//                 y: { // y축 설정
-//                     beginAtZero: true,
-//                     title: {text: '아이템 구매횟수', display:true}
-//                 }
-//             }
-//         }
-//     });
-//     makeLegend(info);
-    
-
-		
-// }
 
 
+//혼합그래프(막대, 선) 
 function barChart(info) {
     $('#tab-content').css('height', '700');
     visual = new Chart($('#chart'), {
@@ -670,6 +618,8 @@ function barChart(info) {
 
 
 
+
+//혼합 그래프의 범례표시
 function makeLegend(info) {
     var tag = `<ul class="nav legend-list row d-flex justify-content-center m-0 p-0 ">`;
         

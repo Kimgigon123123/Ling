@@ -39,29 +39,24 @@ public class HomeController {
 	
 	
 	
-//	@RequestMapping(value = "/date", method = RequestMethod.GET)
-//	public String date(HttpSession session) {
-//		session.setAttribute("active_category", "date");
-//		
-//		return "date";
-//	}
 	
 	
 	@Autowired private ChartDAO service;
 	
+	//DB에서 연령별 유저수 조회
 	@ResponseBody @RequestMapping("/age")
 	public Object age() {
-		//DB에서 연령별 유저수 조회
 		return service.age();
 	}
 	
+	//DB에서 부서별 사원수를 조회해와 응답한다.
 	@ResponseBody @RequestMapping("/period")
 	public Object period() {
-		//DB에서 부서별 사원수를 조회해와 응답한다.
 		return service.period();
 	}
 	
 	
+	//DB에서 item의 판매량과 조회수를 조회
 	@ResponseBody @RequestMapping("/item_rank")
 	public Object item_rank() {
 		return service.item_top10();

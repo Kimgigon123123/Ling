@@ -32,21 +32,19 @@ public class PhotoController {
 	
 	@Autowired PhotoDAO dao;
 	@Autowired SqlSession sql;
+	
+	//폴더 경로 설정
 	public static String folderPath = "D:\\Ling\\Ling\\image\\photo\\";
 	
 	String ip = "211.223.59.99:3301";
 	
 	
-
-	/* 설명 : ....
-	 * System.out.println(req.getLocalAddr());
-	 * System.out.println(req.getLocalPort());
-	 * System.out.println(req.getContextPath() + "/폴더");
-	 */
-	
+	//파일 생성
 	@RequestMapping(value="/file", produces="text/html;charset=utf-8")
 	public String list(HttpServletRequest req,  String tempVo
 						) throws IllegalStateException, IOException {
+		
+		
 		FolderVO vo = null;
 		if(req.getParameter("tempVo")!=null) {
 		 vo = new Gson().fromJson(req.getParameter("tempVo"), FolderVO.class);
@@ -82,8 +80,6 @@ public class PhotoController {
 					try {
 						file.transferTo(targetFile);
 						dao.photoInsert(photo_vo);
-						//dao.folder_lastPhoto(vo);
-						//dao.getFolderList(vo);
 						
 						
 					} catch (Exception e) {
@@ -138,6 +134,8 @@ public class PhotoController {
 		
 	}
 	
+	
+	//폴더 생성 로직
 	private String createFolder(String folderPath, HttpServletRequest req) {
         File folder = new File(folderPath);
 
@@ -162,12 +160,9 @@ public class PhotoController {
 	
 	
 	//폴더 내부 사진목록 조회 시 폴더 NUM하나만필요한 파라메터
-	
 	@RequestMapping(value="/photo_list", produces="text/html;charset=utf-8")
 	public String photo_list(int folder_num) {
 
-		
-//		vo = new Gson().fromJson("vo", PhotoVO.class);
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		param.put("folder_num", folder_num);
 		
@@ -179,7 +174,7 @@ public class PhotoController {
 	
 
 	
-	
+	//폴더(앨범) 목록
 	@RequestMapping(value="/folder_list", produces="text/html;charset=utf-8")
 	public String folder_list( FolderVO vo) {
 			
@@ -191,7 +186,7 @@ public class PhotoController {
 	
 	
 
-	
+	//폴더(앨범) 삭제
 	@RequestMapping(value = "/folder_delete", produces = "text/html;charset=utf-8")
 	public String folder_Delete(FolderVO vo) {
 
@@ -226,6 +221,8 @@ public class PhotoController {
 	}
 	
 	
+	
+	//파일 삭제
 	@RequestMapping(value = "/file_delete", produces = "text/html;charset=utf-8")
 	public String file_Delete(PhotoVO vo) {
 		
