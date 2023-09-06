@@ -66,7 +66,7 @@ public class DateController {
 	@RequestMapping(value="/register", method = RequestMethod.POST)
 	public String register(DateVO vo, MultipartFile file, HttpServletRequest request) throws Exception {
 		if(file != null && !file.isEmpty()) {
-			String uploadPath="D:\\lingimg";
+			String uploadPath="D:\\Ling\\Ling\\image\\date\\";
 			String filename = file.getOriginalFilename();
 			File filePath = new File(uploadPath, filename);
 			String date_img = "http://"+request.getLocalAddr()+":"+request.getLocalPort()+"/ling/image"+"/date/"+filename;
@@ -117,7 +117,7 @@ public class DateController {
 	@RequestMapping(value="/update", method = RequestMethod.POST)
 	public String update(DateVO vo, Model model, MultipartFile file, HttpServletRequest request) throws Exception {
 		if(file != null && !file.isEmpty()) {
-			String uploadPath="D:\\lingimg";
+			String uploadPath="D:\\Ling\\Ling\\image\\date\\";
 			String filename = file.getOriginalFilename();
 			File filePath = new File(uploadPath, filename);
 			String date_img = "http://"+request.getLocalAddr()+":"+request.getLocalPort()+"/ling/image"+"/date/"+filename;
