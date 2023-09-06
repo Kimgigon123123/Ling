@@ -69,7 +69,7 @@ public class DateController {
 			String uploadPath="D:\\lingimg";
 			String filename = file.getOriginalFilename();
 			File filePath = new File(uploadPath, filename);
-			String date_img = "http://"+ip+":"+request.getLocalPort()+"/ling/image"+"/date/"+filename;
+			String date_img = "http://"+request.getLocalAddr()+":"+request.getLocalPort()+"/ling/image"+"/date/"+filename;
 			vo.setDate_img(date_img);
 			 file.transferTo(filePath);
 		}
@@ -120,7 +120,7 @@ public class DateController {
 			String uploadPath="D:\\lingimg";
 			String filename = file.getOriginalFilename();
 			File filePath = new File(uploadPath, filename);
-			String date_img = "http://"+ip+":"+request.getLocalPort()+"/ling/image"+"/date/"+filename;
+			String date_img = "http://"+request.getLocalAddr()+":"+request.getLocalPort()+"/ling/image"+"/date/"+filename;
 			vo.setDate_img(date_img);
 			 file.transferTo(filePath);
 		}
