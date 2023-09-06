@@ -60,6 +60,8 @@ public class DateController {
 		return "new";
 	}
 	
+	String ip = "192.168.0.28";
+	
 	// 신규 등록 저장
 	@RequestMapping(value="/register", method = RequestMethod.POST)
 	public String register(DateVO vo, MultipartFile file, HttpServletRequest request) throws Exception {
@@ -67,7 +69,7 @@ public class DateController {
 			String uploadPath="D:\\lingimg";
 			String filename = file.getOriginalFilename();
 			File filePath = new File(uploadPath, filename);
-			String date_img = "http://192.168.0.31:8080/ling/img/date/"+filename;
+			String date_img = "http://"+ip+":"+request.getLocalPort()+"/ling/image"+"/date/"+filename;
 			vo.setDate_img(date_img);
 			 file.transferTo(filePath);
 		}
@@ -113,12 +115,12 @@ public class DateController {
 	
 	// 수정 저장
 	@RequestMapping(value="/update", method = RequestMethod.POST)
-	public String update(DateVO vo, Model model, MultipartFile file) throws Exception {
+	public String update(DateVO vo, Model model, MultipartFile file, HttpServletRequest request) throws Exception {
 		if(file != null && !file.isEmpty()) {
 			String uploadPath="D:\\lingimg";
 			String filename = file.getOriginalFilename();
 			File filePath = new File(uploadPath, filename);
-			String date_img = "http://192.168.0.31:8080/ling/img/date/"+filename;
+			String date_img = "http://"+ip+":"+request.getLocalPort()+"/ling/image"+"/date/"+filename;
 			vo.setDate_img(date_img);
 			 file.transferTo(filePath);
 		}
