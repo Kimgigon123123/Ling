@@ -3,9 +3,16 @@ package com.example.ling.chat;
 import java.io.Serializable;
 
 public class ChatVO implements Serializable {
-    private String nickname, message, id, couple_num, time;
+    private String nickname, message, id, couple_num, time, key;
 
 
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getTime() {
         return time;
