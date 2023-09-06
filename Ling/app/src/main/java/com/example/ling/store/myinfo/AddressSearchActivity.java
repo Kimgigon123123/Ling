@@ -27,7 +27,7 @@ public class AddressSearchActivity extends AppCompatActivity {
             }
         });
         // Android -> Javascript 함수 호출!
-        webView.loadUrl("http://192.168.0.36:8080/ling/address");
+        webView.loadUrl("http://192.168.0.28:8080/ling/address");
     }
 
     private class BridgeInterface {
