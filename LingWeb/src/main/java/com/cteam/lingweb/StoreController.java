@@ -379,11 +379,12 @@ public class StoreController {
 //				String uploadPath="D:\\Ling\\Ling\\image\\store\\";
 				String filename = file.getOriginalFilename();
 				File filePath = new File(uploadPath, filename);
-				String item_img = "http://"+request.getLocalAddr()+":"+request.getLocalPort()
+				String item_img = "http://"+ request.getLocalAddr()+":"+request.getLocalPort()
 				+"/ling/image"+"/store/"+filename;
 				vo.setItem_img(item_img);
 				 file.transferTo(filePath);
-				
+//				 request.getLocalAddr()+":"+request.getLocalPort()
+//				 211.233.59.99:3301
 		 }
 		 
 		 int result = sql.insert("store.store_insert",vo);

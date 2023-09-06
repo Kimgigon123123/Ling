@@ -45,7 +45,7 @@
 
 						<c:when test="${loginId eq 'admin'}">
 							<li class="nav-item"><a class="nav-link me-lg-3"
-								href="<c:url value='/admin'/>">관리자 화면</a></li>
+								href="<c:url value='/lingmember'/>">관리자 화면</a></li>
 						</c:when>
 						<c:otherwise>
 							<li class="nav-item"><a class="nav-link me-lg-3"
