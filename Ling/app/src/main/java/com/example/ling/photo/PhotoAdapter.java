@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.ling.R;
-import com.example.ling.calendar.CalendarAdapter;
 import com.example.ling.databinding.ItemGridPhotoBinding;
 import com.example.ling.databinding.ItemRecvScheduleBinding;
 
@@ -85,7 +84,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
     @Override
     public int getItemCount() {
         return list.size();
-    }
+     }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {

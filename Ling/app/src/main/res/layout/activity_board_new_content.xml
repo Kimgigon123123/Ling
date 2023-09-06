@@ -29,8 +29,9 @@
             android:hint="내용을 입력해주세요."/>
     </FrameLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_newcontent_insert"
+        style="@style/LingButtonStyle"
         android:layout_gravity="bottom|right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

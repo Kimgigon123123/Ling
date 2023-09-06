@@ -3,30 +3,34 @@
 
 <mapper namespace="chart">
 	<select id="age" resultType="hashmap">
-		SELECT FLOOR((TO_CHAR(SYSDATE, 'yyyy') - TO_CHAR(birth, 'yyyy')) / 10) * 10 AS age_group,
-    	MAX(CASE WHEN chart_age.age_range = FLOOR((TO_CHAR(SYSDATE, 'yyyy') 
-    												- TO_CHAR(birth, 'yyyy')) / 10) * 10 
-        	THEN chart_age.age_text
-    		END) AS age_text,
-    		COUNT(*) AS count
-		FROM ling_member 
+		SELECT FLOOR((TO_CHAR(SYSDATE,
+		'yyyy') - TO_CHAR(birth, 'yyyy')) / 10) * 10 AS age_group,
+		MAX(CASE WHEN chart_age.age_range = FLOOR((TO_CHAR(SYSDATE, 'yyyy')
+		- TO_CHAR(birth, 'yyyy')) / 10) * 10
+		THEN chart_age.age_text
+		END) AS age_text,
+		COUNT(*) AS count
+		FROM ling_member
 		LEFT JOIN
-    	chart_age ON FLOOR((TO_CHAR(SYSDATE, 'yyyy') 
-    							- TO_CHAR(birth, 'yyyy')) / 10) * 10 = chart_age.age_range
-		GROUP BY FLOOR((TO_CHAR(SYSDATE, 'yyyy') - TO_CHAR(birth, 'yyyy')) / 10) * 10
+		chart_age ON FLOOR((TO_CHAR(SYSDATE, 'yyyy')
+		- TO_CHAR(birth, 'yyyy')) / 10) * 10 = chart_age.age_range
+		GROUP BY
+		FLOOR((TO_CHAR(SYSDATE, 'yyyy') - TO_CHAR(birth, 'yyyy')) / 10) * 10
 		ORDER BY age_group
 	</select>
-	
+
 	<select id="period" resultType="hashmap">
-	SELECT pr.period_text AS period_text, FLOOR(c.period / 100) * 100 AS period_range, COUNT(*) AS count
-	FROM (select trunc(to_char(sysdate - create_date)) as period
-            from couple
-		  ) c
-	JOIN period_range pr ON pr.period_range = FLOOR(c.period / 100) * 100
-	GROUP BY pr.period_text, FLOOR(c.period / 100) * 100
-	ORDER BY period_range
+		SELECT pr.period_text, pr.period_range, COUNT(*) AS count
+		FROM
+		(select trunc(to_char(sysdate - create_date), -2) as period
+		, case when trunc(to_char(sysdate - create_date), -2) >= 500 then 500
+		else trunc(to_char(sysdate - create_date), -2) end period_range
+		from couple ) c
+		JOIN period_range pr ON pr.period_range = c.period_range
+		GROUP BY pr.period_text, pr.period_range
+		ORDER BY period_range
 	</select>
-	
+
 	<select id="item_rank" resultType="hashmap">
 	<![CDATA[
 	SELECT item_rank||'위' AS rank, si.item_name, si.sales, si.POPULAR
@@ -38,5 +42,5 @@
 	WHERE si.item_rank <= 10
 	]]>
 	</select>
-	
+
 </mapper>

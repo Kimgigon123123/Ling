@@ -5,13 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".calendar.CalendarAddActivity"
+    android:background="#F9F5F6"
+    android:paddingTop="24dp"
     android:orientation="vertical"
     >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
-        android:background="@drawable/shape"
+        android:background="#FDCEDF"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -38,7 +40,7 @@
             android:layout_height="wrap_content"
             android:text="저장"
             android:textSize="18dp"
-            android:textColor="#1F85EC"
+            android:textColor="#000000"
             android:textStyle="bold"
             />
 

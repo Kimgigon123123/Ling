@@ -20,6 +20,11 @@ public class ScheDAO {
 		return list;
 	}
 	
+	public List<ScheAddVO> plus_List(HashMap<String, Object> param){
+		List<ScheAddVO>  list = sql.selectList("sche.plus_List", param);
+		return list;
+	}
+	
 	public int insert(ScheAddVO vo){
 		int result = sql.insert("sche.insert", vo);
 		return result;

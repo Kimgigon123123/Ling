@@ -77,7 +77,8 @@ public class PhotoController {
 					try {
 						file.transferTo(targetFile);
 						dao.photoInsert(photo_vo);
-						dao.folder_lastPhoto(vo);
+						//dao.folder_lastPhoto(vo);
+						//dao.getFolderList(vo);
 						
 						
 					} catch (Exception e) {
@@ -88,8 +89,8 @@ public class PhotoController {
 		
 		
 		//?
-		List<FolderVO> list = dao.getFolderList(vo) ;
-
+	List<FolderVO> list = dao.getFolderList(vo) ;
+//
 		Gson gson = new Gson();	
 				
 		return gson.toJson(list);
