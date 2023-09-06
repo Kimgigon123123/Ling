@@ -54,7 +54,7 @@ a:not(.btn):link, a:not(.btn):hover {
 }
 
 #chart {
-	margin-top: 20px;
+	margin-bottom: 20px;
 	margin-bottom: 20px;
 	/* background-color: #f0f0f0; */
 }
@@ -67,6 +67,7 @@ a:not(.btn):link, a:not(.btn):hover {
 	color: #DCDCDC; /* 원하는 색상으로 변경 */
 	/* 다른 스타일 속성 추가 */
 }
+
 
 /* .bg-light { */
 /* 	background-image: url('<c:url value="/resources/images/faq_back.jpg"/>'); */
@@ -364,7 +365,7 @@ a:not(.btn):link, a:not(.btn):hover {
         function initCanvas(){
 			$('#legend').remove();
 			$('canvas#chart').remove();
-			$('#tab-content').append(`<canvas id="chart" class="h-100 m-auto"></canvas>`);
+			$('#tab-content').append(`<canvas id="chart" class="h-100 m-auto mt-5"></canvas>`);
 		}
         
       	$(function(){
@@ -461,6 +462,15 @@ a:not(.btn):link, a:not(.btn):hover {
         		    	maintainAspectRatio: false, // 크키조정시 캔버스 가로세로 비율 유지X(기본O)
         		    	responsive: true, //컨테이너 크기 변경시 캔버스 크기 조정X(기본O)
         		    	plugins:{
+        		    		 tooltip: {
+        		                    callbacks: {
+        		                        label: function(context, data) {
+
+        		                            let label = context.dataset.label || '';
+        		                            return label + ': ' + context.parsed.y + '명';
+        		                        }
+        		                    }
+        		                },
         		    		autocolors: {mode:'data'},
         		    		datalabels: {
         		    			anchor: labelAnchors, //도넛조각 내부에 데이터 위치하게
@@ -499,6 +509,16 @@ a:not(.btn):link, a:not(.btn):hover {
         		    		padding: {top:30}
         		    	},
         		    	plugins: {
+        		    		 tooltip: {
+        		                    callbacks: {
+        		                        label: function(context, data) {
+
+        		                            let label = context.dataset.label || '';
+        		                            return label + ': ' + context.parsed.y + '명';
+        		                        }
+        		                    }
+        		                },
+        		    		
         		    		legend: {display: false},
         		    		datalabels: {
         		    			formatter: function(value){
@@ -613,6 +633,15 @@ function barChart(info) {
                 padding: { top: 30, bottom: 20 },
             },
             plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context, data) {
+
+                            let label = context.dataset.label || '';
+                            return label + ': ' + context.parsed.y + '개';
+                        }
+                    }
+                },
                 legend: {
                     display: true,
                 },

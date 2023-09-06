@@ -34,6 +34,8 @@ public class PhotoController {
 	@Autowired SqlSession sql;
 	public static String folderPath = "D:\\Ling\\Ling\\image\\photo\\";
 	
+	String ip = "211.223.59.99:3301";
+	
 	
 
 	/* 설명 : ....
@@ -58,7 +60,10 @@ public class PhotoController {
 		String filename = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();
 		
 		
-		String filePath = "http://" + req.getLocalAddr() + ":" + req.getLocalPort() + req.getContextPath() 
+//		String filePath = "http://" + req.getLocalAddr() + ":" + req.getLocalPort() + req.getContextPath() 
+//		+ "/photo/" + vo.getCouple_num() + "/" +vo.getFolder_name() + "/" + filename;
+		
+		String filePath = "http://" + ip + req.getContextPath() 
 		+ "/photo/" + vo.getCouple_num() + "/" +vo.getFolder_name() + "/" + filename;
 
 		
@@ -149,7 +154,8 @@ public class PhotoController {
 	
 	private String replaceURL(HttpServletRequest req) {
 		String replaceURL = req.getContextPath();
-		return "http://" + req.getLocalAddr() + ":" + req.getLocalPort() + replaceURL + "/images/photo/";
+//		return "http://" + req.getLocalAddr() + ":" + req.getLocalPort() + replaceURL + "/images/photo/";
+		return "http://" + ip + replaceURL + "/images/photo/";
 	}
 
 	
