@@ -362,6 +362,8 @@ public class StoreController {
 		
 		
 		String uploadPath = "D:\\Ling\\Ling\\image\\store\\"; // 디렉토리 경로
+		
+		String ip = "192.168.0.28";
 
 		// 디렉토리 생성
 		File uploadDirectory = new File(uploadPath);
@@ -377,7 +379,8 @@ public class StoreController {
 //				String uploadPath="D:\\Ling\\Ling\\image\\store\\";
 				String filename = file.getOriginalFilename();
 				File filePath = new File(uploadPath, filename);
-				String item_img = "http://192.168.0.36:8080/ling/image/store/"+filename;
+				String item_img = "http://"+request.getLocalAddr()+":"+request.getLocalPort()
+				+"/ling/image"+"/store/"+filename;
 				vo.setItem_img(item_img);
 				 file.transferTo(filePath);
 				
@@ -431,7 +434,7 @@ public class StoreController {
 //						String uploadPath="D:\\Ling\\Ling\\image\\store\\";
 						String filename = file.getOriginalFilename();
 						File filePath = new File(uploadPath, filename);
-						String item_img = "http://192.168.0.36:8080/ling/image/store/"+filename;
+						String item_img = "http://192.168.0.28:8080/ling/image/store/"+filename;
 						vo.setItem_img(item_img);
 						 file.transferTo(filePath);
 						
