@@ -74,13 +74,13 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mx-auto h-100">
 					
-					
-					<li class="nav-item dropdown"><a
-							class="nav-link ${active_category eq 'admin' ? 'active' : '' }" href="admin" id="navbarDropdown">
-							<i class="fa-solid fa-house-user"></i> <span>
-									관리자 모드 
-							</span>
-						</a>
+					<li class="nav-item dropdown">
+<!-- 					<a -->
+<%-- 							class="nav-link ${active_category eq 'admin' ? 'active' : '' }" href="admin" id="navbarDropdown"> --%>
+<!-- 							<i class="fa-solid fa-house-user"></i> <span> -->
+<!-- 									관리자 모드  -->
+<!-- 							</span> -->
+<!-- 						</a> -->
 							</li>
 						<li class="nav-item"><a class="nav-link ${active_category eq 'lingmember' ? 'active' : '' }" href="lingmember">
 								<i class="far fa-user"></i> 회원관리
