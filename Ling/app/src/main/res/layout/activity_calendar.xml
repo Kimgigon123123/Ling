@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/calendar_backjpg"
+    android:background="#F9F5F6"
     tools:context=".calendar.CalendarActivity"
     android:orientation="vertical"
     android:paddingTop="24dp"
@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
+        android:background="#FDCEDF"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -137,18 +138,23 @@
         android:layout_marginHorizontal="15dp"
         >
         <LinearLayout
-            android:background="@drawable/border_layout_notop"
+            android:background="@drawable/border_layout"
             android:paddingVertical="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="17dp"
+                android:src="@drawable/heart100"
+                android:scaleType="fitXY"
+                />
             <TextView
                 android:id="@+id/tv_100"
                 android:layout_marginLeft="10dp"
-                android:layout_width="100dp"
+                android:layout_width="50dp"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:text="100일"
                 android:textStyle="bold"
@@ -171,16 +177,20 @@
         <LinearLayout
             android:paddingVertical="10dp"
             android:layout_width="match_parent"
-            android:background="@drawable/border_layout_notop"
+            android:background="@drawable/border_layout"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="17dp"
+                android:src="@drawable/heart200"
+                android:scaleType="fitXY"
+                />
             <TextView
                 android:id="@+id/tv_200"
                 android:layout_marginLeft="10dp"
-                android:layout_width="100dp"
-                android:layout_gravity="center"
-                android:gravity="center"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="200일"
                 android:textStyle="bold"
@@ -202,15 +212,19 @@
             android:paddingVertical="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_layout_notop"
+            android:background="@drawable/border_layout"
             android:orientation="horizontal"
             >
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="17dp"
+                android:src="@drawable/s100s"
+                android:scaleType="fitXY"
+                />
             <TextView
                 android:id="@+id/tv_300"
                 android:layout_marginLeft="10dp"
-                android:layout_width="100dp"
-                android:layout_gravity="center"
-                android:gravity="center"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="300일"
                 android:textStyle="bold"
@@ -232,15 +246,19 @@
             android:paddingVertical="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_layout_notop"
+            android:background="@drawable/border_layout"
             android:orientation="horizontal"
             >
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="17dp"
+                android:src="@drawable/heart365"
+                android:scaleType="fitXY"
+                />
             <TextView
                 android:id="@+id/tv_365"
                 android:layout_marginLeft="10dp"
-                android:layout_width="100dp"
-                android:layout_gravity="center"
-                android:gravity="center"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="1주년"
                 android:textStyle="bold"
