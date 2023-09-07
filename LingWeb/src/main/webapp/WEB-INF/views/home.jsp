@@ -139,9 +139,9 @@ a:not(.btn):link, a:not(.btn):hover {
                     <div class="carousel-item active">
                         <img src="<c:url value='/resources/images/couple.jpg'/>" class="d-block" width="600px" height="600px" alt="Image 1">
                     </div>
-                    <div class="carousel-item">
-                        <img src="<c:url value='/resources/images/ling_app_main.png'/>" class="d-block" width="600px" height="600px"  alt="Image 2">
-                    </div>
+<!--                     <div class="carousel-item"> -->
+<%--                         <img src="<c:url value='/resources/images/ling_app_main.png'/>" class="d-block" width="600px" height="600px"  alt="Image 2"> --%>
+<!--                     </div> -->
                     <div class="carousel-item">
                         <img src="<c:url value='/resources/images/ling_slogun.png'/>" class="d-block" width="600px" height="600px" alt="Image 3">
                     </div>
@@ -621,7 +621,7 @@ function barChart(info) {
 
 //혼합 그래프의 범례표시
 function makeLegend(info) {
-    var tag = `<ul class="nav legend-list row d-flex justify-content-center m-0 p-0 ">`;
+    var tag = `<ul class="nav legend-list row d-flex justify-content-center m-0 p-0 mt-5">`;
         
     for (var i = 0; i < info.itemNames.length; i++) {
 //         tag += `<li><span style="background-color: ${info.colors[i]}"></span>${info.itemNames[i]}</li>`;

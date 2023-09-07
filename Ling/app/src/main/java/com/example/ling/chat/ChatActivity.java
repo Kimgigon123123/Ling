@@ -78,6 +78,10 @@ public class ChatActivity extends AppCompatActivity {
 
                     mAdapter.notifyDataSetChanged();
                     binding.edtChat.setText("");
+
+                    //firebase의 실시간 데이터베이스에 대해 참조
+                    //chat이라는 특정 노드 경로 위치
+                    //하위 노드로 커플 번호 경로 추가
                     myRef = database.getReference().child("chat").child(CommonVar.loginInfo.getCouple_num());
                     myRef.push().setValue(chat);
 
