@@ -139,9 +139,9 @@ a:not(.btn):link, a:not(.btn):hover {
                     <div class="carousel-item active">
                         <img src="<c:url value='/resources/images/couple.jpg'/>" class="d-block" width="600px" height="600px" alt="Image 1">
                     </div>
-                    <div class="carousel-item">
-                        <img src="<c:url value='/resources/images/ling_app_main.png'/>" class="d-block" width="600px" height="600px"  alt="Image 2">
-                    </div>
+<!--                     <div class="carousel-item"> -->
+<%--                         <img src="<c:url value='/resources/images/ling_app_main.png'/>" class="d-block" width="600px" height="600px"  alt="Image 2"> --%>
+<!--                     </div> -->
                     <div class="carousel-item">
                         <img src="<c:url value='/resources/images/ling_slogun.png'/>" class="d-block" width="600px" height="600px" alt="Image 3">
                     </div>
