@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -205,17 +206,26 @@ public class PhotoController {
 	// 폴더와 하위 폴더, 파일들을 재귀적으로 삭제하는 함수
 	private boolean deleteFolder(File folder) {
 	    if (folder.exists()) {
-	        File[] files = folder.listFiles();
-	        if (files != null) {
-	            for (File file : files) {
-	                if (file.isDirectory()) {
-	                    deleteFolder(file); // 하위 폴더 삭제
-	                } else {
-	                    file.delete(); // 파일 삭제
-	                }
-	            }
-	        }
-	        return folder.delete(); // 폴더 삭제
+	    	try {
+				FileUtils.cleanDirectory(folder);
+				if(folder.isDirectory()) {
+					return folder.delete();
+					
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+//	        File[] files = folder.listFiles();
+//	        if (files != null) {
+//	            for (File file : files) {
+//	                if (file.isDirectory()) {
+//	                    deleteFolder(file); // 하위 폴더 삭제
+//	                } else {
+//	                    file.delete(); // 파일 삭제
+//	                }
+//	            }
+//	        }
+//	        return folder.delete(); // 폴더 삭제
 	    }
 	    return false; // 폴더가 존재하지 않을 경우에도 실패로 간주
 	}
