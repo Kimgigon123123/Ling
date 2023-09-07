@@ -18,6 +18,7 @@ public class ScheduleController {
 	
 	@Autowired ScheDAO dao;
 	
+	//일정 메인화면
 	@RequestMapping(value="/sche_list",produces="text/html;charset=utf-8")
 	public String sche_List(String id, String couple_num) {
 		HashMap<String, Object> param = new HashMap<String, Object>();
@@ -29,6 +30,7 @@ public class ScheduleController {
 		return gson.toJson(list);
 	}
 	
+	//일정 메인화면에서 d-day가 음수가 될 경우
 	@RequestMapping(value="/plus_List",produces="text/html;charset=utf-8")
 	public String plus_List(String id, String couple_num) {
 		HashMap<String, Object> param = new HashMap<String, Object>();
@@ -40,6 +42,8 @@ public class ScheduleController {
 		return gson.toJson(list);
 	}
 	
+	
+	//일정 추가
 	@RequestMapping(value="/sche_insert",produces="text/html;charset=utf-8")
 	public String sche_Insert(ScheAddVO vo) {
 		
@@ -50,6 +54,7 @@ public class ScheduleController {
 		return gson.toJson(result);
 	}
 	
+	//일정 삭제
 	@RequestMapping(value="/sche_delete",produces="text/html;charset=utf-8")
 	public String sche_Delete(ScheAddVO vo) {
 		
@@ -59,6 +64,7 @@ public class ScheduleController {
 		return gson.toJson(result);
 	}
 	
+	//일정 수정
 	@RequestMapping(value="/sche_update",produces="text/html;charset=utf-8")
 	public String sche_Update(ScheAddVO vo) {
 		int result = dao.update(vo);
@@ -67,6 +73,8 @@ public class ScheduleController {
 		return gson.toJson(result);
 	}
 	
+	
+	//일정 d-day 
 	@RequestMapping(value="/sche_dday",produces="text/html;charset=utf-8")
 	public String sche_Dday(String id, String couple_num, ScheAddVO vo) {
 		HashMap<String, Object> param = new HashMap<String, Object>();

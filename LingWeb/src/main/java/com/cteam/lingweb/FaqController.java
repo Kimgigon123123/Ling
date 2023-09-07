@@ -63,6 +63,7 @@ public class FaqController {
 		return "default/faq/faq_info";
 	}
 	
+	// FAQ 글 수정 화면요청
 	@RequestMapping("/faq_modify")
 	public String faq_modify(PageVO page, Model model, Integer faq_no) {
 		FaqVO vo = dao.faq_info(faq_no);
@@ -73,6 +74,7 @@ public class FaqController {
 		return "default/faq/faq_modify";
 	}
 	
+	// FAQ 글 수정 처리
 	@RequestMapping("/faq_update")
 	public String faq_update(FaqVO vo, PageVO page) {
 		dao.faq_update(vo);
@@ -81,6 +83,7 @@ public class FaqController {
 				+ "&search=" + page.getSearch();
 	}
 	
+	// FAQ 글 삭제 처리
 	@RequestMapping("/faq_delete")
 	public String faq_delete(PageVO page, Integer faq_no) throws UnsupportedEncodingException {
 		dao.faq_delete(faq_no);

@@ -42,6 +42,8 @@ public class ChatActivity extends AppCompatActivity {
     private DatabaseReference myRef;
 
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh시 mm분", Locale.KOREA);
+
+    //firebase 실시간 데이터베이스 연결
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
@@ -69,7 +71,6 @@ public class ChatActivity extends AppCompatActivity {
                 if(msg != null) {
 
                     chat.setId(CommonVar.loginInfo.getId());
-//                    chat.setCouple_num(CommonVar.loginInfo.getCouple_num());
                     chat.setNickname(nick);
                     chat.setMessage(msg);
                     chat.setTime(mFormat.format(date));

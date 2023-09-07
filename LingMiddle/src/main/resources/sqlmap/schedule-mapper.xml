@@ -3,6 +3,8 @@
 
 <mapper namespace="sche">
 
+
+<!-- 메인화면 일정 목록 -->
 <select id="list" resultType="schedule.ScheAddVO">
 	select s.sche_no, s.sche_title, s.sche_date, trunc(to_date(s.sche_date)-sysdate) "d_day", 
 	rank() over (order by trunc(to_date(s.sche_date)-sysdate, 0) asc), s.sche_notice from schedule s, couple c 
@@ -10,6 +12,7 @@ where s.couple_num = c.couple_num
 and s.couple_num = #{couple_num}
 </select>
 
+<!-- 메인화면 음수 d-day 처리 -->
 <select id="plus_List" resultType="schedule.ScheAddVO">
 <![CDATA[
 SELECT s.sche_no, s.sche_title, s.sche_date, trunc(to_date(s.sche_date)-sysdate) "d_day", 
@@ -21,10 +24,8 @@ SELECT s.sche_no, s.sche_title, s.sche_date, trunc(to_date(s.sche_date)-sysdate)
 	]]>
 </select>
 
+<!-- 일정 추가 -->
 <insert id="insert">
-	<!-- insert into schedule(couple_num, id, sche_title, sche_date, sche_notice, sche_typecode)
-	values(select c.couple_num, c.couple_id, s.sche_title, s.sche_date, s.sche_notice, sche ) -->
-	
 	insert into schedule(couple_num, id, sche_title, sche_date, sche_notice, sche_typecode)
 	select c.couple_num, lm.id, #{sche_title}, #{sche_date}, #{sche_notice}, #{sche_typecode}
 	from couple c
@@ -32,14 +33,17 @@ SELECT s.sche_no, s.sche_title, s.sche_date, trunc(to_date(s.sche_date)-sysdate)
 	where lm.id = #{id}
 </insert>
 
+<!-- 일정 삭제 -->
 <delete id="delete">
 	delete from schedule where sche_no = #{sche_no}
 </delete>
 
+<!-- 일정 수정 -->
 <update id="update">
 	update schedule set sche_title = #{sche_title} where couple_num = #{couple_num} and sche_no = #{sche_no}
 </update>
 
+<!-- 일정 d-day -->
 <select id="dday" resultType="schedule.ScheAddVO">
 	SELECT s.couple_num, c.create_date as create_date
 	FROM couple c

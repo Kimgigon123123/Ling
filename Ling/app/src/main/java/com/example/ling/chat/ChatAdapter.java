@@ -133,7 +133,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder>{
 
 
 
-
+        //로그인 한 사람의 닉네임에 따라 채팅 위치 조정
         if (chat.getNickname() != null) {
             if (chat.getNickname().equals(mynickName)) {
 

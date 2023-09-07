@@ -3,19 +3,14 @@
 
 <mapper namespace="photo">
 
-<!-- 
-	select * from photo_category where pho_img like '%/'||(select couple_num
-		from couple where couple_num = #{couple_num}) || '/' ||
-		(select folder_name from photo_folder where folder_name= #{folder_name})
-		||'%'
-		 -->
+	<!-- 사진 목록  -->
 	<select id="photo_list" resultType="photo.PhotoVO">
 	select *
     from photo_category 
     where FOLDER_NUM = #{folder_num}
 	</select>
 
-
+	<!-- 폴더 목록 -->
 	<select id="folder_list" resultType="photo.FolderVO">
 	    SELECT PF.* , PC.PHO_IMG AS LAST_PHOTO
     FROM PHOTO_FOLDER PF LEFT OUTER JOIN 
@@ -26,38 +21,23 @@
                                     GROUP BY PC.FOLDER_NUM )
                                 ) PC ON PF.FOLDER_NUM = PC.FOLDER_NUM
     WHERE COUPLE_NUM = #{couple_num}
-    
-    
-
 	</select>
 	
-	<update id="folder_lastPhoto">
-	    SELECT PF.* , PC.PHO_IMG AS LAST_PHOTO
-    FROM PHOTO_FOLDER PF LEFT OUTER JOIN 
-                                ( 
-                                SELECT FOLDER_NUM , PHO_IMG FROM PHOTO_CATEGORY 
-                                    WHERE PHO_NO IN ( SELECT  MAX( PHO_NO ) 
-                                    FROM PHOTO_CATEGORY PC
-                                    GROUP BY PC.FOLDER_NUM )
-                                ) PC ON PF.FOLDER_NUM = PC.FOLDER_NUM
-    WHERE COUPLE_NUM = {#couple_num}
-	
-	</update>
-	
-	
-	
+	<!--  폴더추가	 -->
 	<insert id="folder_insert">
 		INSERT INTO photo_folder (id, couple_num, folder_name)
 		VALUES (#{id}, #{couple_num}, #{folder_name} )
 
 	</insert>
 	
+	<!-- 파일 db 추가 -->
 	<insert id="photo_insert">
 		INSERT INTO photo_category (pho_img, pho_date, folder_num)
 		values(#{pho_img}, sysdate, #{folder_num})
 				
 	</insert>
 	
+	<!-- 파일 생성 -->
 	<insert id="file">
 	insert into photo_category (pho_img, folder_num)
 			select #{pho_img}, pf.folder_num
@@ -65,24 +45,15 @@
 	where pf.folder_num = #{folder_num}
 	</insert>
 	
+	<!-- 폴더 삭제 -->
 	<delete id="folder_delete">
 		delete from photo_folder where folder_name = #{folder_name}
 	</delete>
 	
+	<!-- 파일 삭제 -->
 	<delete id="file_delete">
 		delete from photo_category where folder_name = #{folder_name}
 	</delete>
 	
 	
-	<select id="storage" resultType="photo.PhotoVO">
-		select pho_img from photo_category where folder_name = 'all' and pho_img like '%' || '/' || (
-    	SELECT couple_num
-    	FROM couple 
-    	WHERE couple_num = #{couple_num}
-		) || '/' || (
-   	 	SELECT folder_name 
-    	FROM photo_folder 
-    	WHERE folder_name = 'all'
-		) || '%'
-	</select>
 </mapper>
