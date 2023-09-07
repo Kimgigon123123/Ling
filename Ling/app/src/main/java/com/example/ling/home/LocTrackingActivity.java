@@ -36,9 +36,14 @@ import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.UiSettings;
+import com.naver.maps.map.overlay.InfoWindow;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.OverlayImage;
 import com.naver.maps.map.util.FusedLocationSource;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class LocTrackingActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -47,6 +52,8 @@ public class LocTrackingActivity extends AppCompatActivity implements OnMapReady
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private FusedLocationSource locationSource;
     private NaverMap naverMap;
+
+    private InfoWindow infoWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +101,8 @@ public class LocTrackingActivity extends AppCompatActivity implements OnMapReady
         naverMap.setLocationSource(locationSource);
         naverMap.setLocationTrackingMode(LocationTrackingMode.Face);
 
+        // infoWindow = new InfoWindow();
+
         // 상대방의 위치를 표시할 마커 생성
         naverMap.addOnCameraIdleListener(() -> {
             Location lastLocation = locationSource.getLastLocation();
@@ -113,6 +122,17 @@ public class LocTrackingActivity extends AppCompatActivity implements OnMapReady
                         CameraUpdate cameraUpdate = CameraUpdate.scrollAndZoomTo(targetLocation, 15)
                                 .animate(CameraAnimation.Fly, 2000);
                         naverMap.moveCamera(cameraUpdate);
+                        infoWindow = new InfoWindow(new InfoWindow.DefaultTextAdapter(LocTrackingActivity.this) {
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                            String currentTime = sdf.format(new Date());
+                            @NonNull
+                            @Override
+                            public CharSequence getText(@NonNull InfoWindow infoWindow) {
+                                infoWindow.setTag(currentTime);
+                                return currentTime;
+                            }
+                        });
+                        infoWindow.open(currentMarker);
                     });
                 }
                     handler.postDelayed(new Runnable() {
@@ -139,6 +159,28 @@ public class LocTrackingActivity extends AppCompatActivity implements OnMapReady
                                     CameraUpdate cameraUpdate = CameraUpdate.scrollAndZoomTo(targetLocation, 15)
                                             .animate(CameraAnimation.Fly, 2000);
                                     naverMap.moveCamera(cameraUpdate);
+                                    infoWindow = new InfoWindow(new InfoWindow.DefaultTextAdapter(LocTrackingActivity.this) {
+                                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                                        String currentTime = sdf.format(new Date());
+                                        @NonNull
+                                        @Override
+                                        public CharSequence getText(@NonNull InfoWindow infoWindow) {
+                                            infoWindow.setTag(currentTime);
+                                            return currentTime;
+                                        }
+                                    });
+                                    infoWindow.open(currentMarker);
+                                    // 마커 클릭 시간을 현재 시간으로 표시
+//                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+//                                    String currentTime = sdf.format(new Date());
+//
+//                                    // 마커를 클릭하면 InfoWindow에 위치 정보와 시간 표시
+//                                    currentMarker.setOnClickListener(overlay -> {
+//                                        // InfoWindow 내용 설정
+//                                        infoWindow.setTag(currentTime);
+//                                        infoWindow.open(currentMarker);
+//                                        return true;
+//                                    });
                                 });
                             });
                         }
