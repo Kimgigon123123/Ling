@@ -6,47 +6,30 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.image-container {
+    text-align: center; /* 이미지를 수평 중앙에 정렬합니다. */
+}
+
+.image-container img {
+    max-width: 100%; /* 이미지를 부모 컨테이너에 맞게 조절합니다. */
+    height: auto; /* 이미지의 가로 세로 비율을 유지합니다. */
+}
+</style>
 </head>
 <body>
 	<div class="container">
 		<div class="row">
 			<div class="col">
 				<p class="text-white mt-5 mb-5">
-					Welcome back, <b>Admin</b>
+					<b>영진문경훈조</b> <br>이상으로 발표를 마치겠습니다.</> 
 				</p>
 			</div>
 		</div>
 
 		<!-- row -->
 		<div class="row tm-content-row">
-			<div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-				<div class="tm-bg-primary-dark tm-block">
-					<h2 class="tm-block-title">Latest Hits</h2>
-					<canvas id="lineChart"></canvas>
-				</div>
-			</div>
-			<div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-				<div class="tm-bg-primary-dark tm-block">
-					<h2 class="tm-block-title">Performance</h2>
-<%--  					<canvas id="barChart"></canvas> --%>
-						<canvas id="chart" class="nav-item nav-link"></canvas>
-				</div>
-			</div>
-			<div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-				<div class="tm-bg-primary-dark tm-block tm-block-taller">
-					<h2 class="tm-block-title">Storage Information</h2>
-					<div id="pieChartContainer">
-						<canvas id="pieChart" class="chartjs-render-monitor" width="200"
-							height="200"></canvas>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
-				<div
-					class="tm-bg-primary-dark tm-block tm-block-taller tm-block-overflow">
-					<h2 class="tm-block-title">Developer List</h2>
-					<div class="tm-notification-items">
-						<div class="media tm-notification-item">
+		<div class="media tm-notification-item">
 							<div class="tm-gray-circle">
 								<img src="img/aegigon.jpg" alt="Avatar Image"
 									class="rounded-circle">
@@ -103,43 +86,19 @@
 								<span class="tm-small tm-text-color-secondary">홍일점</span>
 							</div>
 						</div>
-					
-					</div>
-				</div>
-			</div>
-			<div class="col-12 tm-block-col">
-				<div
-					class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-					<h2 class="tm-block-title">Orders List</h2>
-					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">ORDER NO.</th>
-								<th scope="col">STATUS</th>
-								<th scope="col">OPERATORS</th>
-								<th scope="col">LOCATION</th>
-								<th scope="col">DISTANCE</th>
-								<th scope="col">START DATE</th>
-								<th scope="col">EST DELIVERY DUE</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row"><b>#122349</b></th>
-								<td>
-									<div class="tm-status-circle moving"></div>Moving
-								</td>
-								<td><b>Oliver Trag</b></td>
-								<td><b>London, UK</b></td>
-								<td><b>485 km</b></td>
-								<td>16:00, 12 NOV 2018</td>
-								<td>08:00, 18 NOV 2018</td>
-							</tr>
-							
-						</tbody>
-					</table>
-				</div>
-			</div>
+						
+<!-- 			<div class="col-12 tm-block-col"> -->
+<!-- 				<div class="tm-bg-primary-dark tm-block tm-block-taller"> -->
+<!-- 					<img src="img/022.png"/>				 -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<div class="col-12 tm-block-col">
+    <div class="tm-bg-primary-dark ">
+        <div class="image-container">
+            <img src="img/022.png" alt="이미지 설명">
+        </div>
+    </div>
+</div>
 		</div>
 	</div>
 	
