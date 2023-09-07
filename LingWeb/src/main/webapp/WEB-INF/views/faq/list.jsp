@@ -11,7 +11,11 @@
   />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/custom.css">
 
-
+<style>
+.dropdown-menu { inset: initial } 
+.dropdown-menu { display: block !important } 
+.d-none { display: none !important } 
+</style>
 
 </head>
 <body>
@@ -81,19 +85,29 @@
 
 
 
+<div>
 <c:forEach items="${page.list}" var="vo" varStatus="loop">
 	
 <div class="accordion accordion-flush">
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${loop.index}" aria-expanded="false" aria-controls="flush-collapseOne">
+      <button data-faq='${vo.faq_no}' class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${loop.index}" aria-expanded="false" aria-controls="flush-collapseOne">
         [${vo.faq_category }]  ${vo.faq_title }
       </button>
     </h2>
     <div id="flush-collapse-${loop.index}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-  <div class="accordion-body" style="max-height: 300px; overflow-y: auto;">
+  <div class="accordion-body" style="max-height: 400px; overflow-y: auto;">
     <div class="d-flex justify-content-between">
       <pre>${vo.faq_content }</pre>
+     
+      <c:if test="${loginId eq 'admin'}">
+      <div class="dropdown" >
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-faq='${vo.faq_no}' aria-haspopup="true" aria-expanded="false">
+           ···
+        </button>
+      </div>
+      </c:if>
+      <!--  
       <c:if test="${loginId eq 'admin'}">
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton-${loop.index}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -106,6 +120,7 @@
         </div>     
       </div>
       </c:if>
+      -->
     </div>
   </div>
 </div>
@@ -113,6 +128,26 @@
   
 </div>
 </c:forEach>
+</div>
+
+<div class="dropdown-menu d-none" aria-labelledby="dropdownMenuButton" data-faq=''>
+          <a class="dropdown-item">수정</a>
+          <a class="dropdown-item">삭제</a>
+        </div>    
+        
+<!--  
+      <c:if test="${loginId eq 'admin'}">
+      <div class="dropdown d-none">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           ···
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-faq=''>
+          <a class="dropdown-item">수정</a>
+          <a class="dropdown-item">삭제</a>
+        </div>     
+      </div>
+      </c:if>
+-->
 
 <jsp:include page="page.jsp"></jsp:include>
 
@@ -125,6 +160,60 @@
 <div class="content_clear"></div>
 
 <script>
+$('.dropdown-menu .dropdown-item:eq(0)').click(function(){
+	location.href="faq_modify?faq_no=" + $(this).closest('.dropdown-menu').data('faq');
+})
+$('.dropdown-menu .dropdown-item:eq(1)').click(function(){
+	if(confirm('이 FAQ 글을 삭제하시겠습니까?')) 
+    {location.href='faq_delete?faq_no='+ $(this).closest('.dropdown-menu').data('faq')}
+})
+
+$('button.dropdown-toggle').click(function(){
+	if( !$(this).closest('div.accordion-collapse').hasClass('collapsed') ){
+// 		console.log('1', $(this).offset().left , $('div.dropdown-menu').outerWidth(), $(this).outerWidth() )
+		var left = $(this).offset().left + $(this).outerWidth() - 160, top= $(this).offset().top+ $(this).outerHeight()-2;
+		$('div.dropdown-menu').css({'position':'absolute', 'left': left, 'top': top})
+		$('div.dropdown-menu').data('faq', $(this).data('faq'))
+		if( $(this).hasClass('toggle') ){
+			$(this).removeClass('toggle');
+			$('.dropdown-menu').addClass('d-none');
+		}else{
+			$(this).addClass('toggle');
+			$('.dropdown-menu').removeClass('d-none');
+		}
+		
+		
+	}else{
+		console.log('2')
+		$('div.dropdown-menu').addClass('d-none');
+	}
+})
+$('button.accordion-button').click(function(){
+	$('div.dropdown-menu').addClass('d-none');
+})
+/*  
+  
+$('.dropdown-menu .dropdown-item:eq(0)').click(function(){
+	location.href="faq_modify?faq_no=" + $(this).closest('.dropdown-menu').data('faq');
+})
+$('.dropdown-menu .dropdown-item:eq(1)').click(function(){
+	if(confirm('이 FAQ 글을 삭제하시겠습니까?')) 
+    {location.href='faq_delete?faq_no='+ $(this).closest('.dropdown-menu').data('faq')}
+})
+
+$('button.accordion-button').click(function(){
+	if( !$(this).hasClass('collapsed') ){
+		$('.dropdown-menu').data('faq', $(this).data('faq'));
+		$('div.dropdown').removeClass('d-none')
+		var aa = $(this).closest('div.accordion-item').children('div.accordion-collapse');
+		var left = $(this).offset().left + $(this).width()-43, top= $(this).offset().top+ $(this).outerHeight()+18;
+		$('div.dropdown').css({'position':'absolute', 'left': left, 'top': top})
+	}else{
+		$('div.dropdown').addClass('d-none')
+	}
+})
+ */
+
     // 페이지 로드 시 실행되는 함수
     window.onload = function() {
         // select 요소의 값이 변경될 때마다 호출되는 함수
