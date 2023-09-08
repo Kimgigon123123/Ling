@@ -18,6 +18,7 @@ import com.example.ling.R;
 import com.example.ling.common.CommonConn;
 import com.example.ling.common.CommonVar;
 import com.example.ling.databinding.ActivityCalendarAddBinding;
+import com.example.ling.databinding.ActivityCalendarBinding;
 
 
 import java.text.SimpleDateFormat;
@@ -28,6 +29,8 @@ import java.util.Locale;
 public class CalendarAddActivity extends AppCompatActivity {
 
     ActivityCalendarAddBinding binding;
+
+    ActivityCalendarBinding binding1;
 
     Calendar myCalendar = Calendar.getInstance();
 

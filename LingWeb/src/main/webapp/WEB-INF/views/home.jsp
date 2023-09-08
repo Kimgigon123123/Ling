@@ -56,7 +56,7 @@ a:not(.btn):link, a:not(.btn):hover {
 #chart {
 	margin-bottom: 20px;
 	margin-bottom: 20px;
-	/* background-color: #f0f0f0; */
+	background-color: ;
 }
 
 #chart_back {
