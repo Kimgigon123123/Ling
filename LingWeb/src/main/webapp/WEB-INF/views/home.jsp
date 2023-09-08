@@ -174,7 +174,7 @@ a:not(.btn):link, a:not(.btn):hover {
                         <div class="container-fluid px-5">
                             <div class="row gx-5">
                                 <div class="col-md-6 mb-5">
-                                    <!-- Feature item-->
+                                    <!-- Feature item-->zzz
                                     <div class="text-center">
                                         <img src="<c:url value='/resources/images/menu_homefrag_img1.png'/>" class="justify-content-center w-50 h-50" alt="Image 2">
                                         <h3 class="font-alt">위치추적</h3>
